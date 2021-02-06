@@ -7,7 +7,7 @@
 
 ### App Setup
 
-- `$ git clone git clone https://jyotiGupta007@bitbucket.org/daf-jyoti/cites.git`
+- `$ git clone https://jyotiGupta007@bitbucket.org/daf-jyoti/cites.git`
 - `$ cd cites`
 
 - Install the project dependencies:
@@ -83,7 +83,7 @@ export default Home;
 
 We are following React Atomic design for component organisation.
 
-- Atoms : The smallest possible components, such as buttons, titles, inputs or event color pallets, animations, and fonts.
+- Atoms : The smallest possible components, such as buttons, titles, inputs or event color pallets, animations etc.
 
 - Molecules : They are the composition of one or more components of atoms.
 
