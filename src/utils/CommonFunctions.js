@@ -28,3 +28,9 @@ export const isJSONParsable = (string) => {
     return false;
   }
 };
+
+export const getDefaultValues = (formFields = []) =>
+  formFields.reduce(
+    (acc, current) => ({...acc, [current.name]: current.defaultValue || ''}),
+    {},
+  );

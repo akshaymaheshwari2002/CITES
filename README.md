@@ -79,6 +79,42 @@ const Home = () => {
 export default Home;
 ```
 
+## Use of Form
+
+We have a Form component to handle our forms:
+
+```jsx
+import {useForm} from 'react-hook-form';
+
+import {Form} from '@organisms';
+import Constants from '@utils/Constants';
+
+const Home = () => {
+  const formProps = useForm();
+  const {handleSubmit, control, errors, reset} = formProps;
+
+  return (
+    <Form
+      control={control}
+      formProps={formProps}
+      errors={errors}
+      formFields={[
+        {
+          defaultValue: '',
+          fieldType: Constants.DATEPICKER,
+          label: 'Email address',
+          name: 'email', // Key against which value will be stored
+          rules: {required: 'Required Value'}, // Check rules prop in react-hook-form
+          ...otherProps, // Props that needs to be passed to the field component
+        },
+      ]}
+    />
+  );
+};
+
+export default Home;
+```
+
 ## Component Organisation
 
 We are following React Atomic design for component organisation.
