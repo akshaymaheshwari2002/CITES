@@ -2,7 +2,7 @@ import React from 'react';
 import {View, StyleSheet, Dimensions} from 'react-native';
 import Pdf from 'react-native-pdf';
 
-const PdfPreview = ({source = {}}) => {
+const PDFPreview = ({source = {}}) => {
   return (
     <View style={styles.container}>
       <Pdf
@@ -33,4 +33,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PdfPreview;
+export default PDFPreview;

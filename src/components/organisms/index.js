@@ -1,4 +1,3 @@
-import PdfPreview from './PdfPreview';
-import Form from '../organisms/Form';
+import Form from './Form';
 
-export {Form, PdfPreview};
+export {Form};
