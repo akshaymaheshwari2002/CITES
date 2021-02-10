@@ -91,7 +91,7 @@ import Constants from '@utils/Constants';
 
 const Home = () => {
   const formProps = useForm();
-  const {handleSubmit, control, errors, reset} = formProps;
+  const {handleSubmit, control, errors} = formProps;
 
   return (
     <Form
