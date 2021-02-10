@@ -8,7 +8,8 @@ const Themes = {
 
 const RawColors = {
   transparent: 'transparent',
-  white: '#FFFFFF',
+  white: 'white',
+  black: 'black',
   dimGrey: '#707070',
   snow: '#F9F9F9',
 };
