@@ -73,3 +73,9 @@ export const generatePdf = async (
     return err;
   }
 };
+
+export const getDefaultValues = (formFields = []) =>
+  formFields.reduce(
+    (acc, current) => ({...acc, [current.name]: current.defaultValue || ''}),
+    {},
+  );
