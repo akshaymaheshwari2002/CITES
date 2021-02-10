@@ -1,4 +1,6 @@
-import {NativeModules, Platform} from 'react-native';
+import {NativeModules, Platform, PermissionsAndroid} from 'react-native';
+import {renderToStaticMarkup} from 'react-dom/server';
+import RNHTMLtoPDF from 'react-native-html-to-pdf';
 
 import messages_en from '@locale/en.json';
 
@@ -26,5 +28,48 @@ export const isJSONParsable = (string) => {
     return true;
   } catch {
     return false;
+  }
+};
+
+export const requestWritePermission = async () => {
+  if (Platform.OS === 'android') {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+      );
+      return granted === PermissionsAndroid.RESULTS.GRANTED;
+    } catch (err) {
+      console.warn(err);
+      return false;
+    }
+  } else {
+    return true;
+  }
+};
+
+export const generatePdf = async (
+  templates = [],
+  fileName,
+  saveFile = false,
+) => {
+  let options = {
+    html: templates.map((value) => renderToStaticMarkup(value())).join(''),
+  };
+  let saveOptions = {
+    html: templates.map((value) => renderToStaticMarkup(value())).join(''),
+    fileName: fileName ? `${fileName}` : `${new Date().getTime()}`,
+    directory: Platform.OS === 'ios' ? 'Documents' : 'Download',
+  };
+  try {
+    const permissionGranted = await requestWritePermission();
+    if (permissionGranted) {
+      let file = await RNHTMLtoPDF.convert(saveFile ? saveOptions : options);
+      console.log(file.filePath);
+      return file;
+    } else {
+      return 'Please Grant Permission';
+    }
+  } catch (err) {
+    return err;
   }
 };
