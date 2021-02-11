@@ -1,7 +1,8 @@
 import React, {useCallback, useMemo} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 import PropTypes from 'prop-types';
 import {Controller} from 'react-hook-form';
+import {ScaledSheet} from 'react-native-size-matters';
 
 import {TextInput, DatePicker} from '@atoms';
 import Constants from '@utils/Constants';
@@ -69,9 +70,9 @@ Form.defaultProps = {
   formProps: {},
 };
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   fieldContainer: {
-    marginBottom: 42,
+    marginBottom: '42@vs',
   },
 });
 

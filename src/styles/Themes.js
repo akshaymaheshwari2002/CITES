@@ -12,6 +12,7 @@ const RawColors = {
   black: 'black',
   dimGrey: '#707070',
   snow: '#F9F9F9',
+  whiteTwo: 'rgb(249,249,249)',
 };
 
 const Fonts = {

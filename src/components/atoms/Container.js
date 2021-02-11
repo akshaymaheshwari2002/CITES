@@ -1,9 +1,10 @@
 import React from 'react';
-import {StyleSheet, StatusBar} from 'react-native';
+import {StatusBar} from 'react-native';
 import PropTypes from 'prop-types';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {HeaderHeightContext} from '@react-navigation/stack';
 import {useIsFocused} from '@react-navigation/native';
+import {ScaledSheet} from 'react-native-size-matters';
 
 import {RawColors} from '@styles/Themes';
 
@@ -36,7 +37,7 @@ const Container = ({isModal, children, statusBarStyle}) => {
   );
 };
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   container: {
     flex: 1,
     backgroundColor: RawColors.white,

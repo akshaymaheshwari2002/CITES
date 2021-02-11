@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, StyleSheet, Dimensions} from 'react-native';
+import {View} from 'react-native';
 import Pdf from 'react-native-pdf';
+import {ScaledSheet} from 'react-native-size-matters';
 
 const PDFPreview = ({source = {}}) => {
   return (
@@ -19,17 +20,18 @@ const PDFPreview = ({source = {}}) => {
   );
 };
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    marginTop: 25,
+    marginTop: '16@vs',
+    marginHorizontal: '16@s',
   },
   pdf: {
     flex: 1,
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height - 150,
+    width: '100%',
+    height: '100%',
   },
 });
 
