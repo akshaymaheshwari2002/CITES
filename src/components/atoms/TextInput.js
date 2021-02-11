@@ -1,6 +1,7 @@
 import React from 'react';
-import {TextInput as Input, Text, StyleSheet} from 'react-native';
+import {TextInput as Input, Text} from 'react-native';
 import PropTypes from 'prop-types';
+import {ScaledSheet} from 'react-native-size-matters';
 
 import {RawColors, Fonts} from '@styles/Themes';
 
@@ -33,9 +34,9 @@ TextInput.defaultProps = {
   onChange: () => {},
 };
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   inputContainer: {
-    marginVertical: 12,
+    marginVertical: '12@vs',
     borderWidth: 1,
     borderColor: RawColors.dimGrey,
   },

@@ -1,7 +1,8 @@
-import {StyleSheet} from 'react-native';
+import {scale, ScaledSheet} from 'react-native-size-matters';
+
 import {RawColors} from './Themes';
 
-export default StyleSheet.create({
+export default ScaledSheet.create({
   shadowEffect: {
     shadowColor: RawColors.black,
     shadowOpacity: 0.3,
@@ -14,6 +15,13 @@ export default StyleSheet.create({
   navigationHeader: {
     elevation: 0,
     shadowOpacity: 0,
-    backgroundColor: RawColors.snow,
+    backgroundColor: RawColors.whiteTwo,
+    height: '98@vs',
+  },
+  navigationLeftContainer: {
+    paddingLeft: scale(8),
+  },
+  navigationRightContainer: {
+    paddingRight: scale(8),
   },
 });
