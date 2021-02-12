@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {StatusBar} from 'react-native';
 import PropTypes from 'prop-types';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -11,6 +11,7 @@ import {RawColors} from '@styles/Themes';
 
 const Container = ({
   isModal,
+  scrollable,
   children,
   statusBarProps,
   safeAreaViewProps,
@@ -18,6 +19,22 @@ const Container = ({
 }) => {
   const isFocused = useIsFocused();
   const headerHeight = useHeaderHeight();
+
+  const renderContent = useCallback(
+    () =>
+      scrollable ? (
+        <KeyboardAwareScrollView
+          keyboardShouldPersistTaps="handled"
+          enableOnAndroid={true}
+          contentContainerStyle={styles.container}
+          {...keyboardAwareScrollViewProps}>
+          {children}
+        </KeyboardAwareScrollView>
+      ) : (
+        children
+      ),
+    [children, keyboardAwareScrollViewProps, scrollable],
+  );
 
   return (
     <>
@@ -37,13 +54,7 @@ const Container = ({
         }
         style={styles.container}
         {...safeAreaViewProps}>
-        <KeyboardAwareScrollView
-          keyboardShouldPersistTaps="handled"
-          enableOnAndroid={true}
-          contentContainerStyle={styles.container}
-          {...keyboardAwareScrollViewProps}>
-          {children}
-        </KeyboardAwareScrollView>
+        {renderContent()}
       </SafeAreaView>
     </>
   );
@@ -58,6 +69,7 @@ const styles = ScaledSheet.create({
 
 Container.propTypes = {
   isModal: PropTypes.bool,
+  scrollable: PropTypes.bool,
   statusBarProps: PropTypes.object,
   safeAreaViewProps: PropTypes.object,
   keyboardAwareScrollViewProps: PropTypes.object,
@@ -66,6 +78,7 @@ Container.propTypes = {
 
 Container.defaultProps = {
   isModal: false,
+  scrollable: false,
   statusBarProps: {},
   safeAreaViewProps: {},
   keyboardAwareScrollViewProps: {},
