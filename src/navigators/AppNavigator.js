@@ -6,8 +6,19 @@ import {scale} from 'react-native-size-matters';
 import {TouchableOpacity} from 'react-native';
 
 import {navigationRef} from '@utils/RootNavigation';
-import {ProductionCapacityCalculator} from '@screens';
 import CommonStyles from '@styles/CommonStyles';
+import {
+  FacilityScore,
+  LanguageSelection,
+  OnboardingOne,
+  GiveFeedback,
+  OnboardingFour,
+  OnboardingThree,
+  OnboardingTwo,
+  StepsSummary,
+  SubmitFeedback,
+  ProductionCapacityCalculator,
+} from '@screens';
 
 const Stack = createStackNavigator();
 
@@ -28,7 +39,22 @@ const screenOptions = {
 const AppNavigator = () => {
   return (
     <NavigationContainer ref={navigationRef}>
-      <Stack.Navigator screenOptions={screenOptions}>
+      <Stack.Navigator
+        screenOptions={screenOptions}
+        initialRouteName="LanguageSelection">
+        <Stack.Screen
+          name="LanguageSelection"
+          options={{headerShown: false}}
+          component={LanguageSelection}
+        />
+        <Stack.Screen name="OnboardingOne" component={OnboardingOne} />
+        <Stack.Screen name="OnboardingTwo" component={OnboardingTwo} />
+        <Stack.Screen name="OnboardingThree" component={OnboardingThree} />
+        <Stack.Screen name="OnboardingFour" component={OnboardingFour} />
+        <Stack.Screen name="StepsSummary" component={StepsSummary} />
+        <Stack.Screen name="GiveFeedback" component={GiveFeedback} />
+        <Stack.Screen name="SubmitFeedback" component={SubmitFeedback} />
+        <Stack.Screen name="FacilityScore" component={FacilityScore} />
         <Stack.Screen
           name="ProductionCapacityCalculator"
           component={ProductionCapacityCalculator}
