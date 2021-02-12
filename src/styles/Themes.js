@@ -26,9 +26,13 @@ const Fonts = {
     fontFamily: 'Lato-Regular',
     fontSize: 17,
   },
+  HelveticaNeue30B: {
+    fontFamily: 'HelveticaNeue-Bold',
+    fontSize: 30,
+  },
   HelveticaNeue40B: {
     fontFamily: 'HelveticaNeue-Bold',
-    fontSize: '40',
+    fontSize: 40,
   },
 };
 

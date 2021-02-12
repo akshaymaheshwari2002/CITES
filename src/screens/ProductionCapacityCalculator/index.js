@@ -9,6 +9,7 @@ import {Container, Button} from '@atoms';
 import {Form} from '@organisms';
 import CommonStyles from '@styles/CommonStyles';
 import getFormFields from './FormFields';
+import {Fonts} from '@styles/Themes';
 
 const ProductionCapacityCalculator = () => {
   const intl = useIntl();
@@ -40,7 +41,7 @@ const ProductionCapacityCalculator = () => {
   return (
     <Container>
       <View style={CommonStyles.screenContainer}>
-        <Text style={style.title}>
+        <Text style={Fonts.HelveticaNeue30B}>
           {intl.formatMessage({
             id: 'screen.ProductionCapacityCalculator.titleText',
           })}
@@ -49,12 +50,12 @@ const ProductionCapacityCalculator = () => {
           enableOnAndroid={true}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}>
-          <Text style={style.paragraph}>
+          <Text style={[style.paragraph, Fonts.Lato17R]}>
             {intl.formatMessage({
               id: 'screen.ProductionCapacityCalculator.infoText_1',
             })}
           </Text>
-          <Text style={style.paragraph}>
+          <Text style={[style.paragraph, Fonts.Lato17R]}>
             {intl.formatMessage({
               id: 'screen.ProductionCapacityCalculator.infoText_2',
             })}
@@ -78,11 +79,6 @@ const ProductionCapacityCalculator = () => {
 };
 
 const style = ScaledSheet.create({
-  title: {
-    fontSize: '30@s',
-    lineHeight: '35@s',
-    marginBottom: '20@s',
-  },
   paragraph: {
     marginBottom: '20@s',
   },
