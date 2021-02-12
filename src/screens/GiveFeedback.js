@@ -1,17 +1,17 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useIntl} from 'react-intl';
 
 import {Container} from '@atoms';
 import {Fonts} from '@styles/Themes';
+import CommonStyles from '@styles/CommonStyles';
 
 const GiveFeedback = () => {
   const {formatMessage} = useIntl();
   return (
     <Container>
-      <KeyboardAwareScrollView>
+      <View style={CommonStyles.screenContainer}>
         <View style={styles.title}>
           <Text style={styles.titleContent}>
             {formatMessage({id: 'screen.GiveFeedback.headerPartOne'})}
@@ -24,31 +24,29 @@ const GiveFeedback = () => {
           <Text style={styles.content}>
             {formatMessage({id: 'screen.GiveFeedback.contentOne'})}
           </Text>
-          <Text style={styles.line1}>
-            {formatMessage({id: 'screen.GiveFeedback.contentTwo'})}
-          </Text>
-          <Text style={styles.content}>
-            {formatMessage({id: 'screen.GiveFeedback.contentThree'})}
-          </Text>
+          <View style={styles.gap1}>
+            <Text style={styles.line1}>
+              {formatMessage({id: 'screen.GiveFeedback.contentTwo'})}
+            </Text>
+            <Text style={styles.content}>
+              {formatMessage({id: 'screen.GiveFeedback.contentThree'})}
+            </Text>
+          </View>
 
-          <Text style={styles.line2}>
-            {formatMessage({id: 'screen.GiveFeedback.contentFour'})}
-          </Text>
+          <View style={styles.gap2}>
+            <Text style={styles.line2}>
+              {formatMessage({id: 'screen.GiveFeedback.contentFour'})}
+            </Text>
+          </View>
         </View>
         <View style={styles.btn}></View>
-      </KeyboardAwareScrollView>
+      </View>
     </Container>
   );
 };
 
 const styles = ScaledSheet.create({
-  container: {
-    flex: 1,
-    marginHorizontal: '20%',
-    marginVertical: '20%',
-  },
   title: {
-    marginLeft: '15@s',
     marginTop: '18@s',
     height: '100@s',
     width: '240@s',
@@ -61,14 +59,17 @@ const styles = ScaledSheet.create({
   },
   contentContainer: {
     marginTop: '8@s',
-    marginHorizontal: '15@s',
-    height: '284@s',
-    width: '344@s',
   },
   content: {
     lineHeight: 22,
     letterSpacing: 0.41,
-    ...Fonts.Lato17R,
+    ...Fonts.Lato15R,
+  },
+  gap1: {
+    marginTop: '5%',
+  },
+  gap2: {
+    marginTop: '12%',
   },
   line1: {
     fontWeight: 'bold',

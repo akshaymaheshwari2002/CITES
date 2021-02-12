@@ -1,4 +1,5 @@
 import {createTheming} from '@callstack/react-theme-provider';
+import {moderateScale} from 'react-native-size-matters';
 
 const Themes = {
   DEFAULT: {
@@ -15,20 +16,21 @@ const RawColors = {
   whiteTwo: 'rgb(249,249,249)',
   grey: '#929292',
   darkGrey: '#2D4652',
+  lightGrey: '#F2F2F7',
 };
 
 const Fonts = {
   Lato15R: {
     fontFamily: 'Lato-Regular',
-    fontSize: 15,
+    fontSize: moderateScale(15),
   },
   Lato17R: {
     fontFamily: 'Lato-Regular',
-    fontSize: 17,
+    fontSize: moderateScale(17),
   },
-  HelveticaNeue40B: {
+  HelverticaNeue30B: {
     fontFamily: 'HelveticaNeue-Bold',
-    fontSize: '40',
+    fontSize: moderateScale(30),
   },
 };
 

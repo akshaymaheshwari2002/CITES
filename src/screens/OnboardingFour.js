@@ -2,11 +2,11 @@ import React, {useEffect} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, scale} from 'react-native-size-matters';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Icon from 'react-native-vector-icons/Feather';
 
 import {Fonts} from '@styles/Themes';
 import {Container} from '@atoms/';
+import CommonStyles from '@styles/CommonStyles';
 
 const OnboardingFour = ({navigation}) => {
   const {formatMessage} = useIntl();
@@ -20,32 +20,32 @@ const OnboardingFour = ({navigation}) => {
       ),
     });
   }, [navigation]);
+
   return (
     <Container>
-      <KeyboardAwareScrollView>
-        <View style={styles.container}>
+      <View style={CommonStyles.screenContainer}>
+        <Text style={styles.txt}>
+          {formatMessage({id: 'screen.OnboardingFour.contentOne'})}
+
+          <Text style={styles.word}>
+            {formatMessage({id: 'screen.OnboardingFour.contentTwo'})}
+          </Text>
           <Text style={styles.txt}>
-            {formatMessage({id: 'screen.OnboardingFour.contentOne'})}{' '}
-            <Text style={styles.word}>
-              {formatMessage({id: 'screen.OnboardingFour.contentTwo'})}
-            </Text>
             {formatMessage({id: 'screen.OnboardingFour.contentThree'})}
           </Text>
-        </View>
-      </KeyboardAwareScrollView>
+        </Text>
+      </View>
     </Container>
   );
 };
 
 const styles = ScaledSheet.create({
-  container: {
-    flex: 1,
-    marginVertical: '10%',
-  },
   txt: {
     textAlign: 'center',
     lineHeight: 23,
     ...Fonts.Lato15R,
+    marginHorizontal: '14%',
+    marginVertical: '15%',
   },
   word: {
     fontWeight: 'bold',

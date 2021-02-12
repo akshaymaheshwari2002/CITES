@@ -7,7 +7,7 @@ import {Fonts, RawColors} from '@styles/Themes';
 import {useIntl} from 'react-intl';
 import CommonStyles from '@styles/CommonStyles';
 
-const FacilityScore = () => {
+const FacilityScoreGreaterEight = () => {
   const {formatMessage} = useIntl();
 
   return (
@@ -15,22 +15,28 @@ const FacilityScore = () => {
       <View style={CommonStyles.screenContainer}>
         <View style={styles.title}>
           <Text style={styles.titleContent}>
-            {formatMessage({id: 'screen.FacilityScore.headerPartOne'})}
+            {formatMessage({
+              id: 'screen.FacilityScore.headerPartOne',
+            })}
           </Text>
           <Text style={styles.titleContent}>
-            {formatMessage({id: 'screen.FacilityScore.headerPartTwo'})}
+            {formatMessage({
+              id: 'screen.FacilityScore.headerPartTwo',
+            })}
           </Text>
         </View>
         <Text style={styles.titleCommon}>
           {formatMessage({id: 'screen.FacilityScore.title'})}
         </Text>
         <Text style={styles.contentOne}>
-          {formatMessage({id: 'screen.FacilityScore.contentOne'})}
+          {formatMessage({id: 'screen.FacilityScoreGreaterEight.contentOne'})}
         </Text>
         <Text style={styles.contentTwo}>
-          {formatMessage({id: 'screen.FacilityScore.contentTwo'})}
+          {formatMessage({id: 'screen.FacilityScoreGreaterEight.contentTwo'})}
         </Text>
-        <View style={[CommonStyles.shadowEffect, styles.points]}></View>
+        <Text style={styles.contentThree}>
+          {formatMessage({id: 'screen.FacilityScoreGreaterEight.contentThree'})}
+        </Text>
       </View>
     </Container>
   );
@@ -58,25 +64,25 @@ const styles = ScaledSheet.create({
   contentOne: {
     color: RawColors.black,
     fontWeight: 'bold',
-    fontSize: 30,
+    fontSize: 22,
     textAlign: 'center',
     marginTop: '12%',
   },
   contentTwo: {
     color: RawColors.black,
     fontWeight: 'bold',
-    fontSize: 30,
+    fontSize: 22,
     textAlign: 'center',
   },
-  points: {
-    marginHorizontal: '43@s',
-    marginTop: '5%',
-    backgroundColor: RawColors.lightGrey,
-    height: '92@s',
-    borderWidth: 4,
-    borderColor: RawColors.black,
-    elevation: 30,
+  contentThree: {
+    color: RawColors.black,
+    marginHorizontal: '16@s',
+    marginTop: '23@s',
+    textAlign: 'center',
+    lineHeight: '15@s',
+    letterSpacing: '0.36@s',
+    fontSize: 13,
   },
 });
 
-export default FacilityScore;
+export default FacilityScoreGreaterEight;
