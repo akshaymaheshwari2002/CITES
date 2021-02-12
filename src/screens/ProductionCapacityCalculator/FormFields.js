@@ -81,10 +81,19 @@ export default ({formatMessage}) => {
       name: 'percentageSurvivingInTwoWeek',
       rules: {
         required,
-        validateNumber,
-        validateNumberPercentageFraction,
+        validate: {
+          validateNumber,
+          validateNumberPercentageFraction,
+        },
       },
       keyboardType: 'decimal-pad',
+    },
+    {
+      label: formatMessage({
+        id: 'form.label.approximateYoungProducedPerYear',
+      }),
+      name: 'approximateYoungProducedPerYear',
+      editable: false,
     },
   ];
 };
