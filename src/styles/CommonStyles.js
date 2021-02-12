@@ -26,7 +26,7 @@ export default ScaledSheet.create({
   },
   screenContainer: {
     flex: 1,
-    paddingHorizontal: '18@s',
+    paddingHorizontal: '16@s',
     backgroundColor: RawColors.white,
   },
 });
