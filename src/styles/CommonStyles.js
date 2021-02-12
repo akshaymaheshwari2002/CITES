@@ -1,4 +1,4 @@
-import {scale, ScaledSheet} from 'react-native-size-matters';
+import {ScaledSheet} from 'react-native-size-matters';
 
 import {RawColors} from './Themes';
 
@@ -19,9 +19,14 @@ export default ScaledSheet.create({
     height: '98@vs',
   },
   navigationLeftContainer: {
-    paddingLeft: scale(8),
+    paddingLeft: '8@s',
   },
   navigationRightContainer: {
-    paddingRight: scale(8),
+    paddingRight: '8@s',
+  },
+  screenContainer: {
+    flex: 1,
+    paddingHorizontal: '18@s',
+    backgroundColor: RawColors.white,
   },
 });
