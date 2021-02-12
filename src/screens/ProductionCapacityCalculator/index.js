@@ -1,11 +1,11 @@
 import React, {useCallback, useMemo} from 'react';
-import {View, Text, Pressable} from 'react-native';
+import {View, Text} from 'react-native';
 import {useIntl} from 'react-intl';
 import {useForm} from 'react-hook-form';
 import {ScaledSheet} from 'react-native-size-matters';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
-import {Container} from '@atoms';
+import {Container, Button} from '@atoms';
 import {Form} from '@organisms';
 import CommonStyles from '@styles/CommonStyles';
 import getFormFields from './FormFields';
@@ -65,15 +65,12 @@ const ProductionCapacityCalculator = () => {
             errors={errors}
             formFields={formFields}
           />
-          <Pressable
-            style={style.buttonContainer}
-            onPress={handleSubmit(onSubmit, onError)}>
-            <Text style={style.buttonText}>
-              {intl.formatMessage({
-                id: 'general.continue',
-              })}
-            </Text>
-          </Pressable>
+          <Button
+            title={intl.formatMessage({
+              id: 'general.continue',
+            })}
+            onPress={handleSubmit(onSubmit, onError)}
+          />
         </KeyboardAwareScrollView>
       </View>
     </Container>
@@ -88,21 +85,6 @@ const style = ScaledSheet.create({
   },
   paragraph: {
     marginBottom: '20@s',
-  },
-  buttonContainer: {
-    elevation: 8,
-    backgroundColor: 'rgb(242,242,247)',
-    borderRadius: 12,
-    paddingVertical: 10,
-    paddingHorizontal: 12,
-    marginVertical: '12@s',
-  },
-  buttonText: {
-    fontSize: 18,
-    color: 'rgb(112,112,112)',
-    fontWeight: 'bold',
-    alignSelf: 'center',
-    textTransform: 'uppercase',
   },
 });
 
