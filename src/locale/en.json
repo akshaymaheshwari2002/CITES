@@ -1,5 +1,6 @@
 {
-  "error.general": "An error has occured",
+  "general.error": "An error has occured",
+  "general.continue": "Continue",
   "form.error.fieldRequired": "Required Field",
   "form.error.invalidInput": "Invalid Input",
   "form.error.positiveNumber": "Input should be a positive number",
@@ -11,6 +12,7 @@
   "form.label.countLitterPerYear": "Number # of litters/clutches per year",
   "form.label.countOffspringPerLitter": "Number # of offspring / eggs in litter / clutch",
   "form.label.percentageSurvivingInTwoWeek": "Percentage % surviving after two weeks",
+  "form.label.approximateYoungProducedPerYear": "Approximate number of young produced by the facility per year",
   "screen.ProductionCapacityCalculator.titleText": "Production Capacity Calculator",
   "screen.ProductionCapacityCalculator.infoText_1": "Use this calculator to estimate the mean number of specimens capable of being produced by a facility based on the number of reproductive adult females observed and the average number of reproductive events per year.",
   "screen.ProductionCapacityCalculator.infoText_2": "Before an inspection, input information from previous inspections and official records on exports, etc. The calculator can also be used after an inspection, by inputing the number of specimens observed during the inspection.",

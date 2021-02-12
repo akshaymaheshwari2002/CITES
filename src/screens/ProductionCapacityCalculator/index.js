@@ -13,12 +13,25 @@ import getFormFields from './FormFields';
 const ProductionCapacityCalculator = () => {
   const intl = useIntl();
   const formProps = useForm();
-  const {handleSubmit, control, errors} = formProps;
+  const {handleSubmit, control, errors, setValue} = formProps;
   const formFields = useMemo(() => getFormFields(intl), [intl]);
 
-  const onSubmit = useCallback((data, e) => {
-    // console.log(data);
-  }, []);
+  Number.toString();
+  const onSubmit = useCallback(
+    (data) => {
+      setValue(
+        'approximateYoungProducedPerYear',
+        (
+          Number(data.countTotalBreedingFemale) *
+          Number(data.percentageBreedingFemalePerSeason) *
+          Number(data.countLitterPerYear) *
+          Number(data.countOffspringPerLitter) *
+          Number(data.percentageSurvivingInTwoWeek)
+        ).toString(),
+      );
+    },
+    [setValue],
+  );
 
   const onError = useCallback((err, e) => {
     // console.error('Error in production Capacity calculator form - ', err);
@@ -55,7 +68,11 @@ const ProductionCapacityCalculator = () => {
           <Pressable
             style={style.buttonContainer}
             onPress={handleSubmit(onSubmit, onError)}>
-            <Text style={style.buttonText}>Continue</Text>
+            <Text style={style.buttonText}>
+              {intl.formatMessage({
+                id: 'general.continue',
+              })}
+            </Text>
           </Pressable>
         </KeyboardAwareScrollView>
       </View>
