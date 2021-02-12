@@ -6,15 +6,15 @@ import {ScaledSheet} from 'react-native-size-matters';
 import {RawColors, Fonts} from '@styles/Themes';
 
 const TextInput = React.forwardRef(
-  ({label, error, onChange, ...restProps}, ref) => {
+  ({label, error, onChange, style, ...restProps}, ref) => {
     return (
       <>
         {label ? <Text style={Fonts.Lato15R}>{label}</Text> : null}
         <Input
           ref={ref}
           onChangeText={onChange}
+          style={[styles.inputContainer, Fonts.Lato15R, style]}
           {...restProps}
-          style={[styles.inputContainer, Fonts.Lato15R]}
         />
         {error ? <Text style={Fonts.Lato15R}>{error}</Text> : null}
       </>
