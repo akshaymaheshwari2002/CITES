@@ -16,7 +16,7 @@ const screenOptions = {
   headerStyle: CommonStyles.navigationHeader,
   headerLeft: ({onPress, canGoBack, ...navigationProps}) =>
     canGoBack ? (
-      <TouchableOpacity>
+      <TouchableOpacity onPress={onPress}>
         <Icon name="chevron-left" size={scale(26)} {...navigationProps} />
       </TouchableOpacity>
     ) : null,
