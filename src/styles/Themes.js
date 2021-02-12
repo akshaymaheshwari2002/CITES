@@ -32,6 +32,14 @@ const Fonts = {
     fontFamily: 'HelveticaNeue-Bold',
     fontSize: moderateScale(30),
   },
+  HelveticaNeue30B: {
+    fontFamily: 'HelveticaNeue-Bold',
+    fontSize: moderateScale(30),
+  },
+  HelveticaNeue40B: {
+    fontFamily: 'HelveticaNeue-Bold',
+    fontSize: moderateScale(40),
+  },
 };
 
 const {ThemeProvider, useTheme} = createTheming(Themes.DEFAULT);
