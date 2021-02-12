@@ -6,6 +6,7 @@ import {scale} from 'react-native-size-matters';
 import {TouchableOpacity} from 'react-native';
 
 import {navigationRef} from '@utils/RootNavigation';
+import {ProductionCapacityCalculator} from '@screens';
 import CommonStyles from '@styles/CommonStyles';
 
 const Stack = createStackNavigator();
@@ -16,7 +17,7 @@ const screenOptions = {
   headerStyle: CommonStyles.navigationHeader,
   headerLeft: ({onPress, canGoBack, ...navigationProps}) =>
     canGoBack ? (
-      <TouchableOpacity>
+      <TouchableOpacity onPress={onPress}>
         <Icon name="chevron-left" size={scale(26)} {...navigationProps} />
       </TouchableOpacity>
     ) : null,
@@ -28,7 +29,10 @@ const AppNavigator = () => {
   return (
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator screenOptions={screenOptions}>
-        <Stack.Screen name="App">{() => null}</Stack.Screen>
+        <Stack.Screen
+          name="ProductionCapacityCalculator"
+          component={ProductionCapacityCalculator}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

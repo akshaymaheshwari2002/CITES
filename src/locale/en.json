@@ -1,1 +1,17 @@
-{}
+{
+  "error.general": "An error has occured",
+  "form.error.fieldRequired": "Required Field",
+  "form.error.invalidInput": "Invalid Input",
+  "form.error.positiveNumber": "Input should be a positive number",
+  "form.error.number": "Input should be numeric",
+  "form.error.numberPercentageFraction": "Input should be a number from 0 to 1",
+  "form.error.numberInteger": "Input should be an integer value",
+  "form.label.countTotalBreedingFemale": "Number of # of breeding females",
+  "form.label.percentageBreedingFemalePerSeason": "Percentage % of females breeding per season",
+  "form.label.countLitterPerYear": "Number # of litters/clutches per year",
+  "form.label.countOffspringPerLitter": "Number # of offspring / eggs in litter / clutch",
+  "form.label.percentageSurvivingInTwoWeek": "Percentage % surviving after two weeks",
+  "screen.ProductionCapacityCalculator.titleText": "Production Capacity Calculator",
+  "screen.ProductionCapacityCalculator.infoText_1": "Use this calculator to estimate the mean number of specimens capable of being produced by a facility based on the number of reproductive adult females observed and the average number of reproductive events per year.",
+  "screen.ProductionCapacityCalculator.infoText_2": "Before an inspection, input information from previous inspections and official records on exports, etc. The calculator can also be used after an inspection, by inputing the number of specimens observed during the inspection."
+}
