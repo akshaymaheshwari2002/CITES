@@ -13,10 +13,11 @@ const defaultLocale = Config.DEFAULT_LOCALE;
 
 const App = () => {
   const currentTheme = useSelector((state) => state.persistedReducer.theme);
+  const locale = useSelector((state) => state.persistedReducer.locale);
   const theme = useMemo(() => Themes[currentTheme] || Themes.DEFAULT, [
     currentTheme,
   ]);
-  const intl = useMemo(() => createIntl(defaultLocale), []);
+  const intl = useMemo(() => createIntl(locale || defaultLocale), [locale]);
 
   useEffect(() => {
     SplashScreen.hide();

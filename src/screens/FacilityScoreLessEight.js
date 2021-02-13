@@ -7,7 +7,7 @@ import {Fonts, RawColors} from '@styles/Themes';
 import {useIntl} from 'react-intl';
 import CommonStyles from '@styles/CommonStyles';
 
-const FacilityScore = () => {
+const FacilityScoreLessEight = () => {
   const {formatMessage} = useIntl();
 
   return (
@@ -25,12 +25,14 @@ const FacilityScore = () => {
           {formatMessage({id: 'screen.FacilityScore.title'})}
         </Text>
         <Text style={styles.contentOne}>
-          {formatMessage({id: 'screen.FacilityScore.contentOne'})}
+          {formatMessage({id: 'screen.FacilityScoreLessEight.contentOne'})}
         </Text>
         <Text style={styles.contentTwo}>
-          {formatMessage({id: 'screen.FacilityScore.contentTwo'})}
+          {formatMessage({id: 'screen.FacilityScoreLessEight.contentTwo'})}
         </Text>
-        <View style={[CommonStyles.shadowEffect, styles.points]}></View>
+        <Text style={styles.contentThree}>
+          {formatMessage({id: 'screen.FacilityScoreLessEight.contenThree'})}
+        </Text>
       </View>
     </Container>
   );
@@ -58,25 +60,25 @@ const styles = ScaledSheet.create({
   contentOne: {
     color: RawColors.black,
     fontWeight: 'bold',
-    fontSize: 30,
+    fontSize: 22,
     textAlign: 'center',
     marginTop: '12%',
   },
   contentTwo: {
     color: RawColors.black,
     fontWeight: 'bold',
-    fontSize: 30,
+    fontSize: 22,
     textAlign: 'center',
   },
-  points: {
-    marginHorizontal: '43@s',
-    marginTop: '5%',
-    backgroundColor: RawColors.lightGrey,
-    height: '92@s',
-    borderWidth: 4,
-    borderColor: RawColors.black,
-    elevation: 30,
+  contentThree: {
+    color: RawColors.black,
+    marginHorizontal: '16@s',
+    marginTop: '23@s',
+    textAlign: 'center',
+    lineHeight: '15@s',
+    letterSpacing: '0.36@s',
+    fontSize: 13,
   },
 });
 
-export default FacilityScore;
+export default FacilityScoreLessEight;

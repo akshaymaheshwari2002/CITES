@@ -2,6 +2,8 @@ import {NativeModules, Platform, PermissionsAndroid} from 'react-native';
 import {renderToStaticMarkup} from 'react-dom/server';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 
+import createIntl from '@utils/Intl';
+
 import messages_en from '@locale/en.json';
 
 export const getMessages = () => ({
@@ -47,11 +49,14 @@ export const requestWritePermission = async () => {
   }
 };
 
-export const generatePdf = async (
+export const generatePdf = async ({
   templates = [],
   fileName,
   saveFile = false,
-) => {
+  locale = 'en',
+}) => {
+  const intl = createIntl(locale);
+
   let options = {
     html: templates.map((value) => renderToStaticMarkup(value())).join(''),
   };
@@ -67,7 +72,7 @@ export const generatePdf = async (
       console.log(file.filePath);
       return file;
     } else {
-      return 'Please Grant Permission';
+      return intl.formatMessage({id: 'permission.writeExternal'});
     }
   } catch (err) {
     return err;
@@ -80,9 +85,12 @@ export const getDefaultValues = (formFields = []) =>
     {},
   );
 
+/**
+ * Checks if a string contains a valid number
+ * @param {(string|number)} value - entity to be checked
+ * @returns {boolean}
+ */
 export const isNumber = (value) => {
-  // typeOf @value = "string" or "number"
-  // returns boolean true if value is number otherwise false
   if (typeof value === 'number') {
     return true;
   } else if (typeof value === 'string') {
@@ -92,9 +100,12 @@ export const isNumber = (value) => {
   }
 };
 
+/**
+ * Checks is a number positive
+ * @param {(number|string)} value - entity to be checked
+ * @returns {boolean}
+ */
 export const isNumberPositive = (value) => {
-  // typeOf @value = "string" or "number"
-  // returns boolean true if value if a positive number otherwise false
   try {
     return Number(value) >= 0;
   } catch (err) {
@@ -102,9 +113,12 @@ export const isNumberPositive = (value) => {
   }
 };
 
+/**
+ * Checks if a number is in range 0 to 1
+ * @param {(number|string)} value - entity to be checked
+ * @returns {boolean}
+ */
 export const isNumberPercentageFraction = (value) => {
-  // typeOf @value = "string" or "number"
-  // returns boolean true if value is number and ranges from 0 to 1 otherwise false
   try {
     return Number(value) >= 0 && Number(value) <= 1;
   } catch (err) {
@@ -112,9 +126,12 @@ export const isNumberPercentageFraction = (value) => {
   }
 };
 
+/**
+ * Checks if a number is integer
+ * @param {(number|string)} value - entity to be checked
+ * @returns {boolean}
+ */
 export const isNumberInteger = (value) => {
-  // typeOf @value = "string" or "number"
-  // returns boolean true if value is number otherwise false
   try {
     return Number.isInteger(Number(value));
   } catch (err) {

@@ -2,11 +2,11 @@ import React, {useEffect} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {ScaledSheet, scale} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Icon from 'react-native-vector-icons/Feather';
 
 import {Fonts} from '@styles/Themes';
 import {Container} from '@atoms/';
+import CommonStyles from '@styles/CommonStyles';
 
 const OnboardingThree = ({navigation}) => {
   const {formatMessage} = useIntl();
@@ -23,26 +23,30 @@ const OnboardingThree = ({navigation}) => {
 
   return (
     <Container>
-      <KeyboardAwareScrollView>
-        <View style={styles.container}>
+      <View style={CommonStyles.screenContainer}>
+        <Text style={styles.txt}>
+          {formatMessage({id: 'screen.OnboardingThree.contentOne'})}
+        </Text>
+        <View style={styles.gap}>
           <Text style={styles.txt}>
-            {formatMessage({id: 'screen.OnboardingThree.content'})}
+            {formatMessage({id: 'screen.OnboardingThree.contentTwo'})}
           </Text>
         </View>
-      </KeyboardAwareScrollView>
+      </View>
     </Container>
   );
 };
 
 const styles = ScaledSheet.create({
-  container: {
-    flex: 1,
-    marginVertical: '10%',
-  },
   txt: {
     textAlign: 'center',
     lineHeight: 23,
     ...Fonts.Lato15R,
+    marginHorizontal: '13%',
+    marginTop: '15%',
+  },
+  gap: {
+    //marginTop: '2%',
   },
 });
 

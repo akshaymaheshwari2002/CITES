@@ -5,10 +5,10 @@ import {ScaledSheet, scale} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
 import {useForm} from 'react-hook-form';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import {Fonts, RawColors} from '@styles/Themes';
 import {Form} from '@organisms';
+import CommonStyles from '@styles/CommonStyles';
 
 const SubmitFeedback = ({navigation}) => {
   const {formatMessage} = useIntl();
@@ -16,8 +16,8 @@ const SubmitFeedback = ({navigation}) => {
   const {control, errors} = formProps;
 
   return (
-    <Container>
-      <KeyboardAwareScrollView>
+    <Container scrollable={true}>
+      <View style={CommonStyles.screenContainer}>
         <View style={styles.title}>
           <Text style={styles.titleContent}>
             {formatMessage({id: 'screen.SubmitFeedback.headerPartOne'})}
@@ -60,19 +60,19 @@ const SubmitFeedback = ({navigation}) => {
                   borderColor: RawColors.darkGrey,
                   textAlignVertical: 'top',
                   padding: scale(16),
+                  multiLine: true,
                 },
               },
             ]}
           />
         </View>
-      </KeyboardAwareScrollView>
+      </View>
     </Container>
   );
 };
 
 const styles = ScaledSheet.create({
   title: {
-    marginHorizontal: '16@s',
     marginTop: '18@s',
     height: '100@vs',
     width: '240@s',
@@ -84,10 +84,8 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.64@s',
   },
   questionContainer: {
-    marginLeft: '17@s',
-    marginTop: '14@s',
+    marginTop: '16@s',
     height: '18@vs',
-    width: '173@s',
   },
   question: {
     fontWeight: 'bold',
@@ -96,7 +94,7 @@ const styles = ScaledSheet.create({
     ...Fonts.Lato15R,
   },
   iconContainer: {
-    marginLeft: '19.3@s',
+    marginLeft: '3@s',
     marginRight: '20@s',
     marginTop: '21@s',
     flexDirection: 'row',
@@ -109,7 +107,7 @@ const styles = ScaledSheet.create({
     marginTop: '29@s',
     alignSelf: 'center',
     height: '245@vs',
-    width: '290@s',
+    width: '280@s',
     borderRadius: '20@s',
     borderWidth: '1@s',
     borderColor: RawColors.darkGrey,
@@ -117,18 +115,9 @@ const styles = ScaledSheet.create({
   content: {
     color: RawColors.grey,
     lineHeight: '30@vs',
-    height: '78@s',
-    width: '265@s',
     marginLeft: '12@s',
     marginTop: '15@s',
     ...Fonts.Lato15R,
-  },
-  btn: {
-    marginTop: '29@s',
-    marginHorizontal: '43@s',
-    marginVertical: '36@vs',
-    height: '46@vs',
-    width: '290@s',
   },
 });
 

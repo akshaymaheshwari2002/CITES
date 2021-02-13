@@ -9,6 +9,8 @@ import {navigationRef} from '@utils/RootNavigation';
 import CommonStyles from '@styles/CommonStyles';
 import {
   FacilityScore,
+  FacilityScoreLessEight,
+  FacilityScoreGreaterEight,
   LanguageSelection,
   OnboardingOne,
   GiveFeedback,
@@ -55,6 +57,14 @@ const AppNavigator = () => {
         <Stack.Screen name="GiveFeedback" component={GiveFeedback} />
         <Stack.Screen name="SubmitFeedback" component={SubmitFeedback} />
         <Stack.Screen name="FacilityScore" component={FacilityScore} />
+        <Stack.Screen
+          name="FacilityScoreLessEight"
+          component={FacilityScoreLessEight}
+        />
+        <Stack.Screen
+          name="FacilityScoreGreaterEight"
+          component={FacilityScoreGreaterEight}
+        />
         <Stack.Screen
           name="ProductionCapacityCalculator"
           component={ProductionCapacityCalculator}
