@@ -22,6 +22,8 @@ module.exports = {
           '@hocs': './src/hocs',
           '@services': './src/services',
           '@styles': './src/styles',
+          '@schemas': './src/schemas',
+          '@models': './src/models',
         },
       },
     ],

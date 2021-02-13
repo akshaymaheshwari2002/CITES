@@ -26,7 +26,11 @@
       "@hooks": ["src/hooks/index.js"],
       "@services/*": ["src/services/*"],
       "@services": ["src/services/index.js"],
-      "@styles/*": ["src/styles/*"]
+      "@styles/*": ["src/styles/*"],
+      "@schemas/*": ["src/schemas/*"],
+      "@schemas": ["src/schemas/index.js"],
+      "@models/*": ["src/models/*"],
+      "@models": ["src/models/index.js"]
     }
   },
   "exclude": ["node_modules"]
