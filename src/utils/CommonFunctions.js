@@ -2,6 +2,8 @@ import {NativeModules, Platform, PermissionsAndroid} from 'react-native';
 import {renderToStaticMarkup} from 'react-dom/server';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 
+import createIntl from '@utils/Intl';
+
 import messages_en from '@locale/en.json';
 
 export const getMessages = () => ({
@@ -47,11 +49,14 @@ export const requestWritePermission = async () => {
   }
 };
 
-export const generatePdf = async (
+export const generatePdf = async ({
   templates = [],
   fileName,
   saveFile = false,
-) => {
+  locale = 'en',
+}) => {
+  const intl = createIntl(locale);
+
   let options = {
     html: templates.map((value) => renderToStaticMarkup(value())).join(''),
   };
@@ -67,7 +72,7 @@ export const generatePdf = async (
       console.log(file.filePath);
       return file;
     } else {
-      return 'Please Grant Permission';
+      return intl.formatMessage({id: 'permission.writeExternal'});
     }
   } catch (err) {
     return err;
