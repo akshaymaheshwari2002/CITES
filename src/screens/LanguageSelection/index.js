@@ -1,6 +1,5 @@
 import React, {useCallback} from 'react';
 import {ScaledSheet} from 'react-native-size-matters';
-import {View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {Container, Picker} from '@atoms';
@@ -22,19 +21,23 @@ const LanguageSelection = ({navigation}) => {
 
   return (
     <Container>
-      <View style={[styles.container, CommonStyles.screenContainer]}>
+      <Container.ScrollView
+        contentContainerStyle={[
+          styles.scrollContainer,
+          CommonStyles.screenContainer,
+        ]}>
         <Picker
           items={LocaleList}
           defaultValue={locale}
           onChange={handleChange}
         />
-      </View>
+      </Container.ScrollView>
     </Container>
   );
 };
 
 const styles = ScaledSheet.create({
-  container: {
+  scrollContainer: {
     justifyContent: 'center',
   },
 });

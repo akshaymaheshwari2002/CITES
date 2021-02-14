@@ -5,7 +5,7 @@ import {useIntl} from 'react-intl';
 import Icon from 'react-native-vector-icons/Feather';
 
 import {Fonts} from '@styles/Themes';
-import {Container} from '@atoms/';
+import {Container} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
 
 const OnboardingThree = ({navigation}) => {
@@ -23,7 +23,8 @@ const OnboardingThree = ({navigation}) => {
 
   return (
     <Container>
-      <View style={CommonStyles.screenContainer}>
+      <Container.ScrollView
+        contentContainerStyle={CommonStyles.screenContainer}>
         <Text style={styles.txt}>
           {formatMessage({id: 'screen.OnboardingThree.contentOne'})}
         </Text>
@@ -32,7 +33,7 @@ const OnboardingThree = ({navigation}) => {
             {formatMessage({id: 'screen.OnboardingThree.contentTwo'})}
           </Text>
         </View>
-      </View>
+      </Container.ScrollView>
     </Container>
   );
 };
@@ -44,9 +45,6 @@ const styles = ScaledSheet.create({
     ...Fonts.Lato15R,
     marginHorizontal: '13%',
     marginTop: '15%',
-  },
-  gap: {
-    //marginTop: '2%',
   },
 });
 

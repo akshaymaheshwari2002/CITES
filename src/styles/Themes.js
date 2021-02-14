@@ -28,6 +28,10 @@ const Fonts = {
     fontFamily: 'Lato-Regular',
     fontSize: moderateScale(17),
   },
+  Lato20R: {
+    fontFamily: 'Lato-Regular',
+    fontSize: moderateScale(20),
+  },
   HelverticaNeue30B: {
     fontFamily: 'HelveticaNeue-Bold',
     fontSize: moderateScale(30),

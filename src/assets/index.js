@@ -1,1 +1,3 @@
-export const Images = {};
+export const Images = {
+  tick: require('./images/Tick.png'),
+};

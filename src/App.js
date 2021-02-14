@@ -5,11 +5,8 @@ import {useSelector} from 'react-redux';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import {AppNavigator} from '@navigators';
-import Config from '@config';
 import {ThemeProvider, Themes} from '@styles/Themes';
 import createIntl from '@utils/Intl';
-
-const defaultLocale = Config.DEFAULT_LOCALE;
 
 const App = () => {
   const currentTheme = useSelector((state) => state.persistedReducer.theme);
@@ -17,7 +14,7 @@ const App = () => {
   const theme = useMemo(() => Themes[currentTheme] || Themes.DEFAULT, [
     currentTheme,
   ]);
-  const intl = useMemo(() => createIntl(locale || defaultLocale), [locale]);
+  const intl = useMemo(() => createIntl(locale), [locale]);
 
   useEffect(() => {
     SplashScreen.hide();

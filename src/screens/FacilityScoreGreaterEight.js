@@ -3,7 +3,7 @@ import {View, Text} from 'react-native';
 import {Container} from '@atoms';
 import {ScaledSheet} from 'react-native-size-matters';
 
-import {Fonts, RawColors} from '@styles/Themes';
+import {RawColors} from '@styles/Themes';
 import {useIntl} from 'react-intl';
 import CommonStyles from '@styles/CommonStyles';
 
@@ -12,7 +12,7 @@ const FacilityScoreGreaterEight = () => {
 
   return (
     <Container>
-      <View style={CommonStyles.screenContainer}>
+      <Container.ScrollView style={CommonStyles.screenContainer}>
         <View style={styles.title}>
           <Text style={styles.titleContent}>
             {formatMessage({
@@ -37,7 +37,7 @@ const FacilityScoreGreaterEight = () => {
         <Text style={styles.contentThree}>
           {formatMessage({id: 'screen.FacilityScoreGreaterEight.contentThree'})}
         </Text>
-      </View>
+      </Container.ScrollView>
     </Container>
   );
 };

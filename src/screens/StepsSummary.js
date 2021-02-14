@@ -11,56 +11,58 @@ const StepsSummary = () => {
   const {formatMessage} = useIntl();
   return (
     <Container>
-      <Text style={styles.title}>
-        {formatMessage({id: 'screen.StepsSummary.title'})}
-      </Text>
-      <View style={styles.contentContainer}>
-        <View style={styles.one}>
-          <View style={styles.point1}>
-            <Icon
-              name="checkcircle"
-              color={RawColors.red}
-              style={styles.icon}
-            />
-            <Text style={styles.content}>
-              {formatMessage({id: 'screen.StepsSummary.contentOne'})}
+      <Container.ScrollView>
+        <Text style={styles.title}>
+          {formatMessage({id: 'screen.StepsSummary.title'})}
+        </Text>
+        <View style={styles.contentContainer}>
+          <View style={styles.one}>
+            <View style={styles.point1}>
+              <Icon
+                name="checkcircle"
+                color={RawColors.red}
+                style={styles.icon}
+              />
+              <Text style={styles.content}>
+                {formatMessage({id: 'screen.StepsSummary.contentOne'})}
+              </Text>
+            </View>
+            <Text style={styles.txt}>
+              {formatMessage({id: 'screen.StepsSummary.contentFour'})}
             </Text>
           </View>
-          <Text style={styles.txt}>
-            {formatMessage({id: 'screen.StepsSummary.contentFour'})}
-          </Text>
-        </View>
-        <View style={styles.two}>
-          <View style={styles.point2}>
-            <Icon
-              name="checkcircle"
-              color={RawColors.red}
-              style={styles.icon}
-            />
-            <Text style={styles.content}>
-              {formatMessage({id: 'screen.StepsSummary.contentTwo'})}
+          <View style={styles.two}>
+            <View style={styles.point2}>
+              <Icon
+                name="checkcircle"
+                color={RawColors.red}
+                style={styles.icon}
+              />
+              <Text style={styles.content}>
+                {formatMessage({id: 'screen.StepsSummary.contentTwo'})}
+              </Text>
+            </View>
+            <Text style={styles.txt}>
+              {formatMessage({id: 'screen.StepsSummary.contentFour'})}
             </Text>
           </View>
-          <Text style={styles.txt}>
-            {formatMessage({id: 'screen.StepsSummary.contentFour'})}
-          </Text>
-        </View>
-        <View style={styles.three}>
-          <View style={styles.point3}>
-            <Icon
-              name="checkcircle"
-              color={RawColors.red}
-              style={styles.icon}
-            />
-            <Text style={styles.content}>
-              {formatMessage({id: 'screen.StepsSummary.contentThree'})}
+          <View style={styles.three}>
+            <View style={styles.point3}>
+              <Icon
+                name="checkcircle"
+                color={RawColors.red}
+                style={styles.icon}
+              />
+              <Text style={styles.content}>
+                {formatMessage({id: 'screen.StepsSummary.contentThree'})}
+              </Text>
+            </View>
+            <Text style={styles.txt}>
+              {formatMessage({id: 'screen.StepsSummary.contentFour'})}
             </Text>
           </View>
-          <Text style={styles.txt}>
-            {formatMessage({id: 'screen.StepsSummary.contentFour'})}
-          </Text>
         </View>
-      </View>
+      </Container.ScrollView>
     </Container>
   );
 };

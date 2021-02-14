@@ -1,21 +1,15 @@
-import {
-  isNumber,
-  isNumberInteger,
-  isNumberPercentageFraction,
-  isNumberPositive,
-} from '@utils/CommonFunctions';
+import getValidators from '@utils/FormValidators';
+import createIntl from '@utils/Intl';
 
-export default ({formatMessage}) => {
-  const required = formatMessage({id: 'form.error.fieldRequired'});
-  const validateNumber = (value) =>
-    isNumber(value) || formatMessage({id: 'form.error.number'});
-  const validatePositiveNumber = (value) =>
-    isNumberPositive(value) || formatMessage({id: 'form.error.positiveNumber'});
-  const validateInteger = (value) =>
-    isNumberInteger(value) || formatMessage({id: 'form.error.numberInteger'});
-  const validateNumberPercentageFraction = (value) =>
-    isNumberPercentageFraction(value) ||
-    formatMessage({id: 'form.error.numberPercentageFraction'});
+export default () => {
+  const {formatMessage} = createIntl();
+  const {
+    required,
+    validateInteger,
+    validateNumber,
+    validateNumberPercentageFraction,
+    validatePositiveNumber,
+  } = getValidators();
 
   return [
     {

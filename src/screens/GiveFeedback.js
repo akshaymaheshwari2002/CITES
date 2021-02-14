@@ -11,7 +11,7 @@ const GiveFeedback = () => {
   const {formatMessage} = useIntl();
   return (
     <Container>
-      <View style={CommonStyles.screenContainer}>
+      <Container.ScrollView style={CommonStyles.screenContainer}>
         <View style={styles.title}>
           <Text style={styles.titleContent}>
             {formatMessage({id: 'screen.GiveFeedback.headerPartOne'})}
@@ -39,8 +39,8 @@ const GiveFeedback = () => {
             </Text>
           </View>
         </View>
-        <View style={styles.btn}></View>
-      </View>
+        <View style={styles.btn} />
+      </Container.ScrollView>
     </Container>
   );
 };

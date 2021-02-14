@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {Text, TouchableOpacity} from 'react-native';
 import {useIntl} from 'react-intl';
 import Icon from 'react-native-vector-icons/Feather';
 import {ScaledSheet, scale} from 'react-native-size-matters';
 
 import {Fonts} from '@styles/Themes';
 import {Container} from '@atoms';
+import CommonStyles from '@styles/CommonStyles';
 
 const OnboardingOne = ({navigation}) => {
   const {formatMessage} = useIntl();
@@ -22,29 +23,30 @@ const OnboardingOne = ({navigation}) => {
 
   return (
     <Container>
-      <View style={styles.container}>
+      <Container.ScrollView
+        contentContainerStyle={[
+          styles.container,
+          CommonStyles.screenContainer,
+        ]}>
         <Text style={styles.txt}>
           {formatMessage({id: 'screen.OnboardingOne.contentOne'})}
           <Text style={styles.word}>
             {formatMessage({id: 'screen.OnboardingOne.contentTwo'})}
-          </Text>{' '}
+          </Text>
           {formatMessage({id: 'screen.OnboardingOne.contentThree'})}
           <Text style={styles.word}>
             {formatMessage({id: 'screen.OnboardingOne.contentFour'})}
           </Text>
           {formatMessage({id: 'screen.OnboardingOne.contentFive'})}
         </Text>
-      </View>
+      </Container.ScrollView>
     </Container>
   );
 };
 
 const styles = ScaledSheet.create({
   container: {
-    flex: 1,
-    marginVertical: '20%',
-    alignSelf: 'center',
-    marginHorizontal: '15%',
+    justifyContent: 'center',
   },
   txt: {
     textAlign: 'center',

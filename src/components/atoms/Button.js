@@ -3,31 +3,23 @@ import {Text, Pressable} from 'react-native';
 import PropTypes from 'prop-types';
 import {ScaledSheet} from 'react-native-size-matters';
 
-// Common button component
-const Button = ({
-  title = '', // for text in button
-  style = {}, // style for button
-  stylePressed = {}, // style applied when pressed
-  titleStyle = {}, // text style
-  titleStylePressed = {}, // text style applied when pressed
-  ...restProps
-}) => {
+import {Fonts, RawColors} from '@styles/Themes';
+
+const Button = ({buttonText, buttonStyle, buttonTextStyle, ...restProps}) => {
   return (
     <Pressable
-      style={({pressed}) => [styles.button, style, pressed ? stylePressed : {}]}
-      android_ripple={{
-        color: '#fcfcfc',
-      }}
+      style={({pressed}) => [styles.button, buttonStyle(pressed)]}
+      android_ripple={{color: RawColors.white}}
       {...restProps}>
       {({pressed}) => {
         return (
           <Text
             style={[
-              styles.buttonText,
-              titleStyle,
-              pressed ? titleStylePressed : {},
+              {color: RawColors.darkGrey},
+              Fonts.Lato15R,
+              buttonTextStyle(pressed),
             ]}>
-            {title}
+            {buttonText}
           </Text>
         );
       }}
@@ -39,36 +31,23 @@ const styles = ScaledSheet.create({
   button: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F2F2F7',
-    borderRadius: '14@s',
-    padding: '10@s',
-    marginVertical: '12@s',
+    borderRadius: '14@ms',
+    height: '46@vs',
     borderWidth: 1,
-    borderColor: '#707070',
-  },
-  buttonText: {
-    fontSize: 16,
-    color: 'rgb(112,112,112)',
-    fontWeight: 'bold',
-    alignSelf: 'center',
-    textAlign: 'center',
+    borderColor: RawColors.dimGrey,
   },
 });
 
 Button.propTypes = {
-  title: PropTypes.string,
-  style: PropTypes.object,
-  stylePressed: PropTypes.object,
-  titleStyle: PropTypes.object,
-  titleStylePressed: PropTypes.object,
+  buttonText: PropTypes.string,
+  buttonStyle: PropTypes.func,
+  buttonTextStyle: PropTypes.func,
 };
 
 Button.defaultProps = {
-  title: '',
-  style: {},
-  stylePressed: {},
-  titleStyle: {},
-  titleStylePressed: {},
+  buttonText: '',
+  buttonStyle: () => ({}),
+  buttonTextStyle: () => ({}),
 };
 
 export default Button;

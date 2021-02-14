@@ -3,7 +3,7 @@ import {View, Text} from 'react-native';
 import {Container} from '@atoms';
 import {ScaledSheet} from 'react-native-size-matters';
 
-import {Fonts, RawColors} from '@styles/Themes';
+import {RawColors} from '@styles/Themes';
 import {useIntl} from 'react-intl';
 import CommonStyles from '@styles/CommonStyles';
 
@@ -12,7 +12,7 @@ const FacilityScore = () => {
 
   return (
     <Container>
-      <View style={CommonStyles.screenContainer}>
+      <Container.ScrollView style={CommonStyles.screenContainer}>
         <View style={styles.title}>
           <Text style={styles.titleContent}>
             {formatMessage({id: 'screen.FacilityScore.headerPartOne'})}
@@ -30,8 +30,8 @@ const FacilityScore = () => {
         <Text style={styles.contentTwo}>
           {formatMessage({id: 'screen.FacilityScore.contentTwo'})}
         </Text>
-        <View style={[CommonStyles.shadowEffect, styles.points]}></View>
-      </View>
+        <View style={[CommonStyles.shadowEffect, styles.points]} />
+      </Container.ScrollView>
     </Container>
   );
 };

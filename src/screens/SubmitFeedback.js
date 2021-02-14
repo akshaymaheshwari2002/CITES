@@ -16,8 +16,8 @@ const SubmitFeedback = ({navigation}) => {
   const {control, errors} = formProps;
 
   return (
-    <Container scrollable={true}>
-      <View style={CommonStyles.screenContainer}>
+    <Container>
+      <Container.ScrollView style={CommonStyles.screenContainer}>
         <View style={styles.title}>
           <Text style={styles.titleContent}>
             {formatMessage({id: 'screen.SubmitFeedback.headerPartOne'})}
@@ -34,39 +34,37 @@ const SubmitFeedback = ({navigation}) => {
         <View style={styles.iconContainer}>
           <Icon name="chevron-left" size={scale(54)} />
         </View>
-        <View>
-          <Form
-            control={control}
-            formProps={formProps}
-            errors={errors}
-            formFields={[
-              {
-                defaultValue: '',
-                name: 'SubmitFeedback',
-                rules: {
-                  required: formatMessage({id: 'form.error.fieldRequired'}),
-                },
-                placeholder: formatMessage({
-                  id: 'screen.SubmitFeedback.content',
-                }),
-                style: {
-                  color: RawColors.grey,
-                  height: scale(245),
-                  width: scale(290),
-                  marginTop: scale(29),
-                  alignSelf: 'center',
-                  borderRadius: scale(20),
-                  borderWidth: 1,
-                  borderColor: RawColors.darkGrey,
-                  textAlignVertical: 'top',
-                  padding: scale(16),
-                  multiLine: true,
-                },
+        <Form
+          control={control}
+          formProps={formProps}
+          errors={errors}
+          formFields={[
+            {
+              defaultValue: '',
+              name: 'SubmitFeedback',
+              rules: {
+                required: formatMessage({id: 'form.error.fieldRequired'}),
               },
-            ]}
-          />
-        </View>
-      </View>
+              placeholder: formatMessage({
+                id: 'screen.SubmitFeedback.content',
+              }),
+              style: {
+                color: RawColors.grey,
+                height: scale(245),
+                width: scale(290),
+                marginTop: scale(29),
+                alignSelf: 'center',
+                borderRadius: scale(20),
+                borderWidth: 1,
+                borderColor: RawColors.darkGrey,
+                textAlignVertical: 'top',
+                padding: scale(16),
+              },
+              multiLine: true,
+            },
+          ]}
+        />
+      </Container.ScrollView>
     </Container>
   );
 };

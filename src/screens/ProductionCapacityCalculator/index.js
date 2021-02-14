@@ -3,7 +3,6 @@ import {View, Text} from 'react-native';
 import {useIntl} from 'react-intl';
 import {useForm} from 'react-hook-form';
 import {ScaledSheet} from 'react-native-size-matters';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import {Container, Button} from '@atoms';
 import {Form} from '@organisms';
@@ -34,10 +33,6 @@ const ProductionCapacityCalculator = () => {
     [setValue],
   );
 
-  const onError = useCallback((err, e) => {
-    // console.error('Error in production Capacity calculator form - ', err);
-  }, []);
-
   return (
     <Container>
       <View style={CommonStyles.screenContainer}>
@@ -46,10 +41,7 @@ const ProductionCapacityCalculator = () => {
             id: 'screen.ProductionCapacityCalculator.titleText',
           })}
         </Text>
-        <KeyboardAwareScrollView
-          enableOnAndroid={true}
-          keyboardShouldPersistTaps="handled"
-          showsVerticalScrollIndicator={false}>
+        <Container.ScrollView>
           <Text style={[style.paragraph, Fonts.Lato17R]}>
             {intl.formatMessage({
               id: 'screen.ProductionCapacityCalculator.infoText_1',
@@ -67,12 +59,12 @@ const ProductionCapacityCalculator = () => {
             formFields={formFields}
           />
           <Button
-            title={intl.formatMessage({
+            buttonText={intl.formatMessage({
               id: 'general.continue',
             })}
-            onPress={handleSubmit(onSubmit, onError)}
+            onPress={handleSubmit(onSubmit)}
           />
-        </KeyboardAwareScrollView>
+        </Container.ScrollView>
       </View>
     </Container>
   );

@@ -3,14 +3,19 @@ import {ScaledSheet} from 'react-native-size-matters';
 import {RawColors} from './Themes';
 
 export default ScaledSheet.create({
+  flex1: {
+    flex: 1,
+  },
+  centerContent: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   shadowEffect: {
     shadowColor: RawColors.black,
-    shadowOpacity: 0.3,
+    shadowOffset: {width: 0, height: 5},
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
     elevation: 5,
-    shadowOffset: {
-      height: 40,
-      width: 40,
-    },
   },
   navigationHeader: {
     elevation: 0,
@@ -27,6 +32,7 @@ export default ScaledSheet.create({
   screenContainer: {
     flex: 1,
     paddingHorizontal: '16@s',
+    paddingBottom: '16@vs',
     backgroundColor: RawColors.white,
   },
 });

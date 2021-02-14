@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React from 'react';
 import {StatusBar} from 'react-native';
 import PropTypes from 'prop-types';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -9,32 +9,9 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import {RawColors} from '@styles/Themes';
 
-const Container = ({
-  isModal,
-  scrollable,
-  children,
-  statusBarProps,
-  safeAreaViewProps,
-  keyboardAwareScrollViewProps,
-}) => {
+const Container = ({isModal, children, statusBarProps, safeAreaViewProps}) => {
   const isFocused = useIsFocused();
   const headerHeight = useHeaderHeight();
-
-  const renderContent = useCallback(
-    () =>
-      scrollable ? (
-        <KeyboardAwareScrollView
-          keyboardShouldPersistTaps="handled"
-          enableOnAndroid={true}
-          contentContainerStyle={styles.container}
-          {...keyboardAwareScrollViewProps}>
-          {children}
-        </KeyboardAwareScrollView>
-      ) : (
-        children
-      ),
-    [children, keyboardAwareScrollViewProps, scrollable],
-  );
 
   return (
     <>
@@ -54,11 +31,21 @@ const Container = ({
         }
         style={styles.container}
         {...safeAreaViewProps}>
-        {renderContent()}
+        {children}
       </SafeAreaView>
     </>
   );
 };
+
+Container.ScrollView = ({children, contentContainerStyle, ...restProps}) => (
+  <KeyboardAwareScrollView
+    keyboardShouldPersistTaps="handled"
+    enableOnAndroid={true}
+    contentContainerStyle={[styles.container, contentContainerStyle]}
+    {...restProps}>
+    {children}
+  </KeyboardAwareScrollView>
+);
 
 const styles = ScaledSheet.create({
   container: {
@@ -69,20 +56,31 @@ const styles = ScaledSheet.create({
 
 Container.propTypes = {
   isModal: PropTypes.bool,
-  scrollable: PropTypes.bool,
   statusBarProps: PropTypes.object,
   safeAreaViewProps: PropTypes.object,
-  keyboardAwareScrollViewProps: PropTypes.object,
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 };
 
 Container.defaultProps = {
   isModal: false,
-  scrollable: false,
   statusBarProps: {},
   safeAreaViewProps: {},
-  keyboardAwareScrollViewProps: {},
   children: {},
+};
+
+Container.ScrollView.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  contentContainerStyle: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
+  restProps: PropTypes.object,
+};
+
+Container.ScrollView.defaultProps = {
+  children: {},
+  contentContainerStyle: {},
+  restProps: {},
 };
 
 export default Container;

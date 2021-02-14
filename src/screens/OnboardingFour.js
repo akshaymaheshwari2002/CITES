@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {Text, TouchableOpacity} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, scale} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
 
 import {Fonts} from '@styles/Themes';
-import {Container} from '@atoms/';
+import {Container} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
 
 const OnboardingFour = ({navigation}) => {
@@ -23,7 +23,7 @@ const OnboardingFour = ({navigation}) => {
 
   return (
     <Container>
-      <View style={CommonStyles.screenContainer}>
+      <Container.ScrollView style={CommonStyles.screenContainer}>
         <Text style={styles.txt}>
           {formatMessage({id: 'screen.OnboardingFour.contentOne'})}
 
@@ -34,7 +34,7 @@ const OnboardingFour = ({navigation}) => {
             {formatMessage({id: 'screen.OnboardingFour.contentThree'})}
           </Text>
         </Text>
-      </View>
+      </Container.ScrollView>
     </Container>
   );
 };

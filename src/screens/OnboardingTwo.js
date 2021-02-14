@@ -1,12 +1,32 @@
 import React, {useEffect} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
-import FeatherIcon from 'react-native-vector-icons/Feather';
-import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
 import {ScaledSheet, scale} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 
 import {Container} from '@atoms';
-import {Fonts, RawColors} from '@styles/Themes';
+import {Fonts} from '@styles/Themes';
+import {Images} from '@assets';
+import CommonStyles from '@styles/CommonStyles';
+
+const points = [
+  {
+    icon: Images.tick,
+    labelId: 'screen.OnboardingTwo.contentOne',
+  },
+  {
+    icon: Images.tick,
+    labelId: 'screen.OnboardingTwo.contentTwo',
+  },
+  {
+    icon: Images.tick,
+    labelId: 'screen.OnboardingTwo.contentThree',
+  },
+  {
+    icon: Images.tick,
+    labelId: 'screen.OnboardingTwo.contentFour',
+  },
+];
 
 const OnboardingTwo = ({navigation}) => {
   const {formatMessage} = useIntl();
@@ -16,7 +36,7 @@ const OnboardingTwo = ({navigation}) => {
       headerRight: () => (
         <TouchableOpacity
           onPress={() => navigation.navigate('OnboardingThree')}>
-          <FeatherIcon name="chevron-right" size={scale(26)} />
+          <Icon name="chevron-right" size={scale(26)} />
         </TouchableOpacity>
       ),
     });
@@ -24,84 +44,48 @@ const OnboardingTwo = ({navigation}) => {
 
   return (
     <Container>
-      <Text style={styles.title}>
-        {formatMessage({id: 'screen.OnboardingTwo.title'})}
-      </Text>
-
-      <View style={styles.contentContainer}>
-        <View style={styles.points}>
-          <AntDesignIcon
-            name="checkcircle"
-            color={RawColors.red}
-            style={styles.icon}
-          />
-          <Text style={styles.content}>
-            {formatMessage({id: 'screen.OnboardingTwo.contentOne'})}
+      <Container.ScrollView contentContainerStyle={styles.contentContainer}>
+        <View style={styles.content}>
+          <Text style={[Fonts.Lato20R]}>
+            {formatMessage({id: 'screen.OnboardingTwo.title'})}
           </Text>
+          {points.map(({icon, labelId}, index) => (
+            <View key={index} style={styles.item}>
+              <Image source={icon} style={styles.itemIcon} />
+              <Text style={[CommonStyles.flex1, Fonts.Lato20R]}>
+                {formatMessage({id: labelId})}
+              </Text>
+            </View>
+          ))}
         </View>
-        <View style={styles.points}>
-          <AntDesignIcon
-            name="checkcircle"
-            color={RawColors.red}
-            style={styles.icon}
-          />
-          <Text style={styles.content}>
-            {formatMessage({id: 'screen.OnboardingTwo.contentTwo'})}
-          </Text>
-        </View>
-
-        <View style={styles.points}>
-          <AntDesignIcon
-            name="checkcircle"
-            color={RawColors.red}
-            style={styles.icon}
-          />
-          <Text style={styles.content}>
-            {formatMessage({id: 'screen.OnboardingTwo.contentThree'})}
-          </Text>
-        </View>
-
-        <View style={styles.points}>
-          <AntDesignIcon
-            name="checkcircle"
-            color={RawColors.red}
-            style={styles.icon}
-          />
-          <Text style={styles.content}>
-            {formatMessage({id: 'screen.OnboardingTwo.contentFour'})}
-          </Text>
-        </View>
-      </View>
+      </Container.ScrollView>
     </Container>
   );
 };
 
 const styles = ScaledSheet.create({
-  container: {
-    flex: 1,
-    marginHorizontal: '20%',
-    marginVertical: '20%',
+  contentContainer: {
+    paddingVertical: 60,
   },
   content: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    lineHeight: '21@s',
-    ...Fonts.Lato15R,
-  },
-  contentContainer: {
-    marginHorizontal: '16%',
-    marginVertical: '2%',
+    alignSelf: 'center',
   },
   icon: {
     height: '30@vs',
     width: '30@s',
   },
-  title: {
-    marginVertical: '8%',
-    marginHorizontal: '14%',
-    ...Fonts.Lato15R,
+  item: {
+    flexDirection: 'row',
+    marginLeft: 8,
+    marginVertical: '36@vs',
+    alignItems: 'center',
   },
-  points: {flexDirection: 'row', marginVertical: '3%'},
+  itemIcon: {
+    width: 22,
+    height: 22,
+    resizeMode: 'contain',
+    marginRight: 16,
+  },
 });
 
 export default OnboardingTwo;

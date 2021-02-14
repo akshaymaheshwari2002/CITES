@@ -41,7 +41,6 @@ export const requestWritePermission = async () => {
       );
       return granted === PermissionsAndroid.RESULTS.GRANTED;
     } catch (err) {
-      console.warn(err);
       return false;
     }
   } else {
@@ -69,7 +68,6 @@ export const generatePdf = async ({
     const permissionGranted = await requestWritePermission();
     if (permissionGranted) {
       let file = await RNHTMLtoPDF.convert(saveFile ? saveOptions : options);
-      console.log(file.filePath);
       return file;
     } else {
       return intl.formatMessage({id: 'permission.writeExternal'});

@@ -6,16 +6,7 @@ import {ScaledSheet} from 'react-native-size-matters';
 const PDFPreview = ({source = {}}) => {
   return (
     <View style={styles.container}>
-      <Pdf
-        source={source}
-        onLoadComplete={(numberOfPages, filePath) => {
-          console.log(`number of pages: ${numberOfPages}`);
-        }}
-        onError={(error) => {
-          console.log(error);
-        }}
-        style={styles.pdf}
-      />
+      <Pdf source={source} style={styles.pdf} />
     </View>
   );
 };
