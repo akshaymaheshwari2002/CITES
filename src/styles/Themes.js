@@ -14,12 +14,20 @@ const RawColors = {
   dimGrey: '#707070',
   snow: '#F9F9F9',
   whiteTwo: 'rgb(249,249,249)',
+  sugarCane: '#EFF3DE',
   grey: '#929292',
   darkGrey: '#2D4652',
   lightGrey: '#F2F2F7',
+  softRed: '#DA6F60',
+  darkSalmon: '#CC685A',
+  tuna: '#3C3C4399',
 };
 
 const Fonts = {
+  Lato13R: {
+    fontFamily: 'Lato-Regular',
+    fontSize: moderateScale(13),
+  },
   Lato15R: {
     fontFamily: 'Lato-Regular',
     fontSize: moderateScale(15),
@@ -32,10 +40,6 @@ const Fonts = {
     fontFamily: 'Lato-Regular',
     fontSize: moderateScale(20),
   },
-  HelverticaNeue30B: {
-    fontFamily: 'HelveticaNeue-Bold',
-    fontSize: moderateScale(30),
-  },
   HelveticaNeue30B: {
     fontFamily: 'HelveticaNeue-Bold',
     fontSize: moderateScale(30),
@@ -43,6 +47,10 @@ const Fonts = {
   HelveticaNeue40B: {
     fontFamily: 'HelveticaNeue-Bold',
     fontSize: moderateScale(40),
+  },
+  HelveticaNeue80B: {
+    fontFamily: 'HelveticaNeue-Bold',
+    fontSize: moderateScale(80),
   },
 };
 

@@ -18,6 +18,7 @@ import {
   OnboardingThree,
   OnboardingTwo,
   StepsSummary,
+  StepOne,
   SubmitFeedback,
   ProductionCapacityCalculator,
 } from '@screens';
@@ -53,6 +54,7 @@ const AppNavigator = () => {
         <Stack.Screen name="OnboardingTwo" component={OnboardingTwo} />
         <Stack.Screen name="OnboardingThree" component={OnboardingThree} />
         <Stack.Screen name="OnboardingFour" component={OnboardingFour} />
+        <Stack.Screen name="StepOne" component={StepOne} />
         <Stack.Screen name="StepsSummary" component={StepsSummary} />
         <Stack.Screen name="GiveFeedback" component={GiveFeedback} />
         <Stack.Screen name="SubmitFeedback" component={SubmitFeedback} />

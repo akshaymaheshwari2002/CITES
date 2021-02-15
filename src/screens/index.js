@@ -9,6 +9,7 @@ import OnboardingTwo from './OnboardingTwo';
 import OnboardingThree from './OnboardingThree';
 import OnboardingFour from './OnboardingFour';
 import StepsSummary from './StepsSummary';
+import StepOne from './StepOne';
 import SubmitFeedback from './SubmitFeedback';
 
 export {
@@ -22,6 +23,7 @@ export {
   OnboardingThree,
   OnboardingFour,
   StepsSummary,
+  StepOne,
   SubmitFeedback,
   ProductionCapacityCalculator,
 };
