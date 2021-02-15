@@ -32,7 +32,7 @@ const styles = ScaledSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: '14@ms',
-    height: '46@vs',
+    minHeight: '46@vs',
     borderWidth: 1,
     borderColor: RawColors.dimGrey,
   },
