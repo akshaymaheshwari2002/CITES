@@ -57,5 +57,9 @@
   "screen.StepsSummary.contentOne": "BEFORE",
   "screen.StepsSummary.contentTwo": "DURING",
   "screen.StepsSummary.contentThree": "AFTER",
-  "screen.StepsSummary.contentFour": "an inspection"
+  "screen.StepsSummary.contentFour": "an inspection",
+  "screen.HomePage.header": "WHAT WOULD YOU LIKE TO DO?",
+  "screen.HomePage.buttonOne": "Inspect a facility: CONTINUE WITH STEP 2",
+  "screen.HomePage.buttonTwo": "Determine source code for a specimen",
+  "screen.HomePage.buttonThree": "GIVE FEEDBACK"
 }

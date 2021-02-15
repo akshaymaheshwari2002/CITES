@@ -17,6 +17,8 @@ const RawColors = {
   grey: '#929292',
   darkGrey: '#2D4652',
   lightGrey: '#F2F2F7',
+  darkSalmon: '#cc685a',
+  darkGreyBlue: 'rgb(47,65,75)',
 };
 
 const Fonts = {
@@ -31,6 +33,10 @@ const Fonts = {
   Lato20R: {
     fontFamily: 'Lato-Regular',
     fontSize: moderateScale(20),
+  },
+  Lato34R: {
+    fontFamily: 'Lato-Regular',
+    fontSize: moderateScale(34),
   },
   HelverticaNeue30B: {
     fontFamily: 'HelveticaNeue-Bold',

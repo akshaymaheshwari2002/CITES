@@ -9,7 +9,12 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import {RawColors} from '@styles/Themes';
 
-const Container = ({isModal, children, statusBarProps, safeAreaViewProps}) => {
+const Container = ({
+  isModal,
+  children,
+  statusBarProps,
+  safeAreaViewProps: {style, ...restProps},
+}) => {
   const isFocused = useIsFocused();
   const headerHeight = useHeaderHeight();
 
@@ -29,8 +34,8 @@ const Container = ({isModal, children, statusBarProps, safeAreaViewProps}) => {
             ? ['right', 'bottom', 'left']
             : ['top', 'right', 'bottom', 'left']
         }
-        style={styles.container}
-        {...safeAreaViewProps}>
+        style={[styles.container, style]}
+        {...restProps}>
         {children}
       </SafeAreaView>
     </>

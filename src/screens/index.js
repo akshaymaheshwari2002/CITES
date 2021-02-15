@@ -10,6 +10,7 @@ import OnboardingThree from './OnboardingThree';
 import OnboardingFour from './OnboardingFour';
 import StepsSummary from './StepsSummary';
 import SubmitFeedback from './SubmitFeedback';
+import HomePage from './HomePage';
 
 export {
   FacilityScore,
@@ -24,4 +25,5 @@ export {
   StepsSummary,
   SubmitFeedback,
   ProductionCapacityCalculator,
+  HomePage,
 };
