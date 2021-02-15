@@ -2,6 +2,13 @@
   "permission.writeExternal": "Please Grant Permission",
   "general.error": "An error has occured",
   "general.continue": "Continue",
+  "general.yourTasks": "your tasks",
+  "general.stepOne": "Step One",
+  "general.stepTwo": "Step Two",
+  "general.stepThree": "Step Three",
+  "stepHeader.beforeInspection": "Before Inspection",
+  "stepHeader.duringInspection": "During Inspection",
+  "stepHeader.afterInspection": "After Inspection",
   "form.error.fieldRequired": "Required Field",
   "form.error.invalidInput": "Invalid Input",
   "form.error.positiveNumber": "Input should be a positive number",
@@ -57,5 +64,9 @@
   "screen.StepsSummary.contentOne": "BEFORE",
   "screen.StepsSummary.contentTwo": "DURING",
   "screen.StepsSummary.contentThree": "AFTER",
-  "screen.StepsSummary.contentFour": "an inspection"
+  "screen.StepsSummary.contentFour": "an inspection",
+  "screen.HomePage.header": "WHAT WOULD YOU LIKE TO DO?",
+  "screen.HomePage.buttonOne": "Inspect a facility: CONTINUE WITH STEP 2",
+  "screen.HomePage.buttonTwo": "Determine source code for a specimen",
+  "screen.HomePage.buttonThree": "GIVE FEEDBACK"
 }
