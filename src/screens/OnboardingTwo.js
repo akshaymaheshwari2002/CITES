@@ -1,11 +1,17 @@
 import React, {useEffect} from 'react';
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  ImageBackground,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {ScaledSheet, scale} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 
 import {Container} from '@atoms';
-import {Fonts} from '@styles/Themes';
+import {Fonts, RawColors} from '@styles/Themes';
 import {Images} from '@assets';
 import CommonStyles from '@styles/CommonStyles';
 
@@ -44,21 +50,28 @@ const OnboardingTwo = ({navigation}) => {
 
   return (
     <Container>
-      <Container.ScrollView contentContainerStyle={styles.contentContainer}>
-        <View style={styles.content}>
-          <Text style={[Fonts.Lato20R]}>
-            {formatMessage({id: 'screen.OnboardingTwo.title'})}
-          </Text>
-          {points.map(({icon, labelId}, index) => (
-            <View key={index} style={styles.item}>
-              <Image source={icon} style={styles.itemIcon} />
-              <Text style={[CommonStyles.flex1, Fonts.Lato20R]}>
-                {formatMessage({id: labelId})}
-              </Text>
-            </View>
-          ))}
-        </View>
-      </Container.ScrollView>
+      <ImageBackground
+        source={Images.onboardingTwo}
+        style={{flex: 1}}
+        imageStyle={{
+          paddingLeft: 100,
+        }}>
+        <Container.ScrollView contentContainerStyle={styles.contentContainer}>
+          <View style={styles.content}>
+            <Text style={[Fonts.Lato20R]}>
+              {formatMessage({id: 'screen.OnboardingTwo.title'})}
+            </Text>
+            {points.map(({icon, labelId}, index) => (
+              <View key={index} style={styles.item}>
+                <Image source={icon} style={styles.itemIcon} />
+                <Text style={[CommonStyles.flex1, Fonts.Lato20R]}>
+                  {formatMessage({id: labelId})}
+                </Text>
+              </View>
+            ))}
+          </View>
+        </Container.ScrollView>
+      </ImageBackground>
     </Container>
   );
 };
@@ -66,6 +79,7 @@ const OnboardingTwo = ({navigation}) => {
 const styles = ScaledSheet.create({
   contentContainer: {
     paddingVertical: 60,
+    backgroundColor: RawColors.transparent,
   },
   content: {
     alignSelf: 'center',
@@ -78,7 +92,6 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
     marginLeft: 8,
     marginVertical: '36@vs',
-    alignItems: 'center',
   },
   itemIcon: {
     width: 22,
