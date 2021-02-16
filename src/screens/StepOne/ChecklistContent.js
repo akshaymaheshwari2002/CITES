@@ -72,7 +72,7 @@ const checklistContent = ({
             &nbsp;
           </Text>
           <Button
-            buttonText={formatMessage({
+            buttonContent={formatMessage({
               id: 'screen.stepOne.formOneCompleted.FormOne',
             })}
             buttonStyle={(pressed) => checkliststyles.button}
@@ -91,7 +91,7 @@ const checklistContent = ({
             })}
           </Text>
           <Button
-            buttonText={formatMessage({
+            buttonContent={formatMessage({
               id: 'screen.ProductionCapacityCalculator.titleText',
             })}
             buttonStyle={(pressed) => [

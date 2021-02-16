@@ -56,7 +56,7 @@ const StepOne = ({navigation}) => {
         })}
         <View>
           <Button
-            buttonText={intl.formatMessage({
+            buttonContent={intl.formatMessage({
               id: 'screen.stepOne.continueToStepTwo',
             })}
             buttonStyle={(pressed) => styles.button}
