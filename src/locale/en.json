@@ -81,7 +81,9 @@
   "screen.OnboardingFour.contentOne": "   Begin with ",
   "screen.OnboardingFour.contentTwo": "STEP 1",
   "screen.OnboardingFour.contentThree": " and ensure all tasks are completed before proceeding to the next step",
-  "screen.StepsSummary.title": "STEPSsummary ON AN INSPECTION ",
+  "screen.StepsSummary.headerPartOne": "STEPS",
+  "screen.StepsSummary.headerPartTwo": "ON AN",
+  "screen.StepsSummary.headerPartThree": "INSPECTION",
   "screen.StepsSummary.contentOne": "BEFORE",
   "screen.StepsSummary.contentTwo": "DURING",
   "screen.StepsSummary.contentThree": "AFTER",
@@ -89,5 +91,15 @@
   "screen.HomePage.header": "WHAT WOULD YOU LIKE TO DO?",
   "screen.HomePage.buttonOne": "Inspect a facility",
   "screen.HomePage.buttonTwo": "Determine source code for a specimen",
-  "screen.HomePage.buttonThree": "GIVE FEEDBACK"
+  "screen.HomePage.buttonThree": "GIVE FEEDBACK",
+  "screen.InspectionFlow.headerPartOne": "CITES",
+  "screen.InspectionFlow.headerPartTwo": "RANCHING +",
+  "screen.InspectionFlow.headerPartThree": "CAPTIVE BREEDING",
+  "screen.InspectionFlow.headerPartFour": "INSPECTION GUIDE",
+  "screen.InspectionFlow.buttonOnePartOne": "This is my first inspection",
+  "screen.InspectionFlow.buttonOnePartTwo": "Learn how to use this app >",
+  "screen.InspectionFlow.buttonTwoPartOne": "I want to start a new inspection",
+  "screen.InspectionFlow.buttonTwoPartTwo": "Begin inspection >",
+  "screen.InspectionFlow.buttonThreePartOne": "I have to started an inspection",
+  "screen.InspectionFlow.buttonThreePartTwo": "Continue inspection >"
 }

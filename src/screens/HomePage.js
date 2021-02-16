@@ -36,14 +36,14 @@ const HomePage = ({navigation}) => {
                     onPress={() => navigation.navigate('OnboardingOne')}
                     buttonStyle={() => styles.filledButton}
                     buttonTextStyle={() => ({color: RawColors.white})}
-                    buttonText={formatMessage({
+                    buttonContent={formatMessage({
                       id: 'screen.HomePage.buttonOne',
                     })}
                   />
                   <Button
                     buttonStyle={() => styles.filledButton}
                     buttonTextStyle={() => ({color: RawColors.white})}
-                    buttonText={formatMessage({
+                    buttonContent={formatMessage({
                       id: 'screen.HomePage.buttonTwo',
                     })}
                   />

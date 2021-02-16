@@ -5,22 +5,29 @@ import {ScaledSheet} from 'react-native-size-matters';
 
 import {Fonts, RawColors} from '@styles/Themes';
 
-const Button = ({buttonText, buttonStyle, buttonTextStyle, ...restProps}) => {
+const Button = ({
+  buttonContent,
+  buttonStyle,
+  buttonTextStyle,
+  ...restProps
+}) => {
   return (
     <Pressable
       style={({pressed}) => [styles.button, buttonStyle(pressed)]}
       android_ripple={{color: RawColors.white}}
       {...restProps}>
       {({pressed}) => {
-        return (
+        return typeof buttonContent === 'string' ? (
           <Text
             style={[
               {color: RawColors.darkGrey},
               Fonts.Lato15R,
               buttonTextStyle(pressed),
             ]}>
-            {buttonText}
+            {buttonContent}
           </Text>
+        ) : (
+          buttonContent
         );
       }}
     </Pressable>
