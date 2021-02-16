@@ -52,10 +52,8 @@ const OnboardingTwo = ({navigation}) => {
     <Container>
       <ImageBackground
         source={Images.onboardingTwo}
-        style={{flex: 1}}
-        imageStyle={{
-          paddingLeft: 100,
-        }}>
+        style={CommonStyles.flex1}
+        imageStyle={styles.backgroundImage}>
         <Container.ScrollView contentContainerStyle={styles.contentContainer}>
           <View style={styles.content}>
             <Text style={[Fonts.Lato20R]}>
@@ -92,6 +90,12 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
     marginLeft: 8,
     marginVertical: '36@vs',
+  },
+  backgroundImage: {
+    resizeMode: 'center',
+    position: 'absolute',
+    paddingLeft: '700@s',
+    paddingTop: '600@s',
   },
   itemIcon: {
     width: 22,

@@ -13,6 +13,7 @@ import {
   FacilityScoreGreaterEight,
   LanguageSelection,
   OnboardingOne,
+  InspectionFlow,
   GiveFeedback,
   OnboardingFour,
   OnboardingThree,
@@ -45,7 +46,7 @@ const AppNavigator = () => {
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator
         screenOptions={screenOptions}
-        initialRouteName="HomePage">
+        initialRouteName="InspectionFlow">
         <Stack.Screen
           name="LanguageSelection"
           options={{headerShown: false}}
@@ -60,6 +61,11 @@ const AppNavigator = () => {
         <Stack.Screen name="GiveFeedback" component={GiveFeedback} />
         <Stack.Screen name="SubmitFeedback" component={SubmitFeedback} />
         <Stack.Screen name="FacilityScore" component={FacilityScore} />
+        <Stack.Screen
+          name="InspectionFlow"
+          options={{headerShown: false}}
+          component={InspectionFlow}
+        />
         <Stack.Screen
           name="FacilityScoreLessEight"
           component={FacilityScoreLessEight}

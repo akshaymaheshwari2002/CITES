@@ -59,7 +59,7 @@ const ProductionCapacityCalculator = () => {
             formFields={formFields}
           />
           <Button
-            buttonText={intl.formatMessage({
+            buttonContent={intl.formatMessage({
               id: 'general.continue',
             })}
             onPress={handleSubmit(onSubmit)}
