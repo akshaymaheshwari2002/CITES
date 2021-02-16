@@ -22,6 +22,7 @@ const RawColors = {
   darkSalmon: '#cc685a',
   darkGreyBlue: '#2F414B',
   softRed: '#DA6F60',
+  brightRed: '#DE7162',
   tuna: '#3C3C43',
   green: '#3BB54A',
   ghostCheckboxBorder: '#C7C7CC',
@@ -35,6 +36,18 @@ const Fonts = {
   Lato13R: {
     fontFamily: 'Lato-Regular',
     fontSize: moderateScale(13),
+  },
+  Lato22B: {
+    fontFamily: 'Lato-Bold',
+    fontSize: moderateScale(22),
+  },
+  Lato20B: {
+    fontFamily: 'Lato-Bold',
+    fontSize: moderateScale(20),
+  },
+  Lato50R: {
+    fontFamily: 'Lato-Regular',
+    fontSize: moderateScale(50),
   },
   Lato15R: {
     fontFamily: 'Lato-Regular',
@@ -56,6 +69,18 @@ const Fonts = {
     fontFamily: 'Lato-Regular',
     fontSize: moderateScale(34),
   },
+  HelveticaNeue17R: {
+    fontFamily: 'HelveticaNeue-Regular',
+    fontSize: moderateScale(17),
+  },
+  HelveticaNeue18B: {
+    fontFamily: 'HelveticaNeue-Bold',
+    fontSize: moderateScale(18),
+  },
+  HelveticaNeue25B: {
+    fontFamily: 'HelveticaNeue-Bold',
+    fontSize: moderateScale(25),
+  },
   Lato15SB: {
     fontFamily: 'Lato-Semibold',
     fontSize: moderateScale(15),
@@ -71,6 +96,10 @@ const Fonts = {
   HelveticaNeue40B: {
     fontFamily: 'HelveticaNeue-Bold',
     fontSize: moderateScale(40),
+  },
+  HelveticaNeue26B: {
+    fontFamily: 'HelveticaNeue-Bold',
+    fontSize: moderateScale(26),
   },
   HelveticaNeue80B: {
     fontFamily: 'HelveticaNeue-Bold',
