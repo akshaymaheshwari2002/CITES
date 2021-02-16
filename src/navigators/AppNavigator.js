@@ -21,6 +21,7 @@ import {
   StepOne,
   SubmitFeedback,
   ProductionCapacityCalculator,
+  HomePage,
 } from '@screens';
 
 const Stack = createStackNavigator();
@@ -44,7 +45,7 @@ const AppNavigator = () => {
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator
         screenOptions={screenOptions}
-        initialRouteName="LanguageSelection">
+        initialRouteName="HomePage">
         <Stack.Screen
           name="LanguageSelection"
           options={{headerShown: false}}
@@ -70,6 +71,11 @@ const AppNavigator = () => {
         <Stack.Screen
           name="ProductionCapacityCalculator"
           component={ProductionCapacityCalculator}
+        />
+        <Stack.Screen
+          name="HomePage"
+          options={{headerShown: false}}
+          component={HomePage}
         />
       </Stack.Navigator>
     </NavigationContainer>

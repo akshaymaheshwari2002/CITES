@@ -7,30 +7,33 @@ import {Container, Button} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import {Images} from '@assets';
 
-const HomePage = () => {
+const HomePage = ({navigation}) => {
   const {formatMessage} = useIntl();
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <ImageBackground style={styles.container} source={Images.backPatternTop}>
+      <ImageBackground
+        style={styles.container}
+        source={Images.backgroundPatternTop}>
         <Container.ScrollView contentContainerStyle={styles.scrollContainer}>
           <Image source={Images.logo} style={styles.logo} />
           <ImageBackground
-            style={styles.backContainer}
-            source={Images.backThree}
-            imageStyle={styles.backImage}>
+            style={styles.backgroundContainer}
+            source={Images.backgroundThree}
+            imageStyle={styles.backgroundImage}>
             <ImageBackground
-              style={styles.backContainer}
-              source={Images.backTwo}
-              imageStyle={styles.backImage}>
+              style={styles.backgroundContainer}
+              source={Images.backgroundTwo}
+              imageStyle={styles.backgroundImage}>
               <ImageBackground
-                style={styles.backContainer}
-                source={Images.backOne}
-                imageStyle={styles.backImage}>
+                style={styles.backgroundContainer}
+                source={Images.backgroundOne}
+                imageStyle={styles.backgroundImage}>
                 <View style={styles.contentContainer}>
                   <Text style={styles.header}>
                     {formatMessage({id: 'screen.HomePage.header'})}
                   </Text>
                   <Button
+                    onPress={() => navigation.navigate('OnboardingOne')}
                     buttonStyle={() => styles.filledButton}
                     buttonTextStyle={() => ({color: RawColors.white})}
                     buttonText={formatMessage({
@@ -45,7 +48,7 @@ const HomePage = () => {
                     })}
                   />
                   <Button
-                    buttonStyle={() => styles.outlinedButton}
+                    onPress={() => navigation.navigate('SubmitFeedback')}
                     buttonText={formatMessage({
                       id: 'screen.HomePage.buttonThree',
                     })}
@@ -62,36 +65,36 @@ const HomePage = () => {
 
 const styles = ScaledSheet.create({
   container: {
+    flexGrow: 1,
     backgroundColor: RawColors.darkSalmon,
   },
   scrollContainer: {
-    paddingTop: '146@vs',
+    paddingTop: '120@vs',
     backgroundColor: RawColors.transparent,
   },
-  backContainer: {
+  backgroundContainer: {
     flexGrow: 1,
-    paddingTop: '36@vs',
+    paddingTop: '28@vs',
   },
-  backImage: {
+  backgroundImage: {
     resizeMode: 'stretch',
   },
   logo: {
     position: 'absolute',
-    top: '73@vs',
-    height: '146@vs',
+    top: '60@vs',
     resizeMode: 'contain',
     alignSelf: 'center',
   },
   contentContainer: {
     flex: 1,
-    width: '294@s',
+    width: '78.4%',
     justifyContent: 'center',
     alignSelf: 'center',
-    marginTop: '80@vs',
-    paddingBottom: '36@vs',
+    marginTop: '64@vs',
+    paddingBottom: '16@vs',
   },
   header: {
-    marginBottom: '24@vs',
+    marginBottom: '16@vs',
     textAlign: 'center',
     color: RawColors.darkGreyBlue,
     ...Fonts.Lato34R,
@@ -99,13 +102,9 @@ const styles = ScaledSheet.create({
   },
   filledButton: {
     backgroundColor: RawColors.darkSalmon,
-    width: '294@s',
-    height: '84@vs',
+    minHeight: '66@vs',
     borderWidth: 0,
-    marginBottom: '24@vs',
-  },
-  outlinedButton: {
-    width: '294@s',
+    marginBottom: '16@vs',
   },
 });
 
