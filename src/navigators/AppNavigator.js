@@ -25,6 +25,7 @@ import {
   FacilityInfringement,
   ProductionCapacityCalculator,
   HomePage,
+  webView,
 } from '@screens';
 
 const Stack = createStackNavigator();
@@ -93,6 +94,7 @@ const AppNavigator = () => {
           options={{headerShown: false}}
           component={HomePage}
         />
+        <Stack.Screen name="webView" component={webView} />
       </Stack.Navigator>
     </NavigationContainer>
   );

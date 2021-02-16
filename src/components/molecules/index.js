@@ -3,6 +3,7 @@ import FormOneTemplate from './ReactTemplate/FormOneTemplate';
 import FormOneHeader from './ReactTemplate/FormOneHeader';
 import FormTwoTemplate from './ReactTemplate/FormTwoTemplate';
 import StepHeader from './StepHeader';
+import ChecklistCell from './ChecklistCell';
 
 export {
   TemplateOne,
@@ -10,4 +11,5 @@ export {
   FormOneHeader,
   FormTwoTemplate,
   StepHeader,
+  ChecklistCell,
 };

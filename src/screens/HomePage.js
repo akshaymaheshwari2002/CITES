@@ -49,7 +49,7 @@ const HomePage = ({navigation}) => {
                   />
                   <Button
                     onPress={() => navigation.navigate('SubmitFeedback')}
-                    buttonText={formatMessage({
+                    buttonContent={formatMessage({
                       id: 'screen.HomePage.buttonThree',
                     })}
                   />

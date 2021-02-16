@@ -15,6 +15,7 @@ import HomePage from './HomePage';
 import InspectionFlow from './InspectionFlow';
 import FacilityInfringement from './FacilityInfringement';
 import FacilityRegistered from './FacilityRegistered';
+import webView from './webView';
 
 export {
   FacilityScore,
@@ -34,4 +35,5 @@ export {
   SubmitFeedback,
   ProductionCapacityCalculator,
   HomePage,
+  webView,
 };
