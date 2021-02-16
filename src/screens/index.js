@@ -13,6 +13,7 @@ import StepOne from './StepOne';
 import SubmitFeedback from './SubmitFeedback';
 import HomePage from './HomePage';
 import InspectionFlow from './InspectionFlow';
+import webView from './webView';
 
 export {
   FacilityScore,
@@ -30,4 +31,5 @@ export {
   SubmitFeedback,
   ProductionCapacityCalculator,
   HomePage,
+  webView,
 };
