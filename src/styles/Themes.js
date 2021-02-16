@@ -28,6 +28,7 @@ const RawColors = {
   spunPearl: '#B0B0B6',
   prussianBlue: '#083863',
   smaltBlueApprox: '#51666c',
+  darkBlue: '#2A414C',
 };
 
 const Fonts = {
@@ -41,6 +42,10 @@ const Fonts = {
   },
   Lato17R: {
     fontFamily: 'Lato-Regular',
+    fontSize: moderateScale(17),
+  },
+  Lato17B: {
+    fontFamily: 'Lato-Bold',
     fontSize: moderateScale(17),
   },
   Lato20R: {

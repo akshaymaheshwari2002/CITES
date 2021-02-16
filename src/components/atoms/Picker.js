@@ -6,22 +6,24 @@ import {ScaledSheet, scale} from 'react-native-size-matters';
 
 import {RawColors, Fonts} from '@styles/Themes';
 
-const Picker = React.forwardRef(({label, error, onChange, ...restProps}, _) => {
-  return (
-    <>
-      {label ? <Text style={Fonts.Lato15R}>{label}</Text> : null}
-      <DropDownPicker
-        containerStyle={styles.container}
-        style={styles.picker}
-        itemStyle={styles.item}
-        arrowSize={scale(24)}
-        onChangeItem={onChange}
-        {...restProps}
-      />
-      {error ? <Text style={Fonts.Lato15R}>{error}</Text> : null}
-    </>
-  );
-});
+const Picker = React.forwardRef(
+  ({label, error, onChange, style, ...restProps}, _) => {
+    return (
+      <>
+        {label ? <Text style={Fonts.Lato15R}>{label}</Text> : null}
+        <DropDownPicker
+          containerStyle={styles.container}
+          style={[styles.picker, style]}
+          itemStyle={styles.item}
+          arrowSize={scale(24)}
+          onChangeItem={onChange}
+          {...restProps}
+        />
+        {error ? <Text style={Fonts.Lato15R}>{error}</Text> : null}
+      </>
+    );
+  },
+);
 
 const styles = ScaledSheet.create({
   container: {
