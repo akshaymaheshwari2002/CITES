@@ -22,6 +22,11 @@ const RawColors = {
   darkGreyBlue: 'rgb(47,65,75)',
   softRed: '#DA6F60',
   tuna: '#3C3C43',
+  green: '#3BB54A',
+  ghostCheckboxBorder: '#C7C7CC',
+  spunPearl: '#B0B0B6',
+  prussianBlue: '#083863',
+  smaltBlueApprox: '#51666c',
 };
 
 const Fonts = {
@@ -44,6 +49,14 @@ const Fonts = {
   Lato34R: {
     fontFamily: 'Lato-Regular',
     fontSize: moderateScale(34),
+  },
+  Lato15SB: {
+    fontFamily: 'Lato-Semibold',
+    fontSize: moderateScale(15),
+  },
+  Lato17SB: {
+    fontFamily: 'Lato-Semibold',
+    fontSize: moderateScale(17),
   },
   HelveticaNeue30B: {
     fontFamily: 'HelveticaNeue-Bold',
