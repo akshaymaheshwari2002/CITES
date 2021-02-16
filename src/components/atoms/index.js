@@ -4,5 +4,6 @@ import Container from './Container';
 import PDFPreview from './PDFPreview';
 import Picker from './Picker';
 import Button from './Button';
+import Checkbox from './Checkbox';
 
-export {Container, DatePicker, TextInput, PDFPreview, Picker, Button};
+export {Container, DatePicker, TextInput, PDFPreview, Picker, Button, Checkbox};
