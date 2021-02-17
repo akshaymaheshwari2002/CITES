@@ -15,7 +15,7 @@ const OnboardingFour = ({navigation}) => {
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <TouchableOpacity onPress={() => navigation.navigate('GiveFeedback')}>
+        <TouchableOpacity onPress={() => navigation.navigate('StepOne')}>
           <Icon name="chevron-right" size={scale(26)} />
         </TouchableOpacity>
       ),

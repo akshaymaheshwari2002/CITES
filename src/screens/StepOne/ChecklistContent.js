@@ -2,13 +2,13 @@ import React from 'react';
 import {View, Text, Pressable} from 'react-native';
 
 import {Button} from '@atoms';
+import Config from '@config';
+import {navigate} from '@utils/RootNavigation';
+import createIntl from '@utils/Intl';
 
-const checklistContent = ({
-  checkliststyles,
-  bullet,
-  formatMessage,
-  navigate,
-}) => {
+const checklistContent = ({checkliststyles, bullet}) => {
+  const {formatMessage} = createIntl();
+
   return [
     {
       id: 'researchConducted',
@@ -21,9 +21,7 @@ const checklistContent = ({
           </Text>
           <Pressable
             onPress={() =>
-              navigate('webView', {
-                sourceUri: 'https://www.iucnredlist.org/',
-              })
+              navigate('WebView', {sourceUri: Config.URL_IUCN_RED_LIST})
             }
             style={checklistContent.textLink}>
             <Text style={checkliststyles.textLink}>
@@ -44,11 +42,15 @@ const checklistContent = ({
               id: 'screen.stepOne.existingRecordsExamined_1',
             })}
           </Text>
-          <Text style={checkliststyles.textLink}>
-            {formatMessage({
-              id: 'screen.stepOne.existingRecordsExamined_2',
-            })}
-          </Text>
+          <Pressable
+            onPress={() => navigate('FacilityRegistered')}
+            style={checklistContent.textLink}>
+            <Text style={checkliststyles.textLink}>
+              {formatMessage({
+                id: 'screen.stepOne.existingRecordsExamined_2',
+              })}
+            </Text>
+          </Pressable>
         </View>
       ),
     },
@@ -61,11 +63,15 @@ const checklistContent = ({
               id: 'screen.stepOne.outstandingInfringementInvestigations_1',
             })}
           </Text>
-          <Text style={checkliststyles.textLink}>
-            {formatMessage({
-              id: 'screen.stepOne.outstandingInfringementInvestigations_2',
-            })}
-          </Text>
+          <Pressable
+            onPress={() => navigate('FacilityInfringement')}
+            style={checklistContent.textLink}>
+            <Text style={checkliststyles.textLink}>
+              {formatMessage({
+                id: 'screen.stepOne.outstandingInfringementInvestigations_2',
+              })}
+            </Text>
+          </Pressable>
         </View>
       ),
     },
@@ -219,4 +225,5 @@ const checklistContent = ({
     },
   ];
 };
+
 export default checklistContent;

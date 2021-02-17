@@ -52,7 +52,7 @@ const LanguageSelection = ({navigation}) => {
   const handleChange = useCallback(
     ({value}) => {
       dispatch(setLocale(value));
-      navigation.navigate('OnboardingOne');
+      navigation.navigate('HomePage');
     },
     [dispatch, navigation],
   );

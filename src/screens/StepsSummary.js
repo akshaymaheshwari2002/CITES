@@ -74,6 +74,7 @@ const StepsSummary = ({navigation}) => {
             </View>
           </View>
           <Button
+            onPress={() => navigation.navigate('StepOne')}
             buttonContent="BEGIN INSPECTION"
             buttonTextStyle={() => {
               return styles.btnTxt;

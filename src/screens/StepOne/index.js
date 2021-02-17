@@ -35,8 +35,6 @@ const StepOne = ({navigation}) => {
         {ChecklistContent({
           checkliststyles,
           bullet,
-          formatMessage: intl.formatMessage,
-          navigate: navigation.navigate,
         }).map((el) => {
           return (
             <ChecklistCell

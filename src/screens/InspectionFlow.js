@@ -7,8 +7,9 @@ import {Container, Button} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import {Images} from '@assets';
 
-const InspectionFlow = () => {
+const InspectionFlow = ({navigation}) => {
   const {formatMessage} = useIntl();
+
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
       <ImageBackground
@@ -39,6 +40,7 @@ const InspectionFlow = () => {
               imageStyle={styles.backgroundImage}>
               <View style={styles.contentContainer}>
                 <Button
+                  onPress={() => navigation.navigate('OnboardingOne')}
                   buttonStyle={() => styles.filledButton}
                   buttonTextStyle={() => ({color: RawColors.black})}
                   buttonContent={
@@ -57,6 +59,7 @@ const InspectionFlow = () => {
                   }
                 />
                 <Button
+                  onPress={() => navigation.navigate('StepsSummary')}
                   buttonStyle={() => styles.filledButton}
                   buttonTextStyle={() => ({color: RawColors.black})}
                   buttonContent={
