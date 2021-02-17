@@ -14,6 +14,7 @@ const Picker = React.forwardRef(
       items,
       label,
       error,
+      style,
       onChange,
       showHelpIcon,
       onHelpIconPress,
@@ -40,7 +41,7 @@ const Picker = React.forwardRef(
           items={items}
           searchableError={() => null}
           containerStyle={styles.container}
-          style={styles.picker}
+          style={[styles.picker, style]}
           placeholder=""
           placeholderStyle={[{color: RawColors.black}, Fonts.Lato15R]}
           itemStyle={styles.item}
@@ -81,6 +82,7 @@ Picker.propTypes = {
   items: PropTypes.array,
   label: PropTypes.string,
   error: PropTypes.string,
+  style: PropTypes.object,
   onChange: PropTypes.func,
   showHelpIcon: PropTypes.bool,
   onHelpIconPress: PropTypes.func,
@@ -90,8 +92,9 @@ Picker.defaultProps = {
   items: [],
   label: '',
   error: '',
+  style: {},
   onChange: () => {},
-  showHelpIcon: true,
+  showHelpIcon: false,
   onHelpIconPress: () => {},
 };
 

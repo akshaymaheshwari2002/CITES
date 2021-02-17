@@ -11,4 +11,10 @@ export const Images = {
   logo: require('./images/cites_logo.png'),
   backgroundPatternTopBlur: require('./images/Background.png'),
   backgroundTwoBlur: require('./images/Path540.png'),
+  searchIcon: require('./images/SearchIcon.png'),
+  backgroundOverlay: require('./images/background.png'),
+  maskBackground: require('./images/mask-group-8.png'),
+  searchBarIcon: require('./images/Source icon.png'),
+  rectangularBar: require('./images/rectangle-77.png'),
+  redCircle: require('./images/blackCircle.png'),
 };

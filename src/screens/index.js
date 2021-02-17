@@ -13,14 +13,19 @@ import StepOne from './StepOne';
 import SubmitFeedback from './SubmitFeedback';
 import HomePage from './HomePage';
 import InspectionFlow from './InspectionFlow';
+import FacilityInfringement from './FacilityInfringement';
+import FacilityRegistered from './FacilityRegistered';
+import WebView from './WebView';
 
 export {
   FacilityScore,
   FacilityScoreLessEight,
   FacilityScoreGreaterEight,
   GiveFeedback,
+  FacilityRegistered,
   LanguageSelection,
   OnboardingOne,
+  FacilityInfringement,
   OnboardingTwo,
   OnboardingThree,
   OnboardingFour,
@@ -30,4 +35,5 @@ export {
   SubmitFeedback,
   ProductionCapacityCalculator,
   HomePage,
+  WebView,
 };

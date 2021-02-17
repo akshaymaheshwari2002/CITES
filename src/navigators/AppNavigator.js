@@ -21,8 +21,11 @@ import {
   StepsSummary,
   StepOne,
   SubmitFeedback,
+  FacilityRegistered,
+  FacilityInfringement,
   ProductionCapacityCalculator,
   HomePage,
+  WebView,
 } from '@screens';
 
 const Stack = createStackNavigator();
@@ -46,7 +49,7 @@ const AppNavigator = () => {
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator
         screenOptions={screenOptions}
-        initialRouteName="InspectionFlow">
+        initialRouteName="LanguageSelection">
         <Stack.Screen
           name="LanguageSelection"
           options={{headerShown: false}}
@@ -62,8 +65,16 @@ const AppNavigator = () => {
         <Stack.Screen name="SubmitFeedback" component={SubmitFeedback} />
         <Stack.Screen name="FacilityScore" component={FacilityScore} />
         <Stack.Screen
+          name="FacilityInfringement"
+          component={FacilityInfringement}
+        />
+        <Stack.Screen
+          name="FacilityRegistered"
+          component={FacilityRegistered}
+        />
+        <Stack.Screen
           name="InspectionFlow"
-          options={{headerShown: false}}
+          options={{headerTransparent: true}}
           component={InspectionFlow}
         />
         <Stack.Screen
@@ -83,6 +94,7 @@ const AppNavigator = () => {
           options={{headerShown: false}}
           component={HomePage}
         />
+        <Stack.Screen name="WebView" component={WebView} />
       </Stack.Navigator>
     </NavigationContainer>
   );
