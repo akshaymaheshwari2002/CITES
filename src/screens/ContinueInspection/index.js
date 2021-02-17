@@ -11,25 +11,25 @@ const ContinueInspection = () => {
 
   const dummyInspectionData = [
     {
-      inpection_id: 'dummy1234',
-      facilityName: 'Priam Australia Pty',
-      dateOfInspection: '12/01/2021',
+      inpection_id: 'dummy1235',
+      facilityName: 'Reptile Farm Limited',
+      dateOfInspection: '12/02/2021',
     },
     {
-      inpection_id: 'dummy1235',
+      inpection_id: 'dummy1234',
       facilityName: 'Priam Australia Pty',
-      dateOfInspection: '12/01/2021',
+      dateOfInspection: '12/02/2021',
     },
     {
       inpection_id: 'dummy1236',
       facilityName:
         'Priam Australia Pty Priam Australia Pty Priam Australia Pty Priam Australia Pty ',
-      dateOfInspection: '12/01/2021',
+      dateOfInspection: '11/01/2021',
     },
     {
       inpection_id: 'dummy1237',
       facilityName: 'Priam Australia Pty',
-      dateOfInspection: '12/01/2021',
+      dateOfInspection: '10/01/2021',
     },
   ];
 
@@ -49,8 +49,7 @@ const ContinueInspection = () => {
       <FlatList
         data={dummyInspectionData}
         style={styles.flex}
-        renderItem={({index, item, highlight}) => {
-          console.log(item, highlight);
+        renderItem={({index, item}) => {
           return (
             <View style={styles.row_parent}>
               <Button
