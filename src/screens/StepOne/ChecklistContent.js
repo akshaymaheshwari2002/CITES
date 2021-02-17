@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Pressable} from 'react-native';
 
 import {Button} from '@atoms';
 
@@ -19,11 +19,19 @@ const checklistContent = ({
               id: 'screen.stepOne.researchConducted_1',
             })}
           </Text>
-          <Text style={checkliststyles.textLink}>
-            {formatMessage({
-              id: 'screen.stepOne.researchConducted_2',
-            })}
-          </Text>
+          <Pressable
+            onPress={() =>
+              navigate('webView', {
+                sourceUri: 'https://www.iucnredlist.org/',
+              })
+            }
+            style={checklistContent.textLink}>
+            <Text style={checkliststyles.textLink}>
+              {formatMessage({
+                id: 'screen.stepOne.researchConducted_2',
+              })}
+            </Text>
+          </Pressable>
         </View>
       ),
     },
