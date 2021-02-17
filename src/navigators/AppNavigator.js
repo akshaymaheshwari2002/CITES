@@ -26,6 +26,7 @@ import {
   ProductionCapacityCalculator,
   HomePage,
   WebView,
+  ContinueInspection,
 } from '@screens';
 
 const Stack = createStackNavigator();
@@ -76,6 +77,10 @@ const AppNavigator = () => {
           name="InspectionFlow"
           options={{headerTransparent: true}}
           component={InspectionFlow}
+        />
+        <Stack.Screen
+          name="ContinueInspection"
+          component={ContinueInspection}
         />
         <Stack.Screen
           name="FacilityScoreLessEight"

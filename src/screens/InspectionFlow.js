@@ -78,6 +78,7 @@ const InspectionFlow = ({navigation}) => {
                   }
                 />
                 <Button
+                  onPress={() => navigation.navigate('ContinueInspection')}
                   buttonStyle={() => styles.filledButton}
                   buttonContent={
                     <>
