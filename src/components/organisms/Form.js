@@ -4,16 +4,25 @@ import PropTypes from 'prop-types';
 import {Controller} from 'react-hook-form';
 import {ScaledSheet} from 'react-native-size-matters';
 
-import {TextInput, DatePicker} from '@atoms';
+import {TextInput, DatePicker, Picker} from '@atoms';
+import {TextInputArray} from '@molecules';
 import Constants from '@utils/Constants';
 
-const Form = ({control, formFields, errors, formProps}) => {
+const Form = (formProps) => {
+  const {control, formFields, errors} = useMemo(() => formProps, [formProps]);
+
   const renderField = useCallback(({fieldType, ...props}) => {
     let FieldComponent;
 
     switch (fieldType) {
       case Constants.DATEPICKER:
         FieldComponent = DatePicker;
+        break;
+      case Constants.PICKER:
+        FieldComponent = Picker;
+        break;
+      case Constants.TEXTINPUT_ARRAY:
+        FieldComponent = TextInputArray;
         break;
       default:
         FieldComponent = TextInput;

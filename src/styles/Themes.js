@@ -28,6 +28,8 @@ const RawColors = {
   spunPearl: '#B0B0B6',
   prussianBlue: '#083863',
   smaltBlueApprox: '#51666c',
+  charcoalGrey60: 'rgba(60,60,67,0.6)',
+  error: '#dd4746',
 };
 
 const Fonts = {
