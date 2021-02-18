@@ -42,6 +42,7 @@ const styles = ScaledSheet.create({
     minHeight: '46@vs',
     borderWidth: 1,
     borderColor: RawColors.dimGrey,
+    backgroundColor: RawColors.whiteTwo,
   },
 });
 

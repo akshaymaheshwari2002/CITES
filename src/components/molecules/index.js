@@ -4,6 +4,7 @@ import FormOneHeader from './ReactTemplate/FormOneHeader';
 import FormTwoTemplate from './ReactTemplate/FormTwoTemplate';
 import StepHeader from './StepHeader';
 import ChecklistCell from './ChecklistCell';
+import TextInputArray from './TextInputArray';
 
 export {
   TemplateOne,
@@ -12,4 +13,5 @@ export {
   FormTwoTemplate,
   StepHeader,
   ChecklistCell,
+  TextInputArray,
 };

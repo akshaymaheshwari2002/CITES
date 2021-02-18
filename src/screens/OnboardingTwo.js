@@ -56,7 +56,7 @@ const OnboardingTwo = ({navigation}) => {
         imageStyle={styles.backgroundImage}>
         <Container.ScrollView contentContainerStyle={styles.contentContainer}>
           <View style={styles.content}>
-            <Text style={[Fonts.Lato20R]}>
+            <Text style={[Fonts.Lato20R, styles.itemHeadline]}>
               {formatMessage({id: 'screen.OnboardingTwo.title'})}
             </Text>
             {points.map(({icon, labelId}, index) => (
@@ -81,15 +81,19 @@ const styles = ScaledSheet.create({
   },
   content: {
     alignSelf: 'center',
+    justifyContent: 'space-evenly',
   },
   icon: {
     height: '30@vs',
     width: '30@s',
   },
+  itemHeadline: {
+    marginVertical: '12@vs',
+  },
   item: {
     flexDirection: 'row',
     marginLeft: 8,
-    marginVertical: '36@vs',
+    marginVertical: '12@vs',
   },
   backgroundImage: {
     resizeMode: 'center',

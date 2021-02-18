@@ -13,9 +13,10 @@ import StepOne from './StepOne';
 import SubmitFeedback from './SubmitFeedback';
 import HomePage from './HomePage';
 import InspectionFlow from './InspectionFlow';
+import ContinueInspection from './ContinueInspection';
 import FacilityInfringement from './FacilityInfringement';
 import FacilityRegistered from './FacilityRegistered';
-import webView from './webView';
+import WebView from './WebView';
 
 export {
   FacilityScore,
@@ -31,9 +32,10 @@ export {
   OnboardingFour,
   StepsSummary,
   InspectionFlow,
+  ContinueInspection,
   StepOne,
   SubmitFeedback,
   ProductionCapacityCalculator,
   HomePage,
-  webView,
+  WebView,
 };

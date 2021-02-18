@@ -33,7 +33,7 @@ const HomePage = ({navigation}) => {
                     {formatMessage({id: 'screen.HomePage.header'})}
                   </Text>
                   <Button
-                    onPress={() => navigation.navigate('OnboardingOne')}
+                    onPress={() => navigation.navigate('InspectionFlow')}
                     buttonStyle={() => styles.filledButton}
                     buttonTextStyle={() => ({color: RawColors.white})}
                     buttonContent={formatMessage({

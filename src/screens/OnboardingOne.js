@@ -6,7 +6,6 @@ import {ScaledSheet, scale} from 'react-native-size-matters';
 
 import {Fonts} from '@styles/Themes';
 import {Container} from '@atoms';
-import CommonStyles from '@styles/CommonStyles';
 import {Images} from '@assets';
 
 const OnboardingOne = ({navigation}) => {
@@ -46,14 +45,14 @@ const OnboardingOne = ({navigation}) => {
 
 const styles = ScaledSheet.create({
   container: {
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
   },
   txt: {
     textAlign: 'center',
     alignSelf: 'center',
-    lineHeight: 34,
+    lineHeight: '34@ms',
     paddingHorizontal: '34@s',
-    marginTop: '60@s',
+    marginTop: '30@s',
     ...Fonts.Lato20R,
   },
   word: {
@@ -66,8 +65,9 @@ const styles = ScaledSheet.create({
     resizeMode: 'contain',
   },
   imgContainer: {
-    alignSelf: 'center',
-    marginTop: '48@s',
+    alignItems: 'center',
+    alignContent: 'center',
+    marginTop: 'auto',
   },
 });
 

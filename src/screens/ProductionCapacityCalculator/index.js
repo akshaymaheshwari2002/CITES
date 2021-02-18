@@ -1,4 +1,4 @@
-import React, {useCallback, useMemo} from 'react';
+import React, {useCallback} from 'react';
 import {View, Text} from 'react-native';
 import {useIntl} from 'react-intl';
 import {useForm} from 'react-hook-form';
@@ -13,10 +13,8 @@ import {Fonts} from '@styles/Themes';
 const ProductionCapacityCalculator = () => {
   const intl = useIntl();
   const formProps = useForm();
-  const {handleSubmit, control, errors, setValue} = formProps;
-  const formFields = useMemo(() => getFormFields(intl), [intl]);
+  const {setValue, handleSubmit} = formProps;
 
-  Number.toString();
   const onSubmit = useCallback(
     (data) => {
       setValue(
@@ -52,12 +50,7 @@ const ProductionCapacityCalculator = () => {
               id: 'screen.ProductionCapacityCalculator.infoText_2',
             })}
           </Text>
-          <Form
-            control={control}
-            formProps={formProps}
-            errors={errors}
-            formFields={formFields}
-          />
+          <Form {...formProps} formFields={getFormFields()} />
           <Button
             buttonContent={intl.formatMessage({
               id: 'general.continue',
