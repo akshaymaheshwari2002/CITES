@@ -19,6 +19,7 @@ const RawColors = {
   darkGrey: '#2D4652',
   lightGrey: '#F2F2F7',
   greyLight: '#f4fcef',
+  grey57: '#919191',
   grey75: '#BFBFBF',
   darkSalmon: '#cc685a',
   darkGreyBlue: '#2F414B',
@@ -38,6 +39,10 @@ const RawColors = {
 };
 
 const Fonts = {
+  Lato12R: {
+    fontFamily: 'Lato-Regular',
+    fontSize: moderateScale(12),
+  },
   Lato13R: {
     fontFamily: 'Lato-Regular',
     fontSize: moderateScale(13),
@@ -65,6 +70,10 @@ const Fonts = {
   Lato17R: {
     fontFamily: 'Lato-Regular',
     fontSize: moderateScale(17),
+  },
+  Lato12B: {
+    fontFamily: 'Lato-Bold',
+    fontSize: moderateScale(12),
   },
   Lato15B: {
     fontFamily: 'Lato-Bold',
