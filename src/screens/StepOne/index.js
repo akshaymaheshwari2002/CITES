@@ -24,9 +24,8 @@ const StepOne = ({navigation, route}) => {
     inspectionConcides: false,
     facilityOwnerPresent: false,
   });
-  const {isToolTipVisible} = route.params;
   const [toolTipVisible, setToolTipVisible] = useState(
-    route.params.showToolTip,
+    route.params?.toolTipVisible ?? false,
   );
 
   const {formatMessage} = useIntl();
@@ -66,7 +65,7 @@ const StepOne = ({navigation, route}) => {
         );
       },
     });
-  }, [formatMessage, isToolTipVisible, navigation, toolTipVisible]);
+  }, [formatMessage, navigation, toolTipVisible]);
 
   const bullet = (
     <View style={checkliststyles.bulletContainer}>
