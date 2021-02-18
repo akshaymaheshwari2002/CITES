@@ -26,7 +26,9 @@ import {
   ProductionCapacityCalculator,
   HomePage,
   WebView,
+  ContinueInspection,
 } from '@screens';
+import TabNavigator from './TabNavigator';
 
 const Stack = createStackNavigator();
 
@@ -59,7 +61,7 @@ const AppNavigator = () => {
         <Stack.Screen name="OnboardingTwo" component={OnboardingTwo} />
         <Stack.Screen name="OnboardingThree" component={OnboardingThree} />
         <Stack.Screen name="OnboardingFour" component={OnboardingFour} />
-        <Stack.Screen name="StepOne" component={StepOne} />
+        <Stack.Screen name="StepOne" component={TabNavigator} />
         <Stack.Screen name="StepsSummary" component={StepsSummary} />
         <Stack.Screen name="GiveFeedback" component={GiveFeedback} />
         <Stack.Screen name="SubmitFeedback" component={SubmitFeedback} />
@@ -76,6 +78,10 @@ const AppNavigator = () => {
           name="InspectionFlow"
           options={{headerTransparent: true}}
           component={InspectionFlow}
+        />
+        <Stack.Screen
+          name="ContinueInspection"
+          component={ContinueInspection}
         />
         <Stack.Screen
           name="FacilityScoreLessEight"

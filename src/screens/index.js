@@ -13,6 +13,7 @@ import StepOne from './StepOne';
 import SubmitFeedback from './SubmitFeedback';
 import HomePage from './HomePage';
 import InspectionFlow from './InspectionFlow';
+import ContinueInspection from './ContinueInspection';
 import FacilityInfringement from './FacilityInfringement';
 import FacilityRegistered from './FacilityRegistered';
 import WebView from './WebView';
@@ -31,6 +32,7 @@ export {
   OnboardingFour,
   StepsSummary,
   InspectionFlow,
+  ContinueInspection,
   StepOne,
   SubmitFeedback,
   ProductionCapacityCalculator,
