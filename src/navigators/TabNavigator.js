@@ -29,7 +29,13 @@ const AppNavigator = () => {
         component={StepOne}
         options={{
           tabBarIcon: ({focused, color, size}) => {
-            return <Feather name={'home'} size={35} color={RawColors.grey75} />;
+            return (
+              <Feather
+                name={'home'}
+                size={verticalScale(35)}
+                color={RawColors.grey75}
+              />
+            );
           },
         }}
       />
@@ -39,7 +45,11 @@ const AppNavigator = () => {
         options={{
           tabBarIcon: ({focused, color, size}) => {
             return (
-              <Feather name={'search'} size={35} color={RawColors.grey75} />
+              <Feather
+                name={'search'}
+                size={verticalScale(35)}
+                color={RawColors.grey75}
+              />
             );
           },
         }}
@@ -50,7 +60,11 @@ const AppNavigator = () => {
         options={{
           tabBarIcon: ({focused, color, size}) => {
             return (
-              <Feather name={'edit-3'} size={35} color={RawColors.grey75} />
+              <Feather
+                name={'edit-3'}
+                size={verticalScale(35)}
+                color={RawColors.grey75}
+              />
             );
           },
         }}
@@ -60,7 +74,13 @@ const AppNavigator = () => {
         component={DummyScreen}
         options={{
           tabBarIcon: ({focused, color, size}) => {
-            return <Feather name={'list'} size={35} color={RawColors.grey75} />;
+            return (
+              <Feather
+                name={'list'}
+                size={verticalScale(35)}
+                color={RawColors.grey75}
+              />
+            );
           },
         }}
       />
