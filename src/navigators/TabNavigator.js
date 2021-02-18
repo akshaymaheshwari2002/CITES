@@ -2,16 +2,11 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Feather from 'react-native-vector-icons/Feather';
 import {verticalScale} from 'react-native-size-matters';
-import {View} from 'react-native';
 
-import {StepOne} from '@screens';
+import {StepOne, SearchDummy, Notes, DrawerMenu} from '@screens';
 import {RawColors} from '@styles/Themes';
 
 const Tab = createBottomTabNavigator();
-
-const DummyScreen = () => {
-  return <View />;
-};
 
 const AppNavigator = () => {
   return (
@@ -41,7 +36,7 @@ const AppNavigator = () => {
       />
       <Tab.Screen
         name="Search"
-        component={DummyScreen}
+        component={SearchDummy}
         options={{
           tabBarIcon: ({focused, color, size}) => {
             return (
@@ -56,7 +51,7 @@ const AppNavigator = () => {
       />
       <Tab.Screen
         name="Notes"
-        component={DummyScreen}
+        component={Notes}
         options={{
           tabBarIcon: ({focused, color, size}) => {
             return (
@@ -71,7 +66,7 @@ const AppNavigator = () => {
       />
       <Tab.Screen
         name="DrawerMenu"
-        component={DummyScreen}
+        component={DrawerMenu}
         options={{
           tabBarIcon: ({focused, color, size}) => {
             return (

@@ -125,5 +125,9 @@
   "screen.FacilityRegistered.ButtonOnePartOne": "CITES register for",
   "screen.FacilityRegistered.ButtonOnePartTwo": "APPENDIX I SPECIES",
   "screen.FacilityRegistered.ButtonTwo": "CONTINUE WITH STEP 1",
-  "screen.StepOne.WalkThroughContent": "Tap to go back to previous page"
+  "screen.StepOne.WalkThroughContentOne": "Tap to go back to previous page",
+  "screen.StepOne.WalkThroughContentTwo": "Tap to go back to Home page",
+  "screen.StepOne.WalkThroughContentThree": "Tap to search the app",
+  "screen.StepOne.WalkThroughContentFour": "Tap to make notes and take photos throughout the inspection",
+  "screen.StepOne.WalkThroughContentFive": "Tap to quickly access the forms and tools required when conducting an inspection"
 }

@@ -20,6 +20,7 @@ import {
   OnboardingTwo,
   StepsSummary,
   StepOne,
+  SearchDummy,
   SubmitFeedback,
   FacilityRegistered,
   FacilityInfringement,
@@ -61,7 +62,11 @@ const AppNavigator = () => {
         <Stack.Screen name="OnboardingTwo" component={OnboardingTwo} />
         <Stack.Screen name="OnboardingThree" component={OnboardingThree} />
         <Stack.Screen name="OnboardingFour" component={OnboardingFour} />
-        <Stack.Screen name="StepOne" component={TabNavigator} />
+        <Stack.Screen
+          name="StepOne"
+          component={TabNavigator}
+          options={{headerShown: false}}
+        />
         <Stack.Screen name="StepsSummary" component={StepsSummary} />
         <Stack.Screen name="GiveFeedback" component={GiveFeedback} />
         <Stack.Screen name="SubmitFeedback" component={SubmitFeedback} />
