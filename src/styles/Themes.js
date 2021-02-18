@@ -19,6 +19,7 @@ const RawColors = {
   darkGrey: '#2D4652',
   lightGrey: '#F2F2F7',
   greyLight: '#f4fcef',
+  grey75: '#BFBFBF',
   darkSalmon: '#cc685a',
   darkGreyBlue: '#2F414B',
   softRed: '#DA6F60',
