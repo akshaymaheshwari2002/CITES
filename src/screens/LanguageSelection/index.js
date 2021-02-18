@@ -3,6 +3,7 @@ import {Image, View, Dimensions, Easing} from 'react-native';
 import Animated from 'react-native-reanimated';
 import {ScaledSheet, verticalScale} from 'react-native-size-matters';
 import {useDispatch, useSelector} from 'react-redux';
+import {useIntl} from 'react-intl';
 
 import {Container, Picker} from '@atoms';
 import {setLocale} from '@store/slices/persistedSlice';
@@ -15,6 +16,7 @@ const windowHeight = Dimensions.get('window').height;
 
 const LanguageSelection = ({navigation}) => {
   const dispatch = useDispatch();
+  const {formatMessage} = useIntl();
   const [isMount, setIsMount] = useState(true);
   const isMounting = useRef(true);
   const locale = useSelector((state) => state.persistedReducer.locale);
@@ -149,7 +151,11 @@ const LanguageSelection = ({navigation}) => {
   ]);
 
   return (
-    <Container statusBarProps={{backgroundColor: RawColors.darkBlue}}>
+    <Container
+      statusBarProps={{
+        backgroundColor: RawColors.darkBlue,
+        barStyle: 'light-content',
+      }}>
       <Container.ScrollView contentContainerStyle={[styles.scrollContainer]}>
         <Animated.View
           style={{
@@ -201,7 +207,7 @@ const LanguageSelection = ({navigation}) => {
             <Picker
               items={LocaleList}
               style={styles.picker}
-              placeholder="Select an Item"
+              placeholder={formatMessage({id: 'screen.screen2.selectAnItem'})}
               placeholderStyle={styles.selectedStyle}
               defaultValue={locale}
               onChange={handleChange}
@@ -294,7 +300,7 @@ const styles = ScaledSheet.create({
   },
   redCircle: {
     position: 'absolute',
-    tintColor: 'red',
+    tintColor: RawColors.darkSalmon,
     height: 30,
     width: 30,
     top: 100,
