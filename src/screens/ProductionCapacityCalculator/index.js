@@ -18,7 +18,6 @@ const ProductionCapacityCalculator = () => {
 
   const onSubmit = useCallback(
     (data) => {
-      console.log(data);
       if (modeSelected === 1) {
         let approximateYoungProducedPerYear =
           Number(data.countTotalBreedingFemale) *
