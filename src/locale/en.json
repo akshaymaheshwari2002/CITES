@@ -119,5 +119,6 @@
   "screen.FacilityRegistered.contentThree": "For CITES Appendix I species captive-bred for commercial purposes, check if the facility is registered on the:",
   "screen.FacilityRegistered.ButtonOnePartOne": "CITES register for",
   "screen.FacilityRegistered.ButtonOnePartTwo": "APPENDIX I SPECIES",
-  "screen.FacilityRegistered.ButtonTwo": "CONTINUE WITH STEP 1"
+  "screen.FacilityRegistered.ButtonTwo": "CONTINUE WITH STEP 1",
+  "screen.StepOne.WalkThroughContent": "Tap to go back to previous page"
 }

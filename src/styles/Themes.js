@@ -32,6 +32,7 @@ const RawColors = {
   charcoalGrey60: 'rgba(60,60,67,0.6)',
   error: '#dd4746',
   darkBlue: '#2A414C',
+  backToolTipColor: 'rgba(0,0,0,0.5)',
 };
 
 const Fonts = {
