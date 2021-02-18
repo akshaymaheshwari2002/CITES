@@ -1,15 +1,10 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {Image, View, Animated, Dimensions, Easing} from 'react-native';
-// import Animated from 'react-native-reanimated';
-import {
-  ScaledSheet,
-  moderateScale,
-  verticalScale,
-} from 'react-native-size-matters';
+import {Image, View, Dimensions, Easing} from 'react-native';
+import Animated from 'react-native-reanimated';
+import {ScaledSheet, verticalScale} from 'react-native-size-matters';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {Container, Picker} from '@atoms';
-import CommonStyles from '@styles/CommonStyles';
 import {setLocale} from '@store/slices/persistedSlice';
 import {RawColors, Fonts} from '@styles/Themes';
 import {Images} from '@assets';
@@ -20,30 +15,81 @@ const windowHeight = Dimensions.get('window').height;
 
 const LanguageSelection = ({navigation}) => {
   const dispatch = useDispatch();
-  const [isMount, setIsMount] = useState(false);
-  let searchlayout = useRef({}).current;
-  // let meshlayout = useRef({}).current;
-
+  const [isMount, setIsMount] = useState(true);
   const isMounting = useRef(true);
   const locale = useSelector((state) => state.persistedReducer.locale);
-  const searchCircleHeight = useRef(new Animated.Value(windowWidth)).current;
-  const mainDataOpacity = useRef(new Animated.Value(0)).current;
-  const imageWidth = useRef(new Animated.Value(windowWidth)).current;
-  const imageHeight = useRef(new Animated.Value(windowHeight)).current;
-  const meshOpacity = useRef(new Animated.Value(1)).current;
-  const xPos = useRef(new Animated.Value(0)).current;
-  const yPos = useRef(new Animated.Value(0)).current;
-  const scaleSearch = useRef(new Animated.Value(verticalScale(1.5))).current;
-  const scaleMaskX = useRef(new Animated.Value(1)).current;
-  const scaleMaskY = useRef(new Animated.Value(1)).current;
-  const scaleRedCircle = useRef(new Animated.Value(0.5)).current;
-  const rectBarOpacity = useRef(new Animated.Value(1)).current;
-  const rectBarTranslate = useRef(new Animated.Value(verticalScale(50)))
-    .current;
-  const spinValue = useRef(new Animated.Value(0)).current;
-  const translateXCircle = useRef(new Animated.Value(0)).current;
-  const translateYCircle = useRef(new Animated.Value(0)).current;
+  const meshValue = useRef(new Animated.Value(0)).current;
+  const meshWidth = Animated.interpolate(meshValue, {
+    inputRange: [0, 1, 2, 3],
+    outputRange: [windowWidth, windowWidth * 1.2, 30, windowWidth * 4],
+  });
+  const meshHeight = Animated.interpolate(meshValue, {
+    inputRange: [0, 1, 2, 3],
+    outputRange: [windowHeight, windowHeight * 1.2, 30, windowHeight * 4],
+  });
+  const xPos = Animated.interpolate(meshValue, {
+    inputRange: [0, 1, 2, 3],
+    outputRange: [0, 0, 30, 0],
+  });
+  const yPos = Animated.interpolate(meshValue, {
+    inputRange: [0, 1, 2, 3],
+    outputRange: [0, 0, 100, 0],
+  });
+  const scaleSearch = Animated.interpolate(meshValue, {
+    inputRange: [0, 1, 2, 3],
+    outputRange: [
+      verticalScale(1.5),
+      verticalScale(1.5),
+      verticalScale(1),
+      verticalScale(1),
+    ],
+  });
 
+  const rectBarTranslate = Animated.interpolate(meshValue, {
+    inputRange: [0, 1, 2, 3],
+    outputRange: [verticalScale(50), verticalScale(50), 300, 300],
+  });
+
+  const rectBarOpacity = Animated.interpolate(meshValue, {
+    inputRange: [0, 1, 2, 3],
+    outputRange: [1, 1, 0, 0],
+  });
+
+  const meshOpacity = Animated.interpolate(meshValue, {
+    inputRange: [0, 1, 2, 3],
+    outputRange: [1, 1, 1, 0],
+  });
+  const mainDataOpacity = Animated.interpolate(meshValue, {
+    inputRange: [0, 1, 2, 3],
+    outputRange: [0, 0, 0, 1],
+  });
+
+  const redCircleSize = Animated.interpolate(meshValue, {
+    inputRange: [0, 1, 2, 3],
+    outputRange: [30, 30, 30, verticalScale(140)],
+  });
+
+  const redCircleOpacity = Animated.interpolate(meshValue, {
+    inputRange: [0, 1, 2, 3],
+    outputRange: [0, 0, 1, 1],
+  });
+
+  const redCircleXPos = Animated.interpolate(meshValue, {
+    inputRange: [0, 1, 2, 3],
+    outputRange: [0, 0, 0, windowWidth / 2 - verticalScale(70) - 30],
+  });
+
+  const redCircleYPos = Animated.interpolate(meshValue, {
+    inputRange: [0, 1, 2, 3],
+    outputRange: [
+      0,
+      0,
+      0,
+      windowHeight / 2 - verticalScale(212) + verticalScale(110) - 100,
+    ],
+  });
+
+  const spinValue = useRef(new Animated.Value(0)).current;
   const spin = spinValue.interpolate({
     inputRange: [0, 1],
     outputRange: ['0deg', '360deg'],
@@ -60,126 +106,43 @@ const LanguageSelection = ({navigation}) => {
   useEffect(() => {
     if (isMounting.current) {
       if (windowWidth && windowWidth) {
-        // Animated.sequence([
-        //   Animated.parallel([
-        //     Animated.timing(imageHeight, {
-        //       toValue: windowHeight * 1.2,
-        //       duration: 1000,
-        //       easing: Easing.ease,
-        //       useNativeDriver: false,
-        //     }),
-        //     Animated.timing(imageWidth, {
-        //       toValue: windowWidth * 1.2,
-        //       duration: 1000,
-        //       easing: Easing.ease,
-        //       useNativeDriver: false,
-        //     }),
-        //   ]),
-        //   Animated.parallel([
-        //     Animated.timing(imageWidth, {
-        //       toValue: 30,
-        //       duration: 1000,
-        //       easing: Easing.ease,
-        //       useNativeDriver: false,
-        //     }),
-        //     Animated.timing(imageHeight, {
-        //       toValue: 30,
-        //       duration: 1000,
-        //       easing: Easing.ease,
-        //       useNativeDriver: false,
-        //     }),
-        //     Animated.timing(xPos, {
-        //       toValue: 30,
-        //       duration: 1000,
-        //       easing: Easing.ease,
-        //       useNativeDriver: false,
-        //     }),
-        //     Animated.timing(yPos, {
-        //       toValue: 100,
-        //       duration: 1000,
-        //       easing: Easing.ease,
-        //       useNativeDriver: false,
-        //     }),
-        //     Animated.timing(scaleSearch, {
-        //       toValue: 1,
-        //       duration: 1000,
-        //       easing: Easing.ease,
-        //       useNativeDriver: true,
-        //     }),
-        //     Animated.timing(rectBarTranslate, {
-        //       toValue: 300,
-        //       duration: 1000,
-        //       easing: Easing.ease,
-        //       useNativeDriver: true,
-        //     }),
-        //     Animated.timing(rectBarOpacity, {
-        //       toValue: 0,
-        //       duration: 1000,
-        //       easing: Easing.ease,
-        //       useNativeDriver: true,
-        //     }),
-        //   ]),
-        //   Animated.timing(spinValue, {
-        //     toValue: 1,
-        //     duration: 10,
-        //     easing: Easing.ease,
-        //     useNativeDriver: false,
-        //   }),
-        //   Animated.parallel([
-        //     Animated.timing(imageHeight, {
-        //       toValue: windowHeight * 4,
-        //       duration: 1000,
-        //       easing: Easing.ease,
-        //       useNativeDriver: false,
-        //     }),
-        //     Animated.timing(imageWidth, {
-        //       toValue: windowWidth * 4,
-        //       duration: 1000,
-        //       easing: Easing.ease,
-        //       useNativeDriver: false,
-        //     }),
-        //     Animated.timing(xPos, {
-        //       toValue: 0,
-        //       duration: 100,
-        //       easing: Easing.ease,
-        //       useNativeDriver: false,
-        //     }),
-        //     Animated.timing(yPos, {
-        //       toValue: 0,
-        //       duration: 100,
-        //       easing: Easing.ease,
-        //       useNativeDriver: false,
-        //     }),
-        //     Animated.timing(meshOpacity, {
-        //       toValue: 0,
-        //       duration: 1000,
-        //       easing: Easing.ease,
-        //       useNativeDriver: false,
-        //     }),
-        //     Animated.timing(mainDataOpacity, {
-        //       toValue: 1,
-        //       duration: 1000,
-        //       easing: Easing.ease,
-        //       useNativeDriver: true,
-        //     }),
-        //   ]),
-        // ]).start(() => {
-        //   setIsMount(false);
-        //   isMounting.current = false;
-        // });
+        const ani = Animated.timing(meshValue, {
+          toValue: 2,
+          duration: 2000,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        });
+        ani.start(({finished}) => {
+          if (finished) {
+            Animated.timing(spinValue, {
+              toValue: 1,
+              duration: 10,
+              easing: Easing.linear,
+              useNativeDriver: true,
+            }).start(({finished}) => {
+              Animated.timing(meshValue, {
+                toValue: 3,
+                duration: 1000,
+                easing: Easing.linear,
+                useNativeDriver: true,
+              }).start(({finished}) => {
+                if (finished) {
+                  isMounting.current = false;
+                  setIsMount(false);
+                }
+              });
+            });
+          }
+        });
       }
     }
   }, [
-    imageHeight,
-    imageWidth,
     mainDataOpacity,
     meshOpacity,
+    meshValue,
     rectBarOpacity,
     rectBarTranslate,
-    scaleMaskX,
-    scaleMaskY,
     scaleSearch,
-    searchCircleHeight,
     spinValue,
     xPos,
     yPos,
@@ -192,7 +155,7 @@ const LanguageSelection = ({navigation}) => {
           style={{
             width: '100%',
             alignItems: 'center',
-            // opacity: mainDataOpacity,
+            opacity: mainDataOpacity,
           }}>
           <Image
             source={Images?.logo}
@@ -201,14 +164,11 @@ const LanguageSelection = ({navigation}) => {
           />
         </Animated.View>
         <Animated.Image
-          onLayout={(e) => {
-            searchlayout = e.nativeEvent.layout;
-          }}
           source={Images?.searchIcon}
           style={[
             styles.search,
             {
-              // transform: [{scaleX: scaleSearch}, {scaleY: scaleSearch}],
+              transform: [{scaleX: scaleSearch}, {scaleY: scaleSearch}],
             },
           ]}
           resizeMode="contain"
@@ -218,7 +178,6 @@ const LanguageSelection = ({navigation}) => {
             source={Images?.rectangularBar}
             style={[
               {
-                // height: verticalScale(212),
                 opacity: rectBarOpacity,
                 transform: [
                   {scaleX: verticalScale(0.8)},
@@ -231,33 +190,34 @@ const LanguageSelection = ({navigation}) => {
             resizeMode="contain"
           />
         ) : null}
-        <Animated.View
+        {/* <Animated.View
           style={{
             width: '100%',
             alignItems: 'center',
-            // opacity: mainDataOpacity,
-          }}>
+            opacity: mainDataOpacity,
+          }}> */}
+        {!isMount ? (
           <View style={styles.dropDownContainer}>
             <Picker
               items={LocaleList}
               style={styles.picker}
+              placeholder="Select an Item"
+              placeholderStyle={styles.selectedStyle}
               defaultValue={locale}
               onChange={handleChange}
               selectedLabelStyle={styles.selectedStyle}
             />
           </View>
-        </Animated.View>
+        ) : null}
+        {/* </Animated.View> */}
         {isMount ? (
           <Animated.Image
-            onLayout={(e) => {
-              // meshlayout = e.nativeEvent.layout;
-            }}
             style={[
               styles.animationImage,
               {
                 opacity: meshOpacity,
-                height: imageHeight,
-                width: imageWidth,
+                height: meshHeight,
+                width: meshWidth,
                 transform: [
                   {
                     translateX: xPos,
@@ -271,23 +231,24 @@ const LanguageSelection = ({navigation}) => {
             resizeMode="cover"
           />
         ) : null}
-        {/* <Animated.Image
+        <Animated.Image
           style={[
             styles.redCircle,
             {
+              height: redCircleSize,
+              width: redCircleSize,
+              opacity: redCircleOpacity,
               transform: [
-                {scaleX: scaleRedCircle},
-                {scaleY: scaleRedCircle},
-                // {
-                //   translateX: Animated.divide(translateXCircle, scaleRedCircle),
-                // },
-                // {translateY: Animated.divide(translateYCircle, scaleRedCircle)},
+                {
+                  translateX: redCircleXPos,
+                },
+                {translateY: redCircleYPos},
               ],
             },
           ]}
           source={Images.redCircle}
           resizeMode="contain"
-        /> */}
+        />
       </Container.ScrollView>
     </Container>
   );
@@ -310,6 +271,7 @@ const styles = ScaledSheet.create({
   logo: {
     marginTop: '35@vs',
     height: '146@vs',
+    width: '276@s',
   },
   search: {
     marginTop: '5@vs',
@@ -329,16 +291,14 @@ const styles = ScaledSheet.create({
     position: 'absolute',
     top: 0,
     left: 0,
-    // right: '-50%',
-    // bottom: '30%',
   },
   redCircle: {
     position: 'absolute',
     tintColor: 'red',
-    height: '142@vs',
-    top: 0,
-    left: 0,
-    // backgroundColor: 'red',
+    height: 30,
+    width: 30,
+    top: 100,
+    left: 30,
   },
 });
 
