@@ -44,6 +44,8 @@
   "screen.stepOne.inspectionConcides.bullet_2": "On-site egg production and hatching and/or live birth in the case of closed-cycle captive breeding operations",
   "screen.stepOne.facilityOwnerPresent": "Confirm the facility owner or manager will be present at the facility for the inspection, and is aware of their requirement to provide records of stock. These may include copies of permits, breeding records, etc.",
   "screen.ProductionCapacityCalculator.titleText": "Production Capacity Calculator",
+  "screen.ProductionCapacityCalculator.modeButton_1": "Number of specimens capable of being produced by the facility",
+  "screen.ProductionCapacityCalculator.modeButton_2": "Number of females required to meet annual reported production",
   "screen.ProductionCapacityCalculator.infoText_1": "Use this calculator to estimate the mean number of specimens capable of being produced by a facility based on the number of reproductive adult females observed and the average number of reproductive events per year.",
   "screen.ProductionCapacityCalculator.infoText_2": "Before an inspection, input information from previous inspections and official records on exports, etc. The calculator can also be used after an inspection, by inputing the number of specimens observed during the inspection.",
   "screen.SubmitFeedback.headerPartOne": "GIVE",
