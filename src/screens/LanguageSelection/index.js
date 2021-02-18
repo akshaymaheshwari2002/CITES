@@ -1,89 +1,24 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {Image, View, Dimensions, Easing} from 'react-native';
 import Animated from 'react-native-reanimated';
-import {
-  ScaledSheet,
-  moderateScale,
-  scale,
-  verticalScale,
-} from 'react-native-size-matters';
+import {ScaledSheet, verticalScale} from 'react-native-size-matters';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {Container, Picker} from '@atoms';
-import CommonStyles from '@styles/CommonStyles';
 import {setLocale} from '@store/slices/persistedSlice';
 import {RawColors, Fonts} from '@styles/Themes';
 import {Images} from '@assets';
 import LocaleList from './LocaleList';
 
-const {
-  Clock,
-  Value,
-  set,
-  cond,
-  startClock,
-  clockRunning,
-  timing,
-  debug,
-  stopClock,
-  block,
-} = Animated;
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-
-const runTiming = (clock, value, dest) => {
-  const state = {
-    finished: new Value(0),
-    position: new Value(0),
-    time: new Value(0),
-    frameTime: new Value(0),
-  };
-
-  const config = {
-    duration: 2000,
-    toValue: new Value(0),
-    easing: Easing.linear,
-  };
-
-  return block([
-    cond(
-      clockRunning(clock),
-      [
-        // if the clock is already running we update the toValue, in case a new dest has been passed in
-        set(config.toValue, dest),
-      ],
-      [
-        // if the clock isn't running we reset all the animation params and start the clock
-        set(state.finished, 0),
-        set(state.time, 0),
-        set(state.position, value),
-        set(state.frameTime, 0),
-        set(config.toValue, dest),
-        startClock(clock),
-      ],
-    ),
-    // we run the step here that is going to update position
-    timing(clock, state, config),
-    // if the animation is over we stop the clock
-    cond(state.finished, debug('stop clock', stopClock(clock))),
-    // we made the block return the updated position
-    state.position,
-  ]);
-};
 
 const LanguageSelection = ({navigation}) => {
   const dispatch = useDispatch();
   const [isMount, setIsMount] = useState(true);
-  const [value, setValue] = useState();
-  let searchlayout = useRef({}).current;
-  // let meshlayout = useRef({}).current;
-  // const clock = useRef(new Clock()).current;
-
-  // const meshValue = runTiming(clock, 0, 2);
-
   const isMounting = useRef(true);
   const locale = useSelector((state) => state.persistedReducer.locale);
-  const meshValue = useRef(new Value(0)).current;
+  const meshValue = useRef(new Animated.Value(0)).current;
   const meshWidth = Animated.interpolate(meshValue, {
     inputRange: [0, 1, 2, 3],
     outputRange: [windowWidth, windowWidth * 1.2, 30, windowWidth * 4],
@@ -154,16 +89,7 @@ const LanguageSelection = ({navigation}) => {
     ],
   });
 
-  const searchCircleHeight = useRef(new Value(windowWidth)).current;
-  const imageWidth = useRef(new Value(windowWidth)).current;
-  const imageHeight = useRef(new Value(windowHeight)).current;
-  const scaleMaskX = useRef(new Value(1)).current;
-  const scaleMaskY = useRef(new Value(1)).current;
-  const scaleRedCircle = useRef(new Value(0.5)).current;
-  const spinValue = useRef(new Value(0)).current;
-  const translateXCircle = useRef(new Value(0)).current;
-  const translateYCircle = useRef(new Value(0)).current;
-
+  const spinValue = useRef(new Animated.Value(0)).current;
   const spin = spinValue.interpolate({
     inputRange: [0, 1],
     outputRange: ['0deg', '360deg'],
@@ -188,7 +114,6 @@ const LanguageSelection = ({navigation}) => {
         });
         ani.start(({finished}) => {
           if (finished) {
-            console.log('finished');
             Animated.timing(spinValue, {
               toValue: 1,
               duration: 10,
@@ -212,17 +137,12 @@ const LanguageSelection = ({navigation}) => {
       }
     }
   }, [
-    imageHeight,
-    imageWidth,
     mainDataOpacity,
     meshOpacity,
     meshValue,
     rectBarOpacity,
     rectBarTranslate,
-    scaleMaskX,
-    scaleMaskY,
     scaleSearch,
-    searchCircleHeight,
     spinValue,
     xPos,
     yPos,
@@ -244,9 +164,6 @@ const LanguageSelection = ({navigation}) => {
           />
         </Animated.View>
         <Animated.Image
-          onLayout={(e) => {
-            searchlayout = e.nativeEvent.layout;
-          }}
           source={Images?.searchIcon}
           style={[
             styles.search,
@@ -261,7 +178,6 @@ const LanguageSelection = ({navigation}) => {
             source={Images?.rectangularBar}
             style={[
               {
-                // height: verticalScale(212),
                 opacity: rectBarOpacity,
                 transform: [
                   {scaleX: verticalScale(0.8)},
@@ -280,21 +196,22 @@ const LanguageSelection = ({navigation}) => {
             alignItems: 'center',
             opacity: mainDataOpacity,
           }}> */}
-        <View style={styles.dropDownContainer}>
-          <Picker
-            items={LocaleList}
-            style={styles.picker}
-            defaultValue={locale}
-            onChange={handleChange}
-            selectedLabelStyle={styles.selectedStyle}
-          />
-        </View>
+        {!isMount ? (
+          <View style={styles.dropDownContainer}>
+            <Picker
+              items={LocaleList}
+              style={styles.picker}
+              placeholder="Select an Item"
+              placeholderStyle={styles.selectedStyle}
+              defaultValue={locale}
+              onChange={handleChange}
+              selectedLabelStyle={styles.selectedStyle}
+            />
+          </View>
+        ) : null}
         {/* </Animated.View> */}
         {isMount ? (
           <Animated.Image
-            onLayout={(e) => {
-              // meshlayout = e.nativeEvent.layout;
-            }}
             style={[
               styles.animationImage,
               {
@@ -322,8 +239,6 @@ const LanguageSelection = ({navigation}) => {
               width: redCircleSize,
               opacity: redCircleOpacity,
               transform: [
-                // {scaleX: scaleRedCircle},
-                // {scaleY: scaleRedCircle},
                 {
                   translateX: redCircleXPos,
                 },
@@ -362,7 +277,6 @@ const styles = ScaledSheet.create({
     marginTop: '5@vs',
     height: '212@vs',
     marginBottom: '10@vs',
-    // backgroundColor: 'red',
   },
   selectedStyle: {
     ...Fonts.Lato17B,
@@ -372,24 +286,19 @@ const styles = ScaledSheet.create({
     paddingHorizontal: '16@s',
     marginHorizontal: '16@s',
     paddingBottom: '16@vs',
-    // width: '100%',
   },
   animationImage: {
     position: 'absolute',
     top: 0,
     left: 0,
-    // right: '-50%',
-    // bottom: '30%',
   },
   redCircle: {
     position: 'absolute',
     tintColor: 'red',
     height: 30,
     width: 30,
-    // height: '142@vs',
     top: 100,
     left: 30,
-    // backgroundColor: 'red',
   },
 });
 
