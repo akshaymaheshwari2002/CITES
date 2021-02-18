@@ -18,18 +18,37 @@ const ProductionCapacityCalculator = () => {
 
   const onSubmit = useCallback(
     (data) => {
-      setValue(
-        'approximateYoungProducedPerYear',
-        (
+      console.log(data);
+      if (modeSelected === 1) {
+        let approximateYoungProducedPerYear =
           Number(data.countTotalBreedingFemale) *
           Number(data.percentageBreedingFemalePerSeason) *
           Number(data.countLitterPerYear) *
           Number(data.countOffspringPerLitter) *
-          Number(data.percentageSurvivingInTwoWeek)
-        ).toString(),
-      );
+          Number(data.percentageSurvivingInTwoWeek);
+        approximateYoungProducedPerYear = Math.round(
+          approximateYoungProducedPerYear,
+        );
+        setValue(
+          'approximateYoungProducedPerYear',
+          approximateYoungProducedPerYear.toString(),
+        );
+      } else if (modeSelected === 2) {
+        let countTotalBreedingFemale =
+          Number(data.approximateYoungProducedPerYear) /
+          (Number(data.percentageBreedingFemalePerSeason) *
+            Number(data.countLitterPerYear) *
+            Number(data.countOffspringPerLitter) *
+            Number(data.percentageSurvivingInTwoWeek));
+        countTotalBreedingFemale = Math.round(countTotalBreedingFemale);
+        setValue(
+          'countTotalBreedingFemale',
+          countTotalBreedingFemale.toString(),
+        );
+      } else {
+      }
     },
-    [setValue],
+    [setValue, modeSelected],
   );
 
   return (
@@ -97,7 +116,7 @@ const ProductionCapacityCalculator = () => {
               </Text>
             </Pressable>
           </View>
-          <Form {...formProps} formFields={getFormFields()} />
+          <Form {...formProps} formFields={getFormFields({modeSelected})} />
           <Button
             buttonContent={intl.formatMessage({
               id: 'general.continue',
