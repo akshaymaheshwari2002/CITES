@@ -12,6 +12,7 @@ const AppNavigator = () => {
   return (
     <Tab.Navigator
       initialRouteName="StepOne"
+      backBehavior="none"
       tabBarOptions={{
         style: {
           backgroundColor: RawColors.snow,

@@ -104,11 +104,11 @@ const Fonts = {
     fontSize: moderateScale(25),
   },
   Lato15SB: {
-    fontFamily: 'Lato-Semibold',
+    fontFamily: 'Lato-SemiBold',
     fontSize: moderateScale(15),
   },
   Lato17SB: {
-    fontFamily: 'Lato-Semibold',
+    fontFamily: 'Lato-SemiBold',
     fontSize: moderateScale(17),
   },
   HelveticaNeue30B: {

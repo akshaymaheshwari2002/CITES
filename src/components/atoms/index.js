@@ -5,5 +5,17 @@ import PDFPreview from './PDFPreview';
 import Picker from './Picker';
 import Button from './Button';
 import Checkbox from './Checkbox';
+import Tooltip from './Tooltip';
+import Header from './Header';
 
-export {Container, DatePicker, TextInput, PDFPreview, Picker, Button, Checkbox};
+export {
+  Container,
+  DatePicker,
+  TextInput,
+  PDFPreview,
+  Picker,
+  Button,
+  Checkbox,
+  Tooltip,
+  Header,
+};

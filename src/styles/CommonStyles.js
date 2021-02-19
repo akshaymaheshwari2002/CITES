@@ -30,7 +30,7 @@ export default ScaledSheet.create({
     paddingRight: '8@s',
   },
   screenContainer: {
-    flex: 1,
+    flexGrow: 1,
     paddingHorizontal: '16@s',
     paddingBottom: '16@vs',
     backgroundColor: RawColors.white,

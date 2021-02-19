@@ -39,6 +39,7 @@
 		89EEF20034CF4D7CB89A2668 /* HelveticaNeue-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = EAC5E1D9FAA1417996E4017E /* HelveticaNeue-Ultralight.otf */; };
 		F344E1FED6E445509533DE38 /* Lato-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BBC0E058FA674405A1F8DD21 /* Lato-Medium.ttf */; };
 		38FF53F8AB8E4FD6BCF5ACEF /* Lato-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4365CCF3F4374748826D225D /* Lato-MediumItalic.ttf */; };
+		6238ED5C4E384BC6B84A334E /* Lato-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB5D94BF82EF446CA0593A1D /* Lato-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +122,7 @@
 		EAC5E1D9FAA1417996E4017E /* HelveticaNeue-Ultralight.otf */ = {isa = PBXFileReference; name = "HelveticaNeue-Ultralight.otf"; path = "../src/assets/fonts/HelveticaNeue-Ultralight.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		BBC0E058FA674405A1F8DD21 /* Lato-Medium.ttf */ = {isa = PBXFileReference; name = "Lato-Medium.ttf"; path = "../src/assets/fonts/Lato-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		4365CCF3F4374748826D225D /* Lato-MediumItalic.ttf */ = {isa = PBXFileReference; name = "Lato-MediumItalic.ttf"; path = "../src/assets/fonts/Lato-MediumItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DB5D94BF82EF446CA0593A1D /* Lato-SemiBold.ttf */ = {isa = PBXFileReference; name = "Lato-SemiBold.ttf"; path = "../src/assets/fonts/Lato-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,6 +292,7 @@
 				EAC5E1D9FAA1417996E4017E /* HelveticaNeue-Ultralight.otf */,
 				BBC0E058FA674405A1F8DD21 /* Lato-Medium.ttf */,
 				4365CCF3F4374748826D225D /* Lato-MediumItalic.ttf */,
+				DB5D94BF82EF446CA0593A1D /* Lato-SemiBold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				89EEF20034CF4D7CB89A2668 /* HelveticaNeue-Ultralight.otf in Resources */,
 				F344E1FED6E445509533DE38 /* Lato-Medium.ttf in Resources */,
 				38FF53F8AB8E4FD6BCF5ACEF /* Lato-MediumItalic.ttf in Resources */,
+				6238ED5C4E384BC6B84A334E /* Lato-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
