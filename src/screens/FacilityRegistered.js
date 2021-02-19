@@ -6,8 +6,9 @@ import {useIntl} from 'react-intl';
 import {Fonts, RawColors} from '@styles/Themes';
 import {Button, Container} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
+import Config from '@config';
 
-const FacilityRegistered = () => {
+const FacilityRegistered = ({navigation: {navigate}}) => {
   const {formatMessage} = useIntl();
   return (
     <Container>
@@ -16,24 +17,24 @@ const FacilityRegistered = () => {
           <Text style={styles.title}>
             {formatMessage({id: 'screen.FacilityRegistered.title'})}
           </Text>
-          <Text style={styles.content}>
+          <Text style={styles.text}>
             {formatMessage({id: 'screen.FacilityRegistered.contentOne'})}
           </Text>
-          <Text style={styles.content}>
+          <Text style={styles.text}>
             {formatMessage({id: 'screen.FacilityRegistered.contentTwo'})}
           </Text>
-          <Text style={styles.content}>
+          <Text style={styles.text}>
             {formatMessage({id: 'screen.FacilityRegistered.contentThree'})}
           </Text>
           <Button
             buttonContent={
               <>
-                <Text style={styles.buttonTextOne}>
+                <Text style={styles.btnTxt}>
                   {formatMessage({
                     id: 'screen.FacilityRegistered.ButtonOnePartOne',
                   })}
                 </Text>
-                <Text style={styles.buttonTextTwo}>
+                <Text style={styles.btnTxt}>
                   {formatMessage({
                     id: 'screen.FacilityRegistered.ButtonOnePartTwo',
                   })}
@@ -46,6 +47,9 @@ const FacilityRegistered = () => {
             buttonStyle={() => {
               return styles.btn;
             }}
+            onPress={() =>
+              navigate('WebView', {sourceUri: Config.URL_CITES_APPENDICES})
+            }
           />
           <Button
             buttonContent={formatMessage({
@@ -57,6 +61,7 @@ const FacilityRegistered = () => {
             buttonStyle={() => {
               return styles.btnTwo;
             }}
+            onPress={() => navigate('StepOne')}
           />
         </View>
       </Container.ScrollView>
@@ -70,29 +75,27 @@ const styles = ScaledSheet.create({
   },
   content: {
     alignSelf: 'center',
-    ...Fonts.Lato15R,
-    lineHeight: 20,
-    letterSpacing: 0.4,
+    justifyContent: 'space-evenly',
+  },
+  text: {
     color: RawColors.tuna,
     marginTop: '10@s',
-  },
-  nogap: {
-    marginTop: 0,
+    ...Fonts.Lato15R,
   },
   btn: {
-    height: '80@s',
+    height: '80@vs',
     marginHorizontal: '15@s',
     marginTop: '24@vs',
     backgroundColor: RawColors.lightGrey,
   },
   btnTwo: {
-    height: '40@s',
+    height: '46@vs',
     marginHorizontal: '15@s',
-    marginTop: '44@vs',
-    backgroundColor: RawColors.lightGrey,
+    marginVertical: '24@vs',
+    backgroundColor: RawColors.sugarCane,
   },
   btnTxt: {
-    fontSize: 15,
+    ...Fonts.Lato15R,
     color: RawColors.black,
     justifyContent: 'center',
     alignItems: 'center',

@@ -41,7 +41,7 @@ const DrawerMenu = ({navigation, route}) => {
             childContentSpacing={0}
             onClose={() => {
               setTooltipIndex(0);
-              navigation.navigate('StepOne', {toolTip: true});
+              navigation.navigate('StepsSummary', {toolTip: true});
             }}>
             <View style={toolTip ? styles.icon : {}}>
               <Feather
