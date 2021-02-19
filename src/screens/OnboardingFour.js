@@ -15,7 +15,13 @@ const OnboardingFour = ({navigation}) => {
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <TouchableOpacity onPress={() => navigation.navigate('StepOne')}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('StepOne', {
+              screen: 'StepOne',
+              params: {showToolTip: true},
+            })
+          }>
           <Icon name="chevron-right" size={scale(26)} />
         </TouchableOpacity>
       ),

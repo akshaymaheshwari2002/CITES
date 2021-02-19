@@ -78,6 +78,7 @@ const InspectionFlow = ({navigation}) => {
                   }
                 />
                 <Button
+                  onPress={() => navigation.navigate('ContinueInspection')}
                   buttonStyle={() => styles.filledButton}
                   buttonContent={
                     <>
@@ -122,15 +123,15 @@ const styles = ScaledSheet.create({
   headerOne: {
     color: RawColors.brightRed,
     ...Fonts.HelveticaNeue40B,
-    lineHeight: 40,
-    letterSpacing: 0.8,
+    lineHeight: '40@ms',
+    letterSpacing: '0.8@ms',
   },
   headerTwo: {
     color: RawColors.darkGreyBlue,
     ...Fonts.HelveticaNeue26B,
     textAlign: 'right',
-    lineHeight: 25,
-    letterSpacing: 0.45,
+    lineHeight: '26@ms',
+    letterSpacing: '0.45@ms',
   },
   contentContainer: {
     flex: 1,
@@ -164,12 +165,10 @@ const styles = ScaledSheet.create({
   },
   logo: {
     position: 'absolute',
-    alignSelf: 'flex-end',
+    alignSelf: 'center',
     alignItems: 'flex-end',
-    top: '110@vs',
-    height: '146@vs',
-    paddingRight: '45@s',
-    //paddingBottom: '20@s',
+    width: '78.4%',
+    top: '98@vs',
   },
 });
 

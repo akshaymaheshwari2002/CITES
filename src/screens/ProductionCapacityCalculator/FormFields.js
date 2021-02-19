@@ -1,7 +1,14 @@
 import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
+import {RawColors} from '@styles/Themes';
 
-export default () => {
+const resultFieldStyleProps = {
+  fontWeight: 'bold',
+  borderWidth: 2,
+  color: RawColors.black,
+};
+
+export default ({modeSelected}) => {
   const {formatMessage} = createIntl();
   const {
     required,
@@ -16,14 +23,21 @@ export default () => {
       defaultValue: '',
       label: formatMessage({id: 'form.label.countTotalBreedingFemale'}),
       name: 'countTotalBreedingFemale',
-      rules: {
-        required,
-        validate: {
-          validateNumber,
-          validatePositiveNumber,
-          validateInteger,
-        },
-      },
+      rules:
+        modeSelected === 1
+          ? {
+              required,
+              validate: {
+                validateNumber,
+                validatePositiveNumber,
+                validateInteger,
+              },
+            }
+          : {},
+      style:
+        modeSelected === 2 ? resultFieldStyleProps : {color: RawColors.black},
+      showHelpIcon: true,
+      editable: modeSelected === 1,
       keyboardType: 'number-pad',
     },
     {
@@ -39,6 +53,7 @@ export default () => {
           validateNumberPercentageFraction,
         },
       },
+      showHelpIcon: true,
       keyboardType: 'decimal-pad',
     },
     {
@@ -53,6 +68,7 @@ export default () => {
           validateInteger,
         },
       },
+      showHelpIcon: true,
       keyboardType: 'number-pad',
     },
     {
@@ -67,6 +83,7 @@ export default () => {
           validateInteger,
         },
       },
+      showHelpIcon: true,
       keyboardType: 'number-pad',
     },
     {
@@ -80,14 +97,31 @@ export default () => {
           validateNumberPercentageFraction,
         },
       },
+      showHelpIcon: true,
       keyboardType: 'decimal-pad',
     },
     {
+      defaultValue: '',
       label: formatMessage({
         id: 'form.label.approximateYoungProducedPerYear',
       }),
       name: 'approximateYoungProducedPerYear',
-      editable: false,
+      rules:
+        modeSelected === 2
+          ? {
+              required,
+              validate: {
+                validateNumber,
+                validatePositiveNumber,
+                validateInteger,
+              },
+            }
+          : {},
+      showHelpIcon: true,
+      keyboardType: 'number-pad',
+      editable: modeSelected === 2,
+      style:
+        modeSelected === 1 ? resultFieldStyleProps : {color: RawColors.black},
     },
   ];
 };

@@ -1,5 +1,6 @@
 {
   "permission.writeExternal": "Please Grant Permission",
+  "screen.screen2.selectAnItem": "Select an Item",
   "general.error": "An error has occured",
   "general.continue": "Continue",
   "general.yourTasks": "your tasks",
@@ -60,6 +61,8 @@
   "form.label.sourceCode": "CITES source code listed on previous export permit",
   "form.label.registeredSpecies": "Registered species",
   "screen.ProductionCapacityCalculator.titleText": "Production Capacity Calculator",
+  "screen.ProductionCapacityCalculator.modeButton_1": "Number of specimens capable of being produced by the facility",
+  "screen.ProductionCapacityCalculator.modeButton_2": "Number of females required to meet annual reported production",
   "screen.ProductionCapacityCalculator.infoText_1": "Use this calculator to estimate the mean number of specimens capable of being produced by a facility based on the number of reproductive adult females observed and the average number of reproductive events per year.",
   "screen.ProductionCapacityCalculator.infoText_2": "Before an inspection, input information from previous inspections and official records on exports, etc. The calculator can also be used after an inspection, by inputing the number of specimens observed during the inspection.",
   "screen.SubmitFeedback.headerPartOne": "GIVE",
@@ -119,6 +122,11 @@
   "screen.InspectionFlow.buttonTwoPartTwo": "Begin inspection >",
   "screen.InspectionFlow.buttonThreePartOne": "I have to started an inspection",
   "screen.InspectionFlow.buttonThreePartTwo": "Continue inspection >",
+  "screen.ContinueInspection.title_1": "select an",
+  "screen.ContinueInspection.title_2": "inpection",
+  "screen.ContinueInspection.title_3": "to continue",
+  "screen.ContinueInspection.label.facilityName": "Facility name",
+  "screen.ContinueInspection.label.dateOfInspection": "Date of Inspection",
   "screen.FacilityInfringement.title": "What if facility has infringements?",
   "screen.FacilityInfringement.contentOne": "The nature of infringement(s) as well as legal and administrative actions resulting from those infringement(s) must be examined.",
   "screen.FacilityInfringement.contentTwo": " In most countries, an officer may suspend or revoke a licence, permit or special permit if they are satisfied that: ",
@@ -145,5 +153,10 @@
   "button.addSpecies": "+ Add species",
   "button.continueToStep1": "CONTINUE TO STEP 1",
   "button.viewFormOneSummary": "VIEW FORM 1 SUMMARY",
-  "button.saveAndAdd": "SAVE AND + ADD ADDITIONAL SPECIES INFORMATION"
+  "button.saveAndAdd": "SAVE AND + ADD ADDITIONAL SPECIES INFORMATION",
+  "screen.StepOne.WalkThroughContentOne": "Tap to go back to previous page",
+  "screen.StepOne.WalkThroughContentTwo": "Tap to go back to Home page",
+  "screen.StepOne.WalkThroughContentThree": "Tap to search the app",
+  "screen.StepOne.WalkThroughContentFour": "Tap to make notes and take photos throughout the inspection",
+  "screen.StepOne.WalkThroughContentFive": "Tap to quickly access the forms and tools required when conducting an inspection"
 }

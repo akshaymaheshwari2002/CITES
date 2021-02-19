@@ -1,15 +1,18 @@
-import React, {useState} from 'react';
-import {View} from 'react-native';
+import React, {useEffect, useMemo, useState} from 'react';
+import {View, Text, StatusBar, Platform} from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
-import {ScaledSheet} from 'react-native-size-matters';
+import {ScaledSheet, scale, verticalScale} from 'react-native-size-matters';
+import Tooltip from 'react-native-walkthrough-tooltip';
 
 import {Container, Button} from '@atoms';
 import {StepHeader, ChecklistCell} from '@molecules';
 import ChecklistContent from './ChecklistContent';
 import {Fonts, RawColors} from '@styles/Themes';
+import CommonStyles from '@styles/CommonStyles';
 
-const StepOne = ({navigation}) => {
-  const intl = useIntl();
+const StepOne = ({navigation, route}) => {
+  const {formatMessage} = useIntl();
   const [stepData, setStepData] = useState({
     researchConducted: false,
     existingRecordsExamined: false,
@@ -21,16 +24,98 @@ const StepOne = ({navigation}) => {
     inspectionConcides: false,
     facilityOwnerPresent: false,
   });
-
-  const bullet = (
-    <View style={checkliststyles.bulletContainer}>
-      <View style={checkliststyles.bullet} />
-    </View>
+  const [tooltipIndex, setTooltipIndex] = useState(
+    route.params.showToolTip ? 1 : 0,
   );
 
+  const bullet = useMemo(
+    () => (
+      <View style={checkliststyles.bulletContainer}>
+        <View style={checkliststyles.bullet} />
+      </View>
+    ),
+    [],
+  );
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => {},
+      tabBarIcon: () => {
+        return (
+          <Tooltip
+            topAdjustment={
+              Platform.OS === 'android' ? -StatusBar.currentHeight : 0
+            }
+            isVisible={tooltipIndex === 2}
+            content={
+              <Text style={styles.toolTipContent}>
+                {formatMessage({
+                  id: 'screen.StepOne.WalkThroughContentTwo',
+                })}
+              </Text>
+            }
+            backgroundColor={RawColors.backToolTipColor}
+            arrowStyle={styles.arrowStyle}
+            tooltipStyle={styles.toolTipStyle}
+            placement="top"
+            contentStyle={styles.toolTipContentStyle}
+            arrowSize={styles.arrowSize}
+            childContentSpacing={0}
+            onClose={() => {
+              setTooltipIndex(3);
+              navigation.navigate('Search', {toolTip: true});
+            }}>
+            <View style={tooltipIndex === 2 ? styles.icon : {}}>
+              <Icon
+                name="home"
+                size={verticalScale(35)}
+                color={RawColors.grey75}
+              />
+            </View>
+          </Tooltip>
+        );
+      },
+    });
+  }, [formatMessage, navigation, tooltipIndex]);
+
   return (
-    <Container>
+    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
       <Container.ScrollView>
+        <View style={[CommonStyles.navigationHeader, styles.header]}>
+          <Tooltip
+            topAdjustment={
+              Platform.OS === 'android'
+                ? -StatusBar.currentHeight - verticalScale(26)
+                : 0
+            }
+            isVisible={tooltipIndex === 1}
+            content={
+              <Text style={styles.toolTipContent}>
+                {formatMessage({id: 'screen.StepOne.WalkThroughContentOne'})}
+              </Text>
+            }
+            backgroundColor={RawColors.backToolTipColor}
+            arrowStyle={styles.arrowStyle}
+            placement="bottom"
+            contentStyle={styles.toolTipContentStyle}
+            arrowSize={styles.arrowSize}
+            childContentSpacing={0}
+            onClose={() => {
+              setTooltipIndex(2);
+            }}>
+            <View
+              style={{
+                width: scale(32),
+                height: scale(32),
+              }}>
+              <Icon
+                name={'chevron-left'}
+                size={scale(26)}
+                style={tooltipIndex === 1 ? [styles.icon] : {}}
+              />
+            </View>
+          </Tooltip>
+        </View>
         <StepHeader stepNumber={1} />
         {ChecklistContent({
           checkliststyles,
@@ -50,7 +135,7 @@ const StepOne = ({navigation}) => {
         })}
         <View>
           <Button
-            buttonContent={intl.formatMessage({
+            buttonContent={formatMessage({
               id: 'screen.stepOne.continueToStepTwo',
             })}
             buttonStyle={(pressed) => styles.button}
@@ -66,11 +151,29 @@ const StepOne = ({navigation}) => {
 export default StepOne;
 
 const styles = ScaledSheet.create({
+  header: {
+    justifyContent: 'center',
+    paddingTop: StatusBar.currentHeight,
+    width: scale(32),
+  },
+  leftIcon: {margin: '8@s'},
   button: {
     backgroundColor: RawColors.sugarCane,
     borderColor: RawColors.prussianBlue,
     marginHorizontal: '30@s',
     marginVertical: '20@s',
+  },
+  arrowSize: {height: 10, width: 10},
+  toolTipStyle: {marginHorizontal: 25},
+  toolTipContent: {
+    ...Fonts.Lato17B,
+  },
+  toolTipContentStyle: {height: 60, width: 202, borderRadius: 10},
+  icon: {
+    borderRadius: 16,
+    borderColor: RawColors.softRed,
+    borderWidth: 3,
+    backgroundColor: RawColors.white,
   },
   buttonTextStyle: {
     textTransform: 'uppercase',

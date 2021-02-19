@@ -13,10 +13,14 @@ import StepOne from './StepOne';
 import SubmitFeedback from './SubmitFeedback';
 import HomePage from './HomePage';
 import InspectionFlow from './InspectionFlow';
+import ContinueInspection from './ContinueInspection';
 import FacilityInfringement from './FacilityInfringement';
 import FacilityRegistered from './FacilityRegistered';
 import WebView from './WebView';
 import FormOne from './FormOne';
+import SearchDummy from './SearchDummy';
+import Notes from './Notes';
+import DrawerMenu from './DrawerMenu';
 
 export {
   FacilityScore,
@@ -26,12 +30,16 @@ export {
   FacilityRegistered,
   LanguageSelection,
   OnboardingOne,
+  SearchDummy,
   FacilityInfringement,
   OnboardingTwo,
+  Notes,
+  DrawerMenu,
   OnboardingThree,
   OnboardingFour,
   StepsSummary,
   InspectionFlow,
+  ContinueInspection,
   StepOne,
   SubmitFeedback,
   ProductionCapacityCalculator,
