@@ -80,43 +80,43 @@ const StepOne = ({navigation, route}) => {
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Container.ScrollView>
-        <View style={[CommonStyles.navigationHeader, styles.header]}>
-          <Tooltip
-            topAdjustment={
-              Platform.OS === 'android'
-                ? -StatusBar.currentHeight - verticalScale(26)
-                : 0
-            }
-            isVisible={tooltipIndex === 1}
-            content={
-              <Text style={styles.toolTipContent}>
-                {formatMessage({id: 'screen.StepOne.WalkThroughContentOne'})}
-              </Text>
-            }
-            backgroundColor={RawColors.backToolTipColor}
-            arrowStyle={styles.arrowStyle}
-            placement="bottom"
-            contentStyle={styles.toolTipContentStyle}
-            arrowSize={styles.arrowSize}
-            childContentSpacing={0}
-            onClose={() => {
-              setTooltipIndex(2);
+      <View style={[CommonStyles.navigationHeader, styles.header]}>
+        <Tooltip
+          topAdjustment={
+            Platform.OS === 'android'
+              ? -StatusBar.currentHeight - verticalScale(26)
+              : 0
+          }
+          isVisible={tooltipIndex === 1}
+          content={
+            <Text style={styles.toolTipContent}>
+              {formatMessage({id: 'screen.StepOne.WalkThroughContentOne'})}
+            </Text>
+          }
+          backgroundColor={RawColors.backToolTipColor}
+          arrowStyle={styles.arrowStyle}
+          placement="bottom"
+          contentStyle={styles.toolTipContentStyle}
+          arrowSize={styles.arrowSize}
+          childContentSpacing={0}
+          onClose={() => {
+            setTooltipIndex(2);
+          }}>
+          <View
+            style={{
+              width: scale(32),
+              height: scale(32),
             }}>
-            <View
-              style={{
-                width: scale(32),
-                height: scale(32),
-              }}>
-              <Icon
-                name={'chevron-left'}
-                size={scale(26)}
-                style={tooltipIndex === 1 ? [styles.icon] : {}}
-              />
-            </View>
-          </Tooltip>
-        </View>
-        <StepHeader stepNumber={1} />
+            <Icon
+              name={'chevron-left'}
+              size={scale(26)}
+              style={tooltipIndex === 1 ? [styles.icon] : {}}
+            />
+          </View>
+        </Tooltip>
+      </View>
+      <StepHeader stepNumber={1} />
+      <Container.ScrollView style={CommonStyles.flex1}>
         {ChecklistContent({
           checkliststyles,
           bullet,
