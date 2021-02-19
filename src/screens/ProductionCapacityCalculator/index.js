@@ -75,6 +75,7 @@ const ProductionCapacityCalculator = () => {
                 modeSelected === 1
                   ? [
                       styles.modeButton,
+                      CommonStyles.shadowEffect,
                       styles.modeButtonOne,
                       styles.modeButtonSelectedOne,
                     ]
@@ -97,6 +98,7 @@ const ProductionCapacityCalculator = () => {
                 modeSelected === 2
                   ? [
                       styles.modeButton,
+                      CommonStyles.shadowEffect,
                       styles.modeButtonTwo,
                       styles.modeButtonSelectedTwo,
                     ]
@@ -173,11 +175,15 @@ const styles = ScaledSheet.create({
     borderLeftWidth: 1,
   },
   modeButtonText: {
+    letterSpacing: '0.34@ms',
+    lineHeight: '21@ms',
     textAlignVertical: 'center',
     textAlign: 'center',
     ...Fonts.Lato12R,
   },
   modeButtonTextSelected: {
+    letterSpacing: '0.19@ms',
+    lineHeight: '21@ms',
     ...Fonts.Lato12B,
   },
 });
