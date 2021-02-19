@@ -45,24 +45,20 @@ const OnboardingThree = ({navigation}) => {
 const styles = ScaledSheet.create({
   txt: {
     textAlign: 'center',
-    flex: 1,
-    lineHeight: '30@vs',
-    letterSpacing: 0.48,
     ...Fonts.Lato20R,
-    fontSize: '20@ms0.1',
-    marginTop: '60@vs',
-    marginHorizontal: '1@s',
+    marginTop: '15@vs',
   },
   content: {
     alignSelf: 'center',
+    justifyContent: 'space-evenly',
+    paddingHorizontal: '15@s',
   },
   img: {
     resizeMode: 'contain',
   },
   imgContainer: {
     alignSelf: 'center',
-    marginTop: '26@s',
-    marginBottom: '20@s',
+    marginTop: 'auto',
   },
 });
 

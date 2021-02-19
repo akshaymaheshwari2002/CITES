@@ -88,7 +88,7 @@ const styles = ScaledSheet.create({
     width: '30@s',
   },
   itemHeadline: {
-    marginVertical: '12@vs',
+    marginVertical: '15@vs',
   },
   item: {
     flexDirection: 'row',
@@ -105,7 +105,8 @@ const styles = ScaledSheet.create({
     width: 22,
     height: 22,
     resizeMode: 'contain',
-    marginRight: 16,
+    marginRight: '16@ms',
+    marginTop: '2@ms',
   },
 });
 

@@ -54,25 +54,24 @@ const OnboardingFour = ({navigation}) => {
 const styles = ScaledSheet.create({
   txt: {
     textAlign: 'center',
-    flex: 1,
-    lineHeight: '30@vs',
-    letterSpacing: 0.48,
+    textAlignVertical: 'center',
     ...Fonts.Lato20R,
-    marginTop: '60@vs',
+    marginVertical: '15@vs',
   },
   word: {
     fontWeight: 'bold',
   },
   content: {
     alignSelf: 'center',
-    paddingBottom: '50@s',
+    paddingHorizontal: '15@vs',
+    justifyContent: 'space-evenly',
   },
   img: {
     resizeMode: 'contain',
   },
   imgContainer: {
-    alignSelf: 'center',
-    marginTop: '40@vs',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

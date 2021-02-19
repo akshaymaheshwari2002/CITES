@@ -59,7 +59,7 @@ const ContinueInspection = () => {
                 buttonStyle={() => styles.button}
                 buttonContent={
                   <>
-                    <View style={styles.infoLine}>
+                    <View style={[styles.bottomMargin10, styles.infoLine]}>
                       <Text style={[styles.label, Fonts.Lato15B]}>
                         {formatMessage({
                           id: 'screen.ContinueInspection.label.facilityName',
@@ -139,5 +139,8 @@ const styles = ScaledSheet.create({
   footer: {
     width: '100%',
     height: '15@s',
+  },
+  bottomMargin10: {
+    marginBottom: '10@vs',
   },
 });

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Text, TouchableOpacity, Image, View} from 'react-native';
+import {Text, TouchableOpacity, Image, View, Dimensions} from 'react-native';
 import {useIntl} from 'react-intl';
 import Icon from 'react-native-vector-icons/Feather';
 import {ScaledSheet, scale} from 'react-native-size-matters';
@@ -7,6 +7,8 @@ import {ScaledSheet, scale} from 'react-native-size-matters';
 import {Fonts} from '@styles/Themes';
 import {Container} from '@atoms';
 import {Images} from '@assets';
+
+const windowWidth = Dimensions.get('window').width;
 
 const OnboardingOne = ({navigation}) => {
   const {formatMessage} = useIntl();
@@ -58,11 +60,10 @@ const styles = ScaledSheet.create({
   word: {
     fontWeight: 'bold',
   },
-  content: {
-    alignSelf: 'center',
-  },
   img: {
     resizeMode: 'contain',
+    width: windowWidth,
+    height: windowWidth * 0.6318,
   },
   imgContainer: {
     alignItems: 'center',

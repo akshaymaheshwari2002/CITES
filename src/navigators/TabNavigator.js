@@ -1,7 +1,7 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Feather from 'react-native-vector-icons/Feather';
-import {verticalScale} from 'react-native-size-matters';
+import {moderateScale, verticalScale} from 'react-native-size-matters';
 
 import {StepOne, SearchDummy, Notes, DrawerMenu} from '@screens';
 import {RawColors} from '@styles/Themes';
@@ -27,7 +27,7 @@ const AppNavigator = () => {
             return (
               <Feather
                 name={'home'}
-                size={verticalScale(35)}
+                size={moderateScale(35)}
                 color={RawColors.grey75}
               />
             );
@@ -42,7 +42,7 @@ const AppNavigator = () => {
             return (
               <Feather
                 name={'search'}
-                size={verticalScale(35)}
+                size={moderateScale(35)}
                 color={RawColors.grey75}
               />
             );
@@ -57,7 +57,7 @@ const AppNavigator = () => {
             return (
               <Feather
                 name={'edit-3'}
-                size={verticalScale(35)}
+                size={moderateScale(35)}
                 color={RawColors.grey75}
               />
             );
@@ -72,7 +72,7 @@ const AppNavigator = () => {
             return (
               <Feather
                 name={'list'}
-                size={verticalScale(35)}
+                size={moderateScale(35)}
                 color={RawColors.grey75}
               />
             );
