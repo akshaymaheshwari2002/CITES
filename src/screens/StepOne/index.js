@@ -1,11 +1,10 @@
 import React, {useEffect, useMemo, useState} from 'react';
-import {View, Text, StatusBar, Platform} from 'react-native';
+import {View, Text, StatusBar} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, scale, verticalScale} from 'react-native-size-matters';
-import Tooltip from 'react-native-walkthrough-tooltip';
 
-import {Container, Button} from '@atoms';
+import {Container, Button, Header, Tooltip} from '@atoms';
 import {StepHeader, ChecklistCell} from '@molecules';
 import ChecklistContent from './ChecklistContent';
 import {Fonts, RawColors} from '@styles/Themes';
@@ -43,9 +42,6 @@ const StepOne = ({navigation, route}) => {
       tabBarIcon: () => {
         return (
           <Tooltip
-            topAdjustment={
-              Platform.OS === 'android' ? -StatusBar.currentHeight : 0
-            }
             isVisible={tooltipIndex === 2}
             content={
               <Text style={styles.toolTipContent}>
@@ -54,24 +50,16 @@ const StepOne = ({navigation, route}) => {
                 })}
               </Text>
             }
-            backgroundColor={RawColors.backToolTipColor}
-            arrowStyle={styles.arrowStyle}
-            tooltipStyle={styles.toolTipStyle}
             placement="top"
-            contentStyle={styles.toolTipContentStyle}
-            arrowSize={styles.arrowSize}
-            childContentSpacing={0}
             onClose={() => {
               setTooltipIndex(3);
               navigation.navigate('Search', {toolTip: true});
             }}>
-            <View style={tooltipIndex === 2 ? styles.icon : {}}>
-              <Icon
-                name="home"
-                size={verticalScale(35)}
-                color={RawColors.grey75}
-              />
-            </View>
+            <Icon
+              name="home"
+              size={verticalScale(35)}
+              color={RawColors.grey75}
+            />
           </Tooltip>
         );
       },
@@ -80,41 +68,29 @@ const StepOne = ({navigation, route}) => {
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <View style={[CommonStyles.navigationHeader, styles.header]}>
-        <Tooltip
-          topAdjustment={
-            Platform.OS === 'android'
-              ? -StatusBar.currentHeight - verticalScale(26)
-              : 0
-          }
-          isVisible={tooltipIndex === 1}
-          content={
-            <Text style={styles.toolTipContent}>
-              {formatMessage({id: 'screen.StepOne.WalkThroughContentOne'})}
-            </Text>
-          }
-          backgroundColor={RawColors.backToolTipColor}
-          arrowStyle={styles.arrowStyle}
-          placement="bottom"
-          contentStyle={styles.toolTipContentStyle}
-          arrowSize={styles.arrowSize}
-          childContentSpacing={0}
-          onClose={() => {
-            setTooltipIndex(2);
-          }}>
-          <View
-            style={{
-              width: scale(32),
-              height: scale(32),
+      <Header
+        leftContent={
+          <Tooltip
+            placement="bottom"
+            isVisible={tooltipIndex === 1}
+            content={
+              <Text style={styles.toolTipContent}>
+                {formatMessage({
+                  id: 'screen.StepOne.WalkThroughContentTwo',
+                })}
+              </Text>
+            }
+            onClose={() => {
+              setTooltipIndex(2);
             }}>
             <Icon
-              name={'chevron-left'}
+              name="chevron-left"
               size={scale(26)}
-              style={tooltipIndex === 1 ? [styles.icon] : {}}
+              onPress={navigation.goBack}
             />
-          </View>
-        </Tooltip>
-      </View>
+          </Tooltip>
+        }
+      />
       <StepHeader stepNumber={1} />
       <Container.ScrollView style={CommonStyles.flex1}>
         {ChecklistContent({
