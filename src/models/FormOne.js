@@ -3,8 +3,11 @@ import {BSON} from 'realm';
 export default class FormOne {
   constructor({
     dateOfInspection,
-    namesOfInspectionOfficers,
-    facilityAddress,
+    nameOfInspectionOfficers,
+    facilityName,
+    facilityAddressLineOne,
+    facilityAddressLineTwo,
+    facilityAddressLineThree,
     facilityOwner,
     facilityOwnerEmail,
     facilityOwnerPhone,
@@ -14,8 +17,11 @@ export default class FormOne {
   }) {
     this._id = new BSON.ObjectId();
     this.dateOfInspection = dateOfInspection;
-    this.namesOfInspectionOfficers = namesOfInspectionOfficers;
-    this.facilityAddress = facilityAddress;
+    this.nameOfInspectionOfficers = nameOfInspectionOfficers;
+    this.facilityName = facilityName;
+    this.facilityAddressLineOne = facilityAddressLineOne;
+    this.facilityAddressLineTwo = facilityAddressLineTwo;
+    this.facilityAddressLineThree = facilityAddressLineThree;
     this.facilityOwner = facilityOwner;
     this.facilityOwnerEmail = facilityOwnerEmail;
     this.facilityOwnerPhone = facilityOwnerPhone;

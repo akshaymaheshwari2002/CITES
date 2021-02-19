@@ -10,7 +10,7 @@ import {Fonts, RawColors} from '@styles/Themes';
 
 const StepOne = ({navigation}) => {
   const intl = useIntl();
-  const [isCheckedStatus, setIsCheckedStatus] = useState({
+  const [stepData, setStepData] = useState({
     researchConducted: false,
     existingRecordsExamined: false,
     outstandingInfringementInvestigations: false,
@@ -41,14 +41,10 @@ const StepOne = ({navigation}) => {
               key={el.id}
               id={el.id}
               content={el.content}
-              onToggle={({checked, id}) => {
-                if (isCheckedStatus[id] !== checked) {
-                  setIsCheckedStatus((state = isCheckedStatus) => {
-                    isCheckedStatus[id] = checked;
-                    return isCheckedStatus;
-                  });
-                }
-              }}
+              value={stepData[el.id]}
+              onChange={(value) =>
+                setStepData((state) => ({...state, [el.id]: value}))
+              }
             />
           );
         })}

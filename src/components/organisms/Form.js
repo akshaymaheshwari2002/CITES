@@ -6,35 +6,42 @@ import {ScaledSheet} from 'react-native-size-matters';
 
 import {TextInput, DatePicker, Picker} from '@atoms';
 import {TextInputArray} from '@molecules';
+import ChoiceList from './ChoiceList';
 import Constants from '@utils/Constants';
 
 const Form = (formProps) => {
   const {control, formFields, errors} = useMemo(() => formProps, [formProps]);
 
-  const renderField = useCallback(({fieldType, ...props}) => {
-    let FieldComponent;
+  const renderField = useCallback(
+    ({fieldType, fieldContainerStyle, ...props}) => {
+      let FieldComponent;
 
-    switch (fieldType) {
-      case Constants.DATEPICKER:
-        FieldComponent = DatePicker;
-        break;
-      case Constants.PICKER:
-        FieldComponent = Picker;
-        break;
-      case Constants.TEXTINPUT_ARRAY:
-        FieldComponent = TextInputArray;
-        break;
-      default:
-        FieldComponent = TextInput;
-        break;
-    }
+      switch (fieldType) {
+        case Constants.DATEPICKER:
+          FieldComponent = DatePicker;
+          break;
+        case Constants.PICKER:
+          FieldComponent = Picker;
+          break;
+        case Constants.TEXTINPUT_ARRAY:
+          FieldComponent = TextInputArray;
+          break;
+        case Constants.CHOICELIST:
+          FieldComponent = ChoiceList;
+          break;
+        default:
+          FieldComponent = TextInput;
+          break;
+      }
 
-    return (
-      <View style={styles.fieldContainer}>
-        <FieldComponent {...props} />
-      </View>
-    );
-  }, []);
+      return (
+        <View style={[styles.fieldContainer, fieldContainerStyle]}>
+          <FieldComponent {...props} />
+        </View>
+      );
+    },
+    [],
+  );
 
   const renderController = useCallback(
     ({name, defaultValue, onFocus, rules, ...fieldProps}) => {

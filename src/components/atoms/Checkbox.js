@@ -6,50 +6,50 @@ import {ScaledSheet} from 'react-native-size-matters';
 import {RawColors} from '@styles/Themes';
 import {Images} from '@assets';
 
-const CheckBox = ({onPress, checked, ...restProps}) => {
+const CheckBox = ({onChange, value, ...restProps}) => {
   return (
     <Pressable
-      onPress={onPress}
-      style={checked ? styles.pressableChecked : styles.pressable}
+      onPress={() => onChange(!value)}
+      style={[styles.container, !value ? styles.uncheckedContainer : undefined]}
       {...restProps}>
-      <Image
-        source={Images.tick}
-        style={checked ? styles.tickChecked : styles.tick}
-      />
+      {value ? (
+        <Image
+          source={Images.tick}
+          style={value ? styles.checkedImage : undefined}
+        />
+      ) : null}
     </Pressable>
   );
 };
 
-export default CheckBox;
+const styles = ScaledSheet.create({
+  container: {
+    height: '22@ms',
+    width: '22@ms',
+  },
+  uncheckedContainer: {
+    borderRadius: '11@ms',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: RawColors.ghostCheckboxBorder,
+    borderWidth: 2,
+  },
+  checkedImage: {
+    height: '100%',
+    width: '100%',
+    tintColor: RawColors.green,
+    resizeMode: 'contain',
+  },
+});
 
 CheckBox.defaultProps = {
-  checked: false,
-  onPress: () => {},
+  value: null,
+  onChange: () => {},
 };
 
 CheckBox.propTypes = {
-  checked: PropTypes.bool,
-  onPress: PropTypes.func,
+  value: PropTypes.bool,
+  onChange: PropTypes.func,
 };
 
-const styles = ScaledSheet.create({
-  pressable: {
-    height: '22@s',
-    width: '22@s',
-    borderRadius: '11@s',
-    borderColor: RawColors.ghostCheckboxBorder,
-    borderWidth: '2@s',
-  },
-  pressableChecked: {height: '22@s', width: '22@s'},
-  tick: {
-    height: '100%',
-    width: '100%',
-    opacity: 0,
-  },
-  tickChecked: {
-    height: '100%',
-    width: '100%',
-    opacity: 1,
-    tintColor: RawColors.green,
-  },
-});
+export default CheckBox;

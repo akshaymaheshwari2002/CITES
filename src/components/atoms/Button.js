@@ -18,12 +18,7 @@ const Button = ({
       {...restProps}>
       {({pressed}) => {
         return typeof buttonContent === 'string' ? (
-          <Text
-            style={[
-              {color: RawColors.darkGrey},
-              Fonts.Lato15R,
-              buttonTextStyle(pressed),
-            ]}>
+          <Text style={[styles.buttonText, buttonTextStyle(pressed)]}>
             {buttonContent}
           </Text>
         ) : (
@@ -41,8 +36,14 @@ const styles = ScaledSheet.create({
     borderRadius: '14@ms',
     minHeight: '46@vs',
     borderWidth: 1,
+    padding: '8@ms',
     borderColor: RawColors.dimGrey,
     backgroundColor: RawColors.whiteTwo,
+  },
+  buttonText: {
+    color: RawColors.darkGrey,
+    textAlign: 'center',
+    ...Fonts.Lato15R,
   },
 });
 

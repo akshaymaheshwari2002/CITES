@@ -26,6 +26,7 @@ import {
   ProductionCapacityCalculator,
   HomePage,
   WebView,
+  FormOne,
 } from '@screens';
 
 const Stack = createStackNavigator();
@@ -95,6 +96,7 @@ const AppNavigator = () => {
           component={HomePage}
         />
         <Stack.Screen name="WebView" component={WebView} />
+        <Stack.Screen name="FormOne" component={FormOne} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -13,15 +13,17 @@ const TextInputArray = React.forwardRef(
     {label, error, count, buttonText, showHelpIcon, onHelpIconPress, onChange},
     _,
   ) => {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState();
     const [_count, _setCount] = useState(count);
 
-    const handleChangeText = useCallback((text, index) => {
-      setData((state) => {
-        const currentData = [...state];
-        currentData[index] = text;
-        return currentData;
-      });
+    const handleChangeText = useCallback((value, index) => {
+      if (value) {
+        setData((state) => {
+          const currentData = state ? [...state] : [];
+          currentData[index] = value;
+          return currentData;
+        });
+      }
     }, []);
 
     const renderFields = useCallback(() => {
@@ -30,8 +32,9 @@ const TextInputArray = React.forwardRef(
         fields[index] = (
           <TextInput
             key={index}
-            data={data[index]}
+            data={data?.[index]}
             onChangeText={(text) => handleChangeText(text, index)}
+            style={styles.textInput}
           />
         );
       }
@@ -65,7 +68,8 @@ const TextInputArray = React.forwardRef(
             />
           ) : null}
         </View>
-        <View style={styles.container}>
+        <View
+          style={buttonText ? styles.containerWithButton : styles.container}>
           {renderFields()}
           {buttonText ? (
             <Button
@@ -90,7 +94,15 @@ const TextInputArray = React.forwardRef(
 const styles = ScaledSheet.create({
   labelContainer: {flexDirection: 'row', alignItems: 'center'},
   container: {
+    marginTop: '12@vs',
+    marginBottom: '4@vs',
+  },
+  containerWithButton: {
     marginVertical: '12@vs',
+  },
+  textInput: {
+    marginVertical: 0,
+    marginBottom: '8@vs',
   },
 });
 

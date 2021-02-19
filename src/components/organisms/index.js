@@ -1,3 +1,4 @@
 import Form from './Form';
+import ChoiceList from './ChoiceList';
 
-export {Form};
+export {Form, ChoiceList};

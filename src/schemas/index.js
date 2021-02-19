@@ -39,8 +39,11 @@ export const FORM_ONE = {
   properties: {
     _id: 'objectId',
     dateOfInspection: 'string',
-    namesOfInspectionOfficers: 'string[]',
-    facilityAddress: 'Address',
+    nameOfInspectionOfficers: 'string[]',
+    facilityName: 'string',
+    facilityAddressLineOne: 'string',
+    facilityAddressLineTwo: 'string',
+    facilityAddressLineThree: 'string?',
     facilityOwner: 'string[]',
     facilityOwnerEmail: 'string',
     facilityOwnerPhone: 'Phone',

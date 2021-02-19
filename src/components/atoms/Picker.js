@@ -71,6 +71,7 @@ const styles = ScaledSheet.create({
     borderBottomLeftRadius: 0,
     borderWidth: 1,
     borderColor: RawColors.dimGrey,
+    backgroundColor: RawColors.whiteTwo,
   },
   item: {
     justifyContent: 'flex-start',
