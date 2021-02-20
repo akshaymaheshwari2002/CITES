@@ -17,4 +17,8 @@ export const Images = {
   searchBarIcon: require('./images/Source icon.png'),
   rectangularBar: require('./images/rectangle-77.png'),
   redCircle: require('./images/blackCircle.png'),
+  onboardingThreeA: require('./images/OnboardingThreeA.png'),
+  onboardingThreeAPartTwo: require('./images/OnboardingThreeAPartTwo.png'),
+  backgroundNavbarLower: require('./images/BackgroundNavbarlower.png'),
+  backOnboardingOneA: require('./images/BackOnboardingOneA.png'),
 };

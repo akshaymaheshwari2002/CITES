@@ -13,6 +13,9 @@ import {
   FacilityScoreGreaterEight,
   LanguageSelection,
   OnboardingOne,
+  OnboardingOneA,
+  OnboardingTwoA,
+  OnboardingThreeA,
   InspectionFlow,
   GiveFeedback,
   OnboardingFour,
@@ -20,6 +23,7 @@ import {
   OnboardingTwo,
   StepsSummary,
   SubmitFeedback,
+  SourceFlow,
   FacilityRegistered,
   FacilityInfringement,
   ProductionCapacityCalculator,
@@ -57,9 +61,17 @@ const AppNavigator = () => {
           options={{headerShown: false}}
           component={LanguageSelection}
         />
+        <Stack.Screen
+          name="SourceFlow"
+          options={{headerTransparent: true}}
+          component={SourceFlow}
+        />
         <Stack.Screen name="OnboardingOne" component={OnboardingOne} />
         <Stack.Screen name="OnboardingTwo" component={OnboardingTwo} />
         <Stack.Screen name="OnboardingThree" component={OnboardingThree} />
+        <Stack.Screen name="OnboardingOneA" component={OnboardingOneA} />
+        <Stack.Screen name="OnboardingTwoA" component={OnboardingTwoA} />
+        <Stack.Screen name="OnboardingThreeA" component={OnboardingThreeA} />
         <Stack.Screen name="OnboardingFour" component={OnboardingFour} />
         <Stack.Screen
           name="StepOne"

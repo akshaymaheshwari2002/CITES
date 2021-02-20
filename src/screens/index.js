@@ -5,13 +5,17 @@ import FacilityScoreGreaterEight from './FacilityScoreGreaterEight';
 import GiveFeedback from './GiveFeedback';
 import LanguageSelection from './LanguageSelection';
 import OnboardingOne from './OnboardingOne';
+import OnboardingOneA from './OnboardingOneA';
 import OnboardingTwo from './OnboardingTwo';
+import OnboardingTwoA from './OnboardingTwoA';
 import OnboardingThree from './OnboardingThree';
+import OnboardingThreeA from './OnboardingThreeA';
 import OnboardingFour from './OnboardingFour';
 import StepsSummary from './StepsSummary';
 import StepOne from './StepOne';
 import SubmitFeedback from './SubmitFeedback';
 import HomePage from './HomePage';
+import SourceFlow from './SourceFlow';
 import InspectionFlow from './InspectionFlow';
 import ContinueInspection from './ContinueInspection';
 import FacilityInfringement from './FacilityInfringement';
@@ -31,6 +35,10 @@ export {
   LanguageSelection,
   OnboardingOne,
   SearchDummy,
+  SourceFlow,
+  OnboardingOneA,
+  OnboardingTwoA,
+  OnboardingThreeA,
   FacilityInfringement,
   OnboardingTwo,
   Notes,

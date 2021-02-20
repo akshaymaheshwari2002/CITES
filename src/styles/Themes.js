@@ -55,6 +55,10 @@ const Fonts = {
     fontFamily: 'Lato-Bold',
     fontSize: moderateScale(20),
   },
+  Lato30R: {
+    fontFamily: 'Lato-Regular',
+    fontSize: moderateScale(30),
+  },
   Lato50R: {
     fontFamily: 'Lato-Regular',
     fontSize: moderateScale(50),
