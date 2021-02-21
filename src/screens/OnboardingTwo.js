@@ -97,9 +97,7 @@ const styles = ScaledSheet.create({
   },
   backgroundImage: {
     resizeMode: 'center',
-    position: 'absolute',
     paddingLeft: '700@s',
-    paddingTop: '600@s',
   },
   itemIcon: {
     width: 22,

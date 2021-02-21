@@ -21,4 +21,5 @@ export const Images = {
   onboardingThreeAPartTwo: require('./images/OnboardingThreeAPartTwo.png'),
   backgroundNavbarLower: require('./images/BackgroundNavbarlower.png'),
   backOnboardingOneA: require('./images/BackOnboardingOneA.png'),
+  semiCircle: require('./images/Group747.png'),
 };
