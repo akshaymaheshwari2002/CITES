@@ -58,7 +58,7 @@ const ProductionCapacityCalculator = () => {
             id: 'screen.ProductionCapacityCalculator.titleText',
           })}
         </Text>
-        <Container.ScrollView>
+        <Container.ScrollView style={CommonStyles.flex1}>
           <Text style={[styles.paragraph, Fonts.Lato17R]}>
             {intl.formatMessage({
               id: 'screen.ProductionCapacityCalculator.infoText_1',
