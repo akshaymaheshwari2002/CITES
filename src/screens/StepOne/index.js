@@ -100,7 +100,6 @@ const StepOne = ({navigation, route}) => {
           return (
             <ChecklistCell
               key={el.id}
-              id={el.id}
               content={el.content}
               value={stepData[el.id]}
               onChange={(value) =>
@@ -109,16 +108,16 @@ const StepOne = ({navigation, route}) => {
             />
           );
         })}
-        <View>
-          <Button
-            buttonContent={formatMessage({
-              id: 'screen.stepOne.continueToStepTwo',
-            })}
-            buttonStyle={(pressed) => styles.button}
-            buttonTextStyle={(pressed) => styles.buttonTextStyle}
-            onPress={() => {}}
-          />
-        </View>
+        <Button
+          buttonContent={formatMessage({
+            id: 'screen.stepOne.continueToStepTwo',
+          })}
+          buttonStyle={(pressed) => styles.button}
+          buttonTextStyle={(pressed) => styles.buttonTextStyle}
+          onPress={() => {
+            navigation.navigate('StepTwo');
+          }}
+        />
       </Container.ScrollView>
     </Container>
   );
@@ -193,6 +192,7 @@ const checkliststyles = ScaledSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderColor: RawColors.prussianBlue,
+    backgroundColor: RawColors.white,
     height: '40@vs',
   },
   buttonTextStyle: {

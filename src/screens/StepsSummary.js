@@ -3,20 +3,21 @@ import {View, Text, ImageBackground} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet} from 'react-native-size-matters';
 
-import {RawColors} from '@styles/Themes';
+import {RawColors, Fonts} from '@styles/Themes';
 import {Container, Button} from '@atoms';
 import {Images} from '@assets';
 import CommonStyles from '@styles/CommonStyles';
 
 const StepsSummary = ({navigation}) => {
   const {formatMessage} = useIntl();
+
   return (
     <Container>
-      <ImageBackground
-        source={Images.onboardingTwo}
-        style={CommonStyles.flex1}
-        imageStyle={styles.backgroundImage}>
-        <Container.ScrollView style={styles.contentContainer}>
+      <Container.ScrollView contentContainerStyle={styles.contentContainer}>
+        <ImageBackground
+          source={Images.semiCircle}
+          style={CommonStyles.flex1}
+          imageStyle={styles.backgroundImage}>
           <Text style={styles.title}>
             {formatMessage({id: 'screen.StepsSummary.headerPartOne'})}
           </Text>
@@ -26,50 +27,44 @@ const StepsSummary = ({navigation}) => {
           <Text style={styles.title}>
             {formatMessage({id: 'screen.StepsSummary.headerPartThree'})}
           </Text>
-          <View style={styles.contentContainer}>
-            <View style={styles.one}>
-              <View style={styles.point}>
-                <View style={styles.numberContainer}>
-                  <Text style={styles.number}>1</Text>
-                </View>
-                <View styles={styles.point1}>
-                  <Text style={styles.content}>
-                    {formatMessage({id: 'screen.StepsSummary.contentOne'})}
-                  </Text>
-                  <Text style={styles.txt}>
-                    {formatMessage({id: 'screen.StepsSummary.contentFour'})}
-                  </Text>
-                </View>
+          <View style={styles.pointsContainer}>
+            <View style={[styles.pointRow, styles.pointOne]}>
+              <View style={styles.numberContainer}>
+                <Text style={[Fonts.Lato20B, {color: RawColors.white}]}>1</Text>
+              </View>
+              <View>
+                <Text style={styles.pointTitle}>
+                  {formatMessage({id: 'screen.StepsSummary.contentOne'})}
+                </Text>
+                <Text style={styles.pointContent}>
+                  {formatMessage({id: 'screen.StepsSummary.contentFour'})}
+                </Text>
               </View>
             </View>
-            <View style={styles.two}>
-              <View style={styles.point}>
-                <View style={styles.numberContainer}>
-                  <Text style={styles.number}>2</Text>
-                </View>
-                <View style={styles.point1}>
-                  <Text style={styles.content}>
-                    {formatMessage({id: 'screen.StepsSummary.contentTwo'})}
-                  </Text>
-                  <Text style={styles.txt}>
-                    {formatMessage({id: 'screen.StepsSummary.contentFour'})}
-                  </Text>
-                </View>
+            <View style={[styles.pointRow, styles.pointTwo]}>
+              <View style={styles.numberContainer}>
+                <Text style={[Fonts.Lato20B, {color: RawColors.white}]}>2</Text>
+              </View>
+              <View>
+                <Text style={styles.pointTitle}>
+                  {formatMessage({id: 'screen.StepsSummary.contentTwo'})}
+                </Text>
+                <Text style={styles.pointContent}>
+                  {formatMessage({id: 'screen.StepsSummary.contentFour'})}
+                </Text>
               </View>
             </View>
-            <View style={styles.three}>
-              <View style={styles.point}>
-                <View style={styles.numberContainer}>
-                  <Text style={styles.number}>3</Text>
-                </View>
-                <View style={styles.point1}>
-                  <Text style={styles.content}>
-                    {formatMessage({id: 'screen.StepsSummary.contentThree'})}
-                  </Text>
-                  <Text style={styles.txt}>
-                    {formatMessage({id: 'screen.StepsSummary.contentFour'})}
-                  </Text>
-                </View>
+            <View style={[styles.pointRow, styles.pointThree]}>
+              <View style={styles.numberContainer}>
+                <Text style={[Fonts.Lato20B, {color: RawColors.white}]}>3</Text>
+              </View>
+              <View>
+                <Text style={styles.pointTitle}>
+                  {formatMessage({id: 'screen.StepsSummary.contentThree'})}
+                </Text>
+                <Text style={styles.pointContent}>
+                  {formatMessage({id: 'screen.StepsSummary.contentFour'})}
+                </Text>
               </View>
             </View>
           </View>
@@ -80,16 +75,14 @@ const StepsSummary = ({navigation}) => {
                 params: {showToolTip: false},
               })
             }
-            buttonContent="BEGIN INSPECTION"
-            buttonTextStyle={() => {
-              return styles.btnTxt;
-            }}
-            buttonStyle={() => {
-              return styles.btn;
-            }}
+            buttonContent={formatMessage({
+              id: 'screen.InspectionFlow.buttonTwoPartTwo',
+            })}
+            buttonTextStyle={() => styles.buttonText}
+            buttonStyle={() => styles.button}
           />
-        </Container.ScrollView>
-      </ImageBackground>
+        </ImageBackground>
+      </Container.ScrollView>
     </Container>
   );
 };
@@ -97,54 +90,59 @@ const StepsSummary = ({navigation}) => {
 const styles = ScaledSheet.create({
   contentContainer: {
     backgroundColor: RawColors.transparent,
-    marginHorizontal: '16@s',
+    paddingHorizontal: '16@s',
+    paddingTop: '16@vs',
+  },
+  backgroundImage: {
+    resizeMode: 'contain',
+    position: 'absolute',
+    left: '-110%',
   },
   title: {
-    fontWeight: 'bold',
-    fontSize: '22@s',
+    ...Fonts.HelveticaNeue30B,
+    lineHeight: '30@ms',
+    letterSpacing: '0.48@ms',
   },
-  content: {
-    marginHorizontal: '10@s',
-    fontSize: '22@s',
-    fontWeight: 'bold',
-    color: RawColors.darkGrey,
+  pointsContainer: {
+    flexGrow: 1,
+    justifyContent: 'space-between',
+    marginTop: '46@vs',
+    marginBottom: '90@ms',
   },
-  txt: {
-    fontSize: '14@s',
-    marginLeft: '8@s',
-    color: RawColors.darkGrey,
-    flexDirection: 'column',
+  pointRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
+  pointOne: {marginLeft: '30%'},
+  pointTwo: {marginLeft: '42%', paddingVertical: '6%'},
+  pointThree: {marginLeft: '30%'},
   numberContainer: {
-    height: 40,
-    width: 40,
+    height: '46@ms',
+    width: '46@ms',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: RawColors.softRed,
-    borderRadius: 20,
+    borderRadius: '23@ms',
+    marginRight: '16@s',
   },
-  number: {
-    fontSize: 20,
-    color: RawColors.white,
+  pointTitle: {
+    ...Fonts.HelveticaNeue30B,
+    lineHeight: '30@ms',
+    color: RawColors.darkGrey,
   },
-  backgroundImage: {
-    resizeMode: 'center',
+  pointContent: {
+    ...Fonts.Lato17R,
+    lineHeight: '17@ms',
+    color: RawColors.darkGrey,
   },
-  btn: {
-    height: '40@s',
-    marginHorizontal: '15@s',
-    marginVertical: '20@vs',
+  button: {
+    marginBottom: '16@vs',
   },
-  btnTxt: {
-    fontWeight: 'bold',
-    fontSize: 20,
+  buttonText: {
+    textTransform: 'uppercase',
     color: RawColors.black,
+    ...Fonts.Lato20B,
   },
-  point: {flexDirection: 'row'},
-  point1: {flexDirection: 'column'},
-  one: {marginLeft: '30%', marginVertical: '28@s'},
-  two: {marginLeft: '42%', marginVertical: '34@s'},
-  three: {marginLeft: '30%', marginVertical: '40@s'},
 });
 
 export default StepsSummary;

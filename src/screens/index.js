@@ -13,6 +13,7 @@ import OnboardingThreeA from './OnboardingThreeA';
 import OnboardingFour from './OnboardingFour';
 import StepsSummary from './StepsSummary';
 import StepOne from './StepOne';
+import StepTwo from './StepTwo';
 import SubmitFeedback from './SubmitFeedback';
 import HomePage from './HomePage';
 import SourceFlow from './SourceFlow';
@@ -51,6 +52,7 @@ export {
   InspectionFlow,
   ContinueInspection,
   StepOne,
+  StepTwo,
   SubmitFeedback,
   ProductionCapacityCalculator,
   HomePage,

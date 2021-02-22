@@ -14,11 +14,12 @@ export const Images = {
   searchIcon: require('./images/SearchIcon.png'),
   backgroundOverlay: require('./images/Background1.png'),
   maskBackground: require('./images/mask-group-8.png'),
-  searchBarIcon: require('./images/Source icon.png'),
+  searchBarIcon: require('./images/Source_icon.png'),
   rectangularBar: require('./images/rectangle-77.png'),
   redCircle: require('./images/blackCircle.png'),
   onboardingThreeA: require('./images/OnboardingThreeA.png'),
   onboardingThreeAPartTwo: require('./images/OnboardingThreeAPartTwo.png'),
   backgroundNavbarLower: require('./images/BackgroundNavbarlower.png'),
   backOnboardingOneA: require('./images/BackOnboardingOneA.png'),
+  semiCircle: require('./images/Group747.png'),
 };

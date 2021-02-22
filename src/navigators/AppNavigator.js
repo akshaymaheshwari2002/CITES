@@ -32,6 +32,7 @@ import {
   WebView,
   FormOne,
   ContinueInspection,
+  StepTwo,
 } from '@screens';
 import TabNavigator from './TabNavigator';
 
@@ -81,6 +82,7 @@ const AppNavigator = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen name="StepsSummary" component={StepsSummary} />
+        <Stack.Screen name="StepTwo" component={StepTwo} />
         <Stack.Screen name="GiveFeedback" component={GiveFeedback} />
         <Stack.Screen name="SubmitFeedback" component={SubmitFeedback} />
         <Stack.Screen name="FacilityScore" component={FacilityScore} />
