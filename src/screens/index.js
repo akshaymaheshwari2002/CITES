@@ -16,6 +16,7 @@ import StepOne from './StepOne';
 import SubmitFeedback from './SubmitFeedback';
 import HomePage from './HomePage';
 import SourceFlow from './SourceFlow';
+import SourceCode from './SourceCode';
 import InspectionFlow from './InspectionFlow';
 import ContinueInspection from './ContinueInspection';
 import FacilityInfringement from './FacilityInfringement';
@@ -36,6 +37,7 @@ export {
   OnboardingOne,
   SearchDummy,
   SourceFlow,
+  SourceCode,
   OnboardingOneA,
   OnboardingTwoA,
   OnboardingThreeA,
