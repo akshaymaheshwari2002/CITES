@@ -26,6 +26,7 @@ import FormOne from './FormOne';
 import SearchDummy from './SearchDummy';
 import Notes from './Notes';
 import DrawerMenu from './DrawerMenu';
+import DetermineSourceCode from './DetermineSourceCode';
 
 export {
   FacilityScore,
@@ -56,4 +57,5 @@ export {
   HomePage,
   WebView,
   FormOne,
+  DetermineSourceCode,
 };

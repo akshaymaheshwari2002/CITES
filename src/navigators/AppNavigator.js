@@ -32,6 +32,7 @@ import {
   FormOne,
   ContinueInspection,
   StepTwo,
+  DetermineSourceCode,
 } from '@screens';
 import TabNavigator from './TabNavigator';
 
@@ -112,6 +113,10 @@ const AppNavigator = () => {
         <Stack.Screen
           name="ProductionCapacityCalculator"
           component={ProductionCapacityCalculator}
+        />
+        <Stack.Screen
+          name="DetermineSourceCode"
+          component={DetermineSourceCode}
         />
         <Stack.Screen
           name="HomePage"

@@ -51,7 +51,7 @@ const SourceFlow = ({navigation}) => {
                   }
                 />
                 <Button
-                  //onPress={() => navigation.navigate('StepsSummary')}
+                  onPress={() => navigation.navigate('DetermineSourceCode')}
                   buttonStyle={() => styles.filledButton}
                   buttonTextStyle={() => ({color: RawColors.black})}
                   buttonContent={
