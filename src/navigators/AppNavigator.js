@@ -22,6 +22,7 @@ import {
   OnboardingThree,
   OnboardingTwo,
   StepsSummary,
+  SourceCode,
   SubmitFeedback,
   SourceFlow,
   FacilityRegistered,
@@ -68,6 +69,7 @@ const AppNavigator = () => {
           options={{headerTransparent: true}}
           component={SourceFlow}
         />
+        <Stack.Screen name="SourceCode" component={SourceCode} />
         <Stack.Screen name="OnboardingOne" component={OnboardingOne} />
         <Stack.Screen name="OnboardingTwo" component={OnboardingTwo} />
         <Stack.Screen name="OnboardingThree" component={OnboardingThree} />
