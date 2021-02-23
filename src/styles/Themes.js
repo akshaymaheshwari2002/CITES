@@ -21,10 +21,13 @@ const RawColors = {
   greyLight: '#f4fcef',
   grey57: '#919191',
   grey75: '#BFBFBF',
+  greyShade: 'rgb(242, 242, 247)',
   darkSalmon: '#cc685a',
   darkGreyBlue: '#2F414B',
   softRed: '#DA6F60',
   brightRed: '#DE7162',
+  redShade: '#ED6A5C',
+  darkRed: '#EE695C',
   tuna: '#3C3C43',
   green: '#3BB54A',
   ghostCheckboxBorder: '#C7C7CC',
@@ -39,6 +42,10 @@ const RawColors = {
 };
 
 const Fonts = {
+  Didot56B: {
+    fontFamily: 'Didot-Bold',
+    fontSize: moderateScale(56),
+  },
   Lato12R: {
     fontFamily: 'Lato-Regular',
     fontSize: moderateScale(12),
@@ -54,6 +61,10 @@ const Fonts = {
   Lato20B: {
     fontFamily: 'Lato-Bold',
     fontSize: moderateScale(20),
+  },
+  Lato30R: {
+    fontFamily: 'Lato-Regular',
+    fontSize: moderateScale(30),
   },
   Lato50R: {
     fontFamily: 'Lato-Regular',

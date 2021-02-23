@@ -41,6 +41,7 @@ const HomePage = ({navigation}) => {
                     })}
                   />
                   <Button
+                    onPress={() => navigation.navigate('SourceFlow')}
                     buttonStyle={() => styles.filledButton}
                     buttonTextStyle={() => ({color: RawColors.white})}
                     buttonContent={formatMessage({

@@ -13,13 +13,18 @@ import {
   FacilityScoreGreaterEight,
   LanguageSelection,
   OnboardingOne,
+  OnboardingOneA,
+  OnboardingTwoA,
+  OnboardingThreeA,
   InspectionFlow,
   GiveFeedback,
   OnboardingFour,
   OnboardingThree,
   OnboardingTwo,
   StepsSummary,
+  SourceCode,
   SubmitFeedback,
+  SourceFlow,
   FacilityRegistered,
   FacilityInfringement,
   ProductionCapacityCalculator,
@@ -27,6 +32,7 @@ import {
   WebView,
   FormOne,
   ContinueInspection,
+  StepTwo,
 } from '@screens';
 import TabNavigator from './TabNavigator';
 
@@ -57,9 +63,18 @@ const AppNavigator = () => {
           options={{headerShown: false}}
           component={LanguageSelection}
         />
+        <Stack.Screen
+          name="SourceFlow"
+          options={{headerTransparent: true}}
+          component={SourceFlow}
+        />
+        <Stack.Screen name="SourceCode" component={SourceCode} />
         <Stack.Screen name="OnboardingOne" component={OnboardingOne} />
         <Stack.Screen name="OnboardingTwo" component={OnboardingTwo} />
         <Stack.Screen name="OnboardingThree" component={OnboardingThree} />
+        <Stack.Screen name="OnboardingOneA" component={OnboardingOneA} />
+        <Stack.Screen name="OnboardingTwoA" component={OnboardingTwoA} />
+        <Stack.Screen name="OnboardingThreeA" component={OnboardingThreeA} />
         <Stack.Screen name="OnboardingFour" component={OnboardingFour} />
         <Stack.Screen
           name="StepOne"
@@ -67,6 +82,7 @@ const AppNavigator = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen name="StepsSummary" component={StepsSummary} />
+        <Stack.Screen name="StepTwo" component={StepTwo} />
         <Stack.Screen name="GiveFeedback" component={GiveFeedback} />
         <Stack.Screen name="SubmitFeedback" component={SubmitFeedback} />
         <Stack.Screen name="FacilityScore" component={FacilityScore} />

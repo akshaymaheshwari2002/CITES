@@ -1,14 +1,13 @@
 import React from 'react';
 import {ImageBackground, Text, View} from 'react-native';
-import {ScaledSheet, scale} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/Feather';
+import {ScaledSheet} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 
 import {Container, Button} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import {Images} from '@assets';
 
-const InspectionFlow = ({navigation}) => {
+const SourceFlow = ({navigation}) => {
   const {formatMessage} = useIntl();
 
   return (
@@ -19,16 +18,13 @@ const InspectionFlow = ({navigation}) => {
         <Container.ScrollView contentContainerStyle={styles.scrollContainer}>
           <View style={styles.logo}>
             <Text style={styles.headerOne}>
-              {formatMessage({id: 'screen.InspectionFlow.headerPartOne'})}
+              {formatMessage({id: 'screen.SourceFlow.headerPartOne'})}
             </Text>
             <Text style={styles.headerTwo}>
-              {formatMessage({id: 'screen.InspectionFlow.headerPartTwo'})}
+              {formatMessage({id: 'screen.SourceFlow.headerPartTwo'})}
             </Text>
             <Text style={styles.headerTwo}>
-              {formatMessage({id: 'screen.InspectionFlow.headerPartThree'})}
-            </Text>
-            <Text style={styles.headerTwo}>
-              {formatMessage({id: 'screen.InspectionFlow.headerPartFour'})}
+              {formatMessage({id: 'screen.SourceFlow.headerPartThree'})}
             </Text>
           </View>
           <ImageBackground
@@ -41,79 +37,30 @@ const InspectionFlow = ({navigation}) => {
               imageStyle={styles.backgroundImage}>
               <View style={styles.contentContainer}>
                 <Button
-                  onPress={() => navigation.navigate('OnboardingOne')}
+                  onPress={() => navigation.navigate('OnboardingOneA')}
                   buttonStyle={() => styles.filledButton}
                   buttonTextStyle={() => ({color: RawColors.black})}
                   buttonContent={
                     <>
                       <Text style={styles.buttonTextOne}>
                         {formatMessage({
-                          id: 'screen.InspectionFlow.buttonOnePartOne',
+                          id: 'screen.SourceFlow.buttonOnePartOne',
                         })}
                       </Text>
-                      <View style={styles.secondText}>
-                        <Text style={styles.buttonTextTwo}>
-                          {formatMessage({
-                            id: 'screen.InspectionFlow.buttonOnePartTwo',
-                          })}
-                        </Text>
-                        <Icon
-                          name="chevron-right"
-                          size={scale(14)}
-                          style={styles.icon}
-                        />
-                      </View>
                     </>
                   }
                 />
                 <Button
-                  onPress={() => navigation.navigate('StepsSummary')}
+                  //onPress={() => navigation.navigate('StepsSummary')}
                   buttonStyle={() => styles.filledButton}
                   buttonTextStyle={() => ({color: RawColors.black})}
                   buttonContent={
                     <>
                       <Text style={styles.buttonTextOne}>
                         {formatMessage({
-                          id: 'screen.InspectionFlow.buttonTwoPartOne',
+                          id: 'screen.SourceFlow.buttonTwoPartOne',
                         })}
                       </Text>
-                      <View style={styles.secondText}>
-                        <Text style={styles.buttonTextTwo}>
-                          {formatMessage({
-                            id: 'screen.InspectionFlow.buttonTwoPartTwo',
-                          })}
-                        </Text>
-                        <Icon
-                          name="chevron-right"
-                          size={scale(14)}
-                          style={styles.icon}
-                        />
-                      </View>
-                    </>
-                  }
-                />
-                <Button
-                  onPress={() => navigation.navigate('ContinueInspection')}
-                  buttonStyle={() => styles.filledButton}
-                  buttonContent={
-                    <>
-                      <Text style={styles.buttonTextOne}>
-                        {formatMessage({
-                          id: 'screen.InspectionFlow.buttonThreePartOne',
-                        })}
-                      </Text>
-                      <View style={styles.secondText}>
-                        <Text style={styles.buttonTextTwo}>
-                          {formatMessage({
-                            id: 'screen.InspectionFlow.buttonThreePartTwo',
-                          })}
-                        </Text>
-                        <Icon
-                          name="chevron-right"
-                          size={scale(14)}
-                          style={styles.icon}
-                        />
-                      </View>
                     </>
                   }
                 />
@@ -169,23 +116,13 @@ const styles = ScaledSheet.create({
     marginBottom: '16@vs',
   },
   buttonTextOne: {
-    ...Fonts.HelveticaNeue17R,
+    ...Fonts.Lato17R,
     color: RawColors.darkGreyBlue,
     alignSelf: 'flex-start',
-    marginLeft: '20@s',
-    marginTop: '18@s',
+    marginLeft: '16@s',
+    marginVertical: '30@s',
   },
-  secondText: {
-    flexDirection: 'row',
-    marginLeft: '20@s',
-    marginBottom: '18@s',
-  },
-  buttonTextTwo: {
-    ...Fonts.HelveticaNeue18B,
-    fontWeight: 'bold',
-    color: RawColors.darkGreyBlue,
-    alignSelf: 'flex-start',
-  },
+
   logo: {
     position: 'absolute',
     alignSelf: 'center',
@@ -193,11 +130,6 @@ const styles = ScaledSheet.create({
     width: '78.4%',
     top: '98@vs',
   },
-  icon: {
-    marginLeft: '2@s',
-    flex: 1,
-    marginTop: '7@ms',
-  },
 });
 
-export default InspectionFlow;
+export default SourceFlow;
