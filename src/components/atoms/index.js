@@ -8,6 +8,7 @@ import Checkbox from './Checkbox';
 import Tooltip from './Tooltip';
 import Header from './Header';
 import Loader from './Loader';
+import OverlayModal from './OverlayModal';
 
 export {
   Container,
@@ -20,4 +21,5 @@ export {
   Tooltip,
   Header,
   Loader,
+  OverlayModal,
 };

@@ -37,6 +37,7 @@ const RawColors = {
   backToolTipColor: 'rgba(0,0,0,0.5)',
   lightContinueInspection: '#F6F9EF',
   eggshell: 'rgb(239,243,222)',
+  silverFoil: '#B1B1B0',
 };
 
 const Fonts = {
