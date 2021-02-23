@@ -42,14 +42,17 @@ const Container = ({
   );
 };
 
-Container.ScrollView = ({children, contentContainerStyle, ...restProps}) => (
-  <KeyboardAwareScrollView
-    keyboardShouldPersistTaps="handled"
-    enableOnAndroid={true}
-    contentContainerStyle={[styles.container, contentContainerStyle]}
-    {...restProps}>
-    {children}
-  </KeyboardAwareScrollView>
+Container.ScrollView = React.forwardRef(
+  ({children, contentContainerStyle, ...restProps}, ref) => (
+    <KeyboardAwareScrollView
+      ref={ref}
+      keyboardShouldPersistTaps="handled"
+      enableOnAndroid={true}
+      contentContainerStyle={[styles.container, contentContainerStyle]}
+      {...restProps}>
+      {children}
+    </KeyboardAwareScrollView>
+  ),
 );
 
 const styles = ScaledSheet.create({

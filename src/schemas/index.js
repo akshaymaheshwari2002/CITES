@@ -26,10 +26,10 @@ export const SPECIES = {
   properties: {
     _id: 'objectId',
     name: 'string',
-    numberOfSpecimen: 'int',
-    numberOfBreedingAdults: 'int',
-    numberOfSpeciemenExportedSinceLastInspection: 'int',
-    sourceCodeOfPreviousExport: 'string',
+    numberOfSpecimen: 'int?',
+    numberOfBreedingAdults: 'int?',
+    numberOfSpeciemenExportedSinceLastInspection: 'int?',
+    sourceCodeOfPreviousExport: 'string?',
   },
 };
 
@@ -46,10 +46,11 @@ export const FORM_ONE = {
     facilityAddressLineThree: 'string?',
     facilityOwner: 'string[]',
     facilityOwnerEmail: 'string',
-    facilityOwnerPhone: 'Phone',
-    facilityEshtablishmentDate: 'date',
+    facilityOwnerPhone: 'string',
+    registeredSpeciesName: 'string[]',
+    facilityEshtablishmentDate: 'string',
     typeOfInspection: 'string[]',
-    registeredSpecies: 'Species[]',
+    registeredSpeciesData: 'Species[]',
   },
 };
 

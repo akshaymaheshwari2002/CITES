@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {TextInput as Input, Text, View} from 'react-native';
 import PropTypes from 'prop-types';
 import {moderateScale, ScaledSheet} from 'react-native-size-matters';
@@ -10,6 +10,7 @@ import CommonStyles from '@styles/CommonStyles';
 const TextInput = React.forwardRef(
   (
     {
+      value,
       label,
       error,
       onChange,
@@ -20,6 +21,14 @@ const TextInput = React.forwardRef(
     },
     ref,
   ) => {
+    const getValue = useCallback(() => {
+      if (value) {
+        return typeof value === 'string' ? value : value.toString();
+      } else {
+        return '';
+      }
+    }, [value]);
+
     return (
       <>
         <View style={styles.labelContainer}>
@@ -39,6 +48,7 @@ const TextInput = React.forwardRef(
           ref={ref}
           onChangeText={onChange}
           style={[styles.inputContainer, Fonts.Lato15R, style]}
+          value={getValue()}
           {...restProps}
         />
         {error ? (
@@ -71,6 +81,7 @@ const styles = ScaledSheet.create({
   labelContainer: {flexDirection: 'row', alignItems: 'center'},
   inputContainer: {
     marginVertical: '12@vs',
+    height: '46@vs',
     borderWidth: 1,
     borderColor: RawColors.dimGrey,
     backgroundColor: RawColors.whiteTwo,

@@ -81,7 +81,7 @@ const styles = ScaledSheet.create({
   },
   logo: {
     position: 'absolute',
-    top: '60@vs',
+    top: '80@vs',
     resizeMode: 'contain',
     alignSelf: 'center',
   },

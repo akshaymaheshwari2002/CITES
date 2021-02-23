@@ -4,34 +4,122 @@ import {scale, ScaledSheet, verticalScale} from 'react-native-size-matters';
 import {useForm} from 'react-hook-form';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {Button, Container} from '@atoms';
 import {Form} from '@organisms';
 import getFormFieldsPageOne from './FormFieldsPageOne';
 import getFormFieldsPageTwo from './FormFieldsPageTwo';
 import {Fonts, RawColors} from '@styles/Themes';
+import {getInstance} from '@utils/RealmHelper';
+import {FormOne as FormOneModel, Species} from '@models';
+import {setActiveFormOneId} from '@store/slices/persistedSlice';
+import Constants from '@utils/Constants';
+import {getDefaultValues} from '@utils/CommonFunctions';
 
 const FormOne = ({navigation}) => {
+  const dispatch = useDispatch();
   const {formatMessage} = useIntl();
   const formProps = useForm();
+  const scrollViewRef = useRef();
+  const isMounting = useRef(true);
   const formData = useRef({});
   const switchedFromPageTwo = useRef(false);
   const switchedFromPageOne = useRef(false);
   const [formFieldsPage, setFormFieldsPage] = useState(1);
+  const activeFormOneId = useSelector(
+    (state) => state.persistedReducer.activeFormOneId,
+  );
+  const formValues = formProps.watch();
+  const selectedSpeciesName = formProps.watch('name', {});
   const formFields = useMemo(
     () =>
-      formFieldsPage === 1 ? getFormFieldsPageOne() : getFormFieldsPageTwo(),
+      formFieldsPage === 1
+        ? getFormFieldsPageOne()
+        : getFormFieldsPageTwo({
+            name: {
+              items: formData.current.registeredSpeciesName?.map((name) => ({
+                label: name,
+                value: name,
+              })),
+            },
+          }),
     [formFieldsPage],
   );
-  const watch = formProps.watch();
 
-  const handleSubmit = useCallback(() => {
-    if (formFieldsPage === 1) {
-      setFormFieldsPage(2);
-      switchedFromPageOne.current = true;
-    } else {
-    }
-  }, [formFieldsPage]);
+  const handleSubmit = useCallback(
+    async (data) => {
+      const realm = await getInstance();
+
+      if (formFieldsPage === 1) {
+        const formOneData = new FormOneModel({
+          ...data,
+          typeOfInspection: Object.keys(data.typeOfInspection),
+          _id: activeFormOneId,
+        });
+
+        dispatch(setActiveFormOneId(formOneData._id.toHexString()));
+        realm.write(() => {
+          realm.create('FormOne', formOneData, 'modified');
+        });
+
+        setFormFieldsPage(2);
+        switchedFromPageOne.current = true;
+      } else {
+        realm.write(() => {
+          let activeFormOne = JSON.parse(
+            JSON.stringify(
+              realm
+                .objects('FormOne')
+                .filter(({_id}) => _id.toHexString() === activeFormOneId)[0],
+            ),
+          );
+          const alreadyExists = activeFormOne.registeredSpeciesData.some(
+            (entry) => data.name === entry.name,
+          );
+
+          if (alreadyExists) {
+            let existingData = activeFormOne.registeredSpeciesData.filter(
+              (entry) => data.name === entry.name,
+            )[0];
+            existingData = new Species({
+              ...data,
+              _id: existingData._id,
+            });
+
+            realm.create('Species', existingData, 'modified');
+          } else {
+            realm.objects('FormOne').forEach((form) => {
+              if (form._id.toHexString() === activeFormOneId) {
+                form.registeredSpeciesData.push(new Species(data));
+              }
+            });
+          }
+        });
+
+        formProps.reset(getDefaultValues(getFormFieldsPageTwo()));
+      }
+    },
+    [activeFormOneId, dispatch, formFieldsPage, formProps],
+  );
+
+  const setSpeciesDataInForm = useCallback(
+    (_selectedSpeciesName) => {
+      let species = formData.current.registeredSpeciesData.filter(({name}) => {
+        return name === _selectedSpeciesName.value;
+      })[0];
+      species = getFormFieldsPageTwo().reduce(
+        (acc, current) => ({
+          ...acc,
+          [current.name]: species?.[current.name] ?? '',
+        }),
+        {},
+      );
+
+      formProps.reset({...species, name: _selectedSpeciesName.value});
+    },
+    [formProps],
+  );
 
   useEffect(() => {
     navigation.setOptions({
@@ -53,9 +141,9 @@ const FormOne = ({navigation}) => {
 
   useEffect(() => {
     if (!switchedFromPageOne.current && !switchedFromPageTwo.current) {
-      formData.current = {...formData.current, ...watch};
+      formData.current = {...formData.current, ...formValues};
     }
-  }, [watch]);
+  }, [formValues]);
 
   useEffect(() => {
     if (formFieldsPage === 1 && switchedFromPageTwo.current) {
@@ -87,9 +175,52 @@ const FormOne = ({navigation}) => {
     }
   }, [formFieldsPage, formProps]);
 
+  useEffect(() => {
+    if (isMounting.current) {
+      (async () => {
+        if (activeFormOneId) {
+          const realm = await getInstance();
+          const formOneObjects = realm.objects('FormOne');
+          const activeFormData = JSON.parse(
+            JSON.stringify(
+              formOneObjects.filter(
+                ({_id}) => _id.toHexString() === activeFormOneId,
+              )[0],
+            ),
+          );
+          const typeOfInspection = activeFormData.typeOfInspection.reduce(
+            (acc, current) => ({
+              ...acc,
+              [Constants[current]]: true,
+            }),
+            {},
+          );
+
+          delete activeFormData._id;
+          formData.current = {...activeFormData, typeOfInspection};
+          formProps.reset({...activeFormData, typeOfInspection});
+        }
+      })();
+
+      isMounting.current = false;
+    }
+  }, [activeFormOneId, formProps]);
+
+  useEffect(() => {
+    if (formFieldsPage === 2) {
+      setTimeout(() => scrollViewRef.current.scrollToPosition(0, 0, true), 100);
+    }
+  }, [formFieldsPage]);
+
+  useEffect(() => {
+    if (formFieldsPage === 2 && selectedSpeciesName.value) {
+      setSpeciesDataInForm(selectedSpeciesName);
+    }
+  }, [formFieldsPage, selectedSpeciesName, setSpeciesDataInForm]);
+
   return (
     <Container>
-      <Container.ScrollView>
+      <Container.ScrollView ref={scrollViewRef}>
         <Text style={styles.title}>
           {formatMessage({id: 'screen.FormOne.title'})}
         </Text>
@@ -113,12 +244,11 @@ const FormOne = ({navigation}) => {
                 buttonContent={formatMessage({id: 'button.saveAndAdd'})}
               />
               <Button
-                onPress={formProps.handleSubmit(handleSubmit)}
                 buttonStyle={() => ({marginVertical: verticalScale(16)})}
                 buttonContent={formatMessage({id: 'button.viewFormOneSummary'})}
               />
               <Button
-                onPress={formProps.handleSubmit(handleSubmit)}
+                onPress={() => navigation.navigate('StepOne')}
                 buttonContent={formatMessage({id: 'button.continueToStep1'})}
               />
             </>
