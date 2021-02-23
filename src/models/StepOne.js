@@ -1,6 +1,7 @@
 import {BSON} from 'realm';
 export default class StepOne {
   constructor({
+    _id,
     researchConducted,
     existingRecordsExamined,
     outstandingInfringementInvestigations,
@@ -11,7 +12,7 @@ export default class StepOne {
     inspectionConcides,
     facilityOwnerPresent,
   }) {
-    this._id = new BSON.ObjectId();
+    this._id = _id ? new BSON.ObjectId(_id) : new BSON.ObjectId();
     this.researchConducted = researchConducted;
     this.existingRecordsExamined = existingRecordsExamined;
     this.outstandingInfringementInvestigations = outstandingInfringementInvestigations;

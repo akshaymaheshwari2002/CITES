@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {Image, ImageBackground, Text, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
@@ -6,9 +6,61 @@ import {useIntl} from 'react-intl';
 import {Container, Button} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import {Images} from '@assets';
+import {useSelector} from 'react-redux';
 
 const HomePage = ({navigation}) => {
   const {formatMessage} = useIntl();
+  const activeStepOneId = useSelector(
+    (state) => state.persistedReducer.activeStepOneId,
+  );
+  const activeStepTwoId = useSelector(
+    (state) => state.persistedReducer.activeStepTwoId,
+  );
+  const activeStepThreeId = useSelector(
+    (state) => state.persistedReducer.activeStepThreeId,
+  );
+
+  const renderButtonContent = useCallback(() => {
+    let continueText;
+
+    if (activeStepOneId) {
+      continueText = formatMessage({id: 'button.continueToStep1'});
+    } else if (activeStepTwoId) {
+      continueText = formatMessage({id: 'button.continueToStep2'});
+    } else if (activeStepThreeId) {
+      continueText = formatMessage({id: 'button.continueToStep3'});
+    } else {
+      continueText = null;
+    }
+
+    const buttonContent = (
+      <View>
+        <Text style={styles.buttonText}>
+          {formatMessage({
+            id: 'screen.HomePage.buttonOne',
+          })}
+        </Text>
+        {continueText ? (
+          <Text style={styles.buttonText}>{continueText}</Text>
+        ) : null}
+      </View>
+    );
+
+    return buttonContent;
+  }, [activeStepOneId, activeStepThreeId, activeStepTwoId, formatMessage]);
+
+  const handlePress = useCallback(() => {
+    if (activeStepOneId) {
+      navigation.navigate('StepOne');
+    } else if (activeStepTwoId) {
+      navigation.navigate('StepTwo');
+    } else if (activeStepThreeId) {
+      navigation.navigate('StepThree');
+    } else {
+      navigation.navigate('InspectionFlow');
+    }
+  }, [activeStepOneId, activeStepThreeId, activeStepTwoId, navigation]);
+
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
       <ImageBackground
@@ -33,12 +85,10 @@ const HomePage = ({navigation}) => {
                     {formatMessage({id: 'screen.HomePage.header'})}
                   </Text>
                   <Button
-                    onPress={() => navigation.navigate('InspectionFlow')}
+                    onPress={handlePress}
                     buttonStyle={() => styles.filledButton}
                     buttonTextStyle={() => ({color: RawColors.white})}
-                    buttonContent={formatMessage({
-                      id: 'screen.HomePage.buttonOne',
-                    })}
+                    buttonContent={renderButtonContent()}
                   />
                   <Button
                     buttonStyle={() => styles.filledButton}
@@ -107,6 +157,12 @@ const styles = ScaledSheet.create({
     minHeight: '66@vs',
     borderWidth: 0,
     marginBottom: '16@vs',
+  },
+  buttonText: {
+    color: RawColors.white,
+    textAlign: 'center',
+    lineHeight: '22@ms',
+    ...Fonts.Lato15R,
   },
 });
 

@@ -6,7 +6,7 @@ import Config from '@config';
 import {navigate} from '@utils/RootNavigation';
 import createIntl from '@utils/Intl';
 
-const checklistContent = ({checkliststyles, bullet}) => {
+const checklistContent = ({checkliststyles = {}, bullet = null}) => {
   const {formatMessage} = createIntl();
 
   return [
