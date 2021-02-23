@@ -49,7 +49,7 @@ const OverlayModal = ({isModalVisible, hideModal, helpText}) => {
             style={styles.helpIcon}
             size={moderateScale(40)}
           />
-          <Container.ScrollView style={CommonStyles.flex1}>
+          <Container.ScrollView style={styles.scrollView}>
             <View
               onStartShouldSetResponder={() => true}
               style={styles.contentContainer}
@@ -96,8 +96,11 @@ const styles = ScaledSheet.create({
     padding: '12@vs',
     alignSelf: 'flex-start',
   },
+  scrollView: {alignSelf: 'flex-start', width: '100%'},
   contentContainer: {
-    padding: '25@vs',
+    flex: 1,
+    paddingVertical: '15@vs',
+    paddingHorizontal: '15@ms',
   },
   modalText: {
     marginBottom: '15@vs',
