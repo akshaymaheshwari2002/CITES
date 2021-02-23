@@ -70,6 +70,7 @@ TextInput.defaultProps = {
 const styles = ScaledSheet.create({
   labelContainer: {flexDirection: 'row', alignItems: 'center'},
   inputContainer: {
+    height: '46@vs',
     marginVertical: '12@vs',
     borderWidth: 1,
     borderColor: RawColors.dimGrey,

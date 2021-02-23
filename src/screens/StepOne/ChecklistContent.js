@@ -86,6 +86,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
             &nbsp;
           </Text>
           <Button
+            onPress={() => navigate('FormOne')}
             buttonContent={formatMessage({
               id: 'screen.stepOne.formOneCompleted.FormOne',
             })}

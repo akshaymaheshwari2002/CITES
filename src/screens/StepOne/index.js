@@ -67,7 +67,7 @@ const StepOne = ({navigation, route}) => {
   }, [formatMessage, navigation, tooltipIndex]);
 
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Header
         leftContent={
           <Tooltip
@@ -82,7 +82,10 @@ const StepOne = ({navigation, route}) => {
             }
             onClose={() => {
               setTooltipIndex(2);
-            }}>
+            }}
+            childrenWrapperStyle={styles.childrenWrapper}
+            tooltipStyle={styles.toolTip}
+            displayInsets={{left: 0}}>
             <Icon
               name="chevron-left"
               size={scale(26)}
@@ -157,6 +160,8 @@ const styles = ScaledSheet.create({
     padding: '10@ms',
     ...Fonts.Lato15R,
   },
+  childrenWrapper: {top: '46@vs', left: '9@s'},
+  toolTip: {top: '84@vs', left: '9@s', position: 'absolute'},
 });
 
 const checkliststyles = ScaledSheet.create({
