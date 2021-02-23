@@ -1,12 +1,13 @@
 import React from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, Text, FlatList, TouchableOpacity, Image} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet} from 'react-native-size-matters';
 
 import {Container, Button} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
+import {Images} from '@assets/';
 
-const ContinueInspection = () => {
+const ContinueInspection = ({navigation}) => {
   const {formatMessage} = useIntl();
 
   const dummyInspectionData = [
@@ -49,6 +50,7 @@ const ContinueInspection = () => {
       <FlatList
         data={dummyInspectionData}
         style={styles.flex}
+        contentContainerStyle={styles.flexGrow}
         renderItem={({index, item}) => {
           return (
             <View style={styles.row_parent}>
@@ -59,6 +61,13 @@ const ContinueInspection = () => {
                 buttonStyle={() => styles.button}
                 buttonContent={
                   <>
+                    <View>
+                      <Image
+                        source={Images.continueCircleIcon}
+                        style={styles.icon}
+                        resizeMode="contain"
+                      />
+                    </View>
                     <View style={[styles.bottomMargin10, styles.infoLine]}>
                       <Text style={[styles.label, Fonts.Lato15B]}>
                         {formatMessage({
@@ -88,6 +97,22 @@ const ContinueInspection = () => {
             </View>
           );
         }}
+        ListEmptyComponent={
+          <View style={styles.flexContainer}>
+            <Text style={[styles.emptyListText, Fonts.Lato17R]}>
+              {formatMessage({id: 'screen.ContinueInspection.emptyList'})}
+            </Text>
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity
+                style={styles.goBackButton}
+                onPress={() => navigation.goBack()}>
+                <Text style={[styles.buttonText, Fonts.Lato17R]}>
+                  {formatMessage({id: 'screen.ContinueInspection.goBack'})}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        }
         ListFooterComponent={<View />}
         ListFooterComponentStyle={styles.footer}
         keyExtractor={(item) => item.inpection_id}
@@ -99,6 +124,7 @@ const ContinueInspection = () => {
 export default ContinueInspection;
 
 const styles = ScaledSheet.create({
+  flexGrow: {flexGrow: 1},
   titleView: {
     paddingHorizontal: '16@s',
     paddingVertical: '16@vs',
@@ -127,6 +153,11 @@ const styles = ScaledSheet.create({
     shadowRadius: '6@s',
     shadowOffset: {height: 0, width: '3@s'},
   },
+  icon: {
+    height: '35@ms',
+    width: '35@ms',
+    marginBottom: '16@vs',
+  },
   infoLine: {
     flexDirection: 'row',
   },
@@ -142,5 +173,24 @@ const styles = ScaledSheet.create({
   },
   bottomMargin10: {
     marginBottom: '10@vs',
+  },
+  goBackButton: {
+    width: '80%',
+    alignSelf: 'center',
+    backgroundColor: RawColors.eggshell,
+    borderRadius: '8@ms',
+    paddingVertical: '10@vs',
+  },
+  buttonText: {
+    alignSelf: 'center',
+    textTransform: 'uppercase',
+  },
+  buttonContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  flexContainer: {flex: 1, flexGrow: 1},
+  emptyListText: {
+    marginHorizontal: '16@s',
   },
 });

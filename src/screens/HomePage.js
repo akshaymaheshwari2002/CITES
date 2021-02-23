@@ -84,6 +84,8 @@ const styles = ScaledSheet.create({
     top: '80@vs',
     resizeMode: 'contain',
     alignSelf: 'center',
+    height: '146@vs',
+    width: '250@s',
   },
   contentContainer: {
     flex: 1,
