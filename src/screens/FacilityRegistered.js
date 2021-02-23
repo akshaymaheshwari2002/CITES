@@ -48,7 +48,9 @@ const FacilityRegistered = ({navigation: {navigate}}) => {
               return styles.btn;
             }}
             onPress={() =>
-              navigate('WebView', {sourceUri: Config.URL_CITES_APPENDICES})
+              navigate('WebView', {
+                sourceUri: Config.URL_CITES_REGISTER_FOR_APPENDIX1_SPECIES,
+              })
             }
           />
           <Button

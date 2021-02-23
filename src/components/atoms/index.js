@@ -7,6 +7,7 @@ import Button from './Button';
 import Checkbox from './Checkbox';
 import Tooltip from './Tooltip';
 import Header from './Header';
+import Loader from './Loader';
 
 export {
   Container,
@@ -18,4 +19,5 @@ export {
   Checkbox,
   Tooltip,
   Header,
+  Loader,
 };
