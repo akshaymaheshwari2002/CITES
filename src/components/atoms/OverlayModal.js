@@ -65,8 +65,12 @@ const OverlayModal = ({isModalVisible, hideModal, helpText}) => {
                 }
               }}>
               {helpText
-                ? helpText.map((value) => {
-                    return <Text style={styles.modalText}>{value}</Text>;
+                ? helpText.map((value, index) => {
+                    return (
+                      <Text key={`text_key_${index}`} style={styles.modalText}>
+                        {value}
+                      </Text>
+                    );
                   })
                 : null}
             </View>
