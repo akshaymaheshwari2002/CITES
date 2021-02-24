@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FormOneHeader = ({form = 'one'}) => {
+const FormOneHeader = ({form = 'one', facilityData = {}}) => {
   const formText = 'Form';
   const formNumber = {
     one: 1,
@@ -11,19 +11,6 @@ const FormOneHeader = ({form = 'one'}) => {
   const formTitle = {
     one: 'BACKGROUND INFORMATION',
     two: 'FACILITY INFORMATION',
-  };
-  const facilityData = {
-    facilityName: 'PD new Bardana Arwana',
-    owner: 'mr. Subhandi Tju',
-    address:
-      '6th Floor, Metropolis Mall, Industrial Area, Hisar, Haryana 125005',
-    capativeBreedingCode: 'A-ID-588',
-    establishmentDate: '03/03/2016',
-    country: 'India',
-    facilityContact: {email: 'abc@gmail.com', phoneNo: '+919555577721'},
-    dateOfInspection: '10/2/2021',
-    seniorOfficerName: 'Mr. Puneet Kumar Rohtela',
-    typeOfInspection: 'Routine',
   };
   const facilitySchema = {
     facilityName: 'Facility name: ',
@@ -61,16 +48,21 @@ const FormOneHeader = ({form = 'one'}) => {
                 {facilityData?.facilityName}
               </p>
               <p style={styles.text}>
-                <b>{facilitySchema?.owner}</b> {facilityData?.owner}
+                <b>{facilitySchema?.owner}</b> {facilityData?.facilityOwner}
               </p>
               <p style={styles.text}>
-                <b>{facilitySchema?.address}</b> {facilityData?.address}
+                <b>{facilitySchema?.address}</b>
+                {`${facilityData?.facilityAddressLineOne} ${
+                  facilityData?.facilityAddressLineTwo
+                    ? ', ' + facilityData?.facilityAddressLineTwo
+                    : ''
+                }`}
               </p>
               <p style={styles.text}>
                 <b>{facilitySchema?.facilityContact?.email}</b>
-                {facilityData?.facilityContact?.email}
+                {facilityData?.facilityOwnerEmail}
                 <b>{facilitySchema?.facilityContact?.phoneNo}</b>
-                {facilityData?.facilityContact?.phoneNo}
+                {facilityData?.facilityOwnerPhone}
               </p>
             </div>
             <div style={styles.halfContent}>
@@ -80,10 +72,11 @@ const FormOneHeader = ({form = 'one'}) => {
               </p>
               <p style={styles.text}>
                 <b>{facilitySchema?.establishmentDate}</b>
-                {facilityData?.establishmentDate}
+                {facilityData?.facilityEshtablishmentDate}
               </p>
               <p style={styles.text}>
-                <b>{facilitySchema?.country}</b> {facilityData?.country}
+                <b>{facilitySchema?.country}</b>
+                {facilityData?.facilityAddressLineThree}
               </p>
               <p style={styles.text}>
                 <b>{facilitySchema?.dateOfInspection}</b>

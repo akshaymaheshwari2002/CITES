@@ -16,23 +16,39 @@ import {FormOneTemplate, FormOneHeader} from '@molecules';
 import {Fonts, RawColors} from '@styles/Themes';
 import {Images} from '@assets/';
 import {generatePdf} from '@utils/CommonFunctions';
+import moment from 'moment';
 
 const FormOneSummary = ({navigation, route}) => {
   const {formatMessage} = useIntl();
   const [fileUri, setFileUri] = useState(undefined);
-  const formData = route.params;
-
+  const formData = route.params?.data;
+  console.log(formData);
+  const speciesData = formData?.registeredSpeciesData;
   useEffect(() => {
-    // handelpress();
+    handelpress();
   }, [handelpress]);
 
   const handelpress = useCallback(async () => {
     const file = await generatePdf({
-      templates: [<FormOneHeader />, <FormOneTemplate />],
+      templates: [
+        <FormOneHeader
+          facilityData={{
+            ...formData,
+            dateOfInspection: moment(Number(formData?.dateOfInspection)).format(
+              'DD/MM/YYYY',
+            ),
+            facilityEshtablishmentDate: moment(
+              Number(formData?.facilityEshtablishmentDate),
+            ).format('DD/MM/YYYY'),
+            typeOfInspection: formData.typeOfInspection[0]?.replace('_', ' '),
+          }}
+        />,
+        <FormOneTemplate speciesData={speciesData} />,
+      ],
     });
     setFileUri({uri: file?.filePath});
     console.log(file.filePath);
-  }, []);
+  }, [formData, speciesData]);
 
   return (
     <Container>
@@ -82,8 +98,6 @@ const styles = ScaledSheet.create({
   pdf: {
     flex: 1,
     backgroundColor: 'white',
-    // width: Dimensions.get('window').width,
-    // height: Dimensions.get('window').height,
   },
 });
 

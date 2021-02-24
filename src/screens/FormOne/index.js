@@ -71,7 +71,7 @@ const FormOne = ({navigation}) => {
             JSON.stringify(
               realm
                 .objects('FormOne')
-                .filter(({_id}) => _id.toHexString() === activeFormOneId)[0],
+                ?.filter(({_id}) => _id.toHexString() === activeFormOneId)[0],
             ),
           );
           const alreadyExists = activeFormOne.registeredSpeciesData.some(
@@ -79,7 +79,7 @@ const FormOne = ({navigation}) => {
           );
 
           if (alreadyExists) {
-            let existingData = activeFormOne.registeredSpeciesData.filter(
+            let existingData = activeFormOne.registeredSpeciesData?.filter(
               (entry) => data.name === entry.name,
             )[0];
             existingData = new Species({
@@ -105,7 +105,7 @@ const FormOne = ({navigation}) => {
 
   const setSpeciesDataInForm = useCallback(
     (_selectedSpeciesName) => {
-      let species = formData.current.registeredSpeciesData.filter(({name}) => {
+      let species = formData.current.registeredSpeciesData?.filter(({name}) => {
         return name === _selectedSpeciesName.value;
       })[0];
       species = getFormFieldsPageTwo().reduce(
@@ -126,7 +126,7 @@ const FormOne = ({navigation}) => {
     const formOneObjects = realm.objects('FormOne');
     const activeFormData = JSON.parse(
       JSON.stringify(
-        formOneObjects.filter(
+        formOneObjects?.filter(
           ({_id}) => _id.toHexString() === activeFormOneId,
         )[0],
       ),
@@ -197,7 +197,7 @@ const FormOne = ({navigation}) => {
           const formOneObjects = realm.objects('FormOne');
           const activeFormData = JSON.parse(
             JSON.stringify(
-              formOneObjects.filter(
+              formOneObjects?.filter(
                 ({_id}) => _id.toHexString() === activeFormOneId,
               )[0],
             ),
