@@ -202,5 +202,10 @@
   "screen.SourceCode.NotApplicable.letterDescription": "CITES EXPORT PERMIT NOT REQUIRED",
   "screen.SourceCode.buttonContent": "Continue",
   "screen.ContinueInspection.emptyList": "No active inspections.",
-  "screen.ContinueInspection.goBack": "go Back"
+  "screen.ContinueInspection.goBack": "go Back",
+  "screen.FormOneSummary.title_1": "Form 1",
+  "screen.FormOneSummary.title_2": "Summary",
+  "screen.FormOneSummary.subHeading_1": "information from the",
+  "screen.FormOneSummary.subHeading_2": "facility and previous",
+  "screen.FormOneSummary.subHeading_3": "inspections."
 }
