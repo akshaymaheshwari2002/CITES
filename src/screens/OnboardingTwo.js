@@ -76,7 +76,7 @@ const OnboardingTwo = ({navigation}) => {
 
 const styles = ScaledSheet.create({
   contentContainer: {
-    paddingVertical: 60,
+    paddingVertical: '60@vs',
     backgroundColor: RawColors.transparent,
   },
   content: {
@@ -92,7 +92,7 @@ const styles = ScaledSheet.create({
   },
   item: {
     flexDirection: 'row',
-    marginLeft: 8,
+    marginLeft: '8@s',
     marginVertical: '12@vs',
   },
   backgroundImage: {
@@ -100,8 +100,8 @@ const styles = ScaledSheet.create({
     paddingLeft: '700@s',
   },
   itemIcon: {
-    width: 22,
-    height: 22,
+    width: '22@ms',
+    height: '22@ms',
     resizeMode: 'contain',
     marginRight: '16@ms',
     marginTop: '2@ms',

@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import {TabBar} from '@atoms';
+import {TabBar} from '@molecules';
 import {StepOne, SearchDummy, Notes, DrawerMenu, StepsSummary} from '@screens';
 
 const Tab = createBottomTabNavigator();

@@ -7,7 +7,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {AppNavigator} from '@navigators';
 import {ThemeProvider, Themes} from '@styles/Themes';
 import createIntl from '@utils/Intl';
-import {OverlayModal} from '@atoms';
+import {OverlayModal} from '@molecules';
 import {setHelpText} from '@store/slices/sessionSlice';
 
 const App = () => {

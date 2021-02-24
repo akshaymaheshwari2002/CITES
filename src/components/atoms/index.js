@@ -1,5 +1,4 @@
 import TextInput from './TextInput';
-import DatePicker from './DatePicker';
 import Container from './Container';
 import PDFPreview from './PDFPreview';
 import Picker from './Picker';
@@ -8,12 +7,9 @@ import Checkbox from './Checkbox';
 import Tooltip from './Tooltip';
 import Header from './Header';
 import Loader from './Loader';
-import OverlayModal from './OverlayModal';
-import TabBar from './TabBar';
 
 export {
   Container,
-  DatePicker,
   TextInput,
   PDFPreview,
   Picker,
@@ -22,6 +18,4 @@ export {
   Tooltip,
   Header,
   Loader,
-  OverlayModal,
-  TabBar,
 };

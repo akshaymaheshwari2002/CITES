@@ -1,6 +1,6 @@
 import React from 'react';
 import {ImageBackground, Text, View} from 'react-native';
-import {ScaledSheet, scale} from 'react-native-size-matters';
+import {ScaledSheet, ms} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
 
@@ -59,7 +59,7 @@ const InspectionFlow = ({navigation}) => {
                         </Text>
                         <Icon
                           name="chevron-right"
-                          size={scale(14)}
+                          size={ms(18)}
                           style={styles.icon}
                         />
                       </View>
@@ -89,7 +89,7 @@ const InspectionFlow = ({navigation}) => {
                         </Text>
                         <Icon
                           name="chevron-right"
-                          size={scale(14)}
+                          size={ms(18)}
                           style={styles.icon}
                         />
                       </View>
@@ -114,7 +114,7 @@ const InspectionFlow = ({navigation}) => {
                         </Text>
                         <Icon
                           name="chevron-right"
-                          size={scale(14)}
+                          size={ms(18)}
                           style={styles.icon}
                         />
                       </View>
@@ -183,9 +183,10 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
     marginLeft: '20@s',
     marginBottom: '18@s',
+    alignItems: 'center',
   },
   buttonTextTwo: {
-    ...Fonts.Lato20B,
+    ...Fonts.Lato18B,
     fontWeight: 'bold',
     color: RawColors.darkGreyBlue,
     alignSelf: 'flex-start',
@@ -200,7 +201,7 @@ const styles = ScaledSheet.create({
   icon: {
     marginLeft: '2@s',
     flex: 1,
-    marginTop: '7@ms',
+    marginTop: '4@ms',
   },
 });
 
