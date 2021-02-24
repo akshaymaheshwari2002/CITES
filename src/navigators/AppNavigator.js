@@ -31,6 +31,7 @@ import {
   WebView,
   FormOne,
   ContinueInspection,
+  FormOneSummary,
 } from '@screens';
 import TabNavigator from './TabNavigator';
 
@@ -116,6 +117,7 @@ const AppNavigator = () => {
           options={{headerShown: false}}
           component={HomePage}
         />
+        <Stack.Screen name="FormOneSummary" component={FormOneSummary} />
         <Stack.Screen name="WebView" component={WebView} />
         <Stack.Screen name="FormOne" component={FormOne} />
       </Stack.Navigator>

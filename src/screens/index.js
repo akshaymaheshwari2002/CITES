@@ -25,6 +25,7 @@ import FormOne from './FormOne';
 import SearchDummy from './SearchDummy';
 import Notes from './Notes';
 import DrawerMenu from './DrawerMenu';
+import FormOneSummary from './FormOneSummary';
 
 export {
   FacilityScore,
@@ -54,4 +55,5 @@ export {
   HomePage,
   WebView,
   FormOne,
+  FormOneSummary,
 };
