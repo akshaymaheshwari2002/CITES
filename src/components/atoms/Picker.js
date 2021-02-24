@@ -47,6 +47,7 @@ const Picker = React.forwardRef(
           itemStyle={styles.item}
           arrowSize={scale(24)}
           onChangeItem={onChange}
+          selectedLabelStyle={[{color: RawColors.black}, Fonts.Lato15R]}
           {...restProps}
         />
         {error ? (

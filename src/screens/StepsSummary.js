@@ -114,7 +114,7 @@ const styles = ScaledSheet.create({
     alignItems: 'center',
   },
   pointOne: {marginLeft: '30%'},
-  pointTwo: {marginLeft: '42%', paddingVertical: '6%'},
+  pointTwo: {marginLeft: '42%', paddingVertical: '28@vs'},
   pointThree: {marginLeft: '30%'},
   numberContainer: {
     height: '46@ms',

@@ -1,28 +1,30 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {View, Text, StatusBar} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, scale, verticalScale} from 'react-native-size-matters';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {Container, Button, Header, Tooltip} from '@atoms';
 import {StepHeader, ChecklistCell} from '@molecules';
 import ChecklistContent from './ChecklistContent';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
+import {getInstance} from '@utils/RealmHelper';
+import {Inspection, StepOne as StepOneModel} from '@models';
+import {setActiveInspection} from '@store/slices/persistedSlice';
 
 const StepOne = ({navigation, route}) => {
   const {formatMessage} = useIntl();
-  const [stepData, setStepData] = useState({
-    researchConducted: false,
-    existingRecordsExamined: false,
-    outstandingInfringementInvestigations: false,
-    formOneCompleted: false,
-    productionCapacityCalculated: false,
-    toolsEnsured: false,
-    twoOfficialsArranged: false,
-    inspectionConcides: false,
-    facilityOwnerPresent: false,
-  });
+  const isMounting = useRef(true);
+  const dispatch = useDispatch();
+  const activeStepOneId = useSelector(
+    (state) => state.persistedReducer.activeInspection.activeStepOneId,
+  );
+  const activeInspectionId = useSelector(
+    (state) => state.persistedReducer.activeInspection.id,
+  );
+  const [stepData, setStepData] = useState({});
   const [tooltipIndex, setTooltipIndex] = useState(
     route.params.showToolTip ? 1 : 0,
   );
@@ -35,6 +37,38 @@ const StepOne = ({navigation, route}) => {
     ),
     [],
   );
+
+  const handleSubmit = useCallback(async () => {
+    if (Object.keys(stepData).length) {
+      const realm = await getInstance();
+      let stepOneData = ChecklistContent({}).reduce(
+        (acc, current) => ({
+          ...acc,
+          [current.id]: stepData[current.id] ?? false,
+        }),
+        {},
+      );
+      stepOneData = activeStepOneId
+        ? new StepOneModel({...stepOneData, _id: activeStepOneId})
+        : new StepOneModel(stepOneData);
+      const inspectionData = new Inspection({
+        _id: activeInspectionId,
+        stepOne: stepOneData,
+      });
+
+      console.log({inspectionData});
+
+      realm.write(() => {
+        realm.create('Inspection', inspectionData, 'modified');
+        dispatch(
+          setActiveInspection({
+            id: inspectionData._id.toHexString(),
+            activeStepOneId: stepOneData._id.toHexString(),
+          }),
+        );
+      });
+    }
+  }, [activeInspectionId, activeStepOneId, dispatch, stepData]);
 
   useEffect(() => {
     navigation.setOptions({
@@ -65,6 +99,30 @@ const StepOne = ({navigation, route}) => {
       },
     });
   }, [formatMessage, navigation, tooltipIndex]);
+
+  useEffect(() => {
+    if (isMounting.current) {
+      (async () => {
+        if (activeStepOneId) {
+          const realm = await getInstance();
+          const stepOneObjects = realm.objects('StepOne');
+          const activeStepOneData = JSON.parse(
+            JSON.stringify(
+              stepOneObjects.filter(
+                ({_id}) => _id.toHexString() === activeStepOneId,
+              )[0] ?? {},
+            ),
+          );
+
+          delete activeStepOneData.formOne;
+          delete activeStepOneData._id;
+          setStepData(activeStepOneData);
+        }
+      })();
+
+      isMounting.current = false;
+    }
+  }, [activeStepOneId]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
@@ -105,28 +163,26 @@ const StepOne = ({navigation, route}) => {
               key={el.id}
               content={el.content}
               value={stepData[el.id]}
-              onChange={(value) =>
-                setStepData((state) => ({...state, [el.id]: value}))
-              }
+              onChange={(value) => {
+                setStepData((state) => ({...state, [el.id]: value}));
+              }}
             />
           );
         })}
-        <Button
-          buttonContent={formatMessage({
-            id: 'screen.stepOne.continueToStepTwo',
-          })}
-          buttonStyle={(pressed) => styles.button}
-          buttonTextStyle={(pressed) => styles.buttonTextStyle}
-          onPress={() => {
-            navigation.navigate('StepTwo');
-          }}
-        />
+        <View>
+          <Button
+            buttonContent={formatMessage({
+              id: 'screen.stepOne.continueToStepTwo',
+            })}
+            buttonStyle={() => styles.button}
+            buttonTextStyle={() => styles.buttonTextStyle}
+            onPress={handleSubmit}
+          />
+        </View>
       </Container.ScrollView>
     </Container>
   );
 };
-
-export default StepOne;
 
 const styles = ScaledSheet.create({
   header: {
@@ -217,3 +273,5 @@ const checkliststyles = ScaledSheet.create({
     marginTop: '15@ms',
   },
 });
+
+export default StepOne;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FormOneTemplate = () => {
+const FormOneTemplate = ({speciesData = []}) => {
   const speciesText = 'Species The Facility is registered to produce: ';
   const formDetails = {
     dateOfInspection: '10/2/2021',
@@ -12,15 +12,6 @@ const FormOneTemplate = () => {
     seniorOfficerName: 'Name of Senior Inspecting Officer: ',
     typeOfInspection: 'Type of Inspection: ',
   };
-  const speciesData = [
-    {
-      name: 'HomoSapien Sapien',
-      numberAtLastInspection: 30,
-      numberOfAdults: 30,
-      numberOfExported: 20,
-      sourceCode: 'A',
-    },
-  ];
   const speciesAttributes = [
     'Species name',
     'Total number of Specimen at last inspection',
@@ -47,10 +38,14 @@ const FormOneTemplate = () => {
               return (
                 <div key={index} style={styles.row}>
                   <div style={styles.cell}>{data?.name}</div>
-                  <div style={styles.cell}>{data?.numberAtLastInspection}</div>
-                  <div style={styles.cell}>{data?.numberOfAdults}</div>
-                  <div style={styles.cell}>{data?.numberOfExported}</div>
-                  <div style={styles.cell}>{data?.sourceCode}</div>
+                  <div style={styles.cell}>{data?.numberOfSpecimen}</div>
+                  <div style={styles.cell}>{data?.numberOfBreedingAdults}</div>
+                  <div style={styles.cell}>
+                    {data?.numberOfSpeciemenExportedSinceLastInspection}
+                  </div>
+                  <div style={styles.cell}>
+                    {data?.sourceCodeOfPreviousExport}
+                  </div>
                 </div>
               );
             })}

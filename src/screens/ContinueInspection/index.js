@@ -1,37 +1,97 @@
-import React from 'react';
-import {View, Text, FlatList} from 'react-native';
+import React, {useCallback, useEffect, useState} from 'react';
+import {View, Text, FlatList, TouchableOpacity, Image} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet} from 'react-native-size-matters';
+import {useDispatch} from 'react-redux';
 
 import {Container, Button} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
+import {Images} from '@assets/';
+import {getInstance} from '@utils/RealmHelper';
+import {setActiveInspection} from '@store/slices/persistedSlice';
 
-const ContinueInspection = () => {
+const ContinueInspection = ({navigation}) => {
   const {formatMessage} = useIntl();
+  const dispatch = useDispatch();
+  const [activeInspections, setActiveInspections] = useState([]);
 
-  const dummyInspectionData = [
-    {
-      inpection_id: 'dummy1235',
-      facilityName: 'Reptile Farm Limited',
-      dateOfInspection: '12/02/2021',
+  const handleItemPress = useCallback(
+    (item) => {
+      dispatch(
+        setActiveInspection({
+          id: item._id,
+          activeStepOneId: item.stepOne?._id,
+          activeFormOneId: item.stepOne?.formOne?._id,
+        }),
+      );
+      navigation.navigate('StepOne');
     },
-    {
-      inpection_id: 'dummy1234',
-      facilityName: 'Priam Australia Pty',
-      dateOfInspection: '12/02/2021',
+    [dispatch, navigation],
+  );
+
+  useEffect(() => {
+    (async () => {
+      const realm = await getInstance();
+      let inspectionObjects = realm.objects('Inspection');
+      inspectionObjects = JSON.parse(JSON.stringify(inspectionObjects));
+
+      setActiveInspections(inspectionObjects);
+    })();
+  }, []);
+
+  const renderItem = useCallback(
+    ({item}) => {
+      const facilityName = item.stepOne.formOne?.facilityName;
+      const dateOfInspection = item.stepOne.formOne?.dateOfInspection;
+
+      return (
+        <View style={styles.row_parent}>
+          <Button
+            onPress={() => handleItemPress(item)}
+            buttonStyle={() => styles.button}
+            buttonContent={
+              <>
+                <View>
+                  <Image
+                    source={Images.continueCircleIcon}
+                    style={styles.icon}
+                    resizeMode="contain"
+                  />
+                </View>
+                <View style={[styles.bottomMargin10, styles.infoLine]}>
+                  <Text style={[styles.label, Fonts.Lato15B]}>
+                    {formatMessage({
+                      id: 'screen.ContinueInspection.label.facilityName',
+                    })}
+                    {': '}
+                  </Text>
+                  <Text style={[styles.flex, Fonts.Lato15B]}>
+                    {facilityName || 'NA'}
+                  </Text>
+                </View>
+                <View style={styles.infoLine}>
+                  <Text style={styles.label}>
+                    {formatMessage({
+                      id: 'screen.ContinueInspection.label.dateOfInspection',
+                    })}
+                    {': '}
+                  </Text>
+                  <Text style={[styles.flex, Fonts.Lato14R]}>
+                    {dateOfInspection
+                      ? new Date(
+                          parseInt(dateOfInspection, 10),
+                        ).toLocaleDateString()
+                      : 'NA'}
+                  </Text>
+                </View>
+              </>
+            }
+          />
+        </View>
+      );
     },
-    {
-      inpection_id: 'dummy1236',
-      facilityName:
-        'Priam Australia Pty Priam Australia Pty Priam Australia Pty Priam Australia Pty ',
-      dateOfInspection: '11/01/2021',
-    },
-    {
-      inpection_id: 'dummy1237',
-      facilityName: 'Priam Australia Pty',
-      dateOfInspection: '10/01/2021',
-    },
-  ];
+    [formatMessage, handleItemPress],
+  );
 
   return (
     <Container>
@@ -47,58 +107,36 @@ const ContinueInspection = () => {
         </Text>
       </View>
       <FlatList
-        data={dummyInspectionData}
+        data={activeInspections}
         style={styles.flex}
-        renderItem={({index, item}) => {
-          return (
-            <View style={styles.row_parent}>
-              <Button
-                onPress={() => {
-                  // action
-                }}
-                buttonStyle={() => styles.button}
-                buttonContent={
-                  <>
-                    <View style={[styles.bottomMargin10, styles.infoLine]}>
-                      <Text style={[styles.label, Fonts.Lato15B]}>
-                        {formatMessage({
-                          id: 'screen.ContinueInspection.label.facilityName',
-                        })}
-                        {': '}
-                      </Text>
-                      <Text style={[styles.flex, Fonts.Lato15B]}>
-                        {item.facilityName}
-                      </Text>
-                    </View>
-                    <View style={styles.infoLine}>
-                      <Text style={styles.label}>
-                        {formatMessage({
-                          id:
-                            'screen.ContinueInspection.label.dateOfInspection',
-                        })}
-                        {': '}
-                      </Text>
-                      <Text style={[styles.flex, Fonts.Lato14R]}>
-                        {item.dateOfInspection}
-                      </Text>
-                    </View>
-                  </>
-                }
-              />
+        contentContainerStyle={styles.flexGrow}
+        renderItem={renderItem}
+        ListEmptyComponent={
+          <View style={styles.flexContainer}>
+            <Text style={[styles.emptyListText, Fonts.Lato17R]}>
+              {formatMessage({id: 'screen.ContinueInspection.emptyList'})}
+            </Text>
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity
+                style={styles.goBackButton}
+                onPress={() => navigation.goBack()}>
+                <Text style={[styles.buttonText, Fonts.Lato17R]}>
+                  {formatMessage({id: 'screen.ContinueInspection.goBack'})}
+                </Text>
+              </TouchableOpacity>
             </View>
-          );
-        }}
+          </View>
+        }
         ListFooterComponent={<View />}
         ListFooterComponentStyle={styles.footer}
-        keyExtractor={(item) => item.inpection_id}
+        keyExtractor={(item) => item._id}
       />
     </Container>
   );
 };
 
-export default ContinueInspection;
-
 const styles = ScaledSheet.create({
+  flexGrow: {flexGrow: 1},
   titleView: {
     paddingHorizontal: '16@s',
     paddingVertical: '16@vs',
@@ -127,6 +165,11 @@ const styles = ScaledSheet.create({
     shadowRadius: '6@s',
     shadowOffset: {height: 0, width: '3@s'},
   },
+  icon: {
+    height: '35@ms',
+    width: '35@ms',
+    marginBottom: '16@vs',
+  },
   infoLine: {
     flexDirection: 'row',
   },
@@ -143,4 +186,25 @@ const styles = ScaledSheet.create({
   bottomMargin10: {
     marginBottom: '10@vs',
   },
+  goBackButton: {
+    width: '80%',
+    alignSelf: 'center',
+    backgroundColor: RawColors.eggshell,
+    borderRadius: '8@ms',
+    paddingVertical: '10@vs',
+  },
+  buttonText: {
+    alignSelf: 'center',
+    textTransform: 'uppercase',
+  },
+  buttonContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  flexContainer: {flex: 1, flexGrow: 1},
+  emptyListText: {
+    marginHorizontal: '16@s',
+  },
 });
+
+export default ContinueInspection;

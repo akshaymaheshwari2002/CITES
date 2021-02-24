@@ -30,6 +30,7 @@ import Notes from './Notes';
 import DrawerMenu from './DrawerMenu';
 import DetermineSourceCode from './DetermineSourceCode';
 import MoreInformation from './MoreInformation';
+import FormOneSummary from './FormOneSummary';
 
 export {
   FacilityScore,
@@ -64,4 +65,5 @@ export {
   WebView,
   FormOne,
   DetermineSourceCode,
+  FormOneSummary,
 };

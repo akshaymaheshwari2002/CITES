@@ -10,17 +10,26 @@ import CommonStyles from '@styles/CommonStyles';
 
 const TextInputArray = React.forwardRef(
   (
-    {label, error, count, buttonText, showHelpIcon, onHelpIconPress, onChange},
+    {
+      label,
+      error,
+      value,
+      count,
+      buttonText,
+      showHelpIcon,
+      onHelpIconPress,
+      onChange,
+    },
     _,
   ) => {
     const [data, setData] = useState();
     const [_count, _setCount] = useState(count);
 
-    const handleChangeText = useCallback((value, index) => {
-      if (value) {
+    const handleChangeText = useCallback((text, index) => {
+      if (text) {
         setData((state) => {
           const currentData = state ? [...state] : [];
-          currentData[index] = value;
+          currentData[index] = text;
           return currentData;
         });
       }
@@ -32,7 +41,7 @@ const TextInputArray = React.forwardRef(
         fields[index] = (
           <TextInput
             key={index}
-            data={data?.[index]}
+            value={data?.[index]}
             onChangeText={(text) => handleChangeText(text, index)}
             style={styles.textInput}
           />
@@ -52,6 +61,13 @@ const TextInputArray = React.forwardRef(
         onChange(data);
       }
     }, [data, onChange]);
+
+    useEffect(() => {
+      if (value?.length) {
+        _setCount(value?.length);
+        setData(value);
+      }
+    }, [value]);
 
     return (
       <>

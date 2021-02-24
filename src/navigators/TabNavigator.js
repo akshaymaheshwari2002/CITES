@@ -34,6 +34,7 @@ const AppNavigator = () => {
             );
           },
         }}
+        initialParams={{showToolTip: false}}
       />
       <Tab.Screen
         name="Search"

@@ -22,4 +22,5 @@ export const Images = {
   backgroundNavbarLower: require('./images/BackgroundNavbarlower.png'),
   backOnboardingOneA: require('./images/BackOnboardingOneA.png'),
   semiCircle: require('./images/Group747.png'),
+  continueCircleIcon: require('./images/continueCircleIcon.png'),
 };

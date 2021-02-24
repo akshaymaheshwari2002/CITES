@@ -55,9 +55,13 @@ const styles = ScaledSheet.create({
   },
   img: {
     resizeMode: 'contain',
+    height: '305@vs',
+    width: '317@s',
   },
   imgContainer: {
+    flex: 1,
     alignSelf: 'center',
+    justifyContent: 'flex-end',
     marginTop: 'auto',
   },
 });
