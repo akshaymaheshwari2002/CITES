@@ -90,20 +90,18 @@ const StepOne = ({navigation, route}) => {
   useEffect(() => {
     if (activeStepOneId) {
       (async () => {
-        if (activeStepOneId) {
-          const realm = await getInstance();
-          const stepOneObjects = realm.objects('StepOne');
-          const activeStepOneData = JSON.parse(
-            JSON.stringify(
-              stepOneObjects.filter(
-                ({_id}) => _id.toHexString() === activeStepOneId,
-              )[0] ?? {},
-            ),
-          );
+        const realm = await getInstance();
+        const stepOneObjects = realm.objects('StepOne');
+        const activeStepOneData = JSON.parse(
+          JSON.stringify(
+            stepOneObjects.filter(
+              ({_id}) => _id.toHexString() === activeStepOneId,
+            )[0] ?? {},
+          ),
+        );
 
-          delete activeStepOneData._id;
-          setStepData(activeStepOneData);
-        }
+        delete activeStepOneData._id;
+        setStepData(activeStepOneData);
       })();
     }
   }, [activeStepOneId]);

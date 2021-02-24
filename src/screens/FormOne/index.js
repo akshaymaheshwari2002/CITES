@@ -105,7 +105,7 @@ const FormOne = ({navigation}) => {
 
   const setSpeciesDataInForm = useCallback(
     (_selectedSpeciesName) => {
-      let species = formData.current.registeredSpeciesData.filter(({name}) => {
+      let species = formData.current.registeredSpeciesData?.filter(({name}) => {
         return name === _selectedSpeciesName.value;
       })[0];
       species = getFormFieldsPageTwo().reduce(
