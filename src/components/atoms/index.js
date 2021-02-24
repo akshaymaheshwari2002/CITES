@@ -9,6 +9,7 @@ import Tooltip from './Tooltip';
 import Header from './Header';
 import Loader from './Loader';
 import OverlayModal from './OverlayModal';
+import TabBar from './TabBar';
 
 export {
   Container,
@@ -22,4 +23,5 @@ export {
   Header,
   Loader,
   OverlayModal,
+  TabBar,
 };

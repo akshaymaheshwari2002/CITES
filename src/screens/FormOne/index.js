@@ -290,7 +290,9 @@ const FormOne = ({navigation}) => {
                 buttonContent={formatMessage({id: 'button.viewFormOneSummary'})}
               />
               <Button
-                onPress={() => navigation.navigate('StepOne')}
+                onPress={() =>
+                  navigation.navigate('TabNavigator', {screen: 'StepOne'})
+                }
                 buttonContent={formatMessage({id: 'button.continueToStep1'})}
               />
             </>

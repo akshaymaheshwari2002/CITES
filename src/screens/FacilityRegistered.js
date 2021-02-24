@@ -63,7 +63,7 @@ const FacilityRegistered = ({navigation: {navigate}}) => {
             buttonStyle={() => {
               return styles.btnTwo;
             }}
-            onPress={() => navigate('StepOne')}
+            onPress={() => navigate('TabNavigator', {screen: 'StepOne'})}
           />
         </View>
       </Container.ScrollView>

@@ -1,8 +1,8 @@
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
-import {View, Text, StatusBar} from 'react-native';
+import {View, Text, StatusBar, Platform} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
-import {ScaledSheet, scale, verticalScale} from 'react-native-size-matters';
+import {ScaledSheet, vs, ms, s} from 'react-native-size-matters';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {Container, Button, Header, Tooltip} from '@atoms';
@@ -13,6 +13,7 @@ import CommonStyles from '@styles/CommonStyles';
 import {getInstance} from '@utils/RealmHelper';
 import {Inspection, StepOne as StepOneModel} from '@models';
 import {setActiveInspection} from '@store/slices/persistedSlice';
+import {getStatusBarHeight} from 'react-native-status-bar-height';
 
 const StepOne = ({navigation, route}) => {
   const {formatMessage} = useIntl();
@@ -27,6 +28,37 @@ const StepOne = ({navigation, route}) => {
   const [stepData, setStepData] = useState({});
   const [tooltipIndex, setTooltipIndex] = useState(
     route.params.showToolTip ? 1 : 0,
+  );
+
+  const tooltipProps = useMemo(
+    () =>
+      Platform.OS === 'ios'
+        ? {
+            arrowStyle: {left: ms(18)},
+            tooltipStyle: {
+              position: 'absolute',
+              top: ms(getStatusBarHeight()) + vs(10) + ms(50),
+              left: s(8),
+            },
+            childrenWrapperStyle: {
+              position: 'absolute',
+              top: ms(getStatusBarHeight()) + vs(10),
+              left: s(8),
+            },
+          }
+        : {
+            childrenWrapperStyle: {
+              position: 'absolute',
+              top: getStatusBarHeight() + vs(19),
+              left: ms(12),
+            },
+            tooltipStyle: {
+              position: 'absolute',
+              top: getStatusBarHeight() + vs(19.5) + ms(50),
+              left: s(12),
+            },
+          },
+    [],
   );
 
   const bullet = useMemo(
@@ -72,7 +104,6 @@ const StepOne = ({navigation, route}) => {
 
   useEffect(() => {
     navigation.setOptions({
-      headerLeft: () => {},
       tabBarIcon: () => {
         return (
           <Tooltip
@@ -89,11 +120,7 @@ const StepOne = ({navigation, route}) => {
               setTooltipIndex(3);
               navigation.navigate('Search', {toolTip: true});
             }}>
-            <Icon
-              name="home"
-              size={verticalScale(35)}
-              color={RawColors.grey75}
-            />
+            <Icon name="home" size={vs(35)} color={RawColors.grey75} />
           </Tooltip>
         );
       },
@@ -140,10 +167,11 @@ const StepOne = ({navigation, route}) => {
             }
             onClose={() => {
               setTooltipIndex(2);
-            }}>
+            }}
+            {...tooltipProps}>
             <Icon
               name="chevron-left"
-              size={scale(26)}
+              size={ms(26)}
               onPress={navigation.goBack}
             />
           </Tooltip>
@@ -186,7 +214,7 @@ const styles = ScaledSheet.create({
   header: {
     justifyContent: 'center',
     paddingTop: StatusBar.currentHeight,
-    width: scale(32),
+    width: s(32),
   },
   leftIcon: {margin: '8@s'},
   button: {

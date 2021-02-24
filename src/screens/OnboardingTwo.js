@@ -7,7 +7,7 @@ import {
   ImageBackground,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import {ScaledSheet, scale} from 'react-native-size-matters';
+import {ScaledSheet, ms} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 
 import {Container} from '@atoms';
@@ -42,7 +42,7 @@ const OnboardingTwo = ({navigation}) => {
       headerRight: () => (
         <TouchableOpacity
           onPress={() => navigation.navigate('OnboardingThree')}>
-          <Icon name="chevron-right" size={scale(26)} />
+          <Icon name="chevron-right" size={ms(26)} />
         </TouchableOpacity>
       ),
     });
