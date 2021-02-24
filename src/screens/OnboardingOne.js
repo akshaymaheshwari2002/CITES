@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {Text, TouchableOpacity, Image, View, Dimensions} from 'react-native';
 import {useIntl} from 'react-intl';
 import Icon from 'react-native-vector-icons/Feather';
-import {ScaledSheet, scale} from 'react-native-size-matters';
+import {ScaledSheet, ms} from 'react-native-size-matters';
 
 import {Fonts} from '@styles/Themes';
 import {Container} from '@atoms';
@@ -17,7 +17,7 @@ const OnboardingOne = ({navigation}) => {
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity onPress={() => navigation.navigate('OnboardingTwo')}>
-          <Icon name="chevron-right" size={scale(26)} />
+          <Icon name="chevron-right" size={ms(26)} />
         </TouchableOpacity>
       ),
     });

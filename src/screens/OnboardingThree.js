@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
-import {ScaledSheet, scale} from 'react-native-size-matters';
+import {ScaledSheet, ms} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -16,7 +16,7 @@ const OnboardingThree = ({navigation}) => {
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity onPress={() => navigation.navigate('OnboardingFour')}>
-          <Icon name="chevron-right" size={scale(26)} />
+          <Icon name="chevron-right" size={ms(26)} />
         </TouchableOpacity>
       ),
     });

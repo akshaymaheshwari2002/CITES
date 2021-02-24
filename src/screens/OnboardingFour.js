@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Text, TouchableOpacity, Image, View} from 'react-native';
 import {useIntl} from 'react-intl';
-import {ScaledSheet, scale} from 'react-native-size-matters';
+import {ScaledSheet, ms} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
 
 import {Fonts} from '@styles/Themes';
@@ -22,7 +22,7 @@ const OnboardingFour = ({navigation}) => {
               params: {showToolTip: true},
             })
           }>
-          <Icon name="chevron-right" size={scale(26)} />
+          <Icon name="chevron-right" size={ms(26)} />
         </TouchableOpacity>
       ),
     });
