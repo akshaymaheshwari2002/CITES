@@ -77,6 +77,10 @@ const Fonts = {
     fontFamily: 'Lato-Regular',
     fontSize: moderateScale(17),
   },
+  Lato18B: {
+    fontFamily: 'Lato-Bold',
+    fontSize: moderateScale(18),
+  },
   Lato12B: {
     fontFamily: 'Lato-Bold',
     fontSize: moderateScale(12),
@@ -98,7 +102,7 @@ const Fonts = {
     fontSize: moderateScale(34),
   },
   HelveticaNeue17R: {
-    fontFamily: 'HelveticaNeue-Regular',
+    fontFamily: 'HelveticaNeueRegular',
     fontSize: moderateScale(17),
   },
   HelveticaNeue18B: {
