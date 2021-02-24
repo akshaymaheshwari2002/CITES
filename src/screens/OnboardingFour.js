@@ -17,7 +17,7 @@ const OnboardingFour = ({navigation}) => {
       headerRight: () => (
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate('StepOne', {
+            navigation.navigate('TabNavigator', {
               screen: 'StepOne',
               params: {showToolTip: true},
             })

@@ -24,7 +24,7 @@ const ContinueInspection = ({navigation}) => {
           activeFormOneId: item.stepOne?.formOne?._id,
         }),
       );
-      navigation.navigate('StepOne');
+      navigation.navigate('TabNavigator', {screen: 'StepOne'});
     },
     [dispatch, navigation],
   );

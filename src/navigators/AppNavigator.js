@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
-import {scale} from 'react-native-size-matters';
+import {ms} from 'react-native-size-matters';
 import {TouchableOpacity} from 'react-native';
 
 import {navigationRef} from '@utils/RootNavigation';
@@ -21,7 +21,6 @@ import {
   OnboardingFour,
   OnboardingThree,
   OnboardingTwo,
-  StepsSummary,
   SubmitFeedback,
   SourceFlow,
   FacilityRegistered,
@@ -44,7 +43,7 @@ const screenOptions = {
   headerLeft: ({onPress, canGoBack, ...navigationProps}) =>
     canGoBack ? (
       <TouchableOpacity onPress={onPress}>
-        <Icon name="chevron-left" size={scale(26)} {...navigationProps} />
+        <Icon name="chevron-left" size={ms(26)} {...navigationProps} />
       </TouchableOpacity>
     ) : null,
   headerLeftContainerStyle: CommonStyles.navigationLeftContainer,
@@ -75,11 +74,10 @@ const AppNavigator = () => {
         <Stack.Screen name="OnboardingThreeA" component={OnboardingThreeA} />
         <Stack.Screen name="OnboardingFour" component={OnboardingFour} />
         <Stack.Screen
-          name="StepOne"
+          name="TabNavigator"
           component={TabNavigator}
           options={{headerShown: false}}
         />
-        <Stack.Screen name="StepsSummary" component={StepsSummary} />
         <Stack.Screen name="GiveFeedback" component={GiveFeedback} />
         <Stack.Screen name="SubmitFeedback" component={SubmitFeedback} />
         <Stack.Screen name="FacilityScore" component={FacilityScore} />

@@ -23,7 +23,7 @@ const OnboardingThreeA = ({navigation}) => {
       headerRight: () => (
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate('StepOne', {
+            navigation.navigate('TabNavigator', {
               screen: 'StepOne',
               params: {showToolTip: true},
             })

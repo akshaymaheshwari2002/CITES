@@ -67,7 +67,11 @@ const InspectionFlow = ({navigation}) => {
                   }
                 />
                 <Button
-                  onPress={() => navigation.navigate('StepsSummary')}
+                  onPress={() =>
+                    navigation.navigate('TabNavigator', {
+                      screen: 'StepsSummary',
+                    })
+                  }
                   buttonStyle={() => styles.filledButton}
                   buttonTextStyle={() => ({color: RawColors.black})}
                   buttonContent={
