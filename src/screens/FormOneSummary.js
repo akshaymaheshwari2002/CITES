@@ -1,14 +1,38 @@
-import React from 'react';
-import {View, Text, FlatList, TouchableOpacity, Image} from 'react-native';
+import React, {useEffect, useState, useCallback} from 'react';
+import {
+  View,
+  Text,
+  FlatList,
+  Dimensions,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet} from 'react-native-size-matters';
+import Pdf from 'react-native-pdf';
 
 import {Container, Button} from '@atoms';
+import {FormOneTemplate, FormOneHeader} from '@molecules';
 import {Fonts, RawColors} from '@styles/Themes';
 import {Images} from '@assets/';
+import {generatePdf} from '@utils/CommonFunctions';
 
-const FormOneSummary = ({navigation}) => {
+const FormOneSummary = ({navigation, route}) => {
   const {formatMessage} = useIntl();
+  const [fileUri, setFileUri] = useState(undefined);
+  const formData = route.params;
+
+  useEffect(() => {
+    // handelpress();
+  }, [handelpress]);
+
+  const handelpress = useCallback(async () => {
+    const file = await generatePdf({
+      templates: [<FormOneHeader />, <FormOneTemplate />],
+    });
+    setFileUri({uri: file?.filePath});
+    console.log(file.filePath);
+  }, []);
 
   return (
     <Container>
@@ -31,7 +55,7 @@ const FormOneSummary = ({navigation}) => {
           {formatMessage({id: 'screen.FormOneSummary.subHeading_3'})}
         </Text>
       </View>
-      <View></View>
+      {fileUri ? <Pdf source={fileUri} style={styles.pdf} /> : null}
     </Container>
   );
 };
@@ -54,6 +78,12 @@ const styles = ScaledSheet.create({
   },
   subHeadingText: {
     color: RawColors.charcoalGrey60,
+  },
+  pdf: {
+    flex: 1,
+    backgroundColor: 'white',
+    // width: Dimensions.get('window').width,
+    // height: Dimensions.get('window').height,
   },
 });
 

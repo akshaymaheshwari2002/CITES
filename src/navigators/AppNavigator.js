@@ -56,7 +56,7 @@ const AppNavigator = () => {
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator
         screenOptions={screenOptions}
-        initialRouteName="FormOneSummary">
+        initialRouteName="LanguageSelection">
         <Stack.Screen
           name="LanguageSelection"
           options={{headerShown: false}}
