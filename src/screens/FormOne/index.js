@@ -12,8 +12,8 @@ import getFormFieldsPageOne from './FormFieldsPageOne';
 import getFormFieldsPageTwo from './FormFieldsPageTwo';
 import {Fonts, RawColors} from '@styles/Themes';
 import {getInstance} from '@utils/RealmHelper';
-import {FormOne as FormOneModel, Species} from '@models';
-import {setActiveFormOneId} from '@store/slices/persistedSlice';
+import {FormOne as FormOneModel, Inspection, Species, StepOne} from '@models';
+import {setActiveInspection} from '@store/slices/persistedSlice';
 import Constants from '@utils/Constants';
 import {getDefaultValues} from '@utils/CommonFunctions';
 
@@ -28,7 +28,13 @@ const FormOne = ({navigation}) => {
   const switchedFromPageOne = useRef(false);
   const [formFieldsPage, setFormFieldsPage] = useState(1);
   const activeFormOneId = useSelector(
-    (state) => state.persistedReducer.activeFormOneId,
+    (state) => state.persistedReducer.activeInspection.activeFormOneId,
+  );
+  const activeStepOneId = useSelector(
+    (state) => state.persistedReducer.activeInspection.activeFormOneId,
+  );
+  const activeInspectionId = useSelector(
+    (state) => state.persistedReducer.activeInspection.id,
   );
   const formValues = formProps.watch();
   const selectedSpeciesName = formProps.watch('name', {});
@@ -57,10 +63,24 @@ const FormOne = ({navigation}) => {
           typeOfInspection: Object.keys(data.typeOfInspection),
           _id: activeFormOneId,
         });
+        const stepOneData = new StepOne({
+          _id: activeStepOneId,
+          formOne: formOneData,
+        });
+        const inspectionData = new Inspection({
+          _id: activeInspectionId,
+          stepOne: stepOneData,
+        });
 
-        dispatch(setActiveFormOneId(formOneData._id.toHexString()));
         realm.write(() => {
-          realm.create('FormOne', formOneData, 'modified');
+          realm.create('Inspection', inspectionData, 'modified');
+          dispatch(
+            setActiveInspection({
+              id: inspectionData._id.toHexString(),
+              activeStepOneId: stepOneData._id.toHexString(),
+              activeFormOneId: formOneData._id.toHexString(),
+            }),
+          );
         });
 
         setFormFieldsPage(2);
@@ -100,7 +120,14 @@ const FormOne = ({navigation}) => {
         formProps.reset(getDefaultValues(getFormFieldsPageTwo()));
       }
     },
-    [activeFormOneId, dispatch, formFieldsPage, formProps],
+    [
+      activeFormOneId,
+      activeInspectionId,
+      activeStepOneId,
+      dispatch,
+      formFieldsPage,
+      formProps,
+    ],
   );
 
   const setSpeciesDataInForm = useCallback(

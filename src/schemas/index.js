@@ -144,6 +144,7 @@ export const STEP_ONE = {
     twoOfficialsArranged: 'bool?',
     inspectionConcides: 'bool?',
     facilityOwnerPresent: 'bool?',
+    formOne: 'FormOne?',
   },
 };
 
