@@ -216,5 +216,7 @@
   "screen.SourceCode.X.letterDescription": "MARINE ENVIRONMENT",
   "screen.SourceCode.NotApplicaple.contentDescription": "The specimen is not CITES-listed and therefore does not require a CITES permit or associated source code.",
   "screen.SourceCode.NotApplicable.letterDescription": "CITES EXPORT PERMIT NOT REQUIRED",
-  "screen.SourceCode.buttonContent": "Continue"
+  "screen.SourceCode.buttonContent": "Continue",
+  "screen.SourceCodeSelection.title": "SOURCE CODE",
+  "screen.MoreInformation.title": "MORE INFORMATION"
 }

@@ -33,6 +33,8 @@ import {
   FormOne,
   ContinueInspection,
   StepTwo,
+  SourceCodeSelection,
+  MoreInformation,
   DetermineSourceCode,
 } from '@screens';
 import TabNavigator from './TabNavigator';
@@ -69,6 +71,11 @@ const AppNavigator = () => {
           options={{headerTransparent: true}}
           component={SourceFlow}
         />
+        <Stack.Screen
+          name="SourceCodeSelection"
+          component={SourceCodeSelection}
+        />
+        <Stack.Screen name="MoreInformation" component={MoreInformation} />
         <Stack.Screen name="SourceCode" component={SourceCode} />
         <Stack.Screen name="OnboardingOne" component={OnboardingOne} />
         <Stack.Screen name="OnboardingTwo" component={OnboardingTwo} />

@@ -18,6 +18,7 @@ import SubmitFeedback from './SubmitFeedback';
 import HomePage from './HomePage';
 import SourceFlow from './SourceFlow';
 import SourceCode from './SourceCode';
+import SourceCodeSelection from './SourceCodeSelection';
 import InspectionFlow from './InspectionFlow';
 import ContinueInspection from './ContinueInspection';
 import FacilityInfringement from './FacilityInfringement';
@@ -28,13 +29,16 @@ import SearchDummy from './SearchDummy';
 import Notes from './Notes';
 import DrawerMenu from './DrawerMenu';
 import DetermineSourceCode from './DetermineSourceCode';
+import MoreInformation from './MoreInformation';
 
 export {
   FacilityScore,
+  MoreInformation,
   FacilityScoreLessEight,
   FacilityScoreGreaterEight,
   GiveFeedback,
   FacilityRegistered,
+  SourceCodeSelection,
   LanguageSelection,
   OnboardingOne,
   SearchDummy,

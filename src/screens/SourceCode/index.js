@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Text, TouchableOpacity, Image, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, scale} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -11,18 +11,13 @@ import SourceCodeData from './SourceCodeData';
 
 const SourceCode = ({navigation, route}) => {
   const {formatMessage} = useIntl();
-  const resultSourceCode = 'D';
+  const resultSourceCode = route.params.letter;
 
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity
-          onPress={() =>
-            navigation.navigate('StepOne', {
-              screen: 'StepOne',
-              params: {showToolTip: true},
-            })
-          }>
+          onPress={() => navigation.navigate('SourceCodeSelection')}>
           <Icon name="pluscircle" size={scale(26)} />
         </TouchableOpacity>
       ),
@@ -36,39 +31,45 @@ const SourceCode = ({navigation, route}) => {
           <Text style={styles.title}>
             {formatMessage({id: 'screen.SourceCode.title'})}
           </Text>
-          <Text style={styles.letter}>
-            {formatMessage({id: resultSourceCode})}
-          </Text>
+          <Text style={styles.letter}>{resultSourceCode}</Text>
         </View>
         <View style={styles.letterDescription}>
           <Text style={styles.letterDescriptionText}>
-            {formatMessage({
-              id: SourceCodeData[resultSourceCode].letterDescription,
-            })}
+            {SourceCodeData[resultSourceCode].letterDescription}
           </Text>
         </View>
         <Text style={styles.line}>
           {formatMessage({id: 'screen.SourceCode.line'})}
         </Text>
-        <View style={styles.numberRow}>
-          <View style={styles.numberContainer}>
-            <Text style={styles.number}>
-              {formatMessage({id: 'screen.SourceCode.NumberOne'})}
-            </Text>
-          </View>
-          <View style={styles.numberContainer}>
-            <Text style={styles.number}>
-              {formatMessage({id: 'screen.SourceCode.NumberTwo'})}
-            </Text>
-          </View>
-          <View style={styles.numberContainer}>
-            <Text style={styles.number}>
-              {formatMessage({id: 'screen.SourceCode.NumberThree'})}
-            </Text>
+        <View style={styles.gap}>
+          <View style={styles.numberRow}>
+            <View style={styles.numberContainer}>
+              <Text style={styles.number}>
+                {formatMessage({id: 'screen.SourceCode.NumberOne'})}
+              </Text>
+            </View>
+            <View>
+              {resultSourceCode !== 'D' ? (
+                <View style={styles.numberRow}>
+                  <View style={styles.numberContainer}>
+                    <Text style={styles.number}>
+                      {formatMessage({id: 'screen.SourceCode.NumberTwo'})}
+                    </Text>
+                  </View>
+                  <View style={styles.numberContainer}>
+                    <Text style={styles.number}>
+                      {formatMessage({id: 'screen.SourceCode.NumberThree'})}
+                    </Text>
+                  </View>
+                </View>
+              ) : (
+                <></>
+              )}
+            </View>
           </View>
         </View>
         <Text style={styles.contentDescription}>
-          {formatMessage({id: SourceCodeData[resultSourceCode].content})}
+          {SourceCodeData[resultSourceCode].content}
         </Text>
         <Button
           buttonContent={formatMessage({
@@ -121,6 +122,7 @@ const styles = ScaledSheet.create({
     lineHeight: '19@s',
     marginHorizontal: '40@s',
   },
+  gap: {marginTop: '10@vs'},
   line: {
     marginTop: '25@s',
     ...Fonts.Lato15R,
@@ -128,16 +130,16 @@ const styles = ScaledSheet.create({
     letterSpacing: 0.4,
     lineHeight: '19@s',
   },
-  numberRow: {flexDirection: 'row', justifyContent: 'center', marginTop: '8@s'},
+  numberRow: {flexDirection: 'row', justifyContent: 'center'},
   numberContainer: {
-    height: 30,
-    width: 30,
+    height: '30@s',
+    width: '30@s',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: RawColors.greyShade,
     marginHorizontal: '10@s',
     lineHeight: '24@s',
-    borderRadius: 15,
+    borderRadius: '15@s',
   },
   number: {
     fontSize: 20,
