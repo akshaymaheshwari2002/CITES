@@ -169,7 +169,7 @@ const styles = ScaledSheet.create({
     marginBottom: '16@vs',
   },
   buttonTextOne: {
-    ...Fonts.HelveticaNeue17R,
+    ...Fonts.Lato17R,
     color: RawColors.darkGreyBlue,
     alignSelf: 'flex-start',
     marginLeft: '20@s',
@@ -181,7 +181,7 @@ const styles = ScaledSheet.create({
     marginBottom: '18@s',
   },
   buttonTextTwo: {
-    ...Fonts.HelveticaNeue18B,
+    ...Fonts.Lato20B,
     fontWeight: 'bold',
     color: RawColors.darkGreyBlue,
     alignSelf: 'flex-start',

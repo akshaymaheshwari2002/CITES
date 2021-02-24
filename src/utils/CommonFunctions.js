@@ -57,10 +57,10 @@ export const generatePdf = async ({
   const intl = createIntl(locale);
 
   let options = {
-    html: templates.map((value) => renderToStaticMarkup(value())).join(''),
+    html: templates.map((value) => renderToStaticMarkup(value)).join(''),
   };
   let saveOptions = {
-    html: templates.map((value) => renderToStaticMarkup(value())).join(''),
+    html: templates.map((value) => renderToStaticMarkup(value)).join(''),
     fileName: fileName ? `${fileName}` : `${new Date().getTime()}`,
     directory: Platform.OS === 'ios' ? 'Documents' : 'Download',
   };

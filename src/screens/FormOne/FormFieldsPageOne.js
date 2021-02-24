@@ -81,7 +81,7 @@ export default () => {
     },
     {
       label: formatMessage({id: 'form.label.registeredSpecies'}),
-      name: 'registeredSpecies',
+      name: 'registeredSpeciesName',
       rules: {required},
       fieldType: Constants.TEXTINPUT_ARRAY,
       count: 1,

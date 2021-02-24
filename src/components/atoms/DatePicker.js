@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import PropTypes from 'prop-types';
@@ -24,6 +24,18 @@ const DatePicker = React.forwardRef(
   ) => {
     const [pickerVisible, setPickerVisible] = useState(false);
 
+    const getValue = useCallback(() => {
+      if (value) {
+        if (typeof value === 'string') {
+          return new Date(parseInt(value, 10)).toLocaleDateString();
+        } else {
+          return Date.now().toLocaleString();
+        }
+      } else {
+        return '';
+      }
+    }, [value]);
+
     return (
       <>
         <View style={styles.labelContainer}>
@@ -43,7 +55,11 @@ const DatePicker = React.forwardRef(
           onPress={() => {
             setPickerVisible(true);
           }}>
-          <TextInput value={value} editable={false} />
+          <TextInput
+            style={{color: RawColors.black}}
+            value={getValue()}
+            editable={false}
+          />
         </TouchableOpacity>
         <DateTimePicker
           mode="date"
@@ -79,7 +95,7 @@ DatePicker.proptype = {
 DatePicker.defaultProps = {
   label: '',
   error: '',
-  value: new Date(),
+  value: '',
   showHelpIcon: false,
   onHelpIconPress: () => {},
 };

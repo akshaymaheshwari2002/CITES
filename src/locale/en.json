@@ -1,6 +1,6 @@
 {
   "permission.writeExternal": "Please Grant Permission",
-  "screen.screen2.selectAnItem": "Select an Item",
+  "screen.screen2.selectAnItem": "Select location",
   "general.error": "An error has occured",
   "general.continue": "Continue",
   "general.yourTasks": "your tasks",
@@ -169,6 +169,7 @@
   "button.addInspectionOfficer": "+ Add inspection officer",
   "button.addSpecies": "+ Add species",
   "button.continueToStep1": "CONTINUE TO STEP 1",
+  "button.continueToStep3": "CONTINUE TO STEP 3",
   "button.viewFormOneSummary": "VIEW FORM 1 SUMMARY",
   "button.saveAndAdd": "SAVE AND + ADD ADDITIONAL SPECIES INFORMATION",
   "screen.StepOne.WalkThroughContentOne": "Tap to go back to previous page",
@@ -216,5 +217,12 @@
   "screen.SourceCode.X.letterDescription": "MARINE ENVIRONMENT",
   "screen.SourceCode.NotApplicaple.contentDescription": "The specimen is not CITES-listed and therefore does not require a CITES permit or associated source code.",
   "screen.SourceCode.NotApplicable.letterDescription": "CITES EXPORT PERMIT NOT REQUIRED",
-  "screen.SourceCode.buttonContent": "Continue"
+  "screen.SourceCode.buttonContent": "Continue",
+  "screen.ContinueInspection.emptyList": "No active inspections.",
+  "screen.ContinueInspection.goBack": "go Back",
+  "screen.FormOneSummary.title_1": "Form 1",
+  "screen.FormOneSummary.title_2": "Summary",
+  "screen.FormOneSummary.subHeading_1": "information from the",
+  "screen.FormOneSummary.subHeading_2": "facility and previous",
+  "screen.FormOneSummary.subHeading_3": "inspections."
 }

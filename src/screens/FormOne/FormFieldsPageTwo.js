@@ -2,7 +2,7 @@ import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
 
-export default () => {
+export default (fieldProps = {}) => {
   const {formatMessage} = createIntl();
   const {required} = getValidators();
 
@@ -13,6 +13,7 @@ export default () => {
       name: 'name',
       rules: {required},
       fieldType: Constants.PICKER,
+      ...fieldProps.name,
     },
     {
       defaultValue: '',
