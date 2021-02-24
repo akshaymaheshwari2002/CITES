@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {View, Text, StatusBar} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
@@ -11,14 +11,18 @@ import ChecklistContent from './ChecklistContent';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
 import {getInstance} from '@utils/RealmHelper';
-import {StepOne as StepOneModel} from '@models';
-import {setActiveStepOneId} from '@store/slices/persistedSlice';
+import {Inspection, StepOne as StepOneModel} from '@models';
+import {setActiveInspection} from '@store/slices/persistedSlice';
 
 const StepOne = ({navigation, route}) => {
   const {formatMessage} = useIntl();
+  const isMounting = useRef(true);
   const dispatch = useDispatch();
   const activeStepOneId = useSelector(
-    (state) => state.persistedReducer.activeStepOneId,
+    (state) => state.persistedReducer.activeInspection.activeStepOneId,
+  );
+  const activeInspectionId = useSelector(
+    (state) => state.persistedReducer.activeInspection.id,
   );
   const [stepData, setStepData] = useState({});
   const [tooltipIndex, setTooltipIndex] = useState(
@@ -47,15 +51,24 @@ const StepOne = ({navigation, route}) => {
       stepOneData = activeStepOneId
         ? new StepOneModel({...stepOneData, _id: activeStepOneId})
         : new StepOneModel(stepOneData);
+      const inspectionData = new Inspection({
+        _id: activeInspectionId,
+        stepOne: stepOneData,
+      });
 
-      console.log(stepData);
+      console.log({inspectionData});
 
-      dispatch(setActiveStepOneId(stepOneData._id.toHexString()));
       realm.write(() => {
-        realm.create('StepOne', stepOneData, 'modified');
+        realm.create('Inspection', inspectionData, 'modified');
+        dispatch(
+          setActiveInspection({
+            id: inspectionData._id.toHexString(),
+            activeStepOneId: stepOneData._id.toHexString(),
+          }),
+        );
       });
     }
-  }, [activeStepOneId, dispatch, stepData]);
+  }, [activeInspectionId, activeStepOneId, dispatch, stepData]);
 
   useEffect(() => {
     navigation.setOptions({
@@ -88,21 +101,26 @@ const StepOne = ({navigation, route}) => {
   }, [formatMessage, navigation, tooltipIndex]);
 
   useEffect(() => {
-    if (activeStepOneId) {
+    if (isMounting.current) {
       (async () => {
-        const realm = await getInstance();
-        const stepOneObjects = realm.objects('StepOne');
-        const activeStepOneData = JSON.parse(
-          JSON.stringify(
-            stepOneObjects.filter(
-              ({_id}) => _id.toHexString() === activeStepOneId,
-            )[0] ?? {},
-          ),
-        );
+        if (activeStepOneId) {
+          const realm = await getInstance();
+          const stepOneObjects = realm.objects('StepOne');
+          const activeStepOneData = JSON.parse(
+            JSON.stringify(
+              stepOneObjects.filter(
+                ({_id}) => _id.toHexString() === activeStepOneId,
+              )[0] ?? {},
+            ),
+          );
 
-        delete activeStepOneData._id;
-        setStepData(activeStepOneData);
+          delete activeStepOneData.formOne;
+          delete activeStepOneData._id;
+          setStepData(activeStepOneData);
+        }
       })();
+
+      isMounting.current = false;
     }
   }, [activeStepOneId]);
 

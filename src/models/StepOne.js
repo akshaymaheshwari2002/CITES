@@ -11,6 +11,7 @@ export default class StepOne {
     twoOfficialsArranged,
     inspectionConcides,
     facilityOwnerPresent,
+    formOne,
   }) {
     this._id = _id ? new BSON.ObjectId(_id) : new BSON.ObjectId();
     this.researchConducted = researchConducted;
@@ -22,5 +23,6 @@ export default class StepOne {
     this.twoOfficialsArranged = twoOfficialsArranged;
     this.inspectionConcides = inspectionConcides;
     this.facilityOwnerPresent = facilityOwnerPresent;
+    this.formOne = formOne;
   }
 }
