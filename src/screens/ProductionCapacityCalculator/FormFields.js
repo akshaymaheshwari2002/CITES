@@ -58,6 +58,10 @@ export default ({modeSelected}) => {
     {
       defaultValue: '',
       label: formatMessage({id: 'form.label.countTotalBreedingFemale'}),
+      placeholder:
+        modeSelected === 2
+          ? ''
+          : formatMessage({id: 'form.label.countTotalBreedingFemale'}),
       name: 'countTotalBreedingFemale',
       rules:
         modeSelected === 1
@@ -72,8 +76,8 @@ export default ({modeSelected}) => {
           : {},
       style:
         modeSelected === 2 ? resultFieldStyleProps : {color: RawColors.black},
-      showHelpIcon: true,
-      onHelpIconPress: () => {
+      showFieldHelpIcon: true,
+      onFieldHelpIconPress: () => {
         dispatch(setHelpText(helpText.countTotalBreedingFemale));
       },
       editable: modeSelected === 1,
@@ -84,6 +88,9 @@ export default ({modeSelected}) => {
       label: formatMessage({
         id: 'form.label.percentageBreedingFemalePerSeason',
       }),
+      placeholder: formatMessage({
+        id: 'form.label.percentageBreedingFemalePerSeason',
+      }),
       name: 'percentageBreedingFemalePerSeason',
       rules: {
         required,
@@ -92,8 +99,8 @@ export default ({modeSelected}) => {
           validateNumberPercentageFraction,
         },
       },
-      showHelpIcon: true,
-      onHelpIconPress: () => {
+      showFieldHelpIcon: true,
+      onFieldHelpIconPress: () => {
         dispatch(setHelpText(helpText.percentageBreedingFemalePerSeason));
       },
       keyboardType: 'decimal-pad',
@@ -101,6 +108,7 @@ export default ({modeSelected}) => {
     {
       defaultValue: '',
       label: formatMessage({id: 'form.label.countLitterPerYear'}),
+      placeholder: formatMessage({id: 'form.label.countLitterPerYear'}),
       name: 'countLitterPerYear',
       rules: {
         required,
@@ -110,8 +118,8 @@ export default ({modeSelected}) => {
           validateInteger,
         },
       },
-      showHelpIcon: true,
-      onHelpIconPress: () => {
+      showFieldHelpIcon: true,
+      onFieldHelpIconPress: () => {
         dispatch(setHelpText(helpText.countLitterPerYear));
       },
       keyboardType: 'number-pad',
@@ -119,6 +127,7 @@ export default ({modeSelected}) => {
     {
       defaultValue: '',
       label: formatMessage({id: 'form.label.countOffspringPerLitter'}),
+      placeholder: formatMessage({id: 'form.label.countOffspringPerLitter'}),
       name: 'countOffspringPerLitter',
       rules: {
         required,
@@ -128,8 +137,8 @@ export default ({modeSelected}) => {
           validateInteger,
         },
       },
-      showHelpIcon: true,
-      onHelpIconPress: () => {
+      showFieldHelpIcon: true,
+      onFieldHelpIconPress: () => {
         dispatch(setHelpText(helpText.countOffspringPerLitter));
       },
       keyboardType: 'number-pad',
@@ -137,6 +146,9 @@ export default ({modeSelected}) => {
     {
       defaultValue: '',
       label: formatMessage({id: 'form.label.percentageSurvivingInTwoWeek'}),
+      placeholder: formatMessage({
+        id: 'form.label.percentageSurvivingInTwoWeek',
+      }),
       name: 'percentageSurvivingInTwoWeek',
       rules: {
         required,
@@ -145,8 +157,8 @@ export default ({modeSelected}) => {
           validateNumberPercentageFraction,
         },
       },
-      showHelpIcon: true,
-      onHelpIconPress: () => {
+      showFieldHelpIcon: true,
+      onFieldHelpIconPress: () => {
         dispatch(setHelpText(helpText.percentageSurvivingInTwoWeek));
       },
       keyboardType: 'decimal-pad',
@@ -156,6 +168,12 @@ export default ({modeSelected}) => {
       label: formatMessage({
         id: 'form.label.approximateYoungProducedPerYear',
       }),
+      placeholder:
+        modeSelected === 1
+          ? ''
+          : formatMessage({
+              id: 'form.label.approximateYoungProducedPerYear',
+            }),
       name: 'approximateYoungProducedPerYear',
       rules:
         modeSelected === 2
@@ -168,8 +186,8 @@ export default ({modeSelected}) => {
               },
             }
           : {},
-      showHelpIcon: true,
-      onHelpIconPress: () => {
+      showFieldHelpIcon: true,
+      onFieldHelpIconPress: () => {
         dispatch(setHelpText(helpText.approximateYoungProducedPerYear));
       },
       keyboardType: 'number-pad',

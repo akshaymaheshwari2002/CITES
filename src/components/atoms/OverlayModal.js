@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import {Modal, Text, Pressable, View} from 'react-native';
 import {ScaledSheet, moderateScale} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -12,14 +12,28 @@ const OverlayModal = ({isModalVisible, hideModal, helpText}) => {
   const [modalViewHeight, setModalViewHeight] = useState(0);
   const [contentContainerHeight, setContentContainerHeight] = useState(0);
 
-  const increaseWidth = () => {
+  useEffect(() => {
+    setModalWidth('50%'); // reset modal width when help text changes
+  }, [helpText]);
+
+  useEffect(() => {
+    if (
+      modalViewHeight &&
+      contentContainerHeight &&
+      modalViewHeight < contentContainerHeight
+    ) {
+      increaseWidth();
+    }
+  }, [modalViewHeight, contentContainerHeight, increaseWidth]);
+
+  const increaseWidth = useCallback(() => {
     if (modalWidth === '50%') {
       setModalWidth('75%');
     } else if (modalWidth === '75%') {
       setModalWidth('100%');
     } else {
     }
-  };
+  }, [modalWidth]);
 
   return (
     <Modal
@@ -34,13 +48,8 @@ const OverlayModal = ({isModalVisible, hideModal, helpText}) => {
           style={[styles.modalView, {width: modalWidth}]}
           onLayout={(ev) => {
             const height = ev.nativeEvent.layout.height;
-            if (Math.round(height) !== Math.round(modalViewHeight)) {
-              setModalViewHeight(height);
-            }
-            if (Math.round(height) < contentContainerHeight) {
-              if (height && contentContainerHeight) {
-                increaseWidth();
-              }
+            if (Math.round(height) !== modalViewHeight) {
+              setModalViewHeight(Math.round(height));
             }
           }}>
           <Icon
@@ -55,13 +64,8 @@ const OverlayModal = ({isModalVisible, hideModal, helpText}) => {
               style={styles.contentContainer}
               onLayout={(ev) => {
                 const height = ev.nativeEvent.layout.height;
-                if (Math.round(height) !== Math.round(contentContainerHeight)) {
-                  setContentContainerHeight(height);
-                }
-                if (Math.round(height) > modalViewHeight) {
-                  if (modalViewHeight && height) {
-                    increaseWidth();
-                  }
+                if (Math.round(height) !== contentContainerHeight) {
+                  setContentContainerHeight(Math.round(height));
                 }
               }}>
               {helpText

@@ -71,7 +71,7 @@ const FormOne = ({navigation}) => {
             JSON.stringify(
               realm
                 .objects('FormOne')
-                .filter(({_id}) => _id.toHexString() === activeFormOneId)[0],
+                ?.filter(({_id}) => _id.toHexString() === activeFormOneId)[0],
             ),
           );
           const alreadyExists = activeFormOne.registeredSpeciesData.some(
@@ -79,7 +79,7 @@ const FormOne = ({navigation}) => {
           );
 
           if (alreadyExists) {
-            let existingData = activeFormOne.registeredSpeciesData.filter(
+            let existingData = activeFormOne.registeredSpeciesData?.filter(
               (entry) => data.name === entry.name,
             )[0];
             existingData = new Species({
@@ -120,6 +120,20 @@ const FormOne = ({navigation}) => {
     },
     [formProps],
   );
+
+  const handleFormSummaryView = useCallback(async () => {
+    const realm = await getInstance();
+    const formOneObjects = realm.objects('FormOne');
+    const activeFormData = JSON.parse(
+      JSON.stringify(
+        formOneObjects?.filter(
+          ({_id}) => _id.toHexString() === activeFormOneId,
+        )[0],
+      ),
+    );
+
+    navigation.navigate('FormOneSummary', {data: activeFormData});
+  }, [activeFormOneId, navigation]);
 
   useEffect(() => {
     navigation.setOptions({
@@ -183,7 +197,7 @@ const FormOne = ({navigation}) => {
           const formOneObjects = realm.objects('FormOne');
           const activeFormData = JSON.parse(
             JSON.stringify(
-              formOneObjects.filter(
+              formOneObjects?.filter(
                 ({_id}) => _id.toHexString() === activeFormOneId,
               )[0],
             ),
@@ -244,6 +258,7 @@ const FormOne = ({navigation}) => {
                 buttonContent={formatMessage({id: 'button.saveAndAdd'})}
               />
               <Button
+                onPress={handleFormSummaryView}
                 buttonStyle={() => ({marginVertical: verticalScale(16)})}
                 buttonContent={formatMessage({id: 'button.viewFormOneSummary'})}
               />
