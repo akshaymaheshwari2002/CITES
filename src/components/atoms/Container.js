@@ -46,6 +46,7 @@ Container.ScrollView = React.forwardRef(
   ({children, contentContainerStyle, ...restProps}, ref) => (
     <KeyboardAwareScrollView
       ref={ref}
+      bounces={false}
       keyboardShouldPersistTaps="handled"
       enableOnAndroid={true}
       contentContainerStyle={[styles.container, contentContainerStyle]}
