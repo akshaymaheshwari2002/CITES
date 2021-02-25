@@ -111,7 +111,7 @@ const StepOne = ({navigation, route}) => {
             placement="bottom"
             isVisible={route.params.showToolTip}
             content={formatMessage({
-              id: 'screen.StepOne.WalkThroughContentTwo',
+              id: 'screen.StepOne.WalkThroughContentOne',
             })}
             onClose={handleTooltipClose}>
             <Icon
