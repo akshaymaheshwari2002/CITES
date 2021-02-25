@@ -12,20 +12,17 @@ import {
   FacilityScoreLessEight,
   FacilityScoreGreaterEight,
   LanguageSelection,
-  OnboardingOne,
   OnboardingOneA,
   OnboardingTwoA,
   OnboardingThreeA,
   InspectionFlow,
   GiveFeedback,
-  OnboardingFour,
-  OnboardingThree,
-  OnboardingTwo,
   SubmitFeedback,
   SourceFlow,
   HomePage,
   WebView,
   FormOneSummary,
+  InspectionOnboarding,
 } from '@screens';
 import TabNavigator from './TabNavigator';
 
@@ -61,13 +58,9 @@ const AppNavigator = () => {
           options={{headerTransparent: true}}
           component={SourceFlow}
         />
-        <Stack.Screen name="OnboardingOne" component={OnboardingOne} />
-        <Stack.Screen name="OnboardingTwo" component={OnboardingTwo} />
-        <Stack.Screen name="OnboardingThree" component={OnboardingThree} />
         <Stack.Screen name="OnboardingOneA" component={OnboardingOneA} />
         <Stack.Screen name="OnboardingTwoA" component={OnboardingTwoA} />
         <Stack.Screen name="OnboardingThreeA" component={OnboardingThreeA} />
-        <Stack.Screen name="OnboardingFour" component={OnboardingFour} />
         <Stack.Screen
           name="TabNavigator"
           component={TabNavigator}
@@ -93,6 +86,11 @@ const AppNavigator = () => {
           name="HomePage"
           options={{headerShown: false}}
           component={HomePage}
+        />
+        <Stack.Screen
+          name="InspectionOnboarding"
+          options={{headerShown: false}}
+          component={InspectionOnboarding}
         />
         <Stack.Screen name="FormOneSummary" component={FormOneSummary} />
         <Stack.Screen name="WebView" component={WebView} />

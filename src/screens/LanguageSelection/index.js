@@ -121,13 +121,13 @@ const LanguageSelection = ({navigation}) => {
               duration: 10,
               easing: Easing.linear,
               useNativeDriver: true,
-            }).start(({finished}) => {
+            }).start(() => {
               Animated.timing(meshValue, {
                 toValue: 3,
                 duration: 1000,
                 easing: Easing.linear,
                 useNativeDriver: true,
-              }).start(({finished}) => {
+              }).start(() => {
                 if (finished) {
                   isMounting.current = false;
                   setIsMount(false);
@@ -156,11 +156,7 @@ const LanguageSelection = ({navigation}) => {
       statusBarProps={{barStyle: 'light-content'}}>
       <Container.ScrollView contentContainerStyle={[styles.scrollContainer]}>
         <Animated.View
-          style={{
-            width: '100%',
-            alignItems: 'center',
-            opacity: mainDataOpacity,
-          }}>
+          style={[styles.logoContainer, {opacity: mainDataOpacity}]}>
           <Image
             source={Images?.logo}
             style={styles.logo}
@@ -194,12 +190,6 @@ const LanguageSelection = ({navigation}) => {
             resizeMode="contain"
           />
         ) : null}
-        {/* <Animated.View
-          style={{
-            width: '100%',
-            alignItems: 'center',
-            opacity: mainDataOpacity,
-          }}> */}
         {!isMount ? (
           <View style={styles.dropDownContainer}>
             <Picker
@@ -213,7 +203,6 @@ const LanguageSelection = ({navigation}) => {
             />
           </View>
         ) : null}
-        {/* </Animated.View> */}
         {isMount ? (
           <Animated.Image
             style={[
@@ -271,6 +260,10 @@ const styles = ScaledSheet.create({
     borderBottomLeftRadius: 8,
     borderWidth: 0,
     width: '100%',
+  },
+  logoContainer: {
+    width: '100%',
+    alignItems: 'center',
   },
   logo: {
     marginTop: '35@vs',

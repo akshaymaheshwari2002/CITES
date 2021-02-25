@@ -4,13 +4,9 @@ import FacilityScoreLessEight from './FacilityScoreLessEight';
 import FacilityScoreGreaterEight from './FacilityScoreGreaterEight';
 import GiveFeedback from './GiveFeedback';
 import LanguageSelection from './LanguageSelection';
-import OnboardingOne from './OnboardingOne';
 import OnboardingOneA from './OnboardingOneA';
-import OnboardingTwo from './OnboardingTwo';
 import OnboardingTwoA from './OnboardingTwoA';
-import OnboardingThree from './OnboardingThree';
 import OnboardingThreeA from './OnboardingThreeA';
-import OnboardingFour from './OnboardingFour';
 import StepsSummary from './StepsSummary';
 import StepOne from './StepOne';
 import SubmitFeedback from './SubmitFeedback';
@@ -26,6 +22,7 @@ import SearchDummy from './SearchDummy';
 import Notes from './Notes';
 import DrawerMenu from './DrawerMenu';
 import FormOneSummary from './FormOneSummary';
+import InspectionOnboarding from './InspectionOnboarding';
 
 export {
   FacilityScore,
@@ -34,18 +31,14 @@ export {
   GiveFeedback,
   FacilityRegistered,
   LanguageSelection,
-  OnboardingOne,
   SearchDummy,
   SourceFlow,
   OnboardingOneA,
   OnboardingTwoA,
   OnboardingThreeA,
   FacilityInfringement,
-  OnboardingTwo,
   Notes,
   DrawerMenu,
-  OnboardingThree,
-  OnboardingFour,
   StepsSummary,
   InspectionFlow,
   ContinueInspection,
@@ -56,4 +49,5 @@ export {
   WebView,
   FormOne,
   FormOneSummary,
+  InspectionOnboarding,
 };

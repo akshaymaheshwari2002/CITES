@@ -5,25 +5,26 @@ import {useIntl} from 'react-intl';
 import Icon from 'react-native-vector-icons/Feather';
 
 import {Fonts} from '@styles/Themes';
-import {Container} from '@atoms';
+import {Container, Header} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
 import {Images} from '@assets';
 
-const OnboardingThree = ({navigation}) => {
+const OnboardingThree = ({
+  onBackPress = () => {},
+  onFordwardPress = () => {},
+}) => {
   const {formatMessage} = useIntl();
 
-  useEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <TouchableOpacity onPress={() => navigation.navigate('OnboardingFour')}>
-          <Icon name="chevron-right" size={ms(26)} />
-        </TouchableOpacity>
-      ),
-    });
-  }, [navigation]);
-
   return (
-    <Container>
+    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+      <Header
+        leftContent={
+          <Icon name="chevron-left" size={ms(26)} onPress={onBackPress} />
+        }
+        rightContent={
+          <Icon name="chevron-right" size={ms(26)} onPress={onFordwardPress} />
+        }
+      />
       <Container.ScrollView style={CommonStyles.screenContainer}>
         <View style={styles.content}>
           <Text style={styles.txt}>
