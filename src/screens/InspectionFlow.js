@@ -41,7 +41,7 @@ const InspectionFlow = ({navigation}) => {
               imageStyle={styles.backgroundImage}>
               <View style={styles.contentContainer}>
                 <Button
-                  onPress={() => navigation.navigate('OnboardingOne')}
+                  onPress={() => navigation.navigate('InspectionOnboarding')}
                   buttonStyle={() => styles.filledButton}
                   buttonTextStyle={() => ({color: RawColors.black})}
                   buttonContent={

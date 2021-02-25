@@ -13,7 +13,7 @@ const StepsSummary = ({navigation}) => {
   const {formatMessage} = useIntl();
 
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Header
         leftContent={
           <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />

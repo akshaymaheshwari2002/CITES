@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, Pressable} from 'react-native';
+import {Text, Pressable, Platform} from 'react-native';
 import PropTypes from 'prop-types';
 import {ScaledSheet} from 'react-native-size-matters';
 
@@ -13,7 +13,11 @@ const Button = ({
 }) => {
   return (
     <Pressable
-      style={({pressed}) => [styles.button, buttonStyle(pressed)]}
+      style={({pressed}) => [
+        styles.button,
+        pressed ? styles.onPress : undefined,
+        buttonStyle(pressed),
+      ]}
       android_ripple={{color: RawColors.white}}
       {...restProps}>
       {({pressed}) => {
@@ -44,6 +48,9 @@ const styles = ScaledSheet.create({
     color: RawColors.darkGrey,
     textAlign: 'center',
     ...Fonts.Lato15R,
+  },
+  onPress: {
+    opacity: Platform.OS === 'ios' ? 0.5 : 1,
   },
 });
 

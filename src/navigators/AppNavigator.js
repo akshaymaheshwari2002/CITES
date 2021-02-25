@@ -12,15 +12,12 @@ import {
   FacilityScoreLessEight,
   FacilityScoreGreaterEight,
   LanguageSelection,
-  OnboardingOne,
   OnboardingOneA,
   OnboardingTwoA,
   OnboardingThreeA,
   InspectionFlow,
   GiveFeedback,
-  OnboardingFour,
-  OnboardingThree,
-  OnboardingTwo,
+  StepsSummary,
   SourceCode,
   SubmitFeedback,
   SourceFlow,
@@ -29,7 +26,9 @@ import {
   StepTwo,
   SourceCodeSelection,
   MoreInformation,
+  DetermineSourceCode,
   FormOneSummary,
+  InspectionOnboarding,
 } from '@screens';
 import TabNavigator from './TabNavigator';
 
@@ -71,18 +70,15 @@ const AppNavigator = () => {
         />
         <Stack.Screen name="MoreInformation" component={MoreInformation} />
         <Stack.Screen name="SourceCode" component={SourceCode} />
-        <Stack.Screen name="OnboardingOne" component={OnboardingOne} />
-        <Stack.Screen name="OnboardingTwo" component={OnboardingTwo} />
-        <Stack.Screen name="OnboardingThree" component={OnboardingThree} />
         <Stack.Screen name="OnboardingOneA" component={OnboardingOneA} />
         <Stack.Screen name="OnboardingTwoA" component={OnboardingTwoA} />
         <Stack.Screen name="OnboardingThreeA" component={OnboardingThreeA} />
-        <Stack.Screen name="OnboardingFour" component={OnboardingFour} />
         <Stack.Screen
           name="TabNavigator"
           component={TabNavigator}
           options={{headerShown: false}}
         />
+        <Stack.Screen name="StepsSummary" component={StepsSummary} />
         <Stack.Screen name="StepTwo" component={StepTwo} />
         <Stack.Screen name="GiveFeedback" component={GiveFeedback} />
         <Stack.Screen name="SubmitFeedback" component={SubmitFeedback} />
@@ -101,12 +97,21 @@ const AppNavigator = () => {
           component={FacilityScoreGreaterEight}
         />
         <Stack.Screen
+          name="DetermineSourceCode"
+          component={DetermineSourceCode}
+        />
+        <Stack.Screen
           name="HomePage"
           options={{headerShown: false}}
           component={HomePage}
         />
         <Stack.Screen name="FormOneSummary" component={FormOneSummary} />
         <Stack.Screen name="WebView" component={WebView} />
+        <Stack.Screen
+          name="InspectionOnboarding"
+          options={{headerShown: false}}
+          component={InspectionOnboarding}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
