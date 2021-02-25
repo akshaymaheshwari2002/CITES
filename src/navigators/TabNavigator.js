@@ -12,6 +12,7 @@ import {
   FacilityRegistered,
   FacilityInfringement,
   ProductionCapacityCalculator,
+  ContinueInspection,
 } from '@screens';
 
 const Tab = createBottomTabNavigator();
@@ -28,6 +29,7 @@ const AppNavigator = () => {
         component={StepOne}
         initialParams={{showToolTip: false}}
       />
+      <Tab.Screen name="ContinueInspection" component={ContinueInspection} />
       <Tab.Screen name="FormOne" component={FormOne} />
       <Tab.Screen name="Search" component={SearchDummy} />
       <Tab.Screen name="Notes" component={Notes} />

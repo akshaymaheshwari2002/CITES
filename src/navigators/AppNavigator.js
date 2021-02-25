@@ -25,7 +25,6 @@ import {
   SourceFlow,
   HomePage,
   WebView,
-  ContinueInspection,
   FormOneSummary,
 } from '@screens';
 import TabNavigator from './TabNavigator';
@@ -81,10 +80,6 @@ const AppNavigator = () => {
           name="InspectionFlow"
           options={{headerTransparent: true}}
           component={InspectionFlow}
-        />
-        <Stack.Screen
-          name="ContinueInspection"
-          component={ContinueInspection}
         />
         <Stack.Screen
           name="FacilityScoreLessEight"
