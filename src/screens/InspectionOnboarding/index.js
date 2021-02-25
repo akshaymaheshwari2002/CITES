@@ -11,7 +11,7 @@ import OnboardingFour from './OnboardingFour';
 
 const windowWidth = Dimensions.get('window').width;
 
-const OnBoardingScreens = ({navigation}) => {
+const InspectionOnboarding = ({navigation}) => {
   const flatListRef = useRef({});
   const data = [OnboardingOne, OnboardingTwo, OnboardingThree, OnboardingFour];
 
@@ -82,4 +82,4 @@ const styles = ScaledSheet.create({
   },
 });
 
-export default OnBoardingScreens;
+export default InspectionOnboarding;
