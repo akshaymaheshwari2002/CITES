@@ -22,17 +22,15 @@ const TextInputArray = React.forwardRef(
     },
     _,
   ) => {
-    const [data, setData] = useState();
+    const [_value, _setValue] = useState();
     const [_count, _setCount] = useState(count);
 
     const handleChangeText = useCallback((text, index) => {
-      if (text) {
-        setData((state) => {
-          const currentData = state ? [...state] : [];
-          currentData[index] = text;
-          return currentData;
-        });
-      }
+      _setValue((state) => {
+        const currentData = state ? [...state] : [];
+        currentData[index] = text;
+        return currentData;
+      });
     }, []);
 
     const renderFields = useCallback(() => {
@@ -41,14 +39,14 @@ const TextInputArray = React.forwardRef(
         fields[index] = (
           <TextInput
             key={index}
-            value={data?.[index]}
+            value={_value?.[index]}
             onChangeText={(text) => handleChangeText(text, index)}
             style={styles.textInput}
           />
         );
       }
       return fields;
-    }, [_count, data, handleChangeText]);
+    }, [_count, _value, handleChangeText]);
 
     useEffect(() => {
       if (count) {
@@ -57,15 +55,14 @@ const TextInputArray = React.forwardRef(
     }, [count]);
 
     useEffect(() => {
-      if (data) {
-        onChange(data);
+      if (_value?.length) {
+        onChange(_value);
       }
-    }, [data, onChange]);
+    }, [_value, onChange]);
 
     useEffect(() => {
       if (value?.length) {
-        _setCount(value?.length);
-        setData(value);
+        _setValue(value);
       }
     }, [value]);
 

@@ -5,6 +5,9 @@ import FormTwoTemplate from './ReactTemplate/FormTwoTemplate';
 import StepHeader from './StepHeader';
 import ChecklistCell from './ChecklistCell';
 import TextInputArray from './TextInputArray';
+import TabBar from './TabBar';
+import DatePicker from './DatePicker';
+import OverlayModal from './OverlayModal';
 
 export {
   TemplateOne,
@@ -14,4 +17,7 @@ export {
   StepHeader,
   ChecklistCell,
   TextInputArray,
+  TabBar,
+  DatePicker,
+  OverlayModal,
 };

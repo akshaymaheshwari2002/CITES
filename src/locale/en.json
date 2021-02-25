@@ -1,6 +1,6 @@
 {
   "permission.writeExternal": "Please Grant Permission",
-  "screen.screen2.selectAnItem": "Select location",
+  "screen.screen2.selectAnItem": "Select language",
   "general.error": "An error has occured",
   "general.continue": "Continue",
   "general.yourTasks": "your tasks",
@@ -155,6 +155,7 @@
   "screen.FacilityInfringement.contentEight": "(3) Where a licence, permit or special permit is suspended or revoked, it shall have no effect during the period of suspension or from the date of revocation, as the case may be. ",
   "screen.FacilityInfringement.contentNine": "(4) Where a licence, permit or special permit is revoked under subsection  (1), the holder of the licence, permit or special permit shall immediately surrender the licence, permit or special permit to the licensing officer.",
   "screen.FacilityInfringement.contentTen": "(5) The decision of the licensing officer to suspend or revoke a licence, permit or special permit or not to suspend or revoke a licence, permit or special permit shall be communicated to the holder of the licence, permit or special permit by notice in writing as soon as practicable.",
+  "screen.FacilityInfringement.button": "CONTINUE WITH STEP 1",
   "screen.FacilityRegistered.title": "What if the facility is not legally registered to keep, breed or ranch the species in question?",
   "screen.FacilityRegistered.contentOne": "Check with your local government to begin the application process for legal registration.",
   "screen.FacilityRegistered.contentTwo": "In most countries, captive breeding and ranching operations for commercial purposes are typically registered with the government.",

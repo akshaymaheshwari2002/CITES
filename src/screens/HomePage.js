@@ -51,7 +51,7 @@ const HomePage = ({navigation}) => {
 
   const handlePress = useCallback(() => {
     if (activeStepOneId) {
-      navigation.navigate('StepOne');
+      navigation.navigate('TabNavigator', {screen: 'StepOne'});
     } else if (activeStepTwoId) {
       navigation.navigate('StepTwo');
     } else if (activeStepThreeId) {
@@ -99,7 +99,7 @@ const HomePage = ({navigation}) => {
                     })}
                   />
                   <Button
-                    onPress={() => navigation.navigate('SubmitFeedback')}
+                    onPress={() => {}}
                     buttonContent={formatMessage({
                       id: 'screen.HomePage.buttonThree',
                     })}

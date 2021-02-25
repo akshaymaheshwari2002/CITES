@@ -1,9 +1,10 @@
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
-import {View, Text, StatusBar} from 'react-native';
+import {View, StatusBar, Platform} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
-import {ScaledSheet, scale, verticalScale} from 'react-native-size-matters';
+import {ScaledSheet, vs, ms, s} from 'react-native-size-matters';
 import {useDispatch, useSelector} from 'react-redux';
+import {getStatusBarHeight} from 'react-native-status-bar-height';
 
 import {Container, Button, Header, Tooltip} from '@atoms';
 import {StepHeader, ChecklistCell} from '@molecules';
@@ -13,6 +14,7 @@ import CommonStyles from '@styles/CommonStyles';
 import {getInstance} from '@utils/RealmHelper';
 import {Inspection, StepOne as StepOneModel} from '@models';
 import {setActiveInspection} from '@store/slices/persistedSlice';
+import {setTooltipProps} from '@store/slices/sessionSlice';
 
 const StepOne = ({navigation, route}) => {
   const {formatMessage} = useIntl();
@@ -25,8 +27,25 @@ const StepOne = ({navigation, route}) => {
     (state) => state.persistedReducer.activeInspection.id,
   );
   const [stepData, setStepData] = useState({});
-  const [tooltipIndex, setTooltipIndex] = useState(
-    route.params.showToolTip ? 1 : 0,
+
+  const tooltipProps = useMemo(
+    () =>
+      Platform.OS === 'ios'
+        ? {
+            arrowStyle: {left: ms(18)},
+            tooltipStyle: {
+              position: 'absolute',
+              top: ms(getStatusBarHeight()) + vs(10) + ms(50),
+              left: s(8),
+            },
+            childrenWrapperStyle: {
+              position: 'absolute',
+              top: ms(getStatusBarHeight()) + vs(10),
+              left: s(8),
+            },
+          }
+        : {},
+    [],
   );
 
   const bullet = useMemo(
@@ -56,8 +75,6 @@ const StepOne = ({navigation, route}) => {
         stepOne: stepOneData,
       });
 
-      console.log({inspectionData});
-
       realm.write(() => {
         realm.create('Inspection', inspectionData, 'modified');
         dispatch(
@@ -70,35 +87,18 @@ const StepOne = ({navigation, route}) => {
     }
   }, [activeInspectionId, activeStepOneId, dispatch, stepData]);
 
-  useEffect(() => {
-    navigation.setOptions({
-      headerLeft: () => {},
-      tabBarIcon: () => {
-        return (
-          <Tooltip
-            isVisible={tooltipIndex === 2}
-            content={
-              <Text style={styles.toolTipContent}>
-                {formatMessage({
-                  id: 'screen.StepOne.WalkThroughContentTwo',
-                })}
-              </Text>
-            }
-            placement="top"
-            onClose={() => {
-              setTooltipIndex(3);
-              navigation.navigate('Search', {toolTip: true});
-            }}>
-            <Icon
-              name="home"
-              size={verticalScale(35)}
-              color={RawColors.grey75}
-            />
-          </Tooltip>
-        );
-      },
-    });
-  }, [formatMessage, navigation, tooltipIndex]);
+  const handleTooltipClose = useCallback(() => {
+    navigation.setParams({showToolTip: false});
+    dispatch(
+      setTooltipProps({
+        consumerName: 'home',
+        isVisible: true,
+        content: formatMessage({
+          id: 'screen.StepOne.WalkThroughContentTwo',
+        }),
+      }),
+    );
+  }, [dispatch, formatMessage, navigation]);
 
   useEffect(() => {
     if (isMounting.current) {
@@ -130,23 +130,15 @@ const StepOne = ({navigation, route}) => {
         leftContent={
           <Tooltip
             placement="bottom"
-            isVisible={tooltipIndex === 1}
-            content={
-              <Text style={styles.toolTipContent}>
-                {formatMessage({
-                  id: 'screen.StepOne.WalkThroughContentTwo',
-                })}
-              </Text>
-            }
-            onClose={() => {
-              setTooltipIndex(2);
-            }}
-            childrenWrapperStyle={styles.childrenWrapper}
-            tooltipStyle={styles.toolTip}
-            displayInsets={{left: 0}}>
+            isVisible={route.params.showToolTip}
+            content={formatMessage({
+              id: 'screen.StepOne.WalkThroughContentTwo',
+            })}
+            onClose={handleTooltipClose}
+            {...tooltipProps}>
             <Icon
               name="chevron-left"
-              size={scale(26)}
+              size={ms(26)}
               onPress={navigation.goBack}
             />
           </Tooltip>
@@ -188,7 +180,7 @@ const styles = ScaledSheet.create({
   header: {
     justifyContent: 'center',
     paddingTop: StatusBar.currentHeight,
-    width: scale(32),
+    width: s(32),
   },
   leftIcon: {margin: '8@s'},
   button: {

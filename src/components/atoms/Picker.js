@@ -38,6 +38,7 @@ const Picker = React.forwardRef(
           ) : null}
         </View>
         <DropDownPicker
+          labelStyle={[{color: RawColors.black}, Fonts.Lato15R]}
           items={items}
           searchableError={() => null}
           containerStyle={styles.container}

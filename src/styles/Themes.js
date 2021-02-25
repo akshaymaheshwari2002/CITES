@@ -41,6 +41,7 @@ const RawColors = {
   lightContinueInspection: '#F6F9EF',
   eggshell: 'rgb(239,243,222)',
   silverFoil: '#B1B1B0',
+  pinkishGrey: 'rgb(191,191,191)',
 };
 
 const Fonts = {

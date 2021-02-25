@@ -2,15 +2,16 @@ import React, {useCallback, useState} from 'react';
 import {View, Text, Pressable} from 'react-native';
 import {useIntl} from 'react-intl';
 import {useForm} from 'react-hook-form';
-import {ScaledSheet} from 'react-native-size-matters';
+import {ScaledSheet, ms} from 'react-native-size-matters';
+import Icon from 'react-native-vector-icons/Feather';
 
-import {Container, Button} from '@atoms';
+import {Container, Button, Header} from '@atoms';
 import {Form} from '@organisms';
 import CommonStyles from '@styles/CommonStyles';
 import getFormFields from './FormFields';
 import {Fonts, RawColors} from '@styles/Themes';
 
-const ProductionCapacityCalculator = () => {
+const ProductionCapacityCalculator = ({navigation: {navigate, goBack}}) => {
   const intl = useIntl();
   const formProps = useForm();
   const {setValue, handleSubmit} = formProps;
@@ -51,86 +52,96 @@ const ProductionCapacityCalculator = () => {
   );
 
   return (
-    <Container>
-      <View style={CommonStyles.screenContainer}>
-        <Text style={Fonts.HelveticaNeue30B}>
+    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+      <Header
+        leftContent={
+          <Icon name="chevron-left" size={ms(26)} onPress={goBack} />
+        }
+      />
+      <Text style={styles.title}>
+        {intl.formatMessage({
+          id: 'screen.ProductionCapacityCalculator.titleText',
+        })}
+      </Text>
+      <Container.ScrollView
+        style={CommonStyles.flex1}
+        contentContainerStyle={CommonStyles.screenContainer}>
+        <Text style={[styles.paragraph, Fonts.Lato17R]}>
           {intl.formatMessage({
-            id: 'screen.ProductionCapacityCalculator.titleText',
+            id: 'screen.ProductionCapacityCalculator.infoText_1',
           })}
         </Text>
-        <Container.ScrollView style={CommonStyles.flex1}>
-          <Text style={[styles.paragraph, Fonts.Lato17R]}>
-            {intl.formatMessage({
-              id: 'screen.ProductionCapacityCalculator.infoText_1',
-            })}
-          </Text>
-          <Text style={[styles.paragraph, Fonts.Lato17R]}>
-            {intl.formatMessage({
-              id: 'screen.ProductionCapacityCalculator.infoText_2',
-            })}
-          </Text>
-          <View style={[styles.paragraph, styles.modeButtonWrapper]}>
-            <Pressable
-              style={
-                modeSelected === 1
-                  ? [
-                      styles.modeButton,
-                      CommonStyles.shadowEffect,
-                      styles.modeButtonOne,
-                      styles.modeButtonSelectedOne,
-                    ]
-                  : [styles.modeButton, styles.modeButtonOne]
-              }
-              android_ripple={true}
-              onPress={() => (modeSelected === 2 ? setModeSelected(1) : null)}>
-              <Text
-                style={[
-                  styles.modeButtonText,
-                  modeSelected === 1 ? styles.modeButtonTextSelected : {},
-                ]}>
-                {intl.formatMessage({
-                  id: 'screen.ProductionCapacityCalculator.modeButton_1',
-                })}
-              </Text>
-            </Pressable>
-            <Pressable
-              style={
-                modeSelected === 2
-                  ? [
-                      styles.modeButton,
-                      CommonStyles.shadowEffect,
-                      styles.modeButtonTwo,
-                      styles.modeButtonSelectedTwo,
-                    ]
-                  : [styles.modeButton, styles.modeButtonTwo]
-              }
-              android_ripple={true}
-              onPress={() => (modeSelected === 1 ? setModeSelected(2) : null)}>
-              <Text
-                style={[
-                  styles.modeButtonText,
-                  modeSelected === 2 ? styles.modeButtonTextSelected : {},
-                ]}>
-                {intl.formatMessage({
-                  id: 'screen.ProductionCapacityCalculator.modeButton_2',
-                })}
-              </Text>
-            </Pressable>
-          </View>
-          <Form {...formProps} formFields={getFormFields({modeSelected})} />
-          <Button
-            buttonContent={intl.formatMessage({
-              id: 'general.continue',
-            })}
-            onPress={handleSubmit(onSubmit)}
-          />
-        </Container.ScrollView>
-      </View>
+        <Text style={[styles.paragraph, Fonts.Lato17R]}>
+          {intl.formatMessage({
+            id: 'screen.ProductionCapacityCalculator.infoText_2',
+          })}
+        </Text>
+        <View style={[styles.paragraph, styles.modeButtonWrapper]}>
+          <Pressable
+            style={
+              modeSelected === 1
+                ? [
+                    styles.modeButton,
+                    CommonStyles.shadowEffect,
+                    styles.modeButtonOne,
+                    styles.modeButtonSelectedOne,
+                  ]
+                : [styles.modeButton, styles.modeButtonOne]
+            }
+            android_ripple={true}
+            onPress={() => (modeSelected === 2 ? setModeSelected(1) : null)}>
+            <Text
+              style={[
+                styles.modeButtonText,
+                modeSelected === 1 ? styles.modeButtonTextSelected : {},
+              ]}>
+              {intl.formatMessage({
+                id: 'screen.ProductionCapacityCalculator.modeButton_1',
+              })}
+            </Text>
+          </Pressable>
+          <Pressable
+            style={
+              modeSelected === 2
+                ? [
+                    styles.modeButton,
+                    CommonStyles.shadowEffect,
+                    styles.modeButtonTwo,
+                    styles.modeButtonSelectedTwo,
+                  ]
+                : [styles.modeButton, styles.modeButtonTwo]
+            }
+            android_ripple={true}
+            onPress={() => (modeSelected === 1 ? setModeSelected(2) : null)}>
+            <Text
+              style={[
+                styles.modeButtonText,
+                modeSelected === 2 ? styles.modeButtonTextSelected : {},
+              ]}>
+              {intl.formatMessage({
+                id: 'screen.ProductionCapacityCalculator.modeButton_2',
+              })}
+            </Text>
+          </Pressable>
+        </View>
+        <Form {...formProps} formFields={getFormFields({modeSelected})} />
+        <Button
+          buttonStyle={() => styles.button}
+          buttonContent={intl.formatMessage({
+            id: 'general.continue',
+          })}
+          onPress={handleSubmit(onSubmit)}
+        />
+      </Container.ScrollView>
     </Container>
   );
 };
 
 const styles = ScaledSheet.create({
+  title: {
+    paddingHorizontal: '16@vs',
+    ...Fonts.HelveticaNeue30B,
+  },
   paragraph: {
     marginBottom: '20@s',
   },
@@ -185,6 +196,9 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.19@ms',
     lineHeight: '21@ms',
     ...Fonts.Lato12B,
+  },
+  button: {
+    marginBottom: '16@vs',
   },
 });
 

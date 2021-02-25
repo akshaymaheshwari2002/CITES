@@ -4,7 +4,7 @@ import DateTimePicker from 'react-native-modal-datetime-picker';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import TextInput from './TextInput';
+import {TextInput} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import {moderateScale, ScaledSheet} from 'react-native-size-matters';
 import CommonStyles from '@styles/CommonStyles';

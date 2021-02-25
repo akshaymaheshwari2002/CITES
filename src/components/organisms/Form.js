@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import {Controller} from 'react-hook-form';
 import {ScaledSheet} from 'react-native-size-matters';
 
-import {TextInput, DatePicker, Picker} from '@atoms';
-import {TextInputArray} from '@molecules';
+import {TextInput, Picker} from '@atoms';
+import {TextInputArray, DatePicker} from '@molecules';
 import ChoiceList from './ChoiceList';
 import Constants from '@utils/Constants';
 

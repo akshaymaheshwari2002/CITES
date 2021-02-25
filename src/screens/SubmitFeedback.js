@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {Container} from '@atoms';
-import {ScaledSheet, scale} from 'react-native-size-matters';
+import {ScaledSheet, ms, vs, s} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
 import {useForm} from 'react-hook-form';
@@ -32,7 +32,7 @@ const SubmitFeedback = ({navigation}) => {
           </Text>
         </View>
         <View style={styles.iconContainer}>
-          <Icon name="chevron-left" size={scale(54)} />
+          <Icon name="chevron-left" size={ms(54)} />
         </View>
         <Form
           control={control}
@@ -50,15 +50,15 @@ const SubmitFeedback = ({navigation}) => {
               }),
               style: {
                 color: RawColors.grey,
-                height: scale(245),
-                width: scale(290),
-                marginTop: scale(29),
+                height: vs(245),
+                width: s(290),
+                marginTop: vs(29),
                 alignSelf: 'center',
-                borderRadius: scale(20),
+                borderRadius: ms(20),
                 borderWidth: 1,
                 borderColor: RawColors.darkGrey,
                 textAlignVertical: 'top',
-                padding: scale(16),
+                padding: ms(16),
               },
               multiLine: true,
             },

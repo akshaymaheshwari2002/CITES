@@ -1,12 +1,12 @@
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
-import {scale, ScaledSheet, verticalScale} from 'react-native-size-matters';
+import {ms, ScaledSheet, verticalScale} from 'react-native-size-matters';
 import {useForm} from 'react-hook-form';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {Button, Container} from '@atoms';
+import {Button, Container, Header} from '@atoms';
 import {Form} from '@organisms';
 import getFormFieldsPageOne from './FormFieldsPageOne';
 import getFormFieldsPageTwo from './FormFieldsPageTwo';
@@ -16,6 +16,7 @@ import {FormOne as FormOneModel, Inspection, Species, StepOne} from '@models';
 import {setActiveInspection} from '@store/slices/persistedSlice';
 import Constants from '@utils/Constants';
 import {getDefaultValues} from '@utils/CommonFunctions';
+import CommonStyles from '@styles/CommonStyles';
 
 const FormOne = ({navigation}) => {
   const dispatch = useDispatch();
@@ -174,7 +175,7 @@ const FormOne = ({navigation}) => {
               onPress();
             }
           }}>
-          <Icon name="chevron-left" size={scale(26)} />
+          <Icon name="chevron-left" size={ms(26)} />
         </TouchableOpacity>
       ),
     });
@@ -260,8 +261,13 @@ const FormOne = ({navigation}) => {
   }, [formFieldsPage, selectedSpeciesName, setSpeciesDataInForm]);
 
   return (
-    <Container>
-      <Container.ScrollView ref={scrollViewRef}>
+    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+      <Header
+        leftContent={
+          <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
+        }
+      />
+      <Container.ScrollView ref={scrollViewRef} style={CommonStyles.flex1}>
         <Text style={styles.title}>
           {formatMessage({id: 'screen.FormOne.title'})}
         </Text>
@@ -290,7 +296,9 @@ const FormOne = ({navigation}) => {
                 buttonContent={formatMessage({id: 'button.viewFormOneSummary'})}
               />
               <Button
-                onPress={() => navigation.navigate('StepOne')}
+                onPress={() =>
+                  navigation.navigate('TabNavigator', {screen: 'StepOne'})
+                }
                 buttonContent={formatMessage({id: 'button.continueToStep1'})}
               />
             </>
