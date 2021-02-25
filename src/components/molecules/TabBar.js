@@ -45,7 +45,7 @@ const TabBar = ({navigation}) => {
           consumerName: 'search',
           isVisible: true,
           content: formatMessage({
-            id: 'screen.StepOne.WalkThroughContentTwo',
+            id: 'screen.StepOne.WalkThroughContentThree',
           }),
         };
       } else if (consumerItem.name === 'search') {
@@ -53,7 +53,7 @@ const TabBar = ({navigation}) => {
           consumerName: 'edit',
           isVisible: true,
           content: formatMessage({
-            id: 'screen.StepOne.WalkThroughContentTwo',
+            id: 'screen.StepOne.WalkThroughContentFour',
           }),
         };
       } else if (consumerItem.name === 'edit') {
@@ -61,7 +61,7 @@ const TabBar = ({navigation}) => {
           consumerName: 'list',
           isVisible: true,
           content: formatMessage({
-            id: 'screen.StepOne.WalkThroughContentTwo',
+            id: 'screen.StepOne.WalkThroughContentFive',
           }),
         };
       } else {
