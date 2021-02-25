@@ -56,6 +56,18 @@ const InspectionOnboarding = ({navigation}) => {
         contentContainerStyle={CommonStyles.flexGrow1}
         showsHorizontalScrollIndicator={false}
         data={data}
+        onScrollEndDrag={(e) => {
+          const index = Math.round(
+            e.nativeEvent?.contentOffset?.x / windowWidth,
+          );
+          if (index === data?.length - 1) {
+            console.log('scroll Ended', index);
+            navigation.navigate('TabNavigator', {
+              screen: 'StepOne',
+              params: {showToolTip: true},
+            });
+          }
+        }}
         keyExtractor={(_, index) => index.toString()}
         renderItem={({item: Item, index}) => {
           return (
