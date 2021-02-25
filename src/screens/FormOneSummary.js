@@ -1,20 +1,13 @@
 import React, {useEffect, useState, useCallback} from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  Dimensions,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {useIntl} from 'react-intl';
-import {ScaledSheet} from 'react-native-size-matters';
+import {ScaledSheet, ms} from 'react-native-size-matters';
 import Pdf from 'react-native-pdf';
+import Icon from 'react-native-vector-icons/Feather';
 
-import {Container, Button} from '@atoms';
+import {Container} from '@atoms';
 import {FormOneTemplate, FormOneHeader} from '@molecules';
 import {Fonts, RawColors} from '@styles/Themes';
-import {Images} from '@assets/';
 import {generatePdf} from '@utils/CommonFunctions';
 import moment from 'moment';
 
@@ -37,6 +30,7 @@ const FormOneSummary = ({navigation, route}) => {
             dateOfInspection: moment(Number(formData?.dateOfInspection)).format(
               'DD/MM/YYYY',
             ),
+            facilityOwner: formData?.facilityOwner?.join(' '),
             facilityEshtablishmentDate: moment(
               Number(formData?.facilityEshtablishmentDate),
             ).format('DD/MM/YYYY'),
@@ -71,6 +65,13 @@ const FormOneSummary = ({navigation, route}) => {
           {formatMessage({id: 'screen.FormOneSummary.subHeading_3'})}
         </Text>
       </View>
+      {/* <View style={styles.slideBtnContainer}>
+        <TouchableOpacity
+          style={styles.slideBtn}
+          onPress={() => console.log('pressed')}>
+          <Icon name="chevron-right" size={ms(26)} />
+        </TouchableOpacity>
+      </View> */}
       {fileUri ? <Pdf source={fileUri} style={styles.pdf} /> : null}
     </Container>
   );
@@ -98,6 +99,14 @@ const styles = ScaledSheet.create({
   pdf: {
     flex: 1,
     backgroundColor: 'white',
+  },
+  slideBtnContainer: {
+    position: 'absolute',
+    top: '10vs',
+    right: 0,
+  },
+  slideBtn: {
+    backgroundColor: 'red',
   },
 });
 

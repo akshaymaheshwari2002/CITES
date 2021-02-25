@@ -31,7 +31,6 @@ export default () => {
       label: formatMessage({id: 'form.label.facilityName'}),
       name: 'facilityName',
       rules: {required},
-      keyboardType: 'number-pad',
     },
     {
       defaultValue: '',
@@ -60,7 +59,6 @@ export default () => {
       label: formatMessage({id: 'form.label.facilityOwner'}),
       name: 'facilityOwner',
       rules: {required},
-      keyboardType: 'decimal-pad',
       fieldType: Constants.TEXTINPUT_ARRAY,
       count: 2,
     },
@@ -78,6 +76,7 @@ export default () => {
         marginTop: verticalScale(6),
         marginBottom: verticalScale(6),
       },
+      keyboardType: 'number-pad',
     },
     {
       label: formatMessage({id: 'form.label.registeredSpecies'}),
