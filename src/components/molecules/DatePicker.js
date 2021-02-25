@@ -56,6 +56,7 @@ const DatePicker = React.forwardRef(
             setPickerVisible(true);
           }}>
           <TextInput
+            pointerEvents="none"
             style={{color: RawColors.black}}
             value={getValue()}
             editable={false}

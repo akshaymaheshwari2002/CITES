@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {Container} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
-import {RawColors} from '@styles/Themes';
+import {RawColors, Fonts} from '@styles/Themes';
 
 const OverlayModal = ({isModalVisible, hideModal, helpText}) => {
   const [modalWidth, setModalWidth] = useState('50%'); // width to be set dynamically according to the content
@@ -113,6 +113,7 @@ const styles = ScaledSheet.create({
   modalText: {
     marginBottom: '15@vs',
     textAlign: 'left',
+    ...Fonts.Lato17R,
   },
 });
 

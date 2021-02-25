@@ -152,10 +152,8 @@ const LanguageSelection = ({navigation}) => {
 
   return (
     <Container
-      statusBarProps={{
-        backgroundColor: RawColors.darkBlue,
-        barStyle: 'light-content',
-      }}>
+      safeAreaViewProps={{style: {backgroundColor: RawColors.darkBlue}}}
+      statusBarProps={{barStyle: 'light-content'}}>
       <Container.ScrollView contentContainerStyle={[styles.scrollContainer]}>
         <Animated.View
           style={{

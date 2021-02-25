@@ -1,10 +1,9 @@
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
-import {View, StatusBar, Platform} from 'react-native';
+import {View, StatusBar} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
-import {ScaledSheet, vs, ms, s} from 'react-native-size-matters';
+import {ScaledSheet, ms, s} from 'react-native-size-matters';
 import {useDispatch, useSelector} from 'react-redux';
-import {getStatusBarHeight} from 'react-native-status-bar-height';
 
 import {Container, Button, Header, Tooltip} from '@atoms';
 import {StepHeader, ChecklistCell} from '@molecules';
@@ -27,26 +26,6 @@ const StepOne = ({navigation, route}) => {
     (state) => state.persistedReducer.activeInspection.id,
   );
   const [stepData, setStepData] = useState({});
-
-  const tooltipProps = useMemo(
-    () =>
-      Platform.OS === 'ios'
-        ? {
-            arrowStyle: {left: ms(18)},
-            tooltipStyle: {
-              position: 'absolute',
-              top: ms(getStatusBarHeight()) + vs(10) + ms(50),
-              left: s(8),
-            },
-            childrenWrapperStyle: {
-              position: 'absolute',
-              top: ms(getStatusBarHeight()) + vs(10),
-              left: s(8),
-            },
-          }
-        : {},
-    [],
-  );
 
   const bullet = useMemo(
     () => (
@@ -134,8 +113,7 @@ const StepOne = ({navigation, route}) => {
             content={formatMessage({
               id: 'screen.StepOne.WalkThroughContentTwo',
             })}
-            onClose={handleTooltipClose}
-            {...tooltipProps}>
+            onClose={handleTooltipClose}>
             <Icon
               name="chevron-left"
               size={ms(26)}
