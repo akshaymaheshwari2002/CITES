@@ -180,6 +180,18 @@ const sourceCodeQuestionnaire = {
     options: ['appendix I', 'appendix II', 'appendix III'],
     moreInfo: false,
   },
+  27: {
+    content: ['Has the specimen been grown for commercial purposes?'],
+    options: ['yes', 'no'],
+    moreInfo: false,
+  },
+  28: {
+    content: [
+      'Has the specimen been artificially propagated at a CITES-registered nursery?',
+    ],
+    options: ['yes', 'no'],
+    moreInfo: false,
+  },
 };
 
 export default sourceCodeQuestionnaire;
