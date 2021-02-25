@@ -1,18 +1,26 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
+import {ScaledSheet, ms} from 'react-native-size-matters';
+import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
 
 import {Fonts, RawColors} from '@styles/Themes';
-import {Button, Container} from '@atoms';
+import {Button, Container, Header} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
 import Config from '@config';
 
-const FacilityRegistered = ({navigation: {navigate}}) => {
+const FacilityRegistered = ({navigation: {navigate, goBack}}) => {
   const {formatMessage} = useIntl();
   return (
-    <Container>
-      <Container.ScrollView style={CommonStyles.screenContainer}>
+    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+      <Header
+        leftContent={
+          <Icon name="chevron-left" size={ms(26)} onPress={goBack} />
+        }
+      />
+      <Container.ScrollView
+        contentContainerStyle={CommonStyles.screenContainer}
+        style={CommonStyles.flex1}>
         <View style={styles.content}>
           <Text style={styles.title}>
             {formatMessage({id: 'screen.FacilityRegistered.title'})}
