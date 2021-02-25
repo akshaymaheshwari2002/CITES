@@ -22,7 +22,6 @@ const FormOneSummary = ({navigation, route}) => {
   const {formatMessage} = useIntl();
   const [fileUri, setFileUri] = useState(undefined);
   const formData = route.params?.data;
-  console.log(formData);
   const speciesData = formData?.registeredSpeciesData;
   useEffect(() => {
     handelpress();
@@ -47,7 +46,6 @@ const FormOneSummary = ({navigation, route}) => {
       ],
     });
     setFileUri({uri: file?.filePath});
-    console.log(file.filePath);
   }, [formData, speciesData]);
 
   return (

@@ -32,7 +32,7 @@ const FormOne = ({navigation}) => {
     (state) => state.persistedReducer.activeInspection.activeFormOneId,
   );
   const activeStepOneId = useSelector(
-    (state) => state.persistedReducer.activeInspection.activeFormOneId,
+    (state) => state.persistedReducer.activeInspection.activeStepOneId,
   );
   const activeInspectionId = useSelector(
     (state) => state.persistedReducer.activeInspection.id,
@@ -250,7 +250,7 @@ const FormOne = ({navigation}) => {
 
   useEffect(() => {
     if (formFieldsPage === 2) {
-      setTimeout(() => scrollViewRef.current.scrollToPosition(0, 0, true), 100);
+      setTimeout(() => scrollViewRef.current.scrollToPosition(0, 0, true), 500);
     }
   }, [formFieldsPage]);
 
