@@ -2,7 +2,18 @@ import React, {useCallback} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {TabBar} from '@molecules';
-import {StepOne, SearchDummy, Notes, DrawerMenu, StepsSummary} from '@screens';
+import {
+  StepOne,
+  FormOne,
+  SearchDummy,
+  Notes,
+  DrawerMenu,
+  StepsSummary,
+  FacilityRegistered,
+  FacilityInfringement,
+  ProductionCapacityCalculator,
+  ContinueInspection,
+} from '@screens';
 
 const Tab = createBottomTabNavigator();
 
@@ -12,19 +23,27 @@ const AppNavigator = () => {
   }, []);
 
   return (
-    <Tab.Navigator
-      initialRouteName="StepOne"
-      backBehavior="none"
-      tabBar={renderTabBar}>
+    <Tab.Navigator initialRouteName="StepOne" tabBar={renderTabBar}>
       <Tab.Screen
         name="StepOne"
         component={StepOne}
         initialParams={{showToolTip: false}}
       />
+      <Tab.Screen name="ContinueInspection" component={ContinueInspection} />
+      <Tab.Screen name="FormOne" component={FormOne} />
       <Tab.Screen name="Search" component={SearchDummy} />
       <Tab.Screen name="Notes" component={Notes} />
       <Tab.Screen name="DrawerMenu" component={DrawerMenu} />
       <Tab.Screen name="StepsSummary" component={StepsSummary} />
+      <Tab.Screen name="FacilityRegistered" component={FacilityRegistered} />
+      <Tab.Screen
+        name="FacilityInfringement"
+        component={FacilityInfringement}
+      />
+      <Tab.Screen
+        name="ProductionCapacityCalculator"
+        component={ProductionCapacityCalculator}
+      />
     </Tab.Navigator>
   );
 };

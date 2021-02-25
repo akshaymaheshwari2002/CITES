@@ -23,13 +23,8 @@ import {
   OnboardingTwo,
   SubmitFeedback,
   SourceFlow,
-  FacilityRegistered,
-  FacilityInfringement,
-  ProductionCapacityCalculator,
   HomePage,
   WebView,
-  FormOne,
-  ContinueInspection,
   FormOneSummary,
   OnBoardingScreens,
 } from '@screens';
@@ -83,21 +78,9 @@ const AppNavigator = () => {
         <Stack.Screen name="SubmitFeedback" component={SubmitFeedback} />
         <Stack.Screen name="FacilityScore" component={FacilityScore} />
         <Stack.Screen
-          name="FacilityInfringement"
-          component={FacilityInfringement}
-        />
-        <Stack.Screen
-          name="FacilityRegistered"
-          component={FacilityRegistered}
-        />
-        <Stack.Screen
           name="InspectionFlow"
           options={{headerTransparent: true}}
           component={InspectionFlow}
-        />
-        <Stack.Screen
-          name="ContinueInspection"
-          component={ContinueInspection}
         />
         <Stack.Screen
           name="FacilityScoreLessEight"
@@ -106,10 +89,6 @@ const AppNavigator = () => {
         <Stack.Screen
           name="FacilityScoreGreaterEight"
           component={FacilityScoreGreaterEight}
-        />
-        <Stack.Screen
-          name="ProductionCapacityCalculator"
-          component={ProductionCapacityCalculator}
         />
         <Stack.Screen
           name="HomePage"
@@ -123,7 +102,6 @@ const AppNavigator = () => {
         />
         <Stack.Screen name="FormOneSummary" component={FormOneSummary} />
         <Stack.Screen name="WebView" component={WebView} />
-        <Stack.Screen name="FormOne" component={FormOne} />
       </Stack.Navigator>
     </NavigationContainer>
   );

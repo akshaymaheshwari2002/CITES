@@ -1,10 +1,11 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {View, Text, FlatList, TouchableOpacity, Image} from 'react-native';
 import {useIntl} from 'react-intl';
-import {ScaledSheet} from 'react-native-size-matters';
+import {ScaledSheet, ms} from 'react-native-size-matters';
+import Icon from 'react-native-vector-icons/Feather';
 import {useDispatch} from 'react-redux';
 
-import {Container, Button} from '@atoms';
+import {Container, Button, Header} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import {Images} from '@assets/';
 import {getInstance} from '@utils/RealmHelper';
@@ -94,7 +95,12 @@ const ContinueInspection = ({navigation}) => {
   );
 
   return (
-    <Container>
+    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+      <Header
+        leftContent={
+          <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
+        }
+      />
       <View style={styles.titleView}>
         <Text style={styles.title}>
           {formatMessage({id: 'screen.ContinueInspection.title_1'})}
