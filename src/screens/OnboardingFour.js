@@ -5,31 +5,26 @@ import {ScaledSheet, ms} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
 
 import {Fonts} from '@styles/Themes';
-import {Container} from '@atoms';
+import {Container, Header} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
 import {Images} from '@assets';
 
-const OnboardingFour = ({navigation}) => {
+const OnboardingFour = ({
+  onBackPress = () => {},
+  onFordwardPress = () => {},
+}) => {
   const {formatMessage} = useIntl();
 
-  useEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate('TabNavigator', {
-              screen: 'StepOne',
-              params: {showToolTip: true},
-            })
-          }>
-          <Icon name="chevron-right" size={ms(26)} />
-        </TouchableOpacity>
-      ),
-    });
-  }, [navigation]);
-
   return (
-    <Container>
+    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+      <Header
+        leftContent={
+          <Icon name="chevron-left" size={ms(26)} onPress={onBackPress} />
+        }
+        rightContent={
+          <Icon name="chevron-right" size={ms(26)} onPress={onFordwardPress} />
+        }
+      />
       <Container.ScrollView style={CommonStyles.screenContainer}>
         <View style={styles.content}>
           <Text style={styles.txt}>

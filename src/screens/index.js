@@ -26,6 +26,7 @@ import SearchDummy from './SearchDummy';
 import Notes from './Notes';
 import DrawerMenu from './DrawerMenu';
 import FormOneSummary from './FormOneSummary';
+import OnBoardingScreens from './OnBoardingScreens';
 
 export {
   FacilityScore,
@@ -56,4 +57,5 @@ export {
   WebView,
   FormOne,
   FormOneSummary,
+  OnBoardingScreens,
 };
