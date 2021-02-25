@@ -13,6 +13,7 @@ import {
   FacilityInfringement,
   ProductionCapacityCalculator,
   ContinueInspection,
+  DetermineSourceCode,
 } from '@screens';
 
 const Tab = createBottomTabNavigator();
@@ -44,6 +45,7 @@ const AppNavigator = () => {
         name="ProductionCapacityCalculator"
         component={ProductionCapacityCalculator}
       />
+      <Tab.Screen name="DetermineSourceCode" component={DetermineSourceCode} />
     </Tab.Navigator>
   );
 };

@@ -29,7 +29,6 @@ import {
   StepTwo,
   SourceCodeSelection,
   MoreInformation,
-  DetermineSourceCode,
   FormOneSummary,
 } from '@screens';
 import TabNavigator from './TabNavigator';
@@ -100,10 +99,6 @@ const AppNavigator = () => {
         <Stack.Screen
           name="FacilityScoreGreaterEight"
           component={FacilityScoreGreaterEight}
-        />
-        <Stack.Screen
-          name="DetermineSourceCode"
-          component={DetermineSourceCode}
         />
         <Stack.Screen
           name="HomePage"

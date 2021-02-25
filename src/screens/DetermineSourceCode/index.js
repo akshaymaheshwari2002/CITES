@@ -1,16 +1,22 @@
 import React, {useState} from 'react';
 import {View, Text} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
+import {ScaledSheet, ms} from 'react-native-size-matters';
+import Icon from 'react-native-vector-icons/Feather';
 
-import {Container, Button} from '@atoms';
+import {Container, Button, Header} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
 import {Fonts, RawColors} from '@styles/Themes';
 
-const DetermineSourceCode = () => {
-  const [responsesStack, setResponsesStack] = useState([]);
+const DetermineSourceCode = ({navigation: {navigate, goBack}}) => {
+  const [respondedQuestionStack, setRespondedQuestionStack] = useState([]);
 
   return (
-    <Container>
+    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+      <Header
+        leftContent={
+          <Icon name="chevron-left" size={ms(26)} onPress={goBack} />
+        }
+      />
       <Container.ScrollView
         style={[CommonStyles.screenContainer, CommonStyles.flex1]}
         contentContainerStyle={styles.scrollView}>
