@@ -18,7 +18,7 @@ import Constants from '@utils/Constants';
 import {getDefaultValues} from '@utils/CommonFunctions';
 import CommonStyles from '@styles/CommonStyles';
 
-const FormOne = ({navigation}) => {
+const FormOne = ({navigation, route}) => {
   const dispatch = useDispatch();
   const {formatMessage} = useIntl();
   const formProps = useForm();

@@ -39,6 +39,7 @@ const RawColors = {
   eggshell: 'rgb(239,243,222)',
   silverFoil: '#B1B1B0',
   pinkishGrey: 'rgb(191,191,191)',
+  beige: 'rgb(238,244,220)',
 };
 
 const Fonts = {

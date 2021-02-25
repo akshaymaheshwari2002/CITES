@@ -208,5 +208,9 @@
   "screen.FormOneSummary.title_2": "Summary",
   "screen.FormOneSummary.subHeading_1": "information from the",
   "screen.FormOneSummary.subHeading_2": "facility and previous",
-  "screen.FormOneSummary.subHeading_3": "inspections."
+  "screen.FormOneSummary.subHeading_3": "inspections.",
+  "screen.FormOneSummary.continueTo": "Continue to",
+  "screen.FormOneSummary.stepOne": "Step 1",
+  "screen.FormOneSummary.edit": "Edit",
+  "screen.FormOneSummary.information": "information"
 }
