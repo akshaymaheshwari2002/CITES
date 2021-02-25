@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
-import {scale, ScaledSheet, verticalScale} from 'react-native-size-matters';
+import {ms, ScaledSheet, verticalScale} from 'react-native-size-matters';
 import {useForm} from 'react-hook-form';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
@@ -174,7 +174,7 @@ const FormOne = ({navigation}) => {
               onPress();
             }
           }}>
-          <Icon name="chevron-left" size={scale(26)} />
+          <Icon name="chevron-left" size={ms(26)} />
         </TouchableOpacity>
       ),
     });
