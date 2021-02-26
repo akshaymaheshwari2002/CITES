@@ -14,6 +14,8 @@ import {
   ProductionCapacityCalculator,
   ContinueInspection,
   DetermineSourceCode,
+  FormOneSummary,
+  ExampleDialog,
 } from '@screens';
 
 const Tab = createBottomTabNavigator();
@@ -31,12 +33,15 @@ const AppNavigator = () => {
         initialParams={{showToolTip: false}}
       />
       <Tab.Screen name="ContinueInspection" component={ContinueInspection} />
+      <Tab.Screen name="ExampleDialog" component={ExampleDialog} />
       <Tab.Screen name="FormOne" component={FormOne} />
       <Tab.Screen name="Search" component={SearchDummy} />
       <Tab.Screen name="Notes" component={Notes} />
       <Tab.Screen name="DrawerMenu" component={DrawerMenu} />
       <Tab.Screen name="StepsSummary" component={StepsSummary} />
       <Tab.Screen name="FacilityRegistered" component={FacilityRegistered} />
+      <Tab.Screen name="FormOneSummary" component={FormOneSummary} />
+
       <Tab.Screen
         name="FacilityInfringement"
         component={FacilityInfringement}

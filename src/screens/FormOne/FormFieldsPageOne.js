@@ -11,6 +11,7 @@ export default () => {
     {
       defaultValue: '',
       label: formatMessage({id: 'form.label.dateOfInspection'}),
+      placeholder: formatMessage({id: 'form.label.dateOfInspection'}),
       name: 'dateOfInspection',
       rules: {required},
       fieldType: Constants.DATEPICKER,
@@ -18,6 +19,9 @@ export default () => {
     {
       defaultValue: '',
       label: formatMessage({
+        id: 'form.label.nameOfInspectionOfficers',
+      }),
+      placeholder: formatMessage({
         id: 'form.label.nameOfInspectionOfficers',
       }),
       name: 'nameOfInspectionOfficers',
@@ -29,18 +33,20 @@ export default () => {
     {
       defaultValue: '',
       label: formatMessage({id: 'form.label.facilityName'}),
+      placeholder: formatMessage({id: 'form.label.facilityName'}),
       name: 'facilityName',
       rules: {required},
-      keyboardType: 'number-pad',
     },
     {
       defaultValue: '',
       label: formatMessage({id: 'form.label.facilityAddress'}),
+      placeholder: formatMessage({id: 'form.placeholder.addressLineOne'}),
       name: 'facilityAddressLineOne',
       rules: {required},
       fieldContainerStyle: {marginBottom: 0},
     },
     {
+      placeholder: formatMessage({id: 'form.placeholder.addressLineTwo'}),
       defaultValue: '',
       name: 'facilityAddressLineTwo',
       rules: {required},
@@ -52,6 +58,7 @@ export default () => {
       },
     },
     {
+      placeholder: formatMessage({id: 'form.placeholder.addressLineThree'}),
       defaultValue: '',
       name: 'facilityAddressLineThree',
     },
@@ -60,27 +67,30 @@ export default () => {
       label: formatMessage({id: 'form.label.facilityOwner'}),
       name: 'facilityOwner',
       rules: {required},
-      keyboardType: 'decimal-pad',
       fieldType: Constants.TEXTINPUT_ARRAY,
       count: 2,
     },
     {
       label: formatMessage({id: 'form.label.facilityOwnerEmail'}),
+      placeholder: formatMessage({id: 'form.placeholder.emailId'}),
       name: 'facilityOwnerEmail',
       rules: {required},
       fieldContainerStyle: {marginBottom: 0},
     },
     {
       name: 'facilityOwnerPhone',
+      placeholder: formatMessage({id: 'form.placeholder.phoneNumber'}),
       rules: {required},
       style: {
         marginVertical: 0,
         marginTop: verticalScale(6),
         marginBottom: verticalScale(6),
       },
+      keyboardType: 'number-pad',
     },
     {
       label: formatMessage({id: 'form.label.registeredSpecies'}),
+      placeholder: formatMessage({id: 'form.label.registeredSpecies'}),
       name: 'registeredSpeciesName',
       rules: {required},
       fieldType: Constants.TEXTINPUT_ARRAY,
@@ -89,6 +99,7 @@ export default () => {
     },
     {
       label: formatMessage({id: 'form.label.facilityEshtablishmentDate'}),
+      placeholder: formatMessage({id: 'form.label.facilityEshtablishmentDate'}),
       name: 'facilityEshtablishmentDate',
       rules: {required},
       fieldType: Constants.DATEPICKER,

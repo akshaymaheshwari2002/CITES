@@ -48,13 +48,13 @@ const InspectionFlow = ({navigation}) => {
                     <>
                       <Text style={styles.buttonTextOne}>
                         {formatMessage({
-                          id: 'screen.InspectionFlow.buttonOnePartOne',
+                          id: 'button.firstInspection',
                         })}
                       </Text>
                       <View style={styles.secondText}>
                         <Text style={styles.buttonTextTwo}>
                           {formatMessage({
-                            id: 'screen.InspectionFlow.buttonOnePartTwo',
+                            id: 'button.learnUseApp',
                           })}
                         </Text>
                         <Icon
@@ -78,13 +78,13 @@ const InspectionFlow = ({navigation}) => {
                     <>
                       <Text style={styles.buttonTextOne}>
                         {formatMessage({
-                          id: 'screen.InspectionFlow.buttonTwoPartOne',
+                          id: 'button.newInspection',
                         })}
                       </Text>
                       <View style={styles.secondText}>
                         <Text style={styles.buttonTextTwo}>
                           {formatMessage({
-                            id: 'screen.InspectionFlow.buttonTwoPartTwo',
+                            id: 'button.beginInspection',
                           })}
                         </Text>
                         <Icon
@@ -107,13 +107,13 @@ const InspectionFlow = ({navigation}) => {
                     <>
                       <Text style={styles.buttonTextOne}>
                         {formatMessage({
-                          id: 'screen.InspectionFlow.buttonThreePartOne',
+                          id: 'button.startedInspection',
                         })}
                       </Text>
                       <View style={styles.secondText}>
                         <Text style={styles.buttonTextTwo}>
                           {formatMessage({
-                            id: 'screen.InspectionFlow.buttonThreePartTwo',
+                            id: 'button.continueInspection',
                           })}
                         </Text>
                         <Icon

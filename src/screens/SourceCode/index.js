@@ -35,7 +35,9 @@ const SourceCode = ({navigation, route}) => {
         </View>
         <View style={styles.letterDescription}>
           <Text style={styles.letterDescriptionText}>
-            {SourceCodeData[resultSourceCode].letterDescription}
+            {formatMessage({
+              id: SourceCodeData[resultSourceCode].letterDescription,
+            })}
           </Text>
         </View>
         <Text style={styles.line}>
@@ -69,7 +71,9 @@ const SourceCode = ({navigation, route}) => {
           </View>
         </View>
         <Text style={styles.contentDescription}>
-          {SourceCodeData[resultSourceCode].content}
+          {formatMessage({
+            id: SourceCodeData[resultSourceCode].content,
+          })}
         </Text>
         <Button
           buttonContent={formatMessage({

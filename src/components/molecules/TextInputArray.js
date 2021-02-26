@@ -12,6 +12,7 @@ const TextInputArray = React.forwardRef(
   (
     {
       label,
+      placeholder,
       error,
       value,
       count,
@@ -42,11 +43,12 @@ const TextInputArray = React.forwardRef(
             value={_value?.[index]}
             onChangeText={(text) => handleChangeText(text, index)}
             style={styles.textInput}
+            placeholder={placeholder}
           />
         );
       }
       return fields;
-    }, [_count, _value, handleChangeText]);
+    }, [_count, _value, handleChangeText, placeholder]);
 
     useEffect(() => {
       if (count) {

@@ -111,7 +111,7 @@ const StepOne = ({navigation, route}) => {
             placement="bottom"
             isVisible={route.params.showToolTip}
             content={formatMessage({
-              id: 'screen.StepOne.WalkThroughContentTwo',
+              id: 'screen.StepOne.WalkThroughContentOne',
             })}
             onClose={handleTooltipClose}>
             <Icon
@@ -220,20 +220,18 @@ const checkliststyles = ScaledSheet.create({
   },
   button: {
     alignSelf: 'flex-start',
-    alignItems: 'center',
-    justifyContent: 'center',
     borderColor: RawColors.prussianBlue,
     backgroundColor: RawColors.white,
     height: '40@vs',
+    borderRadius: '24@vs',
   },
   buttonTextStyle: {
     textTransform: 'uppercase',
     textAlignVertical: 'center',
     textAlign: 'center',
     color: RawColors.softRed,
-    paddingHorizontal: '15@ms',
-    paddingVertical: '2@ms',
-    ...Fonts.Lato13R,
+    paddingHorizontal: '16@ms',
+    ...Fonts.HelveticaNeue13B,
   },
   formOneCell: {
     flexDirection: 'row',

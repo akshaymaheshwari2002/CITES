@@ -37,7 +37,7 @@ const HomePage = ({navigation}) => {
       <View>
         <Text style={styles.buttonText}>
           {formatMessage({
-            id: 'screen.HomePage.buttonOne',
+            id: 'button.inspectFacility',
           })}
         </Text>
         {continueText ? (
@@ -95,13 +95,13 @@ const HomePage = ({navigation}) => {
                     buttonStyle={() => styles.filledButton}
                     buttonTextStyle={() => ({color: RawColors.white})}
                     buttonContent={formatMessage({
-                      id: 'screen.HomePage.buttonTwo',
+                      id: 'button.determineSourceCode',
                     })}
                   />
                   <Button
                     onPress={() => {}}
                     buttonContent={formatMessage({
-                      id: 'screen.HomePage.buttonThree',
+                      id: 'button.giveFeedback',
                     })}
                   />
                 </View>

@@ -5,6 +5,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Feather';
 import {useSelector, shallowEqual, useDispatch} from 'react-redux';
 import {useIntl} from 'react-intl';
+import {CommonActions} from '@react-navigation/native';
 
 import {RawColors} from '@styles/Themes';
 import {setTooltipProps} from '@store/slices/sessionSlice';
@@ -45,7 +46,7 @@ const TabBar = ({navigation}) => {
           consumerName: 'search',
           isVisible: true,
           content: formatMessage({
-            id: 'screen.StepOne.WalkThroughContentTwo',
+            id: 'screen.StepOne.WalkThroughContentThree',
           }),
         };
       } else if (consumerItem.name === 'search') {
@@ -53,7 +54,7 @@ const TabBar = ({navigation}) => {
           consumerName: 'edit',
           isVisible: true,
           content: formatMessage({
-            id: 'screen.StepOne.WalkThroughContentTwo',
+            id: 'screen.StepOne.WalkThroughContentFour',
           }),
         };
       } else if (consumerItem.name === 'edit') {
@@ -61,16 +62,27 @@ const TabBar = ({navigation}) => {
           consumerName: 'list',
           isVisible: true,
           content: formatMessage({
-            id: 'screen.StepOne.WalkThroughContentTwo',
+            id: 'screen.StepOne.WalkThroughContentFive',
           }),
         };
       } else {
         _tooltipProps = null;
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 3,
+            routes: [
+              {name: 'LanguageSelection'},
+              {name: 'HomePage'},
+              {name: 'InspectionFlow'},
+              {name: 'TabNavigator', state: {routes: [{name: 'StepsSummary'}]}},
+            ],
+          }),
+        );
       }
 
       dispatch(setTooltipProps(_tooltipProps));
     },
-    [dispatch, formatMessage],
+    [dispatch, formatMessage, navigation],
   );
 
   return (

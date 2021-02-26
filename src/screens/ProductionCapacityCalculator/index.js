@@ -96,7 +96,7 @@ const ProductionCapacityCalculator = ({navigation: {navigate, goBack}}) => {
                 modeSelected === 1 ? styles.modeButtonTextSelected : {},
               ]}>
               {intl.formatMessage({
-                id: 'screen.ProductionCapacityCalculator.modeButton_1',
+                id: 'button.noOfSpecies',
               })}
             </Text>
           </Pressable>
@@ -119,7 +119,7 @@ const ProductionCapacityCalculator = ({navigation: {navigate, goBack}}) => {
                 modeSelected === 2 ? styles.modeButtonTextSelected : {},
               ]}>
               {intl.formatMessage({
-                id: 'screen.ProductionCapacityCalculator.modeButton_2',
+                id: 'button.noOfFemales',
               })}
             </Text>
           </Pressable>

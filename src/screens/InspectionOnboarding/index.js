@@ -10,10 +10,10 @@ import OnboardingThree from './OnboardingThree';
 import OnboardingFour from './OnboardingFour';
 
 const windowWidth = Dimensions.get('window').width;
+const data = [OnboardingOne, OnboardingTwo, OnboardingThree, OnboardingFour];
 
 const InspectionOnboarding = ({navigation}) => {
   const flatListRef = useRef({});
-  const data = [OnboardingOne, OnboardingTwo, OnboardingThree, OnboardingFour];
 
   const handelBackPress = useCallback(
     (index) => {
@@ -37,7 +37,7 @@ const InspectionOnboarding = ({navigation}) => {
         scrollToActiveIndex(index + 1);
       }
     },
-    [data, navigation, scrollToActiveIndex],
+    [navigation, scrollToActiveIndex],
   );
   const scrollToActiveIndex = useCallback((index) => {
     flatListRef.current?.scrollToOffset({
@@ -56,18 +56,6 @@ const InspectionOnboarding = ({navigation}) => {
         contentContainerStyle={CommonStyles.flexGrow1}
         showsHorizontalScrollIndicator={false}
         data={data}
-        onScrollEndDrag={(e) => {
-          const index = Math.round(
-            e.nativeEvent?.contentOffset?.x / windowWidth,
-          );
-          if (index === data?.length - 1) {
-            console.log('scroll Ended', index);
-            navigation.navigate('TabNavigator', {
-              screen: 'StepOne',
-              params: {showToolTip: true},
-            });
-          }
-        }}
         keyExtractor={(_, index) => index.toString()}
         renderItem={({item: Item, index}) => {
           return (

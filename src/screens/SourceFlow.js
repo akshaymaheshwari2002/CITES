@@ -44,7 +44,7 @@ const SourceFlow = ({navigation}) => {
                     <>
                       <Text style={styles.buttonTextOne}>
                         {formatMessage({
-                          id: 'screen.SourceFlow.buttonOnePartOne',
+                          id: 'button.learnSourceCode',
                         })}
                       </Text>
                     </>
@@ -62,7 +62,7 @@ const SourceFlow = ({navigation}) => {
                     <>
                       <Text style={styles.buttonTextOne}>
                         {formatMessage({
-                          id: 'screen.SourceFlow.buttonTwoPartOne',
+                          id: 'button.determineSourceCodeOf',
                         })}
                       </Text>
                     </>

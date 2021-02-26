@@ -39,12 +39,12 @@ const FacilityRegistered = ({navigation: {navigate, goBack}}) => {
               <>
                 <Text style={styles.btnTxt}>
                   {formatMessage({
-                    id: 'screen.FacilityRegistered.ButtonOnePartOne',
+                    id: 'button.citesRegister',
                   })}
                 </Text>
                 <Text style={styles.btnTxt}>
                   {formatMessage({
-                    id: 'screen.FacilityRegistered.ButtonOnePartTwo',
+                    id: 'button.AppendixI',
                   })}
                 </Text>
               </>
@@ -63,7 +63,7 @@ const FacilityRegistered = ({navigation: {navigate, goBack}}) => {
           />
           <Button
             buttonContent={formatMessage({
-              id: 'screen.FacilityRegistered.ButtonTwo',
+              id: 'button.continueWithStep1',
             })}
             buttonTextStyle={() => {
               return styles.btnTxt;

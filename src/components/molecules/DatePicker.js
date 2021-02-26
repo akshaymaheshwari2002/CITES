@@ -13,6 +13,7 @@ const DatePicker = React.forwardRef(
   (
     {
       label,
+      placeholder,
       error,
       onChange,
       value,
@@ -59,6 +60,7 @@ const DatePicker = React.forwardRef(
             pointerEvents="none"
             style={{color: RawColors.black}}
             value={getValue()}
+            placeholder={placeholder}
             editable={false}
           />
         </TouchableOpacity>
