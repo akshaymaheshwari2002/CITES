@@ -3,6 +3,7 @@ import {View, Text, BackHandler} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
+import IconAntDesign from 'react-native-vector-icons/AntDesign';
 
 import {Container, Button, Header} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
@@ -56,6 +57,9 @@ const DetermineSourceCode = ({navigation: {navigate, goBack}}) => {
             }}
           />
         }
+        rightContent={
+          <IconAntDesign name="pluscircle" size={ms(26)} onPress={() => {}} />
+        }
       />
       <Container.ScrollView
         style={[CommonStyles.screenContainer, CommonStyles.flex1]}
@@ -95,6 +99,21 @@ const DetermineSourceCode = ({navigation: {navigate, goBack}}) => {
               styles.buttonText,
               styles.buttonMoreInformationText,
             ]}
+            onPress={() => {
+              const moreInfo =
+                sourceCodeQuestions[
+                  `${
+                    interactedQuestionStack[interactedQuestionStack.length - 1]
+                  }`
+                ].moreInfo;
+              if (moreInfo) {
+                if (moreInfo.isWebResource && moreInfo.target) {
+                  navigate('WebView', {
+                    sourceUri: moreInfo.target,
+                  });
+                }
+              }
+            }}
           />
         </View>
       </Container.ScrollView>
