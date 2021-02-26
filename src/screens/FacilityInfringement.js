@@ -56,7 +56,7 @@ const FacilityInfringement = ({navigation: {navigate, goBack}}) => {
           </Text>
           <Button
             buttonContent={formatMessage({
-              id: 'screen.FacilityInfringement.button',
+              id: 'button.continueWithStep1',
             })}
             buttonTextStyle={() => {
               return styles.buttonText;

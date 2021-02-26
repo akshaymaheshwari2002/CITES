@@ -84,7 +84,7 @@ const StepsSummary = ({navigation}) => {
               })
             }
             buttonContent={formatMessage({
-              id: 'screen.InspectionFlow.buttonTwoPartTwo',
+              id: 'button.beginInspection',
             })}
             buttonTextStyle={() => styles.buttonText}
             buttonStyle={() => styles.button}
