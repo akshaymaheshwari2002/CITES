@@ -219,19 +219,17 @@ const checkliststyles = ScaledSheet.create({
   },
   button: {
     alignSelf: 'flex-start',
-    alignItems: 'center',
-    justifyContent: 'center',
     borderColor: RawColors.prussianBlue,
     height: '40@vs',
+    borderRadius: '24@vs',
   },
   buttonTextStyle: {
     textTransform: 'uppercase',
     textAlignVertical: 'center',
     textAlign: 'center',
     color: RawColors.softRed,
-    paddingHorizontal: '15@ms',
-    paddingVertical: '2@ms',
-    ...Fonts.Lato13R,
+    paddingHorizontal: '16@ms',
+    ...Fonts.HelveticaNeue13B,
   },
   formOneCell: {
     flexDirection: 'row',

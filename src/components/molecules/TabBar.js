@@ -5,6 +5,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Feather';
 import {useSelector, shallowEqual, useDispatch} from 'react-redux';
 import {useIntl} from 'react-intl';
+import {CommonActions} from '@react-navigation/native';
 
 import {RawColors} from '@styles/Themes';
 import {setTooltipProps} from '@store/slices/sessionSlice';
@@ -66,11 +67,22 @@ const TabBar = ({navigation}) => {
         };
       } else {
         _tooltipProps = null;
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 3,
+            routes: [
+              {name: 'LanguageSelection'},
+              {name: 'HomePage'},
+              {name: 'InspectionFlow'},
+              {name: 'TabNavigator', state: {routes: [{name: 'StepsSummary'}]}},
+            ],
+          }),
+        );
       }
 
       dispatch(setTooltipProps(_tooltipProps));
     },
-    [dispatch, formatMessage],
+    [dispatch, formatMessage, navigation],
   );
 
   return (

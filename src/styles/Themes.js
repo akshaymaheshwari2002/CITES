@@ -106,6 +106,10 @@ const Fonts = {
     fontFamily: 'HelveticaNeueRegular',
     fontSize: moderateScale(17),
   },
+  HelveticaNeue13B: {
+    fontFamily: 'HelveticaNeue-Bold',
+    fontSize: moderateScale(13),
+  },
   HelveticaNeue18B: {
     fontFamily: 'HelveticaNeue-Bold',
     fontSize: moderateScale(18),

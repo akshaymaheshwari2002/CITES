@@ -21,7 +21,7 @@ import CommonStyles from '@styles/CommonStyles';
 const FormOne = ({navigation}) => {
   const dispatch = useDispatch();
   const {formatMessage} = useIntl();
-  const formProps = useForm();
+  const formProps = useForm({shouldFocusError: false});
   const scrollViewRef = useRef();
   const isMounting = useRef(true);
   const formData = useRef({});
@@ -163,22 +163,13 @@ const FormOne = ({navigation}) => {
     navigation.navigate('FormOneSummary', {data: activeFormData});
   }, [activeFormOneId, navigation]);
 
-  useEffect(() => {
-    navigation.setOptions({
-      headerLeft: ({onPress}) => (
-        <TouchableOpacity
-          onPress={() => {
-            if (formFieldsPage === 2) {
-              setFormFieldsPage(1);
-              switchedFromPageTwo.current = true;
-            } else {
-              onPress();
-            }
-          }}>
-          <Icon name="chevron-left" size={ms(26)} />
-        </TouchableOpacity>
-      ),
-    });
+  const handleBackPress = useCallback(() => {
+    if (formFieldsPage === 2) {
+      setFormFieldsPage(1);
+      switchedFromPageTwo.current = true;
+    } else {
+      navigation.goBack();
+    }
   }, [formFieldsPage, navigation]);
 
   useEffect(() => {
@@ -249,8 +240,8 @@ const FormOne = ({navigation}) => {
   }, [activeFormOneId, formProps]);
 
   useEffect(() => {
-    if (formFieldsPage === 2) {
-      setTimeout(() => scrollViewRef.current.scrollToPosition(0, 0, true), 500);
+    if (formFieldsPage) {
+      setTimeout(() => scrollViewRef.current.scrollToPosition(0, 0, true), 200);
     }
   }, [formFieldsPage]);
 
@@ -264,7 +255,7 @@ const FormOne = ({navigation}) => {
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
       <Header
         leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
+          <Icon name="chevron-left" size={ms(26)} onPress={handleBackPress} />
         }
       />
       <Container.ScrollView ref={scrollViewRef} style={CommonStyles.flex1}>
