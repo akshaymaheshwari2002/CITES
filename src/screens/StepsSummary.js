@@ -1,16 +1,45 @@
-import React from 'react';
-import {View, Text, ImageBackground} from 'react-native';
+import React, {useRef, useEffect} from 'react';
+import {
+  View,
+  Text,
+  ImageBackground,
+  Easing,
+  Dimensions,
+  Animated,
+} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ms, ScaledSheet} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
 
 import {RawColors, Fonts} from '@styles/Themes';
-import {Container, Button, Header} from '@atoms';
+import {Container, Button, Header, AnimatedView} from '@atoms';
 import {Images} from '@assets';
 import CommonStyles from '@styles/CommonStyles';
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
 const StepsSummary = ({navigation}) => {
   const {formatMessage} = useIntl();
+  // const animationValue = useRef(new Animated.Value(0)).current;
+  // const xPos = animationValue.interpolate({
+  //   inputRange: [0, 1],
+  //   outputRange: [windowWidth, 0],
+  // });
+  // const yPos = animationValue.interpolate({
+  //   inputRange: [0, 0.8, 1],
+  //   outputRange: [windowHeight / 2, -20, 0],
+  // });
+
+  // useEffect(() => {
+  //   const ani = Animated.timing(animationValue, {
+  //     toValue: 1,
+  //     duration: 1000,
+  //     easing: Easing.elastic(1),
+  //     useNativeDriver: true,
+  //   });
+  //   ani.start();
+  // }, [animationValue]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
@@ -26,15 +55,17 @@ const StepsSummary = ({navigation}) => {
           source={Images.semiCircle}
           style={CommonStyles.flex1}
           imageStyle={styles.backgroundImage}>
-          <Text style={styles.title}>
-            {formatMessage({id: 'screen.StepsSummary.headerPartOne'})}
-          </Text>
-          <Text style={styles.title}>
-            {formatMessage({id: 'screen.StepsSummary.headerPartTwo'})}
-          </Text>
-          <Text style={styles.title}>
-            {formatMessage({id: 'screen.StepsSummary.headerPartThree'})}
-          </Text>
+          <AnimatedView>
+            <Text style={styles.title}>
+              {formatMessage({id: 'screen.StepsSummary.headerPartOne'})}
+            </Text>
+            <Text style={styles.title}>
+              {formatMessage({id: 'screen.StepsSummary.headerPartTwo'})}
+            </Text>
+            <Text style={styles.title}>
+              {formatMessage({id: 'screen.StepsSummary.headerPartThree'})}
+            </Text>
+          </AnimatedView>
           <View style={styles.pointsContainer}>
             <View style={[styles.pointRow, styles.pointOne]}>
               <View style={styles.numberContainer}>

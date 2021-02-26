@@ -11,7 +11,7 @@ import {FormOneTemplate, FormOneHeader} from '@molecules';
 import {Fonts, RawColors} from '@styles/Themes';
 import {generatePdf} from '@utils/CommonFunctions';
 import CommonStyles from '@styles/CommonStyles';
-import moment from 'moment';
+import {format} from 'date-fns';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -24,6 +24,7 @@ const FormOneSummary = ({navigation, route}) => {
   const [fileUri, setFileUri] = useState(undefined);
   const formData = route.params?.data;
   const speciesData = formData?.registeredSpeciesData;
+
   useEffect(() => {
     if (isFocused) {
       handelpress();
@@ -36,13 +37,15 @@ const FormOneSummary = ({navigation, route}) => {
         <FormOneHeader
           facilityData={{
             ...formData,
-            dateOfInspection: moment(Number(formData?.dateOfInspection)).format(
-              'DD/MM/YYYY',
+            dateOfInspection: format(
+              Number(formData?.dateOfInspection),
+              'MM/dd/yyyy',
             ),
             facilityOwner: formData?.facilityOwner?.join(' '),
-            facilityEshtablishmentDate: moment(
+            facilityEshtablishmentDate: format(
               Number(formData?.facilityEshtablishmentDate),
-            ).format('DD/MM/YYYY'),
+              'MM/dd/yyyy',
+            ),
             typeOfInspection: formData.typeOfInspection[0]?.replace('_', ' '),
           }}
         />,
