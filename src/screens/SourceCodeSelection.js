@@ -37,7 +37,9 @@ const SourceCodeSelection = ({navigation}) => {
                         {SourceCodeData[item].code}
                       </Text>
                       <Text style={styles.letterDescription}>
-                        {SourceCodeData[item].letterDescription}
+                        {formatMessage({
+                          id: SourceCodeData[item].letterDescription,
+                        })}
                       </Text>
                     </View>
                   </>
@@ -48,7 +50,7 @@ const SourceCodeSelection = ({navigation}) => {
         }}
         ListFooterComponent={<View />}
         ListFooterComponentStyle={styles.footer}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.code}
       />
     </Container>
   );

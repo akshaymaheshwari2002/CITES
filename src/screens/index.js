@@ -28,6 +28,7 @@ import DetermineSourceCode from './DetermineSourceCode';
 import MoreInformation from './MoreInformation';
 import FormOneSummary from './FormOneSummary';
 import InspectionOnboarding from './InspectionOnboarding';
+import ExampleDialog from './ExampleDialog';
 
 export {
   FacilityScore,
@@ -60,4 +61,5 @@ export {
   DetermineSourceCode,
   FormOneSummary,
   InspectionOnboarding,
+  ExampleDialog,
 };

@@ -236,5 +236,12 @@
   "screen.FormOneSummary.continueTo": "Continue to",
   "screen.FormOneSummary.stepOne": "Step 1",
   "screen.FormOneSummary.edit": "Edit",
-  "screen.FormOneSummary.information": "information"
+  "screen.FormOneSummary.information": "information",
+  "screen.ExampleDialog.headerPartOne": "EXAMPLE",
+  "screen.ExampleDialog.headerPartTwo": "DIALOG",
+  "screen.ExampleDialog.contentOne": "Thank you for your co-operation today. We have completed the inspection.",
+  "screen.ExampleDialog.contentTwo": "I will send you a copy of the inspection findings within the next two weeks to the e-mail address you provided. Is there another e-mail you would prefer me to send this information too?",
+  "screen.ExampleDialog.contentThree": "Depending on these inspection findings, a follow-up inspection may be arranged. I will inform you if this is required when I send the inspection findings via e-mail.",
+  "screen.ExampleDialog.contentFour": "Do you have any questions you would like to ask me before we finish today? Once again, thank you and your staff for your time and assistance with the inspection. It is much appreciated.",
+  "screen.ExampleDialog.Button": "CONTINUE WITH STEP 2"
 }

@@ -15,6 +15,7 @@ import {
   ContinueInspection,
   DetermineSourceCode,
   FormOneSummary,
+  ExampleDialog,
 } from '@screens';
 
 const Tab = createBottomTabNavigator();
@@ -32,6 +33,7 @@ const AppNavigator = () => {
         initialParams={{showToolTip: false}}
       />
       <Tab.Screen name="ContinueInspection" component={ContinueInspection} />
+      <Tab.Screen name="ExampleDialog" component={ExampleDialog} />
       <Tab.Screen name="FormOne" component={FormOne} />
       <Tab.Screen name="Search" component={SearchDummy} />
       <Tab.Screen name="Notes" component={Notes} />
