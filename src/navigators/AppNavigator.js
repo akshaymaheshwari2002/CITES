@@ -21,7 +21,6 @@ import {
   SourceFlow,
   HomePage,
   WebView,
-  FormOneSummary,
   InspectionOnboarding,
 } from '@screens';
 import TabNavigator from './TabNavigator';
@@ -92,7 +91,6 @@ const AppNavigator = () => {
           options={{headerShown: false}}
           component={InspectionOnboarding}
         />
-        <Stack.Screen name="FormOneSummary" component={FormOneSummary} />
         <Stack.Screen name="WebView" component={WebView} />
       </Stack.Navigator>
     </NavigationContainer>

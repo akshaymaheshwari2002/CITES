@@ -20,10 +20,9 @@ const FormOneHeader = ({form = 'one', facilityData = {}}) => {
       'CITES Register of Capitative-breeding information code: ',
     establishmentDate: 'Facility Date of Establishment: ',
     country: 'Country: ',
-    facilityContact: {
-      email: 'Facility Contact Information:email ',
-      phoneNo: 'Telephone ',
-    },
+    facilityContact: 'Facility Contact Information:',
+    email: 'Email ',
+    phoneNo: ' Telephone ',
     dateOfInspection: 'Date of Inspection: ',
     seniorOfficerName: 'Name of Senior Inspecting Officer: ',
     typeOfInspection: 'Type of Inspection: ',
@@ -59,10 +58,17 @@ const FormOneHeader = ({form = 'one', facilityData = {}}) => {
                 }`}
               </p>
               <p style={styles.text}>
-                <b>{facilitySchema?.facilityContact?.email}</b>
+                <b>
+                  {facilitySchema?.facilityContact}
+                  <br />
+                  {facilitySchema?.email}
+                  {}
+                </b>
                 {facilityData?.facilityOwnerEmail}
-                <b>{facilitySchema?.facilityContact?.phoneNo}</b>
-                {facilityData?.facilityOwnerPhone}
+                <span style={styles.whitespace}>
+                  <b>{facilitySchema?.phoneNo}</b>
+                  {facilityData?.facilityOwnerPhone}
+                </span>
               </p>
             </div>
             <div style={styles.halfContent}>
@@ -136,6 +142,7 @@ const styles = {
     paddingLeft: 5,
     paddingRight: 5,
   },
+  whiteSpace: {whiteSpace: 'nowrap'},
 };
 
 export default FormOneHeader;
