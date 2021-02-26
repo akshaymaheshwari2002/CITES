@@ -39,7 +39,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
           </Text>
           <Button
             buttonContent={formatMessage({
-              id: 'screen.stepTwo.confirmFormOneContent.button',
+              id: 'button.stepTwo.confirmFormOneContent',
             })}
             buttonStyle={(pressed) => [
               checkliststyles.button,
@@ -146,7 +146,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
           </Text>
           <Button
             buttonContent={formatMessage({
-              id: 'screen.stepTwo.sourceDetermined.button',
+              id: 'button.stepTwo.sourceDetermined',
             })}
             buttonStyle={(pressed) => [
               checkliststyles.button,

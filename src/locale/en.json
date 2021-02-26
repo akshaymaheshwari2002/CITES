@@ -50,7 +50,7 @@
   "screen.stepTwo.purposeDisclosedToOwner_1": "Meet with the facility owner or manager and introduce yourself and explain your purpose and intentions.",
   "screen.stepTwo.purposeDisclosedToOwner_2": "Here’s an example of what you might say.",
   "screen.stepTwo.confirmFormOneContent.text": "Confirm with the facility owner or manager the information in",
-  "screen.stepTwo.confirmFormOneContent.button": "form 1 summary",
+  "button.stepTwo.confirmFormOneContent": "form 1 summary",
   "screen.stepTwo.informationRecorded.bullet_head": "Inspect the facility with the owner and/or manager. Take photos and record information of",
   "screen.stepTwo.informationRecorded.bullet_1": "Specimens from all life-stages",
   "screen.stepTwo.informationRecorded.bullet_2": "Enclosures or containment facilities",
@@ -61,7 +61,7 @@
   "screen.stepTwo.formThreeCompleted.complete": "Complete",
   "screen.stepTwo.formThreeCompleted.FormThree": "Form 3",
   "screen.stepTwo.sourceDetermined.text": "For each species, complete",
-  "screen.stepTwo.sourceDetermined.button": "Determination of source",
+  "button.stepTwo.sourceDetermined": "Determination of source",
   "screen.stepTwo.recordsExaminedForStock": "Examine any records the facility has for stock. This may include, for example, husbandry, feeling or health records.",
   "form.label.dateOfInspection": "Date of inspection",
   "form.label.nameOfInspectionOfficers": "Name of inspection officer(s)",
@@ -222,7 +222,6 @@
   "screen.SourceCode.X.letterDescription": "MARINE ENVIRONMENT",
   "screen.SourceCode.NotApplicaple.contentDescription": "The specimen is not CITES-listed and therefore does not require a CITES permit or associated source code.",
   "screen.SourceCode.NotApplicable.letterDescription": "CITES EXPORT PERMIT NOT REQUIRED",
-  "screen.SourceCode.buttonContent": "Continue",
   "screen.SourceCodeSelection.title": "SOURCE CODE",
   "screen.MoreInformation.title": "MORE INFORMATION",
   "screen.ContinueInspection.emptyList": "No active inspections.",
@@ -242,5 +241,5 @@
   "screen.ExampleDialog.contentTwo": "I will send you a copy of the inspection findings within the next two weeks to the e-mail address you provided. Is there another e-mail you would prefer me to send this information too?",
   "screen.ExampleDialog.contentThree": "Depending on these inspection findings, a follow-up inspection may be arranged. I will inform you if this is required when I send the inspection findings via e-mail.",
   "screen.ExampleDialog.contentFour": "Do you have any questions you would like to ask me before we finish today? Once again, thank you and your staff for your time and assistance with the inspection. It is much appreciated.",
-  "screen.ExampleDialog.Button": "CONTINUE WITH STEP 2"
+  "button.continueWithStep2": "CONTINUE WITH STEP 2"
 }

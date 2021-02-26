@@ -77,7 +77,7 @@ const SourceCode = ({navigation, route}) => {
         </Text>
         <Button
           buttonContent={formatMessage({
-            id: 'screen.SourceCode.buttonContent',
+            id: 'general.continue',
           })}
           buttonTextStyle={() => {
             return styles.btnTxt;

@@ -42,7 +42,7 @@ const ExampleDialog = ({navigation: {navigate, goBack}}) => {
         </Text>
         <Button
           buttonContent={formatMessage({
-            id: 'screen.ExampleDialog.Button',
+            id: 'button.continueWithStep2',
           })}
           buttonTextStyle={() => {
             return styles.buttonText;
