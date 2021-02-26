@@ -69,7 +69,7 @@
   "form.label.facilityAddress": "Facility address",
   "form.label.facilityOwner": "Facility owner/manager",
   "form.label.facilityOwnerEmail": "Facility owner/manager contact email and number",
-  "form.label.facilityEshtablishmentDate": "Facility eshtablishment date",
+  "form.label.facilityEshtablishmentDate": "Facility establishment date",
   "form.label.typeOfInspection": "Type of inspection",
   "form.label.selectSpecies": "Select species to input information",
   "form.label.totalSpecimen": "Total number of specimens at last inspection ",
@@ -77,6 +77,11 @@
   "form.label.specimenExported": "Number of specimens exported since the last inspection",
   "form.label.sourceCode": "CITES source code listed on previous export permit",
   "form.label.registeredSpecies": "Registered species",
+  "form.placeholder.addressLineOne": "Address Line One",
+  "form.placeholder.addressLineTwo": "Address Line Two",
+  "form.placeholder.addressLineThree": "Address Line Three",
+  "form.placeholder.emailId": "Email Id",
+  "form.placeholder.phoneNumber": "Phone Number",
   "screen.ProductionCapacityCalculator.titleText": "Production Capacity Calculator",
   "screen.ProductionCapacityCalculator.modeButton_1": "Number of specimens capable of being produced by the facility",
   "screen.ProductionCapacityCalculator.modeButton_2": "Number of females required to meet annual reported production",
@@ -227,5 +232,9 @@
   "screen.FormOneSummary.title_2": "Summary",
   "screen.FormOneSummary.subHeading_1": "information from the",
   "screen.FormOneSummary.subHeading_2": "facility and previous",
-  "screen.FormOneSummary.subHeading_3": "inspections."
+  "screen.FormOneSummary.subHeading_3": "inspections.",
+  "screen.FormOneSummary.continueTo": "Continue to",
+  "screen.FormOneSummary.stepOne": "Step 1",
+  "screen.FormOneSummary.edit": "Edit",
+  "screen.FormOneSummary.information": "information"
 }

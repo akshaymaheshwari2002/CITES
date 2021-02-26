@@ -7,8 +7,12 @@ import {setHelpText} from '@store/slices/sessionSlice';
 
 const resultFieldStyleProps = {
   fontWeight: 'bold',
-  borderWidth: 2,
-  color: RawColors.black,
+  color: RawColors.brightRed,
+  borderWidth: 3,
+  borderColor: RawColors.black,
+};
+const resultFieldLabelStyleProps = {
+  fontWeight: 'bold',
 };
 
 const helpText = {
@@ -60,7 +64,7 @@ export default ({modeSelected}) => {
       label: formatMessage({id: 'form.label.countTotalBreedingFemale'}),
       placeholder:
         modeSelected === 2
-          ? ''
+          ? '0'
           : formatMessage({id: 'form.label.countTotalBreedingFemale'}),
       name: 'countTotalBreedingFemale',
       rules:
@@ -74,13 +78,14 @@ export default ({modeSelected}) => {
               },
             }
           : {},
-      style:
-        modeSelected === 2 ? resultFieldStyleProps : {color: RawColors.black},
+      editable: !modeSelected === 2,
+      style: modeSelected === 2 ? resultFieldStyleProps : undefined,
+      placeholderTextColor: modeSelected === 2 ? RawColors.black : undefined,
+      labelStyle: modeSelected === 2 ? resultFieldLabelStyleProps : undefined,
       showFieldHelpIcon: true,
       onFieldHelpIconPress: () => {
         dispatch(setHelpText(helpText.countTotalBreedingFemale));
       },
-      editable: modeSelected === 1,
       keyboardType: 'number-pad',
     },
     {
@@ -170,7 +175,7 @@ export default ({modeSelected}) => {
       }),
       placeholder:
         modeSelected === 1
-          ? ''
+          ? '0'
           : formatMessage({
               id: 'form.label.approximateYoungProducedPerYear',
             }),
@@ -191,9 +196,10 @@ export default ({modeSelected}) => {
         dispatch(setHelpText(helpText.approximateYoungProducedPerYear));
       },
       keyboardType: 'number-pad',
-      editable: modeSelected === 2,
-      style:
-        modeSelected === 1 ? resultFieldStyleProps : {color: RawColors.black},
+      editable: !modeSelected === 1,
+      style: modeSelected === 1 ? resultFieldStyleProps : undefined,
+      placeholderTextColor: modeSelected === 1 ? RawColors.black : undefined,
+      labelStyle: modeSelected === 1 ? resultFieldLabelStyleProps : undefined,
     },
   ];
 };

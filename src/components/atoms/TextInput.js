@@ -15,6 +15,7 @@ const TextInput = React.forwardRef(
       error,
       onChange,
       style,
+      labelStyle,
       showHelpIcon,
       onHelpIconPress,
       showFieldHelpIcon,
@@ -35,7 +36,9 @@ const TextInput = React.forwardRef(
       <>
         <View style={styles.row}>
           {label ? (
-            <Text style={[CommonStyles.flex1, Fonts.Lato15R]}>{label}</Text>
+            <Text style={[CommonStyles.flex1, Fonts.Lato15R, labelStyle]}>
+              {label}
+            </Text>
           ) : null}
           {showHelpIcon ? (
             <Icon
@@ -103,6 +106,7 @@ const styles = ScaledSheet.create({
     height: '46@vs',
     borderWidth: 1,
     borderColor: RawColors.dimGrey,
+    paddingHorizontal: '8@s',
   },
   fieldHelpIcon: {
     flexShrink: 0,

@@ -10,6 +10,7 @@ export default (fieldProps = {}) => {
     {
       defaultValue: '',
       label: formatMessage({id: 'form.label.selectSpecies'}),
+      placeholder: formatMessage({id: 'form.label.selectSpecies'}),
       name: 'name',
       rules: {required},
       fieldType: Constants.PICKER,
@@ -20,6 +21,9 @@ export default (fieldProps = {}) => {
       label: formatMessage({
         id: 'form.label.totalSpecimen',
       }),
+      placeholder: formatMessage({
+        id: 'form.label.totalSpecimen',
+      }),
       name: 'numberOfSpecimen',
       rules: {required},
       keyboardType: 'number-pad',
@@ -27,6 +31,7 @@ export default (fieldProps = {}) => {
     {
       defaultValue: '',
       label: formatMessage({id: 'form.label.noOfBreedingAdult'}),
+      placeholder: formatMessage({id: 'form.label.noOfBreedingAdult'}),
       name: 'numberOfBreedingAdults',
       rules: {required},
       keyboardType: 'number-pad',
@@ -34,6 +39,7 @@ export default (fieldProps = {}) => {
     {
       defaultValue: '',
       label: formatMessage({id: 'form.label.specimenExported'}),
+      placeholder: formatMessage({id: 'form.label.specimenExported'}),
       name: 'numberOfSpeciemenExportedSinceLastInspection',
       rules: {required},
       keyboardType: 'number-pad',
@@ -41,6 +47,7 @@ export default (fieldProps = {}) => {
     {
       defaultValue: '',
       label: formatMessage({id: 'form.label.sourceCode'}),
+      placeholder: formatMessage({id: 'form.label.sourceCode'}),
       name: 'sourceCodeOfPreviousExport',
       rules: {required},
     },

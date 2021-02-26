@@ -42,6 +42,7 @@ const RawColors = {
   eggshell: 'rgb(239,243,222)',
   silverFoil: '#B1B1B0',
   pinkishGrey: 'rgb(191,191,191)',
+  beige: 'rgb(238,244,220)',
 };
 
 const Fonts = {
@@ -112,6 +113,10 @@ const Fonts = {
   HelveticaNeue17R: {
     fontFamily: 'HelveticaNeueRegular',
     fontSize: moderateScale(17),
+  },
+  HelveticaNeue13B: {
+    fontFamily: 'HelveticaNeue-Bold',
+    fontSize: moderateScale(13),
   },
   HelveticaNeue18B: {
     fontFamily: 'HelveticaNeue-Bold',
