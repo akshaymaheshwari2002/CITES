@@ -1,12 +1,5 @@
-import React, {useRef, useEffect} from 'react';
-import {
-  View,
-  Text,
-  ImageBackground,
-  Easing,
-  Dimensions,
-  Animated,
-} from 'react-native';
+import React from 'react';
+import {View, Text, ImageBackground} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ms, ScaledSheet} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
@@ -16,30 +9,8 @@ import {Container, Button, Header, AnimatedView} from '@atoms';
 import {Images} from '@assets';
 import CommonStyles from '@styles/CommonStyles';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-
 const StepsSummary = ({navigation}) => {
   const {formatMessage} = useIntl();
-  // const animationValue = useRef(new Animated.Value(0)).current;
-  // const xPos = animationValue.interpolate({
-  //   inputRange: [0, 1],
-  //   outputRange: [windowWidth, 0],
-  // });
-  // const yPos = animationValue.interpolate({
-  //   inputRange: [0, 0.8, 1],
-  //   outputRange: [windowHeight / 2, -20, 0],
-  // });
-
-  // useEffect(() => {
-  //   const ani = Animated.timing(animationValue, {
-  //     toValue: 1,
-  //     duration: 1000,
-  //     easing: Easing.elastic(1),
-  //     useNativeDriver: true,
-  //   });
-  //   ani.start();
-  // }, [animationValue]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
