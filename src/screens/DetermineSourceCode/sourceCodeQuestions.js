@@ -1,4 +1,4 @@
-const sourceCodeQuestionnaire = {
+const sourceCodeQuestions = {
   1: {
     content: ['Is the species listed in the CITES Appendices (I, II or III)?'],
     options: ['yes', 'no'],
@@ -194,4 +194,4 @@ const sourceCodeQuestionnaire = {
   },
 };
 
-export default sourceCodeQuestionnaire;
+export default sourceCodeQuestions;
