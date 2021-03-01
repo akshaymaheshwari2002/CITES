@@ -47,7 +47,7 @@ const Picker = React.forwardRef(
           placeholderStyle={[{color: RawColors.black}, Fonts.Lato15R]}
           itemStyle={styles.item}
           arrowSize={scale(24)}
-          onChangeItem={onChange}
+          onChangeItem={({value}) => onChange(value)}
           selectedLabelStyle={[{color: RawColors.black}, Fonts.Lato15R]}
           {...restProps}
         />

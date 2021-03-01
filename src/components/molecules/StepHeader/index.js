@@ -1,9 +1,13 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, Dimensions, Easing} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 
+import {AnimatedView} from '@atoms';
 import {RawColors, Fonts} from '@styles/Themes';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const StepHeader = ({stepNumber = 1}) => {
   const intl = useIntl();
@@ -36,7 +40,13 @@ const StepHeader = ({stepNumber = 1}) => {
           </Text>
         </View>
         <View style={styles.roundWrap}>
-          <Text style={styles.step}>{stepNumber}</Text>
+          <AnimatedView
+            startXPos={-windowWidth}
+            startYPos={windowHeight / 3}
+            elevatedXValue={0}
+            elevatedYValue={100}>
+            <Text style={styles.step}>{stepNumber}</Text>
+          </AnimatedView>
         </View>
       </View>
       <View style={styles.descriptionTextView}>
@@ -54,13 +64,14 @@ const StepHeader = ({stepNumber = 1}) => {
 const styles = ScaledSheet.create({
   container: {
     backgroundColor: RawColors.snow,
+    overflow: 'visible',
+    zIndex: 100,
   },
   titleView: {
     backgroundColor: RawColors.softRed,
     flexDirection: 'row',
     paddingHorizontal: '16@s',
     alignItems: 'center',
-    overflow: 'hidden',
     height: '100@ms',
   },
   titleTextWrapper: {
@@ -97,6 +108,7 @@ const styles = ScaledSheet.create({
     justifyContent: 'center',
     height: '40@ms',
     paddingLeft: '16@s',
+    zIndex: -1,
   },
   descriptionText: {
     textAlignVertical: 'center',

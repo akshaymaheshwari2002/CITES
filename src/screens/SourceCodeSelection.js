@@ -27,7 +27,7 @@ const SourceCodeSelection = ({navigation}) => {
             <View style={styles.row_parent}>
               <Button
                 onPress={() => {
-                  navigation.navigate('SourceCode', {letter: item});
+                  navigation.navigate('SourceCode', {selectedSourceCode: item});
                 }}
                 buttonStyle={() => styles.button}
                 buttonContent={

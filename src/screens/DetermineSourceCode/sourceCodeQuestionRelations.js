@@ -1,5 +1,5 @@
 const sourceCodeQuestionRelations = {
-  1: {yes: 2, no: 'CITESExportPermitNotRequired'},
+  1: {yes: 2, no: 'NotApplicable'},
   2: {yes: 'O', no: 3},
   3: {yes: 'I', no: 4},
   4: {yes: 5, no: 'U'},

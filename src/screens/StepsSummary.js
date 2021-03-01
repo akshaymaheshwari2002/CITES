@@ -5,7 +5,7 @@ import {ms, ScaledSheet} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
 
 import {RawColors, Fonts} from '@styles/Themes';
-import {Container, Button, Header} from '@atoms';
+import {Container, Button, Header, AnimatedView} from '@atoms';
 import {Images} from '@assets';
 import CommonStyles from '@styles/CommonStyles';
 
@@ -26,15 +26,17 @@ const StepsSummary = ({navigation}) => {
           source={Images.semiCircle}
           style={CommonStyles.flex1}
           imageStyle={styles.backgroundImage}>
-          <Text style={styles.title}>
-            {formatMessage({id: 'screen.StepsSummary.headerPartOne'})}
-          </Text>
-          <Text style={styles.title}>
-            {formatMessage({id: 'screen.StepsSummary.headerPartTwo'})}
-          </Text>
-          <Text style={styles.title}>
-            {formatMessage({id: 'screen.StepsSummary.headerPartThree'})}
-          </Text>
+          <AnimatedView>
+            <Text style={styles.title}>
+              {formatMessage({id: 'screen.StepsSummary.headerPartOne'})}
+            </Text>
+            <Text style={styles.title}>
+              {formatMessage({id: 'screen.StepsSummary.headerPartTwo'})}
+            </Text>
+            <Text style={styles.title}>
+              {formatMessage({id: 'screen.StepsSummary.headerPartThree'})}
+            </Text>
+          </AnimatedView>
           <View style={styles.pointsContainer}>
             <View style={[styles.pointRow, styles.pointOne]}>
               <View style={styles.numberContainer}>

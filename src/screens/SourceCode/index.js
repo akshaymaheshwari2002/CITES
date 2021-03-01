@@ -11,7 +11,7 @@ import SourceCodeData from './SourceCodeData';
 
 const SourceCode = ({navigation, route}) => {
   const {formatMessage} = useIntl();
-  const resultSourceCode = route.params.letter;
+  const resultSourceCode = route.params?.selectedSourceCode;
 
   useEffect(() => {
     navigation.setOptions({

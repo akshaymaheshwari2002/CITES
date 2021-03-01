@@ -11,13 +11,13 @@ import {useSelector} from 'react-redux';
 const HomePage = ({navigation}) => {
   const {formatMessage} = useIntl();
   const activeStepOneId = useSelector(
-    (state) => state.persistedReducer.activeInspection.activeStepOneId,
+    (state) => state.sessionReducer.activeInspection.stepOne?._id,
   );
   const activeStepTwoId = useSelector(
-    (state) => state.persistedReducer.activeInspection.activeStepTwoId,
+    (state) => state.sessionReducer.activeInspection.stepTwo?._id,
   );
   const activeStepThreeId = useSelector(
-    (state) => state.persistedReducer.activeInspection.activeStepThreeId,
+    (state) => state.sessionReducer.activeInspection.stepThree?._id,
   );
 
   const renderButtonContent = useCallback(() => {

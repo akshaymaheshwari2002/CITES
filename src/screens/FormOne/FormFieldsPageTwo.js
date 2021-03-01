@@ -11,10 +11,10 @@ export default (fieldProps = {}) => {
       defaultValue: '',
       label: formatMessage({id: 'form.label.selectSpecies'}),
       placeholder: formatMessage({id: 'form.label.selectSpecies'}),
-      name: 'name',
+      name: 'speciesId',
       rules: {required},
       fieldType: Constants.PICKER,
-      ...fieldProps.name,
+      ...fieldProps.speciesId,
     },
     {
       defaultValue: '',

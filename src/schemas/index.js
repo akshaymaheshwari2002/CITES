@@ -47,10 +47,9 @@ export const FORM_ONE = {
     facilityOwner: 'string[]',
     facilityOwnerEmail: 'string',
     facilityOwnerPhone: 'string',
-    registeredSpeciesName: 'string[]',
+    registeredSpecies: 'Species[]',
     facilityEshtablishmentDate: 'string',
     typeOfInspection: 'string[]',
-    registeredSpeciesData: 'Species[]',
   },
 };
 

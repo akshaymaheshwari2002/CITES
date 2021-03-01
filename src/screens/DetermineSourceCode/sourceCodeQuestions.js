@@ -1,15 +1,21 @@
-const sourceCodeQuestionnaire = {
+const sourceCodeQuestions = {
   1: {
     content: ['Is the species listed in the CITES Appendices (I, II or III)?'],
     options: ['yes', 'no'],
-    moreInfo: '',
+    moreInfo: {
+      isWebResource: false,
+      target: '',
+    },
   },
   2: {
     content: [
       'Was the specimen acquired before the provisions of the Convention applied to it?',
     ],
     options: ['yes', 'no'],
-    moreInfo: '',
+    moreInfo: {
+      isWebResource: true,
+      target: 'https://cites.org/eng/res/13/13-06R16.php',
+    },
   },
   3: {
     content: [
@@ -18,21 +24,30 @@ const sourceCodeQuestionnaire = {
       'Resolution. Conf. 17.8',
     ],
     options: ['yes', 'no'],
-    moreInfo: '',
+    moreInfo: {
+      isWebResource: true,
+      target: 'https://cites.org/sites/default/files/document/E-Res-17-08.pdf',
+    },
   },
   4: {
     content: [
       'Is there sufficient information about the specimen to determine its source?',
     ],
     options: ['yes', 'no'],
-    moreInfo: '',
+    moreInfo: {
+      isWebResource: false,
+      target: '',
+    },
   },
   5: {
     content: [
       'Was the specimen taken from the marine environment and not under the jurisdiction of any State?',
     ],
     options: ['yes', 'no'],
-    moreInfo: '',
+    moreInfo: {
+      isWebResource: true,
+      target: '',
+    },
   },
   6: {
     content: ['Is the specimen a plant', 'OR', 'animal?'],
@@ -49,12 +64,20 @@ const sourceCodeQuestionnaire = {
       'Was the specimen taken from the wild as an egg or juvenile that had a very low probability of surviving to adulthood?',
     ],
     options: ['yes', 'no'],
-    moreInfo: '',
+    moreInfo: {
+      isWebResource: true,
+      target: '',
+    },
   },
   9: {
     content: ['Was the specimen reared in a', 'controlled environment?'],
     options: ['yes', 'no'],
-    moreInfo: '',
+    moreInfo: {
+      moreInfo: {
+        isWebResource: false,
+        target: '',
+      },
+    },
   },
   10: {
     content: [
@@ -62,12 +85,19 @@ const sourceCodeQuestionnaire = {
       'Resolution Conf. 11.16 (Rev. CoP15)?',
     ],
     options: ['yes', 'no'],
-    moreInfo: '',
+    moreInfo: {
+      isWebResource: true,
+      target:
+        'https://cites.org/sites/default/files/document/E-Res-11-16-R15.pdf',
+    },
   },
   11: {
     content: ['Is the species listed in the CITES Appendices (II or III)?'],
     options: ['yes', 'no'],
-    moreInfo: '',
+    moreInfo: {
+      isWebResource: false,
+      target: '',
+    },
   },
   12: {
     content: [
@@ -76,7 +106,10 @@ const sourceCodeQuestionnaire = {
       'of the Convention?',
     ],
     options: ['yes', 'no'],
-    moreInfo: '',
+    moreInfo: {
+      isWebResource: true,
+      target: 'https://cites.org/eng/disc/text.php#III',
+    },
   },
   13: {
     content: [
@@ -89,14 +122,21 @@ const sourceCodeQuestionnaire = {
       'when development of the offspring began (asexual reproduction)?',
     ],
     options: ['yes', 'no'],
-    moreInfo: '',
+    moreInfo: {
+      isWebResource: true,
+      target:
+        'https://cites.org/sites/default/files/document/E-Res-10-16-R11_0.pdf',
+    },
   },
   14: {
     content: [
       'Was the specimen born in captivity, in a controlled environment?',
     ],
     options: ['yes', 'no'],
-    moreInfo: '',
+    moreInfo: {
+      isWebResource: true,
+      target: '',
+    },
   },
   15: {
     content: [
@@ -105,7 +145,10 @@ const sourceCodeQuestionnaire = {
       'in a manner not detrimental to the survival of the species in the wild?',
     ],
     options: ['yes', 'no'],
-    moreInfo: '',
+    moreInfo: {
+      isWebResource: false,
+      target: '',
+    },
   },
   16: {
     content: [
@@ -114,7 +157,11 @@ const sourceCodeQuestionnaire = {
       'In a manner not detrimental to the survival of the species in the wild?',
     ],
     options: ['yes', 'no'],
-    moreInfo: '',
+    moreInfo: {
+      isWebResource: true,
+      target:
+        'https://cites.org/sites/default/files/document/E-Res-16-07-R17_0.pdf',
+    },
   },
   17: {
     content: [
@@ -133,14 +180,21 @@ const sourceCodeQuestionnaire = {
   19: {
     content: ['Has the specimen been bred for commercial purposes?'],
     options: ['yes', 'no'],
-    moreInfo: '',
+    moreInfo: {
+      isWebResource: true,
+      target: '',
+    },
   },
   20: {
     content: [
       'Was the specimen bred at a CITES-registered breeding operation?',
     ],
     options: ['yes', 'no'],
-    moreInfo: '',
+    moreInfo: {
+      isWebResource: true,
+      target:
+        'https://cites.org/sites/default/files/document/E-Res-12-10-R15.pdf',
+    },
   },
   21: {
     content: ['Was the specimen grown under', 'controlled conditions', '?'],
@@ -153,7 +207,11 @@ const sourceCodeQuestionnaire = {
       'Resolution Conf. 11.11 (Rev. CoP18)?*',
     ],
     options: ['yes', 'no'],
-    moreInfo: '',
+    moreInfo: {
+      isWebResource: true,
+      target:
+        'https://cites.org/sites/default/files/document/E-Res-11-11-R18_0.pdf',
+    },
   },
   23: {
     content: [
@@ -161,7 +219,11 @@ const sourceCodeQuestionnaire = {
       'Resolution Conf. 11.11 (Rev. CoP18)?',
     ],
     options: ['yes', 'no'],
-    moreInfo: '',
+    moreInfo: {
+      isWebResource: true,
+      target:
+        'https://cites.org/sites/default/files/document/E-Res-11-11-R18_0.pdf',
+    },
   },
   24: {
     content: ['Was the specimen grown from a cutting or division?'],
@@ -194,4 +256,4 @@ const sourceCodeQuestionnaire = {
   },
 };
 
-export default sourceCodeQuestionnaire;
+export default sourceCodeQuestions;
