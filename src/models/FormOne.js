@@ -9,13 +9,14 @@ export default class FormOne {
     facilityName,
     facilityAddressLineOne,
     facilityAddressLineTwo,
-    facilityAddressLineThree,
+    country,
     facilityOwner,
     facilityOwnerEmail,
     facilityOwnerPhone,
     facilityEshtablishmentDate,
     typeOfInspection,
     registeredSpecies,
+    citesInformationCode,
   }) {
     this._id = _id ? new BSON.ObjectId(_id) : new BSON.ObjectId();
     this.dateOfInspection = dateOfInspection;
@@ -23,7 +24,7 @@ export default class FormOne {
     this.facilityName = facilityName;
     this.facilityAddressLineOne = facilityAddressLineOne;
     this.facilityAddressLineTwo = facilityAddressLineTwo;
-    this.facilityAddressLineThree = facilityAddressLineThree;
+    this.country = country;
     this.facilityOwner = facilityOwner;
     this.facilityOwnerEmail = facilityOwnerEmail;
     this.facilityOwnerPhone = facilityOwnerPhone;
@@ -32,5 +33,6 @@ export default class FormOne {
     this.registeredSpecies = registeredSpecies
       ? new Species(Species)
       : registeredSpecies;
+    this.citesInformationCode = citesInformationCode;
   }
 }

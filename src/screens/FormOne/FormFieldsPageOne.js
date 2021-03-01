@@ -1,7 +1,11 @@
+import {verticalScale} from 'react-native-size-matters';
+
+import {store} from '@store';
 import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
-import {verticalScale} from 'react-native-size-matters';
+import {setHelpText} from '@store/slices/sessionSlice';
+import HelpTexts from '@utils/HelpTexts';
 
 export default () => {
   const {formatMessage} = createIntl();
@@ -58,9 +62,10 @@ export default () => {
       },
     },
     {
-      placeholder: formatMessage({id: 'form.placeholder.addressLineThree'}),
+      placeholder: formatMessage({id: 'form.placeholder.country'}),
       defaultValue: '',
-      name: 'facilityAddressLineThree',
+      name: 'country',
+      rules: {required},
     },
     {
       defaultValue: '',
@@ -131,6 +136,17 @@ export default () => {
           name: Constants.FOLLOWUP_INSPECTION,
         },
       ],
+      showHelpIcon: true,
+      onHelpIconPress: () => {
+        store.dispatch(setHelpText(HelpTexts.typeOfInspection));
+      },
+    },
+    {
+      defaultValue: '',
+      label: formatMessage({id: 'form.label.citesInformationCode'}),
+      placeholder: formatMessage({id: 'form.label.citesInformationCode'}),
+      name: 'citesInformationCode',
+      rules: {required},
     },
   ];
 };
