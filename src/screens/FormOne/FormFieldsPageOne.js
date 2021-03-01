@@ -5,7 +5,7 @@ import {verticalScale} from 'react-native-size-matters';
 
 export default () => {
   const {formatMessage} = createIntl();
-  const {required} = getValidators();
+  const {required, validateEmail, validatePhone} = getValidators();
 
   return [
     {
@@ -65,6 +65,7 @@ export default () => {
     {
       defaultValue: '',
       label: formatMessage({id: 'form.label.facilityOwner'}),
+      placeholder: formatMessage({id: 'form.label.facilityOwner'}),
       name: 'facilityOwner',
       rules: {required},
       fieldType: Constants.TEXTINPUT_ARRAY,
@@ -74,19 +75,25 @@ export default () => {
       label: formatMessage({id: 'form.label.facilityOwnerEmail'}),
       placeholder: formatMessage({id: 'form.placeholder.emailId'}),
       name: 'facilityOwnerEmail',
-      rules: {required},
       fieldContainerStyle: {marginBottom: 0},
+      rules: {
+        required,
+        pattern: validateEmail,
+      },
     },
     {
       name: 'facilityOwnerPhone',
       placeholder: formatMessage({id: 'form.placeholder.phoneNumber'}),
-      rules: {required},
       style: {
         marginVertical: 0,
         marginTop: verticalScale(6),
         marginBottom: verticalScale(6),
       },
       keyboardType: 'number-pad',
+      rules: {
+        required,
+        pattern: validatePhone,
+      },
     },
     {
       label: formatMessage({id: 'form.label.registeredSpecies'}),

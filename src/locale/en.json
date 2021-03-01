@@ -11,6 +11,8 @@
   "stepHeader.duringInspection": "During Inspection",
   "stepHeader.afterInspection": "After Inspection",
   "form.error.fieldRequired": "Required Field",
+  "form.error.invalidEmail": "Not a valid email",
+  "form.error.invalidPhone": "Not a valid phone number",
   "form.error.invalidInput": "Invalid Input",
   "form.error.positiveNumber": "Input should be a positive number",
   "form.error.number": "Input should be numeric",
