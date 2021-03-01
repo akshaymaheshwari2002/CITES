@@ -29,6 +29,10 @@ import MoreInformation from './MoreInformation';
 import FormOneSummary from './FormOneSummary';
 import InspectionOnboarding from './InspectionOnboarding';
 import ExampleDialog from './ExampleDialog';
+import StepSummary from './StepSummary';
+import Q4MoreInfo from './Q4MoreInfo';
+import Q9MoreInfo from './Q9MoreInfo';
+import Q1MoreInfo from './Q1MoreInfo';
 
 export {
   FacilityScore,
@@ -40,6 +44,7 @@ export {
   SourceCodeSelection,
   LanguageSelection,
   SearchDummy,
+  StepSummary,
   SourceFlow,
   SourceCode,
   OnboardingOneA,
@@ -62,4 +67,7 @@ export {
   FormOneSummary,
   InspectionOnboarding,
   ExampleDialog,
+  Q9MoreInfo,
+  Q4MoreInfo,
+  Q1MoreInfo,
 };

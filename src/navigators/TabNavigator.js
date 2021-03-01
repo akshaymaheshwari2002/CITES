@@ -16,6 +16,11 @@ import {
   DetermineSourceCode,
   FormOneSummary,
   ExampleDialog,
+  StepSummary,
+  Q4MoreInfo,
+  Q9MoreInfo,
+  Q1MoreInfo,
+  MoreInformation,
 } from '@screens';
 
 const Tab = createBottomTabNavigator();
@@ -41,6 +46,10 @@ const AppNavigator = () => {
       <Tab.Screen name="StepsSummary" component={StepsSummary} />
       <Tab.Screen name="FacilityRegistered" component={FacilityRegistered} />
       <Tab.Screen name="FormOneSummary" component={FormOneSummary} />
+      <Tab.Screen name="Q4MoreInfo" component={Q4MoreInfo} />
+      <Tab.Screen name="Q9MoreInfo" component={Q9MoreInfo} />
+      <Tab.Screen name="Q1MoreInfo" component={Q1MoreInfo} />
+      <Tab.Screen name="MoreInformation" component={MoreInformation} />
 
       <Tab.Screen
         name="FacilityInfringement"
@@ -50,6 +59,7 @@ const AppNavigator = () => {
         name="ProductionCapacityCalculator"
         component={ProductionCapacityCalculator}
       />
+      <Tab.Screen name="StepSummary" component={StepSummary} />
       <Tab.Screen name="DetermineSourceCode" component={DetermineSourceCode} />
     </Tab.Navigator>
   );

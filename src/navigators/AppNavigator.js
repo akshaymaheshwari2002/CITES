@@ -25,7 +25,6 @@ import {
   WebView,
   StepTwo,
   SourceCodeSelection,
-  MoreInformation,
   DetermineSourceCode,
   FormOneSummary,
   InspectionOnboarding,
@@ -68,7 +67,6 @@ const AppNavigator = () => {
           name="SourceCodeSelection"
           component={SourceCodeSelection}
         />
-        <Stack.Screen name="MoreInformation" component={MoreInformation} />
         <Stack.Screen name="SourceCode" component={SourceCode} />
         <Stack.Screen name="OnboardingOneA" component={OnboardingOneA} />
         <Stack.Screen name="OnboardingTwoA" component={OnboardingTwoA} />

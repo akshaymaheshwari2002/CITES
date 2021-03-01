@@ -43,6 +43,7 @@ const RawColors = {
   silverFoil: '#B1B1B0',
   pinkishGrey: 'rgb(191,191,191)',
   beige: 'rgb(238,244,220)',
+  marine: 'rgb(8,56,99)',
 };
 
 const Fonts = {
@@ -104,6 +105,10 @@ const Fonts = {
   },
   Lato20R: {
     fontFamily: 'Lato-Regular',
+    fontSize: moderateScale(20),
+  },
+  Lato20SB: {
+    fontFamily: 'Lato-SemiBold',
     fontSize: moderateScale(20),
   },
   Lato34R: {
