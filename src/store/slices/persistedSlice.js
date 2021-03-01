@@ -2,11 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 
 export const INITIAL_PERSISTED_STATE = {
   locale: null,
-  activeInspection: {
-    id: null,
-    activeStepOneId: null,
-    activeFormOneId: null,
-  },
+  activeInspectionId: null,
 };
 
 const persistedSlice = createSlice({
@@ -16,14 +12,11 @@ const persistedSlice = createSlice({
     setLocale: (state, action) => {
       state.locale = action.payload;
     },
-    setActiveInspection: (state, action) => {
-      state.activeInspection = {
-        ...state.activeInspection,
-        ...action.payload,
-      };
+    setActiveInspectionId: (state, action) => {
+      state.activeInspectionId = action.payload;
     },
   },
 });
 
-export const {setLocale, setActiveInspection} = persistedSlice.actions;
+export const {setLocale, setActiveInspectionId} = persistedSlice.actions;
 export default persistedSlice.reducer;

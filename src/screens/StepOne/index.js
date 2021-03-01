@@ -10,9 +10,9 @@ import {StepHeader, ChecklistCell} from '@molecules';
 import ChecklistContent from './ChecklistContent';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
-import {getInstance} from '@utils/RealmHelper';
-import {Inspection, StepOne as StepOneModel} from '@models';
-import {setActiveInspection} from '@store/slices/persistedSlice';
+import {upsert, get} from '@utils/RealmHelper';
+import {Inspection} from '@models';
+import {setActiveInspectionId} from '@store/slices/persistedSlice';
 import {setTooltipProps} from '@store/slices/sessionSlice';
 
 const StepOne = ({navigation, route}) => {
@@ -20,10 +20,10 @@ const StepOne = ({navigation, route}) => {
   const isMounting = useRef(true);
   const dispatch = useDispatch();
   const activeStepOneId = useSelector(
-    (state) => state.persistedReducer.activeInspection.activeStepOneId,
+    (state) => state.sessionReducer.activeInspection.stepOne?._id,
   );
   const activeInspectionId = useSelector(
-    (state) => state.persistedReducer.activeInspection.id,
+    (state) => state.sessionReducer.activeInspection._id,
   );
   const [stepData, setStepData] = useState({});
 
@@ -38,7 +38,6 @@ const StepOne = ({navigation, route}) => {
 
   const handleSubmit = useCallback(async () => {
     if (Object.keys(stepData).length) {
-      const realm = await getInstance();
       let stepOneData = ChecklistContent({}).reduce(
         (acc, current) => ({
           ...acc,
@@ -46,23 +45,13 @@ const StepOne = ({navigation, route}) => {
         }),
         {},
       );
-      stepOneData = activeStepOneId
-        ? new StepOneModel({...stepOneData, _id: activeStepOneId})
-        : new StepOneModel(stepOneData);
       const inspectionData = new Inspection({
         _id: activeInspectionId,
-        stepOne: stepOneData,
+        stepOne: {...stepOneData, _id: activeStepOneId},
       });
 
-      realm.write(() => {
-        realm.create('Inspection', inspectionData, 'modified');
-        dispatch(
-          setActiveInspection({
-            id: inspectionData._id.toHexString(),
-            activeStepOneId: stepOneData._id.toHexString(),
-          }),
-        );
-      });
+      const upsertedData = await upsert('Inspection', inspectionData);
+      dispatch(setActiveInspectionId(upsertedData._id));
     }
   }, [activeInspectionId, activeStepOneId, dispatch, stepData]);
 
@@ -83,15 +72,7 @@ const StepOne = ({navigation, route}) => {
     if (isMounting.current) {
       (async () => {
         if (activeStepOneId) {
-          const realm = await getInstance();
-          const stepOneObjects = realm.objects('StepOne');
-          const activeStepOneData = JSON.parse(
-            JSON.stringify(
-              stepOneObjects.filter(
-                ({_id}) => _id.toHexString() === activeStepOneId,
-              )[0] ?? {},
-            ),
-          );
+          const activeStepOneData = await get('StepOne', activeStepOneId);
 
           delete activeStepOneData.formOne;
           delete activeStepOneData._id;

@@ -8,8 +8,8 @@ import {useDispatch} from 'react-redux';
 import {Container, Button, Header} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import {Images} from '@assets/';
-import {getInstance} from '@utils/RealmHelper';
-import {setActiveInspection} from '@store/slices/persistedSlice';
+import {get} from '@utils/RealmHelper';
+import {setActiveInspectionId} from '@store/slices/persistedSlice';
 
 const ContinueInspection = ({navigation}) => {
   const {formatMessage} = useIntl();
@@ -18,13 +18,7 @@ const ContinueInspection = ({navigation}) => {
 
   const handleItemPress = useCallback(
     (item) => {
-      dispatch(
-        setActiveInspection({
-          id: item._id,
-          activeStepOneId: item.stepOne?._id,
-          activeFormOneId: item.stepOne?.formOne?._id,
-        }),
-      );
+      dispatch(setActiveInspectionId(item._id));
       navigation.navigate('TabNavigator', {screen: 'StepOne'});
     },
     [dispatch, navigation],
@@ -32,11 +26,9 @@ const ContinueInspection = ({navigation}) => {
 
   useEffect(() => {
     (async () => {
-      const realm = await getInstance();
-      let inspectionObjects = realm.objects('Inspection');
-      inspectionObjects = JSON.parse(JSON.stringify(inspectionObjects));
+      const inspections = await get('Inspection');
 
-      setActiveInspections(inspectionObjects);
+      setActiveInspections(inspections);
     })();
   }, []);
 
