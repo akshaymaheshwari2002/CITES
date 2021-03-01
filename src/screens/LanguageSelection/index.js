@@ -98,7 +98,7 @@ const LanguageSelection = ({navigation}) => {
   });
 
   const handleChange = useCallback(
-    ({value}) => {
+    (value) => {
       dispatch(setLocale(value));
       navigation.navigate('HomePage');
     },

@@ -3,9 +3,9 @@ export default class Species {
   constructor({
     _id,
     name,
-    numberOfSpecimen,
-    numberOfBreedingAdults,
-    numberOfSpeciemenExportedSinceLastInspection,
+    numberOfSpecimen = '0',
+    numberOfBreedingAdults = '0',
+    numberOfSpeciemenExportedSinceLastInspection = '0',
     sourceCodeOfPreviousExport,
   }) {
     this._id = _id ? new BSON.ObjectId(_id) : new BSON.ObjectId();

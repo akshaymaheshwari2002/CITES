@@ -91,7 +91,7 @@ export default () => {
     {
       label: formatMessage({id: 'form.label.registeredSpecies'}),
       placeholder: formatMessage({id: 'form.label.registeredSpecies'}),
-      name: 'registeredSpeciesName',
+      name: 'registeredSpecies',
       rules: {required},
       fieldType: Constants.TEXTINPUT_ARRAY,
       count: 1,

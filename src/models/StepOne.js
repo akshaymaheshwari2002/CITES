@@ -1,4 +1,6 @@
 import {BSON} from 'realm';
+
+import {FormOne} from './';
 export default class StepOne {
   constructor({
     _id,
@@ -23,6 +25,6 @@ export default class StepOne {
     this.twoOfficialsArranged = twoOfficialsArranged;
     this.inspectionConcides = inspectionConcides;
     this.facilityOwnerPresent = facilityOwnerPresent;
-    this.formOne = formOne;
+    this.formOne = formOne ? new FormOne(formOne) : formOne;
   }
 }
