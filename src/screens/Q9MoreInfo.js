@@ -1,11 +1,11 @@
 import React from 'react';
-import {View, Text, Image, ImageBackground} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 
 import {Container, Header} from '@atoms';
-import {Fonts, RawColors} from '@styles/Themes';
+import {Fonts} from '@styles/Themes';
 import {Images} from '@assets';
 import CommonStyles from '@styles/CommonStyles';
 
@@ -58,17 +58,14 @@ const plants = [
   },
 ];
 
-const Q9MoreInfo = ({onBackPress = () => {}, onFordwardPress = () => {}}) => {
+const Q9MoreInfo = ({navigation}) => {
   const {formatMessage} = useIntl();
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
       <Header
         leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={onBackPress} />
-        }
-        rightContent={
-          <Icon name="chevron-right" size={ms(26)} onPress={onFordwardPress} />
+          <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
         }
       />
       <View style={styles.title}>

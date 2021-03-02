@@ -1,11 +1,15 @@
+import {verticalScale} from 'react-native-size-matters';
+
+import {store} from '@store';
 import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
-import {verticalScale} from 'react-native-size-matters';
+import {setHelpText} from '@store/slices/sessionSlice';
+import HelpTexts from '@utils/HelpTexts';
 
 export default () => {
   const {formatMessage} = createIntl();
-  const {required} = getValidators();
+  const {required, validateEmail, validatePhone} = getValidators();
 
   return [
     {
@@ -58,13 +62,15 @@ export default () => {
       },
     },
     {
-      placeholder: formatMessage({id: 'form.placeholder.addressLineThree'}),
+      placeholder: formatMessage({id: 'form.placeholder.country'}),
       defaultValue: '',
-      name: 'facilityAddressLineThree',
+      name: 'country',
+      rules: {required},
     },
     {
       defaultValue: '',
       label: formatMessage({id: 'form.label.facilityOwner'}),
+      placeholder: formatMessage({id: 'form.label.facilityOwner'}),
       name: 'facilityOwner',
       rules: {required},
       fieldType: Constants.TEXTINPUT_ARRAY,
@@ -74,19 +80,25 @@ export default () => {
       label: formatMessage({id: 'form.label.facilityOwnerEmail'}),
       placeholder: formatMessage({id: 'form.placeholder.emailId'}),
       name: 'facilityOwnerEmail',
-      rules: {required},
       fieldContainerStyle: {marginBottom: 0},
+      rules: {
+        required,
+        pattern: validateEmail,
+      },
     },
     {
       name: 'facilityOwnerPhone',
       placeholder: formatMessage({id: 'form.placeholder.phoneNumber'}),
-      rules: {required},
       style: {
         marginVertical: 0,
         marginTop: verticalScale(6),
         marginBottom: verticalScale(6),
       },
       keyboardType: 'number-pad',
+      rules: {
+        required,
+        pattern: validatePhone,
+      },
     },
     {
       label: formatMessage({id: 'form.label.registeredSpecies'}),
@@ -124,6 +136,17 @@ export default () => {
           name: Constants.FOLLOWUP_INSPECTION,
         },
       ],
+      showHelpIcon: true,
+      onHelpIconPress: () => {
+        store.dispatch(setHelpText(HelpTexts.typeOfInspection));
+      },
+    },
+    {
+      defaultValue: '',
+      label: formatMessage({id: 'form.label.citesInformationCode'}),
+      placeholder: formatMessage({id: 'form.label.citesInformationCode'}),
+      name: 'citesInformationCode',
+      rules: {required},
     },
   ];
 };

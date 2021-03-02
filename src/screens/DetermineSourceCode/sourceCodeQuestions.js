@@ -1,10 +1,12 @@
+import Config from '@config';
+
 const sourceCodeQuestions = {
   1: {
     content: ['Is the species listed in the CITES Appendices (I, II or III)?'],
     options: ['yes', 'no'],
     moreInfo: {
       isWebResource: false,
-      target: '',
+      target: 'Q1MoreInfo',
     },
   },
   2: {
@@ -14,7 +16,7 @@ const sourceCodeQuestions = {
     options: ['yes', 'no'],
     moreInfo: {
       isWebResource: true,
-      target: 'https://cites.org/eng/res/13/13-06R16.php',
+      target: Config.URL_Q2_MORE_INFO,
     },
   },
   3: {
@@ -26,7 +28,7 @@ const sourceCodeQuestions = {
     options: ['yes', 'no'],
     moreInfo: {
       isWebResource: true,
-      target: 'https://cites.org/sites/default/files/document/E-Res-17-08.pdf',
+      target: Config.URL_Q3_MORE_INFO,
     },
   },
   4: {
@@ -36,7 +38,7 @@ const sourceCodeQuestions = {
     options: ['yes', 'no'],
     moreInfo: {
       isWebResource: false,
-      target: '',
+      target: 'Q4MoreInfo',
     },
   },
   5: {
@@ -46,7 +48,7 @@ const sourceCodeQuestions = {
     options: ['yes', 'no'],
     moreInfo: {
       isWebResource: true,
-      target: '',
+      target: Config.URL_Q5_MORE_INFO,
     },
   },
   6: {
@@ -66,17 +68,15 @@ const sourceCodeQuestions = {
     options: ['yes', 'no'],
     moreInfo: {
       isWebResource: true,
-      target: '',
+      target: Config.URL_Q8_MORE_INFO,
     },
   },
   9: {
     content: ['Was the specimen reared in a', 'controlled environment?'],
     options: ['yes', 'no'],
     moreInfo: {
-      moreInfo: {
-        isWebResource: false,
-        target: '',
-      },
+      isWebResource: false,
+      target: 'Q9MoreInfo',
     },
   },
   10: {
@@ -87,8 +87,7 @@ const sourceCodeQuestions = {
     options: ['yes', 'no'],
     moreInfo: {
       isWebResource: true,
-      target:
-        'https://cites.org/sites/default/files/document/E-Res-11-16-R15.pdf',
+      target: Config.URL_Q10_MORE_INFO,
     },
   },
   11: {
@@ -96,7 +95,7 @@ const sourceCodeQuestions = {
     options: ['yes', 'no'],
     moreInfo: {
       isWebResource: false,
-      target: '',
+      target: 'Q1MoreInfo',
     },
   },
   12: {
@@ -108,7 +107,7 @@ const sourceCodeQuestions = {
     options: ['yes', 'no'],
     moreInfo: {
       isWebResource: true,
-      target: 'https://cites.org/eng/disc/text.php#III',
+      target: Config.URL_Q12_MORE_INFO,
     },
   },
   13: {
@@ -124,8 +123,7 @@ const sourceCodeQuestions = {
     options: ['yes', 'no'],
     moreInfo: {
       isWebResource: true,
-      target:
-        'https://cites.org/sites/default/files/document/E-Res-10-16-R11_0.pdf',
+      target: Config.URL_Q13_MORE_INFO,
     },
   },
   14: {
@@ -135,7 +133,7 @@ const sourceCodeQuestions = {
     options: ['yes', 'no'],
     moreInfo: {
       isWebResource: true,
-      target: '',
+      target: Config.URL_Q14_MORE_INFO,
     },
   },
   15: {
@@ -147,7 +145,7 @@ const sourceCodeQuestions = {
     options: ['yes', 'no'],
     moreInfo: {
       isWebResource: false,
-      target: '',
+      target: 'Q4MoreInfo',
     },
   },
   16: {
@@ -159,8 +157,7 @@ const sourceCodeQuestions = {
     options: ['yes', 'no'],
     moreInfo: {
       isWebResource: true,
-      target:
-        'https://cites.org/sites/default/files/document/E-Res-16-07-R17_0.pdf',
+      target: Config.URL_Q16_MORE_INFO,
     },
   },
   17: {
@@ -192,8 +189,7 @@ const sourceCodeQuestions = {
     options: ['yes', 'no'],
     moreInfo: {
       isWebResource: true,
-      target:
-        'https://cites.org/sites/default/files/document/E-Res-12-10-R15.pdf',
+      target: Config.URL_Q20_MORE_INFO,
     },
   },
   21: {
@@ -209,8 +205,7 @@ const sourceCodeQuestions = {
     options: ['yes', 'no'],
     moreInfo: {
       isWebResource: true,
-      target:
-        'https://cites.org/sites/default/files/document/E-Res-11-11-R18_0.pdf',
+      target: Config.URL_Q22_MORE_INFO,
     },
   },
   23: {
@@ -221,8 +216,7 @@ const sourceCodeQuestions = {
     options: ['yes', 'no'],
     moreInfo: {
       isWebResource: true,
-      target:
-        'https://cites.org/sites/default/files/document/E-Res-11-11-R18_0.pdf',
+      target: Config.URL_Q23_MORE_INFO,
     },
   },
   24: {

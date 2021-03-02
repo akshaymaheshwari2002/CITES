@@ -49,7 +49,13 @@ export default (fieldProps = {}) => {
       label: formatMessage({id: 'form.label.sourceCode'}),
       placeholder: formatMessage({id: 'form.label.sourceCode'}),
       name: 'sourceCodeOfPreviousExport',
-      rules: {required},
+      rules: {
+        required,
+        maxLength: {
+          value: 1,
+          message: formatMessage({id: 'form.error.singleCharacter'}),
+        },
+      },
     },
   ];
 };
