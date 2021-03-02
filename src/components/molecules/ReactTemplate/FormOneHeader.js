@@ -1,33 +1,33 @@
 import React from 'react';
 
-const FormOneHeader = ({form = 'one', facilityData = {}}) => {
-  const formText = 'Form';
-  const formNumber = {
-    one: 1,
-    two: 2,
-    three: 3,
-    four: 4,
-  };
-  const formTitle = {
-    one: 'BACKGROUND INFORMATION',
-    two: 'FACILITY INFORMATION',
-  };
-  const facilitySchema = {
-    facilityName: 'Facility name: ',
-    owner: 'Facility Owner/Manager: ',
-    address: 'Facility address: ',
-    capativeBreedingCode:
-      'CITES Register of Capitative-breeding information code: ',
-    establishmentDate: 'Facility Date of Establishment: ',
-    country: 'Country: ',
-    facilityContact: 'Facility Contact Information:',
-    email: 'Email ',
-    phoneNo: ' Telephone ',
-    dateOfInspection: 'Date of Inspection: ',
-    seniorOfficerName: 'Name of Senior Inspecting Officer: ',
-    typeOfInspection: 'Type of Inspection: ',
-  };
+const formText = 'Form';
+const formNumber = {
+  one: 1,
+  two: 2,
+  three: 3,
+  four: 4,
+};
+const formTitle = {
+  one: 'BACKGROUND INFORMATION',
+  two: 'FACILITY INFORMATION',
+};
+const facilitySchema = {
+  facilityName: 'Facility name: ',
+  owner: 'Facility Owner/Manager: ',
+  address: 'Facility address: ',
+  citesInformationCode:
+    'CITES Register of Capitative-breeding information code: ',
+  establishmentDate: 'Facility Date of Establishment: ',
+  country: 'Country: ',
+  facilityContact: 'Facility Contact Information:',
+  email: 'Email ',
+  phoneNo: ' Telephone ',
+  dateOfInspection: 'Date of Inspection: ',
+  seniorOfficerName: 'Name of Senior Inspecting Officer: ',
+  typeOfInspection: 'Type of Inspection: ',
+};
 
+const FormOneHeader = ({form = 'one', facilityData = {}}) => {
   return (
     <div className="App">
       <div className="App" style={styles.marginContainer}>
@@ -73,8 +73,8 @@ const FormOneHeader = ({form = 'one', facilityData = {}}) => {
             </div>
             <div style={styles.halfContent}>
               <p style={styles.text}>
-                <b>{facilitySchema?.capativeBreedingCode}</b>
-                {facilityData?.capativeBreedingCode}
+                <b>{facilitySchema?.citesInformationCode}</b>
+                {facilityData?.citesInformationCode}
               </p>
               <p style={styles.text}>
                 <b>{facilitySchema?.establishmentDate}</b>
@@ -82,7 +82,7 @@ const FormOneHeader = ({form = 'one', facilityData = {}}) => {
               </p>
               <p style={styles.text}>
                 <b>{facilitySchema?.country}</b>
-                {facilityData?.facilityAddressLineThree}
+                {facilityData?.country}
               </p>
               <p style={styles.text}>
                 <b>{facilitySchema?.dateOfInspection}</b>

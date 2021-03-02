@@ -73,8 +73,6 @@ export default () => {
       placeholder: formatMessage({id: 'form.label.facilityOwner'}),
       name: 'facilityOwner',
       rules: {required},
-      fieldType: Constants.TEXTINPUT_ARRAY,
-      count: 2,
     },
     {
       label: formatMessage({id: 'form.label.facilityOwnerEmail'}),
@@ -115,6 +113,7 @@ export default () => {
       name: 'facilityEshtablishmentDate',
       rules: {required},
       fieldType: Constants.DATEPICKER,
+      maximumDate: new Date(),
     },
     {
       label: formatMessage({id: 'form.label.typeOfInspection'}),

@@ -23,16 +23,20 @@ const TextInputArray = React.forwardRef(
     },
     _,
   ) => {
-    const [_value, _setValue] = useState();
     const [_count, _setCount] = useState(count);
 
-    const handleChangeText = useCallback((text, index) => {
-      _setValue((state) => {
-        const currentData = state ? [...state] : [];
-        currentData[index] = text;
-        return currentData;
-      });
-    }, []);
+    const handleChangeText = useCallback(
+      (text, index) => {
+        if (value && Array.isArray(value)) {
+          let updatedData = [...value];
+          updatedData[index] = text;
+          onChange(updatedData);
+        } else {
+          onChange([text]);
+        }
+      },
+      [onChange, value],
+    );
 
     const renderFields = useCallback(() => {
       let fields = [];
@@ -40,7 +44,7 @@ const TextInputArray = React.forwardRef(
         fields[index] = (
           <TextInput
             key={index}
-            value={_value?.[index]}
+            value={value?.[index]}
             onChangeText={(text) => handleChangeText(text, index)}
             style={styles.textInput}
             placeholder={placeholder}
@@ -48,7 +52,7 @@ const TextInputArray = React.forwardRef(
         );
       }
       return fields;
-    }, [_count, _value, handleChangeText, placeholder]);
+    }, [_count, handleChangeText, placeholder, value]);
 
     useEffect(() => {
       if (count) {
@@ -57,14 +61,10 @@ const TextInputArray = React.forwardRef(
     }, [count]);
 
     useEffect(() => {
-      if (_value?.length) {
-        onChange(_value);
-      }
-    }, [_value, onChange]);
-
-    useEffect(() => {
       if (value?.length) {
-        _setValue(value);
+        _setCount((existingCount) =>
+          value.length > existingCount ? value.length : existingCount,
+        );
       }
     }, [value]);
 
@@ -134,7 +134,7 @@ TextInputArray.propTypes = {
 TextInputArray.defaultProps = {
   label: '',
   error: '',
-  count: 0,
+  count: 1,
   incremental: false,
   onChange: () => {},
   showHelpIcon: false,
