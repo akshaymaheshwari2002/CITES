@@ -9,6 +9,9 @@ export default ScaledSheet.create({
   flexGrow1: {
     flexGrow: 1,
   },
+  flexRow: {
+    flexDirection: 'row',
+  },
   centerContent: {
     justifyContent: 'center',
     alignItems: 'center',

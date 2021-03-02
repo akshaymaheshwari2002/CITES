@@ -40,39 +40,41 @@ const ChoiceList = React.forwardRef(
     }, [onChange, value]);
 
     return (
-      <>
-        <View style={styles.labelContainer}>
+      <View style={CommonStyles.flexRow}>
+        <View style={CommonStyles.flex1}>
           {label ? (
             <Text style={[CommonStyles.flex1, Fonts.Lato15R]}>{label}</Text>
           ) : null}
-          {showHelpIcon ? (
-            <Icon
-              name="information-outline"
-              color={RawColors.darkSalmon}
-              size={moderateScale(40)}
-              onPress={onHelpIconPress}
-            />
+          <View style={styles.cellListContainer}>
+            {items.map((itemProps, index) => (
+              <ChecklistCell
+                key={index}
+                id={index.toString()}
+                onChange={(checkBoxValue) =>
+                  handleChange(checkBoxValue, itemProps.name)
+                }
+                value={value?.[itemProps.name]}
+                wrapperStyle={styles.cellWrapper}
+                checkboxContainerStyle={styles.checkboxContainer}
+                {...itemProps}
+              />
+            ))}
+          </View>
+          {error ? (
+            <Text style={[{color: RawColors.error}, Fonts.Lato15R]}>
+              {error}
+            </Text>
           ) : null}
         </View>
-        <View style={styles.cellListContainer}>
-          {items.map((itemProps, index) => (
-            <ChecklistCell
-              key={index}
-              id={index.toString()}
-              onChange={(checkBoxValue) =>
-                handleChange(checkBoxValue, itemProps.name)
-              }
-              value={value?.[itemProps.name]}
-              wrapperStyle={styles.cellWrapper}
-              checkboxContainerStyle={styles.checkboxContainer}
-              {...itemProps}
-            />
-          ))}
-        </View>
-        {error ? (
-          <Text style={[{color: RawColors.error}, Fonts.Lato15R]}>{error}</Text>
+        {showHelpIcon ? (
+          <Icon
+            name="information-outline"
+            color={RawColors.darkSalmon}
+            size={moderateScale(40)}
+            onPress={onHelpIconPress}
+          />
         ) : null}
-      </>
+      </View>
     );
   },
 );
