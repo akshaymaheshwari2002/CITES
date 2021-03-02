@@ -7,7 +7,7 @@ import {setHelpText} from '@store/slices/sessionSlice';
 
 const resultFieldStyleProps = {
   fontWeight: 'bold',
-  color: RawColors.brightRed,
+  color: RawColors.black,
   borderWidth: 3,
   borderColor: RawColors.black,
 };
@@ -65,7 +65,7 @@ export default ({modeSelected}) => {
       placeholder:
         modeSelected === 2
           ? '0'
-          : formatMessage({id: 'form.label.countTotalBreedingFemale'}),
+          : formatMessage({id: 'form.placeholder.countTotalBreedingFemale'}),
       name: 'countTotalBreedingFemale',
       rules:
         modeSelected === 1
@@ -78,9 +78,10 @@ export default ({modeSelected}) => {
               },
             }
           : {},
-      editable: !modeSelected === 2,
+      editable: modeSelected === 1,
       style: modeSelected === 2 ? resultFieldStyleProps : undefined,
-      placeholderTextColor: modeSelected === 2 ? RawColors.black : undefined,
+      placeholderTextColor:
+        modeSelected === 2 ? RawColors.black : RawColors.grey,
       labelStyle: modeSelected === 2 ? resultFieldLabelStyleProps : undefined,
       showFieldHelpIcon: true,
       onFieldHelpIconPress: () => {
@@ -94,8 +95,9 @@ export default ({modeSelected}) => {
         id: 'form.label.percentageBreedingFemalePerSeason',
       }),
       placeholder: formatMessage({
-        id: 'form.label.percentageBreedingFemalePerSeason',
+        id: 'form.placeholder.percentageBreedingFemalePerSeason',
       }),
+      placeholderTextColor: RawColors.grey,
       name: 'percentageBreedingFemalePerSeason',
       rules: {
         required,
@@ -113,7 +115,8 @@ export default ({modeSelected}) => {
     {
       defaultValue: '',
       label: formatMessage({id: 'form.label.countLitterPerYear'}),
-      placeholder: formatMessage({id: 'form.label.countLitterPerYear'}),
+      placeholder: formatMessage({id: 'form.placeholder.countLitterPerYear'}),
+      placeholderTextColor: RawColors.grey,
       name: 'countLitterPerYear',
       rules: {
         required,
@@ -132,7 +135,10 @@ export default ({modeSelected}) => {
     {
       defaultValue: '',
       label: formatMessage({id: 'form.label.countOffspringPerLitter'}),
-      placeholder: formatMessage({id: 'form.label.countOffspringPerLitter'}),
+      placeholder: formatMessage({
+        id: 'form.placeholder.countOffspringPerLitter',
+      }),
+      placeholderTextColor: RawColors.grey,
       name: 'countOffspringPerLitter',
       rules: {
         required,
@@ -152,8 +158,9 @@ export default ({modeSelected}) => {
       defaultValue: '',
       label: formatMessage({id: 'form.label.percentageSurvivingInTwoWeek'}),
       placeholder: formatMessage({
-        id: 'form.label.percentageSurvivingInTwoWeek',
+        id: 'form.placeholder.percentageSurvivingInTwoWeek',
       }),
+      placeholderTextColor: RawColors.grey,
       name: 'percentageSurvivingInTwoWeek',
       rules: {
         required,
@@ -177,7 +184,7 @@ export default ({modeSelected}) => {
         modeSelected === 1
           ? '0'
           : formatMessage({
-              id: 'form.label.approximateYoungProducedPerYear',
+              id: 'form.placeholder.approximateYoungProducedPerYear',
             }),
       name: 'approximateYoungProducedPerYear',
       rules:
@@ -196,9 +203,10 @@ export default ({modeSelected}) => {
         dispatch(setHelpText(helpText.approximateYoungProducedPerYear));
       },
       keyboardType: 'number-pad',
-      editable: !modeSelected === 1,
+      editable: modeSelected === 2,
       style: modeSelected === 1 ? resultFieldStyleProps : undefined,
-      placeholderTextColor: modeSelected === 1 ? RawColors.black : undefined,
+      placeholderTextColor:
+        modeSelected === 1 ? RawColors.black : RawColors.grey,
       labelStyle: modeSelected === 1 ? resultFieldLabelStyleProps : undefined,
     },
   ];
