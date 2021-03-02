@@ -9,21 +9,14 @@ import {Container, Button, Header} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
 
-const Q1MoreInfo = ({
-  onBackPress = () => {},
-  onFordwardPress = () => {},
-  navigation,
-}) => {
+const Q1MoreInfo = ({navigation}) => {
   const {formatMessage} = useIntl();
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
       <Header
         leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={onBackPress} />
-        }
-        rightContent={
-          <Icon name="chevron-right" size={ms(26)} onPress={onFordwardPress} />
+          <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
         }
       />
 

@@ -32,17 +32,14 @@ const points = [
   },
 ];
 
-const Q4MoreInfo = ({onBackPress = () => {}, onFordwardPress = () => {}}) => {
+const Q4MoreInfo = ({navigation}) => {
   const {formatMessage} = useIntl();
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
       <Header
         leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={onBackPress} />
-        }
-        rightContent={
-          <Icon name="chevron-right" size={ms(26)} onPress={onFordwardPress} />
+          <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
         }
       />
 

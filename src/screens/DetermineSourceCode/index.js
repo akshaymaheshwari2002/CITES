@@ -106,11 +106,13 @@ const DetermineSourceCode = ({navigation: {navigate, goBack}}) => {
                     interactedQuestionStack[interactedQuestionStack.length - 1]
                   }`
                 ].moreInfo;
-              if (moreInfo) {
-                if (moreInfo.isWebResource && moreInfo.target) {
+              if (moreInfo && moreInfo.target) {
+                if (moreInfo.isWebResource) {
                   navigate('WebView', {
                     sourceUri: moreInfo.target,
                   });
+                } else {
+                  navigate(moreInfo.target);
                 }
               }
             }}
