@@ -16,10 +16,8 @@ import {
   OnboardingTwoA,
   OnboardingThreeA,
   InspectionFlow,
-  GiveFeedback,
   StepsSummary,
   SourceCode,
-  SubmitFeedback,
   SourceFlow,
   HomePage,
   WebView,
@@ -78,8 +76,6 @@ const AppNavigator = () => {
         />
         <Stack.Screen name="StepsSummary" component={StepsSummary} />
         <Stack.Screen name="StepTwo" component={StepTwo} />
-        <Stack.Screen name="GiveFeedback" component={GiveFeedback} />
-        <Stack.Screen name="SubmitFeedback" component={SubmitFeedback} />
         <Stack.Screen name="FacilityScore" component={FacilityScore} />
         <Stack.Screen
           name="InspectionFlow"

@@ -136,7 +136,7 @@ const styles = ScaledSheet.create({
     height: '80@ms',
     width: '290@s',
     marginTop: '20@s',
-    backgroundColor: RawColors.ghostCheckboxBorder,
+    backgroundColor: RawColors.lightGrey,
   },
   content: {
     minWidth: '130@ms',

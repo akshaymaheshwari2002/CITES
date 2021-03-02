@@ -7,35 +7,35 @@ import {Container} from '@atoms';
 import {Fonts} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
 
-const GiveFeedback = () => {
+const FeedbackOne = () => {
   const {formatMessage} = useIntl();
   return (
     <Container>
       <Container.ScrollView style={CommonStyles.screenContainer}>
         <View style={styles.title}>
           <Text style={styles.titleContent}>
-            {formatMessage({id: 'screen.GiveFeedback.headerPartOne'})}
+            {formatMessage({id: 'screen.FeedbackOne.headerPartOne'})}
           </Text>
           <Text style={styles.titleContent}>
-            {formatMessage({id: 'screen.GiveFeedback.headerPartTwo'})}
+            {formatMessage({id: 'screen.FeedbackOne.headerPartTwo'})}
           </Text>
         </View>
         <View style={styles.contentContainer}>
           <Text style={styles.content}>
-            {formatMessage({id: 'screen.GiveFeedback.contentOne'})}
+            {formatMessage({id: 'screen.FeedbackOne.contentOne'})}
           </Text>
           <View style={styles.gap1}>
             <Text style={styles.line1}>
-              {formatMessage({id: 'screen.GiveFeedback.contentTwo'})}
+              {formatMessage({id: 'screen.FeedbackOne.contentTwo'})}
             </Text>
             <Text style={styles.content}>
-              {formatMessage({id: 'screen.GiveFeedback.contentThree'})}
+              {formatMessage({id: 'screen.FeedbackOne.contentThree'})}
             </Text>
           </View>
 
           <View style={styles.gap2}>
             <Text style={styles.line2}>
-              {formatMessage({id: 'screen.GiveFeedback.contentFour'})}
+              {formatMessage({id: 'screen.FeedbackOne.contentFour'})}
             </Text>
           </View>
         </View>
@@ -86,4 +86,4 @@ const styles = ScaledSheet.create({
   btn: {},
 });
 
-export default GiveFeedback;
+export default FeedbackOne;

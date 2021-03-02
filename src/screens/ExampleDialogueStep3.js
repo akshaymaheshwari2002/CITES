@@ -8,7 +8,7 @@ import {Fonts, RawColors} from '@styles/Themes';
 import {Container, Button, Header} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
 
-const ExampleDialog = ({navigation: {navigate, goBack}}) => {
+const ExampleDialogueStep3 = ({navigation: {navigate, goBack}}) => {
   const {formatMessage} = useIntl();
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
@@ -22,23 +22,23 @@ const ExampleDialog = ({navigation: {navigate, goBack}}) => {
         style={CommonStyles.flex1}>
         <View style={styles.title}>
           <Text style={styles.titleContent}>
-            {formatMessage({id: 'screen.ExampleDialog.headerPartOne'})}
+            {formatMessage({id: 'screen.ExampleDialogue.headerPartOne'})}
           </Text>
           <Text style={styles.titleContent}>
-            {formatMessage({id: 'screen.ExampleDialog.headerPartTwo'})}
+            {formatMessage({id: 'screen.ExampleDialogue.headerPartTwo'})}
           </Text>
         </View>
         <Text style={styles.content}>
-          {formatMessage({id: 'screen.ExampleDialog.contentOne'})}
+          {formatMessage({id: 'screen.ExampleDialogueStep3.contentOne'})}
         </Text>
         <Text style={styles.content}>
-          {formatMessage({id: 'screen.ExampleDialog.contentTwo'})}
+          {formatMessage({id: 'screen.ExampleDialogueStep3.contentTwo'})}
         </Text>
         <Text style={styles.content}>
-          {formatMessage({id: 'screen.ExampleDialog.contentThree'})}
+          {formatMessage({id: 'screen.ExampleDialogueStep3.contentThree'})}
         </Text>
         <Text style={styles.content}>
-          {formatMessage({id: 'screen.ExampleDialog.contentFour'})}
+          {formatMessage({id: 'screen.ExampleDialogueStep3.contentFour'})}
         </Text>
         <Button
           buttonContent={formatMessage({
@@ -59,12 +59,13 @@ const ExampleDialog = ({navigation: {navigate, goBack}}) => {
 
 const styles = ScaledSheet.create({
   title: {
-    height: '100@s',
+    //height: '100@s',
     width: '240@s',
+    marginTop: '18@s',
   },
   titleContent: {
     ...Fonts.HelveticaNeue30B,
-    lineHeight: '49@s',
+    lineHeight: '32@s',
     letterSpacing: '0.64@s',
   },
   content: {
@@ -72,8 +73,8 @@ const styles = ScaledSheet.create({
     ...Fonts.Lato15R,
     lineHeight: 22,
     letterSpacing: 0.36,
-    color: RawColors.tuna,
-    marginTop: '30@s',
+    color: RawColors.black,
+    marginTop: '20@s',
   },
   button: {
     height: '46@vs',
@@ -83,10 +84,10 @@ const styles = ScaledSheet.create({
   },
   buttonText: {
     ...Fonts.Lato15R,
-    color: RawColors.black,
+    color: RawColors.darkGreyBlue,
     justifyContent: 'center',
     alignItems: 'center',
   },
 });
 
-export default ExampleDialog;
+export default ExampleDialogueStep3;

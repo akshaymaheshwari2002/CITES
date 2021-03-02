@@ -2,7 +2,7 @@ import ProductionCapacityCalculator from './ProductionCapacityCalculator';
 import FacilityScore from './FacilityScore';
 import FacilityScoreLessEight from './FacilityScoreLessEight';
 import FacilityScoreGreaterEight from './FacilityScoreGreaterEight';
-import GiveFeedback from './GiveFeedback';
+import FeedbackTwo from './FeedbackTwo';
 import LanguageSelection from './LanguageSelection';
 import OnboardingOneA from './OnboardingOneA';
 import OnboardingTwoA from './OnboardingTwoA';
@@ -10,7 +10,7 @@ import OnboardingThreeA from './OnboardingThreeA';
 import StepsSummary from './StepsSummary';
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
-import SubmitFeedback from './SubmitFeedback';
+import FeedbackOne from './FeedbackOne';
 import HomePage from './HomePage';
 import SourceFlow from './SourceFlow';
 import SourceCode from './SourceCode';
@@ -28,18 +28,21 @@ import DetermineSourceCode from './DetermineSourceCode';
 import MoreInformation from './MoreInformation';
 import FormOneSummary from './FormOneSummary';
 import InspectionOnboarding from './InspectionOnboarding';
-import ExampleDialog from './ExampleDialog';
+import ExampleDialogueStep3 from './ExampleDialogueStep3';
+import ExampleDialogueStep2 from './ExampleDialogueStep2';
+import ExampleDialogueConsentFormStep2 from './ExampleDialogueConsentFormStep2';
 import StepSummary from './StepSummary';
 import Q4MoreInfo from './Q4MoreInfo';
 import Q9MoreInfo from './Q9MoreInfo';
 import Q1MoreInfo from './Q1MoreInfo';
+import InspectionNotes from './InspectionNotes';
 
 export {
   FacilityScore,
   MoreInformation,
   FacilityScoreLessEight,
   FacilityScoreGreaterEight,
-  GiveFeedback,
+  FeedbackTwo,
   FacilityRegistered,
   SourceCodeSelection,
   LanguageSelection,
@@ -58,7 +61,7 @@ export {
   ContinueInspection,
   StepOne,
   StepTwo,
-  SubmitFeedback,
+  FeedbackOne,
   ProductionCapacityCalculator,
   HomePage,
   WebView,
@@ -66,8 +69,11 @@ export {
   DetermineSourceCode,
   FormOneSummary,
   InspectionOnboarding,
-  ExampleDialog,
+  ExampleDialogueStep3,
+  ExampleDialogueConsentFormStep2,
+  ExampleDialogueStep2,
   Q9MoreInfo,
   Q4MoreInfo,
   Q1MoreInfo,
+  InspectionNotes,
 };

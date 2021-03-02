@@ -15,12 +15,17 @@ import {
   ContinueInspection,
   DetermineSourceCode,
   FormOneSummary,
-  ExampleDialog,
+  ExampleDialogueStep3,
+  ExampleDialogueStep2,
+  ExampleDialogueConsentFormStep2,
+  FeedbackTwo,
+  FeedbackOne,
   StepSummary,
   Q4MoreInfo,
   Q9MoreInfo,
   Q1MoreInfo,
   MoreInformation,
+  InspectionNotes,
 } from '@screens';
 
 const Tab = createBottomTabNavigator();
@@ -38,7 +43,21 @@ const AppNavigator = () => {
         initialParams={{showToolTip: false}}
       />
       <Tab.Screen name="ContinueInspection" component={ContinueInspection} />
-      <Tab.Screen name="ExampleDialog" component={ExampleDialog} />
+      <Tab.Screen
+        name="ExampleDialogueStep3"
+        component={ExampleDialogueStep3}
+      />
+      <Tab.Screen
+        name="ExampleDialogueStep2"
+        component={ExampleDialogueStep2}
+      />
+      <Tab.Screen
+        name="ExampleDialogueConsentFormStep2"
+        component={ExampleDialogueConsentFormStep2}
+      />
+      <Tab.Screen name="FeedbackOne" component={FeedbackOne} />
+      <Tab.Screen name="InspectionNotes" component={InspectionNotes} />
+      <Tab.Screen name="FeedbackTwo" component={FeedbackTwo} />
       <Tab.Screen name="FormOne" component={FormOne} />
       <Tab.Screen name="Search" component={SearchDummy} />
       <Tab.Screen name="Notes" component={Notes} />
