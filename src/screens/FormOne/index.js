@@ -12,7 +12,7 @@ import getFormFieldsPageOne from './FormFieldsPageOne';
 import getFormFieldsPageTwo from './FormFieldsPageTwo';
 import {Fonts, RawColors} from '@styles/Themes';
 import {get, upsert, addSpeciesToForm} from '@utils/RealmHelper';
-import {Inspection, Species} from '@models';
+import {Inspection, Species, StepOne} from '@models';
 import {setActiveInspectionId} from '@store/slices/persistedSlice';
 import Constants from '@utils/Constants';
 import {getDefaultValues} from '@utils/CommonFunctions';
@@ -135,6 +135,16 @@ const FormOne = ({navigation}) => {
     }
   }, [formFieldsPage, navigation]);
 
+  const isSpeciesDataComplete = useCallback(async () => {
+    const speciesData = await get('FormOne', activeFormOneId);
+
+    const result = speciesData.registeredSpecies.every((species) =>
+      Object.keys(species).every((key) => species[key] === 0 || species[key]),
+    );
+
+    return result;
+  }, [activeFormOneId]);
+
   useEffect(() => {
     if (!switchedFromPageOne.current && !switchedFromPageTwo.current) {
       formData.current = {...formData.current, ...formValues};
@@ -249,9 +259,18 @@ const FormOne = ({navigation}) => {
                 buttonContent={formatMessage({id: 'button.viewFormOneSummary'})}
               />
               <Button
-                onPress={() =>
-                  navigation.navigate('TabNavigator', {screen: 'StepOne'})
-                }
+                onPress={async () => {
+                  if (await isSpeciesDataComplete()) {
+                    await upsert(
+                      'StepOne',
+                      new StepOne({
+                        _id: activeStepOneId,
+                        formOneCompleted: true,
+                      }),
+                    );
+                  }
+                  navigation.navigate('TabNavigator', {screen: 'StepOne'});
+                }}
                 buttonContent={formatMessage({id: 'button.continueToStep1'})}
               />
             </>

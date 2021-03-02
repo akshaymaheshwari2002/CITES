@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {useEffect, useState, useCallback, useMemo} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms} from 'react-native-size-matters';
@@ -19,8 +19,24 @@ const FormOneSummary = ({navigation, route}) => {
   const [isShowStep1, setShowStep1] = useState(false);
   const [isShowEdit, setShowEdit] = useState(false);
   const [fileUri, setFileUri] = useState(undefined);
-  const formData = route.params?.data;
-  const speciesData = formData?.registeredSpeciesData;
+  const facilityData = useMemo(
+    () => ({
+      ...route.params?.data,
+      dateOfInspection: format(
+        Number(route.params?.data.dateOfInspection),
+        'MM/dd/yyyy',
+      ),
+      facilityEshtablishmentDate: format(
+        Number(route.params?.data.facilityEshtablishmentDate),
+        'MM/dd/yyyy',
+      ),
+      typeOfInspection: route.params?.data.typeOfInspection[0]?.replace(
+        '_',
+        ' ',
+      ),
+    }),
+    [route.params.data],
+  );
 
   useEffect(() => {
     if (isFocused) {
@@ -31,26 +47,12 @@ const FormOneSummary = ({navigation, route}) => {
   const handelpress = useCallback(async () => {
     const file = await generatePdf({
       templates: [
-        <FormOneHeader
-          facilityData={{
-            ...formData,
-            dateOfInspection: format(
-              Number(formData?.dateOfInspection),
-              'MM/dd/yyyy',
-            ),
-            facilityOwner: formData?.facilityOwner?.join(' '),
-            facilityEshtablishmentDate: format(
-              Number(formData?.facilityEshtablishmentDate),
-              'MM/dd/yyyy',
-            ),
-            typeOfInspection: formData.typeOfInspection[0]?.replace('_', ' '),
-          }}
-        />,
-        <FormOneTemplate speciesData={speciesData} />,
+        <FormOneHeader facilityData={facilityData} />,
+        <FormOneTemplate speciesData={facilityData.registeredSpecies} />,
       ],
     });
     setFileUri({uri: file?.filePath});
-  }, [formData, speciesData]);
+  }, [facilityData]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>

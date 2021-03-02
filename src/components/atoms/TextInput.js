@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
 import {TextInput as Input, Text, View} from 'react-native';
 import PropTypes from 'prop-types';
-import {moderateScale, ScaledSheet} from 'react-native-size-matters';
+import {ms, ScaledSheet} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {RawColors, Fonts} from '@styles/Themes';
@@ -18,14 +18,14 @@ const TextInput = React.forwardRef(
       labelStyle,
       showHelpIcon,
       onHelpIconPress,
-      showFieldHelpIcon,
-      onFieldHelpIconPress,
       ...restProps
     },
     ref,
   ) => {
     const getValue = useCallback(() => {
-      if (value) {
+      if (
+        !(typeof value === 'undefined' || value === null || Number.isNaN(value))
+      ) {
         return typeof value === 'string' ? value : value.toString();
       } else {
         return '';
@@ -34,21 +34,11 @@ const TextInput = React.forwardRef(
 
     return (
       <>
-        <View style={styles.row}>
-          {label ? (
-            <Text style={[CommonStyles.flex1, Fonts.Lato15R, labelStyle]}>
-              {label}
-            </Text>
-          ) : null}
-          {showHelpIcon ? (
-            <Icon
-              name="information-outline"
-              color={RawColors.darkSalmon}
-              size={moderateScale(40)}
-              onPress={onHelpIconPress}
-            />
-          ) : null}
-        </View>
+        {label ? (
+          <Text style={[CommonStyles.flex1, Fonts.Lato15R, labelStyle]}>
+            {label}
+          </Text>
+        ) : null}
         <View style={styles.row}>
           <Input
             ref={ref}
@@ -57,13 +47,13 @@ const TextInput = React.forwardRef(
             value={getValue()}
             {...restProps}
           />
-          {showFieldHelpIcon ? (
+          {showHelpIcon ? (
             <Icon
               style={styles.fieldHelpIcon}
               name="information-outline"
               color={RawColors.darkSalmon}
-              size={moderateScale(40)}
-              onPress={onFieldHelpIconPress}
+              size={ms(40)}
+              onPress={onHelpIconPress}
             />
           ) : null}
         </View>
@@ -82,8 +72,6 @@ TextInput.propTypes = {
   style: PropTypes.object,
   showHelpIcon: PropTypes.bool,
   onHelpIconPress: PropTypes.func,
-  showFieldHelpIcon: PropTypes.bool,
-  onFieldHelpIconPress: PropTypes.func,
 };
 
 TextInput.defaultProps = {
@@ -93,8 +81,6 @@ TextInput.defaultProps = {
   style: {},
   showHelpIcon: false,
   onHelpIconPress: () => {},
-  showFieldHelpIcon: false,
-  onFieldHelpIconPress: () => {},
 };
 
 const styles = ScaledSheet.create({

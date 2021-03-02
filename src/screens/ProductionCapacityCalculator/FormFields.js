@@ -49,8 +49,8 @@ export default ({modeSelected}) => {
       style: modeSelected === 2 ? resultFieldStyleProps : undefined,
       placeholderTextColor: modeSelected === 2 ? RawColors.black : undefined,
       labelStyle: modeSelected === 2 ? resultFieldLabelStyleProps : undefined,
-      showFieldHelpIcon: true,
-      onFieldHelpIconPress: () => {
+      showHelpIcon: true,
+      onHelpIconPress: () => {
         store.dispatch(setHelpText(HelpText.countTotalBreedingFemale));
       },
       keyboardType: 'number-pad',
@@ -71,8 +71,8 @@ export default ({modeSelected}) => {
           validateNumberPercentageFraction,
         },
       },
-      showFieldHelpIcon: true,
-      onFieldHelpIconPress: () => {
+      showHelpIcon: true,
+      onHelpIconPress: () => {
         store.dispatch(setHelpText(HelpText.percentageBreedingFemalePerSeason));
       },
       keyboardType: 'decimal-pad',
@@ -90,8 +90,8 @@ export default ({modeSelected}) => {
           validateInteger,
         },
       },
-      showFieldHelpIcon: true,
-      onFieldHelpIconPress: () => {
+      showHelpIcon: true,
+      onHelpIconPress: () => {
         store.dispatch(setHelpText(HelpText.countLitterPerYear));
       },
       keyboardType: 'number-pad',
@@ -109,8 +109,8 @@ export default ({modeSelected}) => {
           validateInteger,
         },
       },
-      showFieldHelpIcon: true,
-      onFieldHelpIconPress: () => {
+      showHelpIcon: true,
+      onHelpIconPress: () => {
         store.dispatch(setHelpText(HelpText.countOffspringPerLitter));
       },
       keyboardType: 'number-pad',
@@ -129,8 +129,8 @@ export default ({modeSelected}) => {
           validateNumberPercentageFraction,
         },
       },
-      showFieldHelpIcon: true,
-      onFieldHelpIconPress: () => {
+      showHelpIcon: true,
+      onHelpIconPress: () => {
         store.dispatch(setHelpText(HelpText.percentageSurvivingInTwoWeek));
       },
       keyboardType: 'decimal-pad',
@@ -158,8 +158,8 @@ export default ({modeSelected}) => {
               },
             }
           : {},
-      showFieldHelpIcon: true,
-      onFieldHelpIconPress: () => {
+      showHelpIcon: true,
+      onHelpIconPress: () => {
         store.dispatch(setHelpText(HelpText.approximateYoungProducedPerYear));
       },
       keyboardType: 'number-pad',

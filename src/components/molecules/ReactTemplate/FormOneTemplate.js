@@ -1,24 +1,15 @@
 import React from 'react';
 
+const speciesText = 'Species The Facility is registered to produce: ';
+const speciesAttributes = [
+  'Species name',
+  'Total number of Specimen at last inspection',
+  'Total number of breeding Adults',
+  'Total number of Speciment exported since last inspection',
+  'Source code, as stated on previous export permits',
+];
+
 const FormOneTemplate = ({speciesData = []}) => {
-  const speciesText = 'Species The Facility is registered to produce: ';
-  const formDetails = {
-    dateOfInspection: '10/2/2021',
-    seniorOfficerName: 'Mr. Puneet Kumar Rohtela',
-    typeOfInspection: 'Routine',
-  };
-  const formDetailsSchema = {
-    dateOfInspection: 'Date of Inspection: ',
-    seniorOfficerName: 'Name of Senior Inspecting Officer: ',
-    typeOfInspection: 'Type of Inspection: ',
-  };
-  const speciesAttributes = [
-    'Species name',
-    'Total number of Specimen at last inspection',
-    'Total number of breeding Adults',
-    'Total number of Speciment exported since last inspection',
-    'Source code, as stated on previous export permits',
-  ];
   return (
     <div className="App">
       <div className="App" style={styles.box}>
@@ -38,13 +29,15 @@ const FormOneTemplate = ({speciesData = []}) => {
               return (
                 <div key={index} style={styles.row}>
                   <div style={styles.cell}>{data?.name}</div>
-                  <div style={styles.cell}>{data?.numberOfSpecimen}</div>
-                  <div style={styles.cell}>{data?.numberOfBreedingAdults}</div>
+                  <div style={styles.cell}>{data?.numberOfSpecimen ?? '-'}</div>
                   <div style={styles.cell}>
-                    {data?.numberOfSpeciemenExportedSinceLastInspection}
+                    {data?.numberOfBreedingAdults ?? '-'}
                   </div>
                   <div style={styles.cell}>
-                    {data?.sourceCodeOfPreviousExport}
+                    {data?.numberOfSpeciemenExportedSinceLastInspection ?? '-'}
+                  </div>
+                  <div style={styles.cell}>
+                    {data?.sourceCodeOfPreviousExport ?? '-'}
                   </div>
                 </div>
               );
@@ -108,6 +101,7 @@ const styles = {
     borderWidth: 0.5,
     border: '0.5px solid',
     minHeight: 40,
+    textAlign: 'center',
   },
 };
 
