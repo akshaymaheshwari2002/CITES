@@ -43,13 +43,14 @@ export const FORM_ONE = {
     facilityName: 'string',
     facilityAddressLineOne: 'string',
     facilityAddressLineTwo: 'string',
-    facilityAddressLineThree: 'string?',
+    country: 'string',
     facilityOwner: 'string[]',
     facilityOwnerEmail: 'string',
     facilityOwnerPhone: 'string',
     registeredSpecies: 'Species[]',
     facilityEshtablishmentDate: 'string',
     typeOfInspection: 'string[]',
+    citesInformationCode: 'string',
   },
 };
 

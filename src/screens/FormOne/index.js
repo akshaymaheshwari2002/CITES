@@ -99,6 +99,7 @@ const FormOne = ({navigation}) => {
         const updatedFormData = await get('FormOne', activeFormOneId);
         savedFormData.current = updatedFormData;
         reset(getDefaultValues(getFormFieldsPageTwo()));
+        scrollToTop();
       }
     },
     [
@@ -108,8 +109,13 @@ const FormOne = ({navigation}) => {
       dispatch,
       formFieldsPage,
       reset,
+      scrollToTop,
     ],
   );
+
+  const scrollToTop = useCallback(() => {
+    setTimeout(() => scrollViewRef.current.scrollToPosition(0, 0, true), 200);
+  }, []);
 
   const setSpeciesDataInForm = useCallback(
     async (_selectedSpeciesId) => {
@@ -193,9 +199,9 @@ const FormOne = ({navigation}) => {
 
   useEffect(() => {
     if (formFieldsPage) {
-      setTimeout(() => scrollViewRef.current.scrollToPosition(0, 0, true), 200);
+      scrollToTop();
     }
-  }, [formFieldsPage]);
+  }, [formFieldsPage, scrollToTop]);
 
   useEffect(() => {
     if (selectedSpeciesId) {
@@ -224,7 +230,7 @@ const FormOne = ({navigation}) => {
           <Form {...{control, errors}} formFields={formFields} />
           {formFieldsPage === 1 ? (
             <Button
-              onPress={handleSubmit(_handleSubmit)}
+              onPress={handleSubmit(_handleSubmit, () => scrollToTop())}
               buttonContent={formatMessage({id: 'button.continueToStep2'})}
             />
           ) : (

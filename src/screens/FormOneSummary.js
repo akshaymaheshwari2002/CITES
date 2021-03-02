@@ -1,20 +1,17 @@
 import React, {useEffect, useState, useCallback} from 'react';
-import {View, Text, TouchableOpacity, Dimensions} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import Pdf from 'react-native-pdf';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIsFocused} from '@react-navigation/native';
+import {format} from 'date-fns';
 
 import {Container, Header} from '@atoms';
 import {FormOneTemplate, FormOneHeader} from '@molecules';
 import {Fonts, RawColors} from '@styles/Themes';
 import {generatePdf} from '@utils/CommonFunctions';
 import CommonStyles from '@styles/CommonStyles';
-import {format} from 'date-fns';
-
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
 
 const FormOneSummary = ({navigation, route}) => {
   const {formatMessage} = useIntl();
@@ -175,13 +172,13 @@ const styles = ScaledSheet.create({
     position: 'absolute',
     top: '105@vs',
     right: 0,
-    paddingHorizontal: '5@s',
+    paddingLeft: '5@s',
   },
   slideBtnContainerEdit: {
     position: 'absolute',
     top: '185@vs',
     right: 0,
-    paddingHorizontal: '5@s',
+    paddingLeft: '5@s',
   },
   slideBtn: {
     height: '65@vs',
