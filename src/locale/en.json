@@ -264,6 +264,7 @@
   "button.beginNewInspection": "BEGIN NEW INSPECTION",
   "button.exit": "EXIT",
   "button.print": "PRINT",
+  "button.contactCitesSecretariat": "CONTACT CITES SECRETARIAT",
   "screen.q4MoreInfo.title": "SUFFICIENT INFORMATION TO DETERMINE IF THE SPECIMEN WAS LEGALLY ACQUIRED MAY INCLUDE",
   "screen.q4MoreInfo.contentOne": "Statements or affidavits made under oath and carrying a penalty of perjury",
   "screen.q4MoreInfo.contentTwo": "Relevant licenses or permits",
@@ -325,5 +326,7 @@
   "screen.ExampleDialogueConsentFormStep2.contentFifteen": "Name of witness",
   "screen.ExampleDialogueConsentFormStep2.contentSixteen": "Signature of witness",
   "screen.InspectionNotes.headerPartOne": "INSPECTION",
-  "screen.InspectionNotes.headerPartTwo": "NOTES+PHOTOS"
+  "screen.InspectionNotes.headerPartTwo": "NOTES+PHOTOS",
+  "screen.NoExport.header": "CONTACT THE CITES SECRETARIAT FOR MORE INFORMATION",
+  "screen.NoExport.contentOne": "info@cites.org"
 }

@@ -24,6 +24,7 @@ import {
   Q4MoreInfo,
   Q9MoreInfo,
   Q1MoreInfo,
+  NoExport,
   MoreInformation,
   InspectionNotes,
 } from '@screens';
@@ -56,6 +57,7 @@ const AppNavigator = () => {
         component={ExampleDialogueConsentFormStep2}
       />
       <Tab.Screen name="FeedbackOne" component={FeedbackOne} />
+      <Tab.Screen name="NoExport" component={NoExport} />
       <Tab.Screen name="InspectionNotes" component={InspectionNotes} />
       <Tab.Screen name="FeedbackTwo" component={FeedbackTwo} />
       <Tab.Screen name="FormOne" component={FormOne} />

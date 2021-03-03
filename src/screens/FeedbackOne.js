@@ -1,17 +1,26 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
+import Icon from 'react-native-vector-icons/Feather';
+import {ScaledSheet, ms} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 
-import {Container} from '@atoms';
-import {Fonts} from '@styles/Themes';
+import {Container, Header, Button} from '@atoms';
+import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
 
-const FeedbackOne = () => {
+const FeedbackOne = ({navigation}) => {
   const {formatMessage} = useIntl();
   return (
-    <Container>
-      <Container.ScrollView style={CommonStyles.screenContainer}>
+    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+      <Header
+        leftContent={
+          <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
+        }
+      />
+
+      <Container.ScrollView
+        contentContainerStyle={CommonStyles.screenContainer}
+        style={CommonStyles.flex1}>
         <View style={styles.title}>
           <Text style={styles.titleContent}>
             {formatMessage({id: 'screen.FeedbackOne.headerPartOne'})}
@@ -39,7 +48,36 @@ const FeedbackOne = () => {
             </Text>
           </View>
         </View>
-        <View style={styles.btn} />
+        <View style={styles.btn}>
+          <Button
+            buttonContent={formatMessage({
+              id: 'button.giveFeedback',
+            })}
+            buttonTextStyle={() => {
+              return styles.buttonText;
+            }}
+            buttonStyle={() => {
+              return styles.button;
+            }}
+            onPress={() =>
+              navigation.navigate('TabNavigator', {screen: 'FeedbackTwo'})
+            }
+          />
+          <Button
+            buttonContent={formatMessage({
+              id: 'button.contactCitesSecretariat',
+            })}
+            buttonTextStyle={() => {
+              return styles.buttonText;
+            }}
+            buttonStyle={() => {
+              return styles.button;
+            }}
+            onPress={() =>
+              navigation.navigate('TabNavigator', {screen: 'StepOne'})
+            }
+          />
+        </View>
       </Container.ScrollView>
     </Container>
   );
@@ -83,7 +121,20 @@ const styles = ScaledSheet.create({
     letterSpacing: 0.36,
     ...Fonts.Lato15R,
   },
-  btn: {},
+  btn: {marginTop: '50@s'},
+  button: {
+    height: '46@vs',
+    width: '290@s',
+    alignSelf: 'center',
+    marginVertical: '10@vs',
+    backgroundColor: RawColors.sugarCane,
+  },
+  buttonText: {
+    ...Fonts.Lato15R,
+    color: RawColors.darkGreyBlue,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 export default FeedbackOne;

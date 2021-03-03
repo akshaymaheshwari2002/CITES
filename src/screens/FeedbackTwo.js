@@ -59,6 +59,7 @@ const FeedbackTwo = ({navigation}) => {
                 borderColor: RawColors.darkGrey,
                 textAlignVertical: 'top',
                 padding: ms(16),
+                textAlign: 'center',
               },
               multiLine: true,
             },
