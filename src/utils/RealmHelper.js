@@ -65,10 +65,11 @@ export const addSpeciesToForm = (species, formOneId) =>
 
           if (Array.isArray(species)) {
             const newSpecies = formOne.registeredSpecies.length
-              ? species.filter(({name}) =>
-                  formOne.registeredSpecies.some(
-                    ({name: _name}) => name !== _name,
-                  ),
+              ? species.filter(
+                  ({name}) =>
+                    !formOne.registeredSpecies.some(
+                      ({name: _name}) => name === _name,
+                    ),
                 )
               : species;
 

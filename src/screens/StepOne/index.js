@@ -1,9 +1,10 @@
-import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import React, {useCallback, useMemo, useState} from 'react';
 import {View, StatusBar} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms, s} from 'react-native-size-matters';
 import {useDispatch, useSelector} from 'react-redux';
+import {useFocusEffect} from '@react-navigation/native';
 
 import {Container, Button, Header, Tooltip} from '@atoms';
 import {StepHeader, ChecklistCell} from '@molecules';
@@ -17,7 +18,6 @@ import {setTooltipProps} from '@store/slices/sessionSlice';
 
 const StepOne = ({navigation, route}) => {
   const {formatMessage} = useIntl();
-  const isMounting = useRef(true);
   const dispatch = useDispatch();
   const activeStepOneId = useSelector(
     (state) => state.sessionReducer.activeInspection.stepOne?._id,
@@ -68,8 +68,8 @@ const StepOne = ({navigation, route}) => {
     );
   }, [dispatch, formatMessage, navigation]);
 
-  useEffect(() => {
-    if (isMounting.current) {
+  useFocusEffect(
+    useCallback(() => {
       (async () => {
         if (activeStepOneId) {
           const activeStepOneData = await get('StepOne', activeStepOneId);
@@ -79,10 +79,8 @@ const StepOne = ({navigation, route}) => {
           setStepData(activeStepOneData);
         }
       })();
-
-      isMounting.current = false;
-    }
-  }, [activeStepOneId]);
+    }, [activeStepOneId]),
+  );
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>

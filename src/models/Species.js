@@ -3,19 +3,22 @@ export default class Species {
   constructor({
     _id,
     name,
-    numberOfSpecimen = '0',
-    numberOfBreedingAdults = '0',
-    numberOfSpeciemenExportedSinceLastInspection = '0',
+    numberOfSpecimen,
+    numberOfBreedingAdults,
+    numberOfSpeciemenExportedSinceLastInspection,
     sourceCodeOfPreviousExport,
   }) {
     this._id = _id ? new BSON.ObjectId(_id) : new BSON.ObjectId();
     this.name = name;
-    this.numberOfSpecimen = parseInt(numberOfSpecimen, 10);
-    this.numberOfBreedingAdults = parseInt(numberOfBreedingAdults, 10);
-    this.numberOfSpeciemenExportedSinceLastInspection = parseInt(
-      numberOfSpeciemenExportedSinceLastInspection,
-      10,
-    );
+    this.numberOfSpecimen = numberOfSpecimen
+      ? parseInt(numberOfSpecimen, 10)
+      : numberOfSpecimen;
+    this.numberOfBreedingAdults = numberOfBreedingAdults
+      ? parseInt(numberOfBreedingAdults, 10)
+      : numberOfBreedingAdults;
+    this.numberOfSpeciemenExportedSinceLastInspection = numberOfSpeciemenExportedSinceLastInspection
+      ? parseInt(numberOfSpeciemenExportedSinceLastInspection, 10)
+      : numberOfSpeciemenExportedSinceLastInspection;
     this.sourceCodeOfPreviousExport = sourceCodeOfPreviousExport;
   }
 }

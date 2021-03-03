@@ -44,7 +44,7 @@ export const FORM_ONE = {
     facilityAddressLineOne: 'string',
     facilityAddressLineTwo: 'string',
     country: 'string',
-    facilityOwner: 'string[]',
+    facilityOwner: 'string',
     facilityOwnerEmail: 'string',
     facilityOwnerPhone: 'string',
     registeredSpecies: 'Species[]',
