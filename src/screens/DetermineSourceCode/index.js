@@ -58,7 +58,11 @@ const DetermineSourceCode = ({navigation: {navigate, goBack}}) => {
           />
         }
         rightContent={
-          <IconAntDesign name="pluscircle" size={ms(26)} onPress={() => {}} />
+          <IconAntDesign
+            name="pluscircle"
+            size={ms(26)}
+            onPress={() => navigate('MoreInformation')}
+          />
         }
       />
       <Container.ScrollView

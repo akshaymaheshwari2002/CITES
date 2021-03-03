@@ -17,7 +17,7 @@ const SourceCode = ({navigation, route}) => {
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity
-          onPress={() => navigation.navigate('SourceCodeSelection')}>
+          onPress={() => navigation.navigate('MoreInformation')}>
           <Icon name="pluscircle" size={scale(26)} />
         </TouchableOpacity>
       ),
@@ -31,7 +31,13 @@ const SourceCode = ({navigation, route}) => {
           <Text style={styles.title}>
             {formatMessage({id: 'screen.SourceCode.title'})}
           </Text>
-          <Text style={styles.letter}>{resultSourceCode}</Text>
+          {!(resultSourceCode === 'NotApplicable') ? (
+            <Text style={styles.letter}>{resultSourceCode}</Text>
+          ) : (
+            <Text style={styles.notApplicableText}>
+              {formatMessage({id: 'screen.SourceCode.NotApplicable.letter'})}
+            </Text>
+          )}
         </View>
         <View style={styles.letterDescription}>
           <Text style={styles.letterDescriptionText}>
@@ -95,8 +101,9 @@ const styles = ScaledSheet.create({
   titleContainer: {
     marginVertical: '15@vs',
     borderRadius: '90@s',
-    height: '180@s',
-    width: '180@s',
+    minHeight: '180@s',
+    minWidth: '180@s',
+    aspectRatio: 1,
     justifyContent: 'center',
     alignContent: 'center',
     alignSelf: 'center',
@@ -106,6 +113,12 @@ const styles = ScaledSheet.create({
   title: {
     textAlign: 'center',
     ...Fonts.Lato17R,
+  },
+  notApplicableText: {
+    textAlign: 'center',
+    color: RawColors.black,
+    textTransform: 'uppercase',
+    ...Fonts.Lato17B,
   },
   letter: {
     textAlign: 'center',
@@ -117,7 +130,6 @@ const styles = ScaledSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     height: '71@s',
-    marginTop: '18@s',
   },
   letterDescriptionText: {
     ...Fonts.Lato15B,
@@ -163,6 +175,7 @@ const styles = ScaledSheet.create({
     width: '290@s',
     alignSelf: 'center',
     marginTop: '30@vs',
+    marginBottom: '15@vs',
     backgroundColor: RawColors.sugarCane,
   },
   btnTxt: {
