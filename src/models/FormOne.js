@@ -13,7 +13,7 @@ export default class FormOne {
     facilityOwner,
     facilityOwnerEmail,
     facilityOwnerPhone,
-    facilityEshtablishmentDate,
+    facilityEstablishmentDate,
     typeOfInspection,
     registeredSpecies,
     citesInformationCode,
@@ -28,7 +28,7 @@ export default class FormOne {
     this.facilityOwner = facilityOwner;
     this.facilityOwnerEmail = facilityOwnerEmail;
     this.facilityOwnerPhone = facilityOwnerPhone;
-    this.facilityEshtablishmentDate = facilityEshtablishmentDate;
+    this.facilityEstablishmentDate = facilityEstablishmentDate;
     this.typeOfInspection = typeOfInspection;
     this.registeredSpecies = registeredSpecies
       ? new Species(Species)

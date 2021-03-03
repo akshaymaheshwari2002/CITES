@@ -39,8 +39,8 @@ const FormOneSummary = ({navigation, route}) => {
               'MM/dd/yyyy',
             ),
             facilityOwner: formData?.facilityOwner?.join(' '),
-            facilityEshtablishmentDate: format(
-              Number(formData?.facilityEshtablishmentDate),
+            facilityEstablishmentDate: format(
+              Number(formData?.facilityEstablishmentDate),
               'MM/dd/yyyy',
             ),
             typeOfInspection: formData.typeOfInspection[0]?.replace('_', ' '),
