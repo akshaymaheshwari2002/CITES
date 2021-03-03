@@ -11,7 +11,7 @@ import {Images} from '@assets';
 
 const OnboardingThree = ({
   onBackPress = () => {},
-  onFordwardPress = () => {},
+  onForwardPress = () => {},
 }) => {
   const {formatMessage} = useIntl();
 
@@ -22,7 +22,7 @@ const OnboardingThree = ({
           <Icon name="chevron-left" size={ms(26)} onPress={onBackPress} />
         }
         rightContent={
-          <Icon name="chevron-right" size={ms(26)} onPress={onFordwardPress} />
+          <Icon name="chevron-right" size={ms(26)} onPress={onForwardPress} />
         }
       />
       <Container.ScrollView style={CommonStyles.screenContainer}>

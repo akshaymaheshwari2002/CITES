@@ -11,10 +11,7 @@ import CommonStyles from '@styles/CommonStyles';
 
 const windowWidth = Dimensions.get('window').width;
 
-const OnboardingOne = ({
-  onBackPress = () => {},
-  onFordwardPress = () => {},
-}) => {
+const OnboardingOne = ({onBackPress = () => {}, onForwardPress = () => {}}) => {
   const {formatMessage} = useIntl();
 
   return (
@@ -24,7 +21,7 @@ const OnboardingOne = ({
           <Icon name="chevron-left" size={ms(26)} onPress={onBackPress} />
         }
         rightContent={
-          <Icon name="chevron-right" size={ms(26)} onPress={onFordwardPress} />
+          <Icon name="chevron-right" size={ms(26)} onPress={onForwardPress} />
         }
       />
       <Container.ScrollView
