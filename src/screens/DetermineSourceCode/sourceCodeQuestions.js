@@ -179,7 +179,7 @@ const sourceCodeQuestions = {
     options: ['yes', 'no'],
     moreInfo: {
       isWebResource: true,
-      target: '',
+      target: Config.URL_Q19_MORE_INFO,
     },
   },
   20: {

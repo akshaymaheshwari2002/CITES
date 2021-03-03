@@ -18,7 +18,7 @@ const OnboardingThreeA = ({navigation}) => {
         <TouchableOpacity
           onPress={() =>
             navigation.navigate('TabNavigator', {
-              screen: 'StepOne',
+              screen: 'DetermineSourceCode',
               params: {showToolTip: true},
             })
           }>
