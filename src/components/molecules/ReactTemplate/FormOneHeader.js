@@ -116,8 +116,8 @@ const FormOneHeader = ({form = 'one', facilityData = {}, editable = false}) => {
               <p style={styles.text}>
                 <b>{facilitySchema?.establishmentDate}</b>
                 {getInputElementConditionally({
-                  name: 'facilityEshtablishmentDate',
-                  defaultValue: facilityData?.facilityEshtablishmentDate,
+                  name: 'facilityEstablishmentDate',
+                  defaultValue: facilityData?.facilityEstablishmentDate,
                   inputSize: 8,
                 })}
               </p>

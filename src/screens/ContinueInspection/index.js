@@ -4,6 +4,7 @@ import {useIntl} from 'react-intl';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
 import {useDispatch} from 'react-redux';
+import {useFocusEffect} from '@react-navigation/native';
 
 import {Container, Button, Header} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
@@ -24,13 +25,15 @@ const ContinueInspection = ({navigation}) => {
     [dispatch, navigation],
   );
 
-  useEffect(() => {
-    (async () => {
-      const inspections = await get('Inspection');
+  useFocusEffect(
+    useCallback(() => {
+      (async () => {
+        const inspections = await get('Inspection');
 
-      setActiveInspections(inspections);
-    })();
-  }, []);
+        setActiveInspections(inspections);
+      })();
+    }, []),
+  );
 
   const renderItem = useCallback(
     ({item}) => {

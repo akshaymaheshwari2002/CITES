@@ -26,8 +26,8 @@ const FormOneSummary = ({navigation, route}) => {
         Number(route.params?.data.dateOfInspection),
         'MM/dd/yyyy',
       ),
-      facilityEshtablishmentDate: format(
-        Number(route.params?.data.facilityEshtablishmentDate),
+      facilityEstablishmentDate: format(
+        Number(route.params?.data.facilityEstablishmentDate),
         'MM/dd/yyyy',
       ),
       typeOfInspection: route.params?.data.typeOfInspection[0]?.replace(
@@ -40,11 +40,11 @@ const FormOneSummary = ({navigation, route}) => {
 
   useEffect(() => {
     if (isFocused) {
-      handelpress();
+      handlePress();
     }
-  }, [handelpress, isFocused]);
+  }, [handlePress, isFocused]);
 
-  const handelpress = useCallback(async () => {
+  const handlePress = useCallback(async () => {
     const file = await generatePdf({
       templates: [
         <FormOneHeader facilityData={facilityData} />,

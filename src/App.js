@@ -18,9 +18,6 @@ const App = () => {
   const activeInspectionId = useSelector(
     (state) => state.persistedReducer.activeInspectionId,
   );
-  const activeFormOneId = useSelector(
-    (state) => state.sessionReducer.activeInspection.stepOne?.formOne?._id,
-  );
   const theme = useMemo(() => Themes[currentTheme] || Themes.DEFAULT, [
     currentTheme,
   ]);
@@ -40,14 +37,6 @@ const App = () => {
       dispatch(setActiveInspection({}));
     }
   }, [activeInspectionId, dispatch]);
-
-  useEffect(() => {
-    if (activeFormOneId) {
-      get('FormOne', activeFormOneId).then((activeFormOne) => {
-        console.log(activeFormOne?.registeredSpecies);
-      });
-    }
-  }, [activeFormOneId]);
 
   return (
     <ThemeProvider theme={theme}>
