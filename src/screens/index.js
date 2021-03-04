@@ -22,6 +22,7 @@ import SearchDummy from './SearchDummy';
 import Notes from './Notes';
 import DrawerMenu from './DrawerMenu';
 import FormOneSummary from './FormOneSummary';
+import FormOneSummaryEdit from './FormOneSummaryEdit';
 import InspectionOnboarding from './InspectionOnboarding';
 
 export {
@@ -49,5 +50,6 @@ export {
   WebView,
   FormOne,
   FormOneSummary,
+  FormOneSummaryEdit,
   InspectionOnboarding,
 };

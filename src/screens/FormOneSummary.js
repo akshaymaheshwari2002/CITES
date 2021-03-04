@@ -119,7 +119,10 @@ const FormOneSummary = ({navigation, route}) => {
           style={[styles.slideBtn, styles.borderStyle]}
           onPress={() => {
             if (isShowEdit) {
-              navigation.navigate('FormOne');
+              navigation.navigate('FormOneSummaryEdit', {
+                facilityData,
+                speciesData: facilityData.speciesData,
+              });
               setShowStep1(false);
             }
             setShowEdit((state) => !state);
@@ -188,7 +191,7 @@ const styles = ScaledSheet.create({
     justifyContent: 'center',
     borderTopLeftRadius: '8@ms',
     borderBottomLeftRadius: '8@ms',
-    borderWidth: 0.5,
+    borderWidth: 1,
     borderColor: 'black',
   },
   row: {

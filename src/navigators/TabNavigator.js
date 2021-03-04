@@ -14,6 +14,7 @@ import {
   ProductionCapacityCalculator,
   ContinueInspection,
   FormOneSummary,
+  FormOneSummaryEdit,
 } from '@screens';
 
 const Tab = createBottomTabNavigator();
@@ -38,7 +39,7 @@ const AppNavigator = () => {
       <Tab.Screen name="StepsSummary" component={StepsSummary} />
       <Tab.Screen name="FacilityRegistered" component={FacilityRegistered} />
       <Tab.Screen name="FormOneSummary" component={FormOneSummary} />
-
+      <Tab.Screen name="FormOneSummaryEdit" component={FormOneSummaryEdit} />
       <Tab.Screen
         name="FacilityInfringement"
         component={FacilityInfringement}
