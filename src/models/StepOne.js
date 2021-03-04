@@ -11,7 +11,7 @@ export default class StepOne {
     productionCapacityCalculated,
     toolsEnsured,
     twoOfficialsArranged,
-    inspectionConcides,
+    inspectionCoincides,
     facilityOwnerPresent,
     formOne,
   }) {
@@ -23,7 +23,7 @@ export default class StepOne {
     this.productionCapacityCalculated = productionCapacityCalculated;
     this.toolsEnsured = toolsEnsured;
     this.twoOfficialsArranged = twoOfficialsArranged;
-    this.inspectionConcides = inspectionConcides;
+    this.inspectionCoincides = inspectionCoincides;
     this.facilityOwnerPresent = facilityOwnerPresent;
     this.formOne = formOne ? new FormOne(formOne) : formOne;
   }

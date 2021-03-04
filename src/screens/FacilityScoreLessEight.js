@@ -31,7 +31,7 @@ const FacilityScoreLessEight = () => {
           {formatMessage({id: 'screen.FacilityScoreLessEight.contentTwo'})}
         </Text>
         <Text style={styles.contentThree}>
-          {formatMessage({id: 'screen.FacilityScoreLessEight.contenThree'})}
+          {formatMessage({id: 'screen.FacilityScoreLessEight.contentThree'})}
         </Text>
       </Container.ScrollView>
     </Container>

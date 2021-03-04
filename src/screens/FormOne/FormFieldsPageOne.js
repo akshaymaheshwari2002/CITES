@@ -126,9 +126,9 @@ export default () => {
       buttonText: formatMessage({id: 'button.addSpecies'}),
     },
     {
-      label: formatMessage({id: 'form.label.facilityEshtablishmentDate'}),
-      placeholder: formatMessage({id: 'form.label.facilityEshtablishmentDate'}),
-      name: 'facilityEshtablishmentDate',
+      label: formatMessage({id: 'form.label.facilityEstablishmentDate'}),
+      placeholder: formatMessage({id: 'form.label.facilityEstablishmentDate'}),
+      name: 'facilityEstablishmentDate',
       rules: {required},
       fieldType: Constants.DATEPICKER,
       maximumDate: new Date(),
