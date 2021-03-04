@@ -34,10 +34,7 @@ const points = [
   },
 ];
 
-const OnboardingTwo = ({
-  onBackPress = () => {},
-  onFordwardPress = () => {},
-}) => {
+const OnboardingTwo = ({onBackPress = () => {}, onForwardPress = () => {}}) => {
   const {formatMessage} = useIntl();
 
   return (
@@ -47,7 +44,7 @@ const OnboardingTwo = ({
           <Icon name="chevron-left" size={ms(26)} onPress={onBackPress} />
         }
         rightContent={
-          <Icon name="chevron-right" size={ms(26)} onPress={onFordwardPress} />
+          <Icon name="chevron-right" size={ms(26)} onPress={onForwardPress} />
         }
       />
       <ImageBackground

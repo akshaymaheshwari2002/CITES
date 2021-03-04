@@ -78,7 +78,7 @@ const FormOneHeader = ({form = 'one', facilityData = {}}) => {
               </p>
               <p style={styles.text}>
                 <b>{facilitySchema?.establishmentDate}</b>
-                {facilityData?.facilityEshtablishmentDate}
+                {facilityData?.facilityEstablishmentDate}
               </p>
               <p style={styles.text}>
                 <b>{facilitySchema?.country}</b>

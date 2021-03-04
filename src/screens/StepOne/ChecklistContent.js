@@ -184,12 +184,12 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
       ),
     },
     {
-      id: 'inspectionConcides',
+      id: 'inspectionCoincides',
       content: (
         <View>
           <Text style={checkliststyles.textGeneral}>
             {formatMessage({
-              id: 'screen.stepOne.inspectionConcides.arrange',
+              id: 'screen.stepOne.inspectionCoincides.arrange',
             })}
             :
           </Text>
@@ -197,7 +197,7 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
             {bullet}
             <Text style={checkliststyles.textGeneral}>
               {formatMessage({
-                id: 'screen.stepOne.inspectionConcides.bullet_1',
+                id: 'screen.stepOne.inspectionCoincides.bullet_1',
               })}
             </Text>
           </View>
@@ -205,7 +205,7 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
             {bullet}
             <Text style={checkliststyles.textGeneral}>
               {formatMessage({
-                id: 'screen.stepOne.inspectionConcides.bullet_2',
+                id: 'screen.stepOne.inspectionCoincides.bullet_2',
               })}
             </Text>
           </View>

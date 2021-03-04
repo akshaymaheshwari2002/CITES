@@ -35,9 +35,7 @@ const TextInput = React.forwardRef(
     return (
       <>
         {label ? (
-          <Text style={[CommonStyles.flex1, Fonts.Lato15R, labelStyle]}>
-            {label}
-          </Text>
+          <Text style={[Fonts.Lato15R, labelStyle]}>{label}</Text>
         ) : null}
         <View style={styles.row}>
           <Input
@@ -87,7 +85,6 @@ const styles = ScaledSheet.create({
   row: {flexDirection: 'row', alignItems: 'center'},
   inputContainer: {
     flex: 1,
-    flexGrow: 1,
     marginVertical: '12@vs',
     height: '46@vs',
     borderWidth: 1,
