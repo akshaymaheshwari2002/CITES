@@ -329,5 +329,17 @@
   "screen.InspectionNotes.headerPartOne": "INSPECTION",
   "screen.InspectionNotes.headerPartTwo": "NOTES+PHOTOS",
   "screen.NoExport.header": "CONTACT THE CITES SECRETARIAT FOR MORE INFORMATION",
-  "screen.NoExport.contentOne": "info@cites.org"
+  "screen.NoExport.contentOne": "info@cites.org",
+  "screen.FormTwo.title": "FORM 2",
+  "screen.FormTwo.contentOne": "Complete this form during an inspection by using your observations and information gathered during the inspection.",
+  "screen.FormTwo.contentTwo": "Use this form to collect background information on the facility to compare with previous and future inspections.",
+  "button.viewForm2Summary": "VIEW FORM 2 SUMMARY",
+  "form.label.yes": "Yes",
+  "form.label.no": "No",
+  "form.label.fullTime": "How many staff are currently employed at the facility? Full time",
+  "form.label.partTime": "Part time",
+  "form.label.professionalVeterinaryServices": "Does the operation have access to professional veterinary services?",
+  "form.label.vetAddress": "If yes, what is the name and address of the vet?",
+  "form.label.animalsOtherLocation": "Are animals keep at any other location(s)?",
+  "form.label.otherAddressLocation": "If yes, what is the address of the location(s)? Set a reminder to inspect these location(s)."
 }

@@ -21,6 +21,7 @@ import FacilityInfringement from './FacilityInfringement';
 import FacilityRegistered from './FacilityRegistered';
 import WebView from './WebView';
 import FormOne from './FormOne';
+import FormTwo from './FormTwo';
 import SearchDummy from './SearchDummy';
 import Notes from './Notes';
 import DrawerMenu from './DrawerMenu';
@@ -67,6 +68,7 @@ export {
   HomePage,
   WebView,
   FormOne,
+  FormTwo,
   DetermineSourceCode,
   FormOneSummary,
   InspectionOnboarding,

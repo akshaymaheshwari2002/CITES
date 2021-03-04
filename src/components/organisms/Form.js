@@ -5,7 +5,7 @@ import {Controller} from 'react-hook-form';
 import {ScaledSheet} from 'react-native-size-matters';
 
 import {TextInput, Picker} from '@atoms';
-import {TextInputArray, DatePicker} from '@molecules';
+import {TextInputArray, DatePicker, Counter} from '@molecules';
 import ChoiceList from './ChoiceList';
 import Constants from '@utils/Constants';
 
@@ -28,6 +28,9 @@ const Form = (formProps) => {
           break;
         case Constants.CHOICELIST:
           FieldComponent = ChoiceList;
+          break;
+        case Constants.COUNTER:
+          FieldComponent = Counter;
           break;
         default:
           FieldComponent = TextInput;

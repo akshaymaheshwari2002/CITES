@@ -5,6 +5,7 @@ import {TabBar} from '@molecules';
 import {
   StepOne,
   FormOne,
+  FormTwo,
   SearchDummy,
   Notes,
   DrawerMenu,
@@ -61,6 +62,7 @@ const AppNavigator = () => {
       <Tab.Screen name="InspectionNotes" component={InspectionNotes} />
       <Tab.Screen name="FeedbackTwo" component={FeedbackTwo} />
       <Tab.Screen name="FormOne" component={FormOne} />
+      <Tab.Screen name="FormTwo" component={FormTwo} />
       <Tab.Screen name="Search" component={SearchDummy} />
       <Tab.Screen name="Notes" component={Notes} />
       <Tab.Screen name="DrawerMenu" component={DrawerMenu} />
