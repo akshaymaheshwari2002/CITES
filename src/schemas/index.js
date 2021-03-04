@@ -1,11 +1,9 @@
 export const PHONE = {
   name: 'Phone',
-  primaryKey: '_id',
   properties: {
-    _id: 'objectId',
-    dialCode: 'int',
-    contactNo: 'string',
-    countryId: 'int?',
+    callingCode: 'string',
+    contactNumber: 'string',
+    cca2: 'string',
   },
 };
 
@@ -46,7 +44,7 @@ export const FORM_ONE = {
     country: 'string',
     facilityOwner: 'string',
     facilityOwnerEmail: 'string',
-    facilityOwnerPhone: 'string',
+    facilityOwnerPhone: 'Phone',
     registeredSpecies: 'Species[]',
     facilityEshtablishmentDate: 'string',
     typeOfInspection: 'string[]',
