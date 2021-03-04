@@ -1,4 +1,5 @@
 import {verticalScale} from 'react-native-size-matters';
+import {getAllCountries} from 'react-native-country-picker-modal';
 
 import {store} from '@store';
 import Constants from '@utils/Constants';
@@ -6,6 +7,15 @@ import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
 import {setHelpText} from '@store/slices/sessionSlice';
 import HelpTexts from '@utils/HelpTexts';
+
+let countries;
+
+(async () => {
+  let _countries = await getAllCountries();
+  _countries = _countries.map(({name}) => ({label: name, value: name}));
+
+  countries = _countries;
+})();
 
 export default () => {
   const {formatMessage} = createIntl();
@@ -66,6 +76,13 @@ export default () => {
       defaultValue: '',
       name: 'country',
       rules: {required},
+      fieldType: Constants.COUNTRY_PICKER,
+      items: countries,
+      style: {
+        marginVertical: 0,
+        marginTop: verticalScale(6),
+        marginBottom: verticalScale(6),
+      },
     },
     {
       defaultValue: '',
@@ -97,6 +114,7 @@ export default () => {
         required,
         pattern: validatePhone,
       },
+      fieldType: Constants.MOBILE_INPUT,
     },
     {
       label: formatMessage({id: 'form.label.registeredSpecies'}),
@@ -108,9 +126,9 @@ export default () => {
       buttonText: formatMessage({id: 'button.addSpecies'}),
     },
     {
-      label: formatMessage({id: 'form.label.facilityEshtablishmentDate'}),
-      placeholder: formatMessage({id: 'form.label.facilityEshtablishmentDate'}),
-      name: 'facilityEshtablishmentDate',
+      label: formatMessage({id: 'form.label.facilityEstablishmentDate'}),
+      placeholder: formatMessage({id: 'form.label.facilityEstablishmentDate'}),
+      name: 'facilityEstablishmentDate',
       rules: {required},
       fieldType: Constants.DATEPICKER,
       maximumDate: new Date(),

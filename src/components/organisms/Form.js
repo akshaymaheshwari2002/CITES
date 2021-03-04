@@ -5,7 +5,8 @@ import {Controller} from 'react-hook-form';
 import {ScaledSheet} from 'react-native-size-matters';
 
 import {TextInput, Picker} from '@atoms';
-import {TextInputArray, DatePicker, Counter} from '@molecules';
+import {TextInputArray, DatePicker, Counter, MobileInput} from '@molecules';
+import CountryPicker from '../molecules/CountryPicker';
 import ChoiceList from './ChoiceList';
 import Constants from '@utils/Constants';
 
@@ -31,6 +32,12 @@ const Form = (formProps) => {
           break;
         case Constants.COUNTER:
           FieldComponent = Counter;
+          break;
+        case Constants.MOBILE_INPUT:
+          FieldComponent = MobileInput;
+          break;
+        case Constants.COUNTRY_PICKER:
+          FieldComponent = CountryPicker;
           break;
         default:
           FieldComponent = TextInput;

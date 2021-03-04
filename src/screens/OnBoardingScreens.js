@@ -15,7 +15,7 @@ const OnBoardingScreens = ({navigation}) => {
   const flatListRef = useRef({});
   const data = [OnboardingOne, OnboardingTwo, OnboardingThree, OnboardingFour];
 
-  const handelBackPress = useCallback(
+  const handleBackPress = useCallback(
     (index) => {
       if (index === 0) {
         navigation.goBack();
@@ -26,7 +26,7 @@ const OnBoardingScreens = ({navigation}) => {
     [navigation, scrollToActiveIndex],
   );
 
-  const handelFordwardPress = useCallback(
+  const handleForwardPress = useCallback(
     (index) => {
       if (index === data?.length - 1) {
         navigation.navigate('TabNavigator', {
@@ -60,8 +60,8 @@ const OnBoardingScreens = ({navigation}) => {
           return (
             <View style={[styles.contentContainer, CommonStyles.shadowEffect]}>
               <Item
-                onBackPress={() => handelBackPress(index)}
-                onFordwardPress={() => handelFordwardPress(index)}
+                onBackPress={() => handleBackPress(index)}
+                onForwardPress={() => handleForwardPress(index)}
               />
             </View>
           );

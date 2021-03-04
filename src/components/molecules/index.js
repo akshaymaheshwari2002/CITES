@@ -9,6 +9,7 @@ import Counter from './Counter';
 import TabBar from './TabBar';
 import DatePicker from './DatePicker';
 import OverlayModal from './OverlayModal';
+import MobileInput from './MobileInput';
 
 export {
   TemplateOne,
@@ -22,4 +23,5 @@ export {
   TabBar,
   DatePicker,
   OverlayModal,
+  MobileInput,
 };
