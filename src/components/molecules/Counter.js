@@ -33,7 +33,7 @@ const Counter = React.forwardRef(
           <View style={styles.container}>
             <TextInput
               value={value}
-              onChangeText={(text) => {
+              onChange={(text) => {
                 handleChange({text});
               }}
               style={styles.textInput}

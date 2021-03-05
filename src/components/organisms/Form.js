@@ -6,6 +6,7 @@ import {ScaledSheet} from 'react-native-size-matters';
 
 import {TextInput, Picker} from '@atoms';
 import {TextInputArray, DatePicker, Counter, MobileInput} from '@molecules';
+import {CounterPair} from '@organisms';
 import CountryPicker from '../molecules/CountryPicker';
 import ChoiceList from './ChoiceList';
 import Constants from '@utils/Constants';
@@ -32,6 +33,9 @@ const Form = (formProps) => {
           break;
         case Constants.COUNTER:
           FieldComponent = Counter;
+          break;
+        case Constants.COUNTER_PAIR:
+          FieldComponent = CounterPair;
           break;
         case Constants.MOBILE_INPUT:
           FieldComponent = MobileInput;
