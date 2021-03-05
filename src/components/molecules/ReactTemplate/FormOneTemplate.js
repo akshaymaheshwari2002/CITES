@@ -45,7 +45,7 @@ const FormOneTemplate = ({speciesData = [], editable = false}) => {
                 <div key={index} style={styles.row}>
                   <div style={styles.cell}>
                     {getInputElementConditionally({
-                      name: `data.${index}.name`,
+                      name: `registeredSpecies.${index}.name`,
                       defaultValue: data?.name,
                       inputSize: 15,
                       alt: data?.name,
@@ -53,7 +53,7 @@ const FormOneTemplate = ({speciesData = [], editable = false}) => {
                   </div>
                   <div style={styles.cell}>
                     {getInputElementConditionally({
-                      name: `data.${index}.numberOfSpecimen`,
+                      name: `registeredSpecies.${index}.numberOfSpecimen`,
                       defaultValue: data?.numberOfSpecimen,
                       inputSize: 15,
                       alt: data?.numberOfSpecimen ?? '-',
@@ -61,7 +61,7 @@ const FormOneTemplate = ({speciesData = [], editable = false}) => {
                   </div>
                   <div style={styles.cell}>
                     {getInputElementConditionally({
-                      name: `data.${index}.numberOfBreedingAdults`,
+                      name: `registeredSpecies.${index}.numberOfBreedingAdults`,
                       defaultValue: data?.numberOfBreedingAdults,
                       inputSize: 15,
                       alt: data?.numberOfBreedingAdults ?? '-',
@@ -69,7 +69,7 @@ const FormOneTemplate = ({speciesData = [], editable = false}) => {
                   </div>
                   <div style={styles.cell}>
                     {getInputElementConditionally({
-                      name: `data.${index}.numberOfSpeciemenExportedSinceLastInspection`,
+                      name: `registeredSpecies.${index}.numberOfSpeciemenExportedSinceLastInspection`,
                       defaultValue:
                         data?.numberOfSpeciemenExportedSinceLastInspection,
                       inputSize: 15,
@@ -80,7 +80,7 @@ const FormOneTemplate = ({speciesData = [], editable = false}) => {
                   </div>
                   <div style={styles.cell}>
                     {getInputElementConditionally({
-                      name: `data.${index}.sourceCodeOfPreviousExport`,
+                      name: `registeredSpecies.${index}.sourceCodeOfPreviousExport`,
                       defaultValue: data?.sourceCodeOfPreviousExport,
                       inputSize: 15,
                       alt: data?.sourceCodeOfPreviousExport ?? '-',

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {WebView as RNWebView} from 'react-native-webview';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {renderToString} from 'react-dom/server';
@@ -38,6 +38,12 @@ const FormOneSummary = ({
 }) => {
   const {formatMessage} = useIntl();
   const [isShowStep1, setShowStep1] = useState(false);
+  const [facilityDataModified, setfacilityDataModified] = useState({});
+
+  useEffect(() => {
+    setfacilityDataModified(facilityData);
+  }, [facilityData]);
+
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
       <Header
@@ -81,8 +87,27 @@ const FormOneSummary = ({
           ),
         }}
         onMessage={(ev) => {
-          const data = JSON.parse(JSON.stringify(ev.nativeEvent.data));
-          console.log('message arrived', data);
+          const data = JSON.parse(ev.nativeEvent.data);
+          if (
+            facilityDataModified[data.name] !== undefined &&
+            facilityDataModified[data.name] !== data.value
+          ) {
+            setfacilityDataModified((state) => ({
+              ...state,
+              [data.name]: data.value,
+            }));
+          } else if (
+            data.name ??
+            data.name.split('.')[0] === 'registeredSpecies'
+          ) {
+            setfacilityDataModified((state) => {
+              const changedSpeciesIndex = parseInt(data.name.split('.')[1], 10);
+              const changedPropertyKey = data.name.split('.')[2];
+              state.registeredSpecies[changedSpeciesIndex][changedPropertyKey] =
+                data.value;
+              return {...state};
+            });
+          }
         }}
       />
       <View style={styles.slideBtnContainerStep}>
