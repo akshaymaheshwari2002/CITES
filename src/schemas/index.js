@@ -1,9 +1,9 @@
 export const PHONE = {
   name: 'Phone',
   properties: {
-    callingCode: 'string',
+    callingCode: 'string?',
     contactNumber: 'string',
-    cca2: 'string',
+    cca2: 'string?',
   },
 };
 
