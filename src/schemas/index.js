@@ -158,6 +158,8 @@ export const STEP_TWO = {
     formThreeCompleted: 'bool?',
     sourceDetermined: 'bool?',
     recordsExaminedForStock: 'bool?',
+    formTwo: 'FormTwo?',
+    formThree: 'FormThree?',
   },
 };
 
@@ -170,6 +172,7 @@ export const STEP_THREE = {
     formFourCompleted: 'bool?',
     productionCapacityCalculated: 'bool?',
     requirementCheckedForAdditionalInspection: 'bool?',
+    formFour: 'FormFour?',
   },
 };
 

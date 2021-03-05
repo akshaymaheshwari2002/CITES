@@ -1,25 +1,36 @@
-import React, {useState, useMemo} from 'react';
+import React, {useMemo, useCallback} from 'react';
 import {View} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet} from 'react-native-size-matters';
+import {useDispatch, useSelector, shallowEqual} from 'react-redux';
 
+import {saveInspection} from '@store/slices/sessionSlice';
 import {Container, Button} from '@atoms';
 import {StepHeader, ChecklistCell} from '@molecules';
 import ChecklistContent from './ChecklistContent';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
 
-const StepTwo = ({navigation: {navigate}, route}) => {
-  const [stepData, setStepData] = useState({
-    purposeDisclosedToOwner: false,
-    confirmFormOneContent: false,
-    informationRecorded: false,
-    formTwoCompleted: false,
-    formThreeCompleted: false,
-    sourceDetermined: false,
-    recordsExaminedForStock: false,
-  });
+const StepTwo = ({navigation: {navigate}}) => {
   const {formatMessage} = useIntl();
+  const dispatch = useDispatch();
+  const stepTwoData = useSelector(
+    (state) => state.sessionReducer.activeInspection.stepTwo,
+    shallowEqual,
+  );
+
+  const handleChange = useCallback(
+    (key, value) => {
+      dispatch(
+        saveInspection({
+          stepTwo: {
+            [key]: value,
+          },
+        }),
+      );
+    },
+    [dispatch],
+  );
 
   const bullet = useMemo(
     () => (
@@ -41,10 +52,8 @@ const StepTwo = ({navigation: {navigate}, route}) => {
             <ChecklistCell
               key={el.id}
               content={el.content}
-              value={stepData[el.id]}
-              onChange={(value) =>
-                setStepData((state) => ({...state, [el.id]: value}))
-              }
+              value={stepTwoData?.[el.id]}
+              onChange={(value) => handleChange(el.id, value)}
             />
           );
         })}

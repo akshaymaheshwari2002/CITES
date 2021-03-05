@@ -3,7 +3,7 @@ import {View, StatusBar} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms, s} from 'react-native-size-matters';
-import {useDispatch, useSelector} from 'react-redux';
+import {shallowEqual, useDispatch, useSelector} from 'react-redux';
 
 import {Container, Button, Header, Tooltip} from '@atoms';
 import {StepHeader, ChecklistCell} from '@molecules';
@@ -17,6 +17,7 @@ const StepOne = ({navigation, route}) => {
   const dispatch = useDispatch();
   const stepOneData = useSelector(
     (state) => state.sessionReducer.activeInspection.stepOne,
+    shallowEqual,
   );
 
   const bullet = useMemo(
@@ -40,25 +41,6 @@ const StepOne = ({navigation, route}) => {
     },
     [dispatch],
   );
-
-  // const handleSubmit = useCallback(async () => {
-  //   if (Object.keys(stepData).length) {
-  //     let stepOneData = ChecklistContent({}).reduce(
-  //       (acc, current) => ({
-  //         ...acc,
-  //         [current.id]: stepData[current.id] ?? false,
-  //       }),
-  //       {},
-  //     );
-  //     const inspectionData = new Inspection({
-  //       _id: activeInspectionId,
-  //       stepOne: {...stepOneData, _id: activeStepOneId},
-  //     });
-
-  //     const upsertedData = await upsert('Inspection', inspectionData);
-  //     dispatch(setActiveInspectionId(upsertedData._id));
-  //   }
-  // }, [activeInspectionId, activeStepOneId, dispatch, stepData]);
 
   const handleTooltipClose = useCallback(() => {
     navigation.setParams({showToolTip: false});
@@ -114,7 +96,7 @@ const StepOne = ({navigation, route}) => {
             })}
             buttonStyle={() => styles.button}
             buttonTextStyle={() => styles.buttonTextStyle}
-            // onPress={handleSubmit}
+            onPress={() => navigation.navigate('StepTwo')}
           />
         </View>
       </Container.ScrollView>
