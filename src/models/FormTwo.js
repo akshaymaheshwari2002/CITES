@@ -1,17 +1,18 @@
 import {BSON} from 'realm';
+
+import {StaffHours} from './';
 export default class FormTwo {
   constructor({
-    fullTimeStaffs,
-    partTimeStaffs,
+    _id,
+    staffHours,
     accessToVeterinaryServices,
     veterinarianName,
     veterinarianAddress,
     animalKeptAtOtherLocation,
     addressOfOtherAnimals,
   }) {
-    this._id = new BSON.ObjectId();
-    this.fullTimeStaffs = fullTimeStaffs;
-    this.partTimeStaffs = partTimeStaffs;
+    this._id = _id ? new BSON.ObjectId(_id) : new BSON.ObjectId();
+    this.staffHours = StaffHours ? new StaffHours(staffHours) : staffHours;
     this.accessToVeterinaryServices = accessToVeterinaryServices;
     this.veterinarianName = veterinarianName;
     this.veterinarianAddress = veterinarianAddress;

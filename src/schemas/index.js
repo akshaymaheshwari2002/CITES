@@ -31,6 +31,14 @@ export const SPECIES = {
   },
 };
 
+export const STAFF_HOURS = {
+  name: 'StaffHours',
+  properties: {
+    fullTimeStaffs: 'int',
+    partTimeStaffs: 'int',
+  },
+};
+
 export const FORM_ONE = {
   name: 'FormOne',
   primaryKey: '_id',
@@ -57,8 +65,7 @@ export const FORM_TWO = {
   primaryKey: '_id',
   properties: {
     _id: 'objectId',
-    fullTimeStaffs: 'int',
-    partTimeStaffs: 'int',
+    staffHours: 'StaffHours',
     accessToVeterinaryServices: 'bool',
     veterinarianName: 'string?',
     veterinarianAddress: 'Address?',
