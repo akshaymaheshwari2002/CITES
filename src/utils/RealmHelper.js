@@ -57,7 +57,7 @@ export const addSpeciesToForm = (species, formOneId) =>
       const realm = await getInstance();
 
       if (formOneId) {
-        realm.write(() => {
+        realm.write(async () => {
           const formOne = realm.objectForPrimaryKey(
             'FormOne',
             new BSON.ObjectId(formOneId),
@@ -77,13 +77,7 @@ export const addSpeciesToForm = (species, formOneId) =>
               formOne.registeredSpecies.push(item);
             });
           } else {
-            const alreadyExists = formOne.registeredSpecies.some(
-              ({name}) => species.name === name,
-            );
-
-            if (!alreadyExists) {
-              formOne.registeredSpecies.push(species);
-            }
+            await upsert('Species', species);
           }
           resolve(JSON.parse(JSON.stringify(formOne)));
         });

@@ -1,7 +1,7 @@
-import React, {forwardRef, useCallback} from 'react';
+import React, {forwardRef, useCallback, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {Text, View} from 'react-native';
-import CountryPicker from 'react-native-country-picker-modal';
+import CountryPicker, {getCallingCode} from 'react-native-country-picker-modal';
 import {ms, s, ScaledSheet} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -25,6 +25,16 @@ const MobileNumber = forwardRef(
       },
       [onChange, value],
     );
+
+    useEffect(() => {
+      if (!value?.callingCode) {
+        getCallingCode(value?.cca2 || Config.DEFAULT_COUNTRY).then(
+          (callingCode) => {
+            onChange({...value, callingCode});
+          },
+        );
+      }
+    }, [onChange, value]);
 
     return (
       <>

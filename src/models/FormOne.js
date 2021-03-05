@@ -1,6 +1,6 @@
 import {BSON} from 'realm';
 
-import {Species} from './';
+import {Phone, Species} from './';
 export default class FormOne {
   constructor({
     _id,
@@ -27,11 +27,13 @@ export default class FormOne {
     this.country = country;
     this.facilityOwner = facilityOwner;
     this.facilityOwnerEmail = facilityOwnerEmail;
-    this.facilityOwnerPhone = facilityOwnerPhone;
+    this.facilityOwnerPhone = facilityOwnerPhone
+      ? new Phone(facilityOwnerPhone)
+      : facilityOwnerPhone;
     this.facilityEstablishmentDate = facilityEstablishmentDate;
     this.typeOfInspection = typeOfInspection;
-    this.registeredSpecies = registeredSpecies
-      ? new Species(Species)
+    this.registeredSpecies = Array.isArray(registeredSpecies)
+      ? registeredSpecies.map((species) => new Species(species))
       : registeredSpecies;
     this.citesInformationCode = citesInformationCode;
   }

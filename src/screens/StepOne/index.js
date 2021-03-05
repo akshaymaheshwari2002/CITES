@@ -1,31 +1,23 @@
-import React, {useCallback, useMemo, useState} from 'react';
+import React, {useCallback, useMemo} from 'react';
 import {View, StatusBar} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms, s} from 'react-native-size-matters';
 import {useDispatch, useSelector} from 'react-redux';
-import {useFocusEffect} from '@react-navigation/native';
 
 import {Container, Button, Header, Tooltip} from '@atoms';
 import {StepHeader, ChecklistCell} from '@molecules';
 import ChecklistContent from './ChecklistContent';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
-import {upsert, get} from '@utils/RealmHelper';
-import {Inspection} from '@models';
-import {setActiveInspectionId} from '@store/slices/persistedSlice';
-import {setTooltipProps} from '@store/slices/sessionSlice';
+import {setTooltipProps, saveInspection} from '@store/slices/sessionSlice';
 
 const StepOne = ({navigation, route}) => {
   const {formatMessage} = useIntl();
   const dispatch = useDispatch();
-  const activeStepOneId = useSelector(
-    (state) => state.sessionReducer.activeInspection.stepOne?._id,
+  const stepOneData = useSelector(
+    (state) => state.sessionReducer.activeInspection.stepOne,
   );
-  const activeInspectionId = useSelector(
-    (state) => state.sessionReducer.activeInspection._id,
-  );
-  const [stepData, setStepData] = useState({});
 
   const bullet = useMemo(
     () => (
@@ -36,24 +28,37 @@ const StepOne = ({navigation, route}) => {
     [],
   );
 
-  const handleSubmit = useCallback(async () => {
-    if (Object.keys(stepData).length) {
-      let stepOneData = ChecklistContent({}).reduce(
-        (acc, current) => ({
-          ...acc,
-          [current.id]: stepData[current.id] ?? false,
+  const handleChange = useCallback(
+    (key, value) => {
+      dispatch(
+        saveInspection({
+          stepOne: {
+            [key]: value,
+          },
         }),
-        {},
       );
-      const inspectionData = new Inspection({
-        _id: activeInspectionId,
-        stepOne: {...stepOneData, _id: activeStepOneId},
-      });
+    },
+    [dispatch],
+  );
 
-      const upsertedData = await upsert('Inspection', inspectionData);
-      dispatch(setActiveInspectionId(upsertedData._id));
-    }
-  }, [activeInspectionId, activeStepOneId, dispatch, stepData]);
+  // const handleSubmit = useCallback(async () => {
+  //   if (Object.keys(stepData).length) {
+  //     let stepOneData = ChecklistContent({}).reduce(
+  //       (acc, current) => ({
+  //         ...acc,
+  //         [current.id]: stepData[current.id] ?? false,
+  //       }),
+  //       {},
+  //     );
+  //     const inspectionData = new Inspection({
+  //       _id: activeInspectionId,
+  //       stepOne: {...stepOneData, _id: activeStepOneId},
+  //     });
+
+  //     const upsertedData = await upsert('Inspection', inspectionData);
+  //     dispatch(setActiveInspectionId(upsertedData._id));
+  //   }
+  // }, [activeInspectionId, activeStepOneId, dispatch, stepData]);
 
   const handleTooltipClose = useCallback(() => {
     navigation.setParams({showToolTip: false});
@@ -67,20 +72,6 @@ const StepOne = ({navigation, route}) => {
       }),
     );
   }, [dispatch, formatMessage, navigation]);
-
-  useFocusEffect(
-    useCallback(() => {
-      (async () => {
-        if (activeStepOneId) {
-          const activeStepOneData = await get('StepOne', activeStepOneId);
-
-          delete activeStepOneData.formOne;
-          delete activeStepOneData._id;
-          setStepData(activeStepOneData);
-        }
-      })();
-    }, [activeStepOneId]),
-  );
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
@@ -112,10 +103,8 @@ const StepOne = ({navigation, route}) => {
               key={el.id}
               id={el.id}
               content={el.content}
-              value={stepData[el.id]}
-              onChange={(value) => {
-                setStepData((state) => ({...state, [el.id]: value}));
-              }}
+              value={stepOneData?.[el.id]}
+              onChange={(value) => handleChange(el.id, value)}
             />
           );
         })}
@@ -126,7 +115,7 @@ const StepOne = ({navigation, route}) => {
             })}
             buttonStyle={() => styles.button}
             buttonTextStyle={() => styles.buttonTextStyle}
-            onPress={handleSubmit}
+            // onPress={handleSubmit}
           />
         </View>
       </Container.ScrollView>
