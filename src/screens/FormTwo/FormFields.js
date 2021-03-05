@@ -13,24 +13,20 @@ export default () => {
 
   return [
     {
-      defaultValue: '',
-      label: formatMessage({id: 'form.label.fullTime'}),
-      placeholder: formatMessage({id: 'form.label.fullTime'}),
-      name: 'fullTime',
-      rules: {required},
-      fieldType: Constants.COUNTER,
+      defaultValue: {
+        fullTime: '0',
+        partTime: '0',
+      },
+      label_0: formatMessage({id: 'form.label.employmentHours'}),
+      label_1: formatMessage({id: 'form.label.fullTime'}),
+      label_2: formatMessage({id: 'form.label.partTime'}),
+      name: 'employmentHours',
+      rules: {},
+      fieldType: Constants.COUNTER_PAIR,
       showHelpIcon: true,
       onHelpIconPress: () => {
         store.dispatch(setHelpText(HelpTexts.staffCurrentAtFacility));
       },
-    },
-    {
-      defaultValue: '',
-      label: formatMessage({id: 'form.label.partTime'}),
-      placeholder: formatMessage({id: 'form.label.partTime'}),
-      name: 'partTime',
-      rules: {required},
-      fieldType: Constants.COUNTER,
     },
     {
       label: formatMessage({id: 'form.label.professionalVeterinaryServices'}),

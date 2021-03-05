@@ -106,6 +106,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
             &nbsp;
           </Text>
           <Button
+            onPress={() => navigate('FormTwo')}
             buttonContent={formatMessage({
               id: 'screen.stepTwo.formTwoCompleted.FormTwo',
             })}
