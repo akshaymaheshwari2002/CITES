@@ -6,60 +6,13 @@ import {useIntl} from 'react-intl';
 import {Container, Button} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import {Images} from '@assets';
-import {useSelector} from 'react-redux';
 
 const HomePage = ({navigation}) => {
   const {formatMessage} = useIntl();
-  const activeStepOneId = useSelector(
-    (state) => state.sessionReducer.activeInspection.stepOne?._id,
-  );
-  const activeStepTwoId = useSelector(
-    (state) => state.sessionReducer.activeInspection.stepTwo?._id,
-  );
-  const activeStepThreeId = useSelector(
-    (state) => state.sessionReducer.activeInspection.stepThree?._id,
-  );
-
-  const renderButtonContent = useCallback(() => {
-    let continueText;
-
-    if (activeStepOneId) {
-      continueText = formatMessage({id: 'button.continueToStep1'});
-    } else if (activeStepTwoId) {
-      continueText = formatMessage({id: 'button.continueToStep2'});
-    } else if (activeStepThreeId) {
-      continueText = formatMessage({id: 'button.continueToStep3'});
-    } else {
-      continueText = null;
-    }
-
-    const buttonContent = (
-      <View>
-        <Text style={styles.buttonText}>
-          {formatMessage({
-            id: 'button.inspectFacility',
-          })}
-        </Text>
-        {continueText ? (
-          <Text style={styles.buttonText}>{continueText}</Text>
-        ) : null}
-      </View>
-    );
-
-    return buttonContent;
-  }, [activeStepOneId, activeStepThreeId, activeStepTwoId, formatMessage]);
 
   const handlePress = useCallback(() => {
-    if (activeStepOneId) {
-      navigation.navigate('TabNavigator', {screen: 'StepOne'});
-    } else if (activeStepTwoId) {
-      navigation.navigate('StepTwo');
-    } else if (activeStepThreeId) {
-      navigation.navigate('StepThree');
-    } else {
-      navigation.navigate('InspectionFlow');
-    }
-  }, [activeStepOneId, activeStepThreeId, activeStepTwoId, navigation]);
+    navigation.navigate('InspectionFlow');
+  }, [navigation]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
@@ -88,7 +41,9 @@ const HomePage = ({navigation}) => {
                     onPress={handlePress}
                     buttonStyle={() => styles.filledButton}
                     buttonTextStyle={() => ({color: RawColors.white})}
-                    buttonContent={renderButtonContent()}
+                    buttonContent={formatMessage({
+                      id: 'button.inspectFacility',
+                    })}
                   />
                   <Button
                     buttonStyle={() => styles.filledButton}
