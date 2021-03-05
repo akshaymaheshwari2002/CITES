@@ -1,10 +1,7 @@
-import {BSON} from 'realm';
-
 export default class Phone {
-  constructor({dialCode, contactNo, countryId}) {
-    this._id = new BSON.ObjectId();
-    this.dialCode = dialCode;
-    this.contactNo = contactNo;
-    this.countryId = countryId;
+  constructor({callingCode, contactNumber, cca2}) {
+    this.callingCode = callingCode;
+    this.contactNumber = contactNumber;
+    this.cca2 = cca2;
   }
 }
