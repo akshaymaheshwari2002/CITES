@@ -1,130 +1,64 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback} from 'react';
 import {Text, View} from 'react-native';
 import {moderateScale, ScaledSheet} from 'react-native-size-matters';
 import PropTypes from 'prop-types';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import FeatherIcon from 'react-native-vector-icons/Feather';
 
 import {TextInput} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import Constants from '@utils/Constants';
 
 const Counter = React.forwardRef(
-  (
-    {
-      label,
-      placeholder,
-      error,
-      value,
-      count,
-      buttonText,
-      showHelpIcon,
-      onHelpIconPress,
-      onChange,
-    },
-    _,
-  ) => {
-    const [_count, _setCount] = useState(count);
-    const [counterValue, setCounterValue] = useState(0);
-
-    const handleChangeText = useCallback(
-      (text, index) => {
-        if (value && Array.isArray(value)) {
-          let updatedData = [...value];
-          updatedData[index] = text;
-          onChange(updatedData);
+  ({label, placeholder, error, value, onChange}, _) => {
+    const handleChange = useCallback(
+      ({action, text}) => {
+        if (action === Constants.PLUS) {
+          onChange(Number(value) + 1);
+        } else if (action === Constants.MINUS) {
+          onChange(Number(value) - 1);
         } else {
-          onChange([text]);
+          onChange(Number(text));
         }
       },
       [onChange, value],
     );
-    const counterValueUpdate = useCallback(
-      (incrementOrDecrement, text) => {
-        if (text) {
-          setCounterValue(parseInt(text));
-        }
-        if (incrementOrDecrement === '+') {
-          setCounterValue(counterValue + 1);
-        }
-        if (incrementOrDecrement === '-') {
-          setCounterValue(counterValue - 1);
-        }
-        handleChangeText(counterValue, 0);
-      },
-      [counterValue, handleChangeText],
-    );
-    const renderFields = useCallback(() => {
-      let fields = [];
-
-      for (let index = 0; index < _count; ++index) {
-        fields[index] = (
-          <TextInput
-            key={index}
-            value={value ? value[index] : counterValue}
-            onChangeText={(text) => {
-              counterValueUpdate('', text);
-              handleChangeText(text, index);
-            }}
-            style={styles.textInput}
-            placeholder={placeholder}
-            keyboardType="number-pad"
-          />
-        );
-      }
-      return fields;
-    }, [
-      _count,
-      counterValue,
-      counterValueUpdate,
-      handleChangeText,
-      placeholder,
-      value,
-    ]);
-
-    useEffect(() => {
-      if (count) {
-        _setCount(count);
-      }
-    }, [count]);
-
-    useEffect(() => {
-      if (value?.length) {
-        _setCount((existingCount) =>
-          value.length > existingCount ? value.length : existingCount,
-        );
-      }
-    }, [value]);
 
     return (
       <>
-        <View style={styles.labelContainer}>
-          {label ? (
-            <Text style={[CommonStyles.flex1, Fonts.Lato15R]}>{label}</Text>
-          ) : null}
-          {showHelpIcon ? (
-            <Icon
-              name="information-outline"
-              color={RawColors.darkSalmon}
-              size={moderateScale(40)}
-              onPress={onHelpIconPress}
+        {label ? (
+          <Text style={[CommonStyles.flex1, Fonts.Lato15R]}>{label}</Text>
+        ) : null}
+        <View style={[CommonStyles.flexRow, styles.alignCenter]}>
+          <View style={styles.container}>
+            <TextInput
+              value={value}
+              onChangeText={(text) => {
+                handleChange({text});
+              }}
+              style={styles.textInput}
+              placeholder={placeholder}
+              keyboardType="number-pad"
             />
-          ) : null}
-        </View>
-        <View style={[CommonStyles.flexRow, {alignItems: 'center'}]}>
-          <View style={styles.container}>{renderFields()}</View>
-          <TouchableOpacity
+          </View>
+          <FeatherIcon
+            name="plus"
+            color={RawColors.black}
+            size={moderateScale(16)}
+            onPress={(text) => {
+              handleChange({action: Constants.PLUS});
+            }}
+            style={styles.operator}
+          />
+          <FeatherIcon
+            name="minus"
+            color={RawColors.black}
+            size={moderateScale(16)}
             onPress={() => {
-              counterValueUpdate('+');
-            }}>
-            <Text style={styles.operator}>+</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              counterValueUpdate('-');
-            }}>
-            <Text style={styles.operator}>-</Text>
-          </TouchableOpacity>
+              handleChange({action: Constants.MINUS});
+            }}
+            style={styles.operator}
+          />
         </View>
         {error ? (
           <Text style={[{color: RawColors.error}, Fonts.Lato15R]}>{error}</Text>
@@ -149,29 +83,24 @@ const styles = ScaledSheet.create({
     marginBottom: '8@vs',
   },
   operator: {
-    ...Fonts.Lato15B,
-    marginHorizontal: '24@s',
+    padding: '8@s',
+    marginLeft: '15@s',
+  },
+  alignCenter: {
+    alignItems: 'center',
   },
 });
 
 Counter.propTypes = {
   label: PropTypes.string,
   error: PropTypes.string,
-  count: PropTypes.number,
-  incremental: PropTypes.bool,
   onChange: PropTypes.func,
-  showHelpIcon: PropTypes.bool,
-  onHelpIconPress: PropTypes.func,
 };
 
 Counter.defaultProps = {
   label: '',
   error: '',
-  count: 1,
-  incremental: false,
   onChange: () => {},
-  showHelpIcon: false,
-  onHelpIconPress: () => {},
 };
 
 export default Counter;

@@ -11,4 +11,6 @@ export default {
   FOLLOWUP_INSPECTION: 'FOLLOWUP_INSPECTION',
   YES: 'YES',
   NO: 'NO',
+  PLUS: 'PLUS',
+  MINUS: 'MINUS',
 };
