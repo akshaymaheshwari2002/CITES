@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {WebView as RNWebView} from 'react-native-webview';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, Alert} from 'react-native';
 import {renderToString} from 'react-dom/server';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms} from 'react-native-size-matters';
@@ -37,7 +37,8 @@ const FormOneSummary = ({
   },
 }) => {
   const {formatMessage} = useIntl();
-  const [isShowStep1, setShowStep1] = useState(false);
+  const [isShowSave, setIsShowSave] = useState(false);
+  const [isShowDiscard, setIsShowDiscard] = useState(false);
   const [facilityDataModified, setfacilityDataModified] = useState({});
 
   useEffect(() => {
@@ -114,24 +115,54 @@ const FormOneSummary = ({
         <TouchableOpacity
           style={styles.slideBtn}
           onPress={() => {
-            if (isShowStep1) {
-              navigation.navigate('StepOne');
+            if (isShowSave) {
+              // navigation.navigate('');
+              Alert.alert('Work in progress');
+            } else {
+              setIsShowSave((state) => !state);
             }
-            setShowStep1((state) => !state);
           }}>
           <View style={styles.row}>
-            {isShowStep1 ? (
+            {isShowSave ? (
               <View style={[styles.padding16, styles.marginDimension]}>
                 <Text style={styles.text}>
-                  {formatMessage({id: 'screen.FormOneSummary.continueTo'})}
+                  {formatMessage({id: 'general.save'})}
                 </Text>
                 <Text style={styles.text}>
-                  {formatMessage({id: 'screen.FormOneSummary.stepOne'})}
+                  {formatMessage({id: 'general.changes'})}
                 </Text>
               </View>
             ) : null}
             <View style={styles.justifyContent}>
               <Icon name="chevron-right" size={ms(26)} />
+            </View>
+          </View>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.slideBtnContainerEdit}>
+        <TouchableOpacity
+          style={[styles.slideBtn, styles.borderStyle]}
+          onPress={() => {
+            if (isShowDiscard) {
+              setIsShowSave(false);
+              navigation.goBack();
+            } else {
+              setIsShowDiscard((state) => !state);
+            }
+          }}>
+          <View style={styles.row}>
+            {isShowDiscard ? (
+              <View style={styles.padding16}>
+                <Text style={styles.text}>
+                  {formatMessage({id: 'general.discard'})}
+                </Text>
+                <Text style={styles.text}>
+                  {formatMessage({id: 'general.changes'})}
+                </Text>
+              </View>
+            ) : null}
+            <View style={styles.justifyContent}>
+              <Icon name="x" size={ms(26)} />
             </View>
           </View>
         </TouchableOpacity>
@@ -164,6 +195,12 @@ const styles = ScaledSheet.create({
     right: 0,
     paddingLeft: '5@s',
   },
+  slideBtnContainerEdit: {
+    position: 'absolute',
+    top: '185@vs',
+    right: 0,
+    paddingLeft: '5@s',
+  },
   slideBtn: {
     height: '65@vs',
     backgroundColor: RawColors.beige,
@@ -172,6 +209,11 @@ const styles = ScaledSheet.create({
     borderBottomLeftRadius: '8@ms',
     borderWidth: 1,
     borderColor: 'black',
+  },
+  borderStyle: {
+    borderStyle: 'dashed',
+    borderRadius: 1,
+    borderWidth: 1,
   },
   row: {
     flexDirection: 'row',
