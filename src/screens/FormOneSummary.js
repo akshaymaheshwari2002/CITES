@@ -6,6 +6,7 @@ import Pdf from 'react-native-pdf';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIsFocused} from '@react-navigation/native';
 import {format} from 'date-fns';
+import {shallowEqual, useSelector} from 'react-redux';
 
 import {Container, Header} from '@atoms';
 import {FormOneTemplate, FormOneHeader} from '@molecules';
@@ -13,29 +14,28 @@ import {Fonts, RawColors} from '@styles/Themes';
 import {generatePdf} from '@utils/CommonFunctions';
 import CommonStyles from '@styles/CommonStyles';
 
-const FormOneSummary = ({navigation, route}) => {
+const FormOneSummary = ({navigation}) => {
   const {formatMessage} = useIntl();
   const isFocused = useIsFocused();
   const [isShowStep1, setShowStep1] = useState(false);
   const [isShowEdit, setShowEdit] = useState(false);
   const [fileUri, setFileUri] = useState(undefined);
+  const formData = useSelector(
+    (state) => state.sessionReducer.activeInspection.stepOne?.formOne || {},
+    shallowEqual,
+  );
   const facilityData = useMemo(
     () => ({
-      ...route.params?.data,
-      dateOfInspection: format(
-        Number(route.params?.data.dateOfInspection),
-        'MM/dd/yyyy',
-      ),
+      ...formData,
+      facilityOwnerPhone: `+${formData.facilityOwnerPhone.callingCode} ${formData.facilityOwnerPhone.contactNumber}`,
+      dateOfInspection: format(Number(formData.dateOfInspection), 'MM/dd/yyyy'),
       facilityEstablishmentDate: format(
-        Number(route.params?.data.facilityEstablishmentDate),
+        Number(formData.facilityEstablishmentDate),
         'MM/dd/yyyy',
       ),
-      typeOfInspection: route.params?.data.typeOfInspection[0]?.replace(
-        '_',
-        ' ',
-      ),
+      typeOfInspection: formData.typeOfInspection[0]?.replace('_', ' '),
     }),
-    [route.params.data],
+    [formData],
   );
 
   useEffect(() => {

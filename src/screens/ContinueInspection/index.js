@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {View, Text, FlatList, TouchableOpacity, Image} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms} from 'react-native-size-matters';
@@ -10,7 +10,7 @@ import {Container, Button, Header} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import {Images} from '@assets/';
 import {get} from '@utils/RealmHelper';
-import {setActiveInspectionId} from '@store/slices/persistedSlice';
+import {setActiveInspection} from '@store/slices/sessionSlice';
 
 const ContinueInspection = ({navigation}) => {
   const {formatMessage} = useIntl();
@@ -19,7 +19,7 @@ const ContinueInspection = ({navigation}) => {
 
   const handleItemPress = useCallback(
     (item) => {
-      dispatch(setActiveInspectionId(item._id));
+      dispatch(setActiveInspection(item));
       navigation.navigate('TabNavigator', {screen: 'StepOne'});
     },
     [dispatch, navigation],

@@ -4,19 +4,21 @@ import {ms, ScaledSheet, verticalScale} from 'react-native-size-matters';
 import {useForm} from 'react-hook-form';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
-import {useDispatch, useSelector} from 'react-redux';
+import {shallowEqual, useDispatch, useSelector} from 'react-redux';
 
 import {Button, Container, Header} from '@atoms';
 import {Form} from '@organisms';
 import getFormFieldsPageOne from './FormFieldsPageOne';
 import getFormFieldsPageTwo from './FormFieldsPageTwo';
 import {Fonts, RawColors} from '@styles/Themes';
-import {get, upsert, addSpeciesToForm} from '@utils/RealmHelper';
-import {Inspection, Species, StepOne} from '@models';
-import {setActiveInspectionId} from '@store/slices/persistedSlice';
+import {
+  saveInspection,
+  saveRegisteredSpecies,
+} from '@store/slices/sessionSlice';
 import Constants from '@utils/Constants';
 import {getDefaultValues} from '@utils/CommonFunctions';
 import CommonStyles from '@styles/CommonStyles';
+import {get} from '@utils/RealmHelper';
 
 const FormOne = ({navigation}) => {
   const dispatch = useDispatch();
@@ -25,199 +27,141 @@ const FormOne = ({navigation}) => {
     shouldFocusError: false,
   });
   const scrollViewRef = useRef();
-  const isMounting = useRef(true);
   const formData = useRef({});
-  const savedFormData = useRef({});
-  const switchedFromPageTwo = useRef(false);
-  const switchedFromPageOne = useRef(false);
   const [formFieldsPage, setFormFieldsPage] = useState(1);
   const activeFormOneId = useSelector(
     (state) => state.sessionReducer.activeInspection.stepOne?.formOne?._id,
   );
-  const activeStepOneId = useSelector(
-    (state) => state.sessionReducer.activeInspection.stepOne?._id,
+  const registeredSpecies = useSelector(
+    (state) =>
+      state.sessionReducer.activeInspection.stepOne?.formOne
+        ?.registeredSpecies || [],
+    shallowEqual,
   );
-  const activeInspectionId = useSelector(
-    (state) => state.sessionReducer.activeInspection._id,
-  );
-  const formValues = watch();
-  const selectedSpeciesId = watch('speciesId');
+  const selectedSpeciesId = watch('_id');
   const formFields = useMemo(
     () =>
       formFieldsPage === 1
         ? getFormFieldsPageOne()
         : getFormFieldsPageTwo({
-            speciesId: {
-              items: savedFormData.current.registeredSpecies?.map(
-                ({name, _id}) => ({
-                  label: name,
-                  value: _id,
-                }),
-              ),
+            _id: {
+              items: registeredSpecies.map(({name, _id}) => ({
+                label: name,
+                value: _id,
+              })),
             },
           }),
-    [formFieldsPage],
+    [formFieldsPage, registeredSpecies],
+  );
+
+  const setActiveFormDataOnMount = useCallback(
+    async (_activeFormOneId) => {
+      const activeFormData = await get('FormOne', _activeFormOneId);
+      activeFormData.typeOfInspection = activeFormData?.typeOfInspection.reduce(
+        (acc, current) => ({
+          ...acc,
+          [Constants[current]]: true,
+        }),
+        {},
+      );
+      activeFormData.registeredSpecies = activeFormData.registeredSpecies.map(
+        (species) => species.name,
+      );
+      delete activeFormData._id;
+
+      reset(activeFormData);
+    },
+    [reset],
+  );
+
+  const setSpeciesDataInForm = useCallback(
+    async (_selectedSpeciesId) => {
+      const selectedSpecies = await get('Species', _selectedSpeciesId);
+
+      reset(selectedSpecies);
+    },
+    [reset],
   );
 
   const _handleSubmit = useCallback(
     async (data) => {
-      if (formFieldsPage === 1) {
-        const registeredSpecies = data.registeredSpecies.map(
-          (species) => new Species({name: species}),
-        );
-        delete data.registeredSpecies;
-        const inspectionData = new Inspection({
-          _id: activeInspectionId,
-          stepOne: {
-            _id: activeStepOneId,
-            formOne: {
-              _id: activeFormOneId,
-              ...data,
-              typeOfInspection: Object.keys(data.typeOfInspection),
-            },
-          },
-        });
-        const updatedInspectionData = await upsert(
-          'Inspection',
-          inspectionData,
-        );
-        const updatedFormData = await addSpeciesToForm(
-          registeredSpecies,
-          updatedInspectionData.stepOne.formOne._id,
-        );
-        savedFormData.current = updatedFormData;
+      formData.current = {...formData.current, ...data};
 
-        dispatch(setActiveInspectionId(updatedInspectionData._id));
+      if (formFieldsPage === 1) {
+        const _registeredSpecies = data.registeredSpecies.map((species) => ({
+          name: species,
+        }));
+        delete data.registeredSpecies;
+
+        await dispatch(
+          saveInspection({
+            stepOne: {
+              formOne: {
+                ...data,
+                typeOfInspection: Object.keys(data.typeOfInspection),
+              },
+            },
+          }),
+        );
+        await dispatch(saveRegisteredSpecies(_registeredSpecies));
 
         setFormFieldsPage(2);
-        switchedFromPageOne.current = true;
       } else {
-        let species = await get('Species', data.speciesId);
-        delete data.speciesId;
-        species = new Species({...species, ...data});
-        await upsert('Species', species);
-        const updatedFormData = await get('FormOne', activeFormOneId);
-        savedFormData.current = updatedFormData;
+        await dispatch(saveRegisteredSpecies(data));
+
         reset(getDefaultValues(getFormFieldsPageTwo()));
         scrollToTop();
       }
     },
-    [
-      activeFormOneId,
-      activeInspectionId,
-      activeStepOneId,
-      dispatch,
-      formFieldsPage,
-      reset,
-      scrollToTop,
-    ],
+    [dispatch, formFieldsPage, reset, scrollToTop],
   );
 
   const scrollToTop = useCallback(() => {
     setTimeout(() => scrollViewRef.current.scrollToPosition(0, 0, true), 200);
   }, []);
 
-  const setSpeciesDataInForm = useCallback(
-    async (_selectedSpeciesId) => {
-      const selectedSpecies = await get('Species', _selectedSpeciesId);
-
-      reset({...selectedSpecies, speciesId: _selectedSpeciesId});
-    },
-    [reset],
-  );
-
   const handleBackPress = useCallback(() => {
     if (formFieldsPage === 2) {
       setFormFieldsPage(1);
-      switchedFromPageTwo.current = true;
     } else {
       navigation.goBack();
     }
   }, [formFieldsPage, navigation]);
 
-  const isSpeciesDataComplete = useCallback(async () => {
-    const speciesData = await get('FormOne', activeFormOneId);
-
-    const result = speciesData.registeredSpecies.every((species) =>
+  const isSpeciesDataComplete = useCallback(() => {
+    const result = registeredSpecies.every((species) =>
       Object.keys(species).every((key) => species[key] === 0 || species[key]),
     );
 
     return result;
-  }, [activeFormOneId]);
+  }, [registeredSpecies]);
+
+  const continueToStepOne = useCallback(() => {
+    const formOneCompleted = isSpeciesDataComplete();
+
+    dispatch(saveInspection({stepOne: {formOneCompleted}}));
+    navigation.navigate('TabNavigator', {screen: 'StepOne'});
+  }, [dispatch, isSpeciesDataComplete, navigation]);
 
   useEffect(() => {
-    if (!switchedFromPageOne.current && !switchedFromPageTwo.current) {
-      formData.current = {...formData.current, ...formValues};
-    }
-  }, [formValues]);
-
-  useEffect(() => {
-    if (formFieldsPage === 1 && switchedFromPageTwo.current) {
-      const values = getFormFieldsPageOne().reduce(
-        (acc, current) => ({
-          ...acc,
-          [current.name]: formData.current[current.name],
-        }),
-        {},
-      );
-
-      reset(values);
-      switchedFromPageTwo.current = false;
-    }
+    reset(formData.current);
   }, [formFieldsPage, reset]);
 
   useEffect(() => {
-    if (formFieldsPage === 2 && switchedFromPageOne.current) {
-      const values = getFormFieldsPageTwo().reduce(
-        (acc, current) => ({
-          ...acc,
-          [current.name]: formData.current[current.name],
-        }),
-        {},
-      );
-
-      reset(values);
-      switchedFromPageOne.current = false;
-    }
-  }, [formFieldsPage, reset]);
-
-  useEffect(() => {
-    if (isMounting.current) {
-      (async () => {
-        if (activeFormOneId) {
-          const activeFormData = await get('FormOne', activeFormOneId);
-          savedFormData.current = activeFormData;
-          activeFormData.typeOfInspection = activeFormData?.typeOfInspection.reduce(
-            (acc, current) => ({
-              ...acc,
-              [Constants[current]]: true,
-            }),
-            {},
-          );
-          activeFormData.registeredSpecies = activeFormData.registeredSpecies.map(
-            (species) => species.name,
-          );
-          delete activeFormData._id;
-          formData.current = activeFormData;
-          reset(activeFormData);
-        }
-      })();
-
-      isMounting.current = false;
-    }
-  }, [activeFormOneId, reset]);
-
-  useEffect(() => {
-    if (formFieldsPage) {
-      scrollToTop();
-    }
+    scrollToTop();
   }, [formFieldsPage, scrollToTop]);
 
   useEffect(() => {
-    if (selectedSpeciesId) {
+    if (activeFormOneId) {
+      setActiveFormDataOnMount(activeFormOneId);
+    }
+  }, [activeFormOneId, setActiveFormDataOnMount]);
+
+  useEffect(() => {
+    if (formFieldsPage === 2 && selectedSpeciesId) {
       setSpeciesDataInForm(selectedSpeciesId);
     }
-  }, [selectedSpeciesId, setSpeciesDataInForm]);
+  }, [formFieldsPage, selectedSpeciesId, setSpeciesDataInForm]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
@@ -250,27 +194,12 @@ const FormOne = ({navigation}) => {
                 buttonContent={formatMessage({id: 'button.saveAndAdd'})}
               />
               <Button
-                onPress={() =>
-                  navigation.navigate('FormOneSummary', {
-                    data: savedFormData.current,
-                  })
-                }
+                onPress={() => navigation.navigate('FormOneSummary')}
                 buttonStyle={() => ({marginVertical: verticalScale(16)})}
                 buttonContent={formatMessage({id: 'button.viewFormOneSummary'})}
               />
               <Button
-                onPress={async () => {
-                  if (await isSpeciesDataComplete()) {
-                    await upsert(
-                      'StepOne',
-                      new StepOne({
-                        _id: activeStepOneId,
-                        formOneCompleted: true,
-                      }),
-                    );
-                  }
-                  navigation.navigate('TabNavigator', {screen: 'StepOne'});
-                }}
+                onPress={continueToStepOne}
                 buttonContent={formatMessage({id: 'button.continueToStep1'})}
               />
             </>

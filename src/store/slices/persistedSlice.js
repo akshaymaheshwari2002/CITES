@@ -2,7 +2,6 @@ import {createSlice} from '@reduxjs/toolkit';
 
 export const INITIAL_PERSISTED_STATE = {
   locale: null,
-  activeInspectionId: null,
 };
 
 const persistedSlice = createSlice({
@@ -12,11 +11,8 @@ const persistedSlice = createSlice({
     setLocale: (state, action) => {
       state.locale = action.payload;
     },
-    setActiveInspectionId: (state, action) => {
-      state.activeInspectionId = action.payload;
-    },
   },
 });
 
-export const {setLocale, setActiveInspectionId} = persistedSlice.actions;
+export const {setLocale} = persistedSlice.actions;
 export default persistedSlice.reducer;

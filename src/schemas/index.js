@@ -1,9 +1,9 @@
 export const PHONE = {
   name: 'Phone',
   properties: {
-    callingCode: 'string',
+    callingCode: 'string?',
     contactNumber: 'string',
-    cca2: 'string',
+    cca2: 'string?',
   },
 };
 
@@ -28,6 +28,14 @@ export const SPECIES = {
     numberOfBreedingAdults: 'int?',
     numberOfSpeciemenExportedSinceLastInspection: 'int?',
     sourceCodeOfPreviousExport: 'string?',
+  },
+};
+
+export const STAFF_HOURS = {
+  name: 'StaffHours',
+  properties: {
+    fullTimeStaffs: 'int',
+    partTimeStaffs: 'int',
   },
 };
 
@@ -57,8 +65,7 @@ export const FORM_TWO = {
   primaryKey: '_id',
   properties: {
     _id: 'objectId',
-    fullTimeStaffs: 'int',
-    partTimeStaffs: 'int',
+    staffHours: 'StaffHours',
     accessToVeterinaryServices: 'bool',
     veterinarianName: 'string?',
     veterinarianAddress: 'Address?',
@@ -158,6 +165,8 @@ export const STEP_TWO = {
     formThreeCompleted: 'bool?',
     sourceDetermined: 'bool?',
     recordsExaminedForStock: 'bool?',
+    formTwo: 'FormTwo?',
+    formThree: 'FormThree?',
   },
 };
 
@@ -170,6 +179,7 @@ export const STEP_THREE = {
     formFourCompleted: 'bool?',
     productionCapacityCalculated: 'bool?',
     requirementCheckedForAdditionalInspection: 'bool?',
+    formFour: 'FormFour?',
   },
 };
 

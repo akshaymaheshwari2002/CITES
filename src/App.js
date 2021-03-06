@@ -8,16 +8,13 @@ import {AppNavigator} from '@navigators';
 import {ThemeProvider, Themes} from '@styles/Themes';
 import createIntl from '@utils/Intl';
 import {OverlayModal} from '@molecules';
-import {setHelpText, setActiveInspection} from '@store/slices/sessionSlice';
-import {get} from '@utils/RealmHelper';
+import {setHelpText} from '@store/slices/sessionSlice';
 
 const App = () => {
   const currentTheme = useSelector((state) => state.persistedReducer.theme);
   const locale = useSelector((state) => state.persistedReducer.locale);
   const helpText = useSelector((state) => state.sessionReducer.helpText);
-  const activeInspectionId = useSelector(
-    (state) => state.persistedReducer.activeInspectionId,
-  );
+
   const theme = useMemo(() => Themes[currentTheme] || Themes.DEFAULT, [
     currentTheme,
   ]);
@@ -27,16 +24,6 @@ const App = () => {
   useEffect(() => {
     SplashScreen.hide();
   }, []);
-
-  useEffect(() => {
-    if (activeInspectionId) {
-      get('Inspection', activeInspectionId).then((activeInspection) => {
-        dispatch(setActiveInspection(activeInspection));
-      });
-    } else {
-      dispatch(setActiveInspection({}));
-    }
-  }, [activeInspectionId, dispatch]);
 
   return (
     <ThemeProvider theme={theme}>
