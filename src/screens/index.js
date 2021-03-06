@@ -22,6 +22,7 @@ import FacilityRegistered from './FacilityRegistered';
 import WebView from './WebView';
 import FormOne from './FormOne';
 import FormTwo from './FormTwo';
+import FormThree from './FormThree';
 import SearchDummy from './SearchDummy';
 import Notes from './Notes';
 import DrawerMenu from './DrawerMenu';
@@ -69,6 +70,7 @@ export {
   WebView,
   FormOne,
   FormTwo,
+  FormThree,
   DetermineSourceCode,
   FormOneSummary,
   InspectionOnboarding,
