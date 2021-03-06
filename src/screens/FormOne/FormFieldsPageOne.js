@@ -2,6 +2,7 @@ import {verticalScale} from 'react-native-size-matters';
 import {getAllCountries} from 'react-native-country-picker-modal';
 
 import {store} from '@store';
+import Config from '@config';
 import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
@@ -103,6 +104,10 @@ export default () => {
     },
     {
       name: 'facilityOwnerPhone',
+      defaultValue: {
+        callingCode: Config.DEFAULT_COUNTRY_CODE,
+        cca2: Config.DEFAULT_COUNTRY,
+      },
       placeholder: formatMessage({id: 'form.placeholder.phoneNumber'}),
       style: {
         marginVertical: 0,
