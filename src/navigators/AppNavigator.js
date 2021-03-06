@@ -16,11 +16,15 @@ import {
   OnboardingTwoA,
   OnboardingThreeA,
   InspectionFlow,
-  GiveFeedback,
-  SubmitFeedback,
+  StepsSummary,
+  SourceCode,
   SourceFlow,
   HomePage,
   WebView,
+  StepTwo,
+  SourceCodeSelection,
+  DetermineSourceCode,
+  FormOneSummary,
   InspectionOnboarding,
 } from '@screens';
 import TabNavigator from './TabNavigator';
@@ -57,6 +61,11 @@ const AppNavigator = () => {
           options={{headerTransparent: true}}
           component={SourceFlow}
         />
+        <Stack.Screen
+          name="SourceCodeSelection"
+          component={SourceCodeSelection}
+        />
+        <Stack.Screen name="SourceCode" component={SourceCode} />
         <Stack.Screen name="OnboardingOneA" component={OnboardingOneA} />
         <Stack.Screen name="OnboardingTwoA" component={OnboardingTwoA} />
         <Stack.Screen name="OnboardingThreeA" component={OnboardingThreeA} />
@@ -65,8 +74,8 @@ const AppNavigator = () => {
           component={TabNavigator}
           options={{headerShown: false}}
         />
-        <Stack.Screen name="GiveFeedback" component={GiveFeedback} />
-        <Stack.Screen name="SubmitFeedback" component={SubmitFeedback} />
+        <Stack.Screen name="StepsSummary" component={StepsSummary} />
+        <Stack.Screen name="StepTwo" component={StepTwo} />
         <Stack.Screen name="FacilityScore" component={FacilityScore} />
         <Stack.Screen
           name="InspectionFlow"
@@ -82,16 +91,21 @@ const AppNavigator = () => {
           component={FacilityScoreGreaterEight}
         />
         <Stack.Screen
+          name="DetermineSourceCode"
+          component={DetermineSourceCode}
+        />
+        <Stack.Screen
           name="HomePage"
           options={{headerShown: false}}
           component={HomePage}
         />
+        <Stack.Screen name="FormOneSummary" component={FormOneSummary} />
+        <Stack.Screen name="WebView" component={WebView} />
         <Stack.Screen
           name="InspectionOnboarding"
           options={{headerShown: false}}
           component={InspectionOnboarding}
         />
-        <Stack.Screen name="WebView" component={WebView} />
       </Stack.Navigator>
     </NavigationContainer>
   );

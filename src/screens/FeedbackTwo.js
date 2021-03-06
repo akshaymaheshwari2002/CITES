@@ -10,7 +10,7 @@ import {Fonts, RawColors} from '@styles/Themes';
 import {Form} from '@organisms';
 import CommonStyles from '@styles/CommonStyles';
 
-const SubmitFeedback = ({navigation}) => {
+const FeedbackTwo = ({navigation}) => {
   const {formatMessage} = useIntl();
   const formProps = useForm();
   const {control, errors} = formProps;
@@ -20,15 +20,15 @@ const SubmitFeedback = ({navigation}) => {
       <Container.ScrollView style={CommonStyles.screenContainer}>
         <View style={styles.title}>
           <Text style={styles.titleContent}>
-            {formatMessage({id: 'screen.SubmitFeedback.headerPartOne'})}
+            {formatMessage({id: 'screen.FeedbackTwo.headerPartOne'})}
           </Text>
           <Text style={styles.titleContent}>
-            {formatMessage({id: 'screen.SubmitFeedback.headerPartTwo'})}
+            {formatMessage({id: 'screen.FeedbackTwo.headerPartTwo'})}
           </Text>
         </View>
         <View style={styles.questionContainer}>
           <Text style={styles.question}>
-            {formatMessage({id: 'screen.SubmitFeedback.question'})}
+            {formatMessage({id: 'screen.FeedbackTwo.question'})}
           </Text>
         </View>
         <View style={styles.iconContainer}>
@@ -41,12 +41,12 @@ const SubmitFeedback = ({navigation}) => {
           formFields={[
             {
               defaultValue: '',
-              name: 'SubmitFeedback',
+              name: 'FeedbackTwo',
               rules: {
                 required: formatMessage({id: 'form.error.fieldRequired'}),
               },
               placeholder: formatMessage({
-                id: 'screen.SubmitFeedback.content',
+                id: 'screen.FeedbackTwo.content',
               }),
               style: {
                 color: RawColors.grey,
@@ -59,6 +59,7 @@ const SubmitFeedback = ({navigation}) => {
                 borderColor: RawColors.darkGrey,
                 textAlignVertical: 'top',
                 padding: ms(16),
+                textAlign: 'center',
               },
               multiLine: true,
             },
@@ -119,4 +120,4 @@ const styles = ScaledSheet.create({
   },
 });
 
-export default SubmitFeedback;
+export default FeedbackTwo;

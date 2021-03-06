@@ -9,6 +9,7 @@ import Species from './Species';
 import StepOne from './StepOne';
 import StepThree from './StepThree';
 import StepTwo from './StepTwo';
+import StaffHours from './StaffHours';
 
 export {
   Address,
@@ -22,4 +23,5 @@ export {
   StepOne,
   StepThree,
   StepTwo,
+  StaffHours,
 };

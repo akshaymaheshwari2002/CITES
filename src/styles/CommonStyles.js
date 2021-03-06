@@ -19,7 +19,7 @@ export default ScaledSheet.create({
   shadowEffect: {
     shadowColor: RawColors.black,
     shadowOffset: {width: 0, height: 5},
-    shadowOpacity: 0.8,
+    shadowOpacity: 0.15,
     shadowRadius: 2,
     elevation: 5,
   },

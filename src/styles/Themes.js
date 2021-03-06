@@ -21,10 +21,13 @@ const RawColors = {
   greyLight: '#f4fcef',
   grey57: '#919191',
   grey75: '#BFBFBF',
+  greyShade: 'rgb(242, 242, 247)',
   darkSalmon: '#cc685a',
   darkGreyBlue: '#2F414B',
   softRed: '#DA6F60',
   brightRed: '#DE7162',
+  redShade: '#ED6A5C',
+  darkRed: '#EE695C',
   tuna: '#3C3C43',
   green: '#3BB54A',
   ghostCheckboxBorder: '#C7C7CC',
@@ -40,9 +43,15 @@ const RawColors = {
   silverFoil: '#B1B1B0',
   pinkishGrey: 'rgb(191,191,191)',
   beige: 'rgb(238,244,220)',
+  marine: 'rgb(8,56,99)',
+  gaussianblack: 'rgba(25,2,2,0.3)',
 };
 
 const Fonts = {
+  Didot56B: {
+    fontFamily: 'Didot-Bold',
+    fontSize: moderateScale(56),
+  },
   Lato12R: {
     fontFamily: 'Lato-Regular',
     fontSize: moderateScale(12),
@@ -97,6 +106,10 @@ const Fonts = {
   },
   Lato20R: {
     fontFamily: 'Lato-Regular',
+    fontSize: moderateScale(20),
+  },
+  Lato20SB: {
+    fontFamily: 'Lato-SemiBold',
     fontSize: moderateScale(20),
   },
   Lato34R: {

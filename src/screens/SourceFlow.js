@@ -51,7 +51,11 @@ const SourceFlow = ({navigation}) => {
                   }
                 />
                 <Button
-                  //onPress={() => navigation.navigate('StepsSummary')}
+                  onPress={() =>
+                    navigation.navigate('TabNavigator', {
+                      screen: 'DetermineSourceCode',
+                    })
+                  }
                   buttonStyle={() => styles.filledButton}
                   buttonTextStyle={() => ({color: RawColors.black})}
                   buttonContent={

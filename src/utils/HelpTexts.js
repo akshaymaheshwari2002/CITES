@@ -34,4 +34,17 @@ export default {
     'A routine inspection of a facility is undertaken on a regular basis.',
     'A follow-up inspection is undertaken to ensure that a facility has complied with any issues raised on a previous initial or routine inspection.',
   ],
+  staffCurrentAtFacility: [
+    'Hours of employment',
+    'Full-time employment is usually considered between 30-40 hours a week.',
+    'Part-time employment is usually less than 30 hours a week.',
+  ],
+  professionalVeterinaryServices: [
+    'A veterinarian (vet)',
+    'also known as a veterinary surgeon or veterinary physician, is a professional who practices veterinary medicine by treating diseases, disorders, and injuries in non-human animals.',
+  ],
+  animalsOtherLocation: [
+    'Ensure all premises are inspected.',
+    'There may be several premises where animals are kept. Ensure that all premises are inspected, even if they are at a different location to the one you are currently inspecting.',
+  ],
 };
