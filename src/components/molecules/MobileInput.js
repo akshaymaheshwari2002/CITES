@@ -2,7 +2,7 @@ import React, {forwardRef, useCallback} from 'react';
 import PropTypes from 'prop-types';
 import {Text, View} from 'react-native';
 import CountryPicker from 'react-native-country-picker-modal';
-import {ms, s, ScaledSheet} from 'react-native-size-matters';
+import {ms, ScaledSheet} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
 
 import {TextInput} from '@atoms';
@@ -35,11 +35,15 @@ const MobileNumber = forwardRef(
         ) : null}
         <View style={[CommonStyles.flexRow, styles.container, style]}>
           <CountryPicker
-            theme={{onBackgroundTextColor: RawColors.black}}
+            theme={{
+              onBackgroundTextColor: RawColors.black,
+              ...Fonts.Lato15R,
+            }}
             closeButton={<Icon name="chevron-left" size={ms(26)} />}
             filterProps={{style: styles.filter}}
             flatListProps={{style: styles.flatList}}
             modalProps={{animationType: 'fade', transparent: true}}
+            withCallingCodeButton={true}
             {...{
               countryCode: value.cca2 || Config.DEFAULT_COUNTRY,
               withFlag: true,
@@ -47,11 +51,6 @@ const MobileNumber = forwardRef(
               onSelect,
             }}
           />
-          {value.callingCode ? (
-            <Text style={[{marginLeft: s(8)}, Fonts.Lato15R]}>
-              +{value.callingCode}
-            </Text>
-          ) : null}
           <View style={CommonStyles.flex1}>
             <TextInput
               ref={ref}
@@ -86,7 +85,12 @@ const styles = ScaledSheet.create({
   flatList: {
     marginHorizontal: '16@s',
   },
-  mobileInput: {borderWidth: 0},
+  mobileInput: {
+    borderWidth: 0,
+    ...Fonts.Lato15R,
+    marginVertical: 0,
+    paddingVertical: 0,
+  },
 });
 
 MobileNumber.propTypes = {
