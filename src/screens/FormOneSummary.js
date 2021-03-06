@@ -27,7 +27,7 @@ const FormOneSummary = ({navigation}) => {
   const facilityData = useMemo(
     () => ({
       ...formData,
-      facilityOwnerPhone: `${formData.facilityOwnerPhone.callingCode}${formData.facilityOwnerPhone.contactNumber}`,
+      facilityOwnerPhone: `+${formData.facilityOwnerPhone.callingCode} ${formData.facilityOwnerPhone.contactNumber}`,
       dateOfInspection: format(Number(formData.dateOfInspection), 'MM/dd/yyyy'),
       facilityEstablishmentDate: format(
         Number(formData.facilityEstablishmentDate),
