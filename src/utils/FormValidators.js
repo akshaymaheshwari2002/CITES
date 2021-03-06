@@ -6,11 +6,17 @@ import {
 } from '@utils/CommonFunctions';
 import createIntl from '@utils/Intl';
 
+const regexPhone = /^[1-9]+[0-9]*$/;
+
 export default () => {
   const {formatMessage} = createIntl();
 
   return {
     required: formatMessage({id: 'form.error.fieldRequired'}),
+    requiredMobileInput: (value) =>
+      value?.contactNumber
+        ? true
+        : formatMessage({id: 'form.error.fieldRequired'}),
     validateNumber: (value) =>
       isNumber(value) || formatMessage({id: 'form.error.number'}),
     validatePositiveNumber: (value) =>
@@ -26,8 +32,12 @@ export default () => {
       message: formatMessage({id: 'form.error.invalidEmail'}),
     },
     validatePhone: {
-      value: /^[1-9]+[0-9]*/,
+      value: regexPhone,
       message: formatMessage({id: 'form.error.invalidPhone'}),
     },
+    validateMobileInput: (value) =>
+      regexPhone.test(value?.contactNumber)
+        ? true
+        : formatMessage({id: 'form.error.invalidPhone'}),
   };
 };
