@@ -123,6 +123,7 @@ export default ({
       },
     },
     {
+      defaultValue: [],
       label: formatMessage({id: 'form.label.addressOfOtherAnimals'}),
       placeholder: formatMessage({id: 'form.label.addressOfOtherAnimals'}),
       name: 'addressOfOtherAnimals',

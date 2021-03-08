@@ -21,7 +21,6 @@ import {
   SourceFlow,
   HomePage,
   WebView,
-  StepTwo,
   SourceCodeSelection,
   DetermineSourceCode,
   FormOneSummary,
@@ -75,7 +74,6 @@ const AppNavigator = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen name="StepsSummary" component={StepsSummary} />
-        <Stack.Screen name="StepTwo" component={StepTwo} />
         <Stack.Screen name="FacilityScore" component={FacilityScore} />
         <Stack.Screen
           name="InspectionFlow"

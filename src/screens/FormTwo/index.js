@@ -55,7 +55,7 @@ const FormTwo = ({navigation}) => {
           },
         }),
       );
-      navigation.navigate('StepTwo');
+      navigation.navigate('TabNavigator', {screen: 'StepTwo'});
     },
     [dispatch, navigation],
   );
