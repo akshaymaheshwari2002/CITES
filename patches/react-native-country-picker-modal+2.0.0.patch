@@ -1,5 +1,5 @@
 diff --git a/node_modules/react-native-country-picker-modal/lib/CloseButton.js b/node_modules/react-native-country-picker-modal/lib/CloseButton.js
-index 4fb16f6..875e527 100644
+index 4fb16f6..6b45392 100644
 --- a/node_modules/react-native-country-picker-modal/lib/CloseButton.js
 +++ b/node_modules/react-native-country-picker-modal/lib/CloseButton.js
 @@ -26,11 +26,11 @@ const CloseButtonAndroid = (props) => {
@@ -19,6 +19,21 @@ index 4fb16f6..875e527 100644
  };
  const CloseButtonIOS = (props) => {
      let closeImage = require('./assets/images/close.ios.png');
+@@ -40,11 +40,12 @@ const CloseButtonIOS = (props) => {
+     const { onBackgroundTextColor } = useTheme();
+     return (React.createElement(View, { style: [styles.container, props.style] },
+         React.createElement(TouchableOpacity, { onPress: props.onPress },
+-            React.createElement(Image, { source: closeImage, style: [
++            React.createElement(View, null,
++                props.closeButton || React.createElement(Image, { source: closeImage, style: [
+                     styles.imageStyle,
+                     props.imageStyle,
+                     { tintColor: onBackgroundTextColor }
+-                ] }))));
++                ] })))));
+ };
+ const propTypes = {
+     onPress: PropTypes.func,
 diff --git a/node_modules/react-native-country-picker-modal/lib/CountryList.js b/node_modules/react-native-country-picker-modal/lib/CountryList.js
 index 8816018..f50d2d0 100644
 --- a/node_modules/react-native-country-picker-modal/lib/CountryList.js

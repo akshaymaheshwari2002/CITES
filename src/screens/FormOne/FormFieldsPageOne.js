@@ -20,7 +20,12 @@ let countries;
 
 export default () => {
   const {formatMessage} = createIntl();
-  const {required, validateEmail, validatePhone} = getValidators();
+  const {
+    required,
+    requiredMobileInput,
+    validateEmail,
+    validateMobileInput,
+  } = getValidators();
 
   return [
     {
@@ -116,8 +121,10 @@ export default () => {
       },
       keyboardType: 'number-pad',
       rules: {
-        required,
-        pattern: validatePhone,
+        validate: {
+          requiredMobileInput,
+          validateMobileInput,
+        },
       },
       fieldType: Constants.MOBILE_INPUT,
     },
