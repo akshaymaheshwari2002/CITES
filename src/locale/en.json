@@ -383,5 +383,6 @@
   "form.label.sizeAtSexualMaturity": "Size or mass at sexual maturity (cm or g)",
   "form.label.approxSizeAtSale": "Approximate size at sale or export (cm or g)",
   "form.label.percentageJuvenilesSurvive": "Percentage of juveniles to survive beyond 2 weeks, including mortalities of eggs that did not hatch.",
-  "form.label.feedJuveniles": "What do you feed juveniles?"
+  "form.label.feedJuveniles": "What do you feed juveniles?",
+  "button.submit": "SUBMIT"
 }
