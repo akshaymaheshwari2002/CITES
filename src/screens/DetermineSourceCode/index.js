@@ -36,10 +36,15 @@ const DetermineSourceCode = ({navigation: {navigate, goBack}}) => {
       sourceCodeQuestionRelations[
         interactedQuestionStack[interactedQuestionStack.length - 1]
       ][optionChoosen];
-    if (typeof resultAction === 'number') {
+    if (
+      typeof resultAction === 'number' ||
+      resultAction === 'appendixI' ||
+      resultAction === 'appendixII' ||
+      resultAction === 'appendixIII'
+    ) {
       setInteractedQuestionStack([...interactedQuestionStack, resultAction]);
     } else if (resultAction === 'exportShouldNotProceed') {
-      // navigate to NoExport screen
+      navigate('NoExport');
     } else {
       navigate('SourceCode', {selectedSourceCode: resultAction});
     }
@@ -96,31 +101,37 @@ const DetermineSourceCode = ({navigation: {navigate, goBack}}) => {
               />
             );
           })}
-          <Button
-            buttonContent={'more Information'}
-            buttonStyle={() => [styles.button, styles.buttonMoreInformation]}
-            buttonTextStyle={() => [
-              styles.buttonText,
-              styles.buttonMoreInformationText,
-            ]}
-            onPress={() => {
-              const moreInfo =
-                sourceCodeQuestions[
-                  `${
-                    interactedQuestionStack[interactedQuestionStack.length - 1]
-                  }`
-                ].moreInfo;
-              if (moreInfo && moreInfo.target) {
-                if (moreInfo.isWebResource) {
-                  navigate('WebView', {
-                    sourceUri: moreInfo.target,
-                  });
-                } else {
-                  navigate(moreInfo.target);
+          {sourceCodeQuestions[
+            `${interactedQuestionStack[interactedQuestionStack.length - 1]}`
+          ].moreInfo ? (
+            <Button
+              buttonContent={'more Information'}
+              buttonStyle={() => [styles.button, styles.buttonMoreInformation]}
+              buttonTextStyle={() => [
+                styles.buttonText,
+                styles.buttonMoreInformationText,
+              ]}
+              onPress={() => {
+                const moreInfo =
+                  sourceCodeQuestions[
+                    `${
+                      interactedQuestionStack[
+                        interactedQuestionStack.length - 1
+                      ]
+                    }`
+                  ].moreInfo;
+                if (moreInfo && moreInfo.target) {
+                  if (moreInfo.isWebResource) {
+                    navigate('WebView', {
+                      sourceUri: moreInfo.target,
+                    });
+                  } else {
+                    navigate(moreInfo.target);
+                  }
                 }
-              }
-            }}
-          />
+              }}
+            />
+          ) : null}
         </View>
       </Container.ScrollView>
     </Container>

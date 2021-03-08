@@ -15,8 +15,6 @@ export const Images = {
   backgroundOverlay: require('./images/Background1.png'),
   maskBackground: require('./images/mask-group-8.png'),
   searchBarIcon: require('./images/Source_icon.png'),
-  rectangularBar: require('./images/rectangle-77.png'),
-  redCircle: require('./images/blackCircle.png'),
   onboardingThreeA: require('./images/OnboardingThreeA.png'),
   onboardingThreeAPartTwo: require('./images/OnboardingThreeAPartTwo.png'),
   backgroundNavbarLower: require('./images/BackgroundNavbarlower.png'),
@@ -29,4 +27,5 @@ export const Images = {
   emojiFour: require('./images/4icon.png'),
   emojiFive: require('./images/5icon.png'),
   grassHopper: require('./images/616730.png'),
+  eye: require('./images/eye.png'),
 };

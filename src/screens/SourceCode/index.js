@@ -91,6 +91,9 @@ const SourceCode = ({navigation, route}) => {
           buttonStyle={() => {
             return styles.btnTwo;
           }}
+          onPress={() => {
+            return navigation.navigate('HomePage');
+          }}
         />
       </Container.ScrollView>
     </Container>
