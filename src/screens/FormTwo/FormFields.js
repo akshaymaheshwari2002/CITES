@@ -1,4 +1,5 @@
 import {verticalScale} from 'react-native-size-matters';
+import {getAllCountries} from 'react-native-country-picker-modal';
 
 import {store} from '@store';
 import Constants from '@utils/Constants';
@@ -7,6 +8,15 @@ import createIntl from '@utils/Intl';
 import {setHelpText} from '@store/slices/sessionSlice';
 import HelpTexts from '@utils/HelpTexts';
 
+let countries;
+
+(async () => {
+  let _countries = await getAllCountries();
+  _countries = _countries.map(({name}) => ({label: name, value: name}));
+
+  countries = _countries;
+})();
+
 export default () => {
   const {formatMessage} = createIntl();
   const {required} = getValidators();
@@ -14,13 +24,13 @@ export default () => {
   return [
     {
       defaultValue: {
-        fullTime: '0',
-        partTime: '0',
+        fullTimeStaffs: '0',
+        partTimeStaffs: '0',
       },
       label_0: formatMessage({id: 'form.label.employmentHours'}),
       label_1: formatMessage({id: 'form.label.fullTime'}),
       label_2: formatMessage({id: 'form.label.partTime'}),
-      name: 'employmentHours',
+      name: 'staffHours',
       rules: {},
       fieldType: Constants.COUNTER_PAIR,
       showHelpIcon: true,
@@ -30,7 +40,7 @@ export default () => {
     },
     {
       label: formatMessage({id: 'form.label.professionalVeterinaryServices'}),
-      name: 'professionalVeterinaryServices',
+      name: 'accessToVeterinaryServices',
       rules: {required},
       fieldType: Constants.CHOICELIST,
       mode: 'radio-button',
@@ -51,16 +61,16 @@ export default () => {
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.vetAddress'}),
-      placeholder: formatMessage({id: 'form.placeholder.addressLineOne'}),
-      name: 'vetAddressLineOne',
+      label: formatMessage({id: 'form.label.vetNameAndAddress'}),
+      placeholder: formatMessage({id: 'form.placeholder.veterinarianName'}),
+      name: 'veterinarianName',
       rules: {required},
       fieldContainerStyle: {marginBottom: 0},
     },
     {
       placeholder: formatMessage({id: 'form.placeholder.addressLineTwo'}),
       defaultValue: '',
-      name: 'vetAddressLineTwo',
+      name: 'veterinarianAddress',
       rules: {required},
       fieldContainerStyle: {marginBottom: 0},
       style: {
@@ -72,12 +82,19 @@ export default () => {
     {
       placeholder: formatMessage({id: 'form.placeholder.country'}),
       defaultValue: '',
-      name: 'country',
+      name: 'veterinarianCountry',
       rules: {required},
+      fieldType: Constants.COUNTRY_PICKER,
+      items: countries,
+      style: {
+        marginVertical: 0,
+        marginTop: verticalScale(6),
+        marginBottom: verticalScale(6),
+      },
     },
     {
-      label: formatMessage({id: 'form.label.animalsOtherLocation'}),
-      name: 'animalsOtherLocation',
+      label: formatMessage({id: 'form.label.animalKeptAtOtherLocation'}),
+      name: 'animalKeptAtOtherLocation',
       rules: {required},
       fieldType: Constants.CHOICELIST,
       mode: 'radio-button',
@@ -97,13 +114,13 @@ export default () => {
       },
     },
     {
-      label: formatMessage({id: 'form.label.otherAddressLocation'}),
-      placeholder: formatMessage({id: 'form.label.otherAddressLocation'}),
-      name: 'otherAddressLocation',
+      label: formatMessage({id: 'form.label.addressOfOtherAnimals'}),
+      placeholder: formatMessage({id: 'form.label.addressOfOtherAnimals'}),
+      name: 'addressOfOtherAnimals',
       rules: {required},
       fieldType: Constants.TEXTINPUT_ARRAY,
       count: 1,
-      buttonText: formatMessage({id: 'button.addSpecies'}),
+      buttonText: formatMessage({id: 'form.button.addAddress'}),
     },
   ];
 };

@@ -8,6 +8,7 @@ export default class FormTwo {
     accessToVeterinaryServices,
     veterinarianName,
     veterinarianAddress,
+    veterinarianCountry,
     animalKeptAtOtherLocation,
     addressOfOtherAnimals,
   }) {
@@ -16,6 +17,7 @@ export default class FormTwo {
     this.accessToVeterinaryServices = accessToVeterinaryServices;
     this.veterinarianName = veterinarianName;
     this.veterinarianAddress = veterinarianAddress;
+    this.veterinarianCountry = veterinarianCountry;
     this.animalKeptAtOtherLocation = animalKeptAtOtherLocation;
     this.addressOfOtherAnimals = addressOfOtherAnimals;
   }

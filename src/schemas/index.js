@@ -9,12 +9,10 @@ export const PHONE = {
 
 export const ADDRESS = {
   name: 'Address',
-  primaryKey: '_id',
   properties: {
-    _id: 'objectId',
-    addressLineOne: 'string',
-    addressLineTwo: 'string',
-    addressLineThree: 'string',
+    addressLineOne: 'string?',
+    addressLineTwo: 'string?',
+    addressLineThree: 'string?',
   },
 };
 
@@ -66,11 +64,12 @@ export const FORM_TWO = {
   properties: {
     _id: 'objectId',
     staffHours: 'StaffHours',
-    accessToVeterinaryServices: 'bool',
+    accessToVeterinaryServices: 'string[]',
     veterinarianName: 'string?',
-    veterinarianAddress: 'Address?',
-    animalKeptAtOtherLocation: 'bool',
-    addressOfOtherAnimals: 'Address[]', // If animalKeptAtOtherLocation is true
+    veterinarianAddress: 'string?',
+    veterinarianCountry: 'string?',
+    animalKeptAtOtherLocation: 'string[]',
+    addressOfOtherAnimals: 'string[]', // If animalKeptAtOtherLocation is true
   },
 };
 
