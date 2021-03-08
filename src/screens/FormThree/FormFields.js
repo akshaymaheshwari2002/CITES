@@ -26,9 +26,9 @@ export default (fieldProps = {}) => {
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.sourceCodeInitiaStock'}),
-      placeholder: formatMessage({id: 'form.label.sourceCodeInitiaStock'}),
-      name: 'sourceCodeInitiaStock',
+      label: formatMessage({id: 'form.label.sourceCodeInitialStock'}),
+      placeholder: formatMessage({id: 'form.label.sourceCodeInitialStock'}),
+      name: 'sourceCodeInitialStock',
       rules: {
         required,
         maxLength: {

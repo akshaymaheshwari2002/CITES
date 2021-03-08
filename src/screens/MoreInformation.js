@@ -1,13 +1,14 @@
 import React from 'react';
 import {View, Text, FlatList, Pressable} from 'react-native';
 import {useIntl} from 'react-intl';
-import {ScaledSheet} from 'react-native-size-matters';
+import {ScaledSheet, ms} from 'react-native-size-matters';
+import Icon from 'react-native-vector-icons/Feather';
 
 import Config from '@config';
-import {Container, Button} from '@atoms';
+import {Container, Button, Header} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 
-const MoreInformation = ({navigation}) => {
+const MoreInformation = ({navigation: {navigate, goBack}}) => {
   const {formatMessage} = useIntl();
   const dummyInspectionData = [
     {
@@ -37,7 +38,12 @@ const MoreInformation = ({navigation}) => {
     },
   ];
   return (
-    <Container>
+    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+      <Header
+        leftContent={
+          <Icon name="chevron-left" size={ms(26)} onPress={goBack} />
+        }
+      />
       <View style={styles.titleView}>
         <Text style={styles.title}>
           {formatMessage({id: 'screen.MoreInformation.title'})}
@@ -52,11 +58,11 @@ const MoreInformation = ({navigation}) => {
               <Button
                 onPress={() => {
                   if (item.url) {
-                    navigation.navigate('WebView', {
+                    navigate('WebView', {
                       sourceUri: item.url,
                     });
                   } else {
-                    navigation.navigate('SourceCodeSelection');
+                    navigate('SourceCodeSelection');
                   }
                 }}
                 buttonStyle={() => styles.button}

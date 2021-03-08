@@ -54,7 +54,7 @@ const plants = [
   },
   {
     icon: Images.tick,
-    labelId: 'screen.q9MoreInfo.contenFiveteen',
+    labelId: 'screen.q9MoreInfo.contentFifteen',
   },
 ];
 

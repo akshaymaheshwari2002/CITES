@@ -155,93 +155,26 @@ const LanguageSelection = ({navigation}) => {
       safeAreaViewProps={{style: {backgroundColor: RawColors.darkBlue}}}
       statusBarProps={{barStyle: 'light-content'}}>
       <Container.ScrollView contentContainerStyle={[styles.scrollContainer]}>
-        <Animated.View
-          style={[styles.logoContainer, {opacity: mainDataOpacity}]}>
-          <Image
-            source={Images?.logo}
-            style={styles.logo}
-            resizeMode="contain"
-          />
-        </Animated.View>
-        <Animated.Image
-          source={Images?.searchIcon}
-          style={[
-            styles.search,
-            {
-              transform: [{scaleX: scaleSearch}, {scaleY: scaleSearch}],
-            },
-          ]}
+        <View style={[styles.logoContainer]}>
+          <Image source={Images?.eye} style={styles.eye} resizeMode="contain" />
+        </View>
+        <Image
+          source={Images?.logo}
+          style={[styles.logo]}
           resizeMode="contain"
         />
-        {isMount ? (
-          <Animated.Image
-            source={Images?.rectangularBar}
-            style={[
-              {
-                opacity: rectBarOpacity,
-                transform: [
-                  {scaleX: verticalScale(0.8)},
-                  {scaleY: verticalScale(0.8)},
-                  {translateX: 100},
-                  {translateY: rectBarTranslate},
-                ],
-              },
-            ]}
-            resizeMode="contain"
+
+        <View style={styles.dropDownContainer}>
+          <Picker
+            items={LocaleList}
+            style={styles.picker}
+            placeholder={formatMessage({id: 'screen.screen2.selectAnItem'})}
+            placeholderStyle={styles.selectedStyle}
+            defaultValue={locale}
+            onChange={handleChange}
+            selectedLabelStyle={styles.selectedStyle}
           />
-        ) : null}
-        {!isMount ? (
-          <View style={styles.dropDownContainer}>
-            <Picker
-              items={LocaleList}
-              style={styles.picker}
-              placeholder={formatMessage({id: 'screen.screen2.selectAnItem'})}
-              placeholderStyle={styles.selectedStyle}
-              defaultValue={locale}
-              onChange={handleChange}
-              selectedLabelStyle={styles.selectedStyle}
-            />
-          </View>
-        ) : null}
-        {isMount ? (
-          <Animated.Image
-            style={[
-              styles.animationImage,
-              {
-                opacity: meshOpacity,
-                height: meshHeight,
-                width: meshWidth,
-                transform: [
-                  {
-                    translateX: xPos,
-                  },
-                  {translateY: yPos},
-                  {rotate: spin},
-                ],
-              },
-            ]}
-            source={Images.maskBackground}
-            resizeMode="cover"
-          />
-        ) : null}
-        <Animated.Image
-          style={[
-            styles.redCircle,
-            {
-              height: redCircleSize,
-              width: redCircleSize,
-              opacity: redCircleOpacity,
-              transform: [
-                {
-                  translateX: redCircleXPos,
-                },
-                {translateY: redCircleYPos},
-              ],
-            },
-          ]}
-          source={Images.redCircle}
-          resizeMode="contain"
-        />
+        </View>
       </Container.ScrollView>
     </Container>
   );
@@ -250,7 +183,6 @@ const LanguageSelection = ({navigation}) => {
 const styles = ScaledSheet.create({
   scrollContainer: {
     alignItems: 'center',
-    backgroundColor: RawColors.darkBlue,
     paddingVertical: '16@vs',
   },
   picker: {
@@ -265,13 +197,13 @@ const styles = ScaledSheet.create({
     width: '100%',
     alignItems: 'center',
   },
-  logo: {
+  eye: {
     marginTop: '35@vs',
     height: '146@vs',
     width: '276@s',
   },
-  search: {
-    marginTop: '5@vs',
+  logo: {
+    marginTop: '35@vs',
     height: '212@vs',
     marginBottom: '10@vs',
   },
@@ -288,14 +220,6 @@ const styles = ScaledSheet.create({
     position: 'absolute',
     top: 0,
     left: 0,
-  },
-  redCircle: {
-    position: 'absolute',
-    tintColor: RawColors.darkSalmon,
-    height: 30,
-    width: 30,
-    top: 100,
-    left: 30,
   },
 });
 

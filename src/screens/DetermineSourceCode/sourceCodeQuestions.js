@@ -233,7 +233,7 @@ const sourceCodeQuestions = {
   },
   26: {
     content: ['In which CITES Appendix is the species listed?'],
-    options: ['appendix I', 'appendix II', 'appendix III'],
+    options: ['appendixI', 'appendixII', 'appendixIII'],
     moreInfo: false,
   },
   27: {
