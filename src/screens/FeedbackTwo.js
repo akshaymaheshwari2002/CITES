@@ -1,23 +1,32 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import {Container} from '@atoms';
+import {View, Text, Image} from 'react-native';
+
 import {ScaledSheet, ms, vs, s} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/Feather';
+import {Images} from '@assets';
 import {useIntl} from 'react-intl';
 import {useForm} from 'react-hook-form';
+import Icon from 'react-native-vector-icons/Feather';
 
 import {Fonts, RawColors} from '@styles/Themes';
+import {Container, Button, Header} from '@atoms';
 import {Form} from '@organisms';
 import CommonStyles from '@styles/CommonStyles';
 
-const FeedbackTwo = ({navigation}) => {
+const FeedbackTwo = ({navigation: {navigate, goBack}}) => {
   const {formatMessage} = useIntl();
   const formProps = useForm();
   const {control, errors} = formProps;
 
   return (
-    <Container>
-      <Container.ScrollView style={CommonStyles.screenContainer}>
+    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+      <Header
+        leftContent={
+          <Icon name="chevron-left" size={ms(26)} onPress={goBack} />
+        }
+      />
+      <Container.ScrollView
+        contentContainerStyle={CommonStyles.screenContainer}
+        style={CommonStyles.flex1}>
         <View style={styles.title}>
           <Text style={styles.titleContent}>
             {formatMessage({id: 'screen.FeedbackTwo.headerPartOne'})}
@@ -32,7 +41,11 @@ const FeedbackTwo = ({navigation}) => {
           </Text>
         </View>
         <View style={styles.iconContainer}>
-          <Icon name="chevron-left" size={ms(54)} />
+          <Image source={Images.emojiOne} style={styles.emoji} />
+          <Image source={Images.emojiTwo} style={styles.emoji} />
+          <Image source={Images.emojiThree} style={styles.emoji} />
+          <Image source={Images.emojiFour} style={styles.emoji} />
+          <Image source={Images.emojiFive} style={styles.emoji} />
         </View>
         <Form
           control={control}
@@ -59,11 +72,22 @@ const FeedbackTwo = ({navigation}) => {
                 borderColor: RawColors.darkGrey,
                 textAlignVertical: 'top',
                 padding: ms(16),
-                textAlign: 'center',
               },
               multiLine: true,
             },
           ]}
+        />
+        <Button
+          buttonContent={formatMessage({
+            id: 'button.submit',
+          })}
+          buttonTextStyle={() => {
+            return styles.buttonText;
+          }}
+          buttonStyle={() => {
+            return styles.button;
+          }}
+          onPress={() => navigate('TabNavigator', {screen: 'StepOne'})}
         />
       </Container.ScrollView>
     </Container>
@@ -76,9 +100,11 @@ const styles = ScaledSheet.create({
     height: '100@vs',
     width: '240@s',
   },
+  emoji: {
+    marginHorizontal: '7@s',
+  },
   titleContent: {
-    fontWeight: 'bold',
-    fontSize: '40@s',
+    ...Fonts.HelveticaNeue40B,
     lineHeight: '49@s',
     letterSpacing: '0.64@s',
   },
@@ -87,10 +113,9 @@ const styles = ScaledSheet.create({
     height: '18@vs',
   },
   question: {
-    fontWeight: 'bold',
     lineHeight: 22,
     letterSpacing: 0.36,
-    ...Fonts.Lato15R,
+    ...Fonts.Lato15B,
   },
   iconContainer: {
     marginLeft: '3@s',
@@ -114,9 +139,22 @@ const styles = ScaledSheet.create({
   content: {
     color: RawColors.grey,
     lineHeight: '30@vs',
-    marginLeft: '12@s',
+    marginHorizontal: '12@s',
     marginTop: '15@s',
     ...Fonts.Lato15R,
+  },
+  button: {
+    height: '46@vs',
+    width: '290@s',
+    alignSelf: 'center',
+    marginVertical: '14@vs',
+    backgroundColor: RawColors.sugarCane,
+  },
+  buttonText: {
+    ...Fonts.Lato15R,
+    color: RawColors.darkGreyBlue,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

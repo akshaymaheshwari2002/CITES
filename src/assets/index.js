@@ -23,4 +23,10 @@ export const Images = {
   backOnboardingOneA: require('./images/BackOnboardingOneA.png'),
   semiCircle: require('./images/Group747.png'),
   continueCircleIcon: require('./images/continueCircleIcon.png'),
+  emojiOne: require('./images/1icon.png'),
+  emojiTwo: require('./images/2icon.png'),
+  emojiThree: require('./images/3icon.png'),
+  emojiFour: require('./images/4icon.png'),
+  emojiFive: require('./images/5icon.png'),
+  grassHopper: require('./images/616730.png'),
 };
