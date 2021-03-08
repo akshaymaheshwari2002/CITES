@@ -46,13 +46,13 @@ const CounterPair = React.forwardRef(
         </View>
         <Counter
           label={label_1}
-          value={value?.fullTime}
-          onChange={(_value) => handleChange('fullTime', _value)}
+          value={value?.fullTimeStaffs}
+          onChange={(_value) => handleChange('fullTimeStaffs', _value)}
         />
         <Counter
           label={label_2}
-          value={value?.partTime}
-          onChange={(_value) => handleChange('partTime', _value)}
+          value={value?.partTimeStaffs}
+          onChange={(_value) => handleChange('partTimeStaffs', _value)}
         />
         {error ? (
           <Text style={[{color: RawColors.error}, Fonts.Lato15R]}>{error}</Text>

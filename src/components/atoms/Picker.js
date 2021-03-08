@@ -31,6 +31,7 @@ const Picker = React.forwardRef(
       for (let index = 0; index < _count; ++index) {
         fields[index] = (
           <DropDownPicker
+            key={index}
             labelStyle={[{color: RawColors.black}, Fonts.Lato15R]}
             items={items}
             searchableError={() => null}

@@ -37,8 +37,8 @@ const ContinueInspection = ({navigation}) => {
 
   const renderItem = useCallback(
     ({item}) => {
-      const facilityName = item.stepOne.formOne?.facilityName;
-      const dateOfInspection = item.stepOne.formOne?.dateOfInspection;
+      const facilityName = item.stepOne?.formOne?.facilityName;
+      const dateOfInspection = item.stepOne?.formOne?.dateOfInspection;
 
       return (
         <View style={styles.row_parent}>

@@ -1,39 +1,98 @@
-import React, {useCallback, useMemo, useRef} from 'react';
+import React, {useCallback, useMemo, useRef, useEffect} from 'react';
 import {Text, View} from 'react-native';
 import {ms, ScaledSheet, verticalScale} from 'react-native-size-matters';
 import {useForm} from 'react-hook-form';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {Button, Container, Header} from '@atoms';
 import {Form} from '@organisms';
+import {saveInspection} from '@store/slices/sessionSlice';
 import getFormFields from './FormFields';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
+import {get} from '@utils/RealmHelper';
+import Constants from '@utils/Constants';
 
 const FormTwo = ({navigation}) => {
   const dispatch = useDispatch();
   const {formatMessage} = useIntl();
-  const {reset, control, errors, watch, handleSubmit} = useForm({
+  const {reset, control, errors, handleSubmit} = useForm({
     shouldFocusError: false,
   });
   const scrollViewRef = useRef();
-  const savedFormData = useRef({});
+  const formData = useRef({});
   const formFields = useMemo(() => getFormFields(), []);
-  const _handleSubmit = useCallback();
+
+  const _handleSubmit = useCallback(
+    async (data) => {
+      formData.current = {...formData.current, ...data};
+
+      await dispatch(
+        saveInspection({
+          stepTwo: {
+            formTwo: {
+              ...data,
+              accessToVeterinaryServices: Object.keys(
+                data?.accessToVeterinaryServices ?? [],
+              ),
+              animalKeptAtOtherLocation: Object.keys(
+                data?.animalKeptAtOtherLocation ?? [],
+              ),
+            },
+          },
+        }),
+      );
+      navigation.navigate('TabNavigator', {screen: 'StepTwo'});
+    },
+    [dispatch, navigation],
+  );
+
   const scrollToTop = useCallback(() => {
     setTimeout(() => scrollViewRef.current.scrollToPosition(0, 0, true), 200);
   }, []);
-  const handleBackPress = useCallback(() => {
-    navigation.goBack();
-  }, [navigation]);
+
+  const activeFormTwoId = useSelector(
+    (state) => state.sessionReducer.activeInspection.stepTwo?.formTwo?._id,
+  );
+
+  const setActiveFormDataOnMount = useCallback(
+    async (_activeFormTwoId) => {
+      const activeFormData = await get('FormTwo', _activeFormTwoId);
+
+      activeFormData.accessToVeterinaryServices = activeFormData?.accessToVeterinaryServices.reduce(
+        (acc, current) => ({
+          ...acc,
+          [Constants[current]]: true,
+        }),
+        {},
+      );
+      activeFormData.animalKeptAtOtherLocation = activeFormData?.animalKeptAtOtherLocation.reduce(
+        (acc, current) => ({
+          ...acc,
+          [Constants[current]]: true,
+        }),
+        {},
+      );
+
+      delete activeFormData._id;
+      reset(activeFormData);
+    },
+    [reset],
+  );
+
+  useEffect(() => {
+    if (activeFormTwoId) {
+      setActiveFormDataOnMount(activeFormTwoId);
+    }
+  }, [activeFormTwoId, setActiveFormDataOnMount]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
       <Header
         leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={handleBackPress} />
+          <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
         }
       />
       <Container.ScrollView ref={scrollViewRef} style={CommonStyles.flex1}>
@@ -55,7 +114,7 @@ const FormTwo = ({navigation}) => {
           <Button
             onPress={() =>
               navigation.navigate('FormTwoSummary', {
-                data: savedFormData.current,
+                data: formData.current,
               })
             }
             buttonStyle={() => ({marginVertical: verticalScale(16)})}
