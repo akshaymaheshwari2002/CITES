@@ -8,72 +8,41 @@ export default (fieldProps = {}) => {
 
   return [
     {
-      defaultValue: '',
-      label: formatMessage({id: 'form.label.numberOfAdults'}),
-      placeholder: formatMessage({id: 'form.label.numberOfAdults'}),
-      name: 'numberOfAdultsFacility information',
+      label: formatMessage({id: 'form.label.ranchSpecies'}),
+      name: 'ranchSpecies',
       rules: {required},
-      keyboardType: 'number-pad',
+      fieldType: Constants.CHOICELIST,
+      mode: 'radio-button',
+      items: [
+        {
+          content: formatMessage({id: 'form.label.yes'}),
+          name: Constants.YES,
+        },
+        {
+          content: formatMessage({id: 'form.label.no'}),
+          name: Constants.NO,
+        },
+      ],
     },
     {
-      defaultValue: '',
-      placeholder: formatMessage({id: 'form.label.numberOfAdults'}),
-      name: 'numberOfAdultsInspection information',
+      label: formatMessage({id: 'form.label.stageHarvested'}),
+      placeholder: formatMessage({id: 'form.label.stageHarvested'}),
+      name: 'stageHarvested',
       rules: {required},
-      keyboardType: 'number-pad',
-    },
-    {
-      defaultValue: '',
-      label: formatMessage({id: 'form.label.numberOfMales'}),
-      placeholder: formatMessage({id: 'form.label.numberOfMales'}),
-      name: 'numberOfMalesFacility information',
-      rules: {required},
-      keyboardType: 'number-pad',
-    },
-    {
-      defaultValue: '',
-      placeholder: formatMessage({id: 'form.label.numberOfMales'}),
-      name: 'numberOfMalesInspection information',
-      rules: {required},
-      keyboardType: 'number-pad',
-    },
-    {
-      defaultValue: '',
-      label: formatMessage({id: 'form.label.numberOfFemales'}),
-      placeholder: formatMessage({
-        id: 'form.label.numberOfFemales',
-      }),
-      name: 'numberOfFemalesFacility information',
-      rules: {required},
-      keyboardType: 'number-pad',
-    },
-    {
-      defaultValue: '',
-      placeholder: formatMessage({id: 'form.label.numberOfFemales'}),
-      name: 'numberOfFemalesInspection information',
-      rules: {required},
-      keyboardType: 'number-pad',
-    },
-    {
-      defaultValue: '',
-      label: formatMessage({id: 'form.label.percentageFemalesBreed'}),
-      placeholder: formatMessage({
-        id: 'form.label.percentageFemalesBreed',
-      }),
-      name: 'percentageFemalesBreed',
-      rules: {required},
-      keyboardType: 'number-pad',
-    },
-    {
-      label: formatMessage({id: 'form.label.feedAdults'}),
-      placeholder: formatMessage({
-        id: 'form.label.feedAdults',
-      }),
-      name: 'feedAdults',
-      rules: {required},
-      fieldType: Constants.TEXTINPUT_ARRAY,
+      fieldType: Constants.PICKER,
       count: 1,
-      buttonText: formatMessage({id: 'button.addFood'}),
+      pickerText: formatMessage({id: 'button.addLifeStage'}),
+    },
+    {
+      label: formatMessage({id: 'form.label.numberHarvestedPreviousYear'}),
+      placeholder: formatMessage({
+        id: 'form.label.numberHarvestedPreviousYear',
+      }),
+      name: 'numberHarvestedPreviousYear',
+      rules: {required},
+      fieldType: Constants.PICKER,
+      count: 1,
+      pickerText: formatMessage({id: 'button.addLifeStage'}),
     },
   ];
 };
