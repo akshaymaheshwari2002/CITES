@@ -18,12 +18,23 @@ import Constants from '@utils/Constants';
 const FormTwo = ({navigation}) => {
   const dispatch = useDispatch();
   const {formatMessage} = useIntl();
-  const {reset, control, errors, handleSubmit} = useForm({
+  const {reset, control, errors, handleSubmit, watch} = useForm({
     shouldFocusError: false,
   });
   const scrollViewRef = useRef();
   const formData = useRef({});
-  const formFields = useMemo(() => getFormFields(), []);
+  const _accessToVeterinaryServices = watch('accessToVeterinaryServices');
+  const _animalKeptAtOtherLocation = watch('animalKeptAtOtherLocation');
+
+  const formFields = useMemo(() => {
+    console.log({_accessToVeterinaryServices, _animalKeptAtOtherLocation});
+    return getFormFields({
+      isAccessToVeterinaryServices:
+        _accessToVeterinaryServices?.[Constants.YES] ?? false,
+      isAnimalKeptAtOtherLocation:
+        _animalKeptAtOtherLocation?.[Constants.YES] ?? false,
+    });
+  }, [_accessToVeterinaryServices, _animalKeptAtOtherLocation]);
 
   const _handleSubmit = useCallback(
     async (data) => {
@@ -44,7 +55,7 @@ const FormTwo = ({navigation}) => {
           },
         }),
       );
-      navigation.navigate('TabNavigator', {screen: 'StepTwo'});
+      navigation.navigate('StepTwo');
     },
     [dispatch, navigation],
   );

@@ -1,6 +1,7 @@
 import React, {useCallback} from 'react';
 import {View, Text} from 'react-native';
 import {moderateScale, ScaledSheet} from 'react-native-size-matters';
+import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {Counter} from '@molecules';
@@ -10,30 +11,32 @@ import CommonStyles from '@styles/CommonStyles';
 const CounterPair = React.forwardRef(
   (
     {
-      label_0,
+      label,
       label_1,
       label_2,
-      placeholder,
       error,
       value,
       showHelpIcon,
       onHelpIconPress,
       onChange,
+      shouldChange,
     },
     _,
   ) => {
     const handleChange = useCallback(
       (key, _value) => {
-        onChange({...value, [key]: _value});
+        if (shouldChange(_value)) {
+          onChange({...value, [key]: _value});
+        }
       },
-      [onChange, value],
+      [onChange, value, shouldChange],
     );
 
     return (
       <>
         <View style={styles.labelContainer}>
-          {label_0 ? (
-            <Text style={[CommonStyles.flex1, Fonts.Lato15R]}>{label_0}</Text>
+          {label ? (
+            <Text style={[CommonStyles.flex1, Fonts.Lato15R]}>{label}</Text>
           ) : null}
           {showHelpIcon ? (
             <Icon
@@ -71,3 +74,25 @@ const styles = ScaledSheet.create({
     marginBottom: '12@vs',
   },
 });
+
+CounterPair.propTypes = {
+  label: PropTypes.string,
+  label_1: PropTypes.string,
+  label_2: PropTypes.string,
+  error: PropTypes.string,
+  onChange: PropTypes.func,
+  shouldChange: PropTypes.func,
+  showHelpIcon: PropTypes.bool,
+  onHelpIconPress: PropTypes.func,
+};
+
+CounterPair.defaultProps = {
+  label: '',
+  label_1: '',
+  label_2: '',
+  error: '',
+  onChange: () => {},
+  showHelpIcon: false,
+  onHelpIconPress: () => {},
+  shouldChange: () => true,
+};
