@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
@@ -7,6 +7,7 @@ import {useIntl} from 'react-intl';
 import {Container, Header, Button} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
+import {Images} from '@assets';
 
 const FeedbackOne = ({navigation}) => {
   const {formatMessage} = useIntl();
@@ -49,6 +50,7 @@ const FeedbackOne = ({navigation}) => {
           </View>
         </View>
         <View style={styles.btn}>
+          <Image source={Images.grassHopper} style={styles.grassHopper} />
           <Button
             buttonContent={formatMessage({
               id: 'button.giveFeedback',
@@ -71,7 +73,7 @@ const FeedbackOne = ({navigation}) => {
               return styles.buttonText;
             }}
             buttonStyle={() => {
-              return styles.button;
+              return [styles.button, styles.gap3];
             }}
             onPress={() =>
               navigation.navigate('TabNavigator', {screen: 'StepOne'})
@@ -90,8 +92,7 @@ const styles = ScaledSheet.create({
     width: '240@s',
   },
   titleContent: {
-    fontWeight: 'bold',
-    fontSize: '40@s',
+    ...Fonts.HelveticaNeue40B,
     lineHeight: '49@s',
     letterSpacing: '0.64@s',
   },
@@ -103,30 +104,34 @@ const styles = ScaledSheet.create({
     letterSpacing: 0.41,
     ...Fonts.Lato15R,
   },
+  grassHopper: {
+    resizeMode: 'contain',
+    width: '56@s',
+    alignSelf: 'flex-end',
+    marginRight: '60@s',
+  },
   gap1: {
-    marginTop: '5%',
+    marginTop: '20@vs',
   },
   gap2: {
-    marginTop: '12%',
+    marginTop: '30@s',
   },
+  gap3: {marginTop: '20@s'},
   line1: {
-    fontWeight: 'bold',
     lineHeight: 22,
     letterSpacing: 0.41,
-    ...Fonts.Lato17R,
+    ...Fonts.Lato17B,
   },
   line2: {
-    fontWeight: 'bold',
     lineHeight: 22,
     letterSpacing: 0.36,
-    ...Fonts.Lato15R,
+    ...Fonts.Lato15B,
   },
-  btn: {marginTop: '50@s'},
+  btn: {marginTop: '5@vs'},
   button: {
     height: '46@vs',
     width: '290@s',
     alignSelf: 'center',
-    marginVertical: '10@vs',
     backgroundColor: RawColors.sugarCane,
   },
   buttonText: {
