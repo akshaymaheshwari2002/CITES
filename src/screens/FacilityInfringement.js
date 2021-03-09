@@ -77,10 +77,7 @@ const styles = ScaledSheet.create({
     ...Fonts.HelveticaNeue30B,
   },
   content: {
-    alignSelf: 'center',
     ...Fonts.Lato15R,
-    lineHeight: 22,
-    letterSpacing: 0.36,
     color: RawColors.tuna,
     marginTop: '30@s',
   },
