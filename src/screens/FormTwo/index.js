@@ -45,10 +45,10 @@ const FormTwo = ({navigation}) => {
             formTwo: {
               ...data,
               accessToVeterinaryServices: Object.keys(
-                data?.accessToVeterinaryServices ?? [],
+                data?.accessToVeterinaryServices ?? {},
               ),
               animalKeptAtOtherLocation: Object.keys(
-                data?.animalKeptAtOtherLocation ?? [],
+                data?.animalKeptAtOtherLocation ?? {},
               ),
             },
           },

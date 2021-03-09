@@ -53,28 +53,56 @@ export default class Species {
     this.dateFirstSpeciesAcquired = dateFirstSpeciesAcquired;
     this.sourceCodeInitialStock = sourceCodeInitialStock;
     this.lifeStageOfInitialStock = lifeStageOfInitialStock;
-    this.numberOfMalesInitialStock = numberOfMalesInitialStock;
-    this.numberOfFemalesInitialStock = numberOfFemalesInitialStock;
+    this.numberOfMalesInitialStock = numberOfMalesInitialStock
+      ? parseInt(numberOfMalesInitialStock, 10)
+      : numberOfMalesInitialStock;
+    this.numberOfFemalesInitialStock = numberOfFemalesInitialStock
+      ? parseInt(numberOfFemalesInitialStock, 10)
+      : numberOfFemalesInitialStock;
     this.additionalAnimalsAcquiredSinceInitialStock = additionalAnimalsAcquiredSinceInitialStock;
     this.addressOfAdditionalStock = addressOfAdditionalStock;
     this.doYouBreedThisSpecies = doYouBreedThisSpecies;
     this.whenDidYouBreedThisSpecies = whenDidYouBreedThisSpecies;
-    this.numberOfLittersPerYear = numberOfLittersPerYear;
-    this.numberOfOffspringPerLitter = numberOfOffspringPerLitter;
-    this.numberProducedInPreviousYear = numberProducedInPreviousYear;
+    this.numberOfLittersPerYear = numberOfLittersPerYear
+      ? parseInt(numberOfLittersPerYear, 10)
+      : numberOfLittersPerYear;
+    this.numberOfOffspringPerLitter = numberOfOffspringPerLitter
+      ? parseInt(numberOfOffspringPerLitter, 10)
+      : numberOfOffspringPerLitter;
+    this.numberProducedInPreviousYear = numberProducedInPreviousYear
+      ? parseInt(numberProducedInPreviousYear, 10)
+      : numberProducedInPreviousYear;
     this.doYouRanchThisSpecies = doYouRanchThisSpecies;
     this.lifeStageHarvested = lifeStageHarvested;
-    this.numberHarvestedInPreviousYear = numberHarvestedInPreviousYear;
-    this.noOfAdultsPresentFacilityInfo = noOfAdultsPresentFacilityInfo;
-    this.noOfAdultsPresentInspectionInfo = noOfAdultsPresentInspectionInfo;
-    this.noOfMalesPresentFacilityInfo = noOfMalesPresentFacilityInfo;
-    this.noOfMalesPresentInspectionInfo = noOfMalesPresentInspectionInfo;
-    this.noOfFemalesPresentFacilityInfo = noOfFemalesPresentFacilityInfo;
-    this.noOfFemalesPresentInspectionInfo = noOfFemalesPresentInspectionInfo;
+    this.numberHarvestedInPreviousYear = numberHarvestedInPreviousYear
+      ? parseInt(numberHarvestedInPreviousYear, 10)
+      : numberHarvestedInPreviousYear;
+    this.noOfAdultsPresentFacilityInfo = noOfAdultsPresentFacilityInfo
+      ? parseInt(noOfAdultsPresentFacilityInfo, 10)
+      : noOfAdultsPresentFacilityInfo;
+    this.noOfAdultsPresentInspectionInfo = noOfAdultsPresentInspectionInfo
+      ? parseInt(noOfAdultsPresentInspectionInfo, 10)
+      : noOfAdultsPresentInspectionInfo;
+    this.noOfMalesPresentFacilityInfo = noOfMalesPresentFacilityInfo
+      ? parseInt(noOfMalesPresentFacilityInfo, 10)
+      : noOfMalesPresentFacilityInfo;
+    this.noOfMalesPresentInspectionInfo = noOfMalesPresentInspectionInfo
+      ? parseInt(noOfMalesPresentInspectionInfo, 10)
+      : noOfMalesPresentInspectionInfo;
+    this.noOfFemalesPresentFacilityInfo = noOfFemalesPresentFacilityInfo
+      ? parseInt(noOfFemalesPresentFacilityInfo, 10)
+      : noOfFemalesPresentFacilityInfo;
+    this.noOfFemalesPresentInspectionInfo = noOfFemalesPresentInspectionInfo
+      ? parseInt(noOfFemalesPresentInspectionInfo, 10)
+      : noOfFemalesPresentInspectionInfo;
     this.percentageOfFemalesBreedEachYear = percentageOfFemalesBreedEachYear;
     this.foodFedToAdults = foodFedToAdults;
-    this.noOfJuvenilesPresentFacilityInfo = noOfJuvenilesPresentFacilityInfo;
-    this.noOfJuvenilesPresentInspectionInfo = noOfJuvenilesPresentInspectionInfo;
+    this.noOfJuvenilesPresentFacilityInfo = noOfJuvenilesPresentFacilityInfo
+      ? parseInt(noOfJuvenilesPresentFacilityInfo, 10)
+      : noOfJuvenilesPresentFacilityInfo;
+    this.noOfJuvenilesPresentInspectionInfo = noOfJuvenilesPresentInspectionInfo
+      ? parseInt(noOfJuvenilesPresentInspectionInfo, 10)
+      : noOfJuvenilesPresentInspectionInfo;
     this.ageAtSexualMaturity = ageAtSexualMaturity;
     this.sizeOrMassAtSexualMaturity = sizeOrMassAtSexualMaturity;
     this.sizeOrMassAtSaleOrExport = sizeOrMassAtSaleOrExport;

@@ -4,7 +4,7 @@ import createIntl from '@utils/Intl';
 
 export default (fieldProps = {}) => {
   const {formatMessage} = createIntl();
-  const {required} = getValidators();
+  const {required, validateNumber} = getValidators();
 
   return [
     {
@@ -25,7 +25,7 @@ export default (fieldProps = {}) => {
         id: 'form.label.totalSpecimen',
       }),
       name: 'numberOfSpecimen',
-      rules: {required},
+      rules: {required, validate: {validateNumber}},
       keyboardType: 'number-pad',
     },
     {
@@ -33,7 +33,7 @@ export default (fieldProps = {}) => {
       label: formatMessage({id: 'form.label.noOfBreedingAdult'}),
       placeholder: formatMessage({id: 'form.label.noOfBreedingAdult'}),
       name: 'numberOfBreedingAdults',
-      rules: {required},
+      rules: {required, validate: {validateNumber}},
       keyboardType: 'number-pad',
     },
     {
@@ -41,7 +41,7 @@ export default (fieldProps = {}) => {
       label: formatMessage({id: 'form.label.specimenExported'}),
       placeholder: formatMessage({id: 'form.label.specimenExported'}),
       name: 'numberOfSpeciemenExportedSinceLastInspection',
-      rules: {required},
+      rules: {required, validate: {validateNumber}},
       keyboardType: 'number-pad',
     },
     {

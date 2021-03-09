@@ -25,7 +25,7 @@ export default (fieldProps = {}) => {
       ],
     },
     {
-      label: formatMessage({id: 'form.label.stageHarvested'}),
+      label: formatMessage({id: 'form.label.lifeStageHarvested'}),
       placeholder: formatMessage({id: 'form.label.lifeStageHarvested'}),
       name: 'lifeStageHarvested',
       rules: {required},
