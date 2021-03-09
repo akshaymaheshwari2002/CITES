@@ -10,6 +10,7 @@ import OnboardingThreeA from './OnboardingThreeA';
 import StepsSummary from './StepsSummary';
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
+import StepThree from './StepThree';
 import FeedbackOne from './FeedbackOne';
 import HomePage from './HomePage';
 import SourceFlow from './SourceFlow';
@@ -23,6 +24,7 @@ import WebView from './WebView';
 import FormOne from './FormOne';
 import FormTwo from './FormTwo';
 import FormThree from './FormThree';
+import FormFour from './FormFour';
 import SearchDummy from './SearchDummy';
 import Notes from './Notes';
 import DrawerMenu from './DrawerMenu';
@@ -46,6 +48,7 @@ export {
   FacilityScoreLessEight,
   FacilityScoreGreaterEight,
   FeedbackTwo,
+  StepThree,
   FacilityRegistered,
   SourceCodeSelection,
   LanguageSelection,
@@ -71,6 +74,7 @@ export {
   FormOne,
   FormTwo,
   FormThree,
+  FormFour,
   DetermineSourceCode,
   FormOneSummary,
   InspectionOnboarding,
