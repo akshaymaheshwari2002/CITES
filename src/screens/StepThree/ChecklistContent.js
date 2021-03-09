@@ -46,6 +46,9 @@ const checklistContent = ({checkliststyles, bullet}) => {
               checkliststyles.buttonLarge,
             ]}
             buttonTextStyle={(pressed) => checkliststyles.buttonTextStyle}
+            onPress={() => {
+              navigate('FormFour');
+            }}
           />
         </View>
       ),

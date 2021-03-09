@@ -122,11 +122,15 @@
   "screen.FacilityScore.headerPartTwo": "SCORE",
   "screen.FacilityScore.title": "All forms completed. A number of points has been summed to determine the final facility score. Use this facility score to make a final determination about the facility.",
   "screen.FacilityScoreGreaterEight.contentOne": "8-11",
-  "screen.FacilityScoreGreaterEight.contentTwo": "POINTS",
-  "screen.FacilityScoreGreaterEight.contentThree": "It is likely that the species in question is being ranched - apply source code R. In the case of operations claiming to breed the species in captivity, some doubt remains on the appropriateness of using source code C or D. Caution should be exercised when issuing permits. However, this score may simply reflect sub-optimal management, and additional data from more rigorous inspections are needed to determine production capacity with confidence.",
   "screen.FacilityScoreLessEight.contentOne": "< 8",
-  "screen.FacilityScoreLessEight.contentTwo": "POINTS",
+  "screen.FacilityScoreGreaterEleven.contentOne": "> 11",
+  "screen.FacilityScoreInformation.contentTwo": "POINTS",
+  "screen.FacilityScoreGreaterEight.contentThree": "It is likely that the species in question is being ranched - apply source code R. In the case of operations claiming to breed the species in captivity, some doubt remains on the appropriateness of using source code C or D. Caution should be exercised when issuing permits. However, this score may simply reflect sub-optimal management, and additional data from more rigorous inspections are needed to determine production capacity with confidence.",
   "screen.FacilityScoreLessEight.contentThree": "It is unlikely that the facility is breeding or ranching the number of specimens claimed. Management Authorities should monitor the facilities’ operations closely. Further, more rigorous, inspections should be undertaken with the aid of additional (appropriate) expertise. Caution should be exercised when issuing permits for export. If additional inspections confirm illegal activity, the matter should be referred to enforcement officials for appropriate action.",
+  "screen.FacilityScoreGreaterEleven.contentThreePartOne":"There is a" ,
+  "screen.FacilityScoreGreaterEleven.contentThreePartTwo": " very high",
+  "screen.FacilityScoreGreaterEleven.contentThreePartThree":" probability that the facility is ranching or breeding animals in captivity.",
+  "screen.FacilityScoreGreaterEleven.contentThreePartFour":"No further action is required.",
   "screen.FacilityScore.contentOne": "TOTAL",
   "screen.FacilityScore.contentTwo": "POINTS",
   "screen.OnboardingOne.contentOne": "CITIES Management Authorities and others should conduct ",
@@ -421,5 +425,6 @@
   "formFourFor4": "FOR APPENDIX I SPECIES",
   "button.yes": "Yes",
   "button.no": "No",
-  "button.moreInfo": "More Information"
+  "button.moreInfo": "More Information",
+  "button.continueWithStep3": "CONTINUE WITH STEP 3"
 }

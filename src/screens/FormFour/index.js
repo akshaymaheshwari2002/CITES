@@ -28,22 +28,31 @@ const FormFour = ({navigation: {navigate, goBack}}) => {
     };
   }, [onbackPress, isCurrentScreenFocused]);
 
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', onbackPress);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', onbackPress);
+    };
+  }, [onbackPress, isCurrentScreenFocused]);
+
   const onbackPress = useCallback(() => {
-    console.log(score);
-    if (!isCurrentScreenFocused || questionNumber < 1) {
-      return false;
-    } else {
+    if (isCurrentScreenFocused && questionNumber > 1) {
       setQuestionNumber(questionNumber - 1);
       setScore((state) => {
         state.pop();
         return state;
       });
       return true;
+    } else {
+      return false;
     }
-  }, [isCurrentScreenFocused, questionNumber, score]);
-  useEffect(() => {
-    console.log(score);
-  }, [score]);
+  }, [isCurrentScreenFocused, questionNumber]);
+
+  const handleSum = (_score) => {
+    return _score.reduce((a, b) => {
+      return a + b;
+    }, 0);
+  };
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
       <Header
@@ -98,11 +107,18 @@ const FormFour = ({navigation: {navigate, goBack}}) => {
             return styles.button;
           }}
           onPress={() => {
-            setQuestionNumber(questionNumber + 1);
-            setScore((state) => {
-              state.push(scoreRelation[questionNumber].yes);
-              return [...state];
-            });
+            if (questionNumber < 11) {
+              setQuestionNumber(questionNumber + 1);
+              setScore((state) => {
+                state.push(scoreRelation[questionNumber].yes);
+                return [...state];
+              });
+            } else if (questionNumber === 11) {
+              const _score = [...score, scoreRelation[questionNumber].yes];
+              setScore(_score);
+              const sum = handleSum(_score);
+              navigate('FacilityScore', {totalScore: sum});
+            }
           }}
         />
         <Button
@@ -116,11 +132,21 @@ const FormFour = ({navigation: {navigate, goBack}}) => {
             return styles.button;
           }}
           onPress={() => {
-            setQuestionNumber(questionNumber + 1);
-            setScore((state) => {
-              state.push(scoreRelation[questionNumber].no);
-              return [...state];
-            });
+            if (questionNumber < 11) {
+              setQuestionNumber(questionNumber + 1);
+              setScore((state) => {
+                state.push(scoreRelation[questionNumber].no);
+                return [...state];
+              });
+            } else if (questionNumber === 11) {
+              const _score = [...score, scoreRelation[questionNumber].no];
+              setScore(_score);
+              const sum = handleSum(_score);
+              navigate('TabNavigator', {
+                screen: 'FacilityScore',
+                params: {totalScore: sum},
+              });
+            }
           }}
         />
         <Button
@@ -134,7 +160,6 @@ const FormFour = ({navigation: {navigate, goBack}}) => {
             return styles.button;
           }}
           onPress={() => {
-            console.log(questionNumber);
             dispatch(
               setHelpText(
                 HelpText[form4Questions[questionNumber].moreInfo.helpTextKey],

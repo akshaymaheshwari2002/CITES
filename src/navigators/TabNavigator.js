@@ -26,6 +26,8 @@ import {
   FeedbackTwo,
   FeedbackOne,
   StepSummary,
+  FacilityScore,
+  FacilityScoreInformation,
   Q4MoreInfo,
   Q9MoreInfo,
   Q1MoreInfo,
@@ -71,6 +73,11 @@ const AppNavigator = () => {
       <Tab.Screen name="FormTwo" component={FormTwo} />
       <Tab.Screen name="FormThree" component={FormThree} />
       <Tab.Screen name="FormFour" component={FormFour} />
+      <Tab.Screen name="FacilityScore" component={FacilityScore} />
+      <Tab.Screen
+        name="FacilityScoreInformation"
+        component={FacilityScoreInformation}
+      />
       <Tab.Screen name="Search" component={SearchDummy} />
       <Tab.Screen name="Notes" component={Notes} />
       <Tab.Screen name="DrawerMenu" component={DrawerMenu} />

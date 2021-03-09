@@ -1,7 +1,6 @@
 import ProductionCapacityCalculator from './ProductionCapacityCalculator';
 import FacilityScore from './FacilityScore';
-import FacilityScoreLessEight from './FacilityScoreLessEight';
-import FacilityScoreGreaterEight from './FacilityScoreGreaterEight';
+import FacilityScoreInformation from './FacilityScoreInformation';
 import FeedbackTwo from './FeedbackTwo';
 import LanguageSelection from './LanguageSelection';
 import StepsSummary from './StepsSummary';
@@ -43,8 +42,7 @@ import InspectionNotes from './InspectionNotes';
 export {
   FacilityScore,
   MoreInformation,
-  FacilityScoreLessEight,
-  FacilityScoreGreaterEight,
+  FacilityScoreInformation,
   FeedbackTwo,
   StepThree,
   FacilityRegistered,
