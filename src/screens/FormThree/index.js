@@ -50,8 +50,8 @@ const FormThree = ({navigation: {navigate}}) => {
     setTimeout(() => scrollViewRef.current.scrollToPosition(0, 0, true), 200);
   }, []);
   const handleBackPress = useCallback(() => {
-    navigate.goBack();
-  }, [navigate]);
+    goBack();
+  }, [goBack]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
