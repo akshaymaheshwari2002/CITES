@@ -1,35 +1,30 @@
-import React, {useEffect} from 'react';
-import {Text, TouchableOpacity, Image, View} from 'react-native';
+import React from 'react';
+import {Text, Image, View} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
 
 import {Fonts} from '@styles/Themes';
-import {Container} from '@atoms';
+import {Container, Header} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
 import {Images} from '@assets';
 
-const OnboardingThreeA = ({navigation}) => {
+const OnboardingThreeA = ({
+  onBackPress = () => {},
+  onForwardPress = () => {},
+}) => {
   const {formatMessage} = useIntl();
 
-  useEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate('TabNavigator', {
-              screen: 'DetermineSourceCode',
-              params: {showToolTip: true},
-            })
-          }>
-          <Icon name="chevron-right" size={ms(26)} />
-        </TouchableOpacity>
-      ),
-    });
-  }, [navigation]);
-
   return (
-    <Container>
+    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+      <Header
+        leftContent={
+          <Icon name="chevron-left" size={ms(26)} onPress={onBackPress} />
+        }
+        rightContent={
+          <Icon name="chevron-right" size={ms(26)} onPress={onForwardPress} />
+        }
+      />
       <Container.ScrollView style={CommonStyles.screenContainer}>
         <View style={styles.content}>
           <Text style={styles.txt}>
