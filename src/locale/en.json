@@ -385,5 +385,7 @@
   "form.label.sizeOrMassAtSaleOrExport": "Approximate size at sale or export (cm or g)",
   "form.label.percentageOfJuvenilesSurviveBeyond2Weeks": "Percentage of juveniles to survive beyond 2 weeks, including mortalities of eggs that did not hatch.",
   "form.label.foodFedToRearingAndJuveniles": "What do you feed juveniles?",
-  "button.submit": "SUBMIT"
+  "button.submit": "SUBMIT",
+  "screen.Onboarding4A5.WalkThroughContentRightHeader":"Tap this for general information on applying source codes",
+  "screen.Onboarding4A5.WalkThroughContentOne":"Tap for more information on the question"
 }

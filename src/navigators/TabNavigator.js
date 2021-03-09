@@ -87,7 +87,11 @@ const AppNavigator = () => {
         component={ProductionCapacityCalculator}
       />
       <Tab.Screen name="StepSummary" component={StepSummary} />
-      <Tab.Screen name="DetermineSourceCode" component={DetermineSourceCode} />
+      <Tab.Screen
+        name="DetermineSourceCode"
+        component={DetermineSourceCode}
+        initialParams={{showToolTip: false}}
+      />
     </Tab.Navigator>
   );
 };

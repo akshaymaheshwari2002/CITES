@@ -37,7 +37,9 @@ const SourceFlow = ({navigation}) => {
               imageStyle={styles.backgroundImage}>
               <View style={styles.contentContainer}>
                 <Button
-                  onPress={() => navigation.navigate('OnboardingOneA')}
+                  onPress={() =>
+                    navigation.navigate('SourceCodeDeterminationOnboarding')
+                  }
                   buttonStyle={() => styles.filledButton}
                   buttonTextStyle={() => ({color: RawColors.black})}
                   buttonContent={
@@ -122,9 +124,6 @@ const styles = ScaledSheet.create({
   buttonTextOne: {
     ...Fonts.Lato17R,
     color: RawColors.darkGreyBlue,
-    alignSelf: 'flex-start',
-    marginLeft: '16@s',
-    marginVertical: '30@s',
   },
 
   logo: {

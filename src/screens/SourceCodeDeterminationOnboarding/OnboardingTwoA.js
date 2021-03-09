@@ -1,30 +1,29 @@
-import React, {useEffect} from 'react';
-import {Text, TouchableOpacity, ImageBackground} from 'react-native';
+import React from 'react';
+import {Text, ImageBackground} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 
-import {Container} from '@atoms';
+import {Container, Header} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import {Images} from '@assets';
 import CommonStyles from '@styles/CommonStyles';
 
-const OnboardingTwoA = ({navigation}) => {
+const OnboardingTwoA = ({
+  onBackPress = () => {},
+  onForwardPress = () => {},
+}) => {
   const {formatMessage} = useIntl();
-
-  useEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <TouchableOpacity
-          onPress={() => navigation.navigate('OnboardingThreeA')}>
-          <Icon name="chevron-right" size={ms(26)} />
-        </TouchableOpacity>
-      ),
-    });
-  }, [navigation]);
-
   return (
-    <Container>
+    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+      <Header
+        leftContent={
+          <Icon name="chevron-left" size={ms(26)} onPress={onBackPress} />
+        }
+        rightContent={
+          <Icon name="chevron-right" size={ms(26)} onPress={onForwardPress} />
+        }
+      />
       <ImageBackground
         source={Images.onboardingTwo}
         style={CommonStyles.flex1}
