@@ -9,16 +9,20 @@ export default (fieldProps = {}) => {
   return [
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.numberOfJuveniles'}),
-      placeholder: formatMessage({id: 'form.label.numberOfJuveniles'}),
-      name: 'numberOfJuvenilesFacility information',
+      label: formatMessage({id: 'form.label.noOfJuvenilesPresentFacilityInfo'}),
+      placeholder: formatMessage({
+        id: 'form.label.noOfJuvenilesPresentFacilityInfo',
+      }),
+      name: 'noOfJuvenilesPresentFacilityInfo',
       rules: {required},
       keyboardType: 'number-pad',
     },
     {
       defaultValue: '',
-      placeholder: formatMessage({id: 'form.label.numberOfJuveniles'}),
-      name: 'numberOfJuvenilesInspection information',
+      placeholder: formatMessage({
+        id: 'form.label.noOfJuvenilesPresentFacilityInfo',
+      }),
+      name: 'noOfJuvenilesPresentInspectionInfo',
       rules: {required},
       keyboardType: 'number-pad',
     },
@@ -32,11 +36,11 @@ export default (fieldProps = {}) => {
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.sizeAtSexualMaturity'}),
+      label: formatMessage({id: 'form.label.sizeOrMassAtSexualMaturity'}),
       placeholder: formatMessage({
-        id: 'form.label.sizeAtSexualMaturity',
+        id: 'form.label.sizeOrMassAtSexualMaturity',
       }),
-      name: 'sizeAtSexualMaturity',
+      name: 'sizeOrMassAtSexualMaturity',
       rules: {required},
       keyboardType: 'number-pad',
     },
@@ -44,28 +48,30 @@ export default (fieldProps = {}) => {
       defaultValue: '',
       label: formatMessage({id: 'form.label.approxSizeAtSale'}),
       placeholder: formatMessage({
-        id: 'form.label.approxSizeAtSale',
+        id: 'form.label.sizeOrMassAtSaleOrExport',
       }),
-      name: 'approxSizeAtSale',
+      name: 'sizeOrMassAtSaleOrExport',
       rules: {required},
       keyboardType: 'number-pad',
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.percentageJuvenilesSurvive'}),
-      placeholder: formatMessage({
-        id: 'form.label.percentageJuvenilesSurvive',
+      label: formatMessage({
+        id: 'form.label.percentageOfJuvenilesSurviveBeyond2Weeks',
       }),
-      name: 'percentageJuvenilesSurvive',
+      placeholder: formatMessage({
+        id: 'form.label.percentageOfJuvenilesSurviveBeyond2Weeks',
+      }),
+      name: 'percentageOfJuvenilesSurviveBeyond2Weeks',
       rules: {required},
       keyboardType: 'number-pad',
     },
     {
-      label: formatMessage({id: 'form.label.feedJuveniles'}),
+      label: formatMessage({id: 'form.label.foodFedToRearingAndJuveniles'}),
       placeholder: formatMessage({
-        id: 'form.label.feedJuveniles',
+        id: 'form.label.foodFedToRearingAndJuveniles',
       }),
-      name: 'feedJuveniles',
+      name: 'foodFedToRearingAndJuveniles',
       rules: {required},
       fieldType: Constants.TEXTINPUT_ARRAY,
     },

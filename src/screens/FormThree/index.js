@@ -4,7 +4,7 @@ import {ms, ScaledSheet, verticalScale} from 'react-native-size-matters';
 import {useForm} from 'react-hook-form';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector, shallowEqual} from 'react-redux';
 
 import {Button, Container, Header} from '@atoms';
 import {Form} from '@organisms';
@@ -16,8 +16,12 @@ import getFormFieldsPageFive from './FormFieldsPageFive';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
 
-const FormThree = ({navigation: {navigate}}) => {
+const FormThree = ({navigation: {navigate, goBack}}) => {
   const [formFieldsPage, setFormFieldsPage] = useState(1);
+  const registeredSpecies = useSelector(
+    (state) => state.sessionReducer.activeInspection?.registeredSpecies || [],
+    shallowEqual,
+  );
   const dispatch = useDispatch();
   const {formatMessage} = useIntl();
   const {reset, control, errors, watch, handleSubmit} = useForm({
@@ -25,10 +29,19 @@ const FormThree = ({navigation: {navigate}}) => {
   });
   const scrollViewRef = useRef();
   const savedFormData = useRef({});
+
   const formFields = useMemo(() => {
+    const fieldProps = {
+      _id: {
+        items: registeredSpecies.map(({name, _id}) => ({
+          label: name,
+          value: _id,
+        })),
+      },
+    };
     switch (formFieldsPage) {
       case 1:
-        return getFormFieldsPageOne();
+        return getFormFieldsPageOne(fieldProps);
       case 2:
         return getFormFieldsPageTwo();
       case 3:
@@ -38,7 +51,8 @@ const FormThree = ({navigation: {navigate}}) => {
       case 5:
         return getFormFieldsPageFive();
     }
-  }, [formFieldsPage]);
+  }, [formFieldsPage, registeredSpecies]);
+
   const _handleSubmit = useCallback(() => {
     if (formFieldsPage < 5) {
       setFormFieldsPage((state) => state + 1);
@@ -46,6 +60,7 @@ const FormThree = ({navigation: {navigate}}) => {
       navigate('TabNavigator', {screen: 'StepTwo'});
     }
   }, [formFieldsPage, navigate]);
+
   const scrollToTop = useCallback(() => {
     setTimeout(() => scrollViewRef.current.scrollToPosition(0, 0, true), 200);
   }, []);
