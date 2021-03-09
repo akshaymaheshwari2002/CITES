@@ -27,7 +27,6 @@ const FormTwo = ({navigation}) => {
   const _animalKeptAtOtherLocation = watch('animalKeptAtOtherLocation');
 
   const formFields = useMemo(() => {
-    console.log({_accessToVeterinaryServices, _animalKeptAtOtherLocation});
     return getFormFields({
       isAccessToVeterinaryServices:
         _accessToVeterinaryServices?.[Constants.YES] ?? false,

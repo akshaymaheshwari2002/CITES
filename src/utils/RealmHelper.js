@@ -51,38 +51,38 @@ export const get = (objectType, _objectId) =>
     }
   });
 
-export const addSpeciesToForm = (species, formOneId) =>
+export const addOrUpdateSpecies = (species, inspectionId) =>
   new Promise(async (resolve, reject) => {
     try {
       const realm = await getInstance();
 
-      if (formOneId) {
+      if (inspectionId) {
         realm.write(async () => {
-          const formOne = realm.objectForPrimaryKey(
-            'FormOne',
-            new BSON.ObjectId(formOneId),
+          const inspection = realm.objectForPrimaryKey(
+            'Inspection',
+            new BSON.ObjectId(inspectionId),
           );
 
           if (Array.isArray(species)) {
-            const newSpecies = formOne.registeredSpecies.length
+            const newSpecies = inspection.registeredSpecies.length
               ? species.filter(
                   ({name}) =>
-                    !formOne.registeredSpecies.some(
+                    !inspection.registeredSpecies.some(
                       ({name: _name}) => name === _name,
                     ),
                 )
               : species;
 
             newSpecies.forEach((item) => {
-              formOne.registeredSpecies.push(item);
+              inspection.registeredSpecies.push(item);
             });
           } else {
             await upsert('Species', species);
           }
-          resolve(JSON.parse(JSON.stringify(formOne)));
+          resolve(JSON.parse(JSON.stringify(inspection.registeredSpecies)));
         });
       } else {
-        reject('No FormOne _id specified');
+        reject('No Inspection _id specified');
       }
     } catch (err) {
       reject(err);
