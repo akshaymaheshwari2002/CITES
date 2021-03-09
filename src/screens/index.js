@@ -4,9 +4,6 @@ import FacilityScoreLessEight from './FacilityScoreLessEight';
 import FacilityScoreGreaterEight from './FacilityScoreGreaterEight';
 import FeedbackTwo from './FeedbackTwo';
 import LanguageSelection from './LanguageSelection';
-import OnboardingOneA from './OnboardingOneA';
-import OnboardingTwoA from './OnboardingTwoA';
-import OnboardingThreeA from './OnboardingThreeA';
 import StepsSummary from './StepsSummary';
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
@@ -32,6 +29,7 @@ import DetermineSourceCode from './DetermineSourceCode';
 import MoreInformation from './MoreInformation';
 import FormOneSummary from './FormOneSummary';
 import InspectionOnboarding from './InspectionOnboarding';
+import SourceCodeDeterminationOnboarding from './SourceCodeDeterminationOnboarding';
 import ExampleDialogueStep3 from './ExampleDialogueStep3';
 import ExampleDialogueStep2 from './ExampleDialogueStep2';
 import ExampleDialogueConsentFormStep2 from './ExampleDialogueConsentFormStep2';
@@ -56,9 +54,7 @@ export {
   StepSummary,
   SourceFlow,
   SourceCode,
-  OnboardingOneA,
-  OnboardingTwoA,
-  OnboardingThreeA,
+  SourceCodeDeterminationOnboarding,
   FacilityInfringement,
   Notes,
   DrawerMenu,

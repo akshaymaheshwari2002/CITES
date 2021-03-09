@@ -37,33 +37,46 @@ const TabBar = ({navigation}) => {
     [navigation],
   );
 
-  const handleTooltipClose = useCallback(
-    (consumerItem) => {
-      let _tooltipProps;
+  const handleTooltipClose = useCallback(() => {
+    let _tooltipProps;
+    const {consumerName, sourceCodeOnboarding} = tooltipProps;
 
-      if (consumerItem.name === 'home') {
+    if (consumerName === 'home') {
+      _tooltipProps = {
+        consumerName: 'search',
+        isVisible: true,
+        content: formatMessage({
+          id: 'screen.StepOne.WalkThroughContentThree',
+        }),
+        sourceCodeOnboarding,
+      };
+    } else if (consumerName === 'search') {
+      _tooltipProps = {
+        consumerName: 'edit',
+        isVisible: true,
+        content: formatMessage({
+          id: 'screen.StepOne.WalkThroughContentFour',
+        }),
+        sourceCodeOnboarding,
+      };
+    } else if (consumerName === 'edit') {
+      _tooltipProps = {
+        consumerName: 'list',
+        isVisible: true,
+        content: formatMessage({
+          id: 'screen.StepOne.WalkThroughContentFive',
+        }),
+        sourceCodeOnboarding,
+      };
+    } else {
+      if (sourceCodeOnboarding) {
         _tooltipProps = {
-          consumerName: 'search',
-          isVisible: true,
-          content: formatMessage({
-            id: 'screen.StepOne.WalkThroughContentThree',
-          }),
-        };
-      } else if (consumerItem.name === 'search') {
-        _tooltipProps = {
-          consumerName: 'edit',
-          isVisible: true,
-          content: formatMessage({
-            id: 'screen.StepOne.WalkThroughContentFour',
-          }),
-        };
-      } else if (consumerItem.name === 'edit') {
-        _tooltipProps = {
-          consumerName: 'list',
+          consumerName: 'moreInfoButton',
           isVisible: true,
           content: formatMessage({
             id: 'screen.StepOne.WalkThroughContentFive',
           }),
+          sourceCodeOnboarding,
         };
       } else {
         _tooltipProps = null;
@@ -79,11 +92,10 @@ const TabBar = ({navigation}) => {
           }),
         );
       }
+    }
 
-      dispatch(setTooltipProps(_tooltipProps));
-    },
-    [dispatch, formatMessage, navigation],
-  );
+    dispatch(setTooltipProps(_tooltipProps));
+  }, [dispatch, formatMessage, navigation, tooltipProps]);
 
   return (
     <View style={[styles.container, {marginBottom}]}>
@@ -91,7 +103,7 @@ const TabBar = ({navigation}) => {
         <Tooltip
           key={item.name}
           placement="top"
-          onClose={() => handleTooltipClose(item)}
+          onClose={handleTooltipClose}
           {...(tooltipProps?.consumerName === item.name ? tooltipProps : {})}>
           <TouchableOpacity
             onPress={() => handlePress(item)}

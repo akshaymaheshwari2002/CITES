@@ -8,17 +8,16 @@ export default class Species {
     numberOfSpeciemenExportedSinceLastInspection,
     sourceCodeOfPreviousExport,
     dateFirstSpeciesAcquired,
-    sourceCode,
+    sourceCodeInitialStock,
     lifeStageOfInitialStock,
-    numberOfMaleStock,
-    numberOfFemaleStock,
+    numberOfMalesInitialStock,
+    numberOfFemalesInitialStock,
     additionalAnimalsAcquiredSinceInitialStock,
     addressOfAdditionalStock,
     doYouBreedThisSpecies,
     whenDidYouBreedThisSpecies,
-    dateOfBreeding,
     numberOfLittersPerYear,
-    numberOfEggsInLitter,
+    numberOfOffspringPerLitter,
     numberProducedInPreviousYear,
     doYouRanchThisSpecies,
     lifeStageHarvested,
@@ -33,7 +32,7 @@ export default class Species {
     foodFedToAdults,
     noOfJuvenilesPresentFacilityInfo,
     noOfJuvenilesPresentInspectionInfo,
-    ageOfSexualMaturity,
+    ageAtSexualMaturity,
     sizeOrMassAtSexualMaturity,
     sizeOrMassAtSaleOrExport,
     percentageOfJuvenilesSurviveBeyond2Weeks,
@@ -52,17 +51,16 @@ export default class Species {
       : numberOfSpeciemenExportedSinceLastInspection;
     this.sourceCodeOfPreviousExport = sourceCodeOfPreviousExport;
     this.dateFirstSpeciesAcquired = dateFirstSpeciesAcquired;
-    this.sourceCode = sourceCode;
+    this.sourceCodeInitialStock = sourceCodeInitialStock;
     this.lifeStageOfInitialStock = lifeStageOfInitialStock;
-    this.numberOfMaleStock = numberOfMaleStock;
-    this.numberOfFemaleStock = numberOfFemaleStock;
+    this.numberOfMalesInitialStock = numberOfMalesInitialStock;
+    this.numberOfFemalesInitialStock = numberOfFemalesInitialStock;
     this.additionalAnimalsAcquiredSinceInitialStock = additionalAnimalsAcquiredSinceInitialStock;
     this.addressOfAdditionalStock = addressOfAdditionalStock;
     this.doYouBreedThisSpecies = doYouBreedThisSpecies;
     this.whenDidYouBreedThisSpecies = whenDidYouBreedThisSpecies;
-    this.dateOfBreeding = dateOfBreeding;
     this.numberOfLittersPerYear = numberOfLittersPerYear;
-    this.numberOfEggsInLitter = numberOfEggsInLitter;
+    this.numberOfOffspringPerLitter = numberOfOffspringPerLitter;
     this.numberProducedInPreviousYear = numberProducedInPreviousYear;
     this.doYouRanchThisSpecies = doYouRanchThisSpecies;
     this.lifeStageHarvested = lifeStageHarvested;
@@ -77,7 +75,7 @@ export default class Species {
     this.foodFedToAdults = foodFedToAdults;
     this.noOfJuvenilesPresentFacilityInfo = noOfJuvenilesPresentFacilityInfo;
     this.noOfJuvenilesPresentInspectionInfo = noOfJuvenilesPresentInspectionInfo;
-    this.ageOfSexualMaturity = ageOfSexualMaturity;
+    this.ageAtSexualMaturity = ageAtSexualMaturity;
     this.sizeOrMassAtSexualMaturity = sizeOrMassAtSexualMaturity;
     this.sizeOrMassAtSaleOrExport = sizeOrMassAtSaleOrExport;
     this.percentageOfJuvenilesSurviveBeyond2Weeks = percentageOfJuvenilesSurviveBeyond2Weeks;
