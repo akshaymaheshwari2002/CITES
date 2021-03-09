@@ -122,9 +122,6 @@ const styles = ScaledSheet.create({
   buttonTextOne: {
     ...Fonts.Lato17R,
     color: RawColors.darkGreyBlue,
-    alignSelf: 'flex-start',
-    marginLeft: '16@s',
-    marginVertical: '30@s',
   },
 
   logo: {
