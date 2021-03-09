@@ -4,6 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {TabBar} from '@molecules';
 import {
   StepOne,
+  StepTwo,
   FormOne,
   FormTwo,
   FormThree,
@@ -45,6 +46,7 @@ const AppNavigator = () => {
         component={StepOne}
         initialParams={{showToolTip: false}}
       />
+      <Tab.Screen name="StepTwo" component={StepTwo} />
       <Tab.Screen name="ContinueInspection" component={ContinueInspection} />
       <Tab.Screen
         name="ExampleDialogueStep3"
@@ -85,7 +87,11 @@ const AppNavigator = () => {
         component={ProductionCapacityCalculator}
       />
       <Tab.Screen name="StepSummary" component={StepSummary} />
-      <Tab.Screen name="DetermineSourceCode" component={DetermineSourceCode} />
+      <Tab.Screen
+        name="DetermineSourceCode"
+        component={DetermineSourceCode}
+        initialParams={{showToolTip: false}}
+      />
     </Tab.Navigator>
   );
 };

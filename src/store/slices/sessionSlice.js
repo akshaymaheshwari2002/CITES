@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import merge from 'deepmerge';
 
-import {upsert, addSpeciesToForm} from '@utils/RealmHelper';
+import {upsert, addOrUpdateSpecies} from '@utils/RealmHelper';
 import {Inspection, Species} from '@models';
 
 export const INITIAL_SESSION_STATE = {
@@ -30,12 +30,14 @@ export const saveInspection = createAsyncThunk(
 export const saveRegisteredSpecies = createAsyncThunk(
   'saveRegisteredSpecies',
   async (payload, {getState}) => {
-    const formOneId = getState().sessionReducer.activeInspection.stepOne
-      ?.formOne?._id;
+    const activeInspectionId = getState().sessionReducer.activeInspection._id;
     const speciesPayload = Array.isArray(payload)
       ? payload.map((species) => new Species(species))
       : new Species(payload);
-    const upsertedData = await addSpeciesToForm(speciesPayload, formOneId);
+    const upsertedData = await addOrUpdateSpecies(
+      speciesPayload,
+      activeInspectionId,
+    );
 
     return upsertedData;
   },
@@ -60,8 +62,7 @@ const sessionSlice = createSlice({
       state.activeInspection = action.payload;
     },
     [saveRegisteredSpecies.fulfilled]: (state, action) => {
-      state.activeInspection.stepOne = {...state.activeInspection.stepOne};
-      state.activeInspection.stepOne.formOne = action.payload;
+      state.activeInspection.registeredSpecies = action.payload;
     },
   },
 });

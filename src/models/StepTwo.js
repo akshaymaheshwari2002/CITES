@@ -1,5 +1,5 @@
 import {BSON} from 'realm';
-import {FormThree, FormTwo} from './';
+import {FormTwo} from './';
 export default class StepTwo {
   constructor({
     purposeDisclosedToOwner,
@@ -10,7 +10,6 @@ export default class StepTwo {
     sourceDetermined,
     recordsExaminedForStock,
     formTwo,
-    formThree,
   }) {
     this._id = new BSON.ObjectId();
     this.purposeDisclosedToOwner = purposeDisclosedToOwner;
@@ -21,6 +20,5 @@ export default class StepTwo {
     this.sourceDetermined = sourceDetermined;
     this.recordsExaminedForStock = recordsExaminedForStock;
     this.formTwo = formTwo ? new FormTwo(formTwo) : formTwo;
-    this.formThree = formThree ? new FormThree(formThree) : formThree;
   }
 }

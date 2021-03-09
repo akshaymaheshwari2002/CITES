@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 
 import {Fonts, RawColors} from '@styles/Themes';
 
-const _Tooltip = ({children, content, ...restProps}) => {
+const _Tooltip = ({children, content, focusedStyle, ...restProps}) => {
   return (
     <Tooltip
       useInteractionManager={true}
@@ -24,7 +24,7 @@ const _Tooltip = ({children, content, ...restProps}) => {
       <TooltipChildrenContext.Consumer>
         {({tooltipDuplicate}) =>
           tooltipDuplicate ? (
-            <View style={styles.focused}>{children}</View>
+            <View style={[styles.focused, focusedStyle]}>{children}</View>
           ) : (
             children
           )

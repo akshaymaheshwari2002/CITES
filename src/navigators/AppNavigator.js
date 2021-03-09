@@ -12,20 +12,17 @@ import {
   FacilityScoreLessEight,
   FacilityScoreGreaterEight,
   LanguageSelection,
-  OnboardingOneA,
-  OnboardingTwoA,
-  OnboardingThreeA,
   InspectionFlow,
   StepsSummary,
   SourceCode,
   SourceFlow,
   HomePage,
   WebView,
-  StepTwo,
   SourceCodeSelection,
   DetermineSourceCode,
   FormOneSummary,
   InspectionOnboarding,
+  SourceCodeDeterminationOnboarding,
 } from '@screens';
 import TabNavigator from './TabNavigator';
 
@@ -66,16 +63,12 @@ const AppNavigator = () => {
           component={SourceCodeSelection}
         />
         <Stack.Screen name="SourceCode" component={SourceCode} />
-        <Stack.Screen name="OnboardingOneA" component={OnboardingOneA} />
-        <Stack.Screen name="OnboardingTwoA" component={OnboardingTwoA} />
-        <Stack.Screen name="OnboardingThreeA" component={OnboardingThreeA} />
         <Stack.Screen
           name="TabNavigator"
           component={TabNavigator}
           options={{headerShown: false}}
         />
         <Stack.Screen name="StepsSummary" component={StepsSummary} />
-        <Stack.Screen name="StepTwo" component={StepTwo} />
         <Stack.Screen name="FacilityScore" component={FacilityScore} />
         <Stack.Screen
           name="InspectionFlow"
@@ -105,6 +98,11 @@ const AppNavigator = () => {
           name="InspectionOnboarding"
           options={{headerShown: false}}
           component={InspectionOnboarding}
+        />
+        <Stack.Screen
+          name="SourceCodeDeterminationOnboarding"
+          options={{headerShown: false}}
+          component={SourceCodeDeterminationOnboarding}
         />
       </Stack.Navigator>
     </NavigationContainer>

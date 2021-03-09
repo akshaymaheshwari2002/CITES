@@ -2,14 +2,14 @@ import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
 
-export default (fieldProps = {}) => {
+export default () => {
   const {formatMessage} = createIntl();
   const {required} = getValidators();
 
   return [
     {
-      label: formatMessage({id: 'form.label.ranchSpecies'}),
-      name: 'ranchSpecies',
+      label: formatMessage({id: 'form.label.doYouBreedThisSpecies'}),
+      name: 'doYouBreedThisSpecies',
       rules: {required},
       fieldType: Constants.CHOICELIST,
       mode: 'radio-button',
@@ -25,24 +25,38 @@ export default (fieldProps = {}) => {
       ],
     },
     {
-      label: formatMessage({id: 'form.label.stageHarvested'}),
-      placeholder: formatMessage({id: 'form.label.stageHarvested'}),
-      name: 'stageHarvested',
+      defaultValue: '',
+      label: formatMessage({id: 'form.label.whenDidYouBreedThisSpecies'}),
+      placeholder: formatMessage({id: 'form.label.whenDidYouBreedThisSpecies'}),
+      name: 'whenDidYouBreedThisSpecies',
       rules: {required},
-      fieldType: Constants.PICKER,
-      count: 1,
-      pickerText: formatMessage({id: 'button.addLifeStage'}),
+      fieldType: Constants.DATEPICKER,
     },
     {
-      label: formatMessage({id: 'form.label.numberHarvestedPreviousYear'}),
-      placeholder: formatMessage({
-        id: 'form.label.numberHarvestedPreviousYear',
-      }),
-      name: 'numberHarvestedPreviousYear',
+      defaultValue: '',
+      label: formatMessage({id: 'form.label.numberOfLittersPerYear'}),
+      placeholder: formatMessage({id: 'form.label.numberOfLittersPerYear'}),
+      name: 'numberOfLittersPerYear',
       rules: {required},
-      fieldType: Constants.PICKER,
-      count: 1,
-      pickerText: formatMessage({id: 'button.addLifeStage'}),
+      keyboardType: 'number-pad',
+    },
+    {
+      defaultValue: '',
+      label: formatMessage({id: 'form.label.numberOfOffspringPerLitter'}),
+      placeholder: formatMessage({id: 'form.label.numberOfOffspringPerLitter'}),
+      name: 'numberOfOffspringPerLitter',
+      rules: {required},
+      keyboardType: 'number-pad',
+    },
+    {
+      defaultValue: '',
+      label: formatMessage({id: 'form.label.numberProducedInPreviousYear'}),
+      placeholder: formatMessage({
+        id: 'form.label.numberProducedInPreviousYear',
+      }),
+      name: 'numberProducedInPreviousYear',
+      rules: {required},
+      keyboardType: 'number-pad',
     },
   ];
 };

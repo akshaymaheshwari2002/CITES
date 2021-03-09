@@ -1,7 +1,6 @@
 import Address from './Address';
 import FormFour from './FormFour';
 import FormOne from './FormOne';
-import FormThree from './FormThree';
 import FormTwo from './FormTwo';
 import Inspection from './Inspection';
 import Phone from './Phone';
@@ -15,7 +14,6 @@ export {
   Address,
   FormFour,
   FormOne,
-  FormThree,
   FormTwo,
   Inspection,
   Phone,

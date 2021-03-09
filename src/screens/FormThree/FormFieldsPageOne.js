@@ -2,14 +2,71 @@ import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
 
-export default () => {
+export default (fieldProps = {}) => {
   const {formatMessage} = createIntl();
   const {required} = getValidators();
 
   return [
     {
-      label: formatMessage({id: 'form.label.breedSpecies'}),
-      name: 'breedSpecies',
+      defaultValue: '',
+      label: formatMessage({id: 'form.label.selectSpeciesForm3'}),
+      placeholder: formatMessage({id: 'form.label.selectSpeciesForm3'}),
+      name: '_id',
+      rules: {required},
+      fieldType: Constants.PICKER,
+      ...fieldProps._id,
+    },
+    {
+      defaultValue: '',
+      label: formatMessage({id: 'form.label.dateFirstSpeciesAcquired'}),
+      placeholder: formatMessage({id: 'form.label.dateFirstSpeciesAcquired'}),
+      name: 'dateFirstSpeciesAcquired',
+      rules: {required},
+      fieldType: Constants.DATEPICKER,
+    },
+    {
+      defaultValue: '',
+      label: formatMessage({id: 'form.label.sourceCodeInitialStock'}),
+      placeholder: formatMessage({id: 'form.label.sourceCodeInitialStock'}),
+      name: 'sourceCodeInitialStock',
+      rules: {
+        required,
+        maxLength: {
+          value: 1,
+          message: formatMessage({id: 'form.error.singleCharacter'}),
+        },
+      },
+    },
+    {
+      defaultValue: '',
+      label: formatMessage({id: 'form.label.lifeStageOfInitialStock'}),
+      placeholder: formatMessage({id: 'form.label.lifeStageOfInitialStock'}),
+      name: 'lifeStageOfInitialStock',
+      rules: {required},
+    },
+    {
+      defaultValue: '',
+      label: formatMessage({id: 'form.label.numberOfMalesInitialStock'}),
+      placeholder: formatMessage({id: 'form.label.numberOfMalesInitialStock'}),
+      name: 'numberOfMalesInitialStock',
+      rules: {required},
+      keyboardType: 'number-pad',
+    },
+    {
+      defaultValue: '',
+      label: formatMessage({id: 'form.label.numberOfFemalesInitialStock'}),
+      placeholder: formatMessage({
+        id: 'form.label.numberOfFemalesInitialStock',
+      }),
+      name: 'numberOfFemalesInitialStock',
+      rules: {required},
+      keyboardType: 'number-pad',
+    },
+    {
+      label: formatMessage({
+        id: 'form.label.additionalAnimalsAcquiredSinceInitialStock',
+      }),
+      name: 'additionalAnimalsAcquiredSinceInitialStock',
       rules: {required},
       fieldType: Constants.CHOICELIST,
       mode: 'radio-button',
@@ -26,35 +83,10 @@ export default () => {
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.whenBreedSpecies'}),
-      placeholder: formatMessage({id: 'form.label.whenBreedSpecies'}),
-      name: 'whenBreedSpecies',
+      label: formatMessage({id: 'form.label.addressOfAdditionalStock'}),
+      placeholder: formatMessage({id: 'form.label.addressOfAdditionalStock'}),
+      name: 'addressOfAdditionalStock',
       rules: {required},
-      fieldType: Constants.DATEPICKER,
-    },
-    {
-      defaultValue: '',
-      label: formatMessage({id: 'form.label.numberOfClutches'}),
-      placeholder: formatMessage({id: 'form.label.numberOfClutches'}),
-      name: 'numberOfClutches',
-      rules: {required},
-      keyboardType: 'number-pad',
-    },
-    {
-      defaultValue: '',
-      label: formatMessage({id: 'form.label.numberOfOffspring'}),
-      placeholder: formatMessage({id: 'form.label.numberOfOffspring'}),
-      name: 'numberOfOffspring',
-      rules: {required},
-      keyboardType: 'number-pad',
-    },
-    {
-      defaultValue: '',
-      label: formatMessage({id: 'form.label.numberProducedPreviousYear'}),
-      placeholder: formatMessage({id: 'form.label.numberProducedPreviousYear'}),
-      name: 'numberProducedPreviousYear',
-      rules: {required},
-      keyboardType: 'number-pad',
     },
   ];
 };

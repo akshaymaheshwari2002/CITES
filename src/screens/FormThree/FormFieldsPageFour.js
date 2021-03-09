@@ -9,65 +9,81 @@ export default (fieldProps = {}) => {
   return [
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.numberOfJuveniles'}),
-      placeholder: formatMessage({id: 'form.label.numberOfJuveniles'}),
-      name: 'numberOfJuvenilesFacility information',
-      rules: {required},
-      keyboardType: 'number-pad',
-    },
-    {
-      defaultValue: '',
-      placeholder: formatMessage({id: 'form.label.numberOfJuveniles'}),
-      name: 'numberOfJuvenilesInspection information',
-      rules: {required},
-      keyboardType: 'number-pad',
-    },
-    {
-      defaultValue: '',
-      label: formatMessage({id: 'form.label.ageAtSexualMaturity'}),
-      placeholder: formatMessage({id: 'form.label.ageAtSexualMaturity'}),
-      name: 'ageAtSexualMaturity',
-      rules: {required},
-      keyboardType: 'number-pad',
-    },
-    {
-      defaultValue: '',
-      label: formatMessage({id: 'form.label.sizeAtSexualMaturity'}),
+      label: formatMessage({id: 'form.label.noOfAdultsPresentFacilityInfo'}),
       placeholder: formatMessage({
-        id: 'form.label.sizeAtSexualMaturity',
+        id: 'form.label.noOfAdultsPresentFacilityInfo',
       }),
-      name: 'sizeAtSexualMaturity',
+      name: 'noOfAdultsPresentFacilityInfo',
       rules: {required},
       keyboardType: 'number-pad',
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.approxSizeAtSale'}),
       placeholder: formatMessage({
-        id: 'form.label.approxSizeAtSale',
+        id: 'form.label.noOfAdultsPresentFacilityInfo',
       }),
-      name: 'approxSizeAtSale',
+      name: 'noOfAdultsPresentInspectionInfo',
       rules: {required},
       keyboardType: 'number-pad',
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.percentageJuvenilesSurvive'}),
+      label: formatMessage({id: 'form.label.noOfMalesPresentFacilityInfo'}),
       placeholder: formatMessage({
-        id: 'form.label.percentageJuvenilesSurvive',
+        id: 'form.label.noOfMalesPresentFacilityInfo',
       }),
-      name: 'percentageJuvenilesSurvive',
+      name: 'noOfMalesPresentFacilityInfo',
       rules: {required},
       keyboardType: 'number-pad',
     },
     {
-      label: formatMessage({id: 'form.label.feedJuveniles'}),
+      defaultValue: '',
       placeholder: formatMessage({
-        id: 'form.label.feedJuveniles',
+        id: 'form.label.noOfMalesPresentFacilityInfo',
       }),
-      name: 'feedJuveniles',
+      name: 'noOfMalesPresentInspectionInfo',
+      rules: {required},
+      keyboardType: 'number-pad',
+    },
+    {
+      defaultValue: '',
+      label: formatMessage({id: 'form.label.noOfFemalesPresentFacilityInfo'}),
+      placeholder: formatMessage({
+        id: 'form.label.noOfFemalesPresentFacilityInfo',
+      }),
+      name: 'noOfFemalesPresentFacilityInfo',
+      rules: {required},
+      keyboardType: 'number-pad',
+    },
+    {
+      defaultValue: '',
+      placeholder: formatMessage({
+        id: 'form.label.noOfFemalesPresentFacilityInfo',
+      }),
+      name: 'noOfFemalesPresentInspectionInfo',
+      rules: {required},
+      keyboardType: 'number-pad',
+    },
+    {
+      defaultValue: '',
+      label: formatMessage({id: 'form.label.percentageOfFemalesBreedEachYear'}),
+      placeholder: formatMessage({
+        id: 'form.label.percentageOfFemalesBreedEachYear',
+      }),
+      name: 'percentageOfFemalesBreedEachYear',
+      rules: {required},
+      keyboardType: 'number-pad',
+    },
+    {
+      label: formatMessage({id: 'form.label.foodFedToAdults'}),
+      placeholder: formatMessage({
+        id: 'form.label.foodFedToAdults',
+      }),
+      name: 'foodFedToAdults',
       rules: {required},
       fieldType: Constants.TEXTINPUT_ARRAY,
+      count: 1,
+      buttonText: formatMessage({id: 'button.addFood'}),
     },
   ];
 };
