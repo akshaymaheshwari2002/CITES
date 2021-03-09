@@ -8,8 +8,8 @@ export default (fieldProps = {}) => {
 
   return [
     {
-      label: formatMessage({id: 'form.label.ranchSpecies'}),
-      name: 'ranchSpecies',
+      label: formatMessage({id: 'form.label.doYouRanchThisSpecies'}),
+      name: 'doYouRanchThisSpecies',
       rules: {required},
       fieldType: Constants.CHOICELIST,
       mode: 'radio-button',
@@ -26,19 +26,19 @@ export default (fieldProps = {}) => {
     },
     {
       label: formatMessage({id: 'form.label.stageHarvested'}),
-      placeholder: formatMessage({id: 'form.label.stageHarvested'}),
-      name: 'stageHarvested',
+      placeholder: formatMessage({id: 'form.label.lifeStageHarvested'}),
+      name: 'lifeStageHarvested',
       rules: {required},
       fieldType: Constants.PICKER,
       count: 1,
       pickerText: formatMessage({id: 'button.addLifeStage'}),
     },
     {
-      label: formatMessage({id: 'form.label.numberHarvestedPreviousYear'}),
+      label: formatMessage({id: 'form.label.numberHarvestedInPreviousYear'}),
       placeholder: formatMessage({
-        id: 'form.label.numberHarvestedPreviousYear',
+        id: 'form.label.numberHarvestedInPreviousYear',
       }),
-      name: 'numberHarvestedPreviousYear',
+      name: 'numberHarvestedInPreviousYear',
       rules: {required},
       fieldType: Constants.PICKER,
       count: 1,
