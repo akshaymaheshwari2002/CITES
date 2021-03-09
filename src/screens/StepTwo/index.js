@@ -1,17 +1,18 @@
 import React, {useMemo, useCallback} from 'react';
 import {View} from 'react-native';
 import {useIntl} from 'react-intl';
-import {ScaledSheet} from 'react-native-size-matters';
+import {ScaledSheet, ms} from 'react-native-size-matters';
 import {useDispatch, useSelector, shallowEqual} from 'react-redux';
+import FeatherIcon from 'react-native-vector-icons/Feather';
 
 import {saveInspection} from '@store/slices/sessionSlice';
-import {Container, Button} from '@atoms';
+import {Container, Button, Header} from '@atoms';
 import {StepHeader, ChecklistCell} from '@molecules';
 import ChecklistContent from './ChecklistContent';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
 
-const StepTwo = ({navigation: {navigate}}) => {
+const StepTwo = ({navigation: {navigate, goback}}) => {
   const {formatMessage} = useIntl();
   const dispatch = useDispatch();
   const stepTwoData = useSelector(
@@ -42,6 +43,11 @@ const StepTwo = ({navigation: {navigate}}) => {
   );
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+      <Header
+        leftContent={
+          <FeatherIcon name="chevron-left" size={ms(26)} onPress={goback} />
+        }
+      />
       <StepHeader stepNumber={2} />
       <Container.ScrollView style={CommonStyles.flex1}>
         {ChecklistContent({

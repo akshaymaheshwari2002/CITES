@@ -26,6 +26,37 @@ export const SPECIES = {
     numberOfBreedingAdults: 'int?',
     numberOfSpeciemenExportedSinceLastInspection: 'int?',
     sourceCodeOfPreviousExport: 'string?',
+    dateFirstSpeciesAcquired: 'date?',
+    sourceCode: 'string?',
+    lifeStageOfInitialStock: 'string?',
+    numberOfMaleStock: 'int?',
+    numberOfFemaleStock: 'int?',
+    additionalAnimalsAcquiredSinceInitialStock: 'bool?',
+    addressOfAdditionalStock: 'Address?',
+    doYouBreedThisSpecies: 'bool?',
+    whenDidYouBreedThisSpecies: 'bool?',
+    dateOfBreeding: 'date?',
+    numberOfLittersPerYear: 'int?',
+    numberOfEggsInLitter: 'int?',
+    numberProducedInPreviousYear: 'int?',
+    doYouRanchThisSpecies: 'bool?',
+    lifeStageHarvested: 'string?',
+    numberHarvestedInPreviousYear: 'int?',
+    noOfAdultsPresentFacilityInfo: 'int?',
+    noOfAdultsPresentInspectionInfo: 'int?',
+    noOfMalesPresentFacilityInfo: 'int?',
+    noOfMalesPresentInspectionInfo: 'int?',
+    noOfFemalesPresentFacilityInfo: 'int?',
+    noOfFemalesPresentInspectionInfo: 'int?',
+    percentageOfFemalesBreedEachYear: 'int?',
+    foodFedToAdults: 'string?',
+    noOfJuvenilesPresentFacilityInfo: 'int?',
+    noOfJuvenilesPresentInspectionInfo: 'int?',
+    ageOfSexualMaturity: 'int?',
+    sizeOrMassAtSexualMaturity: 'int?',
+    sizeOrMassAtSaleOrExport: 'int?',
+    percentageOfJuvenilesSurviveBeyond2Weeks: 'int?',
+    foodFedToRearingAndJuveniles: 'string?',
   },
 };
 
@@ -51,7 +82,6 @@ export const FORM_ONE = {
     facilityOwner: 'string',
     facilityOwnerEmail: 'string',
     facilityOwnerPhone: 'Phone',
-    registeredSpecies: 'Species[]',
     facilityEstablishmentDate: 'string',
     typeOfInspection: 'string[]',
     citesInformationCode: 'string',
@@ -73,46 +103,6 @@ export const FORM_TWO = {
   },
 };
 
-export const FORM_THREE = {
-  name: 'FormThree',
-  primaryKey: '_id',
-  properties: {
-    _id: 'objectId',
-    species: 'Species',
-    dateFirstSpeciesAcquired: 'date',
-    sourceCode: 'string',
-    lifeStageOfInitialStock: 'string',
-    numberOfMaleStock: 'int',
-    numberOfFemaleStock: 'int',
-    additionalAnimalsAcquiredSinceInitialStock: 'bool',
-    addressOfAdditionalStock: 'Address?',
-    doYouBreedThisSpecies: 'bool',
-    whenDidYouBreedThisSpecies: 'bool?',
-    dateOfBreeding: 'date?',
-    numberOfLittersPerYear: 'int?',
-    numberOfEggsInLitter: 'int?',
-    numberProducedInPreviousYear: 'int?',
-    doYouRanchThisSpecies: 'bool',
-    lifeStageHarvested: 'string?',
-    numberHarvestedInPreviousYear: 'int?',
-    noOfAdultsPresentFacilityInfo: 'int',
-    noOfAdultsPresentInspectionInfo: 'int',
-    noOfMalesPresentFacilityInfo: 'int',
-    noOfMalesPresentInspectionInfo: 'int',
-    noOfFemalesPresentFacilityInfo: 'int',
-    noOfFemalesPresentInspectionInfo: 'int',
-    percentageOfFemalesBreedEachYear: 'int',
-    foodFedToAdults: 'string',
-    noOfJuvenilesPresentFacilityInfo: 'int',
-    noOfJuvenilesPresentInspectionInfo: 'int',
-    ageOfSexualMaturity: 'int',
-    sizeOrMassAtSexualMaturity: 'int',
-    sizeOrMassAtSaleOrExport: 'int',
-    percentageOfJuvenilesSurviveBeyond2Weeks: 'int',
-    foodFedToRearingAndJuveniles: 'string',
-  },
-};
-
 export const FORM_FOUR = {
   name: 'FormFour',
   primaryKey: '_id',
@@ -131,8 +121,6 @@ export const FORM_FOUR = {
     haveIdentificationMark: 'bool',
   },
 };
-
-// NEED TO DISCUSS - OPTIONAL OR NOT, SOURCE DETERMINATION
 
 export const STEP_ONE = {
   name: 'StepOne',
@@ -165,7 +153,6 @@ export const STEP_TWO = {
     sourceDetermined: 'bool?',
     recordsExaminedForStock: 'bool?',
     formTwo: 'FormTwo?',
-    formThree: 'FormThree?',
   },
 };
 
@@ -192,5 +179,6 @@ export const INSPECTION = {
     stepThree: 'StepThree?',
     notes: 'string[]',
     photos: 'string[]',
+    registeredSpecies: 'Species[]',
   },
 };

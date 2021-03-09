@@ -33,9 +33,7 @@ const FormOne = ({navigation}) => {
     (state) => state.sessionReducer.activeInspection.stepOne?.formOne?._id,
   );
   const registeredSpecies = useSelector(
-    (state) =>
-      state.sessionReducer.activeInspection.stepOne?.formOne
-        ?.registeredSpecies || [],
+    (state) => state.sessionReducer.activeInspection?.registeredSpecies || [],
     shallowEqual,
   );
   const selectedSpeciesId = watch('_id');
@@ -64,14 +62,14 @@ const FormOne = ({navigation}) => {
         }),
         {},
       );
-      activeFormData.registeredSpecies = activeFormData.registeredSpecies.map(
+      activeFormData.registeredSpecies = registeredSpecies.map(
         (species) => species.name,
       );
       delete activeFormData._id;
 
       reset(activeFormData);
     },
-    [reset],
+    [registeredSpecies, reset],
   );
 
   const setSpeciesDataInForm = useCallback(

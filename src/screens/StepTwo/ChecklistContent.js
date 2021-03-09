@@ -18,7 +18,11 @@ const checklistContent = ({checkliststyles, bullet}) => {
               id: 'screen.stepTwo.purposeDisclosedToOwner_1',
             })}
           </Text>
-          <Pressable onPress={() => {}} style={checklistContent.textLink}>
+          <Pressable
+            onPress={() => {
+              navigate('ExampleDialogueStep2');
+            }}
+            style={checklistContent.textLink}>
             <Text style={checkliststyles.textLink}>
               {formatMessage({
                 id: 'screen.stepTwo.purposeDisclosedToOwner_2',
@@ -127,6 +131,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
             &nbsp;
           </Text>
           <Button
+            onPress={() => navigate('FormThree')}
             buttonContent={formatMessage({
               id: 'screen.stepTwo.formThreeCompleted.FormThree',
             })}

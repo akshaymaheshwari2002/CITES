@@ -17,7 +17,10 @@ let countries;
   countries = _countries;
 })();
 
-export default () => {
+export default ({
+  isAccessToVeterinaryServices,
+  isAnimalKeptAtOtherLocation,
+}) => {
   const {formatMessage} = createIntl();
   const {required} = getValidators();
 
@@ -27,15 +30,21 @@ export default () => {
         fullTimeStaffs: '0',
         partTimeStaffs: '0',
       },
-      label_0: formatMessage({id: 'form.label.employmentHours'}),
+      label: formatMessage({id: 'form.label.employmentHours'}),
       label_1: formatMessage({id: 'form.label.fullTime'}),
       label_2: formatMessage({id: 'form.label.partTime'}),
       name: 'staffHours',
-      rules: {},
       fieldType: Constants.COUNTER_PAIR,
       showHelpIcon: true,
       onHelpIconPress: () => {
         store.dispatch(setHelpText(HelpTexts.staffCurrentAtFacility));
+      },
+      shouldChange: (value) => {
+        if (typeof value === 'number' || typeof value === 'string') {
+          return Number(value) >= 0;
+        } else {
+          return true;
+        }
       },
     },
     {
@@ -64,14 +73,14 @@ export default () => {
       label: formatMessage({id: 'form.label.vetNameAndAddress'}),
       placeholder: formatMessage({id: 'form.placeholder.veterinarianName'}),
       name: 'veterinarianName',
-      rules: {required},
+      rules: isAccessToVeterinaryServices ? {required} : {},
       fieldContainerStyle: {marginBottom: 0},
     },
     {
-      placeholder: formatMessage({id: 'form.placeholder.addressLineTwo'}),
+      placeholder: formatMessage({id: 'form.placeholder.veterinarianAddress'}),
       defaultValue: '',
       name: 'veterinarianAddress',
-      rules: {required},
+      rules: isAccessToVeterinaryServices ? {required} : {},
       fieldContainerStyle: {marginBottom: 0},
       style: {
         marginVertical: 0,
@@ -83,7 +92,7 @@ export default () => {
       placeholder: formatMessage({id: 'form.placeholder.country'}),
       defaultValue: '',
       name: 'veterinarianCountry',
-      rules: {required},
+      rules: isAccessToVeterinaryServices ? {required} : {},
       fieldType: Constants.COUNTRY_PICKER,
       items: countries,
       style: {
@@ -114,10 +123,11 @@ export default () => {
       },
     },
     {
+      defaultValue: [],
       label: formatMessage({id: 'form.label.addressOfOtherAnimals'}),
       placeholder: formatMessage({id: 'form.label.addressOfOtherAnimals'}),
       name: 'addressOfOtherAnimals',
-      rules: {required},
+      rules: isAnimalKeptAtOtherLocation ? {required} : {},
       fieldType: Constants.TEXTINPUT_ARRAY,
       count: 1,
       buttonText: formatMessage({id: 'form.button.addAddress'}),
