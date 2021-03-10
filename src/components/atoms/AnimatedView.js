@@ -1,20 +1,18 @@
 import React, {useRef, useEffect} from 'react';
-import {Easing, Dimensions, Animated} from 'react-native';
+import {Easing, Animated} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
-
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+import PropTypes from 'prop-types';
 
 const AnimatedView = ({
   children,
-  startXPos = windowWidth,
-  startYPos = windowHeight / 2,
-  endXPos = 0,
-  endYPos = 0,
-  elevatedXValue = 60,
-  elevatedYValue = -20,
-  easingFunction = Easing.elastic(1),
-  duration = 1000,
+  startXPos,
+  startYPos,
+  endXPos,
+  endYPos,
+  elevatedXValue,
+  elevatedYValue,
+  easingFunction,
+  duration,
 }) => {
   const isFocused = useIsFocused();
   const animationValue = useRef(new Animated.Value(0)).current;
@@ -49,6 +47,26 @@ const AnimatedView = ({
       {children}
     </Animated.View>
   );
+};
+AnimatedView.propTypes = {
+  startXPos: PropTypes.number.isRequired,
+  startYPos: PropTypes.number.isRequired,
+  endXPos: PropTypes.number,
+  endYPos: PropTypes.number,
+  elevatedXValue: PropTypes.number,
+  elevatedYValue: PropTypes.number,
+  duration: PropTypes.number,
+};
+
+AnimatedView.defaultProps = {
+  startXPos: 0,
+  startYPos: 0,
+  endXPos: 0,
+  endYPos: 0,
+  elevatedXValue: 60,
+  elevatedYValue: -20,
+  easingFunction: Easing.elastic(1),
+  duration: 1000,
 };
 
 export default AnimatedView;

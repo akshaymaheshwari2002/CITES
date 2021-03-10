@@ -110,7 +110,7 @@ const TabBar = ({navigation}) => {
             style={CommonStyles.centerContent}>
             <Icon
               name={item.icon}
-              size={ms(tooltipProps?.consumerName === item.name ? 24 : 34)}
+              size={ms(tooltipProps?.consumerName === item.name ? 22 : 24)}
               color={RawColors.pinkishGrey}
             />
           </TouchableOpacity>
@@ -125,7 +125,7 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    height: '74@vs',
+    height: '54@vs',
     backgroundColor: RawColors.whiteTwo,
   },
 });

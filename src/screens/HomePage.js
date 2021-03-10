@@ -18,7 +18,8 @@ const HomePage = ({navigation}) => {
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
       <ImageBackground
         style={styles.container}
-        source={Images.backgroundPatternTop}>
+        source={Images.backgroundPatternTop}
+        imageStyle={styles.resizeModeRepeat}>
         <Container.ScrollView contentContainerStyle={styles.scrollContainer}>
           <Image source={Images.logo} style={styles.logo} />
           <ImageBackground
@@ -73,6 +74,9 @@ const styles = ScaledSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: RawColors.darkSalmon,
+  },
+  resizeModeRepeat: {
+    resizeMode: 'repeat',
   },
   scrollContainer: {
     paddingTop: '120@vs',

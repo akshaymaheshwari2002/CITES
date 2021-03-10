@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {Image, View, Dimensions, Easing} from 'react-native';
+import {Image, View, useWindowDimensions, Easing} from 'react-native';
 import Animated from 'react-native-reanimated';
 import {ScaledSheet, verticalScale} from 'react-native-size-matters';
 import {useDispatch, useSelector} from 'react-redux';
@@ -11,11 +11,11 @@ import {RawColors, Fonts} from '@styles/Themes';
 import {Images} from '@assets';
 import LocaleList from './LocaleList';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-
 const LanguageSelection = ({navigation}) => {
   const dispatch = useDispatch();
+
+  const windowWidth = useWindowDimensions().width;
+  const windowHeight = useWindowDimensions().height;
   const {formatMessage} = useIntl();
   const [isMount, setIsMount] = useState(true);
   const isMounting = useRef(true);
@@ -146,6 +146,7 @@ const LanguageSelection = ({navigation}) => {
     rectBarTranslate,
     scaleSearch,
     spinValue,
+    windowWidth,
     xPos,
     yPos,
   ]);

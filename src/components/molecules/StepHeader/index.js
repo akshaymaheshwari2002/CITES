@@ -1,16 +1,15 @@
 import React from 'react';
-import {Text, View, Dimensions, Easing} from 'react-native';
+import {Text, View, useWindowDimensions} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 
 import {AnimatedView} from '@atoms';
 import {RawColors, Fonts} from '@styles/Themes';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-
 const StepHeader = ({stepNumber = 1}) => {
   const intl = useIntl();
+  const windowWidth = useWindowDimensions().width;
+  const windowHeight = useWindowDimensions().height;
 
   return (
     <View style={styles.container}>

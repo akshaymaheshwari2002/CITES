@@ -10,12 +10,12 @@ import {Images} from '@assets';
 
 const InspectionFlow = ({navigation}) => {
   const {formatMessage} = useIntl();
-
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
       <ImageBackground
         style={styles.container}
-        source={Images.backgroundPatternTopBlur}>
+        source={Images.backgroundPatternTopBlur}
+        imageStyle={styles.resizeModeRepeat}>
         <Container.ScrollView contentContainerStyle={styles.scrollContainer}>
           <View style={styles.logo}>
             <Text style={styles.headerOne}>
@@ -138,6 +138,9 @@ const styles = ScaledSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: RawColors.greyLight,
+  },
+  resizeModeRepeat: {
+    resizeMode: 'repeat',
   },
   scrollContainer: {
     paddingTop: '140@vs',

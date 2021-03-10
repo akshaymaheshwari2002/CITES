@@ -1,5 +1,5 @@
 import React, {useRef, useCallback} from 'react';
-import {View, Dimensions, FlatList} from 'react-native';
+import {View, useWindowDimensions, FlatList} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
 import {RawColors} from '@styles/Themes';
@@ -9,10 +9,9 @@ import OnboardingTwo from './OnboardingTwo';
 import OnboardingThree from './OnboardingThree';
 import OnboardingFour from './OnboardingFour';
 
-const windowWidth = Dimensions.get('window').width;
-
 const OnBoardingScreens = ({navigation}) => {
   const flatListRef = useRef({});
+  const windowWidth = useWindowDimensions().width;
   const data = [OnboardingOne, OnboardingTwo, OnboardingThree, OnboardingFour];
 
   const handleBackPress = useCallback(
@@ -39,12 +38,15 @@ const OnBoardingScreens = ({navigation}) => {
     },
     [data, navigation, scrollToActiveIndex],
   );
-  const scrollToActiveIndex = useCallback((index) => {
-    flatListRef.current?.scrollToOffset({
-      offset: index * windowWidth,
-      animated: true,
-    });
-  }, []);
+  const scrollToActiveIndex = useCallback(
+    (index) => {
+      flatListRef.current?.scrollToOffset({
+        offset: index * windowWidth,
+        animated: true,
+      });
+    },
+    [windowWidth],
+  );
 
   return (
     <View style={styles.container}>
@@ -58,7 +60,12 @@ const OnBoardingScreens = ({navigation}) => {
         keyExtractor={(_, index) => index.toString()}
         renderItem={({item: Item, index}) => {
           return (
-            <View style={[styles.contentContainer, CommonStyles.shadowEffect]}>
+            <View
+              style={[
+                styles.contentContainer,
+                CommonStyles.shadowEffect,
+                {width: windowWidth},
+              ]}>
               <Item
                 onBackPress={() => handleBackPress(index)}
                 onForwardPress={() => handleForwardPress(index)}
@@ -78,7 +85,6 @@ const styles = ScaledSheet.create({
   },
   contentContainer: {
     flex: 1,
-    width: windowWidth,
   },
 });
 

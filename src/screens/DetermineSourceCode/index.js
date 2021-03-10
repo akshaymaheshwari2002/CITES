@@ -161,7 +161,7 @@ const DetermineSourceCode = ({
             `${interactedQuestionStack[interactedQuestionStack.length - 1]}`
           ].moreInfo ? (
             <Tooltip
-              placement="bottom"
+              placement="top"
               isVisible={
                 tooltipProps?.consumerName === 'moreInfoButton' ? true : false
               }
@@ -170,7 +170,7 @@ const DetermineSourceCode = ({
               })}
               onClose={handleLeftButtonTooltipClose}
               focusedStyle={{
-                height: scale(94),
+                height: scale(84),
                 width: scale(350),
               }}>
               <Button

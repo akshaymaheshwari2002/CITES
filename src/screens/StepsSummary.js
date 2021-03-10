@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, ImageBackground} from 'react-native';
+import {View, Text, ImageBackground, useWindowDimensions} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ms, ScaledSheet} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
@@ -11,7 +11,7 @@ import CommonStyles from '@styles/CommonStyles';
 
 const StepsSummary = ({navigation}) => {
   const {formatMessage} = useIntl();
-
+  const windowWidth = useWindowDimensions().width;
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Header
@@ -26,7 +26,7 @@ const StepsSummary = ({navigation}) => {
           source={Images.semiCircle}
           style={CommonStyles.flex1}
           imageStyle={styles.backgroundImage}>
-          <AnimatedView>
+          <AnimatedView startXPos={windowWidth} startYPos={windowWidth / 2}>
             <Text style={styles.title}>
               {formatMessage({id: 'screen.StepsSummary.headerPartOne'})}
             </Text>
