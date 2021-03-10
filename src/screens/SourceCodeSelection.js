@@ -51,7 +51,7 @@ const SourceCodeSelection = ({navigation}) => {
         }}
         ListFooterComponent={<View />}
         ListFooterComponentStyle={styles.footer}
-        keyExtractor={(item) => item.code}
+        keyExtractor={(code) => code}
       />
     </Container>
   );

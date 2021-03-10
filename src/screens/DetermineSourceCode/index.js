@@ -170,7 +170,7 @@ const DetermineSourceCode = ({
               })}
               onClose={handleLeftButtonTooltipClose}
               focusedStyle={{
-                height: scale(84),
+                height: scale(68),
                 width: scale(350),
               }}>
               <Button

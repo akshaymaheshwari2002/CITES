@@ -39,6 +39,7 @@ const Picker = React.forwardRef(
             style={[styles.picker, style]}
             placeholder=""
             placeholderStyle={[{color: RawColors.black}, Fonts.Lato15R]}
+            dropDownStyle={styles.dropDownStyle}
             itemStyle={styles.item}
             arrowSize={scale(24)}
             onChangeItem={({value}) => onChange(value)}
@@ -118,6 +119,10 @@ const styles = ScaledSheet.create({
   item: {
     justifyContent: 'flex-start',
     ...Fonts.Lato15R,
+    backgroundColor: RawColors.lightGrey,
+  },
+  dropDownStyle: {
+    backgroundColor: RawColors.lightGrey,
   },
 });
 
