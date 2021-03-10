@@ -24,6 +24,10 @@ const FormOneSummary = ({navigation}) => {
     (state) => state.sessionReducer.activeInspection.stepOne?.formOne || {},
     shallowEqual,
   );
+  const registeredSpecies = useSelector(
+    (state) => state.sessionReducer.activeInspection.registeredSpecies || {},
+    shallowEqual,
+  );
   const facilityData = useMemo(
     () => ({
       ...formData,
@@ -48,7 +52,7 @@ const FormOneSummary = ({navigation}) => {
     const file = await generatePdf({
       templates: [
         <FormOneHeader facilityData={facilityData} />,
-        <FormOneTemplate speciesData={facilityData.registeredSpecies} />,
+        <FormOneTemplate speciesData={registeredSpecies} />,
       ],
     });
     setFileUri({uri: file?.filePath});
@@ -91,23 +95,17 @@ const FormOneSummary = ({navigation}) => {
         <TouchableOpacity
           style={styles.slideBtn}
           onPress={() => {
-            if (isShowStep1) {
-              navigation.navigate('StepOne');
-              setShowEdit(false);
-            }
-            setShowStep1((state) => !state);
+            navigation.navigate('StepOne');
           }}>
           <View style={styles.row}>
-            {isShowStep1 ? (
-              <View style={[styles.padding16, styles.marginDimension]}>
-                <Text style={styles.text}>
-                  {formatMessage({id: 'screen.FormOneSummary.continueTo'})}
-                </Text>
-                <Text style={styles.text}>
-                  {formatMessage({id: 'screen.FormOneSummary.stepOne'})}
-                </Text>
-              </View>
-            ) : null}
+            <View style={[styles.padding16, styles.marginDimension]}>
+              <Text style={styles.text}>
+                {formatMessage({id: 'screen.FormOneSummary.continueTo'})}
+              </Text>
+              <Text style={styles.text}>
+                {formatMessage({id: 'screen.FormOneSummary.stepOne'})}
+              </Text>
+            </View>
             <View style={styles.justifyContent}>
               <Icon name="chevron-right" size={ms(26)} />
             </View>
@@ -118,23 +116,18 @@ const FormOneSummary = ({navigation}) => {
         <TouchableOpacity
           style={[styles.slideBtn, styles.borderStyle]}
           onPress={() => {
-            if (isShowEdit) {
-              navigation.navigate('FormOne');
-              setShowStep1(false);
-            }
-            setShowEdit((state) => !state);
+            navigation.navigate('FormOne');
           }}>
           <View style={styles.row}>
-            {isShowEdit ? (
-              <View style={styles.padding16}>
-                <Text style={styles.text}>
-                  {formatMessage({id: 'screen.FormOneSummary.edit'})}
-                </Text>
-                <Text style={styles.text}>
-                  {formatMessage({id: 'screen.FormOneSummary.information'})}
-                </Text>
-              </View>
-            ) : null}
+            <View style={styles.padding16}>
+              <Text style={styles.text}>
+                {formatMessage({id: 'screen.FormOneSummary.edit'})}
+              </Text>
+              <Text style={styles.text}>
+                {formatMessage({id: 'screen.FormOneSummary.information'})}
+              </Text>
+            </View>
+
             <View style={styles.justifyContent}>
               <Icon name="plus" size={ms(26)} />
             </View>
@@ -188,7 +181,7 @@ const styles = ScaledSheet.create({
     justifyContent: 'center',
     borderTopLeftRadius: '8@ms',
     borderBottomLeftRadius: '8@ms',
-    borderWidth: 0.5,
+    borderWidth: 1,
     borderColor: 'black',
   },
   row: {
