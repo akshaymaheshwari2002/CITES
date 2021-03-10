@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import React from 'react';
+import {View, Text, Image} from 'react-native';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 import Icon from 'react-native-vector-icons/Feather';

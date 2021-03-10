@@ -6,6 +6,7 @@ import {ScaledSheet} from 'react-native-size-matters';
 import {Container, Button} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import SourceCodeData from './SourceCode/SourceCodeData';
+import CommonStyles from '@styles/CommonStyles';
 
 const SourceCodeSelection = ({navigation}) => {
   const {formatMessage} = useIntl();
@@ -85,9 +86,7 @@ const styles = ScaledSheet.create({
     height: '148@vs',
     backgroundColor: '#F7FAF0',
     elevation: '5@s',
-    shadowColor: RawColors.softRed,
-    shadowRadius: '6@s',
-    shadowOffset: {height: 0, width: '3@s'},
+    ...CommonStyles.shadowEffect,
   },
 
   letter: {

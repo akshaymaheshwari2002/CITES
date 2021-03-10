@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import Config from '@config';
 import {Container, Button, Header} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
+import CommonStyles from '@styles/CommonStyles';
 
 const MoreInformation = ({navigation: {navigate, goBack}}) => {
   const {formatMessage} = useIntl();
@@ -115,10 +116,7 @@ const styles = ScaledSheet.create({
     width: '273@s',
     height: '148@vs',
     backgroundColor: '#F7FAF0',
-    elevation: '5@s',
-    shadowColor: RawColors.softRed,
-    shadowRadius: '6@s',
-    shadowOffset: {height: 0, width: '3@s'},
+    ...CommonStyles.shadowEffect,
   },
 
   letter: {

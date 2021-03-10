@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import {useDispatch, useSelector, shallowEqual} from 'react-redux';
-import FeatherIcon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/Feather';
 
 import {saveInspection} from '@store/slices/sessionSlice';
 import {Container, Button, Header} from '@atoms';
@@ -12,7 +12,7 @@ import ChecklistContent from './ChecklistContent';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
 
-const StepTwo = ({navigation: {navigate, goback}}) => {
+const StepTwo = ({navigation}) => {
   const {formatMessage} = useIntl();
   const dispatch = useDispatch();
   const stepTwoData = useSelector(
@@ -45,7 +45,7 @@ const StepTwo = ({navigation: {navigate, goback}}) => {
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
       <Header
         leftContent={
-          <FeatherIcon name="chevron-left" size={ms(26)} onPress={goback} />
+          <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
         }
       />
       <StepHeader stepNumber={2} />
