@@ -231,7 +231,7 @@ const styles = ScaledSheet.create({
   },
   questionContainer: {
     alignItems: 'center',
-    justifyContent: 'space-evenly',
+    justifyContent: 'flex-start',
     ...CommonStyles.flex1,
   },
   label: {

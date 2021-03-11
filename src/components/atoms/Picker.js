@@ -83,9 +83,7 @@ const Picker = React.forwardRef(
             />
           ) : null}
         </View>
-        {error ? (
-          <Text style={[{color: RawColors.error}, Fonts.Lato15R]}>{error}</Text>
-        ) : null}
+        {error ? <Text style={styles.error}>{error}</Text> : null}
       </>
     );
   },
@@ -123,6 +121,11 @@ const styles = ScaledSheet.create({
   },
   dropDownStyle: {
     backgroundColor: RawColors.lightGrey,
+  },
+  error: {
+    ...Fonts.Lato15R,
+    color: RawColors.error,
+    zIndex: -1,
   },
 });
 

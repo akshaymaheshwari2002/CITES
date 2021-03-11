@@ -24,7 +24,7 @@ const sourceCodeQuestionRelations = {
   23: {yes: 26, no: 24},
   24: {yes: 25, no: 'W'},
   25: {yes: 'W', no: 26},
-  26: {appendixI: 27, appendixII: 'A', apendixIII: 'A'},
+  26: {appendixI: 27, appendixII: 'A', appendixIII: 'A'},
   27: {yes: 28, no: 'A'},
   28: {yes: 'D', no: 'A'},
 };
