@@ -145,7 +145,17 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
       <Header
         leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={goBack} />
+          <Icon
+            name="chevron-left"
+            size={ms(26)}
+            onPress={() => {
+              if (formFieldsPage > 1) {
+                setFormFieldsPage(formFieldsPage - 1);
+              } else {
+                goBack();
+              }
+            }}
+          />
         }
       />
       <Text style={styles.title}>
