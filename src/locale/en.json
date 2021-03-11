@@ -60,6 +60,7 @@
   "screen.stepTwo.purposeDisclosedToOwner_1": "Meet with the facility owner or manager and introduce yourself and explain your purpose and intentions.",
   "screen.stepTwo.purposeDisclosedToOwner_2": "Here’s an example of what you might say.",
   "screen.stepTwo.confirmFormOneContent.text": "Confirm with the facility owner or manager the information in",
+  "button.continueToStep2FormOne":"CONTINUE TO FORM ONE STEP TWO",
   "button.stepTwo.confirmFormOneContent": "form 1 summary",
   "screen.stepTwo.informationRecorded.bullet_head": "Inspect the facility with the owner and/or manager. Take photos and record information of",
   "screen.stepTwo.informationRecorded.bullet_1": "Specimens from all life-stages",
