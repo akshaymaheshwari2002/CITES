@@ -31,6 +31,7 @@ export default (fieldProps = {}) => {
       rules: {required},
       fieldType: Constants.PICKER,
       count: 1,
+      fieldContainerStyle: {zIndex: 1},
       pickerText: formatMessage({id: 'button.addLifeStage'}),
     },
     {
@@ -41,6 +42,7 @@ export default (fieldProps = {}) => {
       name: 'numberHarvestedInPreviousYear',
       rules: {required},
       fieldType: Constants.PICKER,
+      fieldContainerStyle: {zIndex: 1},
       count: 1,
       pickerText: formatMessage({id: 'button.addLifeStage'}),
     },

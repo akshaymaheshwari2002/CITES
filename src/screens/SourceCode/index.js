@@ -48,36 +48,38 @@ const SourceCode = ({navigation, route}) => {
             })}
           </Text>
         </View>
-        <Text style={styles.line}>
-          {formatMessage({id: 'screen.SourceCode.line'})}
-        </Text>
-        <View style={styles.gap}>
-          <View style={styles.numberRow}>
-            <View style={styles.numberContainer}>
-              <Text style={styles.number}>
-                {formatMessage({id: 'screen.SourceCode.NumberOne'})}
-              </Text>
-            </View>
-            <View>
-              {resultSourceCode !== 'D' ? (
-                <View style={styles.numberRow}>
-                  <View style={styles.numberContainer}>
-                    <Text style={styles.number}>
-                      {formatMessage({id: 'screen.SourceCode.NumberTwo'})}
-                    </Text>
-                  </View>
-                  <View style={styles.numberContainer}>
-                    <Text style={styles.number}>
-                      {formatMessage({id: 'screen.SourceCode.NumberThree'})}
-                    </Text>
-                  </View>
+        {resultSourceCode !== 'NotApplicable' ? (
+          <>
+            <Text style={styles.line}>
+              {formatMessage({id: 'screen.SourceCode.line'})}
+            </Text>
+            <View style={styles.gap}>
+              <View style={styles.numberRow}>
+                <View style={styles.numberContainer}>
+                  <Text style={styles.number}>
+                    {formatMessage({id: 'screen.SourceCode.NumberOne'})}
+                  </Text>
                 </View>
-              ) : (
-                <></>
-              )}
+                <View>
+                  {resultSourceCode !== 'D' ? (
+                    <View style={styles.numberRow}>
+                      <View style={styles.numberContainer}>
+                        <Text style={styles.number}>
+                          {formatMessage({id: 'screen.SourceCode.NumberTwo'})}
+                        </Text>
+                      </View>
+                      <View style={styles.numberContainer}>
+                        <Text style={styles.number}>
+                          {formatMessage({id: 'screen.SourceCode.NumberThree'})}
+                        </Text>
+                      </View>
+                    </View>
+                  ) : null}
+                </View>
+              </View>
             </View>
-          </View>
-        </View>
+          </>
+        ) : null}
         <Text style={styles.contentDescription}>
           {formatMessage({
             id: SourceCodeData[resultSourceCode].content,
