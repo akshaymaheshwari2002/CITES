@@ -56,7 +56,7 @@ const FormOneSummary = ({navigation}) => {
       ],
     });
     setFileUri({uri: file?.filePath});
-  }, [facilityData]);
+  }, [facilityData, registeredSpecies]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>

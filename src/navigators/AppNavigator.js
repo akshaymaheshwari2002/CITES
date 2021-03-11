@@ -14,7 +14,6 @@ import {
   LanguageSelection,
   InspectionFlow,
   StepsSummary,
-  SourceCode,
   SourceFlow,
   HomePage,
   WebView,
@@ -62,7 +61,6 @@ const AppNavigator = () => {
           name="SourceCodeSelection"
           component={SourceCodeSelection}
         />
-        <Stack.Screen name="SourceCode" component={SourceCode} />
         <Stack.Screen
           name="TabNavigator"
           component={TabNavigator}

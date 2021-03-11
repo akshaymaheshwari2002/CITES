@@ -50,6 +50,9 @@ const checklistContent = ({checkliststyles, bullet}) => {
               checkliststyles.buttonLarge,
             ]}
             buttonTextStyle={(pressed) => checkliststyles.buttonTextStyle}
+            onPress={() => {
+              navigate('FormOneSummary');
+            }}
           />
         </View>
       ),

@@ -54,6 +54,7 @@ const FormTwo = ({navigation}) => {
           },
         }),
       );
+      dispatch(saveInspection({stepTwo: {formTwoCompleted: true}}));
       navigation.navigate('TabNavigator', {screen: 'StepTwo'});
     },
     [dispatch, navigation],

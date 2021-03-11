@@ -105,7 +105,19 @@ const DetermineSourceCode = ({
               id: 'screen.StepOne.WalkThroughContentOne',
             })}
             onClose={handleHeaderTooltipClose}>
-            <Icon name="chevron-left" size={ms(26)} onPress={goBack} />
+            <Icon
+              name="chevron-left"
+              size={ms(26)}
+              onPress={() => {
+                if (interactedQuestionStack.length === 1) {
+                  goBack();
+                } else {
+                  setInteractedQuestionStack([
+                    ...interactedQuestionStack.slice(0, -1),
+                  ]);
+                }
+              }}
+            />
           </Tooltip>
         }
         rightContent={

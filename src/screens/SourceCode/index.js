@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {useIntl} from 'react-intl';
-import {ScaledSheet, scale} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/AntDesign';
+import {ScaledSheet, scale, ms} from 'react-native-size-matters';
+import Icon from 'react-native-vector-icons/Feather';
+import IconAntDesign from 'react-native-vector-icons/AntDesign';
 
 import {Fonts, RawColors} from '@styles/Themes';
-import {Button, Container} from '@atoms';
+import {Button, Container, Header} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
 import SourceCodeData from './SourceCodeData';
 
@@ -13,19 +14,20 @@ const SourceCode = ({navigation, route}) => {
   const {formatMessage} = useIntl();
   const resultSourceCode = route.params?.selectedSourceCode;
 
-  useEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <TouchableOpacity
-          onPress={() => navigation.navigate('MoreInformation')}>
-          <Icon name="pluscircle" size={scale(26)} />
-        </TouchableOpacity>
-      ),
-    });
-  }, [navigation]);
-
   return (
-    <Container>
+    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+      <Header
+        leftContent={
+          <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
+        }
+        rightContent={
+          <IconAntDesign
+            name="pluscircle"
+            size={ms(26)}
+            onPress={() => navigation.navigate('MoreInformation')}
+          />
+        }
+      />
       <Container.ScrollView style={CommonStyles.flex1}>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>
