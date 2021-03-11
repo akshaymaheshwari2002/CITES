@@ -25,19 +25,22 @@ const FormOneSummary = ({navigation}) => {
     shallowEqual,
   );
   const registeredSpecies = useSelector(
-    (state) => state.sessionReducer.activeInspection.registeredSpecies || {},
+    (state) => state.sessionReducer.activeInspection.registeredSpecies || [],
     shallowEqual,
   );
   const facilityData = useMemo(
     () => ({
       ...formData,
-      facilityOwnerPhone: `+${formData.facilityOwnerPhone.callingCode} ${formData.facilityOwnerPhone.contactNumber}`,
-      dateOfInspection: format(Number(formData.dateOfInspection), 'MM/dd/yyyy'),
-      facilityEstablishmentDate: format(
-        Number(formData.facilityEstablishmentDate),
-        'MM/dd/yyyy',
-      ),
-      typeOfInspection: formData.typeOfInspection[0]?.replace('_', ' '),
+      facilityOwnerPhone: `+${formData?.facilityOwnerPhone?.callingCode} ${formData?.facilityOwnerPhone?.contactNumber}`,
+      dateOfInspection: formData?.dateOfInspection
+        ? format(Number(formData?.dateOfInspection), 'MM/dd/yyyy')
+        : '',
+      facilityEstablishmentDate: formData?.facilityEstablishmentDate
+        ? format(Number(formData?.facilityEstablishmentDate), 'MM/dd/yyyy')
+        : '',
+      typeOfInspection: formData?.typeOfInspection
+        ? formData?.typeOfInspection[0]?.replace('_', ' ')
+        : '',
     }),
     [formData],
   );
