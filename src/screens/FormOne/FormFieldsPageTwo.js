@@ -14,6 +14,7 @@ export default (fieldProps = {}) => {
       name: '_id',
       rules: {required},
       fieldType: Constants.PICKER,
+      fieldContainerStyle: {zIndex: 1},
       ...fieldProps._id,
     },
     {

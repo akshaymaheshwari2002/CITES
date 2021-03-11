@@ -103,6 +103,7 @@ Form.defaultProps = {
 const styles = ScaledSheet.create({
   fieldContainer: {
     marginBottom: '42@vs',
+    zIndex: -1,
   },
 });
 
