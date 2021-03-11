@@ -183,7 +183,7 @@ const FormOne = ({navigation}) => {
           {formFieldsPage === 1 ? (
             <Button
               onPress={handleSubmit(_handleSubmit, () => scrollToTop())}
-              buttonContent={formatMessage({id: 'button.continueToStep2'})}
+              buttonContent={formatMessage({id: 'button.continueToStep2FormOne'})}
             />
           ) : (
             <>
