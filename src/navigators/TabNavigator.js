@@ -10,6 +10,7 @@ import {
   FormThree,
   SearchDummy,
   Notes,
+  SourceCode,
   DrawerMenu,
   StepsSummary,
   FacilityRegistered,
@@ -60,6 +61,7 @@ const AppNavigator = () => {
         name="ExampleDialogueConsentFormStep2"
         component={ExampleDialogueConsentFormStep2}
       />
+      <Tab.Screen name="SourceCode" component={SourceCode} />
       <Tab.Screen name="FeedbackOne" component={FeedbackOne} />
       <Tab.Screen name="NoExport" component={NoExport} />
       <Tab.Screen name="InspectionNotes" component={InspectionNotes} />
