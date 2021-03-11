@@ -20,6 +20,7 @@ export default ({_id = {}, isAdditionalAnimalsAcquiredSinceInitialStock}) => {
       rules: {required},
       fieldType: Constants.PICKER,
       ..._id,
+      fieldContainerStyle: {zIndex: 1},
     },
     {
       defaultValue: '',
