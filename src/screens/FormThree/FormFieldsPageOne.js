@@ -2,9 +2,14 @@ import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
 
-export default (fieldProps = {}) => {
+export default ({_id = {}, isAdditionalAnimalsAcquiredSinceInitialStock}) => {
   const {formatMessage} = createIntl();
-  const {required} = getValidators();
+  const {
+    required,
+    validateNumber,
+    validatePositiveNumber,
+    validateInteger,
+  } = getValidators();
 
   return [
     {
@@ -14,7 +19,7 @@ export default (fieldProps = {}) => {
       name: '_id',
       rules: {required},
       fieldType: Constants.PICKER,
-      ...fieldProps._id,
+      ..._id,
     },
     {
       defaultValue: '',
@@ -23,6 +28,7 @@ export default (fieldProps = {}) => {
       name: 'dateFirstSpeciesAcquired',
       rules: {required},
       fieldType: Constants.DATEPICKER,
+      maximumDate: new Date(),
     },
     {
       defaultValue: '',
@@ -49,7 +55,10 @@ export default (fieldProps = {}) => {
       label: formatMessage({id: 'form.label.numberOfMalesInitialStock'}),
       placeholder: formatMessage({id: 'form.label.numberOfMalesInitialStock'}),
       name: 'numberOfMalesInitialStock',
-      rules: {required},
+      rules: {
+        required,
+        validate: {validateNumber, validatePositiveNumber, validateInteger},
+      },
       keyboardType: 'number-pad',
     },
     {
@@ -59,7 +68,10 @@ export default (fieldProps = {}) => {
         id: 'form.label.numberOfFemalesInitialStock',
       }),
       name: 'numberOfFemalesInitialStock',
-      rules: {required},
+      rules: {
+        required,
+        validate: {validateNumber, validatePositiveNumber, validateInteger},
+      },
       keyboardType: 'number-pad',
     },
     {
@@ -86,7 +98,7 @@ export default (fieldProps = {}) => {
       label: formatMessage({id: 'form.label.addressOfAdditionalStock'}),
       placeholder: formatMessage({id: 'form.label.addressOfAdditionalStock'}),
       name: 'addressOfAdditionalStock',
-      rules: {required},
+      rules: isAdditionalAnimalsAcquiredSinceInitialStock ? {required} : {},
     },
   ];
 };

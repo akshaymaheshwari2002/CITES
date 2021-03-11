@@ -1,7 +1,7 @@
 import React, {useCallback, useMemo, useRef, useState, useEffect} from 'react';
 import {Text, View, BackHandler} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
-import {ms, ScaledSheet, verticalScale} from 'react-native-size-matters';
+import {ms, ScaledSheet} from 'react-native-size-matters';
 import {useForm} from 'react-hook-form';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
@@ -35,6 +35,10 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
   const scrollViewRef = useRef();
   const formData = useRef({});
   const selectedSpeciesId = watch('_id');
+  const _additionalAnimalsAcquiredSinceInitialStock = watch(
+    'additionalAnimalsAcquiredSinceInitialStock',
+  );
+  const _doYouBreedThisSpecies = watch('doYouBreedThisSpecies');
 
   const formFields = useMemo(() => {
     const fieldProps = {
@@ -47,9 +51,17 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
     };
     switch (formFieldsPage) {
       case 1:
-        return getFormFieldsPageOne(fieldProps);
+        return getFormFieldsPageOne({
+          ...fieldProps,
+          isAdditionalAnimalsAcquiredSinceInitialStock:
+            _additionalAnimalsAcquiredSinceInitialStock?.[Constants.YES] ??
+            false,
+        });
       case 2:
-        return getFormFieldsPageTwo();
+        return getFormFieldsPageTwo({
+          isDoYouBreedThisSpecies:
+            _doYouBreedThisSpecies?.[Constants.YES] ?? false,
+        });
       case 3:
         return getFormFieldsPageThree();
       case 4:
@@ -57,7 +69,12 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
       case 5:
         return getFormFieldsPageFive();
     }
-  }, [formFieldsPage, registeredSpecies]);
+  }, [
+    formFieldsPage,
+    registeredSpecies,
+    _additionalAnimalsAcquiredSinceInitialStock,
+    _doYouBreedThisSpecies,
+  ]);
 
   const _handleSubmit = useCallback(
     async (data) => {
