@@ -1,3 +1,4 @@
+import {Platform} from 'react-native';
 import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
@@ -20,7 +21,7 @@ export default ({_id = {}, isAdditionalAnimalsAcquiredSinceInitialStock}) => {
       rules: {required},
       fieldType: Constants.PICKER,
       ..._id,
-      fieldContainerStyle: {zIndex: 1},
+      ...Platform.select({ios: {fieldContainerStyle: {zIndex: 1}}}),
     },
     {
       defaultValue: '',

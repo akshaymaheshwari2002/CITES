@@ -1,5 +1,5 @@
 import React, {useState, useCallback} from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, Platform} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import PropTypes from 'prop-types';
 import {ScaledSheet, scale, moderateScale} from 'react-native-size-matters';
@@ -125,7 +125,7 @@ const styles = ScaledSheet.create({
   error: {
     ...Fonts.Lato15R,
     color: RawColors.error,
-    zIndex: -1,
+    ...Platform.select({ios: {zIndex: -1}}),
   },
 });
 

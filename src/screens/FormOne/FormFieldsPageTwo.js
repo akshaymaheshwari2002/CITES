@@ -1,3 +1,4 @@
+import {Platform} from 'react-native';
 import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
@@ -14,7 +15,7 @@ export default (fieldProps = {}) => {
       name: '_id',
       rules: {required},
       fieldType: Constants.PICKER,
-      fieldContainerStyle: {zIndex: 1},
+      ...Platform.select({ios: {fieldContainerStyle: {zIndex: 1}}}),
       ...fieldProps._id,
     },
     {

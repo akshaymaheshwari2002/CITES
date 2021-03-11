@@ -1,5 +1,5 @@
 import React, {useCallback, useMemo} from 'react';
-import {View} from 'react-native';
+import {View, Platform} from 'react-native';
 import PropTypes from 'prop-types';
 import {Controller} from 'react-hook-form';
 import {ScaledSheet} from 'react-native-size-matters';
@@ -103,7 +103,7 @@ Form.defaultProps = {
 const styles = ScaledSheet.create({
   fieldContainer: {
     marginBottom: '42@vs',
-    zIndex: -1,
+    ...Platform.select({ios: {zIndex: -1}}),
   },
 });
 
