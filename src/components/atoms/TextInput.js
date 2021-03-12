@@ -17,6 +17,7 @@ const TextInput = React.forwardRef(
       style,
       labelStyle,
       showHelpIcon,
+      labelBottom,
       onHelpIconPress,
       ...restProps
     },
@@ -58,6 +59,11 @@ const TextInput = React.forwardRef(
         {error ? (
           <Text style={[{color: RawColors.error}, Fonts.Lato15R]}>{error}</Text>
         ) : null}
+        {labelBottom ? (
+          <Text style={[{color: RawColors.black}, Fonts.Italic15R]}>
+            {labelBottom}
+          </Text>
+        ) : null}
       </>
     );
   },
@@ -70,6 +76,7 @@ TextInput.propTypes = {
   style: PropTypes.object,
   showHelpIcon: PropTypes.bool,
   onHelpIconPress: PropTypes.func,
+  labelBottom: PropTypes.string,
 };
 
 TextInput.defaultProps = {
@@ -79,6 +86,7 @@ TextInput.defaultProps = {
   style: {},
   showHelpIcon: false,
   onHelpIconPress: () => {},
+  labelBottom: '',
 };
 
 const styles = ScaledSheet.create({
@@ -90,6 +98,7 @@ const styles = ScaledSheet.create({
     borderWidth: 1,
     borderColor: RawColors.dimGrey,
     paddingHorizontal: '8@s',
+    backgroundColor: RawColors.lightGrey,
   },
   fieldHelpIcon: {
     flexShrink: 0,

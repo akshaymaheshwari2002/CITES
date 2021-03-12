@@ -1,4 +1,4 @@
-import React, {useCallback, useMemo} from 'react';
+import React, {useCallback, useMemo, useEffect} from 'react';
 import {View, StatusBar} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
@@ -16,9 +16,29 @@ const StepOne = ({navigation, route}) => {
   const {formatMessage} = useIntl();
   const dispatch = useDispatch();
   const stepOneData = useSelector(
-    (state) => state.sessionReducer.activeInspection.stepOne,
+    (state) => state.sessionReducer.activeInspection.stepOne || {},
     shallowEqual,
   );
+
+  const handleStepOneSubmit = useCallback(() => {
+    if (Object.keys(stepOneData).length) {
+      let stepOneComplete = true;
+
+      Object.keys(stepOneData).forEach((key) => {
+        if (!stepOneData[key] && key !== 'formOne') {
+          stepOneComplete = false;
+        }
+      });
+
+      if (stepOneComplete) {
+        navigation.navigate('StepTwo');
+      } else {
+        console.log('INCOMPLETE DATA');
+      }
+    } else {
+      console.log('INCOMPLETE DATA');
+    }
+  }, [navigation, stepOneData]);
 
   const bullet = useMemo(
     () => (
@@ -96,7 +116,7 @@ const StepOne = ({navigation, route}) => {
             })}
             buttonStyle={() => styles.button}
             buttonTextStyle={() => styles.buttonTextStyle}
-            onPress={() => navigation.navigate('StepTwo')}
+            onPress={handleStepOneSubmit}
           />
         </View>
       </Container.ScrollView>

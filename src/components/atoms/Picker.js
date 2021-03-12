@@ -103,7 +103,7 @@ const styles = ScaledSheet.create({
     borderBottomLeftRadius: 0,
     borderWidth: 1,
     borderColor: RawColors.dimGrey,
-    backgroundColor: RawColors.whiteTwo,
+    backgroundColor: RawColors.lightGrey,
   },
   containerWithPicker: {
     marginVertical: '12@vs',

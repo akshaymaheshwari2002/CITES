@@ -28,6 +28,7 @@ export default (fieldProps = {}) => {
       name: 'numberOfSpecimen',
       rules: {required, validate: {validateNumber}},
       keyboardType: 'number-pad',
+      labelBottom: 'If this is your first inspection please input 0.',
     },
     {
       defaultValue: '',
@@ -44,6 +45,7 @@ export default (fieldProps = {}) => {
       name: 'numberOfSpeciemenExportedSinceLastInspection',
       rules: {required, validate: {validateNumber}},
       keyboardType: 'number-pad',
+      labelBottom: 'If this is your first inspection please input 0.',
     },
     {
       defaultValue: '',

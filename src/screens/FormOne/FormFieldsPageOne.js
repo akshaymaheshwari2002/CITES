@@ -130,7 +130,7 @@ export default () => {
     },
     {
       label: formatMessage({id: 'form.label.registeredSpecies'}),
-      placeholder: formatMessage({id: 'form.label.registeredSpecies'}),
+      placeholder: formatMessage({id: 'form.placeholder.registeredSpecies'}),
       name: 'registeredSpecies',
       rules: {required},
       fieldType: Constants.TEXTINPUT_ARRAY,
@@ -173,9 +173,15 @@ export default () => {
     {
       defaultValue: '',
       label: formatMessage({id: 'form.label.citesInformationCode'}),
-      placeholder: formatMessage({id: 'form.label.citesInformationCode'}),
+      placeholder: formatMessage({id: 'form.placeHolder.citesInformationCode'}),
       name: 'citesInformationCode',
-      rules: {required},
+      rules: {
+        required,
+        maxLength: {
+          value: 8,
+          message: formatMessage({id: 'form.error.eightCharacters'}),
+        },
+      },
     },
   ];
 };

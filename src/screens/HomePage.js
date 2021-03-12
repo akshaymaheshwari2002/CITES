@@ -35,9 +35,6 @@ const HomePage = ({navigation}) => {
                 source={Images.backgroundOne}
                 imageStyle={styles.backgroundImage}>
                 <View style={styles.contentContainer}>
-                  <Text style={styles.header}>
-                    {formatMessage({id: 'screen.HomePage.header'})}
-                  </Text>
                   <Button
                     onPress={handlePress}
                     buttonStyle={() => styles.filledButton}
@@ -100,9 +97,9 @@ const styles = ScaledSheet.create({
   contentContainer: {
     flex: 1,
     width: '78.4%',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     alignSelf: 'center',
-    marginTop: '64@vs',
+    marginTop: '84@vs',
     paddingBottom: '16@vs',
   },
   header: {

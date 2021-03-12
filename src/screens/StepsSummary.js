@@ -11,7 +11,7 @@ import CommonStyles from '@styles/CommonStyles';
 
 const StepsSummary = ({navigation}) => {
   const {formatMessage} = useIntl();
-  const windowWidth = useWindowDimensions().width;
+  const windowWidth = useWindowDimensions().height;
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Header
@@ -26,7 +26,7 @@ const StepsSummary = ({navigation}) => {
           source={Images.semiCircle}
           style={CommonStyles.flex1}
           imageStyle={styles.backgroundImage}>
-          <AnimatedView startXPos={windowWidth} startYPos={windowWidth / 2}>
+          <AnimatedView startXPos={windowWidth} startYPos={0}>
             <Text style={styles.title}>
               {formatMessage({id: 'screen.StepsSummary.headerPartOne'})}
             </Text>
@@ -107,6 +107,7 @@ const styles = ScaledSheet.create({
     resizeMode: 'contain',
     position: 'absolute',
     left: '-110%',
+    tintColor: RawColors.eggshell,
   },
   title: {
     ...Fonts.HelveticaNeue25B,
