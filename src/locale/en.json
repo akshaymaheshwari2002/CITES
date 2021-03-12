@@ -51,7 +51,7 @@
   "screen.stepOne.toolsEnsured.bullet_3": "Previous inspection reports, if available",
   "screen.stepOne.toolsEnsured.bullet_4_1": "Any additional documents and information required for the inspection.",
   "screen.stepOne.toolsEnsured.bullet_4_2": "For example, do you require a consent form?",
-  "screen.stepOne.twoOfficialsArranged": "Arrange for two officials to undertake the inspection, ideally someone from the Scientific Authority or an independent experts(s).",
+  "screen.stepOne.twoOfficialsArranged": "Arrange for two officials to undertake the inspection, ideally someone from the Scientific Authority or an independent expert(s).",
   "screen.stepOne.inspectionCoincides.arrange": "Arrange inspection to coincide with either",
   "screen.stepOne.inspectionCoincides.bullet_1": "The collection and incubation of eggs and/or husbandry of wild-caught neonates delivered to the facility for incubation and/or rearing in the case of ranching operations; or",
   "screen.stepOne.inspectionCoincides.bullet_2": "On-site egg production and hatching and/or live birth in the case of closed-cycle captive breeding operations",
@@ -60,7 +60,7 @@
   "screen.stepTwo.purposeDisclosedToOwner_1": "Meet with the facility owner or manager and introduce yourself and explain your purpose and intentions.",
   "screen.stepTwo.purposeDisclosedToOwner_2": "Here’s an example of what you might say.",
   "screen.stepTwo.confirmFormOneContent.text": "Confirm with the facility owner or manager the information in",
-  "button.continueToStep2FormOne":"CONTINUE TO FORM ONE STEP TWO",
+  "button.continueToStep2FormOne": "CONTINUE",
   "button.stepTwo.confirmFormOneContent": "form 1 summary",
   "screen.stepTwo.informationRecorded.bullet_head": "Inspect the facility with the owner and/or manager. Take photos and record information of",
   "screen.stepTwo.informationRecorded.bullet_1": "Specimens from all life-stages",
@@ -387,6 +387,6 @@
   "form.label.percentageOfJuvenilesSurviveBeyond2Weeks": "Percentage of juveniles to survive beyond 2 weeks, including mortalities of eggs that did not hatch.",
   "form.label.foodFedToRearingAndJuveniles": "What do you feed juveniles?",
   "button.submit": "SUBMIT",
-  "screen.Onboarding4A5.WalkThroughContentRightHeader":"Tap this for general information on applying source codes",
-  "screen.Onboarding4A5.WalkThroughContentOne":"Tap for more information on the question"
+  "screen.Onboarding4A5.WalkThroughContentRightHeader": "Tap this for general information on applying source codes",
+  "screen.Onboarding4A5.WalkThroughContentOne": "Tap for more information on the question"
 }

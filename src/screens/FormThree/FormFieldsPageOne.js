@@ -29,6 +29,9 @@ export default ({_id = {}, isAdditionalAnimalsAcquiredSinceInitialStock}) => {
       placeholder: formatMessage({id: 'form.label.dateFirstSpeciesAcquired'}),
       name: 'dateFirstSpeciesAcquired',
       rules: {required},
+      headerTextIOS: formatMessage({
+        id: 'form.label.dateFirstSpeciesAcquired',
+      }),
       fieldType: Constants.DATEPICKER,
       maximumDate: new Date(),
     },

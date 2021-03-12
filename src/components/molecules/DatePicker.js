@@ -19,6 +19,7 @@ const DatePicker = React.forwardRef(
       value,
       showHelpIcon,
       onHelpIconPress,
+      headerTextIOS,
       ...restProps
     },
     _,
@@ -74,6 +75,8 @@ const DatePicker = React.forwardRef(
           isVisible={pickerVisible}
           onCancel={() => setPickerVisible(false)}
           {...restProps}
+          headerTextIOS={headerTextIOS}
+          style={{color: RawColors.black}}
         />
         {error ? (
           <Text style={[{color: RawColors.error}, Fonts.Lato15R]}>{error}</Text>

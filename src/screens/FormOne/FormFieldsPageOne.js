@@ -34,6 +34,7 @@ export default () => {
       placeholder: formatMessage({id: 'form.label.dateOfInspection'}),
       name: 'dateOfInspection',
       rules: {required},
+      headerTextIOS: formatMessage({id: 'form.label.dateOfInspection'}),
       fieldType: Constants.DATEPICKER,
     },
     {
@@ -142,6 +143,9 @@ export default () => {
       placeholder: formatMessage({id: 'form.label.facilityEstablishmentDate'}),
       name: 'facilityEstablishmentDate',
       rules: {required},
+      headerTextIOS: formatMessage({
+        id: 'form.label.facilityEstablishmentDate',
+      }),
       fieldType: Constants.DATEPICKER,
       maximumDate: new Date(),
     },
