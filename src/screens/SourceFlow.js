@@ -1,5 +1,5 @@
 import React from 'react';
-import {ImageBackground, Text, View} from 'react-native';
+import {ImageBackground, Text, View, Image} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 
@@ -17,9 +17,11 @@ const SourceFlow = ({navigation}) => {
         imageStyle={styles.resizeModeRepeat}>
         <Container.ScrollView contentContainerStyle={styles.scrollContainer}>
           <View style={styles.logo}>
-            <Text style={styles.headerOne}>
-              {formatMessage({id: 'screen.SourceFlow.headerPartOne'})}
-            </Text>
+            <Image
+              source={Images?.eye}
+              style={styles.eye}
+              resizeMode="contain"
+            />
             <Text style={styles.headerTwo}>
               {formatMessage({id: 'screen.SourceFlow.headerPartTwo'})}
             </Text>
@@ -70,6 +72,12 @@ const SourceFlow = ({navigation}) => {
                     </>
                   }
                 />
+                <Button
+                  onPress={() => {}}
+                  buttonContent={formatMessage({
+                    id: 'button.giveFeedback',
+                  })}
+                />
               </View>
             </ImageBackground>
           </ImageBackground>
@@ -98,18 +106,18 @@ const styles = ScaledSheet.create({
   backgroundImage: {
     resizeMode: 'stretch',
   },
-  headerOne: {
-    color: RawColors.brightRed,
-    ...Fonts.HelveticaNeue40B,
-    lineHeight: '40@ms',
-    letterSpacing: '0.8@ms',
-  },
   headerTwo: {
     color: RawColors.darkGreyBlue,
     ...Fonts.HelveticaNeue26B,
     textAlign: 'right',
     lineHeight: '26@ms',
     letterSpacing: '0.45@ms',
+  },
+  eye: {
+    height: '60@ms',
+    aspectRatio: 1.3194,
+    alignSelf: 'flex-end',
+    marginVertical: '10@s',
   },
   contentContainer: {
     flex: 1,
@@ -121,12 +129,13 @@ const styles = ScaledSheet.create({
   },
   filledButton: {
     borderColor: RawColors.darkSalmon,
+    backgroundColor: RawColors.darkSalmon,
     height: '84@ms',
     marginBottom: '16@vs',
   },
   buttonTextOne: {
     ...Fonts.Lato17R,
-    color: RawColors.darkGreyBlue,
+    color: RawColors.white,
   },
 
   logo: {
@@ -134,7 +143,7 @@ const styles = ScaledSheet.create({
     alignSelf: 'center',
     alignItems: 'flex-end',
     width: '78.4%',
-    top: '98@vs',
+    top: '58@vs',
   },
 });
 
