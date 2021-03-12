@@ -29,6 +29,7 @@ export default (fieldProps = {}) => {
       name: 'numberOfSpecimen',
       rules: {required, validate: {validateNumber}},
       keyboardType: 'number-pad',
+      labelBottom: 'If this is your first inspection please input 0.',
     },
     {
       defaultValue: '',
@@ -45,6 +46,7 @@ export default (fieldProps = {}) => {
       name: 'numberOfSpeciemenExportedSinceLastInspection',
       rules: {required, validate: {validateNumber}},
       keyboardType: 'number-pad',
+      labelBottom: 'If this is your first inspection please input 0.',
     },
     {
       defaultValue: '',
@@ -55,7 +57,11 @@ export default (fieldProps = {}) => {
         required,
         maxLength: {
           value: 1,
-          message: formatMessage({id: 'form.error.singleCharacter'}),
+          message: formatMessage({id: 'form.error.singleCharacterLimit'}),
+        },
+        pattern: {
+          value: /^(D|I|U|X|W|C|F|O|A|R)$/,
+          message: formatMessage({id: 'form.error.singleCharacterAllowed'}),
         },
       },
     },

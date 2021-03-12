@@ -87,7 +87,7 @@ const styles = ScaledSheet.create({
   button: {
     height: '46@vs',
     marginHorizontal: '15@s',
-    marginVertical: '24@vs',
+    marginVertical: '34@vs',
     backgroundColor: RawColors.sugarCane,
   },
   buttonText: {

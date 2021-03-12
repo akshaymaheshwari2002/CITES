@@ -25,6 +25,7 @@ const FormOne = ({navigation}) => {
   const {formatMessage} = useIntl();
   const {reset, control, errors, watch, handleSubmit} = useForm({
     shouldFocusError: false,
+    mode: 'onBlur',
   });
   const scrollViewRef = useRef();
   const formData = useRef({});

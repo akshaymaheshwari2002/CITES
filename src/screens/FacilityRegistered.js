@@ -19,7 +19,7 @@ const FacilityRegistered = ({navigation: {navigate, goBack}}) => {
         }
       />
       <Container.ScrollView
-        contentContainerStyle={CommonStyles.screenContainer}
+        contentContainerStyle={styles.container}
         style={CommonStyles.flex1}>
         <View style={styles.content}>
           <Text style={styles.title}>
@@ -80,11 +80,16 @@ const FacilityRegistered = ({navigation: {navigate, goBack}}) => {
 };
 
 const styles = ScaledSheet.create({
+  container: {
+    flexGrow: 1,
+    paddingHorizontal: '16@s',
+  },
   title: {
     ...Fonts.HelveticaNeue25B,
+    marginTop: '30@vs',
   },
   content: {
-    alignSelf: 'center',
+    flex: 1,
     justifyContent: 'space-evenly',
   },
   text: {

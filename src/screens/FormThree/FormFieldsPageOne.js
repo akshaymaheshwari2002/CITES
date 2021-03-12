@@ -44,7 +44,7 @@ export default ({_id = {}, isAdditionalAnimalsAcquiredSinceInitialStock}) => {
         required,
         maxLength: {
           value: 1,
-          message: formatMessage({id: 'form.error.singleCharacter'}),
+          message: formatMessage({id: 'form.error.singleCharacterLimit'}),
         },
       },
     },

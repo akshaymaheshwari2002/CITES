@@ -171,7 +171,7 @@ const sourceCodeQuestions = {
   },
   18: {
     content: ['In which CITES Appendix is the specimen listed?'],
-    options: ['appendix I', 'appendix II', 'appendix III'],
+    options: ['appendixI', 'appendixII', 'appendixIII'],
     moreInfo: false,
   },
   19: {

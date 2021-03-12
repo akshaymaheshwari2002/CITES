@@ -52,6 +52,10 @@ const Fonts = {
     fontFamily: 'Didot-Bold',
     fontSize: moderateScale(56),
   },
+  Italic15R: {
+    fontStyle: 'italic',
+    fontSize: moderateScale(15),
+  },
   Lato12R: {
     fontFamily: 'Lato-Regular',
     fontSize: moderateScale(12),
