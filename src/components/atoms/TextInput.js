@@ -35,7 +35,7 @@ const TextInput = React.forwardRef(
     return (
       <>
         {label ? (
-          <Text style={[Fonts.Lato15R, labelStyle]}>{label}</Text>
+          <Text style={[Fonts.Lato15B, labelStyle]}>{label}</Text>
         ) : null}
         <View style={styles.row}>
           <Input

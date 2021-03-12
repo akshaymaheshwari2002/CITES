@@ -72,7 +72,7 @@ const TextInputArray = React.forwardRef(
       <>
         <View style={styles.labelContainer}>
           {label ? (
-            <Text style={[CommonStyles.flex1, Fonts.Lato15R]}>{label}</Text>
+            <Text style={[CommonStyles.flex1, Fonts.Lato15B]}>{label}</Text>
           ) : null}
           {showHelpIcon ? (
             <Icon

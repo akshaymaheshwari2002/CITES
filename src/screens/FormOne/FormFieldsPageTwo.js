@@ -24,7 +24,7 @@ export default (fieldProps = {}) => {
         id: 'form.label.totalSpecimen',
       }),
       placeholder: formatMessage({
-        id: 'form.label.totalSpecimen',
+        id: 'form.label.numberPlaceHolder',
       }),
       name: 'numberOfSpecimen',
       rules: {required, validate: {validateNumber}},
@@ -33,7 +33,7 @@ export default (fieldProps = {}) => {
     {
       defaultValue: '',
       label: formatMessage({id: 'form.label.noOfBreedingAdult'}),
-      placeholder: formatMessage({id: 'form.label.noOfBreedingAdult'}),
+      placeholder: formatMessage({id: 'form.label.numberPlaceHolder'}),
       name: 'numberOfBreedingAdults',
       rules: {required, validate: {validateNumber}},
       keyboardType: 'number-pad',
