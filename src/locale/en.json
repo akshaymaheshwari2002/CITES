@@ -148,7 +148,6 @@
   "button.inspectFacility": "Inspect a facility",
   "button.determineSourceCode": "Determine source code for a specimen",
   "button.giveFeedback": "GIVE FEEDBACK",
-  "screen.InspectionFlow.headerPartOne": "CITES",
   "screen.InspectionFlow.headerPartTwo": "RANCHING +",
   "screen.InspectionFlow.headerPartThree": "CAPTIVE-BREEDING",
   "screen.InspectionFlow.headerPartFour": "INSPECTION GUIDE",
