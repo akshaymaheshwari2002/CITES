@@ -160,12 +160,15 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
               {formatMessage({
                 id: 'screen.stepOne.toolsEnsured.bullet_4_1',
               })}
-              &nbsp;
-              <Text style={checkliststyles.textLink}>
-                {formatMessage({
-                  id: 'screen.stepOne.toolsEnsured.bullet_4_2',
-                })}
-              </Text>
+            </Text>
+          </View>
+
+          <View style={checkliststyles.bulletList}>
+            {bullet}
+            <Text style={checkliststyles.textGeneral}>
+              {formatMessage({
+                id: 'screen.stepOne.toolsEnsured.bullet_4_2',
+              })}
             </Text>
           </View>
         </View>

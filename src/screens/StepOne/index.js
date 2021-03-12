@@ -188,7 +188,7 @@ const checkliststyles = ScaledSheet.create({
     alignItems: 'center',
   },
   productionCalculatorCell: {
-    marginTop: '15@ms',
+    marginVertical: '15@ms',
   },
 });
 
