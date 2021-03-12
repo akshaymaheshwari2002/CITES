@@ -43,7 +43,7 @@ const ChoiceList = React.forwardRef(
       <View style={CommonStyles.flexRow}>
         <View style={CommonStyles.flex1}>
           {label ? (
-            <Text style={[CommonStyles.flex1, Fonts.Lato15R]}>{label}</Text>
+            <Text style={[CommonStyles.flex1, Fonts.Lato15B]}>{label}</Text>
           ) : null}
           <View style={styles.cellListContainer}>
             {items.map((itemProps, index) => (

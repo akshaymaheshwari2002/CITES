@@ -131,7 +131,9 @@ export default () => {
     },
     {
       label: formatMessage({id: 'form.label.registeredSpecies'}),
-      placeholder: formatMessage({id: 'form.label.registeredSpecies'}),
+      placeholder: formatMessage({
+        id: 'form.label.registeredSpeciesPlaceholder',
+      }),
       name: 'registeredSpecies',
       rules: {required},
       fieldType: Constants.TEXTINPUT_ARRAY,
@@ -179,7 +181,6 @@ export default () => {
       label: formatMessage({id: 'form.label.citesInformationCode'}),
       placeholder: formatMessage({id: 'form.label.citesInformationCode'}),
       name: 'citesInformationCode',
-      rules: {required},
     },
   ];
 };
