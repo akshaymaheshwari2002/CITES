@@ -1,5 +1,5 @@
 import React from 'react';
-import {ImageBackground, Text, View} from 'react-native';
+import {ImageBackground, Text, View, Image} from 'react-native';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
@@ -18,9 +18,11 @@ const InspectionFlow = ({navigation}) => {
         imageStyle={styles.resizeModeRepeat}>
         <Container.ScrollView contentContainerStyle={styles.scrollContainer}>
           <View style={styles.logo}>
-            <Text style={styles.headerOne}>
-              {formatMessage({id: 'screen.InspectionFlow.headerPartOne'})}
-            </Text>
+            <Image
+              source={Images?.eye}
+              style={styles.eye}
+              resizeMode="contain"
+            />
             <Text style={styles.headerTwo}>
               {formatMessage({id: 'screen.InspectionFlow.headerPartTwo'})}
             </Text>
@@ -153,11 +155,11 @@ const styles = ScaledSheet.create({
   backgroundImage: {
     resizeMode: 'stretch',
   },
-  headerOne: {
-    color: RawColors.brightRed,
-    ...Fonts.HelveticaNeue40B,
-    lineHeight: '40@ms',
-    letterSpacing: '0.8@ms',
+  eye: {
+    height: '60@ms',
+    aspectRatio: 1.3194,
+    alignSelf: 'flex-end',
+    marginVertical: '10@s',
   },
   headerTwo: {
     color: RawColors.darkGreyBlue,
@@ -203,7 +205,7 @@ const styles = ScaledSheet.create({
     alignSelf: 'center',
     alignItems: 'flex-end',
     width: '78.4%',
-    top: '98@vs',
+    top: '58@vs',
   },
   icon: {
     marginLeft: '2@s',
