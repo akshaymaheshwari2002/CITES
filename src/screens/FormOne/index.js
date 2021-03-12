@@ -25,6 +25,7 @@ const FormOne = ({navigation}) => {
   const {formatMessage} = useIntl();
   const {reset, control, errors, watch, handleSubmit} = useForm({
     shouldFocusError: false,
+    mode: 'onBlur',
   });
   const scrollViewRef = useRef();
   const formData = useRef({});
@@ -175,6 +176,9 @@ const FormOne = ({navigation}) => {
         <Text style={styles.contentOne}>
           {formatMessage({id: 'screen.FormOne.contentOne'})}
         </Text>
+        <Text style={styles.contentOnePartTwo}>
+          {formatMessage({id: 'screen.FormOne.contentOnePartTwo'})}
+        </Text>
         <Text style={styles.contentTwo}>
           {formatMessage({id: 'screen.FormOne.contentTwo'})}
         </Text>
@@ -217,6 +221,11 @@ const styles = ScaledSheet.create({
     ...Fonts.HelveticaNeue30B,
   },
   contentOne: {
+    marginHorizontal: '16@s',
+    color: RawColors.charcoalGrey60,
+    ...Fonts.Lato15R,
+  },
+  contentOnePartTwo: {
     marginHorizontal: '16@s',
     marginBottom: '16@vs',
     color: RawColors.charcoalGrey60,

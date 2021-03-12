@@ -1,3 +1,4 @@
+import {Platform} from 'react-native';
 import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
@@ -20,7 +21,7 @@ export default ({_id = {}, isAdditionalAnimalsAcquiredSinceInitialStock}) => {
       rules: {required},
       fieldType: Constants.PICKER,
       ..._id,
-      fieldContainerStyle: {zIndex: 1},
+      ...Platform.select({ios: {fieldContainerStyle: {zIndex: 1}}}),
     },
     {
       defaultValue: '',
@@ -28,6 +29,9 @@ export default ({_id = {}, isAdditionalAnimalsAcquiredSinceInitialStock}) => {
       placeholder: formatMessage({id: 'form.label.dateFirstSpeciesAcquired'}),
       name: 'dateFirstSpeciesAcquired',
       rules: {required},
+      headerTextIOS: formatMessage({
+        id: 'form.label.dateFirstSpeciesAcquired',
+      }),
       fieldType: Constants.DATEPICKER,
       maximumDate: new Date(),
     },
@@ -40,7 +44,7 @@ export default ({_id = {}, isAdditionalAnimalsAcquiredSinceInitialStock}) => {
         required,
         maxLength: {
           value: 1,
-          message: formatMessage({id: 'form.error.singleCharacter'}),
+          message: formatMessage({id: 'form.error.singleCharacterLimit'}),
         },
       },
     },

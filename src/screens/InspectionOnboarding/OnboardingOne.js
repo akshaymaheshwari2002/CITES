@@ -61,11 +61,13 @@ const styles = ScaledSheet.create({
   },
   img: {
     resizeMode: 'contain',
+    aspectRatio: 1.2,
   },
   imgContainer: {
-    alignItems: 'center',
+    alignItems: 'flex-start',
     alignContent: 'center',
     marginTop: 'auto',
+    aspectRatio: 1.2,
   },
 });
 

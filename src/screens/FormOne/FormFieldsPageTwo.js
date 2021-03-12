@@ -1,3 +1,4 @@
+import {Platform} from 'react-native';
 import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
@@ -14,7 +15,7 @@ export default (fieldProps = {}) => {
       name: '_id',
       rules: {required},
       fieldType: Constants.PICKER,
-      fieldContainerStyle: {zIndex: 1},
+      ...Platform.select({ios: {fieldContainerStyle: {zIndex: 1}}}),
       ...fieldProps._id,
     },
     {
@@ -23,7 +24,7 @@ export default (fieldProps = {}) => {
         id: 'form.label.totalSpecimen',
       }),
       placeholder: formatMessage({
-        id: 'form.label.totalSpecimen',
+        id: 'form.label.numberPlaceHolder',
       }),
       name: 'numberOfSpecimen',
       rules: {required, validate: {validateNumber}},
@@ -33,7 +34,7 @@ export default (fieldProps = {}) => {
     {
       defaultValue: '',
       label: formatMessage({id: 'form.label.noOfBreedingAdult'}),
-      placeholder: formatMessage({id: 'form.label.noOfBreedingAdult'}),
+      placeholder: formatMessage({id: 'form.label.numberPlaceHolder'}),
       name: 'numberOfBreedingAdults',
       rules: {required, validate: {validateNumber}},
       keyboardType: 'number-pad',
@@ -56,7 +57,11 @@ export default (fieldProps = {}) => {
         required,
         maxLength: {
           value: 1,
-          message: formatMessage({id: 'form.error.singleCharacter'}),
+          message: formatMessage({id: 'form.error.singleCharacterLimit'}),
+        },
+        pattern: {
+          value: /^(D|I|U|X|W|C|F|O|A|R)$/,
+          message: formatMessage({id: 'form.error.singleCharacterAllowed'}),
         },
       },
     },

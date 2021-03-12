@@ -30,6 +30,9 @@ export default () => {
       placeholder: formatMessage({id: 'form.label.whenDidYouBreedThisSpecies'}),
       name: 'whenDidYouBreedThisSpecies',
       rules: {required},
+      headerTextIOS: formatMessage({
+        id: 'form.label.whenDidYouBreedThisSpecies',
+      }),
       fieldType: Constants.DATEPICKER,
     },
     {

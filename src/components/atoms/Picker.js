@@ -1,12 +1,12 @@
 import React, {useState, useCallback} from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, Platform} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import PropTypes from 'prop-types';
 import {ScaledSheet, scale, moderateScale} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {RawColors, Fonts} from '@styles/Themes';
-import {Button} from '@atoms';
+import {Button} from './';
 import CommonStyles from '@styles/CommonStyles';
 
 const Picker = React.forwardRef(
@@ -125,7 +125,7 @@ const styles = ScaledSheet.create({
   error: {
     ...Fonts.Lato15R,
     color: RawColors.error,
-    zIndex: -1,
+    ...Platform.select({ios: {zIndex: -1}}),
   },
 });
 

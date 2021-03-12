@@ -1,7 +1,7 @@
 import {createIntl, createIntlCache} from 'react-intl';
 
 import Config from '@config';
-import {getMessages} from '@utils/CommonFunctions';
+import {getMessages} from './CommonFunctions';
 import {store} from '@store';
 
 const cache = createIntlCache();

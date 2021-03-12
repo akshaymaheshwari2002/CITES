@@ -19,6 +19,7 @@ const DatePicker = React.forwardRef(
       value,
       showHelpIcon,
       onHelpIconPress,
+      headerTextIOS,
       ...restProps
     },
     _,
@@ -41,7 +42,7 @@ const DatePicker = React.forwardRef(
       <>
         <View style={styles.labelContainer}>
           {label ? (
-            <Text style={[CommonStyles.flex1, Fonts.Lato15R]}>{label}</Text>
+            <Text style={[CommonStyles.flex1, Fonts.Lato15B]}>{label}</Text>
           ) : null}
           {showHelpIcon ? (
             <Icon
@@ -74,6 +75,8 @@ const DatePicker = React.forwardRef(
           isVisible={pickerVisible}
           onCancel={() => setPickerVisible(false)}
           {...restProps}
+          headerTextIOS={headerTextIOS}
+          style={{color: RawColors.black}}
         />
         {error ? (
           <Text style={[{color: RawColors.error}, Fonts.Lato15R]}>{error}</Text>

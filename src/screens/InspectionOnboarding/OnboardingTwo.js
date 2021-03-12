@@ -1,11 +1,5 @@
-import React, {useEffect} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  ImageBackground,
-} from 'react-native';
+import React from 'react';
+import {View, Text, Image, ImageBackground} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
@@ -53,15 +47,17 @@ const OnboardingTwo = ({onBackPress = () => {}, onForwardPress = () => {}}) => {
         imageStyle={styles.backgroundImage}>
         <Container.ScrollView contentContainerStyle={styles.contentContainer}>
           <View style={styles.content}>
-            <Text style={[Fonts.Lato20R, styles.itemHeadline]}>
+            <Text style={[Fonts.Lato20B, styles.itemHeadline]}>
               {formatMessage({id: 'screen.OnboardingTwo.title'})}
             </Text>
             {points.map(({icon, labelId}, index) => (
               <View key={index} style={styles.item}>
                 <Image source={icon} style={styles.itemIcon} />
-                <Text style={[CommonStyles.flex1, Fonts.Lato20R]}>
-                  {formatMessage({id: labelId})}
-                </Text>
+                <View style={styles.textView}>
+                  <Text style={styles.text}>
+                    {formatMessage({id: labelId})}
+                  </Text>
+                </View>
               </View>
             ))}
           </View>
@@ -73,35 +69,40 @@ const OnboardingTwo = ({onBackPress = () => {}, onForwardPress = () => {}}) => {
 
 const styles = ScaledSheet.create({
   contentContainer: {
-    paddingVertical: '60@vs',
+    paddingVertical: '30@vs',
+    marginHorizontal: '20@vs',
     backgroundColor: RawColors.transparent,
   },
   content: {
-    alignSelf: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'space-evenly',
-  },
-  icon: {
-    height: '30@vs',
-    width: '30@s',
   },
   itemHeadline: {
     marginVertical: '15@vs',
   },
   item: {
     flexDirection: 'row',
-    marginLeft: '8@s',
-    marginVertical: '12@vs',
+    marginRight: '8@s',
+    marginVertical: '15@vs',
   },
   backgroundImage: {
     resizeMode: 'center',
     paddingLeft: '700@s',
   },
   itemIcon: {
+    alignSelf: 'flex-start',
     width: '22@ms',
     height: '22@ms',
     resizeMode: 'contain',
-    marginRight: '16@ms',
+    marginLeft: '6@ms',
+    marginRight: '15@ms',
     marginTop: '2@ms',
+  },
+  textView: {
+    flex: 1,
+  },
+  text: {
+    ...Fonts.Lato20R,
   },
 });
 

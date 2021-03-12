@@ -4,7 +4,7 @@ import {ScaledSheet, ms} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 import Icon from 'react-native-vector-icons/Feather';
 
-import {Fonts} from '@styles/Themes';
+import {Fonts, RawColors} from '@styles/Themes';
 import {Container, Header} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
 import {Images} from '@assets';
@@ -25,7 +25,7 @@ const OnboardingThree = ({
           <Icon name="chevron-right" size={ms(26)} onPress={onForwardPress} />
         }
       />
-      <Container.ScrollView style={CommonStyles.screenContainer}>
+      <Container.ScrollView style={styles.container}>
         <View style={styles.content}>
           <Text style={styles.txt}>
             {formatMessage({id: 'screen.OnboardingThree.contentOne'})}
@@ -33,7 +33,6 @@ const OnboardingThree = ({
           <Text style={styles.txt}>
             {formatMessage({id: 'screen.OnboardingThree.contentTwo'})}
           </Text>
-
           <View style={styles.imgContainer}>
             <Image style={styles.img} source={Images.onboardingThree} />
           </View>
@@ -44,15 +43,19 @@ const OnboardingThree = ({
 };
 
 const styles = ScaledSheet.create({
+  container: {
+    flexGrow: 1,
+    backgroundColor: RawColors.white,
+    paddingHorizontal: '16@s',
+  },
   txt: {
     textAlign: 'center',
     ...Fonts.Lato20R,
-    marginTop: '15@vs',
+    marginTop: '16@vs',
   },
   content: {
-    alignSelf: 'center',
+    ...CommonStyles.flex1,
     justifyContent: 'space-evenly',
-    paddingHorizontal: '15@s',
   },
   img: {
     resizeMode: 'contain',
@@ -60,10 +63,7 @@ const styles = ScaledSheet.create({
     width: '317@s',
   },
   imgContainer: {
-    flex: 1,
-    alignSelf: 'center',
-    justifyContent: 'flex-end',
-    marginTop: 'auto',
+    marginTop: '10@vs',
   },
 });
 
