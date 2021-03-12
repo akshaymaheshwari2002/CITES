@@ -13,6 +13,8 @@
   "form.error.fieldRequired": "Required Field",
   "form.error.invalidEmail": "Not a valid email",
   "form.error.singleCharacter": "Only single character is allowed",
+  "form.error.singleCharacterLimit": "Please input a valid single letter, for example, F",
+  "form.error.singleCharacterAllowed": "Please select any valid code D I U X W C F O A R",
   "form.error.invalidPhone": "Not a valid phone number",
   "form.error.invalidInput": "Invalid Input",
   "form.error.positiveNumber": "Input should be a positive number",
