@@ -6,7 +6,7 @@ import {ScaledSheet, scale, moderateScale} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {RawColors, Fonts} from '@styles/Themes';
-import {Button} from '@atoms';
+import {Button} from './';
 import CommonStyles from '@styles/CommonStyles';
 
 const Picker = React.forwardRef(

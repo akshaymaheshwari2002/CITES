@@ -2,8 +2,7 @@ import {NativeModules, Platform, PermissionsAndroid} from 'react-native';
 import {renderToStaticMarkup} from 'react-dom/server';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 
-import createIntl from '@utils/Intl';
-
+import createIntl from './Intl';
 import messages_en from '@locale/en.json';
 
 export const getMessages = () => ({
