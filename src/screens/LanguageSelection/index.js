@@ -199,13 +199,13 @@ const styles = ScaledSheet.create({
     alignItems: 'center',
   },
   eye: {
-    marginTop: '35@vs',
-    height: '146@vs',
+    marginTop: '25@vs',
+    height: '140@vs',
     width: '276@s',
   },
   logo: {
-    marginTop: '35@vs',
-    height: '212@vs',
+    marginTop: '10@vs',
+    height: '210@vs',
     marginBottom: '10@vs',
   },
   selectedStyle: {
