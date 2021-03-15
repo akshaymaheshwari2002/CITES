@@ -16,7 +16,6 @@ const resultFieldStyleProps = {
   color: RawColors.black,
   borderWidth: 3,
   borderColor: RawColors.black,
-  marginBottom: vs(42),
 };
 const resultFieldLabelStyleProps = {
   fontWeight: 'bold',
@@ -38,7 +37,7 @@ const ProductionCapacityCalculator = ({navigation: {navigate, goBack}}) => {
   useEffect(() => {
     const field =
       modeSelected === 1
-        ? getFormFields({modeSelected}).slice(-1)
+        ? getFormFields({modeSelected}).slice(-1)[0]
         : getFormFields({modeSelected})[0];
     setResultFieldInputProps({
       label: field.label,
@@ -114,7 +113,12 @@ const ProductionCapacityCalculator = ({navigation: {navigate, goBack}}) => {
                 : [styles.modeButton, styles.modeButtonOne]
             }
             android_ripple={true}
-            onPress={() => (modeSelected === 2 ? setModeSelected(1) : null)}>
+            onPress={() => {
+              if (modeSelected === 2) {
+                setModeSelected(1);
+                setResultFieldValue(0);
+              }
+            }}>
             <Text
               style={[
                 styles.modeButtonText,
@@ -137,7 +141,12 @@ const ProductionCapacityCalculator = ({navigation: {navigate, goBack}}) => {
                 : [styles.modeButton, styles.modeButtonTwo]
             }
             android_ripple={true}
-            onPress={() => (modeSelected === 1 ? setModeSelected(2) : null)}>
+            onPress={() => {
+              if (modeSelected === 1) {
+                setModeSelected(2);
+                setResultFieldValue(0);
+              }
+            }}>
             <Text
               style={[
                 styles.modeButtonText,
@@ -157,12 +166,14 @@ const ProductionCapacityCalculator = ({navigation: {navigate, goBack}}) => {
           })}
           onPress={handleSubmit(onSubmit)}
         />
-        <TextInput
-          value={resultFieldValue}
-          {...resultFieldInputProps}
-          editable={false}
-          style={resultFieldStyleProps}
-        />
+        <View style={{...styles.marginBottomVS28}}>
+          <TextInput
+            value={resultFieldValue}
+            {...resultFieldInputProps}
+            editable={false}
+            style={resultFieldStyleProps}
+          />
+        </View>
         <Button
           buttonStyle={() => styles.button}
           buttonContent={intl.formatMessage({
@@ -237,6 +248,9 @@ const styles = ScaledSheet.create({
   },
   button: {
     marginBottom: '16@vs',
+  },
+  marginBottomVS28: {
+    marginBottom: vs(28),
   },
 });
 
