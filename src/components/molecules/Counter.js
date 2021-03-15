@@ -10,7 +10,7 @@ import CommonStyles from '@styles/CommonStyles';
 import Constants from '@utils/Constants';
 
 const Counter = React.forwardRef(
-  ({label, placeholder, error, value, onChange}, _) => {
+  ({label, placeholder, error, value, onChange, label_style}, _) => {
     const handleChange = useCallback(
       ({action, text}) => {
         if (action === Constants.PLUS) {
@@ -27,7 +27,9 @@ const Counter = React.forwardRef(
     return (
       <>
         {label ? (
-          <Text style={[CommonStyles.flex1, Fonts.Lato15R]}>{label}</Text>
+          <Text style={[CommonStyles.flex1, Fonts.Lato15R, label_style]}>
+            {label}
+          </Text>
         ) : null}
         <View style={[CommonStyles.flexRow, styles.alignCenter]}>
           <View style={styles.container}>
@@ -69,11 +71,15 @@ const Counter = React.forwardRef(
 );
 
 const styles = ScaledSheet.create({
-  labelContainer: {flexDirection: 'row', alignItems: 'center'},
+  labelContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   container: {
     marginTop: '12@vs',
     marginBottom: '4@vs',
-    width: '136@s',
+    width: '100@s',
+    marginHorizontal: '20@s',
   },
   containerWithButton: {
     marginVertical: '12@vs',
