@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {useSelector, shallowEqual} from 'react-redux';
 import {WebView as RNWebView} from 'react-native-webview';
 import {View, Text, TouchableOpacity, Alert} from 'react-native';
 import {renderToString} from 'react-dom/server';
@@ -30,20 +31,24 @@ const getHtmlStringFromJsx = (element) => {
     `;
 };
 
-const FormOneSummary = ({
-  navigation,
-  route: {
-    params: {facilityData},
-  },
-}) => {
+const FormOneSummary = ({navigation}) => {
   const {formatMessage} = useIntl();
   const [isShowSave, setIsShowSave] = useState(false);
   const [isShowDiscard, setIsShowDiscard] = useState(false);
   const [facilityDataModified, setfacilityDataModified] = useState({});
 
+  const formData = useSelector(
+    (state) => state.sessionReducer.activeInspection.stepOne?.formOne || {},
+    shallowEqual,
+  );
+  const registeredSpecies = useSelector(
+    (state) => state.sessionReducer.activeInspection.registeredSpecies || [],
+    shallowEqual,
+  );
+
   useEffect(() => {
-    setfacilityDataModified(facilityData);
-  }, [facilityData]);
+    setfacilityDataModified(formData);
+  }, [formData]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
@@ -79,9 +84,12 @@ const FormOneSummary = ({
         source={{
           html: getHtmlStringFromJsx(
             <>
-              <FormOneHeader facilityData={facilityData} editable={true} />
+              <FormOneHeader
+                facilityData={facilityDataModified}
+                editable={true}
+              />
               <FormOneTemplate
-                speciesData={facilityData.registeredSpecies}
+                speciesData={registeredSpecies}
                 editable={true}
               />
             </>,
