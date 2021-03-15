@@ -119,7 +119,7 @@ const FormOneSummary = ({navigation}) => {
         <TouchableOpacity
           style={[styles.slideBtn, styles.borderStyle]}
           onPress={() => {
-            navigation.navigate('FormOne');
+            navigation.navigate('FormOneSummaryEdit');
           }}>
           <View style={styles.row}>
             <View style={styles.padding16}>

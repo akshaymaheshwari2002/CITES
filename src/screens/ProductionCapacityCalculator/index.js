@@ -1,21 +1,51 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useState, useEffect} from 'react';
 import {View, Text, Pressable} from 'react-native';
 import {useIntl} from 'react-intl';
 import {useForm} from 'react-hook-form';
-import {ScaledSheet, ms} from 'react-native-size-matters';
+import {ScaledSheet, ms, vs} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
 
-import {Container, Button, Header} from '@atoms';
+import {Container, Button, Header, TextInput} from '@atoms';
 import {Form} from '@organisms';
 import CommonStyles from '@styles/CommonStyles';
-import getFormFields from './FormFields';
+import FormFields from './FormFields';
 import {Fonts, RawColors} from '@styles/Themes';
+
+const resultFieldStyleProps = {
+  fontWeight: 'bold',
+  color: RawColors.black,
+  borderWidth: 3,
+  borderColor: RawColors.black,
+};
+const resultFieldLabelStyleProps = {
+  fontWeight: 'bold',
+};
 
 const ProductionCapacityCalculator = ({navigation: {navigate, goBack}}) => {
   const intl = useIntl();
-  const formProps = useForm();
-  const {setValue, handleSubmit} = formProps;
+  const {control, errors, handleSubmit} = useForm();
   const [modeSelected, setModeSelected] = useState(1);
+  const [resultFieldValue, setResultFieldValue] = useState(0);
+  const [resultFieldInputProps, setResultFieldInputProps] = useState({});
+
+  const getFormFields = useCallback(() => {
+    return modeSelected === 1
+      ? FormFields({modeSelected}).slice(0, 5)
+      : FormFields({modeSelected}).slice(1);
+  }, [modeSelected]);
+
+  useEffect(() => {
+    const field =
+      modeSelected === 1
+        ? getFormFields({modeSelected}).slice(-1)[0]
+        : getFormFields({modeSelected})[0];
+    setResultFieldInputProps({
+      label: field.label,
+      showHelpIcon: true,
+      onHelpIconPress: field.onHelpIconPress,
+      labelStyle: resultFieldLabelStyleProps,
+    });
+  }, [modeSelected, getFormFields]);
 
   const onSubmit = useCallback(
     (data) => {
@@ -29,10 +59,7 @@ const ProductionCapacityCalculator = ({navigation: {navigate, goBack}}) => {
         approximateYoungProducedPerYear = Math.round(
           approximateYoungProducedPerYear,
         );
-        setValue(
-          'approximateYoungProducedPerYear',
-          approximateYoungProducedPerYear.toString(),
-        );
+        setResultFieldValue(approximateYoungProducedPerYear.toString());
       } else if (modeSelected === 2) {
         let countTotalBreedingFemale =
           Number(data.approximateYoungProducedPerYear) /
@@ -41,14 +68,11 @@ const ProductionCapacityCalculator = ({navigation: {navigate, goBack}}) => {
             Number(data.countOffspringPerLitter) *
             Number(data.percentageSurvivingInTwoWeek));
         countTotalBreedingFemale = Math.round(countTotalBreedingFemale);
-        setValue(
-          'countTotalBreedingFemale',
-          countTotalBreedingFemale.toString(),
-        );
+        setResultFieldValue(countTotalBreedingFemale.toString());
       } else {
       }
     },
-    [setValue, modeSelected],
+    [modeSelected],
   );
 
   return (
@@ -89,7 +113,12 @@ const ProductionCapacityCalculator = ({navigation: {navigate, goBack}}) => {
                 : [styles.modeButton, styles.modeButtonOne]
             }
             android_ripple={true}
-            onPress={() => (modeSelected === 2 ? setModeSelected(1) : null)}>
+            onPress={() => {
+              if (modeSelected === 2) {
+                setModeSelected(1);
+                setResultFieldValue(0);
+              }
+            }}>
             <Text
               style={[
                 styles.modeButtonText,
@@ -112,7 +141,12 @@ const ProductionCapacityCalculator = ({navigation: {navigate, goBack}}) => {
                 : [styles.modeButton, styles.modeButtonTwo]
             }
             android_ripple={true}
-            onPress={() => (modeSelected === 1 ? setModeSelected(2) : null)}>
+            onPress={() => {
+              if (modeSelected === 1) {
+                setModeSelected(2);
+                setResultFieldValue(0);
+              }
+            }}>
             <Text
               style={[
                 styles.modeButtonText,
@@ -124,13 +158,28 @@ const ProductionCapacityCalculator = ({navigation: {navigate, goBack}}) => {
             </Text>
           </Pressable>
         </View>
-        <Form {...formProps} formFields={getFormFields({modeSelected})} />
+        <Form {...{errors, control}} formFields={getFormFields()} />
+        <Button
+          buttonStyle={() => styles.button}
+          buttonContent={intl.formatMessage({
+            id: 'general.calculate',
+          })}
+          onPress={handleSubmit(onSubmit)}
+        />
+        <View style={{...styles.marginBottomVS28}}>
+          <TextInput
+            value={resultFieldValue}
+            {...resultFieldInputProps}
+            editable={false}
+            style={resultFieldStyleProps}
+          />
+        </View>
         <Button
           buttonStyle={() => styles.button}
           buttonContent={intl.formatMessage({
             id: 'general.continue',
           })}
-          onPress={handleSubmit(onSubmit)}
+          onPress={goBack}
         />
       </Container.ScrollView>
     </Container>
@@ -186,7 +235,7 @@ const styles = ScaledSheet.create({
     borderLeftWidth: 1,
   },
   modeButtonText: {
-    letterSpacing: '0.34@ms',
+    letterSpacing: '0.3@ms',
     lineHeight: '21@ms',
     textAlignVertical: 'center',
     textAlign: 'center',
@@ -199,6 +248,9 @@ const styles = ScaledSheet.create({
   },
   button: {
     marginBottom: '16@vs',
+  },
+  marginBottomVS28: {
+    marginBottom: vs(28),
   },
 });
 
