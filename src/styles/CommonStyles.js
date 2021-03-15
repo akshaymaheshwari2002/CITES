@@ -41,4 +41,11 @@ export default ScaledSheet.create({
     paddingBottom: '16@vs',
     backgroundColor: RawColors.white,
   },
+  shadowEffectDarker: {
+    shadowColor: RawColors.black,
+    shadowOffset: {width: 0, height: 5},
+    shadowOpacity: 0.15,
+    shadowRadius: 2,
+    elevation: 5,
+  },
 });
