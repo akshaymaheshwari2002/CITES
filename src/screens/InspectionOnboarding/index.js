@@ -13,7 +13,7 @@ const data = [OnboardingOne, OnboardingTwo, OnboardingThree, OnboardingFour];
 
 const InspectionOnboarding = ({navigation}) => {
   const flatListRef = useRef({});
-  const windowWidth = useWindowDimensions().width;
+  const {width: windowWidth} = useWindowDimensions();
 
   const handleBackPress = useCallback(
     (index) => {
@@ -39,6 +39,7 @@ const InspectionOnboarding = ({navigation}) => {
     },
     [navigation, scrollToActiveIndex],
   );
+
   const scrollToActiveIndex = useCallback(
     (index) => {
       flatListRef.current?.scrollToOffset({
@@ -48,6 +49,21 @@ const InspectionOnboarding = ({navigation}) => {
     },
     [windowWidth],
   );
+
+  const handleScrollEndDrag = useCallback(
+    (e) => {
+      const index = Math.round(e.nativeEvent?.contentOffset?.x / windowWidth);
+      if (index === data?.length - 1) {
+        console.log('scroll Ended', index);
+        navigation.navigate('TabNavigator', {
+          screen: 'StepOne',
+          params: {showToolTip: true},
+        });
+      }
+    },
+    [navigation, windowWidth],
+  );
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -59,6 +75,7 @@ const InspectionOnboarding = ({navigation}) => {
         showsHorizontalScrollIndicator={false}
         data={data}
         keyExtractor={(_, index) => index.toString()}
+        onScrollEndDrag={handleScrollEndDrag}
         renderItem={({item: Item, index}) => {
           return (
             <View

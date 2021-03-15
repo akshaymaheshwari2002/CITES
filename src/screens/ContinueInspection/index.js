@@ -163,7 +163,7 @@ const styles = ScaledSheet.create({
     backgroundColor: '#F6F9EF',
     padding: '16@s',
     elevation: '5@s',
-    ...CommonStyles.shadowEffect,
+    ...CommonStyles.shadowEffectDarker,
   },
   icon: {
     height: '35@ms',
