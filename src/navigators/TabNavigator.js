@@ -19,6 +19,7 @@ import {
   ContinueInspection,
   DetermineSourceCode,
   FormOneSummary,
+  FormOneSummaryEdit,
   ExampleDialogueStep3,
   ExampleDialogueStep2,
   ExampleDialogueConsentFormStep2,
@@ -75,6 +76,7 @@ const AppNavigator = () => {
       <Tab.Screen name="StepsSummary" component={StepsSummary} />
       <Tab.Screen name="FacilityRegistered" component={FacilityRegistered} />
       <Tab.Screen name="FormOneSummary" component={FormOneSummary} />
+      <Tab.Screen name="FormOneSummaryEdit" component={FormOneSummaryEdit} />
       <Tab.Screen name="Q4MoreInfo" component={Q4MoreInfo} />
       <Tab.Screen name="Q9MoreInfo" component={Q9MoreInfo} />
       <Tab.Screen name="Q1MoreInfo" component={Q1MoreInfo} />

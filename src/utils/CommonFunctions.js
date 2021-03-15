@@ -1,3 +1,4 @@
+import React from 'react';
 import {NativeModules, Platform, PermissionsAndroid} from 'react-native';
 import {renderToStaticMarkup} from 'react-dom/server';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
@@ -134,4 +135,33 @@ export const isNumberInteger = (value) => {
   } catch (err) {
     return false;
   }
+};
+
+/**
+ * Will return an html input element wrapped in a span.
+ * @param {Object} props properties to be set on input field
+ * @param {string} props.name name for html input field
+ * @param {string} props.defaultValue default value in input field
+ * @param {number|string} props.inputSize size for input field
+ * @returns {JSX.Element}
+ */
+export const getInputFieldElementForFormSummary = ({
+  name = 'unNamedField',
+  defaultValue = '',
+  inputSize = 20,
+}) => {
+  return (
+    <span
+      dangerouslySetInnerHTML={{
+        __html: `
+          <input
+            type="text"
+            size="${inputSize}"
+            name="${name}"
+            value="${defaultValue}"
+            oninput="shipData(this.name, this.value)"
+          />`,
+      }}
+    />
+  );
 };
