@@ -17,8 +17,6 @@ import CommonStyles from '@styles/CommonStyles';
 const FormOneSummary = ({navigation}) => {
   const {formatMessage} = useIntl();
   const isFocused = useIsFocused();
-  const [isShowStep1, setShowStep1] = useState(false);
-  const [isShowEdit, setShowEdit] = useState(false);
   const [fileUri, setFileUri] = useState(undefined);
   const formData = useSelector(
     (state) => state.sessionReducer.activeInspection.stepOne?.formOne || {},
@@ -31,7 +29,10 @@ const FormOneSummary = ({navigation}) => {
   const facilityData = useMemo(
     () => ({
       ...formData,
-      facilityOwnerPhone: `+${formData?.facilityOwnerPhone?.callingCode} ${formData?.facilityOwnerPhone?.contactNumber}`,
+      facilityOwnerPhone_callingCode:
+        formData?.facilityOwnerPhone?.callingCode ?? '',
+      facilityOwnerPhone_contactNumber:
+        formData?.facilityOwnerPhone?.contactNumber ?? '',
       dateOfInspection: formData?.dateOfInspection
         ? format(Number(formData?.dateOfInspection), 'MM/dd/yyyy')
         : '',

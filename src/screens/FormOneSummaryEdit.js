@@ -1,9 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import {useSelector, shallowEqual} from 'react-redux';
+import {useSelector, shallowEqual, useDispatch} from 'react-redux';
 import {WebView as RNWebView} from 'react-native-webview';
 import {View, Text, TouchableOpacity, Alert} from 'react-native';
 import {renderToString} from 'react-dom/server';
 import {useIntl} from 'react-intl';
+import {format} from 'date-fns';
+import {
+  saveInspection,
+  saveRegisteredSpecies,
+} from '@store/slices/sessionSlice';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -33,9 +38,11 @@ const getHtmlStringFromJsx = (element) => {
 
 const FormOneSummary = ({navigation}) => {
   const {formatMessage} = useIntl();
-  const [isShowSave, setIsShowSave] = useState(false);
-  const [isShowDiscard, setIsShowDiscard] = useState(false);
+  const dispatch = useDispatch();
   const [facilityDataModified, setfacilityDataModified] = useState({});
+  const [registeredSpeciesModified, setRegisteredSpeciesModified] = useState(
+    [],
+  );
 
   const formData = useSelector(
     (state) => state.sessionReducer.activeInspection.stepOne?.formOne || {},
@@ -47,8 +54,25 @@ const FormOneSummary = ({navigation}) => {
   );
 
   useEffect(() => {
-    setfacilityDataModified(formData);
-  }, [formData]);
+    console.log(formData.dateOfInspection, formData.facilityEstablishmentDate);
+    setfacilityDataModified({
+      ...formData,
+      facilityOwnerPhone_callingCode:
+        formData?.facilityOwnerPhone?.callingCode ?? '',
+      facilityOwnerPhone_contactNumber:
+        formData?.facilityOwnerPhone?.contactNumber ?? '',
+      dateOfInspection: formData?.dateOfInspection
+        ? format(Number(formData?.dateOfInspection), 'MM/dd/yyyy')
+        : '',
+      facilityEstablishmentDate: formData?.facilityEstablishmentDate
+        ? format(Number(formData?.facilityEstablishmentDate), 'MM/dd/yyyy')
+        : '',
+      typeOfInspection: formData?.typeOfInspection
+        ? formData?.typeOfInspection[0]?.replace('_', ' ')
+        : '',
+    });
+    setRegisteredSpeciesModified(registeredSpecies);
+  }, [formData, registeredSpecies]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
@@ -89,7 +113,7 @@ const FormOneSummary = ({navigation}) => {
                 editable={true}
               />
               <FormOneTemplate
-                speciesData={registeredSpecies}
+                speciesData={registeredSpeciesModified}
                 editable={true}
               />
             </>,
@@ -109,12 +133,11 @@ const FormOneSummary = ({navigation}) => {
             data.name ??
             data.name.split('.')[0] === 'registeredSpecies'
           ) {
-            setfacilityDataModified((state) => {
+            setRegisteredSpeciesModified((state) => {
               const changedSpeciesIndex = parseInt(data.name.split('.')[1], 10);
               const changedPropertyKey = data.name.split('.')[2];
-              state.registeredSpecies[changedSpeciesIndex][changedPropertyKey] =
-                data.value;
-              return {...state};
+              state[changedSpeciesIndex][changedPropertyKey] = data.value;
+              return [...state];
             });
           }
         }}
@@ -123,24 +146,43 @@ const FormOneSummary = ({navigation}) => {
         <TouchableOpacity
           style={styles.slideBtn}
           onPress={() => {
-            if (isShowSave) {
-              // navigation.navigate('');
-              Alert.alert('Work in progress');
-            } else {
-              setIsShowSave((state) => !state);
-            }
+            const __facilityDataModified = {...facilityDataModified};
+            delete __facilityDataModified._id;
+            __facilityDataModified.facilityOwnerPhone = {
+              callingCode:
+                __facilityDataModified?.facilityOwnerPhone_callingCode ?? '',
+              contactNumber:
+                __facilityDataModified?.facilityOwnerPhone_contactNumber ?? '',
+            };
+            delete __facilityDataModified.facilityOwnerPhone_callingCode;
+            delete __facilityDataModified.facilityOwnerPhone_contactNumber ??
+              '';
+
+            dispatch(
+              saveInspection({
+                stepOne: {
+                  formOne: {
+                    ...__facilityDataModified,
+                    dateOfInspection: formData.dateOfInspection,
+                    facilityEstablishmentDate:
+                      formData.facilityEstablishmentDate,
+                    typeOfInspection: formData.typeOfInspection,
+                  },
+                },
+              }),
+            );
+            navigation.goBack();
+            Alert.alert('Work in progress');
           }}>
           <View style={styles.row}>
-            {isShowSave ? (
-              <View style={[styles.padding16, styles.marginDimension]}>
-                <Text style={styles.text}>
-                  {formatMessage({id: 'general.save'})}
-                </Text>
-                <Text style={styles.text}>
-                  {formatMessage({id: 'general.changes'})}
-                </Text>
-              </View>
-            ) : null}
+            <View style={[styles.padding16, styles.marginDimension]}>
+              <Text style={styles.text}>
+                {formatMessage({id: 'general.save'})}
+              </Text>
+              <Text style={styles.text}>
+                {formatMessage({id: 'general.changes'})}
+              </Text>
+            </View>
             <View style={styles.justifyContent}>
               <Icon name="chevron-right" size={ms(26)} />
             </View>
@@ -151,24 +193,17 @@ const FormOneSummary = ({navigation}) => {
         <TouchableOpacity
           style={[styles.slideBtn, styles.borderStyle]}
           onPress={() => {
-            if (isShowDiscard) {
-              setIsShowSave(false);
-              navigation.goBack();
-            } else {
-              setIsShowDiscard((state) => !state);
-            }
+            navigation.goBack();
           }}>
           <View style={styles.row}>
-            {isShowDiscard ? (
-              <View style={styles.padding16}>
-                <Text style={styles.text}>
-                  {formatMessage({id: 'general.discard'})}
-                </Text>
-                <Text style={styles.text}>
-                  {formatMessage({id: 'general.changes'})}
-                </Text>
-              </View>
-            ) : null}
+            <View style={styles.padding16}>
+              <Text style={styles.text}>
+                {formatMessage({id: 'general.discard'})}
+              </Text>
+              <Text style={styles.text}>
+                {formatMessage({id: 'general.changes'})}
+              </Text>
+            </View>
             <View style={styles.justifyContent}>
               <Icon name="x" size={ms(26)} />
             </View>
