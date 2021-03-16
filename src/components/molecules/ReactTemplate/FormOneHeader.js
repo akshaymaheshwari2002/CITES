@@ -14,18 +14,18 @@ const formTitle = {
 };
 const facilitySchema = {
   facilityName: 'Facility name: ',
-  owner: 'Facility Owner/Manager: ',
+  owner: 'Facility owner/manager: ',
   address: 'Facility address: ',
   citesInformationCode:
-    'CITES Register of Capitative-breeding information code: ',
-  establishmentDate: 'Facility Date of Establishment: ',
+    'CITES register of capitative-breeding information code: ',
+  establishmentDate: 'Facility date of establishment: ',
   country: 'Country: ',
-  facilityContact: 'Facility Contact Information:',
+  facilityContact: 'Facility contact information:',
   email: 'Email ',
   phoneNo: ' Telephone ',
-  dateOfInspection: 'Date of Inspection: ',
+  dateOfInspection: 'Date of inspection: ',
   seniorOfficerName: 'Name of Senior Inspecting Officer: ',
-  typeOfInspection: 'Type of Inspection: ',
+  typeOfInspection: 'Type of inspection: ',
 };
 
 const FormOneHeader = ({form = 'one', facilityData = {}, editable = false}) => {
@@ -84,21 +84,28 @@ const FormOneHeader = ({form = 'one', facilityData = {}, editable = false}) => {
                 })}
               </p>
               <p style={styles.text}>
-                <b>
-                  {facilitySchema?.facilityContact}
-                  <br />
-                  {facilitySchema?.email}
-                </b>
+                <b>{facilitySchema?.facilityContact}</b>
+                <br />
+                <b>{facilitySchema?.email}</b>
                 {getInputElementConditionally({
                   name: 'facilityOwnerEmail',
                   defaultValue: facilityData?.facilityOwnerEmail,
                   inputSize: 15,
                 })}
+                <br />
                 <span style={styles.whitespace}>
                   <b>{facilitySchema?.phoneNo}</b>
+                  {'+'}
                   {getInputElementConditionally({
-                    name: 'facilityOwnerPhone',
-                    defaultValue: facilityData?.facilityOwnerPhone,
+                    name: 'facilityOwnerPhone_callingCode',
+                    defaultValue: facilityData?.facilityOwnerPhone_callingCode,
+                    inputSize: 3,
+                  })}
+                  &nbsp;
+                  {getInputElementConditionally({
+                    name: 'facilityOwnerPhone_contactNumber',
+                    defaultValue:
+                      facilityData?.facilityOwnerPhone_contactNumber,
                     inputSize: 15,
                   })}
                 </span>
@@ -115,11 +122,12 @@ const FormOneHeader = ({form = 'one', facilityData = {}, editable = false}) => {
               </p>
               <p style={styles.text}>
                 <b>{facilitySchema?.establishmentDate}</b>
-                {getInputElementConditionally({
+                {facilityData?.facilityEstablishmentDate}
+                {/* {getInputElementConditionally({
                   name: 'facilityEstablishmentDate',
                   defaultValue: facilityData?.facilityEstablishmentDate,
                   inputSize: 8,
-                })}
+                })} */}
               </p>
               <p style={styles.text}>
                 <b>{facilitySchema?.country}</b>
@@ -130,18 +138,20 @@ const FormOneHeader = ({form = 'one', facilityData = {}, editable = false}) => {
               </p>
               <p style={styles.text}>
                 <b>{facilitySchema?.dateOfInspection}</b>
-                {getInputElementConditionally({
+                {facilityData?.dateOfInspection}
+                {/* {getInputElementConditionally({
                   name: 'dateOfInspection',
                   defaultValue: facilityData?.dateOfInspection,
                   inputSize: 8,
-                })}
+                })} */}
               </p>
               <p style={styles.text}>
                 <b>{facilitySchema?.typeOfInspection}</b>
-                {getInputElementConditionally({
+                {facilityData?.typeOfInspection}
+                {/* {getInputElementConditionally({
                   name: 'typeOfInspection',
                   defaultValue: facilityData?.typeOfInspection,
-                })}
+                })} */}
               </p>
             </div>
           </div>

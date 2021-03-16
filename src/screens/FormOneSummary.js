@@ -32,7 +32,10 @@ const FormOneSummary = ({navigation, route}) => {
   const facilityData = useMemo(
     () => ({
       ...formData,
-      facilityOwnerPhone: `+${formData?.facilityOwnerPhone?.callingCode} ${formData?.facilityOwnerPhone?.contactNumber}`,
+      facilityOwnerPhone_callingCode:
+        formData?.facilityOwnerPhone?.callingCode ?? '',
+      facilityOwnerPhone_contactNumber:
+        formData?.facilityOwnerPhone?.contactNumber ?? '',
       dateOfInspection: formData?.dateOfInspection
         ? format(Number(formData?.dateOfInspection), 'MM/dd/yyyy')
         : '',
