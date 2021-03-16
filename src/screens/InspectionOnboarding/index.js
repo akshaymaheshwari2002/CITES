@@ -54,7 +54,6 @@ const InspectionOnboarding = ({navigation}) => {
     (e) => {
       const index = Math.round(e.nativeEvent?.contentOffset?.x / windowWidth);
       if (index === data?.length - 1) {
-        console.log('scroll Ended', index);
         navigation.navigate('TabNavigator', {
           screen: 'StepOne',
           params: {showToolTip: true},

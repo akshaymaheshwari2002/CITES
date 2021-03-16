@@ -44,13 +44,18 @@ const ExampleDialogueStep2 = ({navigation: {navigate, goBack}}) => {
             id: 'screen.ExampleDialogueStep2.contentThree',
           })}
         </Text>
+        <Text style={[styles.content, styles.nogap]}>
+          {formatMessage({
+            id: 'screen.ExampleDialogueStep2.contentThreeOne',
+          })}
+        </Text>
         <Text>
           <Text style={[styles.word, styles.nogap]}>
             {formatMessage({
               id: 'screen.ExampleDialogueStep2.contentFour',
             })}
           </Text>
-          <Text style={[styles.content, styles.nogap]}>
+          <Text style={[styles.content]}>
             {formatMessage({
               id: 'screen.ExampleDialogueStep2.contentFive',
             })}
@@ -72,6 +77,16 @@ const ExampleDialogueStep2 = ({navigation: {navigate, goBack}}) => {
           {formatMessage({
             id: 'screen.ExampleDialogueStep2.contentEight',
           })}
+          <Text style={[styles.word, styles.nogap]}>
+            {formatMessage({
+              id: 'screen.ExampleDialogueStep2.contentEightOne',
+            })}
+          </Text>
+          <Text style={[styles.content, styles.nogap]}>
+            {formatMessage({
+              id: 'screen.ExampleDialogueStep2.contentEightTwo',
+            })}
+          </Text>
         </Text>
         <Text style={styles.content}>
           {formatMessage({

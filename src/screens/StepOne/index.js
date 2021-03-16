@@ -1,4 +1,4 @@
-import React, {useCallback, useMemo, useEffect} from 'react';
+import React, {useCallback, useMemo} from 'react';
 import {View, StatusBar} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
@@ -39,7 +39,6 @@ const StepOne = ({navigation, route}) => {
       console.log('INCOMPLETE DATA');
     }
   }, [navigation, stepOneData]);
-
   const bullet = useMemo(
     () => (
       <View style={checkliststyles.bulletContainer}>
@@ -99,6 +98,7 @@ const StepOne = ({navigation, route}) => {
         {ChecklistContent({
           checkliststyles,
           bullet,
+          formOneComplete: stepOneData.formOne ? true : false,
         }).map((el) => {
           return (
             <ChecklistCell
@@ -164,10 +164,15 @@ const checkliststyles = ScaledSheet.create({
     color: RawColors.black,
     ...Fonts.Lato17SB,
   },
+  textBold: {
+    color: RawColors.black,
+    ...Fonts.Lato17B,
+  },
   textLink: {
     color: RawColors.black,
     textDecorationLine: 'underline',
     ...Fonts.Lato15SB,
+    ...Fonts.Italic15R,
   },
   bulletList: {
     flexDirection: 'row',
@@ -194,6 +199,8 @@ const checkliststyles = ScaledSheet.create({
     backgroundColor: RawColors.white,
     height: '40@vs',
     borderRadius: '24@vs',
+    marginVertical: '20@s',
+    marginHorizontal: '10@s',
   },
   buttonTextStyle: {
     textTransform: 'uppercase',

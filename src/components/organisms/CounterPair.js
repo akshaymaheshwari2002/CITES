@@ -45,6 +45,7 @@ const CounterPair = React.forwardRef(
               color={RawColors.darkSalmon}
               size={moderateScale(40)}
               onPress={onHelpIconPress}
+              style={{marginLeft: ms(50)}}
             />
           ) : null}
         </View>
@@ -73,7 +74,8 @@ export default CounterPair;
 const styles = ScaledSheet.create({
   labelContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
+
+    flex: 1,
     marginBottom: '12@vs',
   },
 });
@@ -88,7 +90,6 @@ CounterPair.propTypes = {
   showHelpIcon: PropTypes.bool,
   onHelpIconPress: PropTypes.func,
   label_1_style: PropTypes.object,
-
 };
 
 CounterPair.defaultProps = {

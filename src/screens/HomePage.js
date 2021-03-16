@@ -6,9 +6,12 @@ import {useIntl} from 'react-intl';
 import {Container, Button} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import {Images} from '@assets';
+import {setContinueToStepTwo} from '@store/slices/sessionSlice';
+import {useDispatch, useSelector} from 'react-redux';
 
 const HomePage = ({navigation}) => {
   const {formatMessage} = useIntl();
+  const dispatch = useDispatch();
 
   const handlePress = useCallback(() => {
     navigation.navigate('InspectionFlow');
@@ -44,7 +47,10 @@ const HomePage = ({navigation}) => {
                     })}
                   />
                   <Button
-                    onPress={() => navigation.navigate('SourceFlow')}
+                    onPress={() => {
+                      dispatch(setContinueToStepTwo(false));
+                      navigation.navigate('SourceFlow');
+                    }}
                     buttonStyle={() => styles.filledButton}
                     buttonTextStyle={() => ({color: RawColors.white})}
                     buttonContent={formatMessage({

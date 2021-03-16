@@ -46,7 +46,18 @@ const SourceCodeDeterminationOnboarding = ({navigation}) => {
     },
     [windowWidth],
   );
-
+  const handleScrollEndDrag = useCallback(
+    (e) => {
+      const index = Math.round(e.nativeEvent?.contentOffset?.x / windowWidth);
+      if (index === data?.length - 1) {
+        navigation.navigate('TabNavigator', {
+          screen: 'DetermineSourceCode',
+          params: {showToolTip: true},
+        });
+      }
+    },
+    [navigation, windowWidth],
+  );
   return (
     <View style={styles.container}>
       <FlatList
@@ -57,6 +68,7 @@ const SourceCodeDeterminationOnboarding = ({navigation}) => {
         contentContainerStyle={CommonStyles.flexGrow1}
         showsHorizontalScrollIndicator={false}
         data={data}
+        onScrollEndDrag={handleScrollEndDrag}
         keyExtractor={(_, index) => index.toString()}
         renderItem={({item: Item, index}) => {
           return (

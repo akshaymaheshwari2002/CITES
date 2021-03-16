@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, scale, ms} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
+import {useSelector} from 'react-redux';
 
 import {Fonts, RawColors} from '@styles/Themes';
 import {Button, Container, Header} from '@atoms';
@@ -13,12 +14,20 @@ import SourceCodeData from './SourceCodeData';
 const SourceCode = ({navigation, route}) => {
   const {formatMessage} = useIntl();
   const resultSourceCode = route.params?.selectedSourceCode;
-
+  const continueToStepTwo = useSelector(
+    (state) => state.sessionReducer.continueToStepTwo,
+  );
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
       <Header
         leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
+          <Icon
+            name="chevron-left"
+            size={ms(26)}
+            onPress={() => {
+              navigation.goBack();
+            }}
+          />
         }
         rightContent={
           <IconAntDesign
@@ -96,7 +105,11 @@ const SourceCode = ({navigation, route}) => {
             return styles.btnTwo;
           }}
           onPress={() => {
-            return navigation.navigate('HomePage');
+            if (continueToStepTwo) {
+              return navigation.navigate('StepTwo');
+            } else {
+              return navigation.navigate('HomePage');
+            }
           }}
         />
       </Container.ScrollView>

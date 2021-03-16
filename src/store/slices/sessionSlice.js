@@ -9,6 +9,7 @@ export const INITIAL_SESSION_STATE = {
   tooltipProps: null,
   activeInspection: {},
   appReady: false,
+  continueToStepTwo: false,
 };
 
 export const saveInspection = createAsyncThunk(
@@ -60,6 +61,9 @@ const sessionSlice = createSlice({
     setAppReady: (state, action) => {
       state.appReady = action.payload;
     },
+    setContinueToStepTwo: (state, action) => {
+      state.continueToStepTwo = action.payload;
+    },
   },
   extraReducers: {
     [saveInspection.fulfilled]: (state, action) => {
@@ -76,5 +80,6 @@ export const {
   setTooltipProps,
   setActiveInspection,
   setAppReady,
+  setContinueToStepTwo,
 } = sessionSlice.actions;
 export default sessionSlice.reducer;

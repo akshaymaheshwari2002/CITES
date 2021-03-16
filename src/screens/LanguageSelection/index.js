@@ -24,7 +24,6 @@ const LanguageSelection = ({navigation}) => {
     [dispatch, navigation],
   );
   useEffect(() => {
-    console.log('iueasnuxgyusa ');
     dispatch(setAppReady(true));
   }, [dispatch]);
 

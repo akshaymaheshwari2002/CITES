@@ -4,9 +4,12 @@ import {View, Text, Pressable} from 'react-native';
 import {Button} from '@atoms';
 import {navigate} from '@utils/RootNavigation';
 import createIntl from '@utils/Intl';
+import {setContinueToStepTwo} from '@store/slices/sessionSlice';
+import {store} from '@store';
 
 const checklistContent = ({checkliststyles, bullet}) => {
   const {formatMessage} = createIntl();
+  const {dispatch} = store;
 
   return [
     {
@@ -163,6 +166,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
             ]}
             buttonTextStyle={(pressed) => checkliststyles.buttonTextStyle}
             onPress={() => {
+              dispatch(setContinueToStepTwo(true));
               navigate('SourceFlow');
             }}
           />

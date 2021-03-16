@@ -14,10 +14,13 @@ import {Fonts, RawColors} from '@styles/Themes';
 import {generatePdf} from '@utils/CommonFunctions';
 import CommonStyles from '@styles/CommonStyles';
 
-const FormOneSummary = ({navigation}) => {
+const FormOneSummary = ({navigation, route}) => {
   const {formatMessage} = useIntl();
   const isFocused = useIsFocused();
   const [fileUri, setFileUri] = useState(undefined);
+  const isStepTwo = route?.params?.contnueToStepTwo
+    ? route.params.contnueToStepTwo
+    : false;
   const formData = useSelector(
     (state) => state.sessionReducer.activeInspection.stepOne?.formOne || {},
     shallowEqual,
@@ -104,9 +107,15 @@ const FormOneSummary = ({navigation}) => {
               <Text style={styles.text}>
                 {formatMessage({id: 'screen.FormOneSummary.continueTo'})}
               </Text>
-              <Text style={styles.text}>
-                {formatMessage({id: 'screen.FormOneSummary.stepOne'})}
-              </Text>
+              {isStepTwo ? (
+                <Text style={styles.text}>
+                  {formatMessage({id: 'screen.FormOneSummary.stepTwo'})}
+                </Text>
+              ) : (
+                <Text style={styles.text}>
+                  {formatMessage({id: 'screen.FormOneSummary.stepOne'})}
+                </Text>
+              )}
             </View>
             <View style={styles.justifyContent}>
               <Icon name="chevron-right" size={ms(26)} />
