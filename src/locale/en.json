@@ -243,7 +243,7 @@
   "screen.SourceCode.W.letterDescription": "WILD",
   "screen.SourceCode.R.contentDescription": "Specimens of animals reared in a controlled environment, taken as eggs or juveniles from the wild, where they would otherwise have had a very low probability of surviving to adulthood.",
   "screen.SourceCode.R.letterDescription": "RANCHED ANIMAL",
-  "screen.SourceCode.U.contentDescription": "Source of the specimen is unknown, but must be justified.",
+  "screen.SourceCode.U.contentDescription": "Source of the specimen is unknown, but this must be justified.",
   "screen.SourceCode.U.letterDescription": "UNKNOWN",
   "screen.SourceCode.D.contentDescription": "Appendix I animals bred in captivity for commercial purposes in operations included in the Secretariat’s Register, in accordance with Resolution Conf. 12.10 (Rev. CoP15), and Appendix-I plants artificially propagated for commercial purposes, as well as parts and derivatives thereof, exported under the provisions of Article VII, paragraph 4.",
   "screen.SourceCode.D.letterDescription": "CAPTIVE-BRED ANIMAL OR ARTIFICIALLY PROPAGATED PLANT",

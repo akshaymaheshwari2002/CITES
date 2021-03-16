@@ -12,6 +12,11 @@ export default {
   FOLLOWUP_INSPECTION: 'FOLLOWUP_INSPECTION',
   YES: 'YES',
   NO: 'NO',
+  PLANT: 'Plant',
+  ANIMAL: 'Animal',
+  APPENDIXI: 'AppendixI',
+  APPENDIXII: 'AppendixII',
+  APPENDIXIII: 'AppendixIII',
   PLUS: 'PLUS',
   MINUS: 'MINUS',
 };

@@ -13,6 +13,7 @@ import CommonStyles from '@styles/CommonStyles';
 import {Fonts, RawColors} from '@styles/Themes';
 import sourceCodeQuestions from './sourceCodeQuestions';
 import sourceCodeQuestionRelations from './sourceCodeQuestionRelations';
+import Constants from '@utils/Constants';
 
 const DetermineSourceCode = ({
   navigation: {navigate, goBack, setParams},
@@ -50,9 +51,9 @@ const DetermineSourceCode = ({
       ][optionChoosen];
     if (
       typeof resultAction === 'number' ||
-      resultAction === 'appendixI' ||
-      resultAction === 'appendixII' ||
-      resultAction === 'appendixIII'
+      resultAction === Constants.APPENDIXI ||
+      resultAction === Constants.APPENDIXII ||
+      resultAction === Constants.APPENDIXIII
     ) {
       setInteractedQuestionStack([...interactedQuestionStack, resultAction]);
     } else if (resultAction === 'exportShouldNotProceed') {

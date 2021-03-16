@@ -1,9 +1,10 @@
 import Config from '@config';
+import Constants from '@utils/Constants';
 
 const sourceCodeQuestions = {
   1: {
     content: ['Is the species listed in the CITES Appendices (I, II or III)?'],
-    options: ['yes', 'no'],
+    options: [Constants.YES, Constants.NO],
     moreInfo: {
       isWebResource: false,
       target: 'Q1MoreInfo',
@@ -13,7 +14,7 @@ const sourceCodeQuestions = {
     content: [
       'Was the specimen acquired before the provisions of the Convention applied to it?',
     ],
-    options: ['yes', 'no'],
+    options: [Constants.YES, Constants.NO],
     moreInfo: {
       isWebResource: true,
       target: Config.URL_Q2_MORE_INFO,
@@ -25,7 +26,7 @@ const sourceCodeQuestions = {
       'Exports subject to compliance with ',
       'Resolution. Conf. 17.8',
     ],
-    options: ['yes', 'no'],
+    options: [Constants.YES, Constants.NO],
     moreInfo: {
       isWebResource: true,
       target: Config.URL_Q3_MORE_INFO,
@@ -35,7 +36,7 @@ const sourceCodeQuestions = {
     content: [
       'Is there sufficient information about the specimen to determine its source?',
     ],
-    options: ['yes', 'no'],
+    options: [Constants.YES, Constants.NO],
     moreInfo: {
       isWebResource: false,
       target: 'Q4MoreInfo',
@@ -45,7 +46,7 @@ const sourceCodeQuestions = {
     content: [
       'Was the specimen taken from the marine environment and not under the jurisdiction of any State?',
     ],
-    options: ['yes', 'no'],
+    options: [Constants.YES, Constants.NO],
     moreInfo: {
       isWebResource: true,
       target: Config.URL_Q5_MORE_INFO,
@@ -53,19 +54,19 @@ const sourceCodeQuestions = {
   },
   6: {
     content: ['Is the specimen a plant', 'OR', 'animal?'],
-    options: ['plant', 'animal'],
+    options: [Constants.PLANT, Constants.ANIMAL],
     moreInfo: false,
   },
   7: {
     content: ['Was the specimen taken from the wild?'],
-    options: ['yes', 'no'],
+    options: [Constants.YES, Constants.NO],
     moreInfo: false,
   },
   8: {
     content: [
       'Was the specimen taken from the wild as an egg or juvenile that had a very low probability of surviving to adulthood?',
     ],
-    options: ['yes', 'no'],
+    options: [Constants.YES, Constants.NO],
     moreInfo: {
       isWebResource: true,
       target: Config.URL_Q8_MORE_INFO,
@@ -73,7 +74,7 @@ const sourceCodeQuestions = {
   },
   9: {
     content: ['Was the specimen reared in a', 'controlled environment?'],
-    options: ['yes', 'no'],
+    options: [Constants.YES, Constants.NO],
     moreInfo: {
       isWebResource: false,
       target: 'Q9MoreInfo',
@@ -84,7 +85,7 @@ const sourceCodeQuestions = {
       'Has the specimen been transferred to Appendix II and marked in accordance with',
       'Resolution Conf. 11.16 (Rev. CoP15)?',
     ],
-    options: ['yes', 'no'],
+    options: [Constants.YES, Constants.NO],
     moreInfo: {
       isWebResource: true,
       target: Config.URL_Q10_MORE_INFO,
@@ -92,7 +93,7 @@ const sourceCodeQuestions = {
   },
   11: {
     content: ['Is the species listed in the CITES Appendices (II or III)?'],
-    options: ['yes', 'no'],
+    options: [Constants.YES, Constants.NO],
     moreInfo: {
       isWebResource: false,
       target: 'Q1MoreInfo',
@@ -104,7 +105,7 @@ const sourceCodeQuestions = {
       'Article III',
       'of the Convention?',
     ],
-    options: ['yes', 'no'],
+    options: [Constants.YES, Constants.NO],
     moreInfo: {
       isWebResource: true,
       target: Config.URL_Q12_MORE_INFO,
@@ -120,7 +121,7 @@ const sourceCodeQuestions = {
       'controlled environment',
       'when development of the offspring began (asexual reproduction)?',
     ],
-    options: ['yes', 'no'],
+    options: [Constants.YES, Constants.NO],
     moreInfo: {
       isWebResource: true,
       target: Config.URL_Q13_MORE_INFO,
@@ -130,7 +131,7 @@ const sourceCodeQuestions = {
     content: [
       'Was the specimen born in captivity, in a controlled environment?',
     ],
-    options: ['yes', 'no'],
+    options: [Constants.YES, Constants.NO],
     moreInfo: {
       isWebResource: true,
       target: Config.URL_Q14_MORE_INFO,
@@ -142,7 +143,7 @@ const sourceCodeQuestions = {
       'AND',
       'in a manner not detrimental to the survival of the species in the wild?',
     ],
-    options: ['yes', 'no'],
+    options: [Constants.YES, Constants.NO],
     moreInfo: {
       isWebResource: false,
       target: 'Q4MoreInfo',
@@ -154,7 +155,7 @@ const sourceCodeQuestions = {
       'AND',
       'In a manner not detrimental to the survival of the species in the wild?',
     ],
-    options: ['yes', 'no'],
+    options: [Constants.YES, Constants.NO],
     moreInfo: {
       isWebResource: true,
       target: Config.URL_Q16_MORE_INFO,
@@ -166,17 +167,17 @@ const sourceCodeQuestions = {
       'OR',
       'Is managed in a manner that has been demonstrated to be capable of reliably producing second-generation offspring in a controlled environment?',
     ],
-    options: ['yes', 'no'],
+    options: [Constants.YES, Constants.NO],
     moreInfo: false,
   },
   18: {
     content: ['In which CITES Appendix is the specimen listed?'],
-    options: ['appendixI', 'appendixII', 'appendixIII'],
+    options: [Constants.APPENDIXI, Constants.APPENDIXII, Constants.APPENDIXIII],
     moreInfo: false,
   },
   19: {
     content: ['Has the specimen been bred for commercial purposes?'],
-    options: ['yes', 'no'],
+    options: [Constants.YES, Constants.NO],
     moreInfo: {
       isWebResource: true,
       target: Config.URL_Q19_MORE_INFO,
@@ -186,7 +187,7 @@ const sourceCodeQuestions = {
     content: [
       'Was the specimen bred at a CITES-registered breeding operation?',
     ],
-    options: ['yes', 'no'],
+    options: [Constants.YES, Constants.NO],
     moreInfo: {
       isWebResource: true,
       target: Config.URL_Q20_MORE_INFO,
@@ -194,7 +195,7 @@ const sourceCodeQuestions = {
   },
   21: {
     content: ['Was the specimen grown under', 'controlled conditions', '?'],
-    options: ['yes', 'no'],
+    options: [Constants.YES, Constants.NO],
     moreInfo: false,
   },
   22: {
@@ -202,7 +203,7 @@ const sourceCodeQuestions = {
       'Was the specimen grown from seeds, cuttings, divisions, callus tissues or other plant tissues, spores or other propagules that were derived from cultivated parental stock in accordance with paragraph 1b) of',
       'Resolution Conf. 11.11 (Rev. CoP18)?*',
     ],
-    options: ['yes', 'no'],
+    options: [Constants.YES, Constants.NO],
     moreInfo: {
       isWebResource: true,
       target: Config.URL_Q22_MORE_INFO,
@@ -213,7 +214,7 @@ const sourceCodeQuestions = {
       'Was the specimen grown from wild collected seeds or spores in accordance with exemptions in',
       'Resolution Conf. 11.11 (Rev. CoP18)?',
     ],
-    options: ['yes', 'no'],
+    options: [Constants.YES, Constants.NO],
     moreInfo: {
       isWebResource: true,
       target: Config.URL_Q23_MORE_INFO,
@@ -221,31 +222,31 @@ const sourceCodeQuestions = {
   },
   24: {
     content: ['Was the specimen grown from a cutting or division?'],
-    options: ['yes', 'no'],
+    options: [Constants.YES, Constants.NO],
     moreInfo: false,
   },
   25: {
     content: [
       'Was the cutting or division taken from a wild plant that is NOT considered cultivated parental stock?',
     ],
-    options: ['yes', 'no'],
+    options: [Constants.YES, Constants.NO],
     moreInfo: false,
   },
   26: {
     content: ['In which CITES Appendix is the species listed?'],
-    options: ['appendixI', 'appendixII', 'appendixIII'],
+    options: [Constants.APPENDIXI, Constants.APPENDIXII, Constants.APPENDIXIII],
     moreInfo: false,
   },
   27: {
     content: ['Has the specimen been grown for commercial purposes?'],
-    options: ['yes', 'no'],
+    options: [Constants.YES, Constants.NO],
     moreInfo: false,
   },
   28: {
     content: [
       'Has the specimen been artificially propagated at a CITES-registered nursery?',
     ],
-    options: ['yes', 'no'],
+    options: [Constants.YES, Constants.NO],
     moreInfo: false,
   },
 };
