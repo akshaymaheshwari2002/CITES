@@ -46,7 +46,7 @@ const Q1MoreInfo = ({navigation}) => {
                   })}
                 </Text>
                 <View style={styles.secondText}>
-                  <Text style={styles.cotent}>
+                  <Text style={styles.content}>
                     {formatMessage({
                       id: 'screen.q1MoreInfo.contentOnePartTwo',
                     })}
@@ -71,7 +71,7 @@ const Q1MoreInfo = ({navigation}) => {
                   })}
                 </Text>
                 <View style={styles.secondText}>
-                  <Text style={styles.cotent}>
+                  <Text style={styles.content}>
                     {formatMessage({
                       id: 'screen.q1MoreInfo.contentTwoPartTwo',
                     })}
@@ -95,7 +95,7 @@ const Q1MoreInfo = ({navigation}) => {
                   })}
                 </Text>
                 <View style={styles.secondText}>
-                  <Text style={styles.cotent}>
+                  <Text style={styles.content}>
                     {formatMessage({
                       id: 'screen.q1MoreInfo.contentThreePartTwo',
                     })}
@@ -128,7 +128,7 @@ const styles = ScaledSheet.create({
   button: {
     height: '80@ms',
     width: '290@s',
-    marginTop: '20@s',
+    marginTop: '30@s',
     backgroundColor: RawColors.lightGrey,
   },
   content: {
@@ -141,8 +141,5 @@ const styles = ScaledSheet.create({
   footer: {
     width: '100%',
     height: '15@s',
-  },
-  bottomMargin10: {
-    //marginBottom: '10@vs',
   },
 });
