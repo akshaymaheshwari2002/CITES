@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback, useMemo} from 'react';
+import React, {useEffect, useState, useMemo} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms} from 'react-native-size-matters';
@@ -48,19 +48,17 @@ const FormOneSummary = ({navigation}) => {
 
   useEffect(() => {
     if (isFocused) {
-      handlePress();
+      (async () => {
+        const file = await generatePdf({
+          templates: [
+            <FormOneHeader facilityData={facilityData} />,
+            <FormOneTemplate speciesData={registeredSpecies} />,
+          ],
+        });
+        setFileUri({uri: file?.filePath});
+      })();
     }
-  }, [handlePress, isFocused]);
-
-  const handlePress = useCallback(async () => {
-    const file = await generatePdf({
-      templates: [
-        <FormOneHeader facilityData={facilityData} />,
-        <FormOneTemplate speciesData={registeredSpecies} />,
-      ],
-    });
-    setFileUri({uri: file?.filePath});
-  }, [facilityData, registeredSpecies]);
+  }, [isFocused, facilityData, registeredSpecies]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>

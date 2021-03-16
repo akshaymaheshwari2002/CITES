@@ -87,9 +87,21 @@ const FormOne = ({navigation}) => {
       formData.current = {...formData.current, ...data};
 
       if (formFieldsPage === 1) {
-        const _registeredSpecies = data.registeredSpecies.map((species) => ({
-          name: species,
-        }));
+        const _registeredSpecies = data.registeredSpecies.map((species) => {
+          let speciesExisting = registeredSpecies.find(({name: _name}) => {
+            return _name === species;
+          });
+          if (speciesExisting) {
+            return {
+              ...speciesExisting,
+              name: species,
+            };
+          } else {
+            return {
+              name: species,
+            };
+          }
+        });
         delete data.registeredSpecies;
 
         await dispatch(

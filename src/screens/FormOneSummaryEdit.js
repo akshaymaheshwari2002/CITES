@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector, shallowEqual, useDispatch} from 'react-redux';
 import {WebView as RNWebView} from 'react-native-webview';
-import {View, Text, TouchableOpacity, Alert} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {renderToString} from 'react-dom/server';
 import {useIntl} from 'react-intl';
 import {format} from 'date-fns';
@@ -36,6 +36,22 @@ const getHtmlStringFromJsx = (element) => {
     `;
 };
 
+const formatFormDataToDisplay = (data) => ({
+  ...data,
+  facilityOwnerPhone_callingCode: data?.facilityOwnerPhone?.callingCode ?? '',
+  facilityOwnerPhone_contactNumber:
+    data?.facilityOwnerPhone?.contactNumber ?? '',
+  dateOfInspection: data?.dateOfInspection
+    ? format(Number(data?.dateOfInspection), 'MM/dd/yyyy')
+    : '',
+  facilityEstablishmentDate: data?.facilityEstablishmentDate
+    ? format(Number(data?.facilityEstablishmentDate), 'MM/dd/yyyy')
+    : '',
+  typeOfInspection: data?.typeOfInspection
+    ? data?.typeOfInspection[0]?.replace('_', ' ')
+    : '',
+});
+
 const FormOneSummary = ({navigation}) => {
   const {formatMessage} = useIntl();
   const dispatch = useDispatch();
@@ -54,23 +70,7 @@ const FormOneSummary = ({navigation}) => {
   );
 
   useEffect(() => {
-    console.log(formData.dateOfInspection, formData.facilityEstablishmentDate);
-    setfacilityDataModified({
-      ...formData,
-      facilityOwnerPhone_callingCode:
-        formData?.facilityOwnerPhone?.callingCode ?? '',
-      facilityOwnerPhone_contactNumber:
-        formData?.facilityOwnerPhone?.contactNumber ?? '',
-      dateOfInspection: formData?.dateOfInspection
-        ? format(Number(formData?.dateOfInspection), 'MM/dd/yyyy')
-        : '',
-      facilityEstablishmentDate: formData?.facilityEstablishmentDate
-        ? format(Number(formData?.facilityEstablishmentDate), 'MM/dd/yyyy')
-        : '',
-      typeOfInspection: formData?.typeOfInspection
-        ? formData?.typeOfInspection[0]?.replace('_', ' ')
-        : '',
-    });
+    setfacilityDataModified(formatFormDataToDisplay(formData));
     setRegisteredSpeciesModified(registeredSpecies);
   }, [formData, registeredSpecies]);
 
@@ -109,11 +109,11 @@ const FormOneSummary = ({navigation}) => {
           html: getHtmlStringFromJsx(
             <>
               <FormOneHeader
-                facilityData={facilityDataModified}
+                facilityData={formatFormDataToDisplay(formData)}
                 editable={true}
               />
               <FormOneTemplate
-                speciesData={registeredSpeciesModified}
+                speciesData={registeredSpecies}
                 editable={true}
               />
             </>,
@@ -134,10 +134,14 @@ const FormOneSummary = ({navigation}) => {
             data.name.split('.')[0] === 'registeredSpecies'
           ) {
             setRegisteredSpeciesModified((state) => {
+              const _state = [...state];
               const changedSpeciesIndex = parseInt(data.name.split('.')[1], 10);
               const changedPropertyKey = data.name.split('.')[2];
-              state[changedSpeciesIndex][changedPropertyKey] = data.value;
-              return [...state];
+              _state[changedSpeciesIndex] = {
+                ...state[changedSpeciesIndex],
+                [changedPropertyKey]: data.value,
+              };
+              return _state;
             });
           }
         }}
@@ -171,8 +175,8 @@ const FormOneSummary = ({navigation}) => {
                 },
               }),
             );
+            dispatch(saveRegisteredSpecies(registeredSpeciesModified));
             navigation.goBack();
-            Alert.alert('Work in progress');
           }}>
           <View style={styles.row}>
             <View style={[styles.padding16, styles.marginDimension]}>

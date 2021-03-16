@@ -64,15 +64,27 @@ export const addOrUpdateSpecies = (species, inspectionId) =>
           );
 
           if (Array.isArray(species)) {
-            const newSpecies = inspection.registeredSpecies.length
-              ? species.filter(
-                  ({name}) =>
-                    !inspection.registeredSpecies.some(
-                      ({name: _name}) => name === _name,
-                    ),
-                )
-              : species;
-
+            const newSpecies = [];
+            const existingSpecies = [...(inspection?.existingSpecies ?? [])];
+            species?.forEach((item) => {
+              const savedDataIndex = inspection?.registeredSpecies?.findIndex(
+                (savedSpecies) => {
+                  return (
+                    savedSpecies._id?.toHexString() ===
+                      item._id?.toHexString() || savedSpecies.name === item.name
+                  );
+                },
+              );
+              if (savedDataIndex !== -1) {
+                existingSpecies[savedDataIndex] = {
+                  ...existingSpecies[savedDataIndex],
+                  ...item,
+                };
+              } else {
+                newSpecies.push(item);
+              }
+            });
+            inspection.registeredSpecies = existingSpecies;
             newSpecies.forEach((item) => {
               inspection.registeredSpecies.push(item);
             });
