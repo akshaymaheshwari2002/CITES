@@ -18,6 +18,7 @@ import {
   ProductionCapacityCalculator,
   ContinueInspection,
   DetermineSourceCode,
+  SourceCodeSelection,
   FormOneSummary,
   FormOneSummaryEdit,
   ExampleDialogueStep3,
@@ -49,6 +50,7 @@ const AppNavigator = () => {
         initialParams={{showToolTip: false}}
       />
       <Tab.Screen name="StepTwo" component={StepTwo} />
+      <Tab.Screen name="SourceCodeSelection" component={SourceCodeSelection} />
       <Tab.Screen name="ContinueInspection" component={ContinueInspection} />
       <Tab.Screen
         name="ExampleDialogueStep3"

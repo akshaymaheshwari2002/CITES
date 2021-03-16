@@ -1,9 +1,10 @@
 import React from 'react';
 import {View, Text, FlatList} from 'react-native';
 import {useIntl} from 'react-intl';
-import {ScaledSheet} from 'react-native-size-matters';
+import {ScaledSheet, ms} from 'react-native-size-matters';
+import Icon from 'react-native-vector-icons/Feather';
 
-import {Container, Button} from '@atoms';
+import {Container, Button, Header} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import SourceCodeData from './SourceCode/SourceCodeData';
 import CommonStyles from '@styles/CommonStyles';
@@ -14,7 +15,18 @@ const SourceCodeSelection = ({navigation}) => {
   const SourceData = ['W', 'R', 'F', 'C', 'A', 'D', 'X', 'U', 'I', 'O'];
 
   return (
-    <Container>
+    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+      <Header
+        leftContent={
+          <Icon
+            name="chevron-left"
+            size={ms(26)}
+            onPress={() => {
+              navigation.goBack();
+            }}
+          />
+        }
+      />
       <View style={styles.titleView}>
         <Text style={styles.title}>
           {formatMessage({id: 'screen.SourceCodeSelection.title'})}
@@ -98,6 +110,7 @@ const styles = ScaledSheet.create({
   letterDescription: {
     minWidth: '130@ms',
     color: RawColors.black,
+    lineHeight: '25@s',
     textAlign: 'center',
     ...Fonts.Lato15R,
   },

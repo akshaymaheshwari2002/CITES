@@ -45,6 +45,9 @@ const OverlayModal = ({isModalVisible, hideModal, helpText}) => {
       }}>
       <Pressable onPress={() => hideModal()} style={styles.overlay}>
         <Pressable
+          onPress={() => {
+            hideModal();
+          }}
           style={[styles.modalView, {width: modalWidth}]}
           onLayout={(ev) => {
             const height = ev.nativeEvent.layout.height;
@@ -89,6 +92,7 @@ const styles = ScaledSheet.create({
   overlay: {
     ...CommonStyles.flex1,
     justifyContent: 'flex-end',
+    paddingBottom: '54@vs',
   },
   modalView: {
     alignSelf: 'flex-end',

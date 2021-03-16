@@ -27,12 +27,22 @@ const FormTwo = ({navigation}) => {
   const _animalKeptAtOtherLocation = watch('animalKeptAtOtherLocation');
 
   const formFields = useMemo(() => {
-    return getFormFields({
+    let filteredFields = [];
+    const allFields = getFormFields({
       isAccessToVeterinaryServices:
         _accessToVeterinaryServices?.[Constants.YES] ?? false,
       isAnimalKeptAtOtherLocation:
         _animalKeptAtOtherLocation?.[Constants.YES] ?? false,
     });
+    filteredFields.push(...allFields.slice(0, 2));
+    if (_accessToVeterinaryServices?.[Constants.YES] ?? false) {
+      filteredFields.push(...allFields.slice(2, 5));
+    }
+    filteredFields.push(allFields[5]);
+    if (_animalKeptAtOtherLocation?.[Constants.YES] ?? false) {
+      filteredFields.push(...allFields.slice(6, 7));
+    }
+    return filteredFields;
   }, [_accessToVeterinaryServices, _animalKeptAtOtherLocation]);
 
   const _handleSubmit = useCallback(

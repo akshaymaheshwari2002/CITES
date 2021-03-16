@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, Linking} from 'react-native';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
@@ -9,6 +9,7 @@ import {Images} from '@assets/';
 import {Container, Button, Header} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const NoExport = ({navigation: {navigate, goBack}}) => {
   const {formatMessage} = useIntl();
@@ -42,9 +43,16 @@ const NoExport = ({navigation: {navigate, goBack}}) => {
             style={styles.icon}
             resizeMode="contain"
           />
-          <Text style={styles.contentOne}>
-            {formatMessage({id: 'screen.NoExport.contentOne'})}
-          </Text>
+          <TouchableOpacity
+            onPress={() => {
+              Linking.openURL(
+                'mailto:support@example.com?subject=SendMail&body=Description',
+              );
+            }}>
+            <Text style={styles.contentOne}>
+              {formatMessage({id: 'screen.NoExport.contentOne'})}
+            </Text>
+          </TouchableOpacity>
           <Button
             buttonContent={formatMessage({
               id: 'general.continue',

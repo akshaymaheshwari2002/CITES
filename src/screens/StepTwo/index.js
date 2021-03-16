@@ -98,10 +98,14 @@ const checkliststyles = ScaledSheet.create({
     color: RawColors.black,
     ...Fonts.Lato17SB,
   },
+  textBold: {
+    color: RawColors.black,
+    ...Fonts.Lato17B,
+  },
   textLink: {
     color: RawColors.black,
     textDecorationLine: 'underline',
-    ...Fonts.Lato15SB,
+    ...Fonts.Italic15R,
   },
   bulletList: {
     flexDirection: 'row',
@@ -129,6 +133,8 @@ const checkliststyles = ScaledSheet.create({
     borderColor: RawColors.prussianBlue,
     backgroundColor: RawColors.white,
     height: '40@vs',
+    marginVertical: '20@s',
+    marginHorizontal: '10@s',
   },
   buttonTextStyle: {
     textTransform: 'uppercase',

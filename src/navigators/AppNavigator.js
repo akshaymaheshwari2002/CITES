@@ -17,7 +17,6 @@ import {
   SourceFlow,
   HomePage,
   WebView,
-  SourceCodeSelection,
   DetermineSourceCode,
   FormOneSummary,
   InspectionOnboarding,
@@ -56,10 +55,6 @@ const AppNavigator = () => {
           name="SourceFlow"
           options={{headerTransparent: true}}
           component={SourceFlow}
-        />
-        <Stack.Screen
-          name="SourceCodeSelection"
-          component={SourceCodeSelection}
         />
         <Stack.Screen
           name="TabNavigator"

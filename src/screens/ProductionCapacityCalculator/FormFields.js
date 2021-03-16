@@ -1,3 +1,5 @@
+import {ms} from 'react-native-size-matters';
+
 import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
 import {RawColors} from '@styles/Themes';
@@ -176,7 +178,12 @@ export default ({modeSelected}) => {
         modeSelected === 1 ? resultFieldStyleProps : {color: RawColors.black},
       placeholderTextColor:
         modeSelected === 1 ? RawColors.black : RawColors.grey,
-      labelStyle: modeSelected === 1 ? resultFieldLabelStyleProps : undefined,
+      labelStyle:
+        modeSelected === 1
+          ? resultFieldLabelStyleProps
+          : {
+              marginRight: ms(30),
+            },
     },
   ];
 };
