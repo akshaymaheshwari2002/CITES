@@ -53,7 +53,7 @@ const sourceCodeQuestions = {
     },
   },
   6: {
-    content: ['Is the specimen a plant', 'OR', 'animal?'],
+    content: ['Is the specimen a', 'plant', 'OR', 'animal?'],
     options: [Constants.PLANT, Constants.ANIMAL],
     moreInfo: false,
   },

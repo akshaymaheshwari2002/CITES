@@ -24,6 +24,7 @@ const SourceCode = ({navigation, route}) => {
           <Icon
             name="chevron-left"
             size={ms(26)}
+            style={{marginHorizontal: ms(10)}}
             onPress={() => {
               navigation.goBack();
             }}
@@ -32,30 +33,33 @@ const SourceCode = ({navigation, route}) => {
         rightContent={
           <IconAntDesign
             name="pluscircle"
+            style={{marginHorizontal: ms(10)}}
             size={ms(26)}
             onPress={() => navigation.navigate('MoreInformation')}
           />
         }
       />
       <Container.ScrollView style={CommonStyles.flex1}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>
-            {formatMessage({id: 'screen.SourceCode.title'})}
-          </Text>
-          {!(resultSourceCode === 'NotApplicable') ? (
-            <Text style={styles.letter}>{resultSourceCode}</Text>
-          ) : (
-            <Text style={styles.notApplicableText}>
-              {formatMessage({id: 'screen.SourceCode.NotApplicable.letter'})}
+        <View style={styles.container}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>
+              {formatMessage({id: 'screen.SourceCode.title'})}
             </Text>
-          )}
-        </View>
-        <View style={styles.letterDescription}>
-          <Text style={styles.letterDescriptionText}>
-            {formatMessage({
-              id: SourceCodeData[resultSourceCode].letterDescription,
-            })}
-          </Text>
+            {!(resultSourceCode === 'NotApplicable') ? (
+              <Text style={styles.letter}>{resultSourceCode}</Text>
+            ) : (
+              <Text style={styles.notApplicableText}>
+                {formatMessage({id: 'screen.SourceCode.NotApplicable.letter'})}
+              </Text>
+            )}
+          </View>
+          <View style={styles.letterDescription}>
+            <Text style={styles.letterDescriptionText}>
+              {formatMessage({
+                id: SourceCodeData[resultSourceCode].letterDescription,
+              })}
+            </Text>
+          </View>
         </View>
         {resultSourceCode !== 'NotApplicable' ? (
           <>
@@ -96,7 +100,7 @@ const SourceCode = ({navigation, route}) => {
         </Text>
         <Button
           buttonContent={formatMessage({
-            id: 'general.continue',
+            id: 'button.continueCaps',
           })}
           buttonTextStyle={() => {
             return styles.btnTxt;
@@ -118,6 +122,10 @@ const SourceCode = ({navigation, route}) => {
 };
 
 const styles = ScaledSheet.create({
+  container: {
+    backgroundColor: RawColors.darkRed,
+    height: '266@s',
+  },
   titleContainer: {
     marginVertical: '15@vs',
     borderRadius: '90@s',
@@ -127,8 +135,10 @@ const styles = ScaledSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     alignSelf: 'center',
+    backgroundColor: RawColors.white,
     borderColor: 'rgba(0, 0, 0, 0.16)',
     borderWidth: 2,
+    ...CommonStyles.shadowEffectDarker,
   },
   title: {
     textAlign: 'center',
@@ -141,20 +151,23 @@ const styles = ScaledSheet.create({
     ...Fonts.Lato17B,
   },
   letter: {
-    textAlign: 'center',
+    //textAlign: 'center',
     color: RawColors.redShade,
     ...Fonts.Didot56B,
+    alignSelf: 'center',
   },
   letterDescription: {
     backgroundColor: RawColors.darkRed,
     justifyContent: 'center',
     alignContent: 'center',
-    height: '71@s',
+    color: RawColors.white,
+    marginVertical: '15@s',
   },
   letterDescriptionText: {
     ...Fonts.Lato15B,
     textAlign: 'center',
     letterSpacing: 0.4,
+    color: RawColors.whiteTwo,
     lineHeight: '19@s',
     marginHorizontal: '40@s',
   },
@@ -189,12 +202,13 @@ const styles = ScaledSheet.create({
     justifyContent: 'center',
     textAlign: 'center',
     marginHorizontal: '16@s',
+    marginBottom: '30@vs',
   },
   btnTwo: {
     height: '46@vs',
     width: '290@s',
     alignSelf: 'center',
-    marginTop: '30@vs',
+    marginTop: 'auto',
     marginBottom: '15@vs',
     backgroundColor: RawColors.sugarCane,
   },

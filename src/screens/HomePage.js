@@ -62,6 +62,7 @@ const HomePage = ({navigation}) => {
                     buttonContent={formatMessage({
                       id: 'button.giveFeedback',
                     })}
+                    buttonStyle={() => styles.emptyButton}
                   />
                 </View>
               </ImageBackground>
@@ -89,6 +90,9 @@ const styles = ScaledSheet.create({
     flexGrow: 1,
     paddingTop: '28@vs',
   },
+  emptyButton: {
+    marginVertical: '20@s',
+  },
   backgroundImage: {
     resizeMode: 'stretch',
   },
@@ -103,7 +107,7 @@ const styles = ScaledSheet.create({
   contentContainer: {
     flex: 1,
     width: '78.4%',
-    justifyContent: 'space-evenly',
+    justifyContent: 'center',
     alignSelf: 'center',
     marginTop: '84@vs',
     paddingBottom: '16@vs',
@@ -116,6 +120,7 @@ const styles = ScaledSheet.create({
     fontSize: '34@ms0.1',
   },
   filledButton: {
+    marginVertical: '20@s',
     backgroundColor: RawColors.darkSalmon,
     minHeight: '66@vs',
     borderWidth: 0,

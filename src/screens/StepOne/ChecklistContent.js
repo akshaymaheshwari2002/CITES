@@ -5,13 +5,13 @@ import {Button} from '@atoms';
 import Config from '@config';
 import {navigate} from '@utils/RootNavigation';
 import createIntl from '@utils/Intl';
+import {store} from '@store';
 
-const checklistContent = ({
-  checkliststyles = {},
-  bullet = null,
-  formOneComplete = false,
-}) => {
+const checklistContent = ({checkliststyles = {}, bullet = null}) => {
   const {formatMessage} = createIntl();
+  const formOneCompleted = store.getState().sessionReducer.activeInspection
+    .stepOne?.formOneCompleted;
+
   return [
     {
       id: 'researchConducted',
@@ -89,11 +89,9 @@ const checklistContent = ({
             &nbsp;
           </Text>
           <Button
-            onPress={() => {
-              formOneComplete
-                ? navigate('FormOneSummary')
-                : navigate('FormOne');
-            }}
+            onPress={() =>
+              navigate(formOneCompleted ? 'FormOneSummary' : 'FormOne')
+            }
             buttonContent={formatMessage({
               id: 'screen.stepOne.formOneCompleted.FormOne',
             })}
@@ -167,6 +165,10 @@ const checklistContent = ({
               {formatMessage({
                 id: 'screen.stepOne.toolsEnsured.bullet_4_1',
               })}
+            </Text>
+          </View>
+          <View style={checkliststyles.hiddenBullet}>
+            <Text style={checkliststyles.textGeneral}>
               {formatMessage({
                 id: 'screen.stepOne.toolsEnsured.bullet_4_2',
               })}

@@ -1,8 +1,9 @@
 import React, {useRef, useCallback} from 'react';
-import {View, useWindowDimensions, FlatList} from 'react-native';
+import {View, useWindowDimensions, FlatList, Image} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 
 import {RawColors} from '@styles/Themes';
+import {Images} from '@assets';
 import CommonStyles from '@styles/CommonStyles';
 import OnboardingOne from './OnboardingOne';
 import OnboardingTwo from './OnboardingTwo';
@@ -62,7 +63,36 @@ const InspectionOnboarding = ({navigation}) => {
     },
     [navigation, windowWidth],
   );
-
+  const headerDots = (index) => {
+    return (
+      <View style={styles.headerContent}>
+        <Image
+          source={
+            index === 0 ? Images.headerDarkCircle : Images.headerLightCircle
+          }
+          style={styles.headerImage}
+        />
+        <Image
+          source={
+            index === 1 ? Images.headerDarkCircle : Images.headerLightCircle
+          }
+          style={styles.headerImage}
+        />
+        <Image
+          source={
+            index === 2 ? Images.headerDarkCircle : Images.headerLightCircle
+          }
+          style={styles.headerImage}
+        />
+        <Image
+          source={
+            index === 3 ? Images.headerDarkCircle : Images.headerLightCircle
+          }
+          style={styles.headerImage}
+        />
+      </View>
+    );
+  };
   return (
     <View style={styles.container}>
       <FlatList
@@ -86,6 +116,7 @@ const InspectionOnboarding = ({navigation}) => {
               <Item
                 onBackPress={() => handleBackPress(index)}
                 onForwardPress={() => handleForwardPress(index)}
+                headerDots={() => headerDots(index)}
               />
             </View>
           );
@@ -102,6 +133,15 @@ const styles = ScaledSheet.create({
   },
   contentContainer: {
     flex: 1,
+  },
+  headerContent: {
+    flexDirection: 'row',
+    alignSelf: 'center',
+  },
+  headerImage: {
+    height: '15@s',
+    width: '15@s',
+    marginHorizontal: '5@s',
   },
 });
 

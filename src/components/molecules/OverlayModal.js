@@ -63,7 +63,7 @@ const OverlayModal = ({isModalVisible, hideModal, helpText}) => {
           />
           <Container.ScrollView style={styles.scrollView}>
             <View
-              onStartShouldSetResponder={() => true}
+              //onStartShouldSetResponder={() => true}
               style={styles.contentContainer}
               onLayout={(ev) => {
                 const height = ev.nativeEvent.layout.height;

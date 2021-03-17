@@ -124,7 +124,7 @@ const FormOne = ({navigation}) => {
         scrollToTop();
       }
     },
-    [dispatch, formFieldsPage, reset, scrollToTop],
+    [dispatch, formFieldsPage, registeredSpecies, reset, scrollToTop],
   );
 
   const scrollToTop = useCallback(() => {
@@ -140,7 +140,16 @@ const FormOne = ({navigation}) => {
   }, [formFieldsPage, navigation]);
 
   const isSpeciesDataComplete = useCallback(() => {
-    const result = registeredSpecies.every((species) =>
+    const currentData = registeredSpecies.map((species) => {
+      return getFormFieldsPageTwo().reduce(
+        (acc, current) => ({
+          ...acc,
+          [current.name]: species[current.name],
+        }),
+        {},
+      );
+    });
+    const result = currentData.every((species) =>
       Object.keys(species).every((key) => species[key] === 0 || species[key]),
     );
 
@@ -149,7 +158,6 @@ const FormOne = ({navigation}) => {
 
   const continueToStepOne = useCallback(() => {
     const formOneCompleted = isSpeciesDataComplete();
-
     dispatch(saveInspection({stepOne: {formOneCompleted}}));
     navigation.navigate('TabNavigator', {screen: 'StepOne'});
   }, [dispatch, isSpeciesDataComplete, navigation]);
