@@ -1,5 +1,5 @@
 import React, {useCallback, useMemo, useRef, useState, useEffect} from 'react';
-import {Text, View, BackHandler} from 'react-native';
+import {Text, View, BackHandler, Alert} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import {ms, ScaledSheet} from 'react-native-size-matters';
 import {useForm} from 'react-hook-form';
@@ -40,6 +40,7 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
   );
   const _doYouBreedThisSpecies = watch('doYouBreedThisSpecies');
   const _doYouRanchThisSpecies = watch('doYouRanchThisSpecies');
+  const _lifeStageHarvested = watch('lifeStageHarvested');
 
   const formFields = useMemo(() => {
     const fieldProps = {
@@ -71,7 +72,11 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
         const isDoYouRanchThisSpecies =
           _doYouRanchThisSpecies?.[Constants.YES] ?? false;
         return isDoYouRanchThisSpecies
-          ? getFormFieldsPageThree()
+          ? getFormFieldsPageThree({
+              lifeStageHarvested: {
+                initialValue: formData.current.lifeStageHarvested ?? [],
+              },
+            })
           : getFormFieldsPageThree().slice(0, 1);
       case 4:
         return getFormFieldsPageFour();
@@ -238,8 +243,25 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
           <Form {...{control, errors}} formFields={formFields} />
           <Button
             onPress={handleSubmit(_handleSubmit, () => scrollToTop())}
-            buttonContent={formatMessage({id: 'general.continue'})}
+            buttonContent={formatMessage({
+              id:
+                formFieldsPage === 5 ? 'button.saveAndAdd' : 'general.continue',
+            })}
           />
+          {formFieldsPage === 5 ? (
+            <Button
+              onPress={() => Alert.alert('Work in progress')}
+              buttonContent={formatMessage({id: 'button.viewFormTwoSummary'})}
+            />
+          ) : null}
+          {formFieldsPage === 5 ? (
+            <Button
+              onPress={() => {
+                navigate('StepTwo');
+              }}
+              buttonContent={formatMessage({id: 'button.continueWithStep2'})}
+            />
+          ) : null}
         </View>
       </Container.ScrollView>
     </Container>

@@ -3,6 +3,25 @@ import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
 
+const lifeStageDropDownList = [
+  'Adult',
+  'Juvenile',
+  'Egg',
+  'Fledgling',
+  'Chick',
+  'Hatchling',
+  'Owlet',
+  'Fry',
+  'Lavae',
+  'Pupa',
+  'Pup',
+  'Spiderling',
+  'Nymph',
+  'Tadpole',
+  'Froglet',
+  'Chrysalis',
+];
+
 export default (fieldProps = {}) => {
   const {formatMessage} = createIntl();
   const {required} = getValidators();
@@ -31,9 +50,13 @@ export default (fieldProps = {}) => {
       name: 'lifeStageHarvested',
       rules: {required},
       fieldType: Constants.PICKER,
-      count: 1,
+      items: lifeStageDropDownList.map((value) => ({
+        label: value,
+        value: value,
+      })),
+      multiple: true,
       ...Platform.select({ios: {fieldContainerStyle: {zIndex: 1}}}),
-      pickerText: formatMessage({id: 'button.addLifeStage'}),
+      ...fieldProps.lifeStageHarvested,
     },
     {
       label: formatMessage({id: 'form.label.numberHarvestedInPreviousYear'}),
@@ -44,8 +67,6 @@ export default (fieldProps = {}) => {
       rules: {required},
       fieldType: Constants.PICKER,
       ...Platform.select({ios: {fieldContainerStyle: {zIndex: 1}}}),
-      count: 1,
-      pickerText: formatMessage({id: 'button.addLifeStage'}),
     },
   ];
 };

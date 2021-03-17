@@ -124,7 +124,7 @@ const FormOne = ({navigation}) => {
         scrollToTop();
       }
     },
-    [dispatch, formFieldsPage, reset, scrollToTop],
+    [dispatch, formFieldsPage, registeredSpecies, reset, scrollToTop],
   );
 
   const scrollToTop = useCallback(() => {
