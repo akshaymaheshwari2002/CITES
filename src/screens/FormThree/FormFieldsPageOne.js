@@ -3,7 +3,7 @@ import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
 
-export default ({_id = {}, isAdditionalAnimalsAcquiredSinceInitialStock}) => {
+export default ({_id = {}}) => {
   const {formatMessage} = createIntl();
   const {
     required,
@@ -103,7 +103,7 @@ export default ({_id = {}, isAdditionalAnimalsAcquiredSinceInitialStock}) => {
       label: formatMessage({id: 'form.label.addressOfAdditionalStock'}),
       placeholder: formatMessage({id: 'form.label.addressOfAdditionalStock'}),
       name: 'addressOfAdditionalStock',
-      rules: isAdditionalAnimalsAcquiredSinceInitialStock ? {required} : {},
+      rules: {required},
     },
   ];
 };
