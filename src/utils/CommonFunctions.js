@@ -125,6 +125,19 @@ export const isNumberPercentageFraction = (value) => {
 };
 
 /**
+ * Checks if a number is in range 0 to 100
+ * @param {(number|string)} value - entity to be checked
+ * @returns {boolean}
+ */
+export const isNumberPercentage = (value) => {
+  try {
+    return Number(value) >= 0 && Number(value) <= 100;
+  } catch (err) {
+    return false;
+  }
+};
+
+/**
  * Checks if a number is integer
  * @param {(number|string)} value - entity to be checked
  * @returns {boolean}
