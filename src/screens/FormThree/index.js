@@ -128,8 +128,8 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
   }, [formFieldsPage, selectedSpeciesId, setSpeciesDataInForm]);
 
   const setSpeciesDataInForm = useCallback(
-    async (_selectedSpeciesId) => {
-      const selectedSpecies = await get('Species', _selectedSpeciesId);
+    (_selectedSpeciesId) => {
+      const selectedSpecies = get('Species', _selectedSpeciesId);
 
       selectedSpecies.additionalAnimalsAcquiredSinceInitialStock = selectedSpecies?.additionalAnimalsAcquiredSinceInitialStock.reduce(
         (acc, current) => ({

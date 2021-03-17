@@ -1,4 +1,5 @@
-import {BSON} from 'realm';
+import {createId} from '@utils/RealmHelper';
+
 export default class Species {
   constructor({
     _id,
@@ -38,7 +39,7 @@ export default class Species {
     percentageOfJuvenilesSurviveBeyond2Weeks,
     foodFedToRearingAndJuveniles,
   }) {
-    this._id = _id ? new BSON.ObjectId(_id) : new BSON.ObjectId();
+    this._id = _id || createId('Species');
     this.name = name;
     this.numberOfSpecimen = numberOfSpecimen
       ? parseInt(numberOfSpecimen, 10)

@@ -1,4 +1,4 @@
-import {BSON} from 'realm';
+import {createId} from '@utils/RealmHelper';
 
 import {Phone} from './';
 export default class FormOne {
@@ -17,7 +17,7 @@ export default class FormOne {
     typeOfInspection,
     citesInformationCode,
   }) {
-    this._id = _id ? new BSON.ObjectId(_id) : new BSON.ObjectId();
+    this._id = _id || createId('FormOne');
     this.dateOfInspection = dateOfInspection;
     this.nameOfInspectionOfficers = nameOfInspectionOfficers;
     this.facilityName = facilityName;

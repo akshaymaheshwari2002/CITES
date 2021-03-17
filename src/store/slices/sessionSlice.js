@@ -14,16 +14,13 @@ export const INITIAL_SESSION_STATE = {
 
 export const saveInspection = createAsyncThunk(
   'saveInspection',
-  async (payload, {getState}) => {
+  (payload, {getState}) => {
     let activeInspection = getState().sessionReducer.activeInspection;
     activeInspection = merge(activeInspection, payload, {
       arrayMerge: (_, sourceArray) => sourceArray,
     });
 
-    const upsertedData = await upsert(
-      'Inspection',
-      new Inspection(activeInspection),
-    );
+    const upsertedData = upsert('Inspection', new Inspection(activeInspection));
 
     return upsertedData;
   },
@@ -31,15 +28,12 @@ export const saveInspection = createAsyncThunk(
 
 export const saveRegisteredSpecies = createAsyncThunk(
   'saveRegisteredSpecies',
-  async (payload, {getState}) => {
+  (payload, {getState}) => {
     const activeInspectionId = getState().sessionReducer.activeInspection._id;
     const speciesPayload = Array.isArray(payload)
       ? payload.map((species) => new Species(species))
       : new Species(payload);
-    const upsertedData = await addOrUpdateSpecies(
-      speciesPayload,
-      activeInspectionId,
-    );
+    const upsertedData = addOrUpdateSpecies(speciesPayload, activeInspectionId);
 
     return upsertedData;
   },

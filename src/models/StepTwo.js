@@ -1,7 +1,9 @@
-import {BSON} from 'realm';
+import {createId} from '@utils/RealmHelper';
 import {FormTwo} from './';
+
 export default class StepTwo {
   constructor({
+    _id,
     purposeDisclosedToOwner,
     confirmFormOneContent,
     informationRecorded,
@@ -11,7 +13,7 @@ export default class StepTwo {
     recordsExaminedForStock,
     formTwo,
   }) {
-    this._id = new BSON.ObjectId();
+    this._id = _id || createId('StepTwo');
     this.purposeDisclosedToOwner = purposeDisclosedToOwner;
     this.confirmFormOneContent = confirmFormOneContent;
     this.informationRecorded = informationRecorded;

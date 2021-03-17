@@ -28,11 +28,9 @@ const ContinueInspection = ({navigation}) => {
 
   useFocusEffect(
     useCallback(() => {
-      (async () => {
-        const inspections = await get('Inspection');
+      const inspections = get('Inspection');
 
-        setActiveInspections(inspections);
-      })();
+      setActiveInspections(inspections);
     }, []),
   );
 
@@ -131,7 +129,7 @@ const ContinueInspection = ({navigation}) => {
         }
         ListFooterComponent={<View />}
         ListFooterComponentStyle={styles.footer}
-        keyExtractor={(item) => item._id}
+        keyExtractor={(item) => item._id.toString()}
       />
     </Container>
   );

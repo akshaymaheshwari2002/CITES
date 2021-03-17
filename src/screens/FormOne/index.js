@@ -54,8 +54,8 @@ const FormOne = ({navigation}) => {
   );
 
   const setActiveFormDataOnMount = useCallback(
-    async (_activeFormOneId) => {
-      const activeFormData = await get('FormOne', _activeFormOneId);
+    (_activeFormOneId) => {
+      const activeFormData = get('FormOne', _activeFormOneId);
       activeFormData.typeOfInspection = activeFormData?.typeOfInspection.reduce(
         (acc, current) => ({
           ...acc,
@@ -74,8 +74,8 @@ const FormOne = ({navigation}) => {
   );
 
   const setSpeciesDataInForm = useCallback(
-    async (_selectedSpeciesId) => {
-      const selectedSpecies = await get('Species', _selectedSpeciesId);
+    (_selectedSpeciesId) => {
+      const selectedSpecies = get('Species', _selectedSpeciesId);
 
       reset(selectedSpecies);
     },
@@ -124,7 +124,7 @@ const FormOne = ({navigation}) => {
         scrollToTop();
       }
     },
-    [dispatch, formFieldsPage, reset, scrollToTop],
+    [dispatch, formFieldsPage, registeredSpecies, reset, scrollToTop],
   );
 
   const scrollToTop = useCallback(() => {

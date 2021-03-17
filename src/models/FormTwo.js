@@ -1,6 +1,6 @@
-import {BSON} from 'realm';
-
+import {createId} from '@utils/RealmHelper';
 import {StaffHours} from './';
+
 export default class FormTwo {
   constructor({
     _id,
@@ -12,7 +12,7 @@ export default class FormTwo {
     animalKeptAtOtherLocation,
     addressOfOtherAnimals,
   }) {
-    this._id = _id ? new BSON.ObjectId(_id) : new BSON.ObjectId();
+    this._id = _id || createId('FormTwo');
     this.staffHours = StaffHours ? new StaffHours(staffHours) : staffHours;
     this.accessToVeterinaryServices = accessToVeterinaryServices;
     this.veterinarianName = veterinarianName;

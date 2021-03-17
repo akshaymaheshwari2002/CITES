@@ -1,4 +1,4 @@
-import Realm, {BSON} from 'realm';
+import Realm from 'realm';
 
 import * as Schemas from '@schemas';
 
@@ -8,95 +8,84 @@ const config = {
   schemaVersion: 0,
 };
 
-let _realm;
+let realm;
 
-export const getInstance = async () => {
-  return _realm || (await Realm.open(config));
+Realm.open(config).then((_realm) => {
+  realm = _realm;
+});
+
+export const upsert = (objectType, data) => {
+  let _data;
+
+  realm.write(() => {
+    _data = realm.create(objectType, data, 'modified');
+    _data = JSON.parse(JSON.stringify(_data));
+  });
+
+  return _data;
 };
 
-export const upsert = (objectType, data) =>
-  new Promise(async (resolve, reject) => {
-    try {
-      const realm = await getInstance();
-      realm.write(() => {
-        const upsertedData = realm.create(objectType, data, 'modified');
-        resolve(JSON.parse(JSON.stringify(upsertedData)));
-      });
-    } catch (err) {
-      reject(err);
-    }
-  });
+export const get = (objectType, objectId) => {
+  let data;
 
-export const get = (objectType, _objectId) =>
-  new Promise(async (resolve, reject) => {
-    try {
-      const realm = await getInstance();
-      const objectId =
-        _objectId && typeof _objectId === 'string'
-          ? new BSON.ObjectId(_objectId)
-          : null;
-      realm.write(() => {
-        let data;
+  if (objectId) {
+    data = realm.objectForPrimaryKey(objectType, objectId);
+  } else {
+    data = realm.objects(objectType);
+  }
 
-        if (objectId) {
-          data = realm.objectForPrimaryKey(objectType, objectId);
-        } else {
-          data = realm.objects(objectType);
-        }
+  return JSON.parse(JSON.stringify(data));
+};
 
-        resolve(JSON.parse(JSON.stringify(data)));
-      });
-    } catch (err) {
-      reject(err);
-    }
-  });
+export const addOrUpdateSpecies = (species, inspectionId) => {
+  if (inspectionId) {
+    let data;
 
-export const addOrUpdateSpecies = (species, inspectionId) =>
-  new Promise(async (resolve, reject) => {
-    try {
-      const realm = await getInstance();
+    realm.write(() => {
+      const inspection = realm.objectForPrimaryKey('Inspection', inspectionId);
 
-      if (inspectionId) {
-        realm.write(async () => {
-          const inspection = realm.objectForPrimaryKey(
-            'Inspection',
-            new BSON.ObjectId(inspectionId),
-          );
-
-          if (Array.isArray(species)) {
-            const newSpecies = [];
-            const existingSpecies = [...(inspection?.existingSpecies ?? [])];
-            species?.forEach((item) => {
-              const savedDataIndex = inspection?.registeredSpecies?.findIndex(
-                (savedSpecies) => {
-                  return (
-                    savedSpecies._id?.toHexString() ===
-                      item._id?.toHexString() || savedSpecies.name === item.name
-                  );
-                },
+      if (Array.isArray(species)) {
+        const newSpecies = [];
+        const existingSpecies = [...(inspection?.existingSpecies ?? [])];
+        species?.forEach((item) => {
+          const savedDataIndex = inspection?.registeredSpecies?.findIndex(
+            (savedSpecies) => {
+              return (
+                savedSpecies._id === item._id || savedSpecies.name === item.name
               );
-              if (savedDataIndex !== -1) {
-                existingSpecies[savedDataIndex] = {
-                  ...existingSpecies[savedDataIndex],
-                  ...item,
-                };
-              } else {
-                newSpecies.push(item);
-              }
-            });
-            inspection.registeredSpecies = existingSpecies;
-            newSpecies.forEach((item) => {
-              inspection.registeredSpecies.push(item);
-            });
+            },
+          );
+          if (savedDataIndex !== -1) {
+            existingSpecies[savedDataIndex] = {
+              ...existingSpecies[savedDataIndex],
+              ...item,
+            };
           } else {
-            await upsert('Species', species);
+            newSpecies.push(item);
           }
-          resolve(JSON.parse(JSON.stringify(inspection.registeredSpecies)));
+        });
+        inspection.registeredSpecies = existingSpecies;
+        newSpecies.forEach((item) => {
+          inspection.registeredSpecies.push(item);
         });
       } else {
-        reject('No Inspection _id specified');
+        upsert('Species', species);
       }
-    } catch (err) {
-      reject(err);
-    }
-  });
+
+      data = JSON.parse(JSON.stringify(inspection.registeredSpecies));
+    });
+
+    return data;
+  } else {
+    throw Error('No Inspection _id specified');
+  }
+};
+
+export const createId = (objectType) => {
+  let id;
+
+  const lastObject = realm.objects(objectType).sorted('_id', true)[0];
+  id = lastObject ? lastObject._id + 1 : 1;
+
+  return id;
+};

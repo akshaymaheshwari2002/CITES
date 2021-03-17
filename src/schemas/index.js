@@ -20,7 +20,7 @@ export const SPECIES = {
   name: 'Species',
   primaryKey: '_id',
   properties: {
-    _id: 'objectId',
+    _id: 'int',
     name: 'string',
     numberOfSpecimen: 'int?',
     numberOfBreedingAdults: 'int?',
@@ -71,7 +71,7 @@ export const FORM_ONE = {
   name: 'FormOne',
   primaryKey: '_id',
   properties: {
-    _id: 'objectId',
+    _id: 'int',
     dateOfInspection: 'string',
     nameOfInspectionOfficers: 'string[]',
     facilityName: 'string',
@@ -91,7 +91,7 @@ export const FORM_TWO = {
   name: 'FormTwo',
   primaryKey: '_id',
   properties: {
-    _id: 'objectId',
+    _id: 'int',
     staffHours: 'StaffHours',
     accessToVeterinaryServices: 'string[]',
     veterinarianName: 'string?',
@@ -106,7 +106,7 @@ export const FORM_FOUR = {
   name: 'FormFour',
   primaryKey: '_id',
   properties: {
-    _id: 'objectId',
+    _id: 'int',
     legallyRegisteredToBreedAndKeep: 'bool',
     unusualActivityObserved: 'bool',
     containmentFacilityAvailable: 'bool',
@@ -125,7 +125,7 @@ export const STEP_ONE = {
   name: 'StepOne',
   primaryKey: '_id',
   properties: {
-    _id: 'objectId',
+    _id: 'int',
     researchConducted: 'bool?',
     existingRecordsExamined: 'bool?',
     outstandingInfringementInvestigations: 'bool?',
@@ -143,7 +143,7 @@ export const STEP_TWO = {
   name: 'StepTwo',
   primaryKey: '_id',
   properties: {
-    _id: 'objectId',
+    _id: 'int',
     purposeDisclosedToOwner: 'bool?',
     confirmFormOneContent: 'bool?',
     informationRecorded: 'bool?',
@@ -159,7 +159,7 @@ export const STEP_THREE = {
   name: 'StepThree',
   primaryKey: '_id',
   properties: {
-    _id: 'objectId',
+    _id: 'int',
     inspectionCompleted: 'bool?',
     formFourCompleted: 'bool?',
     productionCapacityCalculated: 'bool?',
@@ -172,7 +172,7 @@ export const INSPECTION = {
   name: 'Inspection',
   primaryKey: '_id',
   properties: {
-    _id: 'objectId',
+    _id: 'int',
     stepOne: 'StepOne?',
     stepTwo: 'StepTwo?',
     stepThree: 'StepThree?',
