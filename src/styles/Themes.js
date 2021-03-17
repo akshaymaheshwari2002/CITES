@@ -64,12 +64,20 @@ const Fonts = {
     fontFamily: 'Lato-Regular',
     fontSize: moderateScale(13),
   },
+  Lato16B: {
+    fontFamily: 'Lato-Bold',
+    fontSize: moderateScale(22),
+  },
   Lato22B: {
     fontFamily: 'Lato-Bold',
     fontSize: moderateScale(22),
   },
   Lato20B: {
     fontFamily: 'Lato-Bold',
+    fontSize: moderateScale(20),
+  },
+  Lato20I: {
+    fontFamily: 'Lato-Italic',
     fontSize: moderateScale(20),
   },
   Lato30R: {
@@ -132,13 +140,17 @@ const Fonts = {
     fontFamily: 'HelveticaNeue-Bold',
     fontSize: moderateScale(18),
   },
-  HelveticaNeue20B:{
+  HelveticaNeue20B: {
     fontFamily: 'HelveticaNeue-Bold',
     fontSize: moderateScale(20),
   },
   HelveticaNeue25B: {
     fontFamily: 'HelveticaNeue-Bold',
     fontSize: moderateScale(25),
+  },
+  Lato19R: {
+    fontFamily: 'Lato-Regular',
+    fontSize: moderateScale(22),
   },
   Lato15SB: {
     fontFamily: 'Lato-SemiBold',

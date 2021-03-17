@@ -31,7 +31,7 @@ const StepOne = ({navigation, route}) => {
       });
 
       if (stepOneComplete) {
-        navigation.navigate('StepTwo');
+        navigation.navigate('StepTwo', {formSummaryStepTwo: true});
       } else {
         console.log('INCOMPLETE DATA');
       }
@@ -70,6 +70,10 @@ const StepOne = ({navigation, route}) => {
         content: formatMessage({
           id: 'screen.StepOne.WalkThroughContentTwo',
         }),
+        contentstyle: {
+          height: ms(60),
+          width: ms(172),
+        },
       }),
     );
   }, [dispatch, formatMessage, navigation]);
@@ -84,6 +88,10 @@ const StepOne = ({navigation, route}) => {
             content={formatMessage({
               id: 'screen.StepOne.WalkThroughContentOne',
             })}
+            contentstyle={{
+              height: ms(60),
+              width: ms(180),
+            }}
             onClose={handleTooltipClose}>
             <Icon
               name="chevron-left"
@@ -98,7 +106,6 @@ const StepOne = ({navigation, route}) => {
         {ChecklistContent({
           checkliststyles,
           bullet,
-          formOneComplete: stepOneData.formOne ? true : false,
         }).map((el) => {
           return (
             <ChecklistCell
@@ -186,6 +193,13 @@ const checkliststyles = ScaledSheet.create({
     alignItems: 'center',
     marginHorizontal: '8@ms',
     height: '21@ms',
+  },
+  hiddenBullet: {
+    flexDirection: 'row',
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginLeft: '24@ms',
   },
   bullet: {
     height: '8@ms',

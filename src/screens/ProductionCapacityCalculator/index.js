@@ -177,7 +177,7 @@ const ProductionCapacityCalculator = ({navigation: {navigate, goBack}}) => {
         <Button
           buttonStyle={() => styles.button}
           buttonContent={intl.formatMessage({
-            id: 'general.continue',
+            id: 'button.continueCaps',
           })}
           onPress={goBack}
         />

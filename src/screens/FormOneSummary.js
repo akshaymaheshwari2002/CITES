@@ -18,8 +18,8 @@ const FormOneSummary = ({navigation, route}) => {
   const {formatMessage} = useIntl();
   const isFocused = useIsFocused();
   const [fileUri, setFileUri] = useState(undefined);
-  const isStepTwo = route?.params?.contnueToStepTwo
-    ? route.params.contnueToStepTwo
+  const formSummaryText = route?.params?.formSummaryStepTwo
+    ? route?.params?.formSummaryStepTwo
     : false;
   const formData = useSelector(
     (state) => state.sessionReducer.activeInspection.stepOne?.formOne || {},
@@ -107,7 +107,7 @@ const FormOneSummary = ({navigation, route}) => {
               <Text style={styles.text}>
                 {formatMessage({id: 'screen.FormOneSummary.continueTo'})}
               </Text>
-              {isStepTwo ? (
+              {formSummaryText ? (
                 <Text style={styles.text}>
                   {formatMessage({id: 'screen.FormOneSummary.stepTwo'})}
                 </Text>

@@ -34,12 +34,16 @@ const LanguageSelection = ({navigation}) => {
       <Container.ScrollView contentContainerStyle={[styles.scrollContainer]}>
         <View style={[styles.logoContainer]}>
           <Image
-            source={Images?.logo}
+            source={Images?.eye}
             style={styles.logo}
             resizeMode="contain"
           />
         </View>
-        <Image source={Images?.eye} style={[styles.eye]} resizeMode="contain" />
+        <Image
+          source={Images?.logo}
+          style={[styles.eye]}
+          resizeMode="contain"
+        />
 
         <View style={styles.dropDownContainer}>
           <Picker
@@ -74,12 +78,12 @@ const styles = ScaledSheet.create({
     width: '100%',
     alignItems: 'center',
   },
-  logo: {
+  eye: {
     marginTop: '35@vs',
     height: '100@vs',
     width: '276@s',
   },
-  eye: {
+  logo: {
     marginTop: '35@vs',
     height: '146@vs',
     marginBottom: '10@vs',
