@@ -6,6 +6,7 @@ import StepHeader from './StepHeader';
 import ChecklistCell from './ChecklistCell';
 import TextInputArray from './TextInputArray';
 import Counter from './Counter';
+import BreedingCodeInput from './BreedingCodeInput';
 import TabBar from './TabBar';
 import DatePicker from './DatePicker';
 import OverlayModal from './OverlayModal';
@@ -20,6 +21,7 @@ export {
   ChecklistCell,
   TextInputArray,
   Counter,
+  BreedingCodeInput,
   TabBar,
   DatePicker,
   OverlayModal,

@@ -6,8 +6,10 @@ import {
   isNumberPositive,
 } from '@utils/CommonFunctions';
 import createIntl from '@utils/Intl';
+// A - BR - 001;
 
 const regexPhone = /^[1-9]+[0-9]*$/;
+const regexBreedingCode = /^[A-Z]-[A-Z][A-Z]-[0-9][0-9][0-9]$/;
 
 export default () => {
   const {formatMessage} = createIntl();
@@ -43,5 +45,10 @@ export default () => {
       regexPhone.test(value?.contactNumber)
         ? true
         : formatMessage({id: 'form.error.invalidPhone'}),
+    validBreedingCode: (value) => {
+      return regexBreedingCode.test(value.join().replace(/,/g, ''))
+        ? true
+        : formatMessage({id: 'form.error.invalidBreedingCode'});
+    },
   };
 };

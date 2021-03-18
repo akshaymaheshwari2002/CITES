@@ -93,7 +93,12 @@ const SourceCode = ({navigation, route}) => {
             </View>
           </>
         ) : null}
-        <Text style={styles.contentDescription}>
+        <Text
+          style={
+            resultSourceCode !== 'NotApplicable'
+              ? styles.contentDescription
+              : styles.notApplicableContentDescription
+          }>
           {formatMessage({
             id: SourceCodeData[resultSourceCode].content,
           })}
@@ -134,24 +139,38 @@ const styles = ScaledSheet.create({
     aspectRatio: 1,
     justifyContent: 'center',
     alignContent: 'center',
+    alignItems: 'center',
     alignSelf: 'center',
+    padding: '10@s',
     backgroundColor: RawColors.white,
+    textAlignVertical: 'center',
     borderColor: 'rgba(0, 0, 0, 0.16)',
     borderWidth: 2,
     ...CommonStyles.shadowEffectDarker,
   },
   title: {
     textAlign: 'center',
-    ...Fonts.Lato17R,
+    paddingTop: '30@s',
+    textAlignVertical: 'center',
+    ...Fonts.Lato19R,
   },
   notApplicableText: {
     textAlign: 'center',
+    paddingHorizontal: '20@s',
     color: RawColors.black,
     textTransform: 'uppercase',
-    ...Fonts.Lato17B,
+    ...Fonts.Lato19B,
+  },
+  notApplicableContentDescription: {
+    padding: '35@s',
+    marginTop: '50@vs',
+    ...Fonts.Lato17SB,
+    justifyContent: 'center',
+    textAlign: 'center',
   },
   letter: {
-    //textAlign: 'center',
+    textAlign: 'center',
+    paddingHorizontal: '20@s',
     color: RawColors.redShade,
     ...Fonts.Didot56B,
     alignSelf: 'center',

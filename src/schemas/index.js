@@ -83,7 +83,7 @@ export const FORM_ONE = {
     facilityOwnerPhone: 'Phone',
     facilityEstablishmentDate: 'string',
     typeOfInspection: 'string[]',
-    citesInformationCode: 'string',
+    citesInformationCode: 'string[]',
   },
 };
 

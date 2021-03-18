@@ -14,6 +14,7 @@ import {Fonts, RawColors} from '@styles/Themes';
 import sourceCodeQuestions from './sourceCodeQuestions';
 import sourceCodeQuestionRelations from './sourceCodeQuestionRelations';
 import Constants from '@utils/Constants';
+import {Value} from 'react-native-reanimated';
 
 const DetermineSourceCode = ({
   navigation: {navigate, goBack, setParams},
@@ -161,14 +162,20 @@ const DetermineSourceCode = ({
         style={[CommonStyles.screenContainer, CommonStyles.flex1]}
         contentContainerStyle={styles.scrollView}>
         <View style={styles.questionContainer}>
-          <Text style={styles.label}>Question</Text>
+          <Text style={styles.label}>
+            {formatMessage({
+              id: 'title.question',
+            })}
+          </Text>
           <View style={styles.questionText} id={Math.random()}>
             {sourceCodeQuestions[
               `${interactedQuestionStack[interactedQuestionStack.length - 1]}`
             ].content.map((value, index) => {
               return (
-                <Text style={styles.text} key={`${index}`}>
-                  {value}
+                <Text
+                  style={value.isLink ? styles.link : styles.text}
+                  key={`${index}`}>
+                  {value[index + 1]}
                 </Text>
               );
             })}
@@ -264,17 +271,22 @@ const styles = ScaledSheet.create({
   },
   questionText: {
     justifyContent: 'center',
-    alignItems: 'center',
-    marginHorizontal: '30@s',
-    //width: '90%',
-    //backgroundColor: 'red',
   },
+  link: {
+    ...Fonts.Lato20B,
+    marginTop: 0,
+    lineHeight: '22@s',
+    letterSpacing: 0.48,
+    textAlign: 'center',
+    textDecorationLine: 'underline',
+  },
+
   text: {
     ...Fonts.Lato20R,
     marginTop: '15@s',
-    alignSelf: 'center',
     lineHeight: '22@s',
     letterSpacing: 0.48,
+    textAlign: 'center',
   },
   buttonsWrapper: {
     width: '85%',

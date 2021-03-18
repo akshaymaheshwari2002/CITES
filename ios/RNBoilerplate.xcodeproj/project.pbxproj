@@ -40,6 +40,7 @@
 		FC1D03927AF84A4AB63A8EF9 /* HelveticaNeue-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7ECFFA6B57EA47AE9B20BD3B /* HelveticaNeue-Medium.otf */; };
 		FC2A5DFE9AC04290A41FBDE7 /* HelveticaNeue-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 934B4A4E1A3F4C6FA79ADEBA /* HelveticaNeue-Bold.otf */; };
 		FE02604BE9A34348A5E0DAF5 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09CEEBF0B3FA48C0B83CF03E /* Lato-Light.ttf */; };
+		34A0C84DE4754EB8A4B53F6F /* Didot-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4EE16B098584344A20BD4E1 /* Didot-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +125,7 @@
 		F189E188044145CE80BE11FB /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		F927F7ACBC4D46BF863A8AA6 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		FA5C12182B354E99AF8D5834 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		E4EE16B098584344A20BD4E1 /* Didot-Regular.ttf */ = {isa = PBXFileReference; name = "Didot-Regular.ttf"; path = "../src/assets/fonts/Didot-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,6 +297,7 @@
 				4365CCF3F4374748826D225D /* Lato-MediumItalic.ttf */,
 				DB5D94BF82EF446CA0593A1D /* Lato-SemiBold.ttf */,
 				9FB8D2B19C974B35819D24C2 /* HelveticaNeueRegular.otf */,
+				E4EE16B098584344A20BD4E1 /* Didot-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				38FF53F8AB8E4FD6BCF5ACEF /* Lato-MediumItalic.ttf in Resources */,
 				6238ED5C4E384BC6B84A334E /* Lato-SemiBold.ttf in Resources */,
 				32F3924AC3AD4F3FA4EFD9B9 /* HelveticaNeueRegular.otf in Resources */,
+				34A0C84DE4754EB8A4B53F6F /* Didot-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
