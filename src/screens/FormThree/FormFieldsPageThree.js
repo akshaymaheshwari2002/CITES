@@ -20,13 +20,14 @@ const lifeStageDropDownList = [
   'Tadpole',
   'Froglet',
   'Chrysalis',
+  'Other',
 ];
 
 export default (fieldProps = {}) => {
   const {formatMessage} = createIntl();
   const {required} = getValidators();
 
-  return [
+  const formFields = [
     {
       label: formatMessage({id: 'form.label.doYouRanchThisSpecies'}),
       name: 'doYouRanchThisSpecies',
@@ -58,15 +59,38 @@ export default (fieldProps = {}) => {
       ...Platform.select({ios: {fieldContainerStyle: {zIndex: 1}}}),
       ...fieldProps.lifeStageHarvested,
     },
-    {
-      label: formatMessage({id: 'form.label.numberHarvestedInPreviousYear'}),
-      placeholder: formatMessage({
-        id: 'form.label.numberHarvestedInPreviousYear',
-      }),
-      name: 'numberHarvestedInPreviousYear',
-      rules: {required},
-      fieldType: Constants.PICKER,
-      ...Platform.select({ios: {fieldContainerStyle: {zIndex: 1}}}),
-    },
   ];
+  if (fieldProps?._lifeStageHarvested?.length) {
+    const _lifeStageHarvestedCopy = [
+      ...(fieldProps?._lifeStageHarvested ?? []),
+    ];
+    const indexOfOther = _lifeStageHarvestedCopy?.findIndex(
+      (value) => value?.toLowerCase() === 'other',
+    );
+    if (indexOfOther !== -1) {
+      formFields.push({
+        defaultValue: '',
+        label: formatMessage({id: 'form.label.AddLifeStage'}),
+        placeholder: formatMessage({id: 'form.label.AddLifeStage'}),
+        name: 'otherLifeStage',
+        rules: {required},
+      });
+    }
+
+    if (indexOfOther !== -1 && fieldProps?._otherLifeStage) {
+      _lifeStageHarvestedCopy[indexOfOther] = fieldProps?._otherLifeStage;
+    }
+    if (_lifeStageHarvestedCopy?.length) {
+      formFields.push({
+        label: formatMessage({id: 'form.label.numberHarvestedInPreviousYear'}),
+        count: _lifeStageHarvestedCopy?.length ?? 0,
+        labelLeft: _lifeStageHarvestedCopy,
+        name: 'numberHarvestedInPreviousYear',
+        rules: {required},
+        fieldType: Constants.TEXTINPUT_ARRAY,
+        ...Platform.select({ios: {fieldContainerStyle: {zIndex: 1}}}),
+      });
+    }
+  }
+  return formFields;
 };

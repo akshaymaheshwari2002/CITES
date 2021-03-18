@@ -390,6 +390,7 @@
   "form.label.numberProducedInPreviousYear": "Number produced in the previous year",
   "form.label.doYouRanchThisSpecies": "Do you ranch this species?",
   "form.label.lifeStageHarvested": "Life stage(s) harvested",
+  "form.label.AddLifeStage": "Add other life stage",
   "form.label.numberHarvestedInPreviousYear": "Number harvested in the previous year",
   "form.label.noOfAdultsPresentFacilityInfo": "Number of adults",
   "form.label.noOfMalesPresentFacilityInfo": "Number of males",
