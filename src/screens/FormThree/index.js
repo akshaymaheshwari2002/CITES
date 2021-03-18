@@ -173,7 +173,10 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
   );
 
   const scrollToTop = useCallback(() => {
-    setTimeout(() => scrollViewRef.current.scrollToPosition(0, 0, true), 200);
+    setTimeout(
+      () => scrollViewRef.current.scrollTo({x: 0, y: 0, animated: true}),
+      200,
+    );
   }, []);
 
   useEffect(() => {
