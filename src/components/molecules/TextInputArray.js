@@ -12,6 +12,7 @@ const TextInputArray = React.forwardRef(
   (
     {
       label,
+      labelLeft,
       placeholder,
       error,
       value,
@@ -41,7 +42,27 @@ const TextInputArray = React.forwardRef(
     const renderFields = useCallback(() => {
       let fields = [];
       for (let index = 0; index < _count; ++index) {
-        fields[index] = (
+        if (
+          labelLeft?.length &&
+          labelLeft[index] &&
+          labelLeft[index].toLowerCase() === 'other'
+        ) {
+          // special Case for form three part three
+          break;
+        }
+        fields[index] = labelLeft.length ? (
+          <View key={index} style={styles.containerAlt}>
+            <Text style={styles.labelLeft}>{labelLeft[index]}</Text>
+            <View style={styles.textInputAlt}>
+              <TextInput
+                value={value?.[index]}
+                onChangeText={(text) => handleChangeText(text, index)}
+                style={styles.textInput}
+                placeholder={placeholder}
+              />
+            </View>
+          </View>
+        ) : (
           <TextInput
             key={index}
             value={value?.[index]}
@@ -52,7 +73,7 @@ const TextInputArray = React.forwardRef(
         );
       }
       return fields;
-    }, [_count, handleChangeText, placeholder, value]);
+    }, [_count, handleChangeText, labelLeft, placeholder, value]);
 
     useEffect(() => {
       if (count) {
@@ -108,6 +129,11 @@ const TextInputArray = React.forwardRef(
 
 const styles = ScaledSheet.create({
   labelContainer: {flexDirection: 'row', alignItems: 'center'},
+  labelLeft: {
+    ...Fonts.Lato15B,
+    flex: 5,
+    marginLeft: '20@ms',
+  },
   container: {
     marginTop: '12@vs',
     marginBottom: '4@vs',
@@ -119,10 +145,17 @@ const styles = ScaledSheet.create({
     marginVertical: 0,
     marginBottom: '8@vs',
   },
+  textInputAlt: {flex: 3, marginRight: '30@ms'},
+  containerAlt: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
 });
 
 TextInputArray.propTypes = {
   label: PropTypes.string,
+  labelLeft: PropTypes.array,
   error: PropTypes.string,
   count: PropTypes.number,
   incremental: PropTypes.bool,
@@ -133,6 +166,7 @@ TextInputArray.propTypes = {
 
 TextInputArray.defaultProps = {
   label: '',
+  labelLeft: [],
   error: '',
   count: 1,
   incremental: false,
