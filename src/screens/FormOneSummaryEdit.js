@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {useSelector, shallowEqual, useDispatch} from 'react-redux';
 import {WebView as RNWebView} from 'react-native-webview';
 import {View, Text, TouchableOpacity} from 'react-native';
@@ -52,7 +52,7 @@ const formatFormDataToDisplay = (data) => ({
     : '',
 });
 
-const FormOneSummary = ({navigation}) => {
+const FormOneSummaryEdit = ({navigation}) => {
   const {formatMessage} = useIntl();
   const dispatch = useDispatch();
   const [facilityDataModified, setfacilityDataModified] = useState({});
@@ -68,11 +68,91 @@ const FormOneSummary = ({navigation}) => {
     (state) => state.sessionReducer.activeInspection.registeredSpecies || [],
     shallowEqual,
   );
+  const html = useMemo(
+    () =>
+      getHtmlStringFromJsx(
+        <>
+          <FormOneHeader
+            facilityData={formatFormDataToDisplay(formData)}
+            editable={true}
+          />
+          <FormOneTemplate speciesData={registeredSpecies} editable={true} />
+        </>,
+      ),
+    [formData, registeredSpecies],
+  );
+
+  const handleSubmit = useCallback(() => {
+    const __facilityDataModified = {...facilityDataModified};
+    delete __facilityDataModified._id;
+    __facilityDataModified.facilityOwnerPhone = {
+      callingCode: __facilityDataModified?.facilityOwnerPhone_callingCode ?? '',
+      contactNumber:
+        __facilityDataModified?.facilityOwnerPhone_contactNumber ?? '',
+    };
+    delete __facilityDataModified.facilityOwnerPhone_callingCode;
+    delete __facilityDataModified.facilityOwnerPhone_contactNumber ?? '';
+
+    dispatch(
+      saveInspection({
+        stepOne: {
+          formOne: {
+            ...__facilityDataModified,
+            dateOfInspection: formData.dateOfInspection,
+            facilityEstablishmentDate: formData.facilityEstablishmentDate,
+            typeOfInspection: formData.typeOfInspection,
+          },
+        },
+      }),
+    );
+    dispatch(saveRegisteredSpecies(registeredSpeciesModified));
+    navigation.goBack();
+  }, [
+    dispatch,
+    facilityDataModified,
+    formData.dateOfInspection,
+    formData.facilityEstablishmentDate,
+    formData.typeOfInspection,
+    navigation,
+    registeredSpeciesModified,
+  ]);
+
+  const handleMessage = useCallback(
+    (ev) => {
+      const data = JSON.parse(ev.nativeEvent.data);
+      if (
+        facilityDataModified[data.name] !== undefined &&
+        facilityDataModified[data.name] !== data.value
+      ) {
+        setfacilityDataModified((state) => ({
+          ...state,
+          [data.name]: data.value,
+        }));
+      } else if (data.name ?? data.name.split('.')[0] === 'registeredSpecies') {
+        setRegisteredSpeciesModified((state) => {
+          const _state = [...state];
+          const changedSpeciesIndex = parseInt(data.name.split('.')[1], 10);
+          const changedPropertyKey = data.name.split('.')[2];
+          _state[changedSpeciesIndex] = {
+            ...state[changedSpeciesIndex],
+            [changedPropertyKey]: data.value,
+          };
+          return _state;
+        });
+      }
+    },
+    [facilityDataModified],
+  );
 
   useEffect(() => {
-    setfacilityDataModified(formatFormDataToDisplay(formData));
+    if (Object.keys(formData).length) {
+      setfacilityDataModified(formatFormDataToDisplay(formData));
+    }
+  }, [formData]);
+
+  useEffect(() => {
     setRegisteredSpeciesModified(registeredSpecies);
-  }, [formData, registeredSpecies]);
+  }, [registeredSpecies]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
@@ -105,79 +185,11 @@ const FormOneSummary = ({navigation}) => {
       </View>
       <RNWebView
         startInLoadingState={true}
-        source={{
-          html: getHtmlStringFromJsx(
-            <>
-              <FormOneHeader
-                facilityData={formatFormDataToDisplay(formData)}
-                editable={true}
-              />
-              <FormOneTemplate
-                speciesData={registeredSpecies}
-                editable={true}
-              />
-            </>,
-          ),
-        }}
-        onMessage={(ev) => {
-          const data = JSON.parse(ev.nativeEvent.data);
-          if (
-            facilityDataModified[data.name] !== undefined &&
-            facilityDataModified[data.name] !== data.value
-          ) {
-            setfacilityDataModified((state) => ({
-              ...state,
-              [data.name]: data.value,
-            }));
-          } else if (
-            data.name ??
-            data.name.split('.')[0] === 'registeredSpecies'
-          ) {
-            setRegisteredSpeciesModified((state) => {
-              const _state = [...state];
-              const changedSpeciesIndex = parseInt(data.name.split('.')[1], 10);
-              const changedPropertyKey = data.name.split('.')[2];
-              _state[changedSpeciesIndex] = {
-                ...state[changedSpeciesIndex],
-                [changedPropertyKey]: data.value,
-              };
-              return _state;
-            });
-          }
-        }}
+        source={{html}}
+        onMessage={handleMessage}
       />
       <View style={styles.slideBtnContainerStep}>
-        <TouchableOpacity
-          style={styles.slideBtn}
-          onPress={() => {
-            const __facilityDataModified = {...facilityDataModified};
-            delete __facilityDataModified._id;
-            __facilityDataModified.facilityOwnerPhone = {
-              callingCode:
-                __facilityDataModified?.facilityOwnerPhone_callingCode ?? '',
-              contactNumber:
-                __facilityDataModified?.facilityOwnerPhone_contactNumber ?? '',
-            };
-            delete __facilityDataModified.facilityOwnerPhone_callingCode;
-            delete __facilityDataModified.facilityOwnerPhone_contactNumber ??
-              '';
-
-            dispatch(
-              saveInspection({
-                stepOne: {
-                  formOne: {
-                    ...__facilityDataModified,
-                    dateOfInspection: formData.dateOfInspection,
-                    facilityEstablishmentDate:
-                      formData.facilityEstablishmentDate,
-                    typeOfInspection: formData.typeOfInspection,
-                  },
-                },
-              }),
-            );
-            dispatch(saveRegisteredSpecies(registeredSpeciesModified));
-            navigation.goBack();
-          }}>
+        <TouchableOpacity style={styles.slideBtn} onPress={handleSubmit}>
           <View style={styles.row}>
             <View style={[styles.padding16, styles.marginDimension]}>
               <Text style={styles.text}>
@@ -196,9 +208,7 @@ const FormOneSummary = ({navigation}) => {
       <View style={styles.slideBtnContainerEdit}>
         <TouchableOpacity
           style={[styles.slideBtn, styles.borderStyle]}
-          onPress={() => {
-            navigation.goBack();
-          }}>
+          onPress={() => navigation.goBack()}>
           <View style={styles.row}>
             <View style={styles.padding16}>
               <Text style={styles.text}>
@@ -281,4 +291,4 @@ const styles = ScaledSheet.create({
   },
 });
 
-export default FormOneSummary;
+export default FormOneSummaryEdit;
