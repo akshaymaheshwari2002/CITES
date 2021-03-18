@@ -1,10 +1,10 @@
-import React, {useEffect, useState, useMemo} from 'react';
+import React, {useState, useMemo, useCallback} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import Pdf from 'react-native-pdf';
 import Icon from 'react-native-vector-icons/Feather';
-import {useIsFocused} from '@react-navigation/native';
+import {useFocusEffect} from '@react-navigation/native';
 import {format} from 'date-fns';
 import {shallowEqual, useSelector} from 'react-redux';
 
@@ -16,17 +16,16 @@ import CommonStyles from '@styles/CommonStyles';
 
 const FormOneSummary = ({navigation, route}) => {
   const {formatMessage} = useIntl();
-  const isFocused = useIsFocused();
   const [fileUri, setFileUri] = useState(undefined);
   const formSummaryText = route?.params?.formSummaryStepTwo
     ? route?.params?.formSummaryStepTwo
     : false;
   const formData = useSelector(
-    (state) => state.sessionReducer.activeInspection.stepOne?.formOne || {},
+    (state) => state.sessionReducer.activeInspection.stepOne?.formOne,
     shallowEqual,
   );
   const registeredSpecies = useSelector(
-    (state) => state.sessionReducer.activeInspection.registeredSpecies || [],
+    (state) => state.sessionReducer.activeInspection.registeredSpecies,
     shallowEqual,
   );
   const facilityData = useMemo(
@@ -49,8 +48,8 @@ const FormOneSummary = ({navigation, route}) => {
     [formData],
   );
 
-  useEffect(() => {
-    if (isFocused) {
+  useFocusEffect(
+    useCallback(() => {
       (async () => {
         const file = await generatePdf({
           templates: [
@@ -60,8 +59,8 @@ const FormOneSummary = ({navigation, route}) => {
         });
         setFileUri({uri: file?.filePath});
       })();
-    }
-  }, [isFocused, facilityData, registeredSpecies]);
+    }, [facilityData, registeredSpecies]),
+  );
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
