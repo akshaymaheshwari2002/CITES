@@ -3,7 +3,7 @@ import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
 
-export default ({_id = {}}) => {
+export default (fieldProps = {}) => {
   const {formatMessage} = createIntl();
   const {
     required,
@@ -20,7 +20,7 @@ export default ({_id = {}}) => {
       name: '_id',
       rules: {required},
       fieldType: Constants.PICKER,
-      ..._id,
+      ...fieldProps._id,
       ...Platform.select({ios: {fieldContainerStyle: {zIndex: 1}}}),
     },
     {

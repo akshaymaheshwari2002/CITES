@@ -1,7 +1,7 @@
 import React, {useCallback, useMemo, useRef, useState, useEffect} from 'react';
-import {Text, View, BackHandler} from 'react-native';
+import {Text, View, BackHandler, Alert} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
-import {ms, ScaledSheet} from 'react-native-size-matters';
+import {ms, vs, ScaledSheet} from 'react-native-size-matters';
 import {useForm} from 'react-hook-form';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
@@ -14,6 +14,7 @@ import {get} from '@utils/RealmHelper';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
 import Constants from '@utils/Constants';
+import {getDefaultValues} from '@utils/CommonFunctions';
 import getFormFieldsPageOne from './FormFieldsPageOne';
 import getFormFieldsPageTwo from './FormFieldsPageTwo';
 import getFormFieldsPageThree from './FormFieldsPageThree';
@@ -40,6 +41,8 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
   );
   const _doYouBreedThisSpecies = watch('doYouBreedThisSpecies');
   const _doYouRanchThisSpecies = watch('doYouRanchThisSpecies');
+  const _lifeStageHarvested = watch('lifeStageHarvested');
+  const _otherLifeStage = watch('otherLifeStage');
 
   const formFields = useMemo(() => {
     const fieldProps = {
@@ -71,8 +74,17 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
         const isDoYouRanchThisSpecies =
           _doYouRanchThisSpecies?.[Constants.YES] ?? false;
         return isDoYouRanchThisSpecies
-          ? getFormFieldsPageThree()
-          : getFormFieldsPageThree().slice(0, 1);
+          ? getFormFieldsPageThree({
+              lifeStageHarvested: {
+                initialValue: formData.current.lifeStageHarvested ?? [],
+              },
+              _lifeStageHarvested,
+              _otherLifeStage,
+            })
+          : getFormFieldsPageThree({
+              _lifeStageHarvested,
+              _otherLifeStage,
+            }).slice(0, 1);
       case 4:
         return getFormFieldsPageFour();
       case 5:
@@ -84,6 +96,8 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
     _additionalAnimalsAcquiredSinceInitialStock,
     _doYouBreedThisSpecies,
     _doYouRanchThisSpecies,
+    _lifeStageHarvested,
+    _otherLifeStage,
   ]);
 
   const _handleSubmit = useCallback(
@@ -116,28 +130,53 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
         _registeredSpecies.numberOfOffspringPerLitter = null;
         _registeredSpecies.numberProducedInPreviousYear = null;
       }
+      if (formFieldsPage === 3) {
+        const indexOfOther = _registeredSpecies?.lifeStageHarvested?.findIndex(
+          (value) => value?.toLowerCase() === 'other',
+        );
+        if (indexOfOther !== -1) {
+          const lifeStageHarvestedCopy = [
+            ..._registeredSpecies?.lifeStageHarvested,
+          ];
+          lifeStageHarvestedCopy[indexOfOther] =
+            _registeredSpecies.otherLifeStage;
+          _registeredSpecies.lifeStageHarvested = lifeStageHarvestedCopy;
+        }
+
+        if (!_doYouRanchThisSpecies?.[Constants.YES]) {
+          // clear associated fields data when NO is selected
+          _registeredSpecies.lifeStageHarvested = [];
+          _registeredSpecies.numberHarvestedInPreviousYear = [];
+        }
+      }
       await dispatch(saveRegisteredSpecies(_registeredSpecies));
 
-      // reset(getDefaultValues(getFormFieldsPageTwo()));
       if (formFieldsPage < 5) {
         setFormFieldsPage((state) => state + 1);
         scrollToTop();
       } else {
-        navigate('TabNavigator', {screen: 'StepTwo'});
+        formData.current = {};
+        reset(getDefaultValues(getFormFieldsPageOne()));
+        setFormFieldsPage(1);
+        scrollToTop();
       }
     },
     [
       formFieldsPage,
-      navigate,
       dispatch,
       scrollToTop,
       _additionalAnimalsAcquiredSinceInitialStock,
       _doYouBreedThisSpecies,
+      _doYouRanchThisSpecies,
+      reset,
     ],
   );
 
   const scrollToTop = useCallback(() => {
-    setTimeout(() => scrollViewRef.current.scrollToPosition(0, 0, true), 200);
+    setTimeout(
+      () => scrollViewRef.current.scrollTo({x: 0, y: 0, animated: true}),
+      200,
+    );
   }, []);
 
   useEffect(() => {
@@ -236,10 +275,33 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
       <Container.ScrollView ref={scrollViewRef} style={CommonStyles.flex1}>
         <View style={styles.formContainer}>
           <Form {...{control, errors}} formFields={formFields} />
-          <Button
-            onPress={handleSubmit(_handleSubmit, () => scrollToTop())}
-            buttonContent={formatMessage({id: 'general.continue'})}
-          />
+
+          {formFieldsPage !== 5 ? (
+            <Button
+              onPress={handleSubmit(_handleSubmit, () => scrollToTop())}
+              buttonContent={formatMessage({id: 'general.continue'})}
+            />
+          ) : (
+            <>
+              <Button
+                onPress={handleSubmit(_handleSubmit, () => {
+                  scrollToTop();
+                })}
+                buttonContent={formatMessage({id: 'button.saveAndAdd'})}
+              />
+              <Button
+                onPress={() => Alert.alert('Work in progress')}
+                buttonStyle={() => ({marginVertical: vs(16)})}
+                buttonContent={formatMessage({id: 'button.viewFormTwoSummary'})}
+              />
+              <Button
+                onPress={() => {
+                  navigate('TabNavigator', {screen: 'StepTwo'});
+                }}
+                buttonContent={formatMessage({id: 'button.continueWithStep2'})}
+              />
+            </>
+          )}
         </View>
       </Container.ScrollView>
     </Container>

@@ -128,7 +128,10 @@ const FormOne = ({navigation}) => {
   );
 
   const scrollToTop = useCallback(() => {
-    setTimeout(() => scrollViewRef.current.scrollToPosition(0, 0, true), 200);
+    setTimeout(
+      () => scrollViewRef.current.scrollTo({x: 0, y: 0, animated: true}),
+      200,
+    );
   }, []);
 
   const handleBackPress = useCallback(() => {
@@ -183,7 +186,7 @@ const FormOne = ({navigation}) => {
   }, [formFieldsPage, selectedSpeciesId, setSpeciesDataInForm]);
 
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Header
         leftContent={
           <Icon name="chevron-left" size={ms(26)} onPress={handleBackPress} />
