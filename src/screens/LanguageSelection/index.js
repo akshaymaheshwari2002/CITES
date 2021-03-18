@@ -28,9 +28,7 @@ const LanguageSelection = ({navigation}) => {
   }, [dispatch]);
 
   return (
-    <Container
-      safeAreaViewProps={{style: {backgroundColor: RawColors.darkBlue}}}
-      statusBarProps={{barStyle: 'light-content'}}>
+    <Container>
       <Container.ScrollView contentContainerStyle={[styles.scrollContainer]}>
         <View style={[styles.logoContainer]}>
           <Image

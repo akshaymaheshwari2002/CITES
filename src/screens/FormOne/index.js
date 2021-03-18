@@ -186,7 +186,7 @@ const FormOne = ({navigation}) => {
   }, [formFieldsPage, selectedSpeciesId, setSpeciesDataInForm]);
 
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Header
         leftContent={
           <Icon name="chevron-left" size={ms(26)} onPress={handleBackPress} />

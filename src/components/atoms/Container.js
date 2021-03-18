@@ -51,7 +51,7 @@ Container.ScrollView = React.forwardRef(
   ({children, contentContainerStyle, ...restProps}, ref) => (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'height' : null}
-      style={CommonStyles.flexGrow1}>
+      style={CommonStyles.flex1}>
       <ScrollView
         ref={ref}
         bounces={false}
