@@ -1,11 +1,13 @@
 import Realm from 'realm';
 
 import * as Schemas from '@schemas';
+import Species from '@models/Species';
 
 const config = {
   path: 'db.realm',
   schema: Object.values(Schemas),
   schemaVersion: 0,
+  migration: () => {},
 };
 
 let realm;
@@ -47,6 +49,7 @@ export const addOrUpdateSpecies = (species, inspectionId) => {
       if (Array.isArray(species)) {
         const newSpecies = [];
         const existingSpecies = [...(inspection?.existingSpecies ?? [])];
+
         species?.forEach((item) => {
           const savedDataIndex = inspection?.registeredSpecies?.findIndex(
             (savedSpecies) => {
@@ -55,6 +58,7 @@ export const addOrUpdateSpecies = (species, inspectionId) => {
               );
             },
           );
+
           if (savedDataIndex !== -1) {
             existingSpecies[savedDataIndex] = {
               ...existingSpecies[savedDataIndex],
@@ -64,12 +68,13 @@ export const addOrUpdateSpecies = (species, inspectionId) => {
             newSpecies.push(item);
           }
         });
+
         inspection.registeredSpecies = existingSpecies;
         newSpecies.forEach((item) => {
-          inspection.registeredSpecies.push(item);
+          inspection.registeredSpecies.push(new Species(item));
         });
       } else {
-        upsert('Species', species);
+        realm.create('Species', new Species(species), 'modified');
       }
 
       data = JSON.parse(JSON.stringify(inspection.registeredSpecies));

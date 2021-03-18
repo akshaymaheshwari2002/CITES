@@ -30,10 +30,7 @@ export const saveRegisteredSpecies = createAsyncThunk(
   'saveRegisteredSpecies',
   (payload, {getState}) => {
     const activeInspectionId = getState().sessionReducer.activeInspection._id;
-    const speciesPayload = Array.isArray(payload)
-      ? payload.map((species) => new Species(species))
-      : new Species(payload);
-    const upsertedData = addOrUpdateSpecies(speciesPayload, activeInspectionId);
+    const upsertedData = addOrUpdateSpecies(payload, activeInspectionId);
 
     return upsertedData;
   },
