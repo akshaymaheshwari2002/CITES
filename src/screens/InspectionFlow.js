@@ -50,21 +50,15 @@ const InspectionFlow = ({navigation}) => {
                     <>
                       <Text style={styles.buttonTextOne}>
                         {formatMessage({
+                          id: 'button.learnUseApp',
+                        })}
+                      </Text>
+
+                      <Text style={styles.buttonTextTwo}>
+                        {formatMessage({
                           id: 'button.firstInspection',
                         })}
                       </Text>
-                      <View style={styles.secondText}>
-                        <Text style={styles.buttonTextTwo}>
-                          {formatMessage({
-                            id: 'button.learnUseApp',
-                          })}
-                        </Text>
-                        <Icon
-                          name="chevron-right"
-                          size={ms(18)}
-                          style={styles.icon}
-                        />
-                      </View>
                     </>
                   }
                 />
@@ -80,21 +74,15 @@ const InspectionFlow = ({navigation}) => {
                     <>
                       <Text style={styles.buttonTextOne}>
                         {formatMessage({
+                          id: 'button.beginInspection',
+                        })}
+                      </Text>
+
+                      <Text style={styles.buttonTextTwo}>
+                        {formatMessage({
                           id: 'button.newInspection',
                         })}
                       </Text>
-                      <View style={styles.secondText}>
-                        <Text style={styles.buttonTextTwo}>
-                          {formatMessage({
-                            id: 'button.beginInspection',
-                          })}
-                        </Text>
-                        <Icon
-                          name="chevron-right"
-                          size={ms(18)}
-                          style={styles.icon}
-                        />
-                      </View>
                     </>
                   }
                 />
@@ -109,21 +97,14 @@ const InspectionFlow = ({navigation}) => {
                     <>
                       <Text style={styles.buttonTextOne}>
                         {formatMessage({
+                          id: 'button.continueInspection',
+                        })}
+                      </Text>
+                      <Text style={styles.buttonTextTwo}>
+                        {formatMessage({
                           id: 'button.startedInspection',
                         })}
                       </Text>
-                      <View style={styles.secondText}>
-                        <Text style={styles.buttonTextTwo}>
-                          {formatMessage({
-                            id: 'button.continueInspection',
-                          })}
-                        </Text>
-                        <Icon
-                          name="chevron-right"
-                          size={ms(18)}
-                          style={styles.icon}
-                        />
-                      </View>
                     </>
                   }
                 />
@@ -177,28 +158,22 @@ const styles = ScaledSheet.create({
     paddingBottom: '16@vs',
   },
   filledButton: {
-    borderColor: RawColors.darkSalmon,
-    height: '84@ms',
+    borderColor: RawColors.brightRed,
+    backgroundColor: RawColors.brightRed,
+    height: '100@ms',
+    width: '294@s',
+    marginVertical: '20@s',
     marginBottom: '16@vs',
   },
   buttonTextOne: {
-    ...Fonts.Lato17R,
-    color: RawColors.darkGreyBlue,
-    alignSelf: 'flex-start',
-    marginLeft: '20@s',
-    marginTop: '18@s',
-  },
-  secondText: {
-    flexDirection: 'row',
-    marginLeft: '20@s',
-    marginBottom: '18@s',
-    alignItems: 'center',
+    ...Fonts.Lato20R,
+    marginVertical: '5@s',
+    color: RawColors.white,
   },
   buttonTextTwo: {
-    ...Fonts.Lato18B,
-    fontWeight: 'bold',
-    color: RawColors.darkGreyBlue,
-    alignSelf: 'flex-start',
+    ...Fonts.Lato20I,
+    color: RawColors.white,
+    alignSelf: 'center',
   },
   logo: {
     position: 'absolute',

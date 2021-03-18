@@ -48,7 +48,7 @@ export const SPECIES = {
     noOfFemalesPresentFacilityInfo: 'int?',
     noOfFemalesPresentInspectionInfo: 'int?',
     percentageOfFemalesBreedEachYear: 'string?',
-    foodFedToAdults: 'string?',
+    foodFedToAdults: 'string[]',
     noOfJuvenilesPresentFacilityInfo: 'int?',
     noOfJuvenilesPresentInspectionInfo: 'int?',
     ageAtSexualMaturity: 'string?',

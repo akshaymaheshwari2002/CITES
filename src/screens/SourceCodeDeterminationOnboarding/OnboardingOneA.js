@@ -12,6 +12,7 @@ import CommonStyles from '@styles/CommonStyles';
 const OnboardingOneA = ({
   onBackPress = () => {},
   onForwardPress = () => {},
+  headerDots = () => {},
 }) => {
   const {formatMessage} = useIntl();
 
@@ -21,6 +22,7 @@ const OnboardingOneA = ({
         leftContent={
           <Icon name="chevron-left" size={ms(26)} onPress={onBackPress} />
         }
+        content={headerDots()}
         rightContent={
           <Icon name="chevron-right" size={ms(26)} onPress={onForwardPress} />
         }

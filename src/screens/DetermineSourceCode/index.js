@@ -72,6 +72,10 @@ const DetermineSourceCode = ({
         content: formatMessage({
           id: 'screen.StepOne.WalkThroughContentTwo',
         }),
+        contentstyle: {
+          height: ms(60),
+          width: ms(172),
+        },
         sourceCodeOnboarding: true,
       }),
     );
@@ -86,6 +90,10 @@ const DetermineSourceCode = ({
         content: formatMessage({
           id: 'screen.StepOne.WalkThroughContentTwo',
         }),
+        contentstyle: {
+          height: ms(80),
+          width: ms(226),
+        },
       }),
     );
   }, [dispatch, formatMessage, setParams]);
@@ -105,10 +113,15 @@ const DetermineSourceCode = ({
             content={formatMessage({
               id: 'screen.StepOne.WalkThroughContentOne',
             })}
+            contentstyle={{
+              height: ms(60),
+              width: ms(180),
+            }}
             onClose={handleHeaderTooltipClose}>
             <Icon
               name="chevron-left"
               size={ms(26)}
+              style={{marginHorizontal: ms(5)}}
               onPress={() => {
                 if (interactedQuestionStack.length === 1) {
                   goBack();
@@ -130,10 +143,15 @@ const DetermineSourceCode = ({
             content={formatMessage({
               id: 'screen.Onboarding4A5.WalkThroughContentRightHeader',
             })}
+            contentstyle={{
+              height: ms(80),
+              width: ms(228),
+            }}
             onClose={handleRightButtonTooltipClose}>
             <IconAntDesign
               name="pluscircle"
               size={ms(26)}
+              style={{marginHorizontal: ms(5)}}
               onPress={() => navigate('MoreInformation')}
             />
           </Tooltip>
@@ -144,15 +162,17 @@ const DetermineSourceCode = ({
         contentContainerStyle={styles.scrollView}>
         <View style={styles.questionContainer}>
           <Text style={styles.label}>Question</Text>
-          {sourceCodeQuestions[
-            `${interactedQuestionStack[interactedQuestionStack.length - 1]}`
-          ].content.map((value, index) => {
-            return (
-              <Text style={styles.text} key={`${index}`}>
-                {value}
-              </Text>
-            );
-          })}
+          <View style={styles.questionText} id={Math.random()}>
+            {sourceCodeQuestions[
+              `${interactedQuestionStack[interactedQuestionStack.length - 1]}`
+            ].content.map((value, index) => {
+              return (
+                <Text style={styles.text} key={`${index}`}>
+                  {value}
+                </Text>
+              );
+            })}
+          </View>
         </View>
         <View style={styles.buttonsWrapper}>
           {sourceCodeQuestions[
@@ -182,6 +202,10 @@ const DetermineSourceCode = ({
                 id: 'screen.Onboarding4A5.WalkThroughContentOne',
               })}
               onClose={handleLeftButtonTooltipClose}
+              contentstyle={{
+                height: ms(80),
+                width: ms(228),
+              }}
               focusedStyle={{
                 height: scale(68),
                 width: scale(350),
@@ -232,18 +256,29 @@ const styles = ScaledSheet.create({
   },
   questionContainer: {
     alignItems: 'center',
-    justifyContent: 'flex-start',
     ...CommonStyles.flex1,
   },
   label: {
-    paddingVertical: '15@vs',
     ...Fonts.HelveticaNeue30B,
+    marginVertical: '30@vs',
+  },
+  questionText: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: '30@s',
+    //width: '90%',
+    //backgroundColor: 'red',
   },
   text: {
     ...Fonts.Lato20R,
+    marginTop: '15@s',
+    alignSelf: 'center',
+    lineHeight: '22@s',
+    letterSpacing: 0.48,
   },
   buttonsWrapper: {
     width: '85%',
+    margin: 'auto',
   },
   button: {
     height: '46@vs',

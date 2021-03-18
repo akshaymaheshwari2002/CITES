@@ -18,7 +18,6 @@ import {
   HomePage,
   WebView,
   DetermineSourceCode,
-  FormOneSummary,
   InspectionOnboarding,
   SourceCodeDeterminationOnboarding,
 } from '@screens';
@@ -85,7 +84,6 @@ const AppNavigator = () => {
           options={{headerShown: false}}
           component={HomePage}
         />
-        <Stack.Screen name="FormOneSummary" component={FormOneSummary} />
         <Stack.Screen name="WebView" component={WebView} />
         <Stack.Screen
           name="InspectionOnboarding"

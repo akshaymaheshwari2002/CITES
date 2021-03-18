@@ -5,7 +5,6 @@ import {ms, ScaledSheet} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {RawColors, Fonts} from '@styles/Themes';
-import CommonStyles from '@styles/CommonStyles';
 
 const TextInput = React.forwardRef(
   (
@@ -18,6 +17,8 @@ const TextInput = React.forwardRef(
       labelStyle,
       showHelpIcon,
       labelBottom,
+      labelRight,
+      labelRightStyle,
       onHelpIconPress,
       ...restProps
     },
@@ -46,6 +47,9 @@ const TextInput = React.forwardRef(
             value={getValue()}
             {...restProps}
           />
+          {labelRight ? (
+            <Text style={[Fonts.Lato15B, labelRightStyle]}>{labelRight}</Text>
+          ) : null}
           {showHelpIcon ? (
             <Icon
               style={styles.fieldHelpIcon}
@@ -77,6 +81,8 @@ TextInput.propTypes = {
   showHelpIcon: PropTypes.bool,
   onHelpIconPress: PropTypes.func,
   labelBottom: PropTypes.string,
+  labelRight: PropTypes.string,
+  labelRightStyle: PropTypes.object,
 };
 
 TextInput.defaultProps = {
@@ -87,6 +93,8 @@ TextInput.defaultProps = {
   showHelpIcon: false,
   onHelpIconPress: () => {},
   labelBottom: '',
+  labelRight: '',
+  labelRightStyle: {},
 };
 
 const styles = ScaledSheet.create({

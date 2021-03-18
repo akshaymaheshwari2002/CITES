@@ -1,5 +1,5 @@
 import React, {useCallback, useMemo, useRef, useState, useEffect} from 'react';
-import {Text, View, BackHandler} from 'react-native';
+import {Text, View, BackHandler, Alert} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import {ms, ScaledSheet} from 'react-native-size-matters';
 import {useForm} from 'react-hook-form';
@@ -39,6 +39,8 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
     'additionalAnimalsAcquiredSinceInitialStock',
   );
   const _doYouBreedThisSpecies = watch('doYouBreedThisSpecies');
+  const _doYouRanchThisSpecies = watch('doYouRanchThisSpecies');
+  const _lifeStageHarvested = watch('lifeStageHarvested');
 
   const formFields = useMemo(() => {
     const fieldProps = {
@@ -51,19 +53,31 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
     };
     switch (formFieldsPage) {
       case 1:
-        return getFormFieldsPageOne({
-          ...fieldProps,
-          isAdditionalAnimalsAcquiredSinceInitialStock:
-            _additionalAnimalsAcquiredSinceInitialStock?.[Constants.YES] ??
-            false,
-        });
+        const isAdditionalAnimalsAcquiredSinceInitialStock =
+          _additionalAnimalsAcquiredSinceInitialStock?.[Constants.YES] ?? false;
+        return isAdditionalAnimalsAcquiredSinceInitialStock
+          ? getFormFieldsPageOne({
+              ...fieldProps,
+            })
+          : getFormFieldsPageOne({
+              ...fieldProps,
+            }).slice(0, 7);
       case 2:
-        return getFormFieldsPageTwo({
-          isDoYouBreedThisSpecies:
-            _doYouBreedThisSpecies?.[Constants.YES] ?? false,
-        });
+        const isDoYouBreedThisSpecies =
+          _doYouBreedThisSpecies?.[Constants.YES] ?? false;
+        return isDoYouBreedThisSpecies
+          ? getFormFieldsPageTwo()
+          : getFormFieldsPageTwo().slice(0, 1);
       case 3:
-        return getFormFieldsPageThree();
+        const isDoYouRanchThisSpecies =
+          _doYouRanchThisSpecies?.[Constants.YES] ?? false;
+        return isDoYouRanchThisSpecies
+          ? getFormFieldsPageThree({
+              lifeStageHarvested: {
+                initialValue: formData.current.lifeStageHarvested ?? [],
+              },
+            })
+          : getFormFieldsPageThree().slice(0, 1);
       case 4:
         return getFormFieldsPageFour();
       case 5:
@@ -74,6 +88,7 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
     registeredSpecies,
     _additionalAnimalsAcquiredSinceInitialStock,
     _doYouBreedThisSpecies,
+    _doYouRanchThisSpecies,
   ]);
 
   const _handleSubmit = useCallback(
@@ -82,12 +97,30 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
       const _registeredSpecies = {
         ...formData.current,
         additionalAnimalsAcquiredSinceInitialStock: Object.keys(
-          data?.additionalAnimalsAcquiredSinceInitialStock ?? [],
+          formData.current?.additionalAnimalsAcquiredSinceInitialStock ?? {},
         ),
-        doYouBreedThisSpecies: Object.keys(data?.doYouBreedThisSpecies ?? {}),
-        doYouRanchThisSpecies: Object.keys(data?.doYouRanchThisSpecies ?? {}),
+        doYouBreedThisSpecies: Object.keys(
+          formData.current?.doYouBreedThisSpecies ?? {},
+        ),
+        doYouRanchThisSpecies: Object.keys(
+          formData.current?.doYouRanchThisSpecies ?? {},
+        ),
       };
 
+      if (
+        formFieldsPage === 1 &&
+        !_additionalAnimalsAcquiredSinceInitialStock?.[Constants.YES]
+      ) {
+        // clear associated field data when NO is selected
+        _registeredSpecies.addressOfAdditionalStock = '';
+      }
+      if (formFieldsPage === 2 && !_doYouBreedThisSpecies?.[Constants.YES]) {
+        // clear associated fields data when NO is selected
+        _registeredSpecies.whenDidYouBreedThisSpecies = '';
+        _registeredSpecies.numberOfLittersPerYear = null;
+        _registeredSpecies.numberOfOffspringPerLitter = null;
+        _registeredSpecies.numberProducedInPreviousYear = null;
+      }
       await dispatch(saveRegisteredSpecies(_registeredSpecies));
 
       // reset(getDefaultValues(getFormFieldsPageTwo()));
@@ -98,7 +131,14 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
         navigate('TabNavigator', {screen: 'StepTwo'});
       }
     },
-    [formFieldsPage, navigate, dispatch, scrollToTop],
+    [
+      formFieldsPage,
+      navigate,
+      dispatch,
+      scrollToTop,
+      _additionalAnimalsAcquiredSinceInitialStock,
+      _doYouBreedThisSpecies,
+    ],
   );
 
   const scrollToTop = useCallback(() => {
@@ -153,6 +193,7 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
         {},
       );
 
+      formData.current = selectedSpecies;
       reset(selectedSpecies);
     },
     [reset],
@@ -202,8 +243,25 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
           <Form {...{control, errors}} formFields={formFields} />
           <Button
             onPress={handleSubmit(_handleSubmit, () => scrollToTop())}
-            buttonContent={formatMessage({id: 'general.continue'})}
+            buttonContent={formatMessage({
+              id:
+                formFieldsPage === 5 ? 'button.saveAndAdd' : 'general.continue',
+            })}
           />
+          {formFieldsPage === 5 ? (
+            <Button
+              onPress={() => Alert.alert('Work in progress')}
+              buttonContent={formatMessage({id: 'button.viewFormTwoSummary'})}
+            />
+          ) : null}
+          {formFieldsPage === 5 ? (
+            <Button
+              onPress={() => {
+                navigate('StepTwo');
+              }}
+              buttonContent={formatMessage({id: 'button.continueWithStep2'})}
+            />
+          ) : null}
         </View>
       </Container.ScrollView>
     </Container>

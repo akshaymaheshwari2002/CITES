@@ -77,6 +77,7 @@ const SourceFlow = ({navigation}) => {
                   buttonContent={formatMessage({
                     id: 'button.giveFeedback',
                   })}
+                  buttonStyle={() => styles.emptyButton}
                 />
               </View>
             </ImageBackground>
@@ -113,6 +114,10 @@ const styles = ScaledSheet.create({
     lineHeight: '26@ms',
     letterSpacing: '0.45@ms',
   },
+  emptyButton: {
+    marginVertical: '20@s',
+    backgroundColor: RawColors.eggshell,
+  },
   eye: {
     height: '60@ms',
     aspectRatio: 1.3194,
@@ -128,13 +133,15 @@ const styles = ScaledSheet.create({
     paddingBottom: '16@vs',
   },
   filledButton: {
-    borderColor: RawColors.darkSalmon,
-    backgroundColor: RawColors.darkSalmon,
-    height: '84@ms',
+    borderColor: RawColors.brightRed,
+    backgroundColor: RawColors.brightRed,
+    height: '100@ms',
+    width: '294@s',
+    marginVertical: '20@s',
     marginBottom: '16@vs',
   },
   buttonTextOne: {
-    ...Fonts.Lato17R,
+    ...Fonts.Lato20R,
     color: RawColors.white,
   },
 

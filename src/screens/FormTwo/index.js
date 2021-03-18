@@ -133,11 +133,7 @@ const FormTwo = ({navigation}) => {
             buttonContent={formatMessage({id: 'button.continueWithStep2'})}
           />
           <Button
-            onPress={() =>
-              navigation.navigate('FormTwoSummary', {
-                data: formData.current,
-              })
-            }
+            onPress={() => navigation.navigate('FormTwoSummary')}
             buttonStyle={() => ({marginVertical: verticalScale(16)})}
             buttonContent={formatMessage({id: 'button.viewForm2Summary'})}
           />

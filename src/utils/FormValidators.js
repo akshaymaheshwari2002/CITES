@@ -1,6 +1,7 @@
 import {
   isNumber,
   isNumberInteger,
+  isNumberPercentage,
   isNumberPercentageFraction,
   isNumberPositive,
 } from '@utils/CommonFunctions';
@@ -27,6 +28,9 @@ export default () => {
     validateNumberPercentageFraction: (value) =>
       isNumberPercentageFraction(value) ||
       formatMessage({id: 'form.error.numberPercentageFraction'}),
+    validateNumberPercentageNonFraction: (value) =>
+      isNumberPercentage(value) ||
+      formatMessage({id: 'form.error.numberPercentageNonFraction'}),
     validateEmail: {
       value: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       message: formatMessage({id: 'form.error.invalidEmail'}),

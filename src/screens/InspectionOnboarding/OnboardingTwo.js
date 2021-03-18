@@ -28,7 +28,11 @@ const points = [
   },
 ];
 
-const OnboardingTwo = ({onBackPress = () => {}, onForwardPress = () => {}}) => {
+const OnboardingTwo = ({
+  onBackPress = () => {},
+  onForwardPress = () => {},
+  headerDots = () => {},
+}) => {
   const {formatMessage} = useIntl();
 
   return (
@@ -37,6 +41,7 @@ const OnboardingTwo = ({onBackPress = () => {}, onForwardPress = () => {}}) => {
         leftContent={
           <Icon name="chevron-left" size={ms(26)} onPress={onBackPress} />
         }
+        content={headerDots()}
         rightContent={
           <Icon name="chevron-right" size={ms(26)} onPress={onForwardPress} />
         }
@@ -88,6 +93,7 @@ const styles = ScaledSheet.create({
   backgroundImage: {
     resizeMode: 'center',
     paddingLeft: '700@s',
+    opacity: 25,
   },
   itemIcon: {
     alignSelf: 'flex-start',

@@ -9,7 +9,11 @@ import {Container, Header} from '@atoms';
 import {Images} from '@assets';
 import CommonStyles from '@styles/CommonStyles';
 
-const OnboardingOne = ({onBackPress = () => {}, onForwardPress = () => {}}) => {
+const OnboardingOne = ({
+  onBackPress = () => {},
+  onForwardPress = () => {},
+  headerDots = () => {},
+}) => {
   const {formatMessage} = useIntl();
 
   return (
@@ -18,6 +22,7 @@ const OnboardingOne = ({onBackPress = () => {}, onForwardPress = () => {}}) => {
         leftContent={
           <Icon name="chevron-left" size={ms(26)} onPress={onBackPress} />
         }
+        content={headerDots()}
         rightContent={
           <Icon name="chevron-right" size={ms(26)} onPress={onForwardPress} />
         }
@@ -60,7 +65,7 @@ const styles = ScaledSheet.create({
     fontWeight: 'bold',
   },
   img: {
-    resizeMode: 'contain',
+    resizeMode: 'cover',
     aspectRatio: 1.2,
   },
   imgContainer: {
