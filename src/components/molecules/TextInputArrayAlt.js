@@ -1,39 +1,26 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback} from 'react';
 import {Text, View} from 'react-native';
 import {moderateScale, ScaledSheet} from 'react-native-size-matters';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import {TextInput, Button} from '@atoms';
+import {TextInput} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
 
 const TextInputArrayAlt = React.forwardRef(
   (
-    {
-      label,
-      labelLeft,
-      placeholder,
-      error,
-      value,
-      count,
-      buttonText,
-      showHelpIcon,
-      onHelpIconPress,
-      onChange,
-    },
+    {label, placeholder, error, value, showHelpIcon, onHelpIconPress, onChange},
     _,
   ) => {
-    const [_count, _setCount] = useState(count);
-
     const handleChangeText = useCallback(
       (text, index) => {
         if (value && Array.isArray(value)) {
           let updatedData = [...value];
-          updatedData[index] = text;
+          updatedData[index] = {...updatedData[index], data: text};
           onChange(updatedData);
         } else {
-          onChange([text]);
+          onChange([{data: text}]);
         }
       },
       [onChange, value],
@@ -41,53 +28,23 @@ const TextInputArrayAlt = React.forwardRef(
 
     const renderFields = useCallback(() => {
       let fields = [];
-      for (let index = 0; index < _count; ++index) {
-        if (
-          labelLeft?.length &&
-          labelLeft[index] &&
-          labelLeft[index].toLowerCase() === 'other'
-        ) {
-          // special Case for form three part three don't do anything
-        } else {
-          fields[index] = labelLeft.length ? (
-            <View key={index} style={styles.containerAlt}>
-              <Text style={styles.labelLeft}>{labelLeft[index]}</Text>
-              <View style={styles.textInputAlt}>
-                <TextInput
-                  value={value?.[index]}
-                  onChangeText={(text) => handleChangeText(text, index)}
-                  style={styles.textInput}
-                  placeholder={placeholder}
-                />
-              </View>
+      for (let index = 0; index < value?.length; ++index) {
+        fields[index] = (
+          <View key={index} style={styles.containerAlt}>
+            <Text style={styles.labelLeft}>{value[index].identifier}</Text>
+            <View style={styles.textInputAlt}>
+              <TextInput
+                value={value[index]?.data}
+                onChangeText={(text) => handleChangeText(text, index)}
+                style={styles.textInput}
+                placeholder={placeholder}
+              />
             </View>
-          ) : (
-            <TextInput
-              key={index}
-              value={value?.[index]}
-              onChangeText={(text) => handleChangeText(text, index)}
-              style={styles.textInput}
-              placeholder={placeholder}
-            />
-          );
-        }
-      }
-      return fields;
-    }, [_count, handleChangeText, labelLeft, placeholder, value]);
-
-    useEffect(() => {
-      if (count) {
-        _setCount(count);
-      }
-    }, [count]);
-
-    useEffect(() => {
-      if (value?.length) {
-        _setCount((existingCount) =>
-          value.length > existingCount ? value.length : existingCount,
+          </View>
         );
       }
-    }, [value]);
+      return fields;
+    }, [handleChangeText, placeholder, value]);
 
     return (
       <>
@@ -104,21 +61,7 @@ const TextInputArrayAlt = React.forwardRef(
             />
           ) : null}
         </View>
-        <View
-          style={buttonText ? styles.containerWithButton : styles.container}>
-          {renderFields()}
-          {buttonText ? (
-            <Button
-              buttonStyle={() => ({
-                borderStyle: 'dashed',
-                borderRadius: 1,
-                borderWidth: 2,
-              })}
-              buttonContent={buttonText}
-              onPress={() => _setCount((state) => state + 1)}
-            />
-          ) : null}
-        </View>
+        <View style={styles.container}>{renderFields()}</View>
         {error ? (
           <Text style={[{color: RawColors.error}, Fonts.Lato15R]}>{error}</Text>
         ) : null}
@@ -138,9 +81,6 @@ const styles = ScaledSheet.create({
     marginTop: '12@vs',
     marginBottom: '4@vs',
   },
-  containerWithButton: {
-    marginVertical: '12@vs',
-  },
   textInput: {
     marginVertical: 0,
     marginBottom: '8@vs',
@@ -155,10 +95,7 @@ const styles = ScaledSheet.create({
 
 TextInputArrayAlt.propTypes = {
   label: PropTypes.string,
-  labelLeft: PropTypes.array,
   error: PropTypes.string,
-  count: PropTypes.number,
-  incremental: PropTypes.bool,
   onChange: PropTypes.func,
   showHelpIcon: PropTypes.bool,
   onHelpIconPress: PropTypes.func,
@@ -166,10 +103,7 @@ TextInputArrayAlt.propTypes = {
 
 TextInputArrayAlt.defaultProps = {
   label: '',
-  labelLeft: [],
   error: '',
-  count: 1,
-  incremental: false,
   onChange: () => {},
   showHelpIcon: false,
   onHelpIconPress: () => {},
