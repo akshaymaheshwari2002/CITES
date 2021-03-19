@@ -184,7 +184,6 @@ export default () => {
       name: 'citesInformationCode',
       fieldType: Constants.BREEDING_CODE_INPUT,
       rules: {
-        required,
         validate: {
           validBreedingCode,
         },
