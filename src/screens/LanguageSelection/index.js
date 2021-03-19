@@ -93,6 +93,7 @@ const styles = ScaledSheet.create({
   dropDownContainer: {
     paddingHorizontal: '16@s',
     marginHorizontal: '16@s',
+    marginTop: '30@s',
     paddingBottom: '16@vs',
   },
   animationImage: {

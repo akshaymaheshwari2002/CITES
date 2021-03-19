@@ -1,9 +1,10 @@
 import React, {useCallback, useEffect, useMemo} from 'react';
-import {View, StatusBar} from 'react-native';
+import {View, StatusBar, Alert} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms, s} from 'react-native-size-matters';
 import {shallowEqual, useDispatch, useSelector} from 'react-redux';
+import Toast from 'react-native-simple-toast';
 
 import {Container, Button, Tooltip} from '@atoms';
 import {StepHeader, ChecklistCell} from '@molecules';
@@ -32,13 +33,15 @@ const StepOne = ({navigation, route}) => {
 
       if (stepOneComplete) {
         navigation.navigate('StepTwo', {formSummaryStepTwo: true});
-      } else {
-        console.log('INCOMPLETE DATA');
       }
     } else {
-      console.log('INCOMPLETE DATA');
+      Toast.show(
+        formatMessage({
+          id: 'screen.StepOne.Alert',
+        }),
+      );
     }
-  }, [navigation, stepOneData]);
+  }, [formatMessage, navigation, stepOneData]);
   const bullet = useMemo(
     () => (
       <View style={checkliststyles.bulletContainer}>
