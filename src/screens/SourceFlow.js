@@ -10,7 +10,7 @@ import {Images} from '@assets';
 const SourceFlow = ({navigation}) => {
   const {formatMessage} = useIntl();
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+    <Container>
       <ImageBackground
         style={styles.container}
         source={Images.backgroundPatternTopBlur}

@@ -1,11 +1,10 @@
 import React from 'react';
-import {View, Text, FlatList, Pressable} from 'react-native';
+import {View, Text, FlatList} from 'react-native';
 import {useIntl} from 'react-intl';
-import {ScaledSheet, ms} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/Feather';
+import {ScaledSheet} from 'react-native-size-matters';
 
 import Config from '@config';
-import {Container, Button, Header} from '@atoms';
+import {Container, Button} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
 
@@ -39,12 +38,7 @@ const MoreInformation = ({navigation: {navigate, goBack}}) => {
     },
   ];
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={goBack} />
-        }
-      />
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <View style={styles.titleView}>
         <Text style={styles.title}>
           {formatMessage({id: 'screen.MoreInformation.title'})}

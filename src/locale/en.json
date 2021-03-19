@@ -426,17 +426,14 @@
   "questionontent.questionSixPartThree": "OR",
   "questionontent.questionSixPartFour": "animal?",
   "questionontent.questionSeven": "Was the specimen taken from the wild?",
-  "questionontent.questionEight":"Was the specimen taken from the wild as an egg or juvenile that had a very low probability of surviving to adulthood?",
-  "questionontent.questionNinePartOne":"Was the specimen reared in a",
+  "questionontent.questionEight": "Was the specimen taken from the wild as an egg or juvenile that had a very low probability of surviving to adulthood?",
+  "questionontent.questionNinePartOne": "Was the specimen reared in a",
   "questionontent.questionNinePartTwo": "controlled environment?",
-  "questionontent.questionTenPartOne":"Has the specimen been transferred to Appendix II and marked in accordance with",
+  "questionontent.questionTenPartOne": "Has the specimen been transferred to Appendix II and marked in accordance with",
   "questionontent.questionTenPartTwo": "Resolution Conf. 11.16 (Rev. CoP15)?",
-  "questionontent.questionEleven":"Is the species listed in the CITES Appendices (II or III)?",
-  "questionontent.questionTwelvePartOne":"Does the specimen fulfil the requirements under",
-  "questionontent.questionTwelvePartTwo":"Article III",
-  "questionontent.questionTwelvePartThree":"of the Convention?",
-
-
-
-
+  "questionontent.questionEleven": "Is the species listed in the CITES Appendices (II or III)?",
+  "questionontent.questionTwelvePartOne": "Does the specimen fulfil the requirements under",
+  "questionontent.questionTwelvePartTwo": "Article III",
+  "questionontent.questionTwelvePartThree": "of the Convention?",
+  "button.moreInformation": "MORE INFORMATION"
 }

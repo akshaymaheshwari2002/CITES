@@ -1,12 +1,11 @@
 import React, {useCallback, useMemo, useRef, useEffect} from 'react';
 import {Text, View} from 'react-native';
-import {ms, ScaledSheet, verticalScale} from 'react-native-size-matters';
+import {ScaledSheet, verticalScale} from 'react-native-size-matters';
 import {useForm} from 'react-hook-form';
-import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {Button, Container, Header} from '@atoms';
+import {Button, Container} from '@atoms';
 import {Form} from '@organisms';
 import {saveInspection} from '@store/slices/sessionSlice';
 import getFormFields from './FormFields';
@@ -113,12 +112,7 @@ const FormTwo = ({navigation}) => {
   }, [activeFormTwoId, setActiveFormDataOnMount]);
 
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
-        }
-      />
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView ref={scrollViewRef} style={CommonStyles.flex1}>
         <Text style={styles.title}>
           {formatMessage({id: 'screen.FormTwo.title'})}

@@ -1,32 +1,20 @@
 import React from 'react';
 import {View, Text, FlatList} from 'react-native';
 import {useIntl} from 'react-intl';
-import {ScaledSheet, ms} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/Feather';
+import {ScaledSheet} from 'react-native-size-matters';
 
-import {Container, Button, Header} from '@atoms';
+import {Container, Button} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import SourceCodeData from './SourceCode/SourceCodeData';
 import CommonStyles from '@styles/CommonStyles';
 
+const SourceData = ['W', 'R', 'F', 'C', 'A', 'D', 'X', 'U', 'I', 'O'];
+
 const SourceCodeSelection = ({navigation}) => {
   const {formatMessage} = useIntl();
 
-  const SourceData = ['W', 'R', 'F', 'C', 'A', 'D', 'X', 'U', 'I', 'O'];
-
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon
-            name="chevron-left"
-            size={ms(26)}
-            onPress={() => {
-              navigation.goBack();
-            }}
-          />
-        }
-      />
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <View style={styles.titleView}>
         <Text style={styles.title}>
           {formatMessage({id: 'screen.SourceCodeSelection.title'})}

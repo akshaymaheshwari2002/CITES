@@ -1,23 +1,22 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import {View, Text, BackHandler} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
-import {ScaledSheet, ms, scale} from 'react-native-size-matters';
+import {ScaledSheet, ms, s, vs} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import {shallowEqual, useDispatch, useSelector} from 'react-redux';
 
-import {Container, Button, Header, Tooltip} from '@atoms';
+import {Container, Button, Tooltip} from '@atoms';
 import {setTooltipProps} from '@store/slices/sessionSlice';
 import CommonStyles from '@styles/CommonStyles';
 import {Fonts, RawColors} from '@styles/Themes';
 import sourceCodeQuestions from './sourceCodeQuestions';
 import sourceCodeQuestionRelations from './sourceCodeQuestionRelations';
 import Constants from '@utils/Constants';
-import {Value} from 'react-native-reanimated';
 
 const DetermineSourceCode = ({
-  navigation: {navigate, goBack, setParams},
+  navigation: {navigate, goBack, setParams, setOptions},
   route,
 }) => {
   const [interactedQuestionStack, setInteractedQuestionStack] = useState([1]);
@@ -104,60 +103,64 @@ const DetermineSourceCode = ({
     dispatch(setTooltipProps(null));
   }, [dispatch, setParams]);
 
+  useEffect(() => {
+    setOptions({
+      headerLeft: () => (
+        <Tooltip
+          placement="bottom"
+          isVisible={route.params.showToolTip}
+          content={formatMessage({
+            id: 'screen.StepOne.WalkThroughContentOne',
+          })}
+          onClose={handleHeaderTooltipClose}>
+          <Icon
+            name="chevron-left"
+            size={ms(26)}
+            onPress={() => {
+              if (interactedQuestionStack.length === 1) {
+                goBack();
+              } else {
+                setInteractedQuestionStack([
+                  ...interactedQuestionStack.slice(0, -1),
+                ]);
+              }
+            }}
+          />
+        </Tooltip>
+      ),
+      headerRight: () => (
+        <Tooltip
+          placement="bottom"
+          isVisible={
+            tooltipProps?.consumerName === 'headerRightButton' ? true : false
+          }
+          content={formatMessage({
+            id: 'screen.Onboarding4A5.WalkThroughContentRightHeader',
+          })}
+          onClose={handleRightButtonTooltipClose}>
+          <IconAntDesign
+            name="pluscircle"
+            size={ms(26)}
+            onPress={() => navigate('MoreInformation')}
+          />
+        </Tooltip>
+      ),
+      headerRightContainerStyle: {marginRight: s(16)},
+    });
+  }, [
+    formatMessage,
+    goBack,
+    handleHeaderTooltipClose,
+    handleRightButtonTooltipClose,
+    interactedQuestionStack,
+    navigate,
+    route.params.showToolTip,
+    setOptions,
+    tooltipProps,
+  ]);
+
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Tooltip
-            placement="bottom"
-            isVisible={route.params.showToolTip}
-            content={formatMessage({
-              id: 'screen.StepOne.WalkThroughContentOne',
-            })}
-            contentstyle={{
-              height: ms(60),
-              width: ms(180),
-            }}
-            onClose={handleHeaderTooltipClose}>
-            <Icon
-              name="chevron-left"
-              size={ms(26)}
-              style={{marginHorizontal: ms(5)}}
-              onPress={() => {
-                if (interactedQuestionStack.length === 1) {
-                  goBack();
-                } else {
-                  setInteractedQuestionStack([
-                    ...interactedQuestionStack.slice(0, -1),
-                  ]);
-                }
-              }}
-            />
-          </Tooltip>
-        }
-        rightContent={
-          <Tooltip
-            placement="bottom"
-            isVisible={
-              tooltipProps?.consumerName === 'headerRightButton' ? true : false
-            }
-            content={formatMessage({
-              id: 'screen.Onboarding4A5.WalkThroughContentRightHeader',
-            })}
-            contentstyle={{
-              height: ms(80),
-              width: ms(228),
-            }}
-            onClose={handleRightButtonTooltipClose}>
-            <IconAntDesign
-              name="pluscircle"
-              size={ms(26)}
-              style={{marginHorizontal: ms(5)}}
-              onPress={() => navigate('MoreInformation')}
-            />
-          </Tooltip>
-        }
-      />
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
         style={[CommonStyles.screenContainer, CommonStyles.flex1]}
         contentContainerStyle={styles.scrollView}>
@@ -209,16 +212,9 @@ const DetermineSourceCode = ({
                 id: 'screen.Onboarding4A5.WalkThroughContentOne',
               })}
               onClose={handleLeftButtonTooltipClose}
-              contentstyle={{
-                height: ms(80),
-                width: ms(228),
-              }}
-              focusedStyle={{
-                height: scale(68),
-                width: scale(350),
-              }}>
+              focusedStyle={{height: vs(68), width: s(350)}}>
               <Button
-                buttonContent={'more Information'}
+                buttonContent={formatMessage({id: 'button.moreInformation'})}
                 buttonStyle={() => [
                   styles.button,
                   styles.buttonMoreInformation,

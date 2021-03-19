@@ -1,23 +1,30 @@
 import React, {useMemo, useCallback} from 'react';
 import {View} from 'react-native';
 import {useIntl} from 'react-intl';
-import {ScaledSheet, ms} from 'react-native-size-matters';
+import {ScaledSheet} from 'react-native-size-matters';
 import {useDispatch, useSelector, shallowEqual} from 'react-redux';
-import Icon from 'react-native-vector-icons/Feather';
 
 import {saveInspection} from '@store/slices/sessionSlice';
-import {Container, Button, Header} from '@atoms';
+import {Container, Button} from '@atoms';
 import {StepHeader, ChecklistCell} from '@molecules';
 import ChecklistContent from './ChecklistContent';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
 
-const StepTwo = ({navigation}) => {
+const StepTwo = () => {
   const {formatMessage} = useIntl();
   const dispatch = useDispatch();
   const stepTwoData = useSelector(
     (state) => state.sessionReducer.activeInspection.stepTwo,
     shallowEqual,
+  );
+  const bullet = useMemo(
+    () => (
+      <View style={checkliststyles.bulletContainer}>
+        <View style={checkliststyles.bullet} />
+      </View>
+    ),
+    [],
   );
 
   const handleChange = useCallback(
@@ -33,21 +40,8 @@ const StepTwo = ({navigation}) => {
     [dispatch],
   );
 
-  const bullet = useMemo(
-    () => (
-      <View style={checkliststyles.bulletContainer}>
-        <View style={checkliststyles.bullet} />
-      </View>
-    ),
-    [],
-  );
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
-        }
-      />
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <StepHeader stepNumber={2} />
       <Container.ScrollView style={CommonStyles.flex1}>
         {ChecklistContent({

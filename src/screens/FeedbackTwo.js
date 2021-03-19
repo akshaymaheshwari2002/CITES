@@ -5,25 +5,19 @@ import {ScaledSheet, ms, vs, s} from 'react-native-size-matters';
 import {Images} from '@assets';
 import {useIntl} from 'react-intl';
 import {useForm} from 'react-hook-form';
-import Icon from 'react-native-vector-icons/Feather';
 
 import {Fonts, RawColors} from '@styles/Themes';
-import {Container, Button, Header} from '@atoms';
+import {Container, Button} from '@atoms';
 import {Form} from '@organisms';
 import CommonStyles from '@styles/CommonStyles';
 
-const FeedbackTwo = ({navigation: {navigate, goBack}}) => {
+const FeedbackTwo = ({navigation: {navigate}}) => {
   const {formatMessage} = useIntl();
   const formProps = useForm();
   const {control, errors} = formProps;
 
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={goBack} />
-        }
-      />
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
         contentContainerStyle={CommonStyles.screenContainer}
         style={CommonStyles.flex1}>

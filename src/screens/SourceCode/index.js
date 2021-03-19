@@ -1,13 +1,12 @@
-import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import React, {useEffect} from 'react';
+import {Text, View} from 'react-native';
 import {useIntl} from 'react-intl';
-import {ScaledSheet, scale, ms} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/Feather';
+import {ScaledSheet, ms, s} from 'react-native-size-matters';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import {useSelector} from 'react-redux';
 
 import {Fonts, RawColors} from '@styles/Themes';
-import {Button, Container, Header} from '@atoms';
+import {Button, Container} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
 import SourceCodeData from './SourceCodeData';
 
@@ -17,28 +16,22 @@ const SourceCode = ({navigation, route}) => {
   const continueToStepTwo = useSelector(
     (state) => state.sessionReducer.continueToStepTwo,
   );
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <IconAntDesign
+          name="pluscircle"
+          style={{marginRight: s(8)}}
+          size={ms(26)}
+          onPress={() => navigation.navigate('MoreInformation')}
+        />
+      ),
+    });
+  }, [navigation]);
+
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon
-            name="chevron-left"
-            size={ms(26)}
-            style={{marginHorizontal: ms(10)}}
-            onPress={() => {
-              navigation.goBack();
-            }}
-          />
-        }
-        rightContent={
-          <IconAntDesign
-            name="pluscircle"
-            style={{marginHorizontal: ms(10)}}
-            size={ms(26)}
-            onPress={() => navigation.navigate('MoreInformation')}
-          />
-        }
-      />
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView style={CommonStyles.flex1}>
         <View style={styles.container}>
           <View style={styles.titleContainer}>

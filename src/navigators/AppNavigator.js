@@ -3,7 +3,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
 import {ms} from 'react-native-size-matters';
-import {TouchableOpacity} from 'react-native';
 
 import {navigationRef} from '@utils/RootNavigation';
 import CommonStyles from '@styles/CommonStyles';
@@ -13,7 +12,6 @@ import {
   FacilityScoreGreaterEight,
   LanguageSelection,
   InspectionFlow,
-  StepsSummary,
   SourceFlow,
   HomePage,
   WebView,
@@ -29,11 +27,9 @@ const screenOptions = {
   title: null,
   headerBackTitle: ' ',
   headerStyle: CommonStyles.navigationHeader,
-  headerLeft: ({onPress, canGoBack, ...navigationProps}) =>
+  headerLeft: ({canGoBack, ...navigationProps}) =>
     canGoBack ? (
-      <TouchableOpacity onPress={onPress}>
-        <Icon name="chevron-left" size={ms(26)} {...navigationProps} />
-      </TouchableOpacity>
+      <Icon name="chevron-left" size={ms(26)} {...navigationProps} />
     ) : null,
   headerLeftContainerStyle: CommonStyles.navigationLeftContainer,
   headerRightContainerStyle: CommonStyles.navigationRightContainer,
@@ -60,7 +56,6 @@ const AppNavigator = () => {
           component={TabNavigator}
           options={{headerShown: false}}
         />
-        <Stack.Screen name="StepsSummary" component={StepsSummary} />
         <Stack.Screen name="FacilityScore" component={FacilityScore} />
         <Stack.Screen
           name="InspectionFlow"

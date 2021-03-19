@@ -4,7 +4,7 @@ import FacilityScoreLessEight from './FacilityScoreLessEight';
 import FacilityScoreGreaterEight from './FacilityScoreGreaterEight';
 import FeedbackTwo from './FeedbackTwo';
 import LanguageSelection from './LanguageSelection';
-import StepsSummary from './StepsSummary';
+import BeginInspection from './BeginInspection';
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
 import FeedbackOne from './FeedbackOne';
@@ -20,9 +20,6 @@ import WebView from './WebView';
 import FormOne from './FormOne';
 import FormTwo from './FormTwo';
 import FormThree from './FormThree';
-import SearchDummy from './SearchDummy';
-import Notes from './Notes';
-import DrawerMenu from './DrawerMenu';
 import DetermineSourceCode from './DetermineSourceCode';
 import MoreInformation from './MoreInformation';
 import FormOneSummary from './FormOneSummary';
@@ -48,15 +45,12 @@ export {
   FacilityRegistered,
   SourceCodeSelection,
   LanguageSelection,
-  SearchDummy,
   StepSummary,
   SourceFlow,
   SourceCode,
   SourceCodeDeterminationOnboarding,
   FacilityInfringement,
-  Notes,
-  DrawerMenu,
-  StepsSummary,
+  BeginInspection,
   InspectionFlow,
   ContinueInspection,
   StepOne,

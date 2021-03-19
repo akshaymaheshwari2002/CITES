@@ -8,7 +8,7 @@ import {useFocusEffect} from '@react-navigation/native';
 import {format} from 'date-fns';
 import {shallowEqual, useSelector} from 'react-redux';
 
-import {Container, Header} from '@atoms';
+import {Container} from '@atoms';
 import {FormOneTemplate, FormOneHeader} from '@molecules';
 import {Fonts, RawColors} from '@styles/Themes';
 import {generatePdf} from '@utils/CommonFunctions';
@@ -63,12 +63,7 @@ const FormOneSummary = ({navigation, route}) => {
   );
 
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
-        }
-      />
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
         contentContainerStyle={styles.ScrollViewStyle}
         style={CommonStyles.flex1}>

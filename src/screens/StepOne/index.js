@@ -1,11 +1,11 @@
-import React, {useCallback, useMemo} from 'react';
+import React, {useCallback, useEffect, useMemo} from 'react';
 import {View, StatusBar} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms, s} from 'react-native-size-matters';
 import {shallowEqual, useDispatch, useSelector} from 'react-redux';
 
-import {Container, Button, Header, Tooltip} from '@atoms';
+import {Container, Button, Tooltip} from '@atoms';
 import {StepHeader, ChecklistCell} from '@molecules';
 import ChecklistContent from './ChecklistContent';
 import {Fonts, RawColors} from '@styles/Themes';
@@ -78,29 +78,28 @@ const StepOne = ({navigation, route}) => {
     );
   }, [dispatch, formatMessage, navigation]);
 
+  useEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
+        <Tooltip
+          placement="bottom"
+          isVisible={route.params.showToolTip}
+          content={formatMessage({
+            id: 'screen.StepOne.WalkThroughContentOne',
+          })}
+          contentstyle={{
+            height: ms(60),
+            width: ms(180),
+          }}
+          onClose={handleTooltipClose}>
+          <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
+        </Tooltip>
+      ),
+    });
+  }, [formatMessage, handleTooltipClose, navigation, route.params.showToolTip]);
+
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
-      <Header
-        leftContent={
-          <Tooltip
-            placement="bottom"
-            isVisible={route.params.showToolTip}
-            content={formatMessage({
-              id: 'screen.StepOne.WalkThroughContentOne',
-            })}
-            contentstyle={{
-              height: ms(60),
-              width: ms(180),
-            }}
-            onClose={handleTooltipClose}>
-            <Icon
-              name="chevron-left"
-              size={ms(26)}
-              onPress={navigation.goBack}
-            />
-          </Tooltip>
-        }
-      />
       <StepHeader stepNumber={1} />
       <Container.ScrollView style={CommonStyles.flex1}>
         {ChecklistContent({

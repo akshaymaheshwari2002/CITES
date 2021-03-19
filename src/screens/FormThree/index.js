@@ -21,7 +21,7 @@ import getFormFieldsPageThree from './FormFieldsPageThree';
 import getFormFieldsPageFour from './FormFieldsPageFour';
 import getFormFieldsPageFive from './FormFieldsPageFive';
 
-const FormThree = ({navigation: {navigate, goBack}}) => {
+const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
   const [formFieldsPage, setFormFieldsPage] = useState(1);
   const registeredSpecies = useSelector(
     (state) => state.sessionReducer.activeInspection?.registeredSpecies || [],
@@ -233,23 +233,29 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
     [reset],
   );
 
+  const handleBackPress = useCallback(() => {
+    if (formFieldsPage > 1) {
+      setFormFieldsPage(formFieldsPage - 1);
+    } else {
+      goBack();
+    }
+  }, [formFieldsPage, goBack]);
+
+  useEffect(() => {
+    setOptions({
+      headerLeft: (navigationProps) => (
+        <Icon
+          name="chevron-left"
+          size={ms(26)}
+          {...navigationProps}
+          onPress={handleBackPress}
+        />
+      ),
+    });
+  }, [handleBackPress, setOptions]);
+
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon
-            name="chevron-left"
-            size={ms(26)}
-            onPress={() => {
-              if (formFieldsPage > 1) {
-                setFormFieldsPage(formFieldsPage - 1);
-              } else {
-                goBack();
-              }
-            }}
-          />
-        }
-      />
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Text style={styles.title}>
         {formatMessage({id: 'screen.FormThree.title'})}
       </Text>

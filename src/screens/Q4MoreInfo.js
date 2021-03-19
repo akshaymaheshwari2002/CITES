@@ -1,10 +1,9 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
-import {ScaledSheet, ms} from 'react-native-size-matters';
+import {ScaledSheet} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 
-import {Container, Header} from '@atoms';
+import {Container} from '@atoms';
 import {Fonts} from '@styles/Themes';
 import {Images} from '@assets';
 import CommonStyles from '@styles/CommonStyles';
@@ -36,13 +35,7 @@ const Q4MoreInfo = ({navigation}) => {
   const {formatMessage} = useIntl();
 
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
-        }
-      />
-
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
         contentContainerStyle={CommonStyles.screenContainer}
         style={CommonStyles.flex1}>

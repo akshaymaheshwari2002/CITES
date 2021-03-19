@@ -1,7 +1,6 @@
 import React from 'react';
 import {ImageBackground, Text, View, Image} from 'react-native';
-import {ScaledSheet, ms} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/Feather';
+import {ScaledSheet} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 
 import {Container, Button} from '@atoms';
@@ -11,7 +10,7 @@ import {Images} from '@assets';
 const InspectionFlow = ({navigation}) => {
   const {formatMessage} = useIntl();
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+    <Container>
       <ImageBackground
         style={styles.container}
         source={Images.backgroundPatternTopBlur}
@@ -65,7 +64,7 @@ const InspectionFlow = ({navigation}) => {
                 <Button
                   onPress={() =>
                     navigation.navigate('TabNavigator', {
-                      screen: 'StepsSummary',
+                      screen: 'BeginInspection',
                     })
                   }
                   buttonStyle={() => styles.filledButton}
