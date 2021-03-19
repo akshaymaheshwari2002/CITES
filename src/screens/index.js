@@ -24,6 +24,7 @@ import DetermineSourceCode from './DetermineSourceCode';
 import MoreInformation from './MoreInformation';
 import FormOneSummary from './FormOneSummary';
 import FormOneSummaryEdit from './FormOneSummaryEdit';
+import FormTwoSummary from './FormTwoSummary';
 import InspectionOnboarding from './InspectionOnboarding';
 import SourceCodeDeterminationOnboarding from './SourceCodeDeterminationOnboarding';
 import ExampleDialogueStep3 from './ExampleDialogueStep3';
@@ -65,6 +66,7 @@ export {
   DetermineSourceCode,
   FormOneSummary,
   FormOneSummaryEdit,
+  FormTwoSummary,
   InspectionOnboarding,
   ExampleDialogueStep3,
   ExampleDialogueConsentFormStep2,
