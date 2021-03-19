@@ -8,7 +8,7 @@ import {TextInput, Button} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
 
-const TextInputArray = React.forwardRef(
+const TextInputArrayAlt = React.forwardRef(
   (
     {
       label,
@@ -153,7 +153,7 @@ const styles = ScaledSheet.create({
   },
 });
 
-TextInputArray.propTypes = {
+TextInputArrayAlt.propTypes = {
   label: PropTypes.string,
   labelLeft: PropTypes.array,
   error: PropTypes.string,
@@ -164,7 +164,7 @@ TextInputArray.propTypes = {
   onHelpIconPress: PropTypes.func,
 };
 
-TextInputArray.defaultProps = {
+TextInputArrayAlt.defaultProps = {
   label: '',
   labelLeft: [],
   error: '',
@@ -175,4 +175,4 @@ TextInputArray.defaultProps = {
   onHelpIconPress: () => {},
 };
 
-export default TextInputArray;
+export default TextInputArrayAlt;

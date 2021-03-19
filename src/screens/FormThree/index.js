@@ -293,7 +293,9 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
               <Button
                 onPress={() => Alert.alert('Work in progress')}
                 buttonStyle={() => ({marginVertical: vs(16)})}
-                buttonContent={formatMessage({id: 'button.viewFormTwoSummary'})}
+                buttonContent={formatMessage({
+                  id: 'button.viewFormThreeSummary',
+                })}
               />
               <Button
                 onPress={() => {

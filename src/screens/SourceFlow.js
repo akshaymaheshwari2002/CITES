@@ -16,16 +16,16 @@ const SourceFlow = ({navigation}) => {
         source={Images.backgroundPatternTopBlur}
         imageStyle={styles.resizeModeRepeat}>
         <Container.ScrollView contentContainerStyle={styles.scrollContainer}>
-          <View style={styles.logo}>
+          <View style={styles.headerContainer}>
             <Image
               source={Images?.eye}
               style={styles.eye}
               resizeMode="contain"
             />
-            <Text style={styles.headerTwo}>
+            <Text style={styles.header}>
               {formatMessage({id: 'screen.SourceFlow.headerPartTwo'})}
             </Text>
-            <Text style={styles.headerTwo}>
+            <Text style={styles.header}>
               {formatMessage({id: 'screen.SourceFlow.headerPartThree'})}
             </Text>
           </View>
@@ -46,7 +46,7 @@ const SourceFlow = ({navigation}) => {
                   buttonTextStyle={() => ({color: RawColors.black})}
                   buttonContent={
                     <>
-                      <Text style={styles.buttonTextOne}>
+                      <Text style={styles.buttonText}>
                         {formatMessage({
                           id: 'button.learnSourceCode',
                         })}
@@ -64,7 +64,7 @@ const SourceFlow = ({navigation}) => {
                   buttonTextStyle={() => ({color: RawColors.black})}
                   buttonContent={
                     <>
-                      <Text style={styles.buttonTextOne}>
+                      <Text style={styles.buttonText}>
                         {formatMessage({
                           id: 'button.determineSourceCodeOf',
                         })}
@@ -97,7 +97,7 @@ const styles = ScaledSheet.create({
     resizeMode: 'repeat',
   },
   scrollContainer: {
-    paddingTop: '140@vs',
+    paddingTop: '148@vs',
     backgroundColor: RawColors.transparent,
   },
   backgroundContainer: {
@@ -107,50 +107,48 @@ const styles = ScaledSheet.create({
   backgroundImage: {
     resizeMode: 'stretch',
   },
-  headerTwo: {
+  headerContainer: {
+    position: 'absolute',
+    alignSelf: 'center',
+    alignItems: 'flex-end',
+    width: '78.4%',
+    top: '58@vs',
+  },
+  eye: {
+    height: '60@vs',
+    aspectRatio: 1.3194,
+    alignSelf: 'flex-end',
+    marginVertical: '10@vs',
+  },
+  header: {
     color: RawColors.darkGreyBlue,
     ...Fonts.HelveticaNeue26B,
     textAlign: 'right',
     lineHeight: '26@ms',
     letterSpacing: '0.45@ms',
   },
-  emptyButton: {
-    marginVertical: '20@s',
-    backgroundColor: RawColors.eggshell,
-  },
-  eye: {
-    height: '60@ms',
-    aspectRatio: 1.3194,
-    alignSelf: 'flex-end',
-    marginVertical: '10@s',
-  },
   contentContainer: {
     flex: 1,
     width: '78.4%',
     justifyContent: 'center',
     alignSelf: 'center',
-    marginTop: '100@vs',
+    marginTop: '84@vs',
     paddingBottom: '16@vs',
   },
   filledButton: {
-    borderColor: RawColors.brightRed,
-    backgroundColor: RawColors.brightRed,
-    height: '100@ms',
-    width: '294@s',
-    marginVertical: '20@s',
-    marginBottom: '16@vs',
+    marginVertical: '16@vs',
+    backgroundColor: RawColors.darkSalmon,
+    minHeight: '66@vs',
+    borderWidth: 0,
   },
-  buttonTextOne: {
-    ...Fonts.Lato20R,
+  emptyButton: {
+    marginVertical: '16@vs',
+  },
+  buttonText: {
     color: RawColors.white,
-  },
-
-  logo: {
-    position: 'absolute',
-    alignSelf: 'center',
-    alignItems: 'flex-end',
-    width: '78.4%',
-    top: '58@vs',
+    textAlign: 'center',
+    lineHeight: '22@ms',
+    ...Fonts.Lato15R,
   },
 });
 
