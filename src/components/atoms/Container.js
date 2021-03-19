@@ -9,10 +9,11 @@ import PropTypes from 'prop-types';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useHeaderHeight} from '@react-navigation/stack';
 import {useIsFocused} from '@react-navigation/native';
-import {ScaledSheet} from 'react-native-size-matters';
+import {ScaledSheet, vs} from 'react-native-size-matters';
 
 import {RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
+import {getStatusBarHeight} from 'react-native-status-bar-height';
 
 const Container = ({
   isModal,
@@ -50,6 +51,7 @@ const Container = ({
 Container.ScrollView = React.forwardRef(
   ({children, contentContainerStyle, ...restProps}, ref) => (
     <KeyboardAvoidingView
+      keyboardVerticalOffset={vs(98)}
       behavior={Platform.OS === 'ios' ? 'height' : null}
       style={CommonStyles.flex1}>
       <ScrollView

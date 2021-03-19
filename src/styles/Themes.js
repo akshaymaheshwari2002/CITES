@@ -49,7 +49,7 @@ const RawColors = {
 
 const Fonts = {
   Didot56B: {
-    fontFamily: 'Didot-Regular',
+    fontFamily: 'Didot',
     fontSize: moderateScale(56),
   },
   Italic15R: {

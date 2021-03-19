@@ -77,7 +77,7 @@
 		<string>Lato-MediumItalic.ttf</string>
 		<string>Lato-SemiBold.ttf</string>
 		<string>HelveticaNeueRegular.otf</string>
-		<string>Didot-Regular.ttf</string>
+		<string>Didot.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
