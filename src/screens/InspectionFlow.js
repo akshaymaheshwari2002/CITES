@@ -16,19 +16,19 @@ const InspectionFlow = ({navigation}) => {
         source={Images.backgroundPatternTopBlur}
         imageStyle={styles.resizeModeRepeat}>
         <Container.ScrollView contentContainerStyle={styles.scrollContainer}>
-          <View style={styles.logo}>
+          <View style={styles.headerContainer}>
             <Image
               source={Images?.eye}
               style={styles.eye}
               resizeMode="contain"
             />
-            <Text style={styles.headerTwo}>
+            <Text style={styles.header}>
               {formatMessage({id: 'screen.InspectionFlow.headerPartTwo'})}
             </Text>
-            <Text style={styles.headerTwo}>
+            <Text style={styles.header}>
               {formatMessage({id: 'screen.InspectionFlow.headerPartThree'})}
             </Text>
-            <Text style={styles.headerTwo}>
+            <Text style={styles.header}>
               {formatMessage({id: 'screen.InspectionFlow.headerPartFour'})}
             </Text>
           </View>
@@ -125,7 +125,7 @@ const styles = ScaledSheet.create({
     resizeMode: 'repeat',
   },
   scrollContainer: {
-    paddingTop: '140@vs',
+    paddingTop: '148@vs',
     backgroundColor: RawColors.transparent,
   },
   backgroundContainer: {
@@ -135,13 +135,20 @@ const styles = ScaledSheet.create({
   backgroundImage: {
     resizeMode: 'stretch',
   },
+  headerContainer: {
+    position: 'absolute',
+    alignSelf: 'center',
+    alignItems: 'flex-end',
+    width: '78.4%',
+    top: '58@vs',
+  },
   eye: {
-    height: '60@ms',
+    height: '60@vs',
     aspectRatio: 1.3194,
     alignSelf: 'flex-end',
-    marginVertical: '10@s',
+    marginVertical: '10@vs',
   },
-  headerTwo: {
+  header: {
     color: RawColors.darkGreyBlue,
     ...Fonts.HelveticaNeue26B,
     textAlign: 'right',
@@ -153,38 +160,29 @@ const styles = ScaledSheet.create({
     width: '78.4%',
     justifyContent: 'center',
     alignSelf: 'center',
-    marginTop: '100@vs',
+    marginTop: '84@vs',
     paddingBottom: '16@vs',
   },
   filledButton: {
-    borderColor: RawColors.brightRed,
-    backgroundColor: RawColors.brightRed,
-    height: '100@ms',
-    width: '294@s',
-    marginVertical: '20@s',
-    marginBottom: '16@vs',
+    marginVertical: '16@vs',
+    backgroundColor: RawColors.darkSalmon,
+    minHeight: '66@vs',
+    borderWidth: 0,
+  },
+  emptyButton: {
+    marginVertical: '16@vs',
   },
   buttonTextOne: {
-    ...Fonts.Lato20R,
-    marginVertical: '5@s',
     color: RawColors.white,
+    textAlign: 'center',
+    lineHeight: '22@ms',
+    ...Fonts.Lato15R,
   },
   buttonTextTwo: {
-    ...Fonts.Lato20I,
     color: RawColors.white,
-    alignSelf: 'center',
-  },
-  logo: {
-    position: 'absolute',
-    alignSelf: 'center',
-    alignItems: 'flex-end',
-    width: '78.4%',
-    top: '58@vs',
-  },
-  icon: {
-    marginLeft: '2@s',
-    flex: 1,
-    marginTop: '4@ms',
+    textAlign: 'center',
+    lineHeight: '22@ms',
+    ...Fonts.Lato15I,
   },
 });
 

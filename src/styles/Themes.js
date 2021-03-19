@@ -84,6 +84,10 @@ const Fonts = {
     fontFamily: 'Lato-Bold',
     fontSize: moderateScale(20),
   },
+  Lato15I: {
+    fontFamily: 'Lato-Italic',
+    fontSize: moderateScale(15),
+  },
   Lato20I: {
     fontFamily: 'Lato-Italic',
     fontSize: moderateScale(20),
