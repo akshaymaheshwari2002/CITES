@@ -8,6 +8,7 @@ import Tooltip from './Tooltip';
 import Header from './Header';
 import Loader from './Loader';
 import AnimatedView from './AnimatedView';
+import Pagination from './Pagination';
 
 export {
   Container,
@@ -20,4 +21,5 @@ export {
   Header,
   Loader,
   AnimatedView,
+  Pagination,
 };

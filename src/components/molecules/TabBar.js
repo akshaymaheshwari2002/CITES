@@ -63,8 +63,8 @@ const TabBar = () => {
           id: 'screen.StepOne.WalkThroughContentFour',
         }),
         contentstyle: {
-          height: ms(80),
-          width: ms(156),
+          height: ms(121),
+          width: ms(200),
         },
         sourceCodeOnboarding,
       };

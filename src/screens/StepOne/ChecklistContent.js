@@ -168,11 +168,16 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
             </Text>
           </View>
           <View style={checkliststyles.hiddenBullet}>
-            <Text style={checkliststyles.textGeneral}>
-              {formatMessage({
-                id: 'screen.stepOne.toolsEnsured.bullet_4_2',
-              })}
-            </Text>
+            <Pressable
+              onPress={() => {
+                navigate('ExampleDialogueConsentFormStep2');
+              }}>
+              <Text style={checkliststyles.textHiddenBullet}>
+                {formatMessage({
+                  id: 'screen.stepOne.toolsEnsured.bullet_4_2',
+                })}
+              </Text>
+            </Pressable>
           </View>
         </View>
       ),
