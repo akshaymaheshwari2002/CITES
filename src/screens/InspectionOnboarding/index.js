@@ -1,9 +1,9 @@
-import React, {useRef, useCallback} from 'react';
-import {View, useWindowDimensions, FlatList, Image} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
+import React, {useRef, useCallback, useState} from 'react';
+import {View, useWindowDimensions, FlatList} from 'react-native';
+import {ms} from 'react-native-size-matters';
+import Icon from 'react-native-vector-icons/Feather';
 
-import {RawColors} from '@styles/Themes';
-import {Images} from '@assets';
+import {Container, Header, Pagination} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
 import OnboardingOne from './OnboardingOne';
 import OnboardingTwo from './OnboardingTwo';
@@ -15,31 +15,26 @@ const data = [OnboardingOne, OnboardingTwo, OnboardingThree, OnboardingFour];
 const InspectionOnboarding = ({navigation}) => {
   const flatListRef = useRef({});
   const {width: windowWidth} = useWindowDimensions();
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const handleBackPress = useCallback(
-    (index) => {
-      if (index === 0) {
-        navigation.goBack();
-      } else {
-        scrollToActiveIndex(index - 1);
-      }
-    },
-    [navigation, scrollToActiveIndex],
-  );
+  const handleBackPress = useCallback(() => {
+    if (activeIndex === 0) {
+      navigation.goBack();
+    } else {
+      scrollToActiveIndex(activeIndex - 1);
+    }
+  }, [activeIndex, navigation, scrollToActiveIndex]);
 
-  const handleForwardPress = useCallback(
-    (index) => {
-      if (index === data?.length - 1) {
-        navigation.navigate('TabNavigator', {
-          screen: 'StepOne',
-          params: {showToolTip: true},
-        });
-      } else {
-        scrollToActiveIndex(index + 1);
-      }
-    },
-    [navigation, scrollToActiveIndex],
-  );
+  const handleForwardPress = useCallback(() => {
+    if (activeIndex === data?.length - 1) {
+      navigation.navigate('TabNavigator', {
+        screen: 'StepOne',
+        params: {showToolTip: true},
+      });
+    } else {
+      scrollToActiveIndex(activeIndex + 1);
+    }
+  }, [activeIndex, navigation, scrollToActiveIndex]);
 
   const scrollToActiveIndex = useCallback(
     (index) => {
@@ -47,54 +42,46 @@ const InspectionOnboarding = ({navigation}) => {
         offset: index * windowWidth,
         animated: true,
       });
+      setActiveIndex(index);
     },
     [windowWidth],
   );
 
-  const handleScrollEndDrag = useCallback(
+  const handleMomentumScrollEnd = useCallback(
     (e) => {
-      const index = Math.round(e.nativeEvent?.contentOffset?.x / windowWidth);
-      if (index === data?.length - 1) {
+      const contentOffset = e.nativeEvent.contentOffset;
+      const viewSize = e.nativeEvent.layoutMeasurement;
+      const pageNum = Math.floor(contentOffset.x / viewSize.width);
+
+      if (activeIndex === pageNum && activeIndex === data?.length - 1) {
         navigation.navigate('TabNavigator', {
           screen: 'StepOne',
           params: {showToolTip: true},
         });
       }
+
+      setActiveIndex(pageNum);
     },
-    [navigation, windowWidth],
+    [activeIndex, navigation],
   );
-  const headerDots = (index) => {
-    return (
-      <View style={styles.headerContent}>
-        <Image
-          source={
-            index === 0 ? Images.headerDarkCircle : Images.headerLightCircle
-          }
-          style={styles.headerImage}
-        />
-        <Image
-          source={
-            index === 1 ? Images.headerDarkCircle : Images.headerLightCircle
-          }
-          style={styles.headerImage}
-        />
-        <Image
-          source={
-            index === 2 ? Images.headerDarkCircle : Images.headerLightCircle
-          }
-          style={styles.headerImage}
-        />
-        <Image
-          source={
-            index === 3 ? Images.headerDarkCircle : Images.headerLightCircle
-          }
-          style={styles.headerImage}
-        />
-      </View>
-    );
-  };
+
   return (
-    <View style={styles.container}>
+    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+      <Header
+        leftContent={
+          <Icon name="chevron-left" size={ms(26)} onPress={handleBackPress} />
+        }
+        content={
+          <Pagination activeIndex={activeIndex} dotsLength={data.length} />
+        }
+        rightContent={
+          <Icon
+            name="chevron-right"
+            size={ms(26)}
+            onPress={handleForwardPress}
+          />
+        }
+      />
       <FlatList
         ref={flatListRef}
         horizontal
@@ -104,45 +91,15 @@ const InspectionOnboarding = ({navigation}) => {
         showsHorizontalScrollIndicator={false}
         data={data}
         keyExtractor={(_, index) => index.toString()}
-        onScrollEndDrag={handleScrollEndDrag}
-        renderItem={({item: Item, index}) => {
-          return (
-            <View
-              style={[
-                styles.contentContainer,
-                CommonStyles.shadowEffect,
-                {width: windowWidth},
-              ]}>
-              <Item
-                onBackPress={() => handleBackPress(index)}
-                onForwardPress={() => handleForwardPress(index)}
-                headerDots={() => headerDots(index)}
-              />
-            </View>
-          );
-        }}
+        onMomentumScrollEnd={handleMomentumScrollEnd}
+        renderItem={({item: Item}) => (
+          <View style={[CommonStyles.flex1, {width: windowWidth}]}>
+            <Item />
+          </View>
+        )}
       />
-    </View>
+    </Container>
   );
 };
-
-const styles = ScaledSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: RawColors.transparent,
-  },
-  contentContainer: {
-    flex: 1,
-  },
-  headerContent: {
-    flexDirection: 'row',
-    alignSelf: 'center',
-  },
-  headerImage: {
-    height: '15@s',
-    width: '15@s',
-    marginHorizontal: '5@s',
-  },
-});
 
 export default InspectionOnboarding;
