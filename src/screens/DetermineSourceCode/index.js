@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import {View, Text, BackHandler} from 'react-native';
+import {View, Text, BackHandler, TouchableOpacity} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import {ScaledSheet, ms, s, vs} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
@@ -174,11 +174,30 @@ const DetermineSourceCode = ({
             {sourceCodeQuestions[
               `${interactedQuestionStack[interactedQuestionStack.length - 1]}`
             ].content.map((value, index) => {
-              return (
-                <Text
-                  style={value.isLink ? styles.link : styles.text}
-                  key={`${index}`}>
-                  {value[index + 1]}
+              return value.isLink ? (
+                <TouchableOpacity
+                  onPress={() => {
+                    if (value.isLink && value.isLink.target) {
+                      if (value.isLink.isWebSource) {
+                        navigate('WebView', {
+                          sourceUri: value.isLink.target,
+                        });
+                      } else {
+                        navigate(value.isLink.target);
+                      }
+                    }
+                  }}>
+                  <Text style={styles.link} key={`${index}`}>
+                    {formatMessage({
+                      id: value.text,
+                    })}
+                  </Text>
+                </TouchableOpacity>
+              ) : (
+                <Text style={styles.text} key={`${index}`}>
+                  {formatMessage({
+                    id: value.text,
+                  })}
                 </Text>
               );
             })}

@@ -13,27 +13,25 @@ const MoreInformation = ({navigation: {navigate, goBack}}) => {
   const dummyInspectionData = [
     {
       id: 'dummy1235',
-      contentOne: 'CITES Source Codes',
-      contentTwo: 'Learn more about the ten current source codes',
+      contentOne: 'screen.moreInfoButtonOneContentOne',
+      contentTwo: 'screen.moreInfoButtonOneContentTwo',
     },
     {
       id: 'dummy1234',
-      contentOne: 'Permits and Certificates  Article VI',
-      contentTwo: 'http://www.cites.org/eng/disc/text.php#VI',
+      contentOne: 'screen.moreInfoButtonTwoContentOne',
+      contentTwo: 'screen.moreInfoButtonTwoContentTwo',
       url: Config.URL_MORE_INFO_ONE,
     },
     {
       id: 'dummy1236',
-      contentOne:
-        'Exemptions and Other Special Provisions Relating to Trade - Article VII',
-      contentTwo: 'http://www.cites.org/eng/disc/text.php#VII',
+      contentOne: 'screen.moreInfoButtonThreeContentOne',
+      contentTwo: 'screen.moreInfoButtonThreeContentTwo',
       url: Config.URL_MORE_INFO_TWO,
     },
     {
       id: 'dummy1237',
-      contentOne: 'Permits and Certificates Resolution Conf. 12.3 (Rev. CoP18)',
-      contentTwo:
-        'https://cites.org/sites/default/files/document/E-Res-12-03-R18.pdf',
+      contentOne: 'screen.moreInfoButtonFourContentOne',
+      contentTwo: 'screen.moreInfoButtonFourContentTwo',
       url: Config.URL_MORE_INFO_THREE,
     },
   ];
@@ -64,9 +62,11 @@ const MoreInformation = ({navigation: {navigate, goBack}}) => {
                 buttonContent={
                   <>
                     <View style={styles.bottomMargin10}>
-                      <Text style={styles.letter}>{item.contentOne}</Text>
+                      <Text style={styles.letter}>
+                        {formatMessage({id: item.contentOne})}
+                      </Text>
                       <Text style={styles.letterDescription}>
-                        {item.contentTwo}
+                        {formatMessage({id: item.contentTwo})}
                       </Text>
                     </View>
                   </>
