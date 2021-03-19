@@ -131,18 +131,13 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
         _registeredSpecies.numberProducedInPreviousYear = null;
       }
       if (formFieldsPage === 3) {
-        const indexOfOther = _registeredSpecies?.lifeStageHarvested?.findIndex(
-          (value) => value?.toLowerCase() === 'other',
-        );
-        if (indexOfOther !== -1) {
-          const lifeStageHarvestedCopy = [
-            ..._registeredSpecies?.lifeStageHarvested,
-          ];
-          lifeStageHarvestedCopy[indexOfOther] =
-            _registeredSpecies.otherLifeStage;
-          _registeredSpecies.lifeStageHarvested = lifeStageHarvestedCopy;
+        if (
+          _registeredSpecies?.lifeStageHarvested?.findIndex(
+            (value) => value?.toLowerCase() === 'other',
+          ) === -1
+        ) {
+          _registeredSpecies.otherLifeStage = '';
         }
-
         if (!_doYouRanchThisSpecies?.[Constants.YES]) {
           // clear associated fields data when NO is selected
           _registeredSpecies.lifeStageHarvested = [];

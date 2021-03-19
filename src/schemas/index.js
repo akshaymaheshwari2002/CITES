@@ -40,6 +40,7 @@ export const SPECIES = {
     numberProducedInPreviousYear: 'int?',
     doYouRanchThisSpecies: 'string[]',
     lifeStageHarvested: 'string[]',
+    otherLifeStage: 'string?',
     numberHarvestedInPreviousYear: 'int[]',
     noOfAdultsPresentFacilityInfo: 'int?',
     noOfAdultsPresentInspectionInfo: 'int?',

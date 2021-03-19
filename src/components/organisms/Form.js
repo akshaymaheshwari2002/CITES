@@ -7,6 +7,7 @@ import {ScaledSheet} from 'react-native-size-matters';
 import {TextInput, Picker} from '@atoms';
 import {
   TextInputArray,
+  TextInputArrayAlt,
   DatePicker,
   Counter,
   MobileInput,
@@ -33,6 +34,9 @@ const Form = (formProps) => {
           break;
         case Constants.TEXTINPUT_ARRAY:
           FieldComponent = TextInputArray;
+          break;
+        case Constants.TEXTINPUT_ARRAY_ALT:
+          FieldComponent = TextInputArrayAlt;
           break;
         case Constants.CHOICELIST:
           FieldComponent = ChoiceList;

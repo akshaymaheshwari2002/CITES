@@ -87,7 +87,7 @@ export default (fieldProps = {}) => {
         labelLeft: _lifeStageHarvestedCopy,
         name: 'numberHarvestedInPreviousYear',
         rules: {required},
-        fieldType: Constants.TEXTINPUT_ARRAY,
+        fieldType: Constants.TEXTINPUT_ARRAY_ALT,
         ...Platform.select({ios: {fieldContainerStyle: {zIndex: 1}}}),
       });
     }
