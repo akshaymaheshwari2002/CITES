@@ -97,7 +97,7 @@ const styles = ScaledSheet.create({
     resizeMode: 'repeat',
   },
   scrollContainer: {
-    paddingTop: '140@vs',
+    paddingTop: '148@vs',
     backgroundColor: RawColors.transparent,
   },
   backgroundContainer: {
