@@ -16,11 +16,11 @@ const OnboardingOne = () => {
       <View style={CommonStyles.flex1}>
         <Text style={styles.txt}>
           {formatMessage({id: 'screen.OnboardingOne.contentOne'})}
-          <Text style={Fonts.Lato20B}>
+          <Text style={Fonts.Lato17B}>
             {formatMessage({id: 'screen.OnboardingOne.contentTwo'})}
           </Text>
           {formatMessage({id: 'screen.OnboardingOne.contentThree'})}
-          <Text style={Fonts.Lato20B}>
+          <Text style={Fonts.Lato17B}>
             {formatMessage({id: 'screen.OnboardingOne.contentFour'})}
           </Text>
           {formatMessage({id: 'screen.OnboardingOne.contentFive'})}
@@ -34,15 +34,14 @@ const OnboardingOne = () => {
 const styles = ScaledSheet.create({
   txt: {
     textAlign: 'center',
-    alignSelf: 'center',
-    lineHeight: '34@ms',
+    lineHeight: '28@ms',
     paddingHorizontal: '34@s',
     marginTop: '30@vs',
-    ...Fonts.Lato20R,
+    ...Fonts.Lato17R,
   },
   img: {
-    resizeMode: 'cover',
-    aspectRatio: 1.3,
+    aspectRatio: 1.4,
+    height: '400@vs',
   },
 });
 

@@ -97,9 +97,15 @@ const SourceCode = ({navigation, route}) => {
           })}
         </Text>
         <Button
-          buttonContent={formatMessage({
-            id: 'button.continueCaps',
-          })}
+          buttonContent={
+            continueToStepTwo
+              ? formatMessage({
+                  id: 'button.continueToStepTwo',
+                })
+              : formatMessage({
+                  id: 'button.retuenToHome',
+                })
+          }
           buttonTextStyle={() => {
             return styles.btnTxt;
           }}

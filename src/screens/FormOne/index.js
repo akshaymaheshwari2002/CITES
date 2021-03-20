@@ -103,7 +103,6 @@ const FormOne = ({navigation}) => {
           }
         });
         delete data.registeredSpecies;
-
         await dispatch(
           saveInspection({
             stepOne: {
@@ -229,7 +228,10 @@ const FormOne = ({navigation}) => {
                 buttonContent={formatMessage({id: 'button.saveAndAdd'})}
               />
               <Button
-                onPress={() => navigation.navigate('FormOneSummary')}
+                onPress={async () => {
+                  await handleSubmit(_handleSubmit)();
+                  navigation.navigate('FormOneSummary');
+                }}
                 buttonStyle={() => ({marginVertical: verticalScale(16)})}
                 buttonContent={formatMessage({id: 'button.viewFormOneSummary'})}
               />

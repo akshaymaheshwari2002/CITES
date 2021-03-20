@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
 import {useDispatch, useSelector, shallowEqual} from 'react-redux';
 
-import {Button, Container, Header} from '@atoms';
+import {Button, Container} from '@atoms';
 import {Form} from '@organisms';
 import {saveRegisteredSpecies} from '@store/slices/sessionSlice';
 import {get} from '@utils/RealmHelper';
@@ -30,11 +30,12 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
   const dispatch = useDispatch();
   const isCurrentScreenFocused = useIsFocused();
   const {formatMessage} = useIntl();
-  const {reset, control, errors, watch, handleSubmit} = useForm({
+  const {reset, control, errors, watch, handleSubmit, setValue} = useForm({
     shouldFocusError: false,
   });
   const scrollViewRef = useRef();
   const formData = useRef({});
+  const isHarvestedModified = useRef(false);
   const selectedSpeciesId = watch('_id');
   const _additionalAnimalsAcquiredSinceInitialStock = watch(
     'additionalAnimalsAcquiredSinceInitialStock',
@@ -43,6 +44,7 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
   const _doYouRanchThisSpecies = watch('doYouRanchThisSpecies');
   const _lifeStageHarvested = watch('lifeStageHarvested');
   const _otherLifeStage = watch('otherLifeStage');
+  const _numberHarvestedInPreviousYear = watch('numberHarvestedInPreviousYear');
 
   const formFields = useMemo(() => {
     const fieldProps = {
@@ -100,6 +102,103 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
     _otherLifeStage,
   ]);
 
+  useEffect(() => {
+    let numberHarvestedInPreviousYearCopy = [
+      ...(_numberHarvestedInPreviousYear ?? []),
+    ];
+    let lifeStageHarvestedCopy = [...(_lifeStageHarvested ?? [])];
+    numberHarvestedInPreviousYearCopy = numberHarvestedInPreviousYearCopy.reduce(
+      (accumulatedValue, currentValue, currentIndex) => {
+        let {identifier, data, isOther} = currentValue;
+        if (
+          lifeStageHarvestedCopy?.find((value) => {
+            if (isOther) {
+              if (value?.toLowerCase() === 'other') {
+                return true;
+              } else {
+                return false;
+              }
+            } else {
+              return value.toLowerCase() === identifier.toLowerCase();
+            }
+          })
+        ) {
+          return [...accumulatedValue, {identifier, data, isOther}];
+        } else {
+          // removing item from numberHarvestedInPreviousYear
+          // when user uncheck that item in lifeStageHarvested
+          isHarvestedModified.current = true;
+          return accumulatedValue;
+        }
+      },
+      [],
+    );
+
+    lifeStageHarvestedCopy.forEach((stage) => {
+      // Adding item to numberHarvestedInPreviousYear
+      // when user check that item in lifeStageHarvested
+      if (
+        !numberHarvestedInPreviousYearCopy.find(
+          ({identifier, data, isOther}) => {
+            if (isOther) {
+              return stage?.toLowerCase() === 'other';
+            } else {
+              return identifier?.toLowerCase() === stage?.toLowerCase();
+            }
+          },
+        )
+      ) {
+        isHarvestedModified.current = true;
+        if (stage?.toLowerCase() === 'other') {
+          numberHarvestedInPreviousYearCopy.push({
+            identifier: stage,
+            data: '',
+            isOther: true,
+          });
+        } else {
+          numberHarvestedInPreviousYearCopy.push({identifier: stage, data: ''});
+        }
+      }
+    });
+
+    if (isHarvestedModified.current) {
+      setValue(
+        'numberHarvestedInPreviousYear',
+        numberHarvestedInPreviousYearCopy,
+      );
+      isHarvestedModified.current = false;
+    }
+  }, [
+    setValue,
+    _lifeStageHarvested,
+    _numberHarvestedInPreviousYear,
+    isHarvestedModified,
+    _otherLifeStage,
+  ]);
+
+  useEffect(() => {
+    isHarvestedModified.current = false;
+    // Changing label name of other life stage as per user input
+    let numberHarvestedInPreviousYearCopy =
+      _numberHarvestedInPreviousYear?.map((value) => {
+        if (value?.isOther && value?.identifier !== _otherLifeStage) {
+          value.identifier = _otherLifeStage;
+          isHarvestedModified.current = true;
+          return value;
+        } else {
+          return value;
+        }
+      }) ?? [];
+
+    if (isHarvestedModified.current) {
+      setValue(
+        'numberHarvestedInPreviousYear',
+        numberHarvestedInPreviousYearCopy,
+      );
+      isHarvestedModified.current = false;
+    }
+  }, [_otherLifeStage, _numberHarvestedInPreviousYear, setValue]);
+
   const _handleSubmit = useCallback(
     async (data) => {
       formData.current = {...formData.current, ...data};
@@ -114,6 +213,10 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
         doYouRanchThisSpecies: Object.keys(
           formData.current?.doYouRanchThisSpecies ?? {},
         ),
+        numberHarvestedInPreviousYear:
+          formData.current?.numberHarvestedInPreviousYear?.map(
+            (value) => value?.data,
+          ) ?? [],
       };
 
       if (
@@ -221,6 +324,23 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
         }),
         {},
       );
+      selectedSpecies.numberHarvestedInPreviousYear =
+        selectedSpecies?.lifeStageHarvested.map((value, index) => {
+          if (value.toLowerCase() === 'other') {
+            return {
+              identifier: selectedSpecies?.otherLifeStage ?? value,
+              data:
+                selectedSpecies?.numberHarvestedInPreviousYear?.[index] ?? '',
+              isOther: true,
+            };
+          } else {
+            return {
+              identifier: value,
+              data:
+                selectedSpecies?.numberHarvestedInPreviousYear?.[index] ?? '',
+            };
+          }
+        }) ?? [];
 
       formData.current = selectedSpecies;
       reset(selectedSpecies);
