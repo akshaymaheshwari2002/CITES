@@ -92,7 +92,7 @@ const StepOne = ({navigation, route}) => {
           })}
           contentstyle={{
             height: ms(60),
-            width: ms(180),
+            width: ms(300),
           }}
           onClose={handleTooltipClose}>
           <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
