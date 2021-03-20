@@ -1,3 +1,5 @@
+import React from 'react';
+import {TouchableOpacity, Text, Linking, Platform} from 'react-native';
 import {verticalScale} from 'react-native-size-matters';
 import {getAllCountries} from 'react-native-country-picker-modal';
 
@@ -7,6 +9,7 @@ import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
 import {setHelpText} from '@store/slices/sessionSlice';
 import HelpTexts from '@utils/HelpTexts';
+import {Fonts} from '@styles/Themes';
 
 let countries;
 
@@ -124,8 +127,27 @@ export default ({
     },
     {
       defaultValue: [],
-      label: formatMessage({id: 'form.label.addressOfOtherAnimals'}),
-      placeholder: formatMessage({id: 'form.label.addressOfOtherAnimals'}),
+      label: (
+        <TouchableOpacity
+          onPress={() => {
+            if (Platform.OS === 'ios') {
+              Linking.openURL('calshow:');
+            } else if (Platform.OS === 'android') {
+              Linking.openURL('content://com.android.calendar/time/');
+            }
+          }}>
+          <Text style={{...Fonts.Lato15R}}>
+            {formatMessage({
+              id: 'form.label.addressOfOtherAnimalsPartOne',
+            })}
+            <Text style={{...Fonts.Lato15I, textDecorationLine: 'underline'}}>
+              {formatMessage({
+                id: 'form.label.addressOfOtherAnimalsPartTwo',
+              })}
+            </Text>
+          </Text>
+        </TouchableOpacity>
+      ),
       name: 'addressOfOtherAnimals',
       rules: isAnimalKeptAtOtherLocation ? {required} : {},
       fieldType: Constants.TEXTINPUT_ARRAY,

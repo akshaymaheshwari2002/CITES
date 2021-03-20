@@ -59,6 +59,7 @@ const styles = ScaledSheet.create({
   backgroundImage: {
     resizeMode: 'contain',
     position: 'absolute',
+    opacity: 0.5,
   },
 });
 

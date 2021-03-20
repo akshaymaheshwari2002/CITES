@@ -23,7 +23,7 @@ const CountryPicker = forwardRef(
     return (
       <>
         {label ? (
-          <Text style={[CommonStyles.flex1, Fonts.Lato15R, labelStyle]}>
+          <Text style={[CommonStyles.flex1, Fonts.Lato15B, labelStyle]}>
             {label}
           </Text>
         ) : null}
