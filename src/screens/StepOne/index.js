@@ -173,6 +173,11 @@ const checkliststyles = ScaledSheet.create({
     color: RawColors.black,
     ...Fonts.Lato17SB,
   },
+  textHiddenBullet: {
+    color: RawColors.black,
+    ...Fonts.Lato17SB,
+    textDecorationLine: 'underline',
+  },
   textBold: {
     color: RawColors.black,
     ...Fonts.Lato17B,
@@ -180,7 +185,6 @@ const checkliststyles = ScaledSheet.create({
   textLink: {
     color: RawColors.black,
     textDecorationLine: 'underline',
-    ...Fonts.Lato15SB,
     ...Fonts.Italic15R,
   },
   bulletList: {
