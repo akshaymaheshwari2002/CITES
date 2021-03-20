@@ -5,7 +5,14 @@ import {Controller} from 'react-hook-form';
 import {ScaledSheet} from 'react-native-size-matters';
 
 import {TextInput, Picker} from '@atoms';
-import {TextInputArray, DatePicker, Counter, MobileInput} from '@molecules';
+import {
+  TextInputArray,
+  TextInputArrayAlt,
+  DatePicker,
+  Counter,
+  MobileInput,
+  BreedingCodeInput,
+} from '@molecules';
 import {CounterPair} from '@organisms';
 import CountryPicker from '../molecules/CountryPicker';
 import ChoiceList from './ChoiceList';
@@ -28,6 +35,9 @@ const Form = (formProps) => {
         case Constants.TEXTINPUT_ARRAY:
           FieldComponent = TextInputArray;
           break;
+        case Constants.TEXTINPUT_ARRAY_ALT:
+          FieldComponent = TextInputArrayAlt;
+          break;
         case Constants.CHOICELIST:
           FieldComponent = ChoiceList;
           break;
@@ -39,6 +49,9 @@ const Form = (formProps) => {
           break;
         case Constants.MOBILE_INPUT:
           FieldComponent = MobileInput;
+          break;
+        case Constants.BREEDING_CODE_INPUT:
+          FieldComponent = BreedingCodeInput;
           break;
         case Constants.COUNTRY_PICKER:
           FieldComponent = CountryPicker;

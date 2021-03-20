@@ -1,13 +1,12 @@
-import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import React, {useEffect} from 'react';
+import {Text, View} from 'react-native';
 import {useIntl} from 'react-intl';
-import {ScaledSheet, scale, ms} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/Feather';
+import {ScaledSheet, ms, s} from 'react-native-size-matters';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import {useSelector} from 'react-redux';
 
 import {Fonts, RawColors} from '@styles/Themes';
-import {Button, Container, Header} from '@atoms';
+import {Button, Container} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
 import SourceCodeData from './SourceCodeData';
 
@@ -17,28 +16,22 @@ const SourceCode = ({navigation, route}) => {
   const continueToStepTwo = useSelector(
     (state) => state.sessionReducer.continueToStepTwo,
   );
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <IconAntDesign
+          name="pluscircle"
+          style={{marginRight: s(8)}}
+          size={ms(26)}
+          onPress={() => navigation.navigate('MoreInformation')}
+        />
+      ),
+    });
+  }, [navigation]);
+
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon
-            name="chevron-left"
-            size={ms(26)}
-            style={{marginHorizontal: ms(10)}}
-            onPress={() => {
-              navigation.goBack();
-            }}
-          />
-        }
-        rightContent={
-          <IconAntDesign
-            name="pluscircle"
-            style={{marginHorizontal: ms(10)}}
-            size={ms(26)}
-            onPress={() => navigation.navigate('MoreInformation')}
-          />
-        }
-      />
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView style={CommonStyles.flex1}>
         <View style={styles.container}>
           <View style={styles.titleContainer}>
@@ -93,7 +86,12 @@ const SourceCode = ({navigation, route}) => {
             </View>
           </>
         ) : null}
-        <Text style={styles.contentDescription}>
+        <Text
+          style={
+            resultSourceCode !== 'NotApplicable'
+              ? styles.contentDescription
+              : styles.notApplicableContentDescription
+          }>
           {formatMessage({
             id: SourceCodeData[resultSourceCode].content,
           })}
@@ -134,24 +132,38 @@ const styles = ScaledSheet.create({
     aspectRatio: 1,
     justifyContent: 'center',
     alignContent: 'center',
+    alignItems: 'center',
     alignSelf: 'center',
+    padding: '10@s',
     backgroundColor: RawColors.white,
+    textAlignVertical: 'center',
     borderColor: 'rgba(0, 0, 0, 0.16)',
     borderWidth: 2,
     ...CommonStyles.shadowEffectDarker,
   },
   title: {
     textAlign: 'center',
-    ...Fonts.Lato17R,
+    paddingTop: '30@s',
+    textAlignVertical: 'center',
+    ...Fonts.Lato19R,
   },
   notApplicableText: {
     textAlign: 'center',
+    paddingHorizontal: '20@s',
     color: RawColors.black,
     textTransform: 'uppercase',
-    ...Fonts.Lato17B,
+    ...Fonts.Lato19B,
+  },
+  notApplicableContentDescription: {
+    padding: '35@s',
+    marginTop: '50@vs',
+    ...Fonts.Lato17SB,
+    justifyContent: 'center',
+    textAlign: 'center',
   },
   letter: {
-    //textAlign: 'center',
+    textAlign: 'center',
+    paddingHorizontal: '20@s',
     color: RawColors.redShade,
     ...Fonts.Didot56B,
     alignSelf: 'center',

@@ -12,7 +12,7 @@ import {
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
 
-import {Container, Header} from '@atoms';
+import {Container} from '@atoms';
 import {FormOneTemplate, FormOneHeader} from '@molecules';
 import {Fonts, RawColors} from '@styles/Themes';
 
@@ -155,12 +155,7 @@ const FormOneSummaryEdit = ({navigation}) => {
   }, [registeredSpecies]);
 
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
-        }
-      />
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <View style={styles.titleView}>
         <Text style={styles.title}>
           {formatMessage({id: 'screen.FormOneSummary.title_1'}) + ':'}

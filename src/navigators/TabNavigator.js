@@ -1,5 +1,7 @@
-import React, {useCallback} from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import React from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
+import Icon from 'react-native-vector-icons/Feather';
+import {ms} from 'react-native-size-matters';
 
 import {TabBar} from '@molecules';
 import {
@@ -8,11 +10,8 @@ import {
   FormOne,
   FormTwo,
   FormThree,
-  SearchDummy,
-  Notes,
   SourceCode,
-  DrawerMenu,
-  StepsSummary,
+  BeginInspection,
   FacilityRegistered,
   FacilityInfringement,
   ProductionCapacityCalculator,
@@ -21,6 +20,7 @@ import {
   SourceCodeSelection,
   FormOneSummary,
   FormOneSummaryEdit,
+  FormTwoSummary,
   ExampleDialogueStep3,
   ExampleDialogueStep2,
   ExampleDialogueConsentFormStep2,
@@ -34,71 +34,93 @@ import {
   MoreInformation,
   InspectionNotes,
 } from '@screens';
+import CommonStyles from '@styles/CommonStyles';
 
-const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+
+const screenOptions = {
+  title: null,
+  headerBackTitle: ' ',
+  headerStyle: CommonStyles.navigationHeader,
+  headerLeft: ({canGoBack, ...navigationProps}) =>
+    canGoBack ? (
+      <Icon name="chevron-left" size={ms(26)} {...navigationProps} />
+    ) : null,
+  headerLeftContainerStyle: CommonStyles.navigationLeftContainer,
+  headerRightContainerStyle: CommonStyles.navigationRightContainer,
+};
 
 const AppNavigator = () => {
-  const renderTabBar = useCallback((props) => {
-    return <TabBar {...props} />;
-  }, []);
-
   return (
-    <Tab.Navigator initialRouteName="StepOne" tabBar={renderTabBar}>
-      <Tab.Screen
-        name="StepOne"
-        component={StepOne}
-        initialParams={{showToolTip: false}}
-      />
-      <Tab.Screen name="StepTwo" component={StepTwo} />
-      <Tab.Screen name="SourceCodeSelection" component={SourceCodeSelection} />
-      <Tab.Screen name="ContinueInspection" component={ContinueInspection} />
-      <Tab.Screen
-        name="ExampleDialogueStep3"
-        component={ExampleDialogueStep3}
-      />
-      <Tab.Screen
-        name="ExampleDialogueStep2"
-        component={ExampleDialogueStep2}
-      />
-      <Tab.Screen
-        name="ExampleDialogueConsentFormStep2"
-        component={ExampleDialogueConsentFormStep2}
-      />
-      <Tab.Screen name="SourceCode" component={SourceCode} />
-      <Tab.Screen name="FeedbackOne" component={FeedbackOne} />
-      <Tab.Screen name="NoExport" component={NoExport} />
-      <Tab.Screen name="InspectionNotes" component={InspectionNotes} />
-      <Tab.Screen name="FeedbackTwo" component={FeedbackTwo} />
-      <Tab.Screen name="FormOne" component={FormOne} />
-      <Tab.Screen name="FormTwo" component={FormTwo} />
-      <Tab.Screen name="FormThree" component={FormThree} />
-      <Tab.Screen name="Search" component={SearchDummy} />
-      <Tab.Screen name="Notes" component={Notes} />
-      <Tab.Screen name="DrawerMenu" component={DrawerMenu} />
-      <Tab.Screen name="StepsSummary" component={StepsSummary} />
-      <Tab.Screen name="FacilityRegistered" component={FacilityRegistered} />
-      <Tab.Screen name="FormOneSummary" component={FormOneSummary} />
-      <Tab.Screen name="FormOneSummaryEdit" component={FormOneSummaryEdit} />
-      <Tab.Screen name="Q4MoreInfo" component={Q4MoreInfo} />
-      <Tab.Screen name="Q9MoreInfo" component={Q9MoreInfo} />
-      <Tab.Screen name="Q1MoreInfo" component={Q1MoreInfo} />
-      <Tab.Screen name="MoreInformation" component={MoreInformation} />
+    <>
+      <Stack.Navigator initialRouteName="StepOne" screenOptions={screenOptions}>
+        <Stack.Screen
+          name="StepOne"
+          component={StepOne}
+          initialParams={{showToolTip: false}}
+        />
+        <Stack.Screen name="StepTwo" component={StepTwo} />
+        <Stack.Screen
+          name="SourceCodeSelection"
+          component={SourceCodeSelection}
+        />
+        <Stack.Screen
+          name="ContinueInspection"
+          component={ContinueInspection}
+        />
+        <Stack.Screen
+          name="ExampleDialogueStep3"
+          component={ExampleDialogueStep3}
+        />
+        <Stack.Screen
+          name="ExampleDialogueStep2"
+          component={ExampleDialogueStep2}
+        />
+        <Stack.Screen
+          name="ExampleDialogueConsentFormStep2"
+          component={ExampleDialogueConsentFormStep2}
+        />
+        <Stack.Screen name="SourceCode" component={SourceCode} />
+        <Stack.Screen name="FeedbackOne" component={FeedbackOne} />
+        <Stack.Screen name="NoExport" component={NoExport} />
+        <Stack.Screen name="InspectionNotes" component={InspectionNotes} />
+        <Stack.Screen name="FeedbackTwo" component={FeedbackTwo} />
+        <Stack.Screen name="FormOne" component={FormOne} />
+        <Stack.Screen name="FormTwo" component={FormTwo} />
+        <Stack.Screen name="FormThree" component={FormThree} />
+        <Stack.Screen name="BeginInspection" component={BeginInspection} />
+        <Stack.Screen
+          name="FacilityRegistered"
+          component={FacilityRegistered}
+        />
+        <Stack.Screen name="FormOneSummary" component={FormOneSummary} />
+        <Stack.Screen
+          name="FormOneSummaryEdit"
+          component={FormOneSummaryEdit}
+        />
+        <Stack.Screen name="FormTwoSummary" component={FormTwoSummary} />
+        <Stack.Screen name="Q4MoreInfo" component={Q4MoreInfo} />
+        <Stack.Screen name="Q9MoreInfo" component={Q9MoreInfo} />
+        <Stack.Screen name="Q1MoreInfo" component={Q1MoreInfo} />
+        <Stack.Screen name="MoreInformation" component={MoreInformation} />
 
-      <Tab.Screen
-        name="FacilityInfringement"
-        component={FacilityInfringement}
-      />
-      <Tab.Screen
-        name="ProductionCapacityCalculator"
-        component={ProductionCapacityCalculator}
-      />
-      <Tab.Screen name="StepSummary" component={StepSummary} />
-      <Tab.Screen
-        name="DetermineSourceCode"
-        component={DetermineSourceCode}
-        initialParams={{showToolTip: false}}
-      />
-    </Tab.Navigator>
+        <Stack.Screen
+          name="FacilityInfringement"
+          component={FacilityInfringement}
+        />
+        <Stack.Screen
+          name="ProductionCapacityCalculator"
+          component={ProductionCapacityCalculator}
+        />
+        <Stack.Screen name="StepSummary" component={StepSummary} />
+        <Stack.Screen
+          name="DetermineSourceCode"
+          component={DetermineSourceCode}
+          initialParams={{showToolTip: false}}
+        />
+      </Stack.Navigator>
+      <TabBar />
+    </>
   );
 };
 

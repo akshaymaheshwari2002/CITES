@@ -1,12 +1,11 @@
 import React from 'react';
 import {View, Text, ImageBackground, useWindowDimensions} from 'react-native';
 import {useIntl} from 'react-intl';
-import {ms, ScaledSheet} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/Feather';
+import {ScaledSheet} from 'react-native-size-matters';
 import {useDispatch} from 'react-redux';
 
 import {RawColors, Fonts} from '@styles/Themes';
-import {Container, Button, Header, AnimatedView} from '@atoms';
+import {Container, Button, AnimatedView} from '@atoms';
 import {Images} from '@assets';
 import CommonStyles from '@styles/CommonStyles';
 import {setActiveInspection} from '@store/slices/sessionSlice';
@@ -18,11 +17,6 @@ const StepsSummary = ({navigation}) => {
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
-        }
-      />
       <Container.ScrollView
         style={CommonStyles.flex1}
         contentContainerStyle={styles.contentContainer}>

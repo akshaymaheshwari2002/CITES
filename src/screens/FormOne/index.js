@@ -2,11 +2,11 @@ import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {Text, View} from 'react-native';
 import {ms, ScaledSheet, verticalScale} from 'react-native-size-matters';
 import {useForm} from 'react-hook-form';
-import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
 import {shallowEqual, useDispatch, useSelector} from 'react-redux';
+import Icon from 'react-native-vector-icons/Feather';
 
-import {Button, Container, Header} from '@atoms';
+import {Button, Container} from '@atoms';
 import {Form} from '@organisms';
 import getFormFieldsPageOne from './FormFieldsPageOne';
 import getFormFieldsPageTwo from './FormFieldsPageTwo';
@@ -128,7 +128,10 @@ const FormOne = ({navigation}) => {
   );
 
   const scrollToTop = useCallback(() => {
-    setTimeout(() => scrollViewRef.current.scrollToPosition(0, 0, true), 200);
+    setTimeout(
+      () => scrollViewRef.current.scrollTo({x: 0, y: 0, animated: true}),
+      200,
+    );
   }, []);
 
   const handleBackPress = useCallback(() => {
@@ -182,13 +185,21 @@ const FormOne = ({navigation}) => {
     }
   }, [formFieldsPage, selectedSpeciesId, setSpeciesDataInForm]);
 
+  useEffect(() => {
+    navigation.setOptions({
+      headerLeft: (navigationProps) => (
+        <Icon
+          name="chevron-left"
+          size={ms(26)}
+          {...navigationProps}
+          onPress={handleBackPress}
+        />
+      ),
+    });
+  }, [handleBackPress, navigation]);
+
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={handleBackPress} />
-        }
-      />
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView ref={scrollViewRef} style={CommonStyles.flex1}>
         <Text style={styles.title}>
           {formatMessage({id: 'screen.FormOne.title'})}

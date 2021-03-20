@@ -1,38 +1,26 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback} from 'react';
 import {Text, View} from 'react-native';
 import {moderateScale, ScaledSheet} from 'react-native-size-matters';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import {TextInput, Button} from '@atoms';
+import {TextInput} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
 
-const TextInputArray = React.forwardRef(
+const TextInputArrayAlt = React.forwardRef(
   (
-    {
-      label,
-      placeholder,
-      error,
-      value,
-      count,
-      buttonText,
-      showHelpIcon,
-      onHelpIconPress,
-      onChange,
-    },
+    {label, placeholder, error, value, showHelpIcon, onHelpIconPress, onChange},
     _,
   ) => {
-    const [_count, _setCount] = useState(count);
-
     const handleChangeText = useCallback(
       (text, index) => {
         if (value && Array.isArray(value)) {
           let updatedData = [...value];
-          updatedData[index] = text;
+          updatedData[index] = {...updatedData[index], data: text};
           onChange(updatedData);
         } else {
-          onChange([text]);
+          onChange([{data: text}]);
         }
       },
       [onChange, value],
@@ -40,33 +28,23 @@ const TextInputArray = React.forwardRef(
 
     const renderFields = useCallback(() => {
       let fields = [];
-      for (let index = 0; index < _count; ++index) {
+      for (let index = 0; index < value?.length; ++index) {
         fields[index] = (
-          <TextInput
-            key={index}
-            value={value?.[index]}
-            onChangeText={(text) => handleChangeText(text, index)}
-            style={styles.textInput}
-            placeholder={placeholder}
-          />
+          <View key={index} style={styles.containerAlt}>
+            <Text style={styles.labelLeft}>{value[index].identifier}</Text>
+            <View style={styles.textInputAlt}>
+              <TextInput
+                value={value[index]?.data}
+                onChangeText={(text) => handleChangeText(text, index)}
+                style={styles.textInput}
+                placeholder={placeholder}
+              />
+            </View>
+          </View>
         );
       }
       return fields;
-    }, [_count, handleChangeText, placeholder, value]);
-
-    useEffect(() => {
-      if (count) {
-        _setCount(count);
-      }
-    }, [count]);
-
-    useEffect(() => {
-      if (value?.length) {
-        _setCount((existingCount) =>
-          value.length > existingCount ? value.length : existingCount,
-        );
-      }
-    }, [value]);
+    }, [handleChangeText, placeholder, value]);
 
     return (
       <>
@@ -83,21 +61,7 @@ const TextInputArray = React.forwardRef(
             />
           ) : null}
         </View>
-        <View
-          style={buttonText ? styles.containerWithButton : styles.container}>
-          {renderFields()}
-          {buttonText ? (
-            <Button
-              buttonStyle={() => ({
-                borderStyle: 'dashed',
-                borderRadius: 1,
-                borderWidth: 2,
-              })}
-              buttonContent={buttonText}
-              onPress={() => _setCount((state) => state + 1)}
-            />
-          ) : null}
-        </View>
+        <View style={styles.container}>{renderFields()}</View>
         {error ? (
           <Text style={[{color: RawColors.error}, Fonts.Lato15R]}>{error}</Text>
         ) : null}
@@ -108,35 +72,41 @@ const TextInputArray = React.forwardRef(
 
 const styles = ScaledSheet.create({
   labelContainer: {flexDirection: 'row', alignItems: 'center'},
+  labelLeft: {
+    ...Fonts.Lato15B,
+    flex: 5,
+    marginLeft: '20@ms',
+  },
   container: {
     marginTop: '12@vs',
     marginBottom: '4@vs',
-  },
-  containerWithButton: {
-    marginVertical: '12@vs',
   },
   textInput: {
     marginVertical: 0,
     marginBottom: '8@vs',
   },
+  textInputAlt: {flex: 3, marginRight: '30@ms'},
+  containerAlt: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
 });
 
-TextInputArray.propTypes = {
+TextInputArrayAlt.propTypes = {
   label: PropTypes.string,
   error: PropTypes.string,
-  count: PropTypes.number,
   onChange: PropTypes.func,
   showHelpIcon: PropTypes.bool,
   onHelpIconPress: PropTypes.func,
 };
 
-TextInputArray.defaultProps = {
+TextInputArrayAlt.defaultProps = {
   label: '',
   error: '',
-  count: 1,
   onChange: () => {},
   showHelpIcon: false,
   onHelpIconPress: () => {},
 };
 
-export default TextInputArray;
+export default TextInputArrayAlt;

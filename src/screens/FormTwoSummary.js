@@ -1,5 +1,5 @@
 import React, {useState, useMemo, useCallback} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, Alert} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import Pdf from 'react-native-pdf';
@@ -9,7 +9,7 @@ import {format} from 'date-fns';
 import {shallowEqual, useSelector} from 'react-redux';
 
 import {Container} from '@atoms';
-import {FormOneTemplate, FormOneHeader} from '@molecules';
+import {FormTwoTemplate, FormOneHeader} from '@molecules';
 import {Fonts, RawColors} from '@styles/Themes';
 import {generatePdf} from '@utils/CommonFunctions';
 import CommonStyles from '@styles/CommonStyles';
@@ -17,15 +17,12 @@ import CommonStyles from '@styles/CommonStyles';
 const FormOneSummary = ({navigation, route}) => {
   const {formatMessage} = useIntl();
   const [fileUri, setFileUri] = useState(undefined);
-  const formSummaryText = route?.params?.formSummaryStepTwo
-    ? route?.params?.formSummaryStepTwo
-    : false;
-  const formData = useSelector(
-    (state) => state.sessionReducer.activeInspection.stepOne?.formOne,
+  const formTwoData = useSelector(
+    (state) => state.sessionReducer.activeInspection.stepTwo?.formTwo,
     shallowEqual,
   );
-  const registeredSpecies = useSelector(
-    (state) => state.sessionReducer.activeInspection.registeredSpecies,
+  const formData = useSelector(
+    (state) => state.sessionReducer.activeInspection.stepOne?.formOne,
     shallowEqual,
   );
   const facilityData = useMemo(
@@ -53,13 +50,13 @@ const FormOneSummary = ({navigation, route}) => {
       (async () => {
         const file = await generatePdf({
           templates: [
-            <FormOneHeader facilityData={facilityData} />,
-            <FormOneTemplate speciesData={registeredSpecies} />,
+            <FormOneHeader facilityData={facilityData} form={'two'} />,
+            <FormTwoTemplate formTwoData={formTwoData} />,
           ],
         });
         setFileUri({uri: file?.filePath});
       })();
-    }, [facilityData, registeredSpecies]),
+    }, [facilityData, formTwoData]),
   );
 
   return (
@@ -69,7 +66,7 @@ const FormOneSummary = ({navigation, route}) => {
         style={CommonStyles.flex1}>
         <View style={styles.titleView}>
           <Text style={styles.title}>
-            {formatMessage({id: 'screen.FormOneSummary.title_1'}) + ':'}
+            {formatMessage({id: 'screen.FormTwo.title'}) + ':'}
           </Text>
           <Text style={styles.title}>
             {formatMessage({id: 'screen.FormOneSummary.title_2'})}
@@ -94,22 +91,16 @@ const FormOneSummary = ({navigation, route}) => {
         <TouchableOpacity
           style={styles.slideBtn}
           onPress={() => {
-            navigation.navigate('StepOne');
+            navigation.navigate('StepTwo');
           }}>
           <View style={styles.row}>
             <View style={[styles.padding16, styles.marginDimension]}>
               <Text style={styles.text}>
                 {formatMessage({id: 'screen.FormOneSummary.continueTo'})}
               </Text>
-              {formSummaryText ? (
-                <Text style={styles.text}>
-                  {formatMessage({id: 'screen.FormOneSummary.stepTwo'})}
-                </Text>
-              ) : (
-                <Text style={styles.text}>
-                  {formatMessage({id: 'screen.FormOneSummary.stepOne'})}
-                </Text>
-              )}
+              <Text style={styles.text}>
+                {formatMessage({id: 'screen.FormOneSummary.stepTwo'})}
+              </Text>
             </View>
             <View style={styles.justifyContent}>
               <Icon name="chevron-right" size={ms(26)} />
@@ -121,7 +112,7 @@ const FormOneSummary = ({navigation, route}) => {
         <TouchableOpacity
           style={[styles.slideBtn, styles.borderStyle]}
           onPress={() => {
-            navigation.navigate('FormOneSummaryEdit');
+            Alert.alert('Work in progress');
           }}>
           <View style={styles.row}>
             <View style={styles.padding16}>

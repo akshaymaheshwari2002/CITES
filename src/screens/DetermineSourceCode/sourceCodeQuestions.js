@@ -3,7 +3,12 @@ import Constants from '@utils/Constants';
 
 const sourceCodeQuestions = {
   1: {
-    content: ['Is the species listed in the CITES Appendices (I, II or III)?'],
+    content: [
+      {
+        text: 'questionContent.questionOne',
+        isLink: false,
+      },
+    ],
     options: [Constants.YES, Constants.NO],
     moreInfo: {
       isWebResource: false,
@@ -12,7 +17,10 @@ const sourceCodeQuestions = {
   },
   2: {
     content: [
-      'Was the specimen acquired before the provisions of the Convention applied to it?',
+      {
+        text: 'questionContent.questionTwo',
+        isLink: false,
+      },
     ],
     options: [Constants.YES, Constants.NO],
     moreInfo: {
@@ -22,9 +30,12 @@ const sourceCodeQuestions = {
   },
   3: {
     content: [
-      'Was the animal confiscated or seized?',
-      'Exports subject to compliance with ',
-      'Resolution. Conf. 17.8',
+      {text: 'questionContent.questionThreePartOne', isLink: false},
+      {text: 'questionContent.questionThreePartOne', isLink: false},
+      {
+        text: 'questionContent.questionThreePartThree',
+        isLink: {isWebSource: true, target: Config.URL_Q3_MORE_INFO},
+      },
     ],
     options: [Constants.YES, Constants.NO],
     moreInfo: {
@@ -34,7 +45,10 @@ const sourceCodeQuestions = {
   },
   4: {
     content: [
-      'Is there sufficient information about the specimen to determine its source?',
+      {
+        text: 'questionContent.questionFour',
+        isLink: false,
+      },
     ],
     options: [Constants.YES, Constants.NO],
     moreInfo: {
@@ -44,7 +58,10 @@ const sourceCodeQuestions = {
   },
   5: {
     content: [
-      'Was the specimen taken from the marine environment and not under the jurisdiction of any State?',
+      {
+        text: 'questionContent.questionFive',
+        isLink: false,
+      },
     ],
     options: [Constants.YES, Constants.NO],
     moreInfo: {
@@ -53,18 +70,26 @@ const sourceCodeQuestions = {
     },
   },
   6: {
-    content: ['Is the specimen a', 'plant', 'OR', 'animal?'],
+    content: [
+      {text: 'questionContent.questionSixPartOne', isLink: false},
+      {text: 'questionContent.questionSixPartTwo', isLink: false},
+      {text: 'questionContent.questionSixPartThree', isLink: false},
+      {text: 'questionContent.questionSixPartFour', isLink: false},
+    ],
     options: [Constants.PLANT, Constants.ANIMAL],
     moreInfo: false,
   },
   7: {
-    content: ['Was the specimen taken from the wild?'],
+    content: [{text: 'questionContent.questionSeven', isLink: false}],
     options: [Constants.YES, Constants.NO],
     moreInfo: false,
   },
   8: {
     content: [
-      'Was the specimen taken from the wild as an egg or juvenile that had a very low probability of surviving to adulthood?',
+      {
+        text: 'questionContent.questionEight',
+        isLink: false,
+      },
     ],
     options: [Constants.YES, Constants.NO],
     moreInfo: {
@@ -73,7 +98,13 @@ const sourceCodeQuestions = {
     },
   },
   9: {
-    content: ['Was the specimen reared in a', 'controlled environment?'],
+    content: [
+      {text: 'questionContent.questionNinePartOne', isLink: false},
+      {
+        text: 'questionContent.questionNinePartTwo',
+        isLink: {isWebSource: false, target: 'Q9MoreInfo'},
+      },
+    ],
     options: [Constants.YES, Constants.NO],
     moreInfo: {
       isWebResource: false,
@@ -82,8 +113,14 @@ const sourceCodeQuestions = {
   },
   10: {
     content: [
-      'Has the specimen been transferred to Appendix II and marked in accordance with',
-      'Resolution Conf. 11.16 (Rev. CoP15)?',
+      {
+        text: 'questionContent.questionTenPartOne',
+        isLink: false,
+      },
+      {
+        text: 'questionContent.questionTenPartTwo',
+        isLink: {isWebSource: true, target: Config.URL_Q10_MORE_INFO},
+      },
     ],
     options: [Constants.YES, Constants.NO],
     moreInfo: {
@@ -92,7 +129,12 @@ const sourceCodeQuestions = {
     },
   },
   11: {
-    content: ['Is the species listed in the CITES Appendices (II or III)?'],
+    content: [
+      {
+        text: 'questionContent.questionEleven',
+        isLink: false,
+      },
+    ],
     options: [Constants.YES, Constants.NO],
     moreInfo: {
       isWebResource: false,
@@ -101,9 +143,12 @@ const sourceCodeQuestions = {
   },
   12: {
     content: [
-      'Does the specimen fulfil the requirements under',
-      'Article III',
-      'of the Convention?',
+      {text: 'questionContent.questionTwelvePartOne', isLink: false},
+      {
+        text: 'questionContent.questionTwelvePartTwo',
+        isLink: {isWebSource: true, target: Config.URL_Q12_MORE_INFO},
+      },
+      {text: 'questionContent.questionTwelvePartThree', isLink: false},
     ],
     options: [Constants.YES, Constants.NO],
     moreInfo: {
@@ -113,13 +158,25 @@ const sourceCodeQuestions = {
   },
   13: {
     content: [
-      'Was the specimen derived from parents that mated or otherwise transferred gametes in a',
-      'controlled environment',
-      '(sexual reproduction)?',
-      'OR',
-      'Were the parents in a',
-      'controlled environment',
-      'when development of the offspring began (asexual reproduction)?',
+      {
+        text: 'questionContent.questionThirteenPartOne',
+        isLink: false,
+      },
+      {
+        text: 'questionContent.questionThirteenPartTwo',
+        isLink: {isWebSource: false, target: 'Q9MoreInfo'},
+      },
+      {text: 'questionContent.questionThirteenPartThree', isLink: false},
+      {text: 'questionContent.questionThirteenPartFour', isLink: false},
+      {text: 'questionContent.questionThirteenPartFive', isLink: false},
+      {
+        text: 'questionContent.questionThirteenPartTwo',
+        isLink: {isWebSource: false, target: 'Q9MoreInfo'},
+      },
+      {
+        text: 'questionContent.questionThirteenPartSix',
+        isLink: false,
+      },
     ],
     options: [Constants.YES, Constants.NO],
     moreInfo: {
@@ -129,7 +186,10 @@ const sourceCodeQuestions = {
   },
   14: {
     content: [
-      'Was the specimen born in captivity, in a controlled environment?',
+      {
+        text: 'questionContent.questionFourteen',
+        isLink: false,
+      },
     ],
     options: [Constants.YES, Constants.NO],
     moreInfo: {
@@ -139,9 +199,15 @@ const sourceCodeQuestions = {
   },
   15: {
     content: [
-      'Was the breeding stock established in accordance with the provisions of CITES and relevant national laws?',
-      'AND',
-      'in a manner not detrimental to the survival of the species in the wild?',
+      {
+        text: 'questionContent.questionFifteenPartOne',
+        isLink: false,
+      },
+      {text: 'questionContent.questionFifteenPartTwo', isLink: false},
+      {
+        text: 'questionContent.questionFifteenPartThree',
+        isLink: false,
+      },
     ],
     options: [Constants.YES, Constants.NO],
     moreInfo: {
@@ -151,9 +217,15 @@ const sourceCodeQuestions = {
   },
   16: {
     content: [
-      'Is the breeding stock maintained without the introduction of specimens from the wild, except for the occasional addition of animals, eggs or gametes, in accordance with the provisions of CITES and relevant national laws?',
-      'AND',
-      'In a manner not detrimental to the survival of the species in the wild?',
+      {
+        text: 'questionContent.questionSixteenPartOne',
+        isLink: false,
+      },
+      {text: 'questionContent.questionSixteenPartTwo', isLink: false},
+      {
+        text: 'questionContent.questionSixteenPartThree',
+        isLink: false,
+      },
     ],
     options: [Constants.YES, Constants.NO],
     moreInfo: {
@@ -163,20 +235,35 @@ const sourceCodeQuestions = {
   },
   17: {
     content: [
-      'Has the breeding stock produced offspring of second generation (F2) or subsequent generations (F3, F4, etc.) in a controlled environment?',
-      'OR',
-      'Is managed in a manner that has been demonstrated to be capable of reliably producing second-generation offspring in a controlled environment?',
+      {
+        text: 'questionContent.questionSeventeenPartOne',
+        isLink: false,
+      },
+      {
+        text: 'questionContent.questionSeventeenPartTwo',
+        isLink: {isWebSource: false, target: 'Q9MoreInfo'},
+      },
+      {text: 'questionContent.questionSeventeenPartThree', isLink: false},
+      {
+        text: 'questionContent.questionSeventeenPartFour',
+        isLink: false,
+      },
+      {
+        text: 'questionContent.questionSeventeenPartTwo',
+        isLink: {isWebSource: false, target: 'Q9MoreInfo'},
+      },
     ],
+
     options: [Constants.YES, Constants.NO],
     moreInfo: false,
   },
   18: {
-    content: ['In which CITES Appendix is the specimen listed?'],
+    content: [{text: 'questionContent.questionEighteen', isLink: false}],
     options: [Constants.APPENDIXI, Constants.APPENDIXII, Constants.APPENDIXIII],
     moreInfo: false,
   },
   19: {
-    content: ['Has the specimen been bred for commercial purposes?'],
+    content: [{text: 'questionContent.questionNineteen', isLink: false}],
     options: [Constants.YES, Constants.NO],
     moreInfo: {
       isWebResource: true,
@@ -185,7 +272,10 @@ const sourceCodeQuestions = {
   },
   20: {
     content: [
-      'Was the specimen bred at a CITES-registered breeding operation?',
+      {
+        text: 'questionContent.questionTwenty',
+        isLink: false,
+      },
     ],
     options: [Constants.YES, Constants.NO],
     moreInfo: {
@@ -194,14 +284,26 @@ const sourceCodeQuestions = {
     },
   },
   21: {
-    content: ['Was the specimen grown under', 'controlled conditions', '?'],
+    content: [
+      {text: 'questionContent.questionTwentyOnePartOne', isLink: false},
+      {
+        text: 'questionContent.questionTwentyOnePartTwo',
+        isLink: {isWebSource: false, target: 'Q9MoreInfo'},
+      },
+    ],
     options: [Constants.YES, Constants.NO],
     moreInfo: false,
   },
   22: {
     content: [
-      'Was the specimen grown from seeds, cuttings, divisions, callus tissues or other plant tissues, spores or other propagules that were derived from cultivated parental stock in accordance with paragraph 1b) of',
-      'Resolution Conf. 11.11 (Rev. CoP18)?*',
+      {
+        text: 'questionContent.questionTwentyTwoPartOne',
+        isLink: false,
+      },
+      {
+        text: 'questionContent.questionTwentyTwoPartTwo',
+        isLink: {isWebSource: true, target: Config.URL_Q22_MORE_INFO},
+      },
     ],
     options: [Constants.YES, Constants.NO],
     moreInfo: {
@@ -211,8 +313,14 @@ const sourceCodeQuestions = {
   },
   23: {
     content: [
-      'Was the specimen grown from wild collected seeds or spores in accordance with exemptions in',
-      'Resolution Conf. 11.11 (Rev. CoP18)?',
+      {
+        text: 'questionContent.questionTwentyThreePartOne',
+        isLink: false,
+      },
+      {
+        text: 'questionContent.questionTwentyThreePartTwo',
+        isLink: {isWebSource: true, target: Config.URL_Q23_MORE_INFO},
+      },
     ],
     options: [Constants.YES, Constants.NO],
     moreInfo: {
@@ -221,30 +329,41 @@ const sourceCodeQuestions = {
     },
   },
   24: {
-    content: ['Was the specimen grown from a cutting or division?'],
+    content: [{text: 'questionContent.questionTwentyFour', isLink: false}],
     options: [Constants.YES, Constants.NO],
     moreInfo: false,
   },
   25: {
     content: [
-      'Was the cutting or division taken from a wild plant that is NOT considered cultivated parental stock?',
+      {
+        text: 'questionContent.questionTwentyFive',
+        isLink: false,
+      },
     ],
     options: [Constants.YES, Constants.NO],
     moreInfo: false,
   },
   26: {
-    content: ['In which CITES Appendix is the species listed?'],
+    content: [{text: 'questionContent.questionTwentySix', isLink: false}],
     options: [Constants.APPENDIXI, Constants.APPENDIXII, Constants.APPENDIXIII],
     moreInfo: false,
   },
   27: {
-    content: ['Has the specimen been grown for commercial purposes?'],
+    content: [
+      {
+        text: 'questionContent.questionTwentySeven',
+        isLink: false,
+      },
+    ],
     options: [Constants.YES, Constants.NO],
     moreInfo: false,
   },
   28: {
     content: [
-      'Has the specimen been artificially propagated at a CITES-registered nursery?',
+      {
+        text: 'questionContent.questionTwentyEight',
+        isLink: false,
+      },
     ],
     options: [Constants.YES, Constants.NO],
     moreInfo: false,

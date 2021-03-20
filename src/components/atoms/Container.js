@@ -1,13 +1,19 @@
 import React from 'react';
-import {StatusBar} from 'react-native';
+import {
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  StatusBar,
+} from 'react-native';
 import PropTypes from 'prop-types';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useHeaderHeight} from '@react-navigation/stack';
 import {useIsFocused} from '@react-navigation/native';
-import {ScaledSheet} from 'react-native-size-matters';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {ScaledSheet, vs} from 'react-native-size-matters';
 
 import {RawColors} from '@styles/Themes';
+import CommonStyles from '@styles/CommonStyles';
+import {getStatusBarHeight} from 'react-native-status-bar-height';
 
 const Container = ({
   isModal,
@@ -44,15 +50,19 @@ const Container = ({
 
 Container.ScrollView = React.forwardRef(
   ({children, contentContainerStyle, ...restProps}, ref) => (
-    <KeyboardAwareScrollView
-      ref={ref}
-      bounces={false}
-      keyboardShouldPersistTaps="handled"
-      enableOnAndroid={true}
-      contentContainerStyle={[styles.container, contentContainerStyle]}
-      {...restProps}>
-      {children}
-    </KeyboardAwareScrollView>
+    <KeyboardAvoidingView
+      keyboardVerticalOffset={vs(98)}
+      behavior={Platform.OS === 'ios' ? 'height' : null}
+      style={CommonStyles.flex1}>
+      <ScrollView
+        ref={ref}
+        bounces={false}
+        keyboardShouldPersistTaps="handled"
+        contentContainerStyle={[styles.container, contentContainerStyle]}
+        {...restProps}>
+        {children}
+      </ScrollView>
+    </KeyboardAvoidingView>
   ),
 );
 

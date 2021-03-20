@@ -1,26 +1,27 @@
 import React, {useCallback, useMemo, useRef, useState, useEffect} from 'react';
 import {Text, View, BackHandler, Alert} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
-import {ms, ScaledSheet} from 'react-native-size-matters';
+import {ms, vs, ScaledSheet} from 'react-native-size-matters';
 import {useForm} from 'react-hook-form';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
 import {useDispatch, useSelector, shallowEqual} from 'react-redux';
 
-import {Button, Container, Header} from '@atoms';
+import {Button, Container} from '@atoms';
 import {Form} from '@organisms';
 import {saveRegisteredSpecies} from '@store/slices/sessionSlice';
 import {get} from '@utils/RealmHelper';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
 import Constants from '@utils/Constants';
+import {getDefaultValues} from '@utils/CommonFunctions';
 import getFormFieldsPageOne from './FormFieldsPageOne';
 import getFormFieldsPageTwo from './FormFieldsPageTwo';
 import getFormFieldsPageThree from './FormFieldsPageThree';
 import getFormFieldsPageFour from './FormFieldsPageFour';
 import getFormFieldsPageFive from './FormFieldsPageFive';
 
-const FormThree = ({navigation: {navigate, goBack}}) => {
+const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
   const [formFieldsPage, setFormFieldsPage] = useState(1);
   const registeredSpecies = useSelector(
     (state) => state.sessionReducer.activeInspection?.registeredSpecies || [],
@@ -29,11 +30,12 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
   const dispatch = useDispatch();
   const isCurrentScreenFocused = useIsFocused();
   const {formatMessage} = useIntl();
-  const {reset, control, errors, watch, handleSubmit} = useForm({
+  const {reset, control, errors, watch, handleSubmit, setValue} = useForm({
     shouldFocusError: false,
   });
   const scrollViewRef = useRef();
   const formData = useRef({});
+  const isHarvestedModified = useRef(false);
   const selectedSpeciesId = watch('_id');
   const _additionalAnimalsAcquiredSinceInitialStock = watch(
     'additionalAnimalsAcquiredSinceInitialStock',
@@ -41,6 +43,8 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
   const _doYouBreedThisSpecies = watch('doYouBreedThisSpecies');
   const _doYouRanchThisSpecies = watch('doYouRanchThisSpecies');
   const _lifeStageHarvested = watch('lifeStageHarvested');
+  const _otherLifeStage = watch('otherLifeStage');
+  const _numberHarvestedInPreviousYear = watch('numberHarvestedInPreviousYear');
 
   const formFields = useMemo(() => {
     const fieldProps = {
@@ -76,8 +80,13 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
               lifeStageHarvested: {
                 initialValue: formData.current.lifeStageHarvested ?? [],
               },
+              _lifeStageHarvested,
+              _otherLifeStage,
             })
-          : getFormFieldsPageThree().slice(0, 1);
+          : getFormFieldsPageThree({
+              _lifeStageHarvested,
+              _otherLifeStage,
+            }).slice(0, 1);
       case 4:
         return getFormFieldsPageFour();
       case 5:
@@ -89,6 +98,52 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
     _additionalAnimalsAcquiredSinceInitialStock,
     _doYouBreedThisSpecies,
     _doYouRanchThisSpecies,
+    _lifeStageHarvested,
+    _otherLifeStage,
+  ]);
+
+  useEffect(() => {
+    let harvestedCopy = [...(_numberHarvestedInPreviousYear ?? [])];
+    harvestedCopy = harvestedCopy.filter(({identifier, data, isOther}) => {
+      // removing item from numberHarvestedInPreviousYear
+      // when user uncheck that item in lifeStageHarvested
+      if (
+        _lifeStageHarvested?.find((value) => {
+          if (isOther) {
+            return value?.toLowerCase() === 'other';
+          } else {
+            return value === identifier;
+          }
+        })
+      ) {
+        return true;
+      } else {
+        isHarvestedModified.current = true;
+        return false;
+      }
+    });
+
+    let lifeStageCopy = [...(_lifeStageHarvested ?? [])];
+    lifeStageCopy.forEach((stage) => {
+      if (
+        !harvestedCopy.find(({identifier, data, isOther}) => {
+          return identifier?.toLowerCase() === stage?.toLowerCase();
+        })
+      ) {
+        isHarvestedModified.current = true;
+        harvestedCopy.push({identifier: stage, data: ''});
+      }
+    });
+
+    if (isHarvestedModified.current) {
+      setValue('numberHarvestedInPreviousYear', harvestedCopy);
+      isHarvestedModified.current = false;
+    }
+  }, [
+    setValue,
+    _lifeStageHarvested,
+    _numberHarvestedInPreviousYear,
+    isHarvestedModified,
   ]);
 
   const _handleSubmit = useCallback(
@@ -105,6 +160,10 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
         doYouRanchThisSpecies: Object.keys(
           formData.current?.doYouRanchThisSpecies ?? {},
         ),
+        numberHarvestedInPreviousYear:
+          formData.current?.numberHarvestedInPreviousYear?.map(
+            (value) => value?.data,
+          ) ?? [],
       };
 
       if (
@@ -121,28 +180,48 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
         _registeredSpecies.numberOfOffspringPerLitter = null;
         _registeredSpecies.numberProducedInPreviousYear = null;
       }
+      if (formFieldsPage === 3) {
+        if (
+          _registeredSpecies?.lifeStageHarvested?.findIndex(
+            (value) => value?.toLowerCase() === 'other',
+          ) === -1
+        ) {
+          _registeredSpecies.otherLifeStage = '';
+        }
+        if (!_doYouRanchThisSpecies?.[Constants.YES]) {
+          // clear associated fields data when NO is selected
+          _registeredSpecies.lifeStageHarvested = [];
+          _registeredSpecies.numberHarvestedInPreviousYear = [];
+        }
+      }
       await dispatch(saveRegisteredSpecies(_registeredSpecies));
 
-      // reset(getDefaultValues(getFormFieldsPageTwo()));
       if (formFieldsPage < 5) {
         setFormFieldsPage((state) => state + 1);
         scrollToTop();
       } else {
-        navigate('TabNavigator', {screen: 'StepTwo'});
+        formData.current = {};
+        reset(getDefaultValues(getFormFieldsPageOne()));
+        setFormFieldsPage(1);
+        scrollToTop();
       }
     },
     [
       formFieldsPage,
-      navigate,
       dispatch,
       scrollToTop,
       _additionalAnimalsAcquiredSinceInitialStock,
       _doYouBreedThisSpecies,
+      _doYouRanchThisSpecies,
+      reset,
     ],
   );
 
   const scrollToTop = useCallback(() => {
-    setTimeout(() => scrollViewRef.current.scrollToPosition(0, 0, true), 200);
+    setTimeout(
+      () => scrollViewRef.current.scrollTo({x: 0, y: 0, animated: true}),
+      200,
+    );
   }, []);
 
   useEffect(() => {
@@ -192,6 +271,13 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
         }),
         {},
       );
+      selectedSpecies.numberHarvestedInPreviousYear =
+        selectedSpecies?.lifeStageHarvested.map((value, index) => {
+          return {
+            identifier: value,
+            data: selectedSpecies?.numberHarvestedInPreviousYear?.[index] ?? '',
+          };
+        }) ?? [];
 
       formData.current = selectedSpecies;
       reset(selectedSpecies);
@@ -199,23 +285,29 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
     [reset],
   );
 
+  const handleBackPress = useCallback(() => {
+    if (formFieldsPage > 1) {
+      setFormFieldsPage(formFieldsPage - 1);
+    } else {
+      goBack();
+    }
+  }, [formFieldsPage, goBack]);
+
+  useEffect(() => {
+    setOptions({
+      headerLeft: (navigationProps) => (
+        <Icon
+          name="chevron-left"
+          size={ms(26)}
+          {...navigationProps}
+          onPress={handleBackPress}
+        />
+      ),
+    });
+  }, [handleBackPress, setOptions]);
+
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon
-            name="chevron-left"
-            size={ms(26)}
-            onPress={() => {
-              if (formFieldsPage > 1) {
-                setFormFieldsPage(formFieldsPage - 1);
-              } else {
-                goBack();
-              }
-            }}
-          />
-        }
-      />
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Text style={styles.title}>
         {formatMessage({id: 'screen.FormThree.title'})}
       </Text>
@@ -241,27 +333,35 @@ const FormThree = ({navigation: {navigate, goBack}}) => {
       <Container.ScrollView ref={scrollViewRef} style={CommonStyles.flex1}>
         <View style={styles.formContainer}>
           <Form {...{control, errors}} formFields={formFields} />
-          <Button
-            onPress={handleSubmit(_handleSubmit, () => scrollToTop())}
-            buttonContent={formatMessage({
-              id:
-                formFieldsPage === 5 ? 'button.saveAndAdd' : 'general.continue',
-            })}
-          />
-          {formFieldsPage === 5 ? (
+
+          {formFieldsPage !== 5 ? (
             <Button
-              onPress={() => Alert.alert('Work in progress')}
-              buttonContent={formatMessage({id: 'button.viewFormTwoSummary'})}
+              onPress={handleSubmit(_handleSubmit, () => scrollToTop())}
+              buttonContent={formatMessage({id: 'general.continue'})}
             />
-          ) : null}
-          {formFieldsPage === 5 ? (
-            <Button
-              onPress={() => {
-                navigate('StepTwo');
-              }}
-              buttonContent={formatMessage({id: 'button.continueWithStep2'})}
-            />
-          ) : null}
+          ) : (
+            <>
+              <Button
+                onPress={handleSubmit(_handleSubmit, () => {
+                  scrollToTop();
+                })}
+                buttonContent={formatMessage({id: 'button.saveAndAdd'})}
+              />
+              <Button
+                onPress={() => Alert.alert('Work in progress')}
+                buttonStyle={() => ({marginVertical: vs(16)})}
+                buttonContent={formatMessage({
+                  id: 'button.viewFormThreeSummary',
+                })}
+              />
+              <Button
+                onPress={() => {
+                  navigate('TabNavigator', {screen: 'StepTwo'});
+                }}
+                buttonContent={formatMessage({id: 'button.continueWithStep2'})}
+              />
+            </>
+          )}
         </View>
       </Container.ScrollView>
     </Container>

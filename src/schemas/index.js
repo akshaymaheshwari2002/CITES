@@ -40,7 +40,8 @@ export const SPECIES = {
     numberProducedInPreviousYear: 'int?',
     doYouRanchThisSpecies: 'string[]',
     lifeStageHarvested: 'string[]',
-    numberHarvestedInPreviousYear: 'int?',
+    otherLifeStage: 'string?',
+    numberHarvestedInPreviousYear: 'int[]',
     noOfAdultsPresentFacilityInfo: 'int?',
     noOfAdultsPresentInspectionInfo: 'int?',
     noOfMalesPresentFacilityInfo: 'int?',
@@ -83,7 +84,7 @@ export const FORM_ONE = {
     facilityOwnerPhone: 'Phone',
     facilityEstablishmentDate: 'string',
     typeOfInspection: 'string[]',
-    citesInformationCode: 'string',
+    citesInformationCode: 'string[]',
   },
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {Container, Header, Button} from '@atoms';
+import {Container, Button} from '@atoms';
 import {ScaledSheet, ms, vs, s} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import {useIntl} from 'react-intl';
@@ -10,18 +10,13 @@ import {Fonts, RawColors} from '@styles/Themes';
 import {Form} from '@organisms';
 import CommonStyles from '@styles/CommonStyles';
 
-const InspectionNotes = ({navigation: {navigate, goBack}}) => {
+const InspectionNotes = ({navigation: {navigate}}) => {
   const {formatMessage} = useIntl();
   const formProps = useForm();
   const {control, errors} = formProps;
 
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={goBack} />
-        }
-      />
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
         contentContainerStyle={styles.container}
         style={CommonStyles.flex1}>

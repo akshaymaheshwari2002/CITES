@@ -49,12 +49,20 @@ const RawColors = {
 
 const Fonts = {
   Didot56B: {
-    fontFamily: 'Didot-Bold',
+    fontFamily: 'Didot',
     fontSize: moderateScale(56),
   },
   Italic15R: {
     fontStyle: 'italic',
     fontSize: moderateScale(15),
+  },
+  Lato19B: {
+    fontFamily: 'Lato-Bold',
+    fontSize: moderateScale(19),
+  },
+  Lato19R: {
+    fontFamily: 'Lato-Regular',
+    fontSize: moderateScale(19),
   },
   Lato12R: {
     fontFamily: 'Lato-Regular',
@@ -75,6 +83,10 @@ const Fonts = {
   Lato20B: {
     fontFamily: 'Lato-Bold',
     fontSize: moderateScale(20),
+  },
+  Lato15I: {
+    fontFamily: 'Lato-Italic',
+    fontSize: moderateScale(15),
   },
   Lato20I: {
     fontFamily: 'Lato-Italic',
@@ -147,10 +159,6 @@ const Fonts = {
   HelveticaNeue25B: {
     fontFamily: 'HelveticaNeue-Bold',
     fontSize: moderateScale(25),
-  },
-  Lato19R: {
-    fontFamily: 'Lato-Regular',
-    fontSize: moderateScale(22),
   },
   Lato15SB: {
     fontFamily: 'Lato-SemiBold',

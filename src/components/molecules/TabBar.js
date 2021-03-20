@@ -5,7 +5,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Feather';
 import {useSelector, shallowEqual, useDispatch} from 'react-redux';
 import {useIntl} from 'react-intl';
-import {CommonActions} from '@react-navigation/native';
+import {CommonActions, useNavigation} from '@react-navigation/native';
 
 import {RawColors} from '@styles/Themes';
 import {setTooltipProps} from '@store/slices/sessionSlice';
@@ -19,10 +19,11 @@ const tabButtons = [
   {name: 'list', icon: 'list'},
 ];
 
-const TabBar = ({navigation}) => {
+const TabBar = () => {
   const {formatMessage} = useIntl();
   const {bottom: marginBottom} = useSafeAreaInsets();
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   const tooltipProps = useSelector(
     (state) => state.sessionReducer.tooltipProps,
     shallowEqual,
@@ -62,8 +63,8 @@ const TabBar = ({navigation}) => {
           id: 'screen.StepOne.WalkThroughContentFour',
         }),
         contentstyle: {
-          height: ms(80),
-          width: ms(156),
+          height: ms(121),
+          width: ms(200),
         },
         sourceCodeOnboarding,
       };
@@ -103,7 +104,10 @@ const TabBar = ({navigation}) => {
               {name: 'LanguageSelection'},
               {name: 'HomePage'},
               {name: 'InspectionFlow'},
-              {name: 'TabNavigator', state: {routes: [{name: 'StepsSummary'}]}},
+              {
+                name: 'TabNavigator',
+                state: {routes: [{name: 'BeginInspection'}]},
+              },
             ],
           }),
         );

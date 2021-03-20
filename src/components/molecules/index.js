@@ -5,7 +5,9 @@ import FormTwoTemplate from './ReactTemplate/FormTwoTemplate';
 import StepHeader from './StepHeader';
 import ChecklistCell from './ChecklistCell';
 import TextInputArray from './TextInputArray';
+import TextInputArrayAlt from './TextInputArrayAlt';
 import Counter from './Counter';
+import BreedingCodeInput from './BreedingCodeInput';
 import TabBar from './TabBar';
 import DatePicker from './DatePicker';
 import OverlayModal from './OverlayModal';
@@ -19,7 +21,9 @@ export {
   StepHeader,
   ChecklistCell,
   TextInputArray,
+  TextInputArrayAlt,
   Counter,
+  BreedingCodeInput,
   TabBar,
   DatePicker,
   OverlayModal,

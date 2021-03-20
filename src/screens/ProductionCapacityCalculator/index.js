@@ -2,10 +2,9 @@ import React, {useCallback, useState, useEffect} from 'react';
 import {View, Text, Pressable} from 'react-native';
 import {useIntl} from 'react-intl';
 import {useForm} from 'react-hook-form';
-import {ScaledSheet, ms, vs} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/Feather';
+import {ScaledSheet, vs} from 'react-native-size-matters';
 
-import {Container, Button, Header, TextInput} from '@atoms';
+import {Container, Button, TextInput} from '@atoms';
 import {Form} from '@organisms';
 import CommonStyles from '@styles/CommonStyles';
 import FormFields from './FormFields';
@@ -21,7 +20,7 @@ const resultFieldLabelStyleProps = {
   fontWeight: 'bold',
 };
 
-const ProductionCapacityCalculator = ({navigation: {navigate, goBack}}) => {
+const ProductionCapacityCalculator = ({navigation: {goBack}}) => {
   const intl = useIntl();
   const {control, errors, handleSubmit} = useForm();
   const [modeSelected, setModeSelected] = useState(1);
@@ -76,12 +75,7 @@ const ProductionCapacityCalculator = ({navigation: {navigate, goBack}}) => {
   );
 
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={goBack} />
-        }
-      />
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Text style={styles.title}>
         {intl.formatMessage({
           id: 'screen.ProductionCapacityCalculator.titleText',

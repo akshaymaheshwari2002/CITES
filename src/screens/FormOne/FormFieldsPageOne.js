@@ -25,6 +25,7 @@ export default () => {
     requiredMobileInput,
     validateEmail,
     validateMobileInput,
+    validBreedingCode,
   } = getValidators();
 
   return [
@@ -177,14 +178,17 @@ export default () => {
       },
     },
     {
-      defaultValue: '',
+      defaultValue: ['', '-', '', '', '-', '', '', ''],
       label: formatMessage({id: 'form.label.citesInformationCode'}),
-      placeholder: formatMessage({id: 'form.placeHolder.citesInformationCode'}),
+      //placeholder: formatMessage({id: 'form.placeHolder.citesInformationCode'}),
       name: 'citesInformationCode',
+      fieldType: Constants.BREEDING_CODE_INPUT,
       rules: {
-        required,
+        validate: {
+          validBreedingCode,
+        },
         maxLength: {
-          value: 8,
+          value: 1,
           message: formatMessage({id: 'form.error.eightCharacters'}),
         },
       },

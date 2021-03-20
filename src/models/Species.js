@@ -22,6 +22,7 @@ export default class Species {
     numberProducedInPreviousYear,
     doYouRanchThisSpecies,
     lifeStageHarvested,
+    otherLifeStage,
     numberHarvestedInPreviousYear,
     noOfAdultsPresentFacilityInfo,
     noOfAdultsPresentInspectionInfo,
@@ -75,9 +76,13 @@ export default class Species {
       : numberProducedInPreviousYear;
     this.doYouRanchThisSpecies = doYouRanchThisSpecies;
     this.lifeStageHarvested = lifeStageHarvested;
-    this.numberHarvestedInPreviousYear = numberHarvestedInPreviousYear
-      ? parseInt(numberHarvestedInPreviousYear, 10)
-      : numberHarvestedInPreviousYear;
+    this.otherLifeStage = otherLifeStage;
+    this.numberHarvestedInPreviousYear =
+      numberHarvestedInPreviousYear && numberHarvestedInPreviousYear.length
+        ? numberHarvestedInPreviousYear.map((value) =>
+            value ? parseInt(value, 10) : value,
+          )
+        : [];
     this.noOfAdultsPresentFacilityInfo = noOfAdultsPresentFacilityInfo
       ? parseInt(noOfAdultsPresentFacilityInfo, 10)
       : noOfAdultsPresentFacilityInfo;

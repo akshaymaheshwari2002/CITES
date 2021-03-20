@@ -1,13 +1,13 @@
 import React, {useCallback} from 'react';
-import {Image, ImageBackground, Text, View} from 'react-native';
+import {Image, ImageBackground, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
+import {useDispatch} from 'react-redux';
 
 import {Container, Button} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import {Images} from '@assets';
 import {setContinueToStepTwo} from '@store/slices/sessionSlice';
-import {useDispatch, useSelector} from 'react-redux';
 
 const HomePage = ({navigation}) => {
   const {formatMessage} = useIntl();
@@ -90,9 +90,6 @@ const styles = ScaledSheet.create({
     flexGrow: 1,
     paddingTop: '28@vs',
   },
-  emptyButton: {
-    marginVertical: '20@s',
-  },
   backgroundImage: {
     resizeMode: 'stretch',
   },
@@ -112,19 +109,14 @@ const styles = ScaledSheet.create({
     marginTop: '84@vs',
     paddingBottom: '16@vs',
   },
-  header: {
-    marginBottom: '16@vs',
-    textAlign: 'center',
-    color: RawColors.darkGreyBlue,
-    ...Fonts.Lato34R,
-    fontSize: '34@ms0.1',
-  },
   filledButton: {
-    marginVertical: '20@s',
+    marginVertical: '16@vs',
     backgroundColor: RawColors.darkSalmon,
     minHeight: '66@vs',
     borderWidth: 0,
-    marginBottom: '16@vs',
+  },
+  emptyButton: {
+    marginVertical: '16@vs',
   },
   buttonText: {
     color: RawColors.white,

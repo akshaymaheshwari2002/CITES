@@ -1,53 +1,37 @@
 import React from 'react';
 import {Text, ImageBackground} from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
-import {ScaledSheet, ms} from 'react-native-size-matters';
+import {ScaledSheet} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 
-import {Container, Header} from '@atoms';
+import {Container} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import {Images} from '@assets';
 import CommonStyles from '@styles/CommonStyles';
 
-const OnboardingOneA = ({
-  onBackPress = () => {},
-  onForwardPress = () => {},
-  headerDots = () => {},
-}) => {
+const OnboardingOneA = () => {
   const {formatMessage} = useIntl();
 
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={onBackPress} />
-        }
-        content={headerDots()}
-        rightContent={
-          <Icon name="chevron-right" size={ms(26)} onPress={onForwardPress} />
-        }
-      />
-      <ImageBackground
-        source={Images.backOnboardingOneA}
-        style={CommonStyles.flex1}
-        imageStyle={styles.backgroundImage}>
-        <Container.ScrollView contentContainerStyle={styles.contentContainer}>
-          <Text style={styles.title}>
-            {formatMessage({id: 'screen.OnboardingOneA.title'})}
-          </Text>
+    <ImageBackground
+      source={Images.backOnboardingOneA}
+      style={CommonStyles.flex1}
+      imageStyle={styles.backgroundImage}>
+      <Container.ScrollView contentContainerStyle={styles.contentContainer}>
+        <Text style={styles.title}>
+          {formatMessage({id: 'screen.OnboardingOneA.title'})}
+        </Text>
 
-          <Text style={[styles.content, styles.gap]}>
-            {formatMessage({id: 'screen.OnboardingOneA.contentOne'})}
-          </Text>
-          <Text style={[styles.content, styles.gap]}>
-            {formatMessage({id: 'screen.OnboardingOneA.contentTwo'})}
-          </Text>
-          <Text style={styles.content}>
-            {formatMessage({id: 'screen.OnboardingOneA.contentThree'})}
-          </Text>
-        </Container.ScrollView>
-      </ImageBackground>
-    </Container>
+        <Text style={[styles.content, styles.gap]}>
+          {formatMessage({id: 'screen.OnboardingOneA.contentOne'})}
+        </Text>
+        <Text style={[styles.content, styles.gap]}>
+          {formatMessage({id: 'screen.OnboardingOneA.contentTwo'})}
+        </Text>
+        <Text style={styles.content}>
+          {formatMessage({id: 'screen.OnboardingOneA.contentThree'})}
+        </Text>
+      </Container.ScrollView>
+    </ImageBackground>
   );
 };
 
@@ -61,6 +45,7 @@ const styles = ScaledSheet.create({
     textAlign: 'center',
     alignSelf: 'center',
     lineHeight: '34@ms',
+    marginHorizontal: '20@s',
     marginTop: '15@s',
     ...Fonts.Lato30R,
   },
