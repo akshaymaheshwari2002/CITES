@@ -20,6 +20,17 @@ export default () => {
       value?.contactNumber
         ? true
         : formatMessage({id: 'form.error.fieldRequired'}),
+    requiredTextInputArrayAlt: (value) =>
+      (Array.isArray(value) &&
+        value.length &&
+        value.reduce((accumulatedValue, el) => {
+          if (typeof el?.data === 'number' || el?.data) {
+            return accumulatedValue;
+          } else {
+            return false;
+          }
+        }, true)) ||
+      formatMessage({id: 'form.error.allFieldsRequired'}),
     validateNumber: (value) =>
       isNumber(value) || formatMessage({id: 'form.error.number'}),
     validatePositiveNumber: (value) =>
@@ -50,5 +61,38 @@ export default () => {
         ? true
         : formatMessage({id: 'form.error.invalidBreedingCode'});
     },
+    validateTextInputArrayAltNumber: (value) =>
+      (Array.isArray(value) &&
+        value.length &&
+        value.reduce((accumulatedValue, el) => {
+          if (isNumber(el?.data)) {
+            return accumulatedValue;
+          } else {
+            return false;
+          }
+        }, true)) ||
+      formatMessage({id: 'form.error.allNumber'}),
+    validateTextInputArrayAltPositiveNumber: (value) =>
+      (Array.isArray(value) &&
+        value.length &&
+        value.reduce((accumulatedValue, el) => {
+          if (isNumberPositive(el?.data)) {
+            return accumulatedValue;
+          } else {
+            return false;
+          }
+        }, true)) ||
+      formatMessage({id: 'form.error.allPositiveNumber'}),
+    validateTextInputArrayAltInteger: (value) =>
+      (Array.isArray(value) &&
+        value.length &&
+        value.reduce((accumulatedValue, el) => {
+          if (isNumberInteger(el?.data)) {
+            return accumulatedValue;
+          } else {
+            return false;
+          }
+        }, true)) ||
+      formatMessage({id: 'form.error.allNumberInteger'}),
   };
 };

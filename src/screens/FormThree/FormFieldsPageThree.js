@@ -25,7 +25,13 @@ const lifeStageDropDownList = [
 
 export default (fieldProps = {}) => {
   const {formatMessage} = createIntl();
-  const {required} = getValidators();
+  const {
+    required,
+    requiredTextInputArrayAlt,
+    validateTextInputArrayAltNumber,
+    validateTextInputArrayAltPositiveNumber,
+    validateTextInputArrayAltInteger,
+  } = getValidators();
 
   const formFields = [
     {
@@ -76,19 +82,18 @@ export default (fieldProps = {}) => {
         rules: {required},
       });
     }
-
-    // if (indexOfOther !== -1 && fieldProps?._otherLifeStage) {
-    //   _lifeStageHarvestedCopy[indexOfOther] = {
-    //     ..._lifeStageHarvestedCopy[indexOfOther],
-    //     identifier: fieldProps?._otherLifeStage,
-    //     isOther: true,
-    //   };
-    // }
     if (_lifeStageHarvestedCopy?.length) {
       formFields.push({
         label: formatMessage({id: 'form.label.numberHarvestedInPreviousYear'}),
         name: 'numberHarvestedInPreviousYear',
-        rules: {required},
+        rules: {
+          validate: {
+            requiredTextInputArrayAlt,
+            validateTextInputArrayAltNumber,
+            validateTextInputArrayAltPositiveNumber,
+            validateTextInputArrayAltInteger,
+          },
+        },
         fieldType: Constants.TEXTINPUT_ARRAY_ALT,
         ...Platform.select({ios: {fieldContainerStyle: {zIndex: 1}}}),
       });
