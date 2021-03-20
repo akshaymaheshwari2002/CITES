@@ -103,7 +103,6 @@ const FormOne = ({navigation}) => {
           }
         });
         delete data.registeredSpecies;
-
         await dispatch(
           saveInspection({
             stepOne: {
