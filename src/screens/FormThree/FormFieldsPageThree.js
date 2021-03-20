@@ -77,14 +77,16 @@ export default (fieldProps = {}) => {
       });
     }
 
-    if (indexOfOther !== -1 && fieldProps?._otherLifeStage) {
-      _lifeStageHarvestedCopy[indexOfOther] = fieldProps?._otherLifeStage;
-    }
+    // if (indexOfOther !== -1 && fieldProps?._otherLifeStage) {
+    //   _lifeStageHarvestedCopy[indexOfOther] = {
+    //     ..._lifeStageHarvestedCopy[indexOfOther],
+    //     identifier: fieldProps?._otherLifeStage,
+    //     isOther: true,
+    //   };
+    // }
     if (_lifeStageHarvestedCopy?.length) {
       formFields.push({
         label: formatMessage({id: 'form.label.numberHarvestedInPreviousYear'}),
-        count: _lifeStageHarvestedCopy?.length ?? 0,
-        labelLeft: _lifeStageHarvestedCopy,
         name: 'numberHarvestedInPreviousYear',
         rules: {required},
         fieldType: Constants.TEXTINPUT_ARRAY_ALT,

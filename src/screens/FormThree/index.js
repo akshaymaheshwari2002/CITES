@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
 import {useDispatch, useSelector, shallowEqual} from 'react-redux';
 
-import {Button, Container, Header} from '@atoms';
+import {Button, Container} from '@atoms';
 import {Form} from '@organisms';
 import {saveRegisteredSpecies} from '@store/slices/sessionSlice';
 import {get} from '@utils/RealmHelper';
@@ -30,11 +30,12 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
   const dispatch = useDispatch();
   const isCurrentScreenFocused = useIsFocused();
   const {formatMessage} = useIntl();
-  const {reset, control, errors, watch, handleSubmit} = useForm({
+  const {reset, control, errors, watch, handleSubmit, setValue} = useForm({
     shouldFocusError: false,
   });
   const scrollViewRef = useRef();
   const formData = useRef({});
+  const isHarvestedModified = useRef(false);
   const selectedSpeciesId = watch('_id');
   const _additionalAnimalsAcquiredSinceInitialStock = watch(
     'additionalAnimalsAcquiredSinceInitialStock',
@@ -43,6 +44,7 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
   const _doYouRanchThisSpecies = watch('doYouRanchThisSpecies');
   const _lifeStageHarvested = watch('lifeStageHarvested');
   const _otherLifeStage = watch('otherLifeStage');
+  const _numberHarvestedInPreviousYear = watch('numberHarvestedInPreviousYear');
 
   const formFields = useMemo(() => {
     const fieldProps = {
@@ -100,6 +102,50 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
     _otherLifeStage,
   ]);
 
+  useEffect(() => {
+    let harvestedCopy = [...(_numberHarvestedInPreviousYear ?? [])];
+    harvestedCopy = harvestedCopy.filter(({identifier, data, isOther}) => {
+      // removing item from numberHarvestedInPreviousYear
+      // when user uncheck that item in lifeStageHarvested
+      if (
+        _lifeStageHarvested?.find((value) => {
+          if (isOther) {
+            return value?.toLowerCase() === 'other';
+          } else {
+            return value === identifier;
+          }
+        })
+      ) {
+        return true;
+      } else {
+        isHarvestedModified.current = true;
+        return false;
+      }
+    });
+
+    let lifeStageCopy = [...(_lifeStageHarvested ?? [])];
+    lifeStageCopy.forEach((stage) => {
+      if (
+        !harvestedCopy.find(({identifier, data, isOther}) => {
+          return identifier?.toLowerCase() === stage?.toLowerCase();
+        })
+      ) {
+        isHarvestedModified.current = true;
+        harvestedCopy.push({identifier: stage, data: ''});
+      }
+    });
+
+    if (isHarvestedModified.current) {
+      setValue('numberHarvestedInPreviousYear', harvestedCopy);
+      isHarvestedModified.current = false;
+    }
+  }, [
+    setValue,
+    _lifeStageHarvested,
+    _numberHarvestedInPreviousYear,
+    isHarvestedModified,
+  ]);
+
   const _handleSubmit = useCallback(
     async (data) => {
       formData.current = {...formData.current, ...data};
@@ -114,6 +160,10 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
         doYouRanchThisSpecies: Object.keys(
           formData.current?.doYouRanchThisSpecies ?? {},
         ),
+        numberHarvestedInPreviousYear:
+          formData.current?.numberHarvestedInPreviousYear?.map(
+            (value) => value?.data,
+          ) ?? [],
       };
 
       if (
@@ -221,6 +271,13 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
         }),
         {},
       );
+      selectedSpecies.numberHarvestedInPreviousYear =
+        selectedSpecies?.lifeStageHarvested.map((value, index) => {
+          return {
+            identifier: value,
+            data: selectedSpecies?.numberHarvestedInPreviousYear?.[index] ?? '',
+          };
+        }) ?? [];
 
       formData.current = selectedSpecies;
       reset(selectedSpecies);
