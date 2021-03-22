@@ -3,6 +3,7 @@
   "screen.screen2.selectAnItem": "Select language",
   "general.error": "An error has occurred",
   "general.continue": "Continue",
+  "button.continueCaps": "CONTINUE",
   "button.continueToStepTwo": "CONTINUE TO STEP TWO",
   "general.yourTasks": "your tasks",
   "general.stepOne": "Step One",

@@ -18,7 +18,7 @@ let countries;
   countries = _countries;
 })();
 
-export default () => {
+export default (fieldProps = {}) => {
   const {formatMessage} = createIntl();
   const {
     required,
@@ -37,6 +37,7 @@ export default () => {
       rules: {required},
       headerTextIOS: formatMessage({id: 'form.label.dateOfInspection'}),
       fieldType: Constants.DATEPICKER,
+      ...fieldProps._dateOfInspection,
     },
     {
       defaultValue: '',

@@ -38,10 +38,15 @@ const FormOne = ({navigation}) => {
     shallowEqual,
   );
   const selectedSpeciesId = watch('_id');
+  const selecteDateOfInspection = watch('dateOfInspection');
   const formFields = useMemo(
     () =>
       formFieldsPage === 1
-        ? getFormFieldsPageOne()
+        ? getFormFieldsPageOne({
+            _dateOfInspection: {
+              minimumDate: new Date(Number(selecteDateOfInspection)),
+            },
+          })
         : getFormFieldsPageTwo({
             _id: {
               items: registeredSpecies.map(({name, _id}) => ({
@@ -50,7 +55,7 @@ const FormOne = ({navigation}) => {
               })),
             },
           }),
-    [formFieldsPage, registeredSpecies],
+    [formFieldsPage, registeredSpecies, selecteDateOfInspection],
   );
 
   const setActiveFormDataOnMount = useCallback(
