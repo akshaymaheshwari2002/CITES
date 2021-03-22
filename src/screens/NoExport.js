@@ -1,33 +1,35 @@
-import React from 'react';
-import {View, Text, Image} from 'react-native';
-import {ScaledSheet, ms} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/Feather';
+import React, {useEffect} from 'react';
+import {View, Text, Image, Linking} from 'react-native';
+import {ScaledSheet, ms, s} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 
 import {Fonts, RawColors} from '@styles/Themes';
 import {Images} from '@assets/';
-import {Container, Button, Header} from '@atoms';
+import {Container, Button} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
-const NoExport = ({navigation: {navigate, goBack}}) => {
+const NoExport = ({navigation: {navigate, goBack, setOptions}}) => {
   const {formatMessage} = useIntl();
+
+  useEffect(() => {
+    setOptions({
+      rightContent: () => (
+        <IconAntDesign
+          name="pluscircle"
+          size={ms(26)}
+          style={{marginRight: s(8)}}
+          onPress={() => {
+            navigate('MoreInformation');
+          }}
+        />
+      ),
+    });
+  }, [navigate, setOptions]);
+
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={goBack} />
-        }
-        rightContent={
-          <IconAntDesign
-            name="pluscircle"
-            size={ms(26)}
-            onPress={() => {
-              navigate('MoreInformation');
-            }}
-          />
-        }
-      />
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
         contentContainerStyle={styles.container}
         style={CommonStyles.flex1}>
@@ -42,9 +44,16 @@ const NoExport = ({navigation: {navigate, goBack}}) => {
             style={styles.icon}
             resizeMode="contain"
           />
-          <Text style={styles.contentOne}>
-            {formatMessage({id: 'screen.NoExport.contentOne'})}
-          </Text>
+          <TouchableOpacity
+            onPress={() => {
+              Linking.openURL(
+                'mailto:support@example.com?subject=SendMail&body=Description',
+              );
+            }}>
+            <Text style={styles.contentOne}>
+              {formatMessage({id: 'screen.NoExport.contentOne'})}
+            </Text>
+          </TouchableOpacity>
           <Button
             buttonContent={formatMessage({
               id: 'general.continue',

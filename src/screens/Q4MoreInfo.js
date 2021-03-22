@@ -1,10 +1,9 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
-import {ScaledSheet, ms} from 'react-native-size-matters';
+import {ScaledSheet} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 
-import {Container, Header} from '@atoms';
+import {Container} from '@atoms';
 import {Fonts} from '@styles/Themes';
 import {Images} from '@assets';
 import CommonStyles from '@styles/CommonStyles';
@@ -36,13 +35,7 @@ const Q4MoreInfo = ({navigation}) => {
   const {formatMessage} = useIntl();
 
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
-        }
-      />
-
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
         contentContainerStyle={CommonStyles.screenContainer}
         style={CommonStyles.flex1}>
@@ -55,7 +48,7 @@ const Q4MoreInfo = ({navigation}) => {
           {points.map(({icon, labelId}, index) => (
             <View key={index} style={styles.item}>
               <Image source={icon} style={styles.itemIcon} />
-              <Text style={[CommonStyles.flex1, Fonts.Lato20R]}>
+              <Text style={[CommonStyles.flex1, Fonts.Lato17R]}>
                 {formatMessage({id: labelId})}
               </Text>
             </View>
@@ -75,7 +68,7 @@ const styles = ScaledSheet.create({
     marginVertical: '20@vs',
   },
   titleContent: {
-    ...Fonts.HelveticaNeue30B,
+    ...Fonts.HelveticaNeue20B,
     lineHeight: '37@s',
     letterSpacing: '0.72@s',
   },

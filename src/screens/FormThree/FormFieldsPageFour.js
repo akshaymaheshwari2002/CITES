@@ -1,68 +1,151 @@
+import {ms} from 'react-native-size-matters';
+
 import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
 
 export default (fieldProps = {}) => {
   const {formatMessage} = createIntl();
-  const {required} = getValidators();
+  const {
+    required,
+    validateInteger,
+    validateNumber,
+    validateNumberPercentageNonFraction,
+    validatePositiveNumber,
+  } = getValidators();
 
   return [
     {
       defaultValue: '',
       label: formatMessage({id: 'form.label.noOfAdultsPresentFacilityInfo'}),
+      labelRight: formatMessage({
+        id: 'form.label.facilityInformation',
+      }),
       placeholder: formatMessage({
         id: 'form.label.noOfAdultsPresentFacilityInfo',
       }),
       name: 'noOfAdultsPresentFacilityInfo',
-      rules: {required},
+      rules: {
+        required,
+        validate: {
+          validateNumber,
+          validatePositiveNumber,
+          validateInteger,
+        },
+      },
       keyboardType: 'number-pad',
+      style: {flex: 2},
+      labelRightStyle: {paddingHorizontal: ms(15), flex: 3},
+      fieldContainerStyle: {marginBottom: 0},
     },
     {
       defaultValue: '',
+      labelRight: formatMessage({
+        id: 'form.label.inspectionInformation',
+      }),
       placeholder: formatMessage({
         id: 'form.label.noOfAdultsPresentFacilityInfo',
       }),
       name: 'noOfAdultsPresentInspectionInfo',
-      rules: {required},
+      rules: {
+        required,
+        validate: {
+          validateNumber,
+          validatePositiveNumber,
+          validateInteger,
+        },
+      },
       keyboardType: 'number-pad',
+      style: {flex: 2},
+      labelRightStyle: {paddingHorizontal: ms(15), flex: 3},
     },
     {
       defaultValue: '',
       label: formatMessage({id: 'form.label.noOfMalesPresentFacilityInfo'}),
+      labelRight: formatMessage({
+        id: 'form.label.facilityInformation',
+      }),
       placeholder: formatMessage({
         id: 'form.label.noOfMalesPresentFacilityInfo',
       }),
       name: 'noOfMalesPresentFacilityInfo',
-      rules: {required},
+      rules: {
+        required,
+        validate: {
+          validateNumber,
+          validatePositiveNumber,
+          validateInteger,
+        },
+      },
       keyboardType: 'number-pad',
+      style: {flex: 2},
+      labelRightStyle: {paddingHorizontal: ms(15), flex: 3},
+      fieldContainerStyle: {marginBottom: 0},
     },
     {
       defaultValue: '',
+      labelRight: formatMessage({
+        id: 'form.label.inspectionInformation',
+      }),
       placeholder: formatMessage({
         id: 'form.label.noOfMalesPresentFacilityInfo',
       }),
       name: 'noOfMalesPresentInspectionInfo',
-      rules: {required},
+      rules: {
+        required,
+        validate: {
+          validateNumber,
+          validatePositiveNumber,
+          validateInteger,
+        },
+      },
       keyboardType: 'number-pad',
+      style: {flex: 2},
+      labelRightStyle: {paddingHorizontal: ms(15), flex: 3},
     },
     {
       defaultValue: '',
       label: formatMessage({id: 'form.label.noOfFemalesPresentFacilityInfo'}),
+      labelRight: formatMessage({
+        id: 'form.label.facilityInformation',
+      }),
       placeholder: formatMessage({
         id: 'form.label.noOfFemalesPresentFacilityInfo',
       }),
       name: 'noOfFemalesPresentFacilityInfo',
-      rules: {required},
+      rules: {
+        required,
+        validate: {
+          validateNumber,
+          validatePositiveNumber,
+          validateInteger,
+        },
+      },
       keyboardType: 'number-pad',
+      style: {flex: 2},
+      labelRightStyle: {paddingHorizontal: ms(15), flex: 3},
+      fieldContainerStyle: {marginBottom: 0},
     },
     {
       defaultValue: '',
+      labelRight: formatMessage({
+        id: 'form.label.inspectionInformation',
+      }),
       placeholder: formatMessage({
         id: 'form.label.noOfFemalesPresentFacilityInfo',
       }),
       name: 'noOfFemalesPresentInspectionInfo',
-      rules: {required},
+      rules: {
+        required,
+        validate: {
+          validateNumber,
+          validatePositiveNumber,
+          validateInteger,
+        },
+      },
       keyboardType: 'number-pad',
+      style: {flex: 2},
+      labelRightStyle: {paddingHorizontal: ms(15), flex: 3},
     },
     {
       defaultValue: '',
@@ -71,7 +154,13 @@ export default (fieldProps = {}) => {
         id: 'form.label.percentageOfFemalesBreedEachYear',
       }),
       name: 'percentageOfFemalesBreedEachYear',
-      rules: {required},
+      rules: {
+        required,
+        validate: {
+          validateNumber,
+          validateNumberPercentageNonFraction,
+        },
+      },
       keyboardType: 'number-pad',
     },
     {

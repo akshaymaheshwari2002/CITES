@@ -5,9 +5,12 @@ import {Button} from '@atoms';
 import Config from '@config';
 import {navigate} from '@utils/RootNavigation';
 import createIntl from '@utils/Intl';
+import {store} from '@store';
 
 const checklistContent = ({checkliststyles = {}, bullet = null}) => {
   const {formatMessage} = createIntl();
+  const formOneCompleted = store.getState().sessionReducer.activeInspection
+    .stepOne?.formOneCompleted;
 
   return [
     {
@@ -86,7 +89,9 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
             &nbsp;
           </Text>
           <Button
-            onPress={() => navigate('FormOne')}
+            onPress={() =>
+              navigate(formOneCompleted ? 'FormOneSummary' : 'FormOne')
+            }
             buttonContent={formatMessage({
               id: 'screen.stepOne.formOneCompleted.FormOne',
             })}
@@ -160,13 +165,19 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
               {formatMessage({
                 id: 'screen.stepOne.toolsEnsured.bullet_4_1',
               })}
-              &nbsp;
-              <Text style={checkliststyles.textLink}>
+            </Text>
+          </View>
+          <View style={checkliststyles.hiddenBullet}>
+            <Pressable
+              onPress={() => {
+                navigate('ExampleDialogueConsentFormStep2');
+              }}>
+              <Text style={checkliststyles.textHiddenBullet}>
                 {formatMessage({
                   id: 'screen.stepOne.toolsEnsured.bullet_4_2',
                 })}
               </Text>
-            </Text>
+            </Pressable>
           </View>
         </View>
       ),
@@ -195,11 +206,21 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
           </Text>
           <View style={checkliststyles.bulletList}>
             {bullet}
-            <Text style={checkliststyles.textGeneral}>
-              {formatMessage({
-                id: 'screen.stepOne.inspectionCoincides.bullet_1',
-              })}
-            </Text>
+            <>
+              <Text style={[checkliststyles.textGeneral]}>
+                {formatMessage({
+                  id: 'screen.stepOne.inspectionCoincides.bullet_1',
+                })}
+                <Text style={checkliststyles.textBold}>
+                  {formatMessage({
+                    id: 'screen.stepOne.inspectionCoincides.bullet_1_Part1',
+                  })}
+                  {formatMessage({
+                    id: 'screen.stepOne.inspectionCoincides.bullet_1_Part2',
+                  })}
+                </Text>
+              </Text>
+            </>
           </View>
           <View style={checkliststyles.bulletList}>
             {bullet}
@@ -207,6 +228,11 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
               {formatMessage({
                 id: 'screen.stepOne.inspectionCoincides.bullet_2',
               })}
+              <Text style={checkliststyles.textBold}>
+                {formatMessage({
+                  id: 'screen.stepOne.inspectionCoincides.bullet_2_Part1',
+                })}
+              </Text>
             </Text>
           </View>
         </View>

@@ -1,10 +1,16 @@
+import {Platform} from 'react-native';
 import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
 
 export default (fieldProps = {}) => {
   const {formatMessage} = createIntl();
-  const {required} = getValidators();
+  const {
+    required,
+    validateNumber,
+    validatePositiveNumber,
+    validateInteger,
+  } = getValidators();
 
   return [
     {
@@ -15,6 +21,7 @@ export default (fieldProps = {}) => {
       rules: {required},
       fieldType: Constants.PICKER,
       ...fieldProps._id,
+      ...Platform.select({ios: {fieldContainerStyle: {zIndex: 1}}}),
     },
     {
       defaultValue: '',
@@ -22,7 +29,11 @@ export default (fieldProps = {}) => {
       placeholder: formatMessage({id: 'form.label.dateFirstSpeciesAcquired'}),
       name: 'dateFirstSpeciesAcquired',
       rules: {required},
+      headerTextIOS: formatMessage({
+        id: 'form.label.dateFirstSpeciesAcquired',
+      }),
       fieldType: Constants.DATEPICKER,
+      maximumDate: new Date(),
     },
     {
       defaultValue: '',
@@ -33,7 +44,7 @@ export default (fieldProps = {}) => {
         required,
         maxLength: {
           value: 1,
-          message: formatMessage({id: 'form.error.singleCharacter'}),
+          message: formatMessage({id: 'form.error.singleCharacterLimit'}),
         },
       },
     },
@@ -49,7 +60,10 @@ export default (fieldProps = {}) => {
       label: formatMessage({id: 'form.label.numberOfMalesInitialStock'}),
       placeholder: formatMessage({id: 'form.label.numberOfMalesInitialStock'}),
       name: 'numberOfMalesInitialStock',
-      rules: {required},
+      rules: {
+        required,
+        validate: {validateNumber, validatePositiveNumber, validateInteger},
+      },
       keyboardType: 'number-pad',
     },
     {
@@ -59,7 +73,10 @@ export default (fieldProps = {}) => {
         id: 'form.label.numberOfFemalesInitialStock',
       }),
       name: 'numberOfFemalesInitialStock',
-      rules: {required},
+      rules: {
+        required,
+        validate: {validateNumber, validatePositiveNumber, validateInteger},
+      },
       keyboardType: 'number-pad',
     },
     {

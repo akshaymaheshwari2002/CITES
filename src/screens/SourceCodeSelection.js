@@ -6,14 +6,15 @@ import {ScaledSheet} from 'react-native-size-matters';
 import {Container, Button} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import SourceCodeData from './SourceCode/SourceCodeData';
+import CommonStyles from '@styles/CommonStyles';
+
+const SourceData = ['W', 'R', 'F', 'C', 'A', 'D', 'X', 'U', 'I', 'O'];
 
 const SourceCodeSelection = ({navigation}) => {
   const {formatMessage} = useIntl();
 
-  const SourceData = ['W', 'R', 'F', 'C', 'A', 'D', 'X', 'U', 'I', 'O'];
-
   return (
-    <Container>
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <View style={styles.titleView}>
         <Text style={styles.title}>
           {formatMessage({id: 'screen.SourceCodeSelection.title'})}
@@ -50,7 +51,7 @@ const SourceCodeSelection = ({navigation}) => {
         }}
         ListFooterComponent={<View />}
         ListFooterComponentStyle={styles.footer}
-        keyExtractor={(item) => item.code}
+        keyExtractor={(code) => code}
       />
     </Container>
   );
@@ -85,9 +86,7 @@ const styles = ScaledSheet.create({
     height: '148@vs',
     backgroundColor: '#F7FAF0',
     elevation: '5@s',
-    shadowColor: RawColors.softRed,
-    shadowRadius: '6@s',
-    shadowOffset: {height: 0, width: '3@s'},
+    ...CommonStyles.shadowEffect,
   },
 
   letter: {
@@ -99,6 +98,7 @@ const styles = ScaledSheet.create({
   letterDescription: {
     minWidth: '130@ms',
     color: RawColors.black,
+    lineHeight: '25@s',
     textAlign: 'center',
     ...Fonts.Lato15R,
   },

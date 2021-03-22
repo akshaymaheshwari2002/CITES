@@ -1,21 +1,30 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import {View, Text, BackHandler} from 'react-native';
+import {
+  View,
+  Text,
+  BackHandler,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
-import {ScaledSheet, ms, scale} from 'react-native-size-matters';
+import {ScaledSheet, ms, s, vs} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import {shallowEqual, useDispatch, useSelector} from 'react-redux';
 
-import {Container, Button, Header, Tooltip} from '@atoms';
+import {Container, Button, Tooltip} from '@atoms';
 import {setTooltipProps} from '@store/slices/sessionSlice';
 import CommonStyles from '@styles/CommonStyles';
 import {Fonts, RawColors} from '@styles/Themes';
 import sourceCodeQuestions from './sourceCodeQuestions';
 import sourceCodeQuestionRelations from './sourceCodeQuestionRelations';
+import Constants from '@utils/Constants';
+
+const {width: screenWidth} = Dimensions.get('window');
 
 const DetermineSourceCode = ({
-  navigation: {navigate, goBack, setParams},
+  navigation: {navigate, goBack, setParams, setOptions},
   route,
 }) => {
   const [interactedQuestionStack, setInteractedQuestionStack] = useState([1]);
@@ -43,24 +52,27 @@ const DetermineSourceCode = ({
     }
   }, [isCurrentScreenFocused, interactedQuestionStack]);
 
-  const onRespondAction = ({optionChoosen}) => {
-    const resultAction =
-      sourceCodeQuestionRelations[
-        interactedQuestionStack[interactedQuestionStack.length - 1]
-      ][optionChoosen];
-    if (
-      typeof resultAction === 'number' ||
-      resultAction === 'appendixI' ||
-      resultAction === 'appendixII' ||
-      resultAction === 'appendixIII'
-    ) {
-      setInteractedQuestionStack([...interactedQuestionStack, resultAction]);
-    } else if (resultAction === 'exportShouldNotProceed') {
-      navigate('NoExport');
-    } else {
-      navigate('SourceCode', {selectedSourceCode: resultAction});
-    }
-  };
+  const onRespondAction = useCallback(
+    ({optionChoosen}) => {
+      const resultAction =
+        sourceCodeQuestionRelations[
+          interactedQuestionStack[interactedQuestionStack.length - 1]
+        ][optionChoosen];
+      if (
+        typeof resultAction === 'number' ||
+        resultAction === Constants.APPENDIXI ||
+        resultAction === Constants.APPENDIXII ||
+        resultAction === Constants.APPENDIXIII
+      ) {
+        setInteractedQuestionStack([...interactedQuestionStack, resultAction]);
+      } else if (resultAction === 'exportShouldNotProceed') {
+        navigate('NoExport');
+      } else {
+        navigate('SourceCode', {selectedSourceCode: resultAction});
+      }
+    },
+    [interactedQuestionStack, navigate],
+  );
 
   const handleHeaderTooltipClose = useCallback(() => {
     setParams({showToolTip: false});
@@ -94,54 +106,152 @@ const DetermineSourceCode = ({
     dispatch(setTooltipProps(null));
   }, [dispatch, setParams]);
 
-  return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Tooltip
-            placement="bottom"
-            isVisible={route.params.showToolTip}
-            content={formatMessage({
-              id: 'screen.StepOne.WalkThroughContentOne',
-            })}
-            onClose={handleHeaderTooltipClose}>
-            <Icon name="chevron-left" size={ms(26)} onPress={goBack} />
-          </Tooltip>
-        }
-        rightContent={
-          <Tooltip
-            placement="bottom"
-            isVisible={
-              tooltipProps?.consumerName === 'headerRightButton' ? true : false
+  const renderMoreInfoButton = useCallback(() => {
+    return sourceCodeQuestions[
+      `${interactedQuestionStack[interactedQuestionStack.length - 1]}`
+    ].moreInfo ? (
+      <Tooltip
+        placement="top"
+        isVisible={tooltipProps?.consumerName === 'moreInfoButton'}
+        content={formatMessage({
+          id: 'screen.Onboarding4A5.WalkThroughContentOne',
+        })}
+        onClose={handleLeftButtonTooltipClose}
+        focusedStyle={{
+          height: vs(64),
+          width: screenWidth * 0.85 + s(18),
+        }}>
+        <Button
+          buttonContent={formatMessage({id: 'button.moreInformation'})}
+          buttonStyle={() => [styles.button, styles.buttonMoreInformation]}
+          buttonTextStyle={() => [
+            Fonts.Lato15R,
+            styles.buttonMoreInformationText,
+          ]}
+          onPress={() => {
+            const moreInfo =
+              sourceCodeQuestions[
+                `${interactedQuestionStack[interactedQuestionStack.length - 1]}`
+              ].moreInfo;
+            if (moreInfo && moreInfo.target) {
+              if (moreInfo.isWebResource) {
+                navigate('WebView', {
+                  sourceUri: moreInfo.target,
+                });
+              } else {
+                navigate(moreInfo.target);
+              }
             }
-            content={formatMessage({
-              id: 'screen.Onboarding4A5.WalkThroughContentRightHeader',
-            })}
-            onClose={handleRightButtonTooltipClose}>
-            <IconAntDesign
-              name="pluscircle"
-              size={ms(26)}
-              onPress={() => navigate('MoreInformation')}
-            />
-          </Tooltip>
-        }
-      />
+          }}
+        />
+      </Tooltip>
+    ) : null;
+  }, [
+    formatMessage,
+    handleLeftButtonTooltipClose,
+    interactedQuestionStack,
+    navigate,
+    tooltipProps,
+  ]);
+
+  useEffect(() => {
+    setOptions({
+      headerLeft: () => (
+        <Tooltip
+          placement="bottom"
+          isVisible={route.params.showToolTip}
+          content={formatMessage({
+            id: 'screen.StepOne.WalkThroughContentOne',
+          })}
+          onClose={handleHeaderTooltipClose}>
+          <Icon
+            name="chevron-left"
+            size={ms(26)}
+            onPress={() => {
+              if (interactedQuestionStack.length === 1) {
+                goBack();
+              } else {
+                setInteractedQuestionStack([
+                  ...interactedQuestionStack.slice(0, -1),
+                ]);
+              }
+            }}
+          />
+        </Tooltip>
+      ),
+      headerRight: () => (
+        <Tooltip
+          placement="bottom"
+          isVisible={
+            tooltipProps?.consumerName === 'headerRightButton' ? true : false
+          }
+          content={formatMessage({
+            id: 'screen.Onboarding4A5.WalkThroughContentRightHeader',
+          })}
+          onClose={handleRightButtonTooltipClose}>
+          <IconAntDesign
+            name="pluscircle"
+            size={ms(26)}
+            onPress={() => navigate('MoreInformation')}
+          />
+        </Tooltip>
+      ),
+      headerRightContainerStyle: {marginRight: s(16)},
+    });
+  }, [
+    formatMessage,
+    goBack,
+    handleHeaderTooltipClose,
+    handleRightButtonTooltipClose,
+    interactedQuestionStack,
+    navigate,
+    route.params.showToolTip,
+    setOptions,
+    tooltipProps,
+  ]);
+
+  return (
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
         style={[CommonStyles.screenContainer, CommonStyles.flex1]}
-        contentContainerStyle={styles.scrollView}>
+        contentContainerStyle={CommonStyles.alignCenter}>
         <View style={styles.questionContainer}>
-          <Text style={styles.label}>Question</Text>
+          <Text style={Fonts.HelveticaNeue30B}>
+            {formatMessage({
+              id: 'title.question',
+            })}
+          </Text>
           {sourceCodeQuestions[
             `${interactedQuestionStack[interactedQuestionStack.length - 1]}`
           ].content.map((value, index) => {
-            return (
-              <Text style={styles.text} key={`${index}`}>
-                {value}
+            return value.isLink ? (
+              <TouchableOpacity
+                key={index.toString()}
+                onPress={() => {
+                  if (value.isLink && value.isLink.target) {
+                    if (value.isLink.isWebSource) {
+                      navigate('WebView', {
+                        sourceUri: value.isLink.target,
+                      });
+                    } else {
+                      navigate(value.isLink.target);
+                    }
+                  }
+                }}>
+                <Text style={styles.link} key={`${index}`}>
+                  {formatMessage({
+                    id: value.text,
+                  })}
+                </Text>
+              </TouchableOpacity>
+            ) : (
+              <Text style={styles.text} key={index.toString()}>
+                {formatMessage({id: value.text})}
               </Text>
             );
           })}
         </View>
-        <View style={styles.buttonsWrapper}>
+        <View style={styles.buttonContainer}>
           {sourceCodeQuestions[
             `${interactedQuestionStack[interactedQuestionStack.length - 1]}`
           ].options.map((value, index) => {
@@ -149,97 +259,48 @@ const DetermineSourceCode = ({
               <Button
                 key={`${index}`}
                 buttonContent={value}
-                buttonStyle={() => [styles.button]}
-                buttonTextStyle={() => [styles.buttonText]}
+                buttonStyle={() => styles.button}
+                buttonTextStyle={() => Fonts.Lato15R}
                 onPress={() => {
                   onRespondAction({optionChoosen: value});
                 }}
               />
             );
           })}
-          {sourceCodeQuestions[
-            `${interactedQuestionStack[interactedQuestionStack.length - 1]}`
-          ].moreInfo ? (
-            <Tooltip
-              placement="bottom"
-              isVisible={
-                tooltipProps?.consumerName === 'moreInfoButton' ? true : false
-              }
-              content={formatMessage({
-                id: 'screen.Onboarding4A5.WalkThroughContentOne',
-              })}
-              onClose={handleLeftButtonTooltipClose}
-              focusedStyle={{
-                height: scale(94),
-                width: scale(350),
-              }}>
-              <Button
-                buttonContent={'more Information'}
-                buttonStyle={() => [
-                  styles.button,
-                  styles.buttonMoreInformation,
-                ]}
-                buttonTextStyle={() => [
-                  styles.buttonText,
-                  styles.buttonMoreInformationText,
-                ]}
-                onPress={() => {
-                  const moreInfo =
-                    sourceCodeQuestions[
-                      `${
-                        interactedQuestionStack[
-                          interactedQuestionStack.length - 1
-                        ]
-                      }`
-                    ].moreInfo;
-                  if (moreInfo && moreInfo.target) {
-                    if (moreInfo.isWebResource) {
-                      navigate('WebView', {
-                        sourceUri: moreInfo.target,
-                      });
-                    } else {
-                      navigate(moreInfo.target);
-                    }
-                  }
-                }}
-              />
-            </Tooltip>
-          ) : null}
+          {renderMoreInfoButton()}
         </View>
       </Container.ScrollView>
     </Container>
   );
 };
 
-export default DetermineSourceCode;
-
 const styles = ScaledSheet.create({
-  scrollView: {
-    alignItems: 'center',
-  },
   questionContainer: {
+    ...CommonStyles.alignCenter,
+    flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-evenly',
-    ...CommonStyles.flex1,
+    paddingTop: '30@vs',
   },
-  label: {
-    paddingVertical: '15@vs',
-    ...Fonts.HelveticaNeue30B,
+  link: {
+    ...Fonts.Lato20B,
+    marginTop: 0,
+    lineHeight: '22@s',
+    letterSpacing: 0.48,
+    textAlign: 'center',
+    textDecorationLine: 'underline',
   },
   text: {
     ...Fonts.Lato20R,
+    marginTop: '15@vs',
+    textAlign: 'center',
   },
-  buttonsWrapper: {
-    width: '85%',
+  buttonContainer: {
+    height: '200@vs',
+    justifyContent: 'space-evenly',
   },
   button: {
-    height: '46@vs',
-    width: '100%',
-    marginVertical: '15@vs',
+    width: screenWidth * 0.85,
     backgroundColor: RawColors.lightGrey,
-  },
-  buttonText: {
-    ...Fonts.Lato15R,
   },
   buttonMoreInformation: {
     backgroundColor: RawColors.sugarCane,
@@ -249,3 +310,5 @@ const styles = ScaledSheet.create({
     textTransform: 'uppercase',
   },
 });
+
+export default DetermineSourceCode;

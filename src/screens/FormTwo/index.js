@@ -1,12 +1,11 @@
 import React, {useCallback, useMemo, useRef, useEffect} from 'react';
 import {Text, View} from 'react-native';
-import {ms, ScaledSheet, verticalScale} from 'react-native-size-matters';
+import {ScaledSheet, verticalScale} from 'react-native-size-matters';
 import {useForm} from 'react-hook-form';
-import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {Button, Container, Header} from '@atoms';
+import {Button, Container} from '@atoms';
 import {Form} from '@organisms';
 import {saveInspection} from '@store/slices/sessionSlice';
 import getFormFields from './FormFields';
@@ -27,12 +26,22 @@ const FormTwo = ({navigation}) => {
   const _animalKeptAtOtherLocation = watch('animalKeptAtOtherLocation');
 
   const formFields = useMemo(() => {
-    return getFormFields({
+    let filteredFields = [];
+    const allFields = getFormFields({
       isAccessToVeterinaryServices:
         _accessToVeterinaryServices?.[Constants.YES] ?? false,
       isAnimalKeptAtOtherLocation:
         _animalKeptAtOtherLocation?.[Constants.YES] ?? false,
     });
+    filteredFields.push(...allFields.slice(0, 2));
+    if (_accessToVeterinaryServices?.[Constants.YES] ?? false) {
+      filteredFields.push(...allFields.slice(2, 5));
+    }
+    filteredFields.push(allFields[5]);
+    if (_animalKeptAtOtherLocation?.[Constants.YES] ?? false) {
+      filteredFields.push(...allFields.slice(6, 7));
+    }
+    return filteredFields;
   }, [_accessToVeterinaryServices, _animalKeptAtOtherLocation]);
 
   const _handleSubmit = useCallback(
@@ -45,22 +54,26 @@ const FormTwo = ({navigation}) => {
             formTwo: {
               ...data,
               accessToVeterinaryServices: Object.keys(
-                data?.accessToVeterinaryServices ?? [],
+                data?.accessToVeterinaryServices ?? {},
               ),
               animalKeptAtOtherLocation: Object.keys(
-                data?.animalKeptAtOtherLocation ?? [],
+                data?.animalKeptAtOtherLocation ?? {},
               ),
             },
           },
         }),
       );
+      dispatch(saveInspection({stepTwo: {formTwoCompleted: true}}));
       navigation.navigate('TabNavigator', {screen: 'StepTwo'});
     },
     [dispatch, navigation],
   );
 
   const scrollToTop = useCallback(() => {
-    setTimeout(() => scrollViewRef.current.scrollToPosition(0, 0, true), 200);
+    setTimeout(
+      () => scrollViewRef.current.scrollTo({x: 0, y: 0, animated: true}),
+      200,
+    );
   }, []);
 
   const activeFormTwoId = useSelector(
@@ -99,12 +112,7 @@ const FormTwo = ({navigation}) => {
   }, [activeFormTwoId, setActiveFormDataOnMount]);
 
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
-        }
-      />
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView ref={scrollViewRef} style={CommonStyles.flex1}>
         <Text style={styles.title}>
           {formatMessage({id: 'screen.FormTwo.title'})}
@@ -122,11 +130,7 @@ const FormTwo = ({navigation}) => {
             buttonContent={formatMessage({id: 'button.continueWithStep2'})}
           />
           <Button
-            onPress={() =>
-              navigation.navigate('FormTwoSummary', {
-                data: formData.current,
-              })
-            }
+            onPress={() => navigation.navigate('FormTwoSummary')}
             buttonStyle={() => ({marginVertical: verticalScale(16)})}
             buttonContent={formatMessage({id: 'button.viewForm2Summary'})}
           />

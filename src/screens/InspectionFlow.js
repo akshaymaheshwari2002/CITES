@@ -1,7 +1,6 @@
 import React from 'react';
-import {ImageBackground, Text, View} from 'react-native';
-import {ScaledSheet, ms} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/Feather';
+import {ImageBackground, Text, View, Image} from 'react-native';
+import {ScaledSheet} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 
 import {Container, Button} from '@atoms';
@@ -10,24 +9,26 @@ import {Images} from '@assets';
 
 const InspectionFlow = ({navigation}) => {
   const {formatMessage} = useIntl();
-
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+    <Container>
       <ImageBackground
         style={styles.container}
-        source={Images.backgroundPatternTopBlur}>
+        source={Images.backgroundPatternTopBlur}
+        imageStyle={styles.resizeModeRepeat}>
         <Container.ScrollView contentContainerStyle={styles.scrollContainer}>
-          <View style={styles.logo}>
-            <Text style={styles.headerOne}>
-              {formatMessage({id: 'screen.InspectionFlow.headerPartOne'})}
-            </Text>
-            <Text style={styles.headerTwo}>
+          <View style={styles.headerContainer}>
+            <Image
+              source={Images?.eye}
+              style={styles.eye}
+              resizeMode="contain"
+            />
+            <Text style={styles.header}>
               {formatMessage({id: 'screen.InspectionFlow.headerPartTwo'})}
             </Text>
-            <Text style={styles.headerTwo}>
+            <Text style={styles.header}>
               {formatMessage({id: 'screen.InspectionFlow.headerPartThree'})}
             </Text>
-            <Text style={styles.headerTwo}>
+            <Text style={styles.header}>
               {formatMessage({id: 'screen.InspectionFlow.headerPartFour'})}
             </Text>
           </View>
@@ -48,28 +49,22 @@ const InspectionFlow = ({navigation}) => {
                     <>
                       <Text style={styles.buttonTextOne}>
                         {formatMessage({
+                          id: 'button.learnUseApp',
+                        })}
+                      </Text>
+
+                      <Text style={styles.buttonTextTwo}>
+                        {formatMessage({
                           id: 'button.firstInspection',
                         })}
                       </Text>
-                      <View style={styles.secondText}>
-                        <Text style={styles.buttonTextTwo}>
-                          {formatMessage({
-                            id: 'button.learnUseApp',
-                          })}
-                        </Text>
-                        <Icon
-                          name="chevron-right"
-                          size={ms(18)}
-                          style={styles.icon}
-                        />
-                      </View>
                     </>
                   }
                 />
                 <Button
                   onPress={() =>
                     navigation.navigate('TabNavigator', {
-                      screen: 'StepsSummary',
+                      screen: 'BeginInspection',
                     })
                   }
                   buttonStyle={() => styles.filledButton}
@@ -78,21 +73,15 @@ const InspectionFlow = ({navigation}) => {
                     <>
                       <Text style={styles.buttonTextOne}>
                         {formatMessage({
+                          id: 'button.beginInspection',
+                        })}
+                      </Text>
+
+                      <Text style={styles.buttonTextTwo}>
+                        {formatMessage({
                           id: 'button.newInspection',
                         })}
                       </Text>
-                      <View style={styles.secondText}>
-                        <Text style={styles.buttonTextTwo}>
-                          {formatMessage({
-                            id: 'button.beginInspection',
-                          })}
-                        </Text>
-                        <Icon
-                          name="chevron-right"
-                          size={ms(18)}
-                          style={styles.icon}
-                        />
-                      </View>
                     </>
                   }
                 />
@@ -107,21 +96,14 @@ const InspectionFlow = ({navigation}) => {
                     <>
                       <Text style={styles.buttonTextOne}>
                         {formatMessage({
+                          id: 'button.continueInspection',
+                        })}
+                      </Text>
+                      <Text style={styles.buttonTextTwo}>
+                        {formatMessage({
                           id: 'button.startedInspection',
                         })}
                       </Text>
-                      <View style={styles.secondText}>
-                        <Text style={styles.buttonTextTwo}>
-                          {formatMessage({
-                            id: 'button.continueInspection',
-                          })}
-                        </Text>
-                        <Icon
-                          name="chevron-right"
-                          size={ms(18)}
-                          style={styles.icon}
-                        />
-                      </View>
                     </>
                   }
                 />
@@ -139,8 +121,11 @@ const styles = ScaledSheet.create({
     flexGrow: 1,
     backgroundColor: RawColors.greyLight,
   },
+  resizeModeRepeat: {
+    resizeMode: 'repeat',
+  },
   scrollContainer: {
-    paddingTop: '140@vs',
+    paddingTop: '148@vs',
     backgroundColor: RawColors.transparent,
   },
   backgroundContainer: {
@@ -150,13 +135,20 @@ const styles = ScaledSheet.create({
   backgroundImage: {
     resizeMode: 'stretch',
   },
-  headerOne: {
-    color: RawColors.brightRed,
-    ...Fonts.HelveticaNeue40B,
-    lineHeight: '40@ms',
-    letterSpacing: '0.8@ms',
+  headerContainer: {
+    position: 'absolute',
+    alignSelf: 'center',
+    alignItems: 'flex-end',
+    width: '78.4%',
+    top: '58@vs',
   },
-  headerTwo: {
+  eye: {
+    height: '60@vs',
+    aspectRatio: 1.3194,
+    alignSelf: 'flex-end',
+    marginVertical: '10@vs',
+  },
+  header: {
     color: RawColors.darkGreyBlue,
     ...Fonts.HelveticaNeue26B,
     textAlign: 'right',
@@ -168,44 +160,29 @@ const styles = ScaledSheet.create({
     width: '78.4%',
     justifyContent: 'center',
     alignSelf: 'center',
-    marginTop: '100@vs',
+    marginTop: '84@vs',
     paddingBottom: '16@vs',
   },
   filledButton: {
-    borderColor: RawColors.darkSalmon,
-    height: '84@ms',
-    marginBottom: '16@vs',
+    marginVertical: '16@vs',
+    backgroundColor: RawColors.darkSalmon,
+    minHeight: '66@vs',
+    borderWidth: 0,
+  },
+  emptyButton: {
+    marginVertical: '16@vs',
   },
   buttonTextOne: {
-    ...Fonts.Lato17R,
-    color: RawColors.darkGreyBlue,
-    alignSelf: 'flex-start',
-    marginLeft: '20@s',
-    marginTop: '18@s',
-  },
-  secondText: {
-    flexDirection: 'row',
-    marginLeft: '20@s',
-    marginBottom: '18@s',
-    alignItems: 'center',
+    color: RawColors.white,
+    textAlign: 'center',
+    lineHeight: '22@ms',
+    ...Fonts.Lato15R,
   },
   buttonTextTwo: {
-    ...Fonts.Lato18B,
-    fontWeight: 'bold',
-    color: RawColors.darkGreyBlue,
-    alignSelf: 'flex-start',
-  },
-  logo: {
-    position: 'absolute',
-    alignSelf: 'center',
-    alignItems: 'flex-end',
-    width: '78.4%',
-    top: '98@vs',
-  },
-  icon: {
-    marginLeft: '2@s',
-    flex: 1,
-    marginTop: '4@ms',
+    color: RawColors.white,
+    textAlign: 'center',
+    lineHeight: '22@ms',
+    ...Fonts.Lato15I,
   },
 });
 

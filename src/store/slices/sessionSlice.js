@@ -8,6 +8,8 @@ export const INITIAL_SESSION_STATE = {
   helpText: null,
   tooltipProps: null,
   activeInspection: {},
+  appReady: false,
+  continueToStepTwo: false,
 };
 
 export const saveInspection = createAsyncThunk(
@@ -56,6 +58,12 @@ const sessionSlice = createSlice({
     setActiveInspection: (state, action) => {
       state.activeInspection = action.payload;
     },
+    setAppReady: (state, action) => {
+      state.appReady = action.payload;
+    },
+    setContinueToStepTwo: (state, action) => {
+      state.continueToStepTwo = action.payload;
+    },
   },
   extraReducers: {
     [saveInspection.fulfilled]: (state, action) => {
@@ -71,5 +79,7 @@ export const {
   setHelpText,
   setTooltipProps,
   setActiveInspection,
+  setAppReady,
+  setContinueToStepTwo,
 } = sessionSlice.actions;
 export default sessionSlice.reducer;

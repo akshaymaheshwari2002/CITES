@@ -1,22 +1,16 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {ScaledSheet, ms} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/Feather';
+import {ScaledSheet} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 
 import {Fonts, RawColors} from '@styles/Themes';
-import {Container, Button, Header} from '@atoms';
+import {Container, Button} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
 
-const FacilityInfringement = ({navigation: {navigate, goBack}}) => {
+const FacilityInfringement = ({navigation: {navigate}}) => {
   const {formatMessage} = useIntl();
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={goBack} />
-        }
-      />
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
         contentContainerStyle={CommonStyles.screenContainer}
         style={CommonStyles.flex1}>
@@ -77,10 +71,7 @@ const styles = ScaledSheet.create({
     ...Fonts.HelveticaNeue30B,
   },
   content: {
-    alignSelf: 'center',
     ...Fonts.Lato15R,
-    lineHeight: 22,
-    letterSpacing: 0.36,
     color: RawColors.tuna,
     marginTop: '30@s',
   },
@@ -90,7 +81,7 @@ const styles = ScaledSheet.create({
   button: {
     height: '46@vs',
     marginHorizontal: '15@s',
-    marginVertical: '24@vs',
+    marginVertical: '34@vs',
     backgroundColor: RawColors.sugarCane,
   },
   buttonText: {

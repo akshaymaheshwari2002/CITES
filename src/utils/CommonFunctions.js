@@ -1,9 +1,9 @@
+import React from 'react';
 import {NativeModules, Platform, PermissionsAndroid} from 'react-native';
 import {renderToStaticMarkup} from 'react-dom/server';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 
-import createIntl from '@utils/Intl';
-
+import createIntl from './Intl';
 import messages_en from '@locale/en.json';
 
 export const getMessages = () => ({
@@ -125,6 +125,19 @@ export const isNumberPercentageFraction = (value) => {
 };
 
 /**
+ * Checks if a number is in range 0 to 100
+ * @param {(number|string)} value - entity to be checked
+ * @returns {boolean}
+ */
+export const isNumberPercentage = (value) => {
+  try {
+    return Number(value) >= 0 && Number(value) <= 100;
+  } catch (err) {
+    return false;
+  }
+};
+
+/**
  * Checks if a number is integer
  * @param {(number|string)} value - entity to be checked
  * @returns {boolean}
@@ -135,4 +148,33 @@ export const isNumberInteger = (value) => {
   } catch (err) {
     return false;
   }
+};
+
+/**
+ * Will return an html input element wrapped in a span.
+ * @param {Object} props properties to be set on input field
+ * @param {string} props.name name for html input field
+ * @param {string} props.defaultValue default value in input field
+ * @param {number|string} props.inputSize size for input field
+ * @returns {JSX.Element}
+ */
+export const getInputFieldElementForFormSummary = ({
+  name = 'unNamedField',
+  defaultValue = '',
+  inputSize = 20,
+}) => {
+  return (
+    <span
+      dangerouslySetInnerHTML={{
+        __html: `
+          <input
+            type="text"
+            size="${inputSize}"
+            name="${name}"
+            value="${defaultValue}"
+            oninput="shipData(this.name, this.value)"
+          />`,
+      }}
+    />
+  );
 };

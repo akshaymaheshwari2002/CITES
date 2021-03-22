@@ -1,64 +1,47 @@
-import React, {useEffect} from 'react';
-import {Text, TouchableOpacity, Image, View} from 'react-native';
+import React from 'react';
+import {Text, Image, View} from 'react-native';
 import {useIntl} from 'react-intl';
-import {ScaledSheet, ms} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/Feather';
+import {ScaledSheet} from 'react-native-size-matters';
 
 import {Fonts} from '@styles/Themes';
-import {Container, Header} from '@atoms';
-import CommonStyles from '@styles/CommonStyles';
 import {Images} from '@assets';
+import {Container} from '@atoms';
 
-const OnboardingFour = ({
-  onBackPress = () => {},
-  onForwardPress = () => {},
-}) => {
+const OnboardingFour = () => {
   const {formatMessage} = useIntl();
 
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={onBackPress} />
-        }
-        rightContent={
-          <Icon name="chevron-right" size={ms(26)} onPress={onForwardPress} />
-        }
-      />
-      <Container.ScrollView style={CommonStyles.screenContainer}>
-        <View style={styles.content}>
-          <Text style={styles.txt}>
-            {formatMessage({id: 'screen.OnboardingFour.contentOne'})}
-
-            <Text style={styles.word}>
-              {formatMessage({id: 'screen.OnboardingFour.contentTwo'})}
-            </Text>
-            <Text style={styles.txt}>
-              {formatMessage({id: 'screen.OnboardingFour.contentThree'})}
-            </Text>
-          </Text>
-          <View style={styles.imgContainer}>
-            <Image style={styles.img} source={Images.onboardingFour} />
-          </View>
-        </View>
-      </Container.ScrollView>
-    </Container>
+    <Container.ScrollView contentContainerStyle={styles.content}>
+      <Text style={[styles.txt, styles.textWrapper]}>
+        {formatMessage({id: 'screen.OnboardingFour.contentOne'})}
+        <Text style={styles.word}>
+          {formatMessage({id: 'screen.OnboardingFour.contentTwo'})}
+        </Text>
+        <Text style={styles.txt}>
+          {formatMessage({id: 'screen.OnboardingFour.contentThree'})}
+        </Text>
+      </Text>
+      <View style={styles.imgContainer}>
+        <Image style={styles.img} source={Images.onboardingFour} />
+      </View>
+    </Container.ScrollView>
   );
 };
 
 const styles = ScaledSheet.create({
+  textWrapper: {
+    marginTop: '30@vs',
+  },
   txt: {
     textAlign: 'center',
     textAlignVertical: 'center',
     ...Fonts.Lato20R,
-    marginVertical: '15@vs',
   },
   word: {
     fontWeight: 'bold',
   },
   content: {
-    alignSelf: 'center',
-    paddingHorizontal: '15@vs',
+    paddingHorizontal: '16@s',
     justifyContent: 'space-evenly',
   },
   img: {
@@ -67,9 +50,7 @@ const styles = ScaledSheet.create({
     width: '275@s',
   },
   imgContainer: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+    marginTop: '15@vs',
   },
 });
 

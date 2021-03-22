@@ -1,22 +1,16 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {ScaledSheet, ms} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/Feather';
+import {ScaledSheet} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 
 import {Fonts, RawColors} from '@styles/Themes';
-import {Container, Button, Header} from '@atoms';
+import {Container, Button} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
 
-const ExampleDialogueStep2 = ({navigation: {navigate, goBack}}) => {
+const ExampleDialogueStep2 = ({navigation: {navigate}}) => {
   const {formatMessage} = useIntl();
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={goBack} />
-        }
-      />
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
         contentContainerStyle={CommonStyles.screenContainer}
         style={CommonStyles.flex1}>
@@ -44,13 +38,18 @@ const ExampleDialogueStep2 = ({navigation: {navigate, goBack}}) => {
             id: 'screen.ExampleDialogueStep2.contentThree',
           })}
         </Text>
+        <Text style={[styles.content, styles.nogap]}>
+          {formatMessage({
+            id: 'screen.ExampleDialogueStep2.contentThreeOne',
+          })}
+        </Text>
         <Text>
           <Text style={[styles.word, styles.nogap]}>
             {formatMessage({
               id: 'screen.ExampleDialogueStep2.contentFour',
             })}
           </Text>
-          <Text style={[styles.content, styles.nogap]}>
+          <Text style={[styles.content]}>
             {formatMessage({
               id: 'screen.ExampleDialogueStep2.contentFive',
             })}
@@ -72,6 +71,16 @@ const ExampleDialogueStep2 = ({navigation: {navigate, goBack}}) => {
           {formatMessage({
             id: 'screen.ExampleDialogueStep2.contentEight',
           })}
+          <Text style={[styles.word, styles.nogap]}>
+            {formatMessage({
+              id: 'screen.ExampleDialogueStep2.contentEightOne',
+            })}
+          </Text>
+          <Text style={[styles.content, styles.nogap]}>
+            {formatMessage({
+              id: 'screen.ExampleDialogueStep2.contentEightTwo',
+            })}
+          </Text>
         </Text>
         <Text style={styles.content}>
           {formatMessage({

@@ -1,49 +1,42 @@
 import React from 'react';
-import {View, Text, FlatList, Pressable} from 'react-native';
+import {View, Text, FlatList} from 'react-native';
 import {useIntl} from 'react-intl';
-import {ScaledSheet, ms} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/Feather';
+import {ScaledSheet} from 'react-native-size-matters';
 
 import Config from '@config';
-import {Container, Button, Header} from '@atoms';
+import {Container, Button} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
+import CommonStyles from '@styles/CommonStyles';
 
 const MoreInformation = ({navigation: {navigate, goBack}}) => {
   const {formatMessage} = useIntl();
   const dummyInspectionData = [
     {
       id: 'dummy1235',
-      contentOne: 'CITES Source Codes',
-      contentTwo: 'Learn more about the ten current source codes',
+      contentOne: 'screen.moreInfoButtonOneContentOne',
+      contentTwo: 'screen.moreInfoButtonOneContentTwo',
     },
     {
       id: 'dummy1234',
-      contentOne: 'Permits and Certificates  Article VI',
-      contentTwo: 'http://www.cites.org/eng/disc/text.php#VI',
+      contentOne: 'screen.moreInfoButtonTwoContentOne',
+      contentTwo: 'screen.moreInfoButtonTwoContentTwo',
       url: Config.URL_MORE_INFO_ONE,
     },
     {
       id: 'dummy1236',
-      contentOne:
-        'Exemptions and Other Special Provisions Relating to Trade - Article VII',
-      contentTwo: 'http://www.cites.org/eng/disc/text.php#VII',
+      contentOne: 'screen.moreInfoButtonThreeContentOne',
+      contentTwo: 'screen.moreInfoButtonThreeContentTwo',
       url: Config.URL_MORE_INFO_TWO,
     },
     {
       id: 'dummy1237',
-      contentOne: 'Permits and Certificates Resolution Conf. 12.3 (Rev. CoP18)',
-      contentTwo:
-        'https://cites.org/sites/default/files/document/E-Res-12-03-R18.pdf',
+      contentOne: 'screen.moreInfoButtonFourContentOne',
+      contentTwo: 'screen.moreInfoButtonFourContentTwo',
       url: Config.URL_MORE_INFO_THREE,
     },
   ];
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={goBack} />
-        }
-      />
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <View style={styles.titleView}>
         <Text style={styles.title}>
           {formatMessage({id: 'screen.MoreInformation.title'})}
@@ -69,9 +62,11 @@ const MoreInformation = ({navigation: {navigate, goBack}}) => {
                 buttonContent={
                   <>
                     <View style={styles.bottomMargin10}>
-                      <Text style={styles.letter}>{item.contentOne}</Text>
+                      <Text style={styles.letter}>
+                        {formatMessage({id: item.contentOne})}
+                      </Text>
                       <Text style={styles.letterDescription}>
-                        {item.contentTwo}
+                        {formatMessage({id: item.contentTwo})}
                       </Text>
                     </View>
                   </>
@@ -113,29 +108,28 @@ const styles = ScaledSheet.create({
     borderRadius: 30,
     borderWidth: 0,
     width: '273@s',
-    height: '148@vs',
+    padding: '20@s',
     backgroundColor: '#F7FAF0',
-    elevation: '5@s',
-    shadowColor: RawColors.softRed,
-    shadowRadius: '6@s',
-    shadowOffset: {height: 0, width: '3@s'},
+    ...CommonStyles.shadowEffect,
+    textAlign: 'center',
   },
 
   letter: {
-    minWidth: '130@ms',
+    width: '180@s',
     color: RawColors.black,
     ...Fonts.Lato20B,
     textAlign: 'center',
     lineHeight: '21@s',
+    //backgroundColor: 'green',
     alignSelf: 'center',
     //marginHorizontal: '20@s',
   },
   letterDescription: {
-    minWidth: '130@ms',
+    // minWidth: '130@ms',
     color: RawColors.black,
     textAlign: 'center',
     ...Fonts.Lato15R,
-    lineHeight: '30@s',
+    lineHeight: '30@ms',
   },
   flex: {flex: 1},
   footer: {

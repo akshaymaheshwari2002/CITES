@@ -1,3 +1,5 @@
+import {ms} from 'react-native-size-matters';
+
 import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
 import {RawColors} from '@styles/Themes';
@@ -46,7 +48,8 @@ export default ({modeSelected}) => {
             }
           : {},
       editable: modeSelected === 1,
-      style: modeSelected === 2 ? resultFieldStyleProps : undefined,
+      style:
+        modeSelected === 2 ? resultFieldStyleProps : {color: RawColors.black},
       placeholderTextColor:
         modeSelected === 2 ? RawColors.black : RawColors.grey,
       labelStyle: modeSelected === 2 ? resultFieldLabelStyleProps : undefined,
@@ -171,10 +174,16 @@ export default ({modeSelected}) => {
       },
       keyboardType: 'number-pad',
       editable: modeSelected === 2,
-      style: modeSelected === 1 ? resultFieldStyleProps : undefined,
+      style:
+        modeSelected === 1 ? resultFieldStyleProps : {color: RawColors.black},
       placeholderTextColor:
         modeSelected === 1 ? RawColors.black : RawColors.grey,
-      labelStyle: modeSelected === 1 ? resultFieldLabelStyleProps : undefined,
+      labelStyle:
+        modeSelected === 1
+          ? resultFieldLabelStyleProps
+          : {
+              marginRight: ms(30),
+            },
     },
   ];
 };

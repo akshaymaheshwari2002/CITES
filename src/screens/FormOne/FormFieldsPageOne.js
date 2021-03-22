@@ -25,6 +25,7 @@ export default () => {
     requiredMobileInput,
     validateEmail,
     validateMobileInput,
+    validBreedingCode,
   } = getValidators();
 
   return [
@@ -34,6 +35,8 @@ export default () => {
       placeholder: formatMessage({id: 'form.label.dateOfInspection'}),
       name: 'dateOfInspection',
       rules: {required},
+      minimumDate: new Date(),
+      headerTextIOS: formatMessage({id: 'form.label.dateOfInspection'}),
       fieldType: Constants.DATEPICKER,
     },
     {
@@ -59,13 +62,14 @@ export default () => {
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.facilityAddress'}),
+      label: formatMessage({id: 'form.placeholder.addressLineOne'}),
       placeholder: formatMessage({id: 'form.placeholder.addressLineOne'}),
       name: 'facilityAddressLineOne',
       rules: {required},
       fieldContainerStyle: {marginBottom: 0},
     },
     {
+      label: formatMessage({id: 'form.placeholder.addressLineTwo'}),
       placeholder: formatMessage({id: 'form.placeholder.addressLineTwo'}),
       defaultValue: '',
       name: 'facilityAddressLineTwo',
@@ -78,6 +82,46 @@ export default () => {
       },
     },
     {
+      label: formatMessage({id: 'form.label.city'}),
+      placeholder: formatMessage({id: 'form.placeholder.city'}),
+      defaultValue: '',
+      name: 'city',
+      rules: {required},
+      fieldContainerStyle: {marginBottom: 0},
+      style: {
+        marginVertical: 0,
+        marginTop: verticalScale(6),
+        marginBottom: verticalScale(6),
+      },
+    },
+    {
+      label: formatMessage({id: 'form.placeholder.stateRegion'}),
+      placeholder: formatMessage({id: 'form.placeholder.stateRegion'}),
+      defaultValue: '',
+      name: 'stateProvienceRegion',
+      rules: {required},
+      fieldContainerStyle: {marginBottom: 0},
+      style: {
+        marginVertical: 0,
+        marginTop: verticalScale(6),
+        marginBottom: verticalScale(6),
+      },
+    },
+    {
+      label: formatMessage({id: 'form.label.zipCode'}),
+      placeholder: formatMessage({id: 'form.placeholder.zipCode'}),
+      defaultValue: '',
+      name: 'zipCode',
+      rules: {required},
+      fieldContainerStyle: {marginBottom: 0},
+      style: {
+        marginVertical: 0,
+        marginTop: verticalScale(6),
+        marginBottom: verticalScale(6),
+      },
+    },
+    {
+      label: formatMessage({id: 'form.placeholder.country'}),
       placeholder: formatMessage({id: 'form.placeholder.country'}),
       defaultValue: '',
       name: 'country',
@@ -130,7 +174,9 @@ export default () => {
     },
     {
       label: formatMessage({id: 'form.label.registeredSpecies'}),
-      placeholder: formatMessage({id: 'form.label.registeredSpecies'}),
+      placeholder: formatMessage({
+        id: 'form.label.registeredSpeciesPlaceholder',
+      }),
       name: 'registeredSpecies',
       rules: {required},
       fieldType: Constants.TEXTINPUT_ARRAY,
@@ -142,6 +188,9 @@ export default () => {
       placeholder: formatMessage({id: 'form.label.facilityEstablishmentDate'}),
       name: 'facilityEstablishmentDate',
       rules: {required},
+      headerTextIOS: formatMessage({
+        id: 'form.label.facilityEstablishmentDate',
+      }),
       fieldType: Constants.DATEPICKER,
       maximumDate: new Date(),
     },
@@ -171,11 +220,20 @@ export default () => {
       },
     },
     {
-      defaultValue: '',
+      defaultValue: ['', '-', '', '', '-', '', '', ''],
       label: formatMessage({id: 'form.label.citesInformationCode'}),
-      placeholder: formatMessage({id: 'form.label.citesInformationCode'}),
+      //placeholder: formatMessage({id: 'form.placeHolder.citesInformationCode'}),
       name: 'citesInformationCode',
-      rules: {required},
+      fieldType: Constants.BREEDING_CODE_INPUT,
+      rules: {
+        validate: {
+          validBreedingCode,
+        },
+        maxLength: {
+          value: 1,
+          message: formatMessage({id: 'form.error.eightCharacters'}),
+        },
+      },
     },
   ];
 };

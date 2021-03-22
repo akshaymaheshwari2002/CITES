@@ -2,11 +2,11 @@ import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {Text, View} from 'react-native';
 import {ms, ScaledSheet, verticalScale} from 'react-native-size-matters';
 import {useForm} from 'react-hook-form';
-import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
 import {shallowEqual, useDispatch, useSelector} from 'react-redux';
+import Icon from 'react-native-vector-icons/Feather';
 
-import {Button, Container, Header} from '@atoms';
+import {Button, Container} from '@atoms';
 import {Form} from '@organisms';
 import getFormFieldsPageOne from './FormFieldsPageOne';
 import getFormFieldsPageTwo from './FormFieldsPageTwo';
@@ -25,6 +25,7 @@ const FormOne = ({navigation}) => {
   const {formatMessage} = useIntl();
   const {reset, control, errors, watch, handleSubmit} = useForm({
     shouldFocusError: false,
+    mode: 'onBlur',
   });
   const scrollViewRef = useRef();
   const formData = useRef({});
@@ -37,6 +38,7 @@ const FormOne = ({navigation}) => {
     shallowEqual,
   );
   const selectedSpeciesId = watch('_id');
+
   const formFields = useMemo(
     () =>
       formFieldsPage === 1
@@ -86,11 +88,22 @@ const FormOne = ({navigation}) => {
       formData.current = {...formData.current, ...data};
 
       if (formFieldsPage === 1) {
-        const _registeredSpecies = data.registeredSpecies.map((species) => ({
-          name: species,
-        }));
+        const _registeredSpecies = data.registeredSpecies.map((species) => {
+          let speciesExisting = registeredSpecies.find(({name: _name}) => {
+            return _name === species;
+          });
+          if (speciesExisting) {
+            return {
+              ...speciesExisting,
+              name: species,
+            };
+          } else {
+            return {
+              name: species,
+            };
+          }
+        });
         delete data.registeredSpecies;
-
         await dispatch(
           saveInspection({
             stepOne: {
@@ -111,11 +124,14 @@ const FormOne = ({navigation}) => {
         scrollToTop();
       }
     },
-    [dispatch, formFieldsPage, reset, scrollToTop],
+    [dispatch, formFieldsPage, registeredSpecies, reset, scrollToTop],
   );
 
   const scrollToTop = useCallback(() => {
-    setTimeout(() => scrollViewRef.current.scrollToPosition(0, 0, true), 200);
+    setTimeout(
+      () => scrollViewRef.current.scrollTo({x: 0, y: 0, animated: true}),
+      200,
+    );
   }, []);
 
   const handleBackPress = useCallback(() => {
@@ -127,7 +143,16 @@ const FormOne = ({navigation}) => {
   }, [formFieldsPage, navigation]);
 
   const isSpeciesDataComplete = useCallback(() => {
-    const result = registeredSpecies.every((species) =>
+    const currentData = registeredSpecies.map((species) => {
+      return getFormFieldsPageTwo().reduce(
+        (acc, current) => ({
+          ...acc,
+          [current.name]: species[current.name],
+        }),
+        {},
+      );
+    });
+    const result = currentData.every((species) =>
       Object.keys(species).every((key) => species[key] === 0 || species[key]),
     );
 
@@ -136,7 +161,6 @@ const FormOne = ({navigation}) => {
 
   const continueToStepOne = useCallback(() => {
     const formOneCompleted = isSpeciesDataComplete();
-
     dispatch(saveInspection({stepOne: {formOneCompleted}}));
     navigation.navigate('TabNavigator', {screen: 'StepOne'});
   }, [dispatch, isSpeciesDataComplete, navigation]);
@@ -161,19 +185,30 @@ const FormOne = ({navigation}) => {
     }
   }, [formFieldsPage, selectedSpeciesId, setSpeciesDataInForm]);
 
+  useEffect(() => {
+    navigation.setOptions({
+      headerLeft: (navigationProps) => (
+        <Icon
+          name="chevron-left"
+          size={ms(26)}
+          {...navigationProps}
+          onPress={handleBackPress}
+        />
+      ),
+    });
+  }, [handleBackPress, navigation]);
+
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={handleBackPress} />
-        }
-      />
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView ref={scrollViewRef} style={CommonStyles.flex1}>
         <Text style={styles.title}>
           {formatMessage({id: 'screen.FormOne.title'})}
         </Text>
         <Text style={styles.contentOne}>
           {formatMessage({id: 'screen.FormOne.contentOne'})}
+        </Text>
+        <Text style={styles.contentOnePartTwo}>
+          {formatMessage({id: 'screen.FormOne.contentOnePartTwo'})}
         </Text>
         <Text style={styles.contentTwo}>
           {formatMessage({id: 'screen.FormOne.contentTwo'})}
@@ -183,7 +218,9 @@ const FormOne = ({navigation}) => {
           {formFieldsPage === 1 ? (
             <Button
               onPress={handleSubmit(_handleSubmit, () => scrollToTop())}
-              buttonContent={formatMessage({id: 'button.continueToStep2'})}
+              buttonContent={formatMessage({
+                id: 'button.continueToStep2FormOne',
+              })}
             />
           ) : (
             <>
@@ -192,7 +229,10 @@ const FormOne = ({navigation}) => {
                 buttonContent={formatMessage({id: 'button.saveAndAdd'})}
               />
               <Button
-                onPress={() => navigation.navigate('FormOneSummary')}
+                onPress={async () => {
+                  await handleSubmit(_handleSubmit)();
+                  navigation.navigate('FormOneSummary');
+                }}
                 buttonStyle={() => ({marginVertical: verticalScale(16)})}
                 buttonContent={formatMessage({id: 'button.viewFormOneSummary'})}
               />
@@ -215,6 +255,11 @@ const styles = ScaledSheet.create({
     ...Fonts.HelveticaNeue30B,
   },
   contentOne: {
+    marginHorizontal: '16@s',
+    color: RawColors.charcoalGrey60,
+    ...Fonts.Lato15R,
+  },
+  contentOnePartTwo: {
     marginHorizontal: '16@s',
     marginBottom: '16@vs',
     color: RawColors.charcoalGrey60,

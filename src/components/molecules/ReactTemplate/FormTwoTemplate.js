@@ -1,6 +1,8 @@
 import React from 'react';
 
-const FormOneTemplate = () => {
+import Constants from '@utils/Constants';
+
+const FormTwoTemplate = ({formTwoData = {}}) => {
   const formTwoSchema = {
     noOfStaff: 'How many staff currently employed at the Facility: ',
     noOfPartTime: 'Part Time',
@@ -8,25 +10,10 @@ const FormOneTemplate = () => {
     isVeterinaryServices:
       'Does the Operation have access to professional veterinary services?',
     ifYesVeterinaryServices: 'If yes,what is name and address of vet?',
-    ifYesOtherLocation:
-      'If yes,what is address of location(s)? Set a reminder to inspect these location(s).',
+    ifYesOtherLocation: 'If yes,what is address of location(s)?',
     otherLocation: 'Are animals keet at other location(s)?',
     yes: 'Yes',
     no: 'No',
-  };
-
-  const formTwoData = {
-    noOfStaff: '50',
-    noOfPartTime: '20',
-    noOfFullTime: '30',
-    isVeterinaryServices: true,
-    veterinaryServicesName: 'Precise Vet Services',
-    veterinaryServicesAddress:
-      '6th Floor, Metropolis Mall, Industrial Area, Hisar, Haryana 125005',
-    isOtherLocation: false,
-    otherLocationOne:
-      '6th Floor, Metropolis Mall, Industrial Area, Hisar, Haryana 125005',
-    otherLocationTwo: '',
   };
 
   return (
@@ -40,11 +27,15 @@ const FormOneTemplate = () => {
               </p>
               <div style={styles.rowWithMargin}>
                 <p>{formTwoSchema?.noOfPartTime}</p>
-                <p style={styles.inputText}>{formTwoData?.noOfPartTime}</p>
+                <p style={styles.inputText}>
+                  {formTwoData?.staffHours?.partTimeStaffs ?? ''}
+                </p>
               </div>
               <div style={styles.rowWithMargin}>
                 <p>{formTwoSchema?.noOfFullTime}</p>
-                <p style={styles.inputText}>{formTwoData?.noOfFullTime}</p>
+                <p style={styles.inputText}>
+                  {formTwoData?.staffHours?.fullTimeStaffs ?? ''}
+                </p>
               </div>
               <p style={styles.text}>
                 <b>{formTwoSchema?.isVeterinaryServices}</b>
@@ -54,14 +45,20 @@ const FormOneTemplate = () => {
                   <div style={styles.rowForCheckBox}>
                     <input
                       type="checkbox"
-                      defaultChecked={formTwoData?.isVeterinaryServices}
+                      defaultChecked={
+                        formTwoData?.accessToVeterinaryServices?.[0] ===
+                          Constants.YES ?? false
+                      }
                     />
                     <p style={styles.marginText}>{formTwoSchema?.yes}</p>
                   </div>
                   <div style={styles.rowForCheckBox}>
                     <input
                       type="checkbox"
-                      defaultChecked={!formTwoData?.isVeterinaryServices}
+                      defaultChecked={
+                        formTwoData?.accessToVeterinaryServices?.[0] ===
+                          Constants.NO ?? false
+                      }
                     />
                     <p style={styles.marginText}>{formTwoSchema?.no}</p>
                   </div>
@@ -71,10 +68,11 @@ const FormOneTemplate = () => {
                 </div>
                 <div style={styles.inputContainer}>
                   <p style={styles.inputText}>
-                    {formTwoData?.veterinaryServicesName}
+                    {formTwoData?.veterinarianName ?? ''}
                   </p>
                   <p style={styles.inputText}>
-                    {formTwoData?.veterinaryServicesAddress}
+                    {(formTwoData?.veterinarianAddress ?? '') +
+                      (formTwoData?.veterinarianCountry ?? '')}
                   </p>
                 </div>
               </div>
@@ -87,14 +85,20 @@ const FormOneTemplate = () => {
                   <div style={styles.rowForCheckBox}>
                     <input
                       type="checkbox"
-                      defaultChecked={formTwoData?.isOtherLocation}
+                      defaultChecked={
+                        formTwoData?.animalKeptAtOtherLocation?.[0] ===
+                          Constants.YES ?? false
+                      }
                     />
                     <p style={styles.marginText}>{formTwoSchema?.yes}</p>
                   </div>
                   <div style={styles.rowForCheckBox}>
                     <input
                       type="checkbox"
-                      defaultChecked={!formTwoData?.isOtherLocation}
+                      defaultChecked={
+                        formTwoData?.animalKeptAtOtherLocation?.[0] ===
+                          Constants.NO ?? false
+                      }
                     />
                     <p style={styles.marginText}>{formTwoSchema?.no}</p>
                   </div>
@@ -104,10 +108,10 @@ const FormOneTemplate = () => {
                 </div>
                 <div style={styles.inputContainer}>
                   <p style={styles.inputText}>
-                    {formTwoData?.otherLocationOne}
+                    {formTwoData?.addressOfOtherAnimals?.[0] ?? ''}
                   </p>
                   <p style={styles.inputText}>
-                    {formTwoData?.otherLocationTwo}
+                    {formTwoData?.addressOfOtherAnimals?.[1] ?? ''}
                   </p>
                 </div>
               </div>
@@ -175,4 +179,4 @@ const styles = {
   },
 };
 
-export default FormOneTemplate;
+export default FormTwoTemplate;

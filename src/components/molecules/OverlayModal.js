@@ -45,6 +45,9 @@ const OverlayModal = ({isModalVisible, hideModal, helpText}) => {
       }}>
       <Pressable onPress={() => hideModal()} style={styles.overlay}>
         <Pressable
+          onPress={() => {
+            hideModal();
+          }}
           style={[styles.modalView, {width: modalWidth}]}
           onLayout={(ev) => {
             const height = ev.nativeEvent.layout.height;
@@ -60,7 +63,6 @@ const OverlayModal = ({isModalVisible, hideModal, helpText}) => {
           />
           <Container.ScrollView style={styles.scrollView}>
             <View
-              onStartShouldSetResponder={() => true}
               style={styles.contentContainer}
               onLayout={(ev) => {
                 const height = ev.nativeEvent.layout.height;
@@ -71,8 +73,12 @@ const OverlayModal = ({isModalVisible, hideModal, helpText}) => {
               {helpText
                 ? helpText.map((value, index) => {
                     return (
-                      <Text key={`text_key_${index}`} style={styles.modalText}>
-                        {value}
+                      <Text
+                        key={`text_key_${index}`}
+                        style={
+                          value.isBold ? styles.modalTextBold : styles.modalText
+                        }>
+                        {value.text}
                       </Text>
                     );
                   })
@@ -89,6 +95,7 @@ const styles = ScaledSheet.create({
   overlay: {
     ...CommonStyles.flex1,
     justifyContent: 'flex-end',
+    paddingBottom: '54@vs',
   },
   modalView: {
     alignSelf: 'flex-end',
@@ -110,6 +117,12 @@ const styles = ScaledSheet.create({
     paddingVertical: '15@vs',
     paddingHorizontal: '15@ms',
   },
+  modalTextBold: {
+    marginBottom: '15@vs',
+    textAlign: 'left',
+    ...Fonts.Lato17B,
+  },
+
   modalText: {
     marginBottom: '15@vs',
     textAlign: 'left',

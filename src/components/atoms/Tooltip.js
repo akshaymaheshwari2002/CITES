@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {Platform, Text, View} from 'react-native';
 import Tooltip, {
   TooltipChildrenContext,
@@ -9,7 +9,13 @@ import PropTypes from 'prop-types';
 
 import {Fonts, RawColors} from '@styles/Themes';
 
-const _Tooltip = ({children, content, focusedStyle, ...restProps}) => {
+const _Tooltip = ({
+  children,
+  content,
+  focusedStyle,
+  contentstyle,
+  ...restProps
+}) => {
   return (
     <Tooltip
       useInteractionManager={true}
@@ -19,12 +25,14 @@ const _Tooltip = ({children, content, focusedStyle, ...restProps}) => {
       arrowSize={styles.arrowSize}
       childContentSpacing={vs(12)}
       allowChildInteraction={false}
-      content={<Text style={Fonts.Lato20R}>{content}</Text>}
+      content={<Text style={Fonts.Lato17R}>{content}</Text>}
       {...restProps}>
       <TooltipChildrenContext.Consumer>
         {({tooltipDuplicate}) =>
           tooltipDuplicate ? (
-            <View style={[styles.focused, focusedStyle]}>{children}</View>
+            <View style={[styles.focusedChildren, focusedStyle]}>
+              {children}
+            </View>
           ) : (
             children
           )
@@ -35,16 +43,16 @@ const _Tooltip = ({children, content, focusedStyle, ...restProps}) => {
 };
 
 const styles = ScaledSheet.create({
-  content: {borderRadius: '8@ms'},
-  arrowSize: {height: '8@vs', width: '6@ms'},
-  focused: {
+  content: {borderRadius: '10@ms'},
+  arrowSize: {height: '8@vs', width: '4@ms'},
+  focusedChildren: {
     justifyContent: 'center',
     alignItems: 'center',
     height: '44@ms',
     width: '44@ms',
     borderRadius: '24@ms',
     borderColor: RawColors.darkSalmon,
-    borderWidth: 4,
+    borderWidth: 5,
     backgroundColor: RawColors.white,
   },
 });
@@ -52,11 +60,13 @@ const styles = ScaledSheet.create({
 _Tooltip.defaultProps = {
   children: {},
   content: '',
+  contentstyle: {},
 };
 
 _Tooltip.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   content: PropTypes.string,
+  contentstyle: PropTypes.object,
 };
 
 export default _Tooltip;

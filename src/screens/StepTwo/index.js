@@ -1,23 +1,30 @@
 import React, {useMemo, useCallback} from 'react';
 import {View} from 'react-native';
 import {useIntl} from 'react-intl';
-import {ScaledSheet, ms} from 'react-native-size-matters';
+import {ScaledSheet} from 'react-native-size-matters';
 import {useDispatch, useSelector, shallowEqual} from 'react-redux';
-import FeatherIcon from 'react-native-vector-icons/Feather';
 
 import {saveInspection} from '@store/slices/sessionSlice';
-import {Container, Button, Header} from '@atoms';
+import {Container, Button} from '@atoms';
 import {StepHeader, ChecklistCell} from '@molecules';
 import ChecklistContent from './ChecklistContent';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
 
-const StepTwo = ({navigation: {navigate, goback}}) => {
+const StepTwo = () => {
   const {formatMessage} = useIntl();
   const dispatch = useDispatch();
   const stepTwoData = useSelector(
     (state) => state.sessionReducer.activeInspection.stepTwo,
     shallowEqual,
+  );
+  const bullet = useMemo(
+    () => (
+      <View style={checkliststyles.bulletContainer}>
+        <View style={checkliststyles.bullet} />
+      </View>
+    ),
+    [],
   );
 
   const handleChange = useCallback(
@@ -33,21 +40,8 @@ const StepTwo = ({navigation: {navigate, goback}}) => {
     [dispatch],
   );
 
-  const bullet = useMemo(
-    () => (
-      <View style={checkliststyles.bulletContainer}>
-        <View style={checkliststyles.bullet} />
-      </View>
-    ),
-    [],
-  );
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <FeatherIcon name="chevron-left" size={ms(26)} onPress={goback} />
-        }
-      />
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <StepHeader stepNumber={2} />
       <Container.ScrollView style={CommonStyles.flex1}>
         {ChecklistContent({
@@ -98,10 +92,14 @@ const checkliststyles = ScaledSheet.create({
     color: RawColors.black,
     ...Fonts.Lato17SB,
   },
+  textBold: {
+    color: RawColors.black,
+    ...Fonts.Lato17B,
+  },
   textLink: {
     color: RawColors.black,
     textDecorationLine: 'underline',
-    ...Fonts.Lato15SB,
+    ...Fonts.Italic15R,
   },
   bulletList: {
     flexDirection: 'row',
@@ -129,6 +127,8 @@ const checkliststyles = ScaledSheet.create({
     borderColor: RawColors.prussianBlue,
     backgroundColor: RawColors.white,
     height: '40@vs',
+    marginVertical: '20@s',
+    marginHorizontal: '10@s',
   },
   buttonTextStyle: {
     textTransform: 'uppercase',

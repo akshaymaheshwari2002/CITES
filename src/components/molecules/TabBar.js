@@ -5,7 +5,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Feather';
 import {useSelector, shallowEqual, useDispatch} from 'react-redux';
 import {useIntl} from 'react-intl';
-import {CommonActions} from '@react-navigation/native';
+import {CommonActions, useNavigation} from '@react-navigation/native';
 
 import {RawColors} from '@styles/Themes';
 import {setTooltipProps} from '@store/slices/sessionSlice';
@@ -19,10 +19,11 @@ const tabButtons = [
   {name: 'list', icon: 'list'},
 ];
 
-const TabBar = ({navigation}) => {
+const TabBar = () => {
   const {formatMessage} = useIntl();
   const {bottom: marginBottom} = useSafeAreaInsets();
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   const tooltipProps = useSelector(
     (state) => state.sessionReducer.tooltipProps,
     shallowEqual,
@@ -87,7 +88,10 @@ const TabBar = ({navigation}) => {
               {name: 'LanguageSelection'},
               {name: 'HomePage'},
               {name: 'InspectionFlow'},
-              {name: 'TabNavigator', state: {routes: [{name: 'StepsSummary'}]}},
+              {
+                name: 'TabNavigator',
+                state: {routes: [{name: 'BeginInspection'}]},
+              },
             ],
           }),
         );
@@ -110,7 +114,7 @@ const TabBar = ({navigation}) => {
             style={CommonStyles.centerContent}>
             <Icon
               name={item.icon}
-              size={ms(tooltipProps?.consumerName === item.name ? 24 : 34)}
+              size={ms(tooltipProps?.consumerName === item.name ? 22 : 24)}
               color={RawColors.pinkishGrey}
             />
           </TouchableOpacity>
@@ -125,7 +129,7 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    height: '74@vs',
+    height: '54@vs',
     backgroundColor: RawColors.whiteTwo,
   },
 });

@@ -1,4 +1,5 @@
 import React from 'react';
+import {getInputFieldElementForFormSummary as getInputFieldElement} from '@utils/CommonFunctions';
 
 const speciesText = 'Species The Facility is registered to produce: ';
 const speciesAttributes = [
@@ -9,7 +10,21 @@ const speciesAttributes = [
   'Source code, as stated on previous export permits',
 ];
 
-const FormOneTemplate = ({speciesData = []}) => {
+const FormOneTemplate = ({speciesData = [], editable = false}) => {
+  const getInputElementConditionally = ({
+    name,
+    defaultValue,
+    inputSize,
+    alt = '',
+  }) => {
+    return editable
+      ? getInputFieldElement({
+          name,
+          defaultValue,
+          inputSize,
+        })
+      : alt;
+  };
   return (
     <div className="App">
       <div className="App" style={styles.box}>
@@ -28,16 +43,48 @@ const FormOneTemplate = ({speciesData = []}) => {
             {speciesData?.map((data, index) => {
               return (
                 <div key={index} style={styles.row}>
-                  <div style={styles.cell}>{data?.name}</div>
-                  <div style={styles.cell}>{data?.numberOfSpecimen ?? '-'}</div>
                   <div style={styles.cell}>
-                    {data?.numberOfBreedingAdults ?? '-'}
+                    {getInputElementConditionally({
+                      name: `registeredSpecies.${index}.name`,
+                      defaultValue: data?.name,
+                      inputSize: 15,
+                      alt: data?.name,
+                    })}
                   </div>
                   <div style={styles.cell}>
-                    {data?.numberOfSpeciemenExportedSinceLastInspection ?? '-'}
+                    {getInputElementConditionally({
+                      name: `registeredSpecies.${index}.numberOfSpecimen`,
+                      defaultValue: data?.numberOfSpecimen,
+                      inputSize: 15,
+                      alt: data?.numberOfSpecimen ?? '-',
+                    })}
                   </div>
                   <div style={styles.cell}>
-                    {data?.sourceCodeOfPreviousExport ?? '-'}
+                    {getInputElementConditionally({
+                      name: `registeredSpecies.${index}.numberOfBreedingAdults`,
+                      defaultValue: data?.numberOfBreedingAdults,
+                      inputSize: 15,
+                      alt: data?.numberOfBreedingAdults ?? '-',
+                    })}
+                  </div>
+                  <div style={styles.cell}>
+                    {getInputElementConditionally({
+                      name: `registeredSpecies.${index}.numberOfSpeciemenExportedSinceLastInspection`,
+                      defaultValue:
+                        data?.numberOfSpeciemenExportedSinceLastInspection,
+                      inputSize: 15,
+                      alt:
+                        data?.numberOfSpeciemenExportedSinceLastInspection ??
+                        '-',
+                    })}
+                  </div>
+                  <div style={styles.cell}>
+                    {getInputElementConditionally({
+                      name: `registeredSpecies.${index}.sourceCodeOfPreviousExport`,
+                      defaultValue: data?.sourceCodeOfPreviousExport,
+                      inputSize: 15,
+                      alt: data?.sourceCodeOfPreviousExport ?? '-',
+                    })}
                   </div>
                 </div>
               );
@@ -49,11 +96,11 @@ const FormOneTemplate = ({speciesData = []}) => {
                   ?.map((data, index) => {
                     return (
                       <div key={index} style={styles.row}>
-                        <div style={styles.cell}></div>
-                        <div style={styles.cell}></div>
-                        <div style={styles.cell}></div>
-                        <div style={styles.cell}></div>
-                        <div style={styles.cell}></div>
+                        <div style={styles.cell} />
+                        <div style={styles.cell} />
+                        <div style={styles.cell} />
+                        <div style={styles.cell} />
+                        <div style={styles.cell} />
                       </div>
                     );
                   })}

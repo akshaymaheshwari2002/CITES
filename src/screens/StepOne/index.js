@@ -1,11 +1,12 @@
-import React, {useCallback, useMemo} from 'react';
+import React, {useCallback, useEffect, useMemo} from 'react';
 import {View, StatusBar} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms, s} from 'react-native-size-matters';
 import {shallowEqual, useDispatch, useSelector} from 'react-redux';
+import Toast from 'react-native-simple-toast';
 
-import {Container, Button, Header, Tooltip} from '@atoms';
+import {Container, Button, Tooltip} from '@atoms';
 import {StepHeader, ChecklistCell} from '@molecules';
 import ChecklistContent from './ChecklistContent';
 import {Fonts, RawColors} from '@styles/Themes';
@@ -16,10 +17,31 @@ const StepOne = ({navigation, route}) => {
   const {formatMessage} = useIntl();
   const dispatch = useDispatch();
   const stepOneData = useSelector(
-    (state) => state.sessionReducer.activeInspection.stepOne,
+    (state) => state.sessionReducer.activeInspection.stepOne || {},
     shallowEqual,
   );
 
+  const handleStepOneSubmit = useCallback(() => {
+    if (Object.keys(stepOneData).length) {
+      let stepOneComplete = true;
+
+      Object.keys(stepOneData).forEach((key) => {
+        if (!stepOneData[key] && key !== 'formOne') {
+          stepOneComplete = false;
+        }
+      });
+
+      if (stepOneComplete) {
+        navigation.navigate('StepTwo', {formSummaryStepTwo: true});
+      }
+    } else {
+      Toast.show(
+        formatMessage({
+          id: 'screen.StepOne.Alert',
+        }),
+      );
+    }
+  }, [formatMessage, navigation, stepOneData]);
   const bullet = useMemo(
     () => (
       <View style={checkliststyles.bulletContainer}>
@@ -55,25 +77,26 @@ const StepOne = ({navigation, route}) => {
     );
   }, [dispatch, formatMessage, navigation]);
 
+  useEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
+        <Tooltip
+          placement="bottom"
+          isVisible={route.params.showToolTip}
+          allowChildInteraction={true}
+          closeOnChildInteraction={false}
+          content={formatMessage({
+            id: 'screen.StepOne.WalkThroughContentOne',
+          })}
+          onClose={handleTooltipClose}>
+          <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
+        </Tooltip>
+      ),
+    });
+  }, [formatMessage, handleTooltipClose, navigation, route.params.showToolTip]);
+
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
-      <Header
-        leftContent={
-          <Tooltip
-            placement="bottom"
-            isVisible={route.params.showToolTip}
-            content={formatMessage({
-              id: 'screen.StepOne.WalkThroughContentOne',
-            })}
-            onClose={handleTooltipClose}>
-            <Icon
-              name="chevron-left"
-              size={ms(26)}
-              onPress={navigation.goBack}
-            />
-          </Tooltip>
-        }
-      />
       <StepHeader stepNumber={1} />
       <Container.ScrollView style={CommonStyles.flex1}>
         {ChecklistContent({
@@ -96,7 +119,7 @@ const StepOne = ({navigation, route}) => {
             })}
             buttonStyle={() => styles.button}
             buttonTextStyle={() => styles.buttonTextStyle}
-            onPress={() => navigation.navigate('StepTwo')}
+            onPress={handleStepOneSubmit}
           />
         </View>
       </Container.ScrollView>
@@ -122,7 +145,6 @@ const styles = ScaledSheet.create({
   toolTipContent: {
     ...Fonts.Lato17B,
   },
-  toolTipContentStyle: {height: 60, width: 202, borderRadius: 10},
   icon: {
     borderRadius: 16,
     borderColor: RawColors.softRed,
@@ -144,10 +166,19 @@ const checkliststyles = ScaledSheet.create({
     color: RawColors.black,
     ...Fonts.Lato17SB,
   },
+  textHiddenBullet: {
+    color: RawColors.black,
+    ...Fonts.Lato17SB,
+    textDecorationLine: 'underline',
+  },
+  textBold: {
+    color: RawColors.black,
+    ...Fonts.Lato17B,
+  },
   textLink: {
     color: RawColors.black,
     textDecorationLine: 'underline',
-    ...Fonts.Lato15SB,
+    ...Fonts.Italic15R,
   },
   bulletList: {
     flexDirection: 'row',
@@ -162,6 +193,13 @@ const checkliststyles = ScaledSheet.create({
     marginHorizontal: '8@ms',
     height: '21@ms',
   },
+  hiddenBullet: {
+    flexDirection: 'row',
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginLeft: '24@ms',
+  },
   bullet: {
     height: '8@ms',
     width: '8@ms',
@@ -174,6 +212,8 @@ const checkliststyles = ScaledSheet.create({
     backgroundColor: RawColors.white,
     height: '40@vs',
     borderRadius: '24@vs',
+    marginVertical: '20@s',
+    marginHorizontal: '10@s',
   },
   buttonTextStyle: {
     textTransform: 'uppercase',
@@ -188,7 +228,7 @@ const checkliststyles = ScaledSheet.create({
     alignItems: 'center',
   },
   productionCalculatorCell: {
-    marginTop: '15@ms',
+    marginVertical: '15@ms',
   },
 });
 

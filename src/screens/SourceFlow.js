@@ -1,5 +1,5 @@
 import React from 'react';
-import {ImageBackground, Text, View} from 'react-native';
+import {ImageBackground, Text, View, Image} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 
@@ -9,21 +9,23 @@ import {Images} from '@assets';
 
 const SourceFlow = ({navigation}) => {
   const {formatMessage} = useIntl();
-
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+    <Container>
       <ImageBackground
         style={styles.container}
-        source={Images.backgroundPatternTopBlur}>
+        source={Images.backgroundPatternTopBlur}
+        imageStyle={styles.resizeModeRepeat}>
         <Container.ScrollView contentContainerStyle={styles.scrollContainer}>
-          <View style={styles.logo}>
-            <Text style={styles.headerOne}>
-              {formatMessage({id: 'screen.SourceFlow.headerPartOne'})}
-            </Text>
-            <Text style={styles.headerTwo}>
+          <View style={styles.headerContainer}>
+            <Image
+              source={Images?.eye}
+              style={styles.eye}
+              resizeMode="contain"
+            />
+            <Text style={styles.header}>
               {formatMessage({id: 'screen.SourceFlow.headerPartTwo'})}
             </Text>
-            <Text style={styles.headerTwo}>
+            <Text style={styles.header}>
               {formatMessage({id: 'screen.SourceFlow.headerPartThree'})}
             </Text>
           </View>
@@ -44,7 +46,7 @@ const SourceFlow = ({navigation}) => {
                   buttonTextStyle={() => ({color: RawColors.black})}
                   buttonContent={
                     <>
-                      <Text style={styles.buttonTextOne}>
+                      <Text style={styles.buttonText}>
                         {formatMessage({
                           id: 'button.learnSourceCode',
                         })}
@@ -62,13 +64,20 @@ const SourceFlow = ({navigation}) => {
                   buttonTextStyle={() => ({color: RawColors.black})}
                   buttonContent={
                     <>
-                      <Text style={styles.buttonTextOne}>
+                      <Text style={styles.buttonText}>
                         {formatMessage({
                           id: 'button.determineSourceCodeOf',
                         })}
                       </Text>
                     </>
                   }
+                />
+                <Button
+                  onPress={() => {}}
+                  buttonContent={formatMessage({
+                    id: 'button.giveFeedback',
+                  })}
+                  buttonStyle={() => styles.emptyButton}
                 />
               </View>
             </ImageBackground>
@@ -84,8 +93,11 @@ const styles = ScaledSheet.create({
     flexGrow: 1,
     backgroundColor: RawColors.greyLight,
   },
+  resizeModeRepeat: {
+    resizeMode: 'repeat',
+  },
   scrollContainer: {
-    paddingTop: '140@vs',
+    paddingTop: '148@vs',
     backgroundColor: RawColors.transparent,
   },
   backgroundContainer: {
@@ -95,13 +107,20 @@ const styles = ScaledSheet.create({
   backgroundImage: {
     resizeMode: 'stretch',
   },
-  headerOne: {
-    color: RawColors.brightRed,
-    ...Fonts.HelveticaNeue40B,
-    lineHeight: '40@ms',
-    letterSpacing: '0.8@ms',
+  headerContainer: {
+    position: 'absolute',
+    alignSelf: 'center',
+    alignItems: 'flex-end',
+    width: '78.4%',
+    top: '58@vs',
   },
-  headerTwo: {
+  eye: {
+    height: '60@vs',
+    aspectRatio: 1.3194,
+    alignSelf: 'flex-end',
+    marginVertical: '10@vs',
+  },
+  header: {
     color: RawColors.darkGreyBlue,
     ...Fonts.HelveticaNeue26B,
     textAlign: 'right',
@@ -113,28 +132,23 @@ const styles = ScaledSheet.create({
     width: '78.4%',
     justifyContent: 'center',
     alignSelf: 'center',
-    marginTop: '100@vs',
+    marginTop: '84@vs',
     paddingBottom: '16@vs',
   },
   filledButton: {
-    borderColor: RawColors.darkSalmon,
-    height: '84@ms',
-    marginBottom: '16@vs',
+    marginVertical: '16@vs',
+    backgroundColor: RawColors.darkSalmon,
+    minHeight: '66@vs',
+    borderWidth: 0,
   },
-  buttonTextOne: {
-    ...Fonts.Lato17R,
-    color: RawColors.darkGreyBlue,
-    alignSelf: 'flex-start',
-    marginLeft: '16@s',
-    marginVertical: '30@s',
+  emptyButton: {
+    marginVertical: '16@vs',
   },
-
-  logo: {
-    position: 'absolute',
-    alignSelf: 'center',
-    alignItems: 'flex-end',
-    width: '78.4%',
-    top: '98@vs',
+  buttonText: {
+    color: RawColors.white,
+    textAlign: 'center',
+    lineHeight: '22@ms',
+    ...Fonts.Lato15R,
   },
 });
 

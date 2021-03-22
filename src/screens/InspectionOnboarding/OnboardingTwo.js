@@ -1,16 +1,9 @@
-import React, {useEffect} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  ImageBackground,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
-import {ScaledSheet, ms} from 'react-native-size-matters';
+import React from 'react';
+import {View, Text, Image, ImageBackground} from 'react-native';
+import {ScaledSheet} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 
-import {Container, Header} from '@atoms';
+import {Container} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import {Images} from '@assets';
 import CommonStyles from '@styles/CommonStyles';
@@ -34,74 +27,70 @@ const points = [
   },
 ];
 
-const OnboardingTwo = ({onBackPress = () => {}, onForwardPress = () => {}}) => {
+const OnboardingTwo = () => {
   const {formatMessage} = useIntl();
 
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={onBackPress} />
-        }
-        rightContent={
-          <Icon name="chevron-right" size={ms(26)} onPress={onForwardPress} />
-        }
-      />
-      <ImageBackground
-        source={Images.onboardingTwo}
-        style={CommonStyles.flex1}
-        imageStyle={styles.backgroundImage}>
-        <Container.ScrollView contentContainerStyle={styles.contentContainer}>
-          <View style={styles.content}>
-            <Text style={[Fonts.Lato20R, styles.itemHeadline]}>
-              {formatMessage({id: 'screen.OnboardingTwo.title'})}
-            </Text>
-            {points.map(({icon, labelId}, index) => (
-              <View key={index} style={styles.item}>
-                <Image source={icon} style={styles.itemIcon} />
-                <Text style={[CommonStyles.flex1, Fonts.Lato20R]}>
-                  {formatMessage({id: labelId})}
-                </Text>
+    <ImageBackground
+      source={Images.onboardingTwo}
+      style={CommonStyles.flex1}
+      imageStyle={styles.backgroundImage}>
+      <Container.ScrollView contentContainerStyle={styles.contentContainer}>
+        <View style={styles.content}>
+          <Text style={[Fonts.Lato20B, styles.itemHeadline]}>
+            {formatMessage({id: 'screen.OnboardingTwo.title'})}
+          </Text>
+          {points.map(({icon, labelId}, index) => (
+            <View key={index} style={styles.item}>
+              <Image source={icon} style={styles.itemIcon} />
+              <View style={styles.textView}>
+                <Text style={styles.text}>{formatMessage({id: labelId})}</Text>
               </View>
-            ))}
-          </View>
-        </Container.ScrollView>
-      </ImageBackground>
-    </Container>
+            </View>
+          ))}
+        </View>
+      </Container.ScrollView>
+    </ImageBackground>
   );
 };
 
 const styles = ScaledSheet.create({
   contentContainer: {
-    paddingVertical: '60@vs',
+    paddingVertical: '30@vs',
+    marginHorizontal: '20@s',
     backgroundColor: RawColors.transparent,
   },
   content: {
-    alignSelf: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'space-evenly',
   },
-  icon: {
-    height: '30@vs',
-    width: '30@s',
-  },
   itemHeadline: {
-    marginVertical: '15@vs',
+    marginVertical: '16@vs',
   },
   item: {
     flexDirection: 'row',
-    marginLeft: '8@s',
-    marginVertical: '12@vs',
+    marginRight: '8@s',
+    marginVertical: '16@vs',
   },
   backgroundImage: {
     resizeMode: 'center',
     paddingLeft: '700@s',
+    opacity: 25,
   },
   itemIcon: {
+    alignSelf: 'flex-start',
     width: '22@ms',
     height: '22@ms',
     resizeMode: 'contain',
-    marginRight: '16@ms',
-    marginTop: '2@ms',
+    marginLeft: '6@s',
+    marginRight: '16@s',
+    marginTop: '1@vs',
+  },
+  textView: {
+    flex: 1,
+  },
+  text: {
+    ...Fonts.Lato20R,
   },
 });
 

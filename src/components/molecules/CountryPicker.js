@@ -23,7 +23,7 @@ const CountryPicker = forwardRef(
     return (
       <>
         {label ? (
-          <Text style={[CommonStyles.flex1, Fonts.Lato15R, labelStyle]}>
+          <Text style={[CommonStyles.flex1, Fonts.Lato15B, labelStyle]}>
             {label}
           </Text>
         ) : null}
@@ -31,9 +31,12 @@ const CountryPicker = forwardRef(
           onPress={() => setModalVisible(true)}
           style={[CommonStyles.flexRow, styles.container, style]}>
           <CountryPickerModal
-            theme={{onBackgroundTextColor: RawColors.black}}
+            theme={{
+              onBackgroundTextColor: RawColors.black,
+            }}
+            l
             closeButton={<Icon name="chevron-left" size={ms(26)} />}
-            filterProps={{style: styles.filter}}
+            filterProps={{style: styles.filter, placeholder: 'Select Country'}}
             flatListProps={{style: styles.flatList}}
             renderFlagButton={() => null}
             modalProps={{
@@ -69,6 +72,7 @@ const styles = ScaledSheet.create({
     alignItems: 'center',
     borderColor: RawColors.dimGrey,
     paddingHorizontal: '8@s',
+    backgroundColor: RawColors.lightGrey,
   },
   filter: {
     flex: 1,

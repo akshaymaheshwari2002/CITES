@@ -1,16 +1,16 @@
 import React, {useCallback, useState} from 'react';
 import {View, Text, FlatList, TouchableOpacity, Image} from 'react-native';
 import {useIntl} from 'react-intl';
-import {ScaledSheet, ms} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/Feather';
+import {ScaledSheet} from 'react-native-size-matters';
 import {useDispatch} from 'react-redux';
 import {useFocusEffect} from '@react-navigation/native';
 
-import {Container, Button, Header} from '@atoms';
+import {Container, Button} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import {Images} from '@assets/';
 import {get} from '@utils/RealmHelper';
 import {setActiveInspection} from '@store/slices/sessionSlice';
+import CommonStyles from '@styles/CommonStyles';
 
 const ContinueInspection = ({navigation}) => {
   const {formatMessage} = useIntl();
@@ -90,12 +90,7 @@ const ContinueInspection = ({navigation}) => {
   );
 
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
-        }
-      />
+    <Container>
       <View style={styles.titleView}>
         <Text style={styles.title}>
           {formatMessage({id: 'screen.ContinueInspection.title_1'})}
@@ -162,9 +157,7 @@ const styles = ScaledSheet.create({
     backgroundColor: '#F6F9EF',
     padding: '16@s',
     elevation: '5@s',
-    shadowColor: RawColors.softRed,
-    shadowRadius: '6@s',
-    shadowOffset: {height: 0, width: '3@s'},
+    ...CommonStyles.shadowEffectDarker,
   },
   icon: {
     height: '35@ms',

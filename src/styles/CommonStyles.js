@@ -16,12 +16,15 @@ export default ScaledSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  alignCenter: {
+    alignItems: 'center',
+  },
   shadowEffect: {
     shadowColor: RawColors.black,
-    shadowOffset: {width: 0, height: 5},
+    shadowOffset: {width: 0, height: 3},
     shadowOpacity: 0.15,
     shadowRadius: 2,
-    elevation: 5,
+    elevation: 3,
   },
   navigationHeader: {
     elevation: 0,
@@ -40,5 +43,12 @@ export default ScaledSheet.create({
     paddingHorizontal: '16@s',
     paddingBottom: '16@vs',
     backgroundColor: RawColors.white,
+  },
+  shadowEffectDarker: {
+    shadowColor: RawColors.black,
+    shadowOffset: {width: 0, height: 5},
+    shadowOpacity: 0.15,
+    shadowRadius: 2,
+    elevation: 5,
   },
 });

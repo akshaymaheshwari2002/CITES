@@ -1,12 +1,39 @@
+import {Platform} from 'react-native';
 import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
 
+const lifeStageDropDownList = [
+  'Adult',
+  'Juvenile',
+  'Egg',
+  'Fledgling',
+  'Chick',
+  'Hatchling',
+  'Owlet',
+  'Fry',
+  'Lavae',
+  'Pupa',
+  'Pup',
+  'Spiderling',
+  'Nymph',
+  'Tadpole',
+  'Froglet',
+  'Chrysalis',
+  'Other',
+];
+
 export default (fieldProps = {}) => {
   const {formatMessage} = createIntl();
-  const {required} = getValidators();
+  const {
+    required,
+    requiredTextInputArrayAlt,
+    validateTextInputArrayAltNumber,
+    validateTextInputArrayAltPositiveNumber,
+    validateTextInputArrayAltInteger,
+  } = getValidators();
 
-  return [
+  const formFields = [
     {
       label: formatMessage({id: 'form.label.doYouRanchThisSpecies'}),
       name: 'doYouRanchThisSpecies',
@@ -25,24 +52,52 @@ export default (fieldProps = {}) => {
       ],
     },
     {
-      label: formatMessage({id: 'form.label.stageHarvested'}),
+      label: formatMessage({id: 'form.label.lifeStageHarvested'}),
       placeholder: formatMessage({id: 'form.label.lifeStageHarvested'}),
       name: 'lifeStageHarvested',
       rules: {required},
       fieldType: Constants.PICKER,
-      count: 1,
-      pickerText: formatMessage({id: 'button.addLifeStage'}),
-    },
-    {
-      label: formatMessage({id: 'form.label.numberHarvestedInPreviousYear'}),
-      placeholder: formatMessage({
-        id: 'form.label.numberHarvestedInPreviousYear',
-      }),
-      name: 'numberHarvestedInPreviousYear',
-      rules: {required},
-      fieldType: Constants.PICKER,
-      count: 1,
-      pickerText: formatMessage({id: 'button.addLifeStage'}),
+      items: lifeStageDropDownList.map((value) => ({
+        label: value,
+        value: value,
+      })),
+      multiple: true,
+      ...Platform.select({ios: {fieldContainerStyle: {zIndex: 1}}}),
+      ...fieldProps.lifeStageHarvested,
     },
   ];
+  if (fieldProps?._lifeStageHarvested?.length) {
+    const _lifeStageHarvestedCopy = [
+      ...(fieldProps?._lifeStageHarvested ?? []),
+    ];
+    const indexOfOther = _lifeStageHarvestedCopy?.findIndex(
+      (value) => value?.toLowerCase() === 'other',
+    );
+    if (indexOfOther !== -1) {
+      formFields.push({
+        defaultValue: '',
+        label: formatMessage({id: 'form.label.AddLifeStage'}),
+        placeholder: formatMessage({id: 'form.label.AddLifeStage'}),
+        name: 'otherLifeStage',
+        rules: {required},
+      });
+    }
+    if (_lifeStageHarvestedCopy?.length) {
+      formFields.push({
+        label: formatMessage({id: 'form.label.numberHarvestedInPreviousYear'}),
+        name: 'numberHarvestedInPreviousYear',
+        rules: {
+          validate: {
+            requiredTextInputArrayAlt,
+            validateTextInputArrayAltNumber,
+            validateTextInputArrayAltPositiveNumber,
+            validateTextInputArrayAltInteger,
+          },
+        },
+        fieldType: Constants.TEXTINPUT_ARRAY_ALT,
+        ...Platform.select({ios: {fieldContainerStyle: {zIndex: 1}}}),
+      });
+    }
+  }
+  return formFields;
 };

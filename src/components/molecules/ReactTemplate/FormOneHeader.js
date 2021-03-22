@@ -1,4 +1,5 @@
 import React from 'react';
+import {getInputFieldElementForFormSummary as getInputFieldElement} from '@utils/CommonFunctions';
 
 const formText = 'Form';
 const formNumber = {
@@ -13,21 +14,31 @@ const formTitle = {
 };
 const facilitySchema = {
   facilityName: 'Facility name: ',
-  owner: 'Facility Owner/Manager: ',
+  owner: 'Facility owner/manager: ',
   address: 'Facility address: ',
   citesInformationCode:
-    'CITES Register of Capitative-breeding information code: ',
-  establishmentDate: 'Facility Date of Establishment: ',
+    'CITES register of capitative-breeding information code: ',
+  establishmentDate: 'Facility date of establishment: ',
   country: 'Country: ',
-  facilityContact: 'Facility Contact Information:',
+  facilityContact: 'Facility contact information:',
   email: 'Email ',
   phoneNo: ' Telephone ',
-  dateOfInspection: 'Date of Inspection: ',
+  dateOfInspection: 'Date of inspection: ',
   seniorOfficerName: 'Name of Senior Inspecting Officer: ',
-  typeOfInspection: 'Type of Inspection: ',
+  typeOfInspection: 'Type of inspection: ',
 };
 
-const FormOneHeader = ({form = 'one', facilityData = {}}) => {
+const FormOneHeader = ({form = 'one', facilityData = {}, editable = false}) => {
+  const getInputElementConditionally = ({name, defaultValue, inputSize}) => {
+    return editable
+      ? getInputFieldElement({
+          name,
+          defaultValue,
+          inputSize,
+        })
+      : facilityData?.[name];
+  };
+
   return (
     <div className="App">
       <div className="App" style={styles.marginContainer}>
@@ -44,53 +55,103 @@ const FormOneHeader = ({form = 'one', facilityData = {}}) => {
             <div style={styles.halfContent}>
               <p style={styles.text}>
                 <b>{facilitySchema?.facilityName}</b>
-                {facilityData?.facilityName}
+                {getInputElementConditionally({
+                  defaultValue: facilityData?.facilityName,
+                  name: 'facilityName',
+                })}
               </p>
               <p style={styles.text}>
-                <b>{facilitySchema?.owner}</b> {facilityData?.facilityOwner}
+                <b>{facilitySchema?.owner}</b>
+                {getInputElementConditionally({
+                  name: 'facilityOwner',
+                  defaultValue: facilityData?.facilityOwner,
+                })}
               </p>
               <p style={styles.text}>
                 <b>{facilitySchema?.address}</b>
-                {`${facilityData?.facilityAddressLineOne} ${
-                  facilityData?.facilityAddressLineTwo
-                    ? ', ' + facilityData?.facilityAddressLineTwo
-                    : ''
-                }`}
+                {getInputElementConditionally({
+                  name: 'facilityAddressLineOne',
+                  defaultValue: facilityData?.facilityAddressLineOne,
+                  inputSize: 12,
+                })}
+                {facilityData?.facilityAddressLineTwo && !editable
+                  ? ', '
+                  : null}
+                {getInputElementConditionally({
+                  name: 'facilityAddressLineTwo',
+                  defaultValue: facilityData?.facilityAddressLineTwo,
+                  inputSize: 12,
+                })}
               </p>
               <p style={styles.text}>
-                <b>
-                  {facilitySchema?.facilityContact}
-                  <br />
-                  {facilitySchema?.email}
-                  {}
-                </b>
-                {facilityData?.facilityOwnerEmail}
+                <b>{facilitySchema?.facilityContact}</b>
+                <br />
+                <b>{facilitySchema?.email}</b>
+                {getInputElementConditionally({
+                  name: 'facilityOwnerEmail',
+                  defaultValue: facilityData?.facilityOwnerEmail,
+                  inputSize: 15,
+                })}
+                <br />
                 <span style={styles.whitespace}>
                   <b>{facilitySchema?.phoneNo}</b>
-                  {facilityData?.facilityOwnerPhone}
+                  {'+'}
+                  {getInputElementConditionally({
+                    name: 'facilityOwnerPhone_callingCode',
+                    defaultValue: facilityData?.facilityOwnerPhone_callingCode,
+                    inputSize: 3,
+                  })}
+                  &nbsp;
+                  {getInputElementConditionally({
+                    name: 'facilityOwnerPhone_contactNumber',
+                    defaultValue:
+                      facilityData?.facilityOwnerPhone_contactNumber,
+                    inputSize: 15,
+                  })}
                 </span>
               </p>
             </div>
             <div style={styles.halfContent}>
               <p style={styles.text}>
                 <b>{facilitySchema?.citesInformationCode}</b>
-                {facilityData?.citesInformationCode}
+                {getInputElementConditionally({
+                  name: 'citesInformationCode',
+                  defaultValue: facilityData?.citesInformationCode,
+                  inputSize: 1,
+                })}
               </p>
               <p style={styles.text}>
                 <b>{facilitySchema?.establishmentDate}</b>
                 {facilityData?.facilityEstablishmentDate}
+                {/* {getInputElementConditionally({
+                  name: 'facilityEstablishmentDate',
+                  defaultValue: facilityData?.facilityEstablishmentDate,
+                  inputSize: 8,
+                })} */}
               </p>
               <p style={styles.text}>
                 <b>{facilitySchema?.country}</b>
-                {facilityData?.country}
+                {getInputElementConditionally({
+                  name: 'country',
+                  defaultValue: facilityData?.country,
+                })}
               </p>
               <p style={styles.text}>
                 <b>{facilitySchema?.dateOfInspection}</b>
                 {facilityData?.dateOfInspection}
+                {/* {getInputElementConditionally({
+                  name: 'dateOfInspection',
+                  defaultValue: facilityData?.dateOfInspection,
+                  inputSize: 8,
+                })} */}
               </p>
               <p style={styles.text}>
                 <b>{facilitySchema?.typeOfInspection}</b>
                 {facilityData?.typeOfInspection}
+                {/* {getInputElementConditionally({
+                  name: 'typeOfInspection',
+                  defaultValue: facilityData?.typeOfInspection,
+                })} */}
               </p>
             </div>
           </div>

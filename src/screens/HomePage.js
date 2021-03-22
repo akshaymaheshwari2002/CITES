@@ -1,14 +1,17 @@
 import React, {useCallback} from 'react';
-import {Image, ImageBackground, Text, View} from 'react-native';
+import {Image, ImageBackground, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
+import {useDispatch} from 'react-redux';
 
 import {Container, Button} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import {Images} from '@assets';
+import {setContinueToStepTwo} from '@store/slices/sessionSlice';
 
 const HomePage = ({navigation}) => {
   const {formatMessage} = useIntl();
+  const dispatch = useDispatch();
 
   const handlePress = useCallback(() => {
     navigation.navigate('InspectionFlow');
@@ -18,7 +21,8 @@ const HomePage = ({navigation}) => {
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
       <ImageBackground
         style={styles.container}
-        source={Images.backgroundPatternTop}>
+        source={Images.backgroundPatternTop}
+        imageStyle={styles.resizeModeRepeat}>
         <Container.ScrollView contentContainerStyle={styles.scrollContainer}>
           <Image source={Images.logo} style={styles.logo} />
           <ImageBackground
@@ -34,9 +38,6 @@ const HomePage = ({navigation}) => {
                 source={Images.backgroundOne}
                 imageStyle={styles.backgroundImage}>
                 <View style={styles.contentContainer}>
-                  <Text style={styles.header}>
-                    {formatMessage({id: 'screen.HomePage.header'})}
-                  </Text>
                   <Button
                     onPress={handlePress}
                     buttonStyle={() => styles.filledButton}
@@ -46,7 +47,10 @@ const HomePage = ({navigation}) => {
                     })}
                   />
                   <Button
-                    onPress={() => navigation.navigate('SourceFlow')}
+                    onPress={() => {
+                      dispatch(setContinueToStepTwo(false));
+                      navigation.navigate('SourceFlow');
+                    }}
                     buttonStyle={() => styles.filledButton}
                     buttonTextStyle={() => ({color: RawColors.white})}
                     buttonContent={formatMessage({
@@ -58,6 +62,7 @@ const HomePage = ({navigation}) => {
                     buttonContent={formatMessage({
                       id: 'button.giveFeedback',
                     })}
+                    buttonStyle={() => styles.emptyButton}
                   />
                 </View>
               </ImageBackground>
@@ -73,6 +78,9 @@ const styles = ScaledSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: RawColors.darkSalmon,
+  },
+  resizeModeRepeat: {
+    resizeMode: 'repeat',
   },
   scrollContainer: {
     paddingTop: '120@vs',
@@ -98,21 +106,17 @@ const styles = ScaledSheet.create({
     width: '78.4%',
     justifyContent: 'center',
     alignSelf: 'center',
-    marginTop: '64@vs',
+    marginTop: '84@vs',
     paddingBottom: '16@vs',
   },
-  header: {
-    marginBottom: '16@vs',
-    textAlign: 'center',
-    color: RawColors.darkGreyBlue,
-    ...Fonts.Lato34R,
-    fontSize: '34@ms0.1',
-  },
   filledButton: {
+    marginVertical: '16@vs',
     backgroundColor: RawColors.darkSalmon,
     minHeight: '66@vs',
     borderWidth: 0,
-    marginBottom: '16@vs',
+  },
+  emptyButton: {
+    marginVertical: '16@vs',
   },
   buttonText: {
     color: RawColors.white,

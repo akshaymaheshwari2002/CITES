@@ -1,10 +1,11 @@
+import {Platform} from 'react-native';
 import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
 
 export default (fieldProps = {}) => {
   const {formatMessage} = createIntl();
-  const {required} = getValidators();
+  const {required, validateNumber} = getValidators();
 
   return [
     {
@@ -14,6 +15,7 @@ export default (fieldProps = {}) => {
       name: '_id',
       rules: {required},
       fieldType: Constants.PICKER,
+      ...Platform.select({ios: {fieldContainerStyle: {zIndex: 1}}}),
       ...fieldProps._id,
     },
     {
@@ -22,18 +24,21 @@ export default (fieldProps = {}) => {
         id: 'form.label.totalSpecimen',
       }),
       placeholder: formatMessage({
-        id: 'form.label.totalSpecimen',
+        id: 'form.label.numberPlaceHolder',
       }),
       name: 'numberOfSpecimen',
-      rules: {required},
+      rules: {required, validate: {validateNumber}},
       keyboardType: 'number-pad',
+      labelBottom: formatMessage({
+        id: 'form.label.specimenBottom',
+      }),
     },
     {
       defaultValue: '',
       label: formatMessage({id: 'form.label.noOfBreedingAdult'}),
-      placeholder: formatMessage({id: 'form.label.noOfBreedingAdult'}),
+      placeholder: formatMessage({id: 'form.label.numberPlaceHolder'}),
       name: 'numberOfBreedingAdults',
-      rules: {required},
+      rules: {required, validate: {validateNumber}},
       keyboardType: 'number-pad',
     },
     {
@@ -41,8 +46,11 @@ export default (fieldProps = {}) => {
       label: formatMessage({id: 'form.label.specimenExported'}),
       placeholder: formatMessage({id: 'form.label.specimenExported'}),
       name: 'numberOfSpeciemenExportedSinceLastInspection',
-      rules: {required},
+      rules: {required, validate: {validateNumber}},
       keyboardType: 'number-pad',
+      labelBottom: formatMessage({
+        id: 'form.label.specimenBottom',
+      }),
     },
     {
       defaultValue: '',
@@ -53,7 +61,11 @@ export default (fieldProps = {}) => {
         required,
         maxLength: {
           value: 1,
-          message: formatMessage({id: 'form.error.singleCharacter'}),
+          message: formatMessage({id: 'form.error.singleCharacterLimit'}),
+        },
+        pattern: {
+          value: /^(D|I|U|X|W|C|F|O|A|R)$/,
+          message: formatMessage({id: 'form.error.singleCharacterAllowed'}),
         },
       },
     },

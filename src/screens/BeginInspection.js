@@ -1,24 +1,22 @@
 import React from 'react';
-import {View, Text, ImageBackground} from 'react-native';
+import {View, Text, ImageBackground, useWindowDimensions} from 'react-native';
 import {useIntl} from 'react-intl';
-import {ms, ScaledSheet} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/Feather';
+import {ScaledSheet} from 'react-native-size-matters';
+import {useDispatch} from 'react-redux';
 
 import {RawColors, Fonts} from '@styles/Themes';
-import {Container, Button, Header, AnimatedView} from '@atoms';
+import {Container, Button, AnimatedView} from '@atoms';
 import {Images} from '@assets';
 import CommonStyles from '@styles/CommonStyles';
+import {setActiveInspection} from '@store/slices/sessionSlice';
 
 const StepsSummary = ({navigation}) => {
   const {formatMessage} = useIntl();
+  const windowWidth = useWindowDimensions().height;
+  const dispatch = useDispatch();
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
-        }
-      />
       <Container.ScrollView
         style={CommonStyles.flex1}
         contentContainerStyle={styles.contentContainer}>
@@ -26,7 +24,7 @@ const StepsSummary = ({navigation}) => {
           source={Images.semiCircle}
           style={CommonStyles.flex1}
           imageStyle={styles.backgroundImage}>
-          <AnimatedView>
+          <AnimatedView startXPos={windowWidth} startYPos={0}>
             <Text style={styles.title}>
               {formatMessage({id: 'screen.StepsSummary.headerPartOne'})}
             </Text>
@@ -79,12 +77,13 @@ const StepsSummary = ({navigation}) => {
             </View>
           </View>
           <Button
-            onPress={() =>
+            onPress={async () => {
+              await dispatch(setActiveInspection({}));
               navigation.navigate('StepOne', {
                 screen: 'StepOne',
                 params: {showToolTip: false},
-              })
-            }
+              });
+            }}
             buttonContent={formatMessage({
               id: 'button.beginInspection',
             })}
@@ -107,6 +106,7 @@ const styles = ScaledSheet.create({
     resizeMode: 'contain',
     position: 'absolute',
     left: '-110%',
+    tintColor: RawColors.eggshell,
   },
   title: {
     ...Fonts.HelveticaNeue25B,

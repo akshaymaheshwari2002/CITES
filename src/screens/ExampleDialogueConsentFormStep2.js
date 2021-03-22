@@ -1,22 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text} from 'react-native';
-import {ScaledSheet, ms} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/Feather';
+import {ScaledSheet, s, ms} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 
 import {Fonts, RawColors} from '@styles/Themes';
-import {Container, Button, Header} from '@atoms';
+import {Container, Button, TextInput} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
 
-const ExampleDialogueConsentFormStep2 = ({navigation: {navigate, goBack}}) => {
+const ExampleDialogueConsentFormStep2 = ({navigation: {navigate}}) => {
   const {formatMessage} = useIntl();
+  const [name, setName] = useState();
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={goBack} />
-        }
-      />
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
         contentContainerStyle={CommonStyles.screenContainer}
         style={CommonStyles.flex1}>
@@ -28,17 +23,26 @@ const ExampleDialogueConsentFormStep2 = ({navigation: {navigate, goBack}}) => {
             {formatMessage({id: 'screen.ExampleDialogueConsent.header'})}
           </Text>
         </View>
-        <Text>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
           <Text style={styles.word}>
             {formatMessage({
               id: 'screen.ExampleDialogueConsentFormStep2.contentOne',
             })}
           </Text>
-          <Text style={[styles.content, styles.nogap]}>
-            {formatMessage({
-              id: 'screen.ExampleDialogueConsentFormStep2.contentTwo',
-            })}
-          </Text>
+          <TextInput
+            value={name}
+            onChange={setName}
+            style={{width: s(180), marginLeft: s(10)}}
+          />
+        </View>
+        <Text style={[styles.content, styles.nogap]}>
+          {formatMessage({
+            id: 'screen.ExampleDialogueConsentFormStep2.contentTwo',
+          })}
         </Text>
         <Text style={styles.content}>
           {formatMessage({
@@ -55,18 +59,24 @@ const ExampleDialogueConsentFormStep2 = ({navigation: {navigate, goBack}}) => {
             id: 'screen.ExampleDialogueConsentFormStep2.contentFive',
           })}
         </Text>
-        <Text>
-          <Text style={styles.content}>
-            {formatMessage({
-              id: 'screen.ExampleDialogueConsentFormStep2.contentSix',
-            })}
-          </Text>
-          <Text style={styles.word}>
-            {formatMessage({
-              id: 'screen.ExampleDialogueConsentFormStep2.contentSeven',
-            })}
-          </Text>
+        <Text style={styles.content}>
+          {formatMessage({
+            id: 'screen.ExampleDialogueConsentFormStep2.contentSixOne',
+          })}
         </Text>
+        <View
+          style={[{flexDirection: 'row', alignItems: 'center'}, styles.nogap]}>
+          <Text style={[styles.content, styles.nogap]}>
+            {formatMessage({
+              id: 'screen.ExampleDialogueConsentFormStep2.contentSixTwo',
+            })}
+          </Text>
+          <TextInput
+            value={name}
+            onChange={setName}
+            style={{width: s(190), marginLeft: s(5)}}
+          />
+        </View>
         <Text style={styles.content}>
           {formatMessage({
             id: 'screen.ExampleDialogueConsentFormStep2.contentEight',
@@ -128,11 +138,7 @@ const styles = ScaledSheet.create({
     color: RawColors.black,
   },
   content: {
-    width: '100%',
-    alignSelf: 'center',
     ...Fonts.Lato17R,
-    lineHeight: 30,
-    letterSpacing: 0.41,
     color: RawColors.black,
     marginTop: '20@s',
   },

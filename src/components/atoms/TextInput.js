@@ -5,7 +5,6 @@ import {ms, ScaledSheet} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {RawColors, Fonts} from '@styles/Themes';
-import CommonStyles from '@styles/CommonStyles';
 
 const TextInput = React.forwardRef(
   (
@@ -17,6 +16,9 @@ const TextInput = React.forwardRef(
       style,
       labelStyle,
       showHelpIcon,
+      labelBottom,
+      labelRight,
+      labelRightStyle,
       onHelpIconPress,
       ...restProps
     },
@@ -35,7 +37,7 @@ const TextInput = React.forwardRef(
     return (
       <>
         {label ? (
-          <Text style={[Fonts.Lato15R, labelStyle]}>{label}</Text>
+          <Text style={[Fonts.Lato15B, labelStyle]}>{label}</Text>
         ) : null}
         <View style={styles.row}>
           <Input
@@ -45,6 +47,9 @@ const TextInput = React.forwardRef(
             value={getValue()}
             {...restProps}
           />
+          {labelRight ? (
+            <Text style={[Fonts.Lato15B, labelRightStyle]}>{labelRight}</Text>
+          ) : null}
           {showHelpIcon ? (
             <Icon
               style={styles.fieldHelpIcon}
@@ -58,6 +63,11 @@ const TextInput = React.forwardRef(
         {error ? (
           <Text style={[{color: RawColors.error}, Fonts.Lato15R]}>{error}</Text>
         ) : null}
+        {labelBottom ? (
+          <Text style={[{color: RawColors.black}, Fonts.Italic15R]}>
+            {labelBottom}
+          </Text>
+        ) : null}
       </>
     );
   },
@@ -70,6 +80,9 @@ TextInput.propTypes = {
   style: PropTypes.object,
   showHelpIcon: PropTypes.bool,
   onHelpIconPress: PropTypes.func,
+  labelBottom: PropTypes.string,
+  labelRight: PropTypes.string,
+  labelRightStyle: PropTypes.object,
 };
 
 TextInput.defaultProps = {
@@ -79,6 +92,9 @@ TextInput.defaultProps = {
   style: {},
   showHelpIcon: false,
   onHelpIconPress: () => {},
+  labelBottom: '',
+  labelRight: '',
+  labelRightStyle: {},
 };
 
 const styles = ScaledSheet.create({
@@ -90,6 +106,7 @@ const styles = ScaledSheet.create({
     borderWidth: 1,
     borderColor: RawColors.dimGrey,
     paddingHorizontal: '8@s',
+    backgroundColor: RawColors.lightGrey,
   },
   fieldHelpIcon: {
     flexShrink: 0,

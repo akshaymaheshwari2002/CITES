@@ -70,19 +70,13 @@ const TextInputArray = React.forwardRef(
 
     return (
       <>
-        <View style={styles.labelContainer}>
-          {label ? (
-            <Text style={[CommonStyles.flex1, Fonts.Lato15R]}>{label}</Text>
-          ) : null}
-          {showHelpIcon ? (
-            <Icon
-              name="information-outline"
-              color={RawColors.darkSalmon}
-              size={moderateScale(40)}
-              onPress={onHelpIconPress}
-            />
-          ) : null}
-        </View>
+        {label ? (
+          typeof label === 'string' ? (
+            <Text style={[CommonStyles.flex1, Fonts.Lato15B]}>{label}</Text>
+          ) : (
+            label
+          )
+        ) : null}
         <View
           style={buttonText ? styles.containerWithButton : styles.container}>
           {renderFields()}
@@ -125,7 +119,6 @@ TextInputArray.propTypes = {
   label: PropTypes.string,
   error: PropTypes.string,
   count: PropTypes.number,
-  incremental: PropTypes.bool,
   onChange: PropTypes.func,
   showHelpIcon: PropTypes.bool,
   onHelpIconPress: PropTypes.func,
@@ -135,7 +128,6 @@ TextInputArray.defaultProps = {
   label: '',
   error: '',
   count: 1,
-  incremental: false,
   onChange: () => {},
   showHelpIcon: false,
   onHelpIconPress: () => {},

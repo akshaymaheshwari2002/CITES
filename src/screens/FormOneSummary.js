@@ -1,66 +1,69 @@
-import React, {useEffect, useState, useCallback, useMemo} from 'react';
+import React, {useState, useMemo, useCallback} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import Pdf from 'react-native-pdf';
 import Icon from 'react-native-vector-icons/Feather';
-import {useIsFocused} from '@react-navigation/native';
+import {useFocusEffect} from '@react-navigation/native';
 import {format} from 'date-fns';
 import {shallowEqual, useSelector} from 'react-redux';
 
-import {Container, Header} from '@atoms';
+import {Container} from '@atoms';
 import {FormOneTemplate, FormOneHeader} from '@molecules';
 import {Fonts, RawColors} from '@styles/Themes';
 import {generatePdf} from '@utils/CommonFunctions';
 import CommonStyles from '@styles/CommonStyles';
 
-const FormOneSummary = ({navigation}) => {
+const FormOneSummary = ({navigation, route}) => {
   const {formatMessage} = useIntl();
-  const isFocused = useIsFocused();
-  const [isShowStep1, setShowStep1] = useState(false);
-  const [isShowEdit, setShowEdit] = useState(false);
   const [fileUri, setFileUri] = useState(undefined);
+  const formSummaryText = route?.params?.formSummaryStepTwo
+    ? route?.params?.formSummaryStepTwo
+    : false;
   const formData = useSelector(
-    (state) => state.sessionReducer.activeInspection.stepOne?.formOne || {},
+    (state) => state.sessionReducer.activeInspection.stepOne?.formOne,
+    shallowEqual,
+  );
+  const registeredSpecies = useSelector(
+    (state) => state.sessionReducer.activeInspection.registeredSpecies,
     shallowEqual,
   );
   const facilityData = useMemo(
     () => ({
       ...formData,
-      facilityOwnerPhone: `+${formData.facilityOwnerPhone.callingCode} ${formData.facilityOwnerPhone.contactNumber}`,
-      dateOfInspection: format(Number(formData.dateOfInspection), 'MM/dd/yyyy'),
-      facilityEstablishmentDate: format(
-        Number(formData.facilityEstablishmentDate),
-        'MM/dd/yyyy',
-      ),
-      typeOfInspection: formData.typeOfInspection[0]?.replace('_', ' '),
+      facilityOwnerPhone_callingCode:
+        formData?.facilityOwnerPhone?.callingCode ?? '',
+      facilityOwnerPhone_contactNumber:
+        formData?.facilityOwnerPhone?.contactNumber ?? '',
+      dateOfInspection: formData?.dateOfInspection
+        ? format(Number(formData?.dateOfInspection), 'MM/dd/yyyy')
+        : '',
+      facilityEstablishmentDate: formData?.facilityEstablishmentDate
+        ? format(Number(formData?.facilityEstablishmentDate), 'MM/dd/yyyy')
+        : '',
+      typeOfInspection: formData?.typeOfInspection
+        ? formData?.typeOfInspection[0]?.replace('_', ' ')
+        : '',
     }),
     [formData],
   );
 
-  useEffect(() => {
-    if (isFocused) {
-      handlePress();
-    }
-  }, [handlePress, isFocused]);
-
-  const handlePress = useCallback(async () => {
-    const file = await generatePdf({
-      templates: [
-        <FormOneHeader facilityData={facilityData} />,
-        <FormOneTemplate speciesData={facilityData.registeredSpecies} />,
-      ],
-    });
-    setFileUri({uri: file?.filePath});
-  }, [facilityData]);
+  useFocusEffect(
+    useCallback(() => {
+      (async () => {
+        const file = await generatePdf({
+          templates: [
+            <FormOneHeader facilityData={facilityData} />,
+            <FormOneTemplate speciesData={registeredSpecies} />,
+          ],
+        });
+        setFileUri({uri: file?.filePath});
+      })();
+    }, [facilityData, registeredSpecies]),
+  );
 
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
-        }
-      />
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
         contentContainerStyle={styles.ScrollViewStyle}
         style={CommonStyles.flex1}>
@@ -91,23 +94,23 @@ const FormOneSummary = ({navigation}) => {
         <TouchableOpacity
           style={styles.slideBtn}
           onPress={() => {
-            if (isShowStep1) {
-              navigation.navigate('StepOne');
-              setShowEdit(false);
-            }
-            setShowStep1((state) => !state);
+            navigation.navigate('StepOne');
           }}>
           <View style={styles.row}>
-            {isShowStep1 ? (
-              <View style={[styles.padding16, styles.marginDimension]}>
+            <View style={[styles.padding16, styles.marginDimension]}>
+              <Text style={styles.text}>
+                {formatMessage({id: 'screen.FormOneSummary.continueTo'})}
+              </Text>
+              {formSummaryText ? (
                 <Text style={styles.text}>
-                  {formatMessage({id: 'screen.FormOneSummary.continueTo'})}
+                  {formatMessage({id: 'screen.FormOneSummary.stepTwo'})}
                 </Text>
+              ) : (
                 <Text style={styles.text}>
                   {formatMessage({id: 'screen.FormOneSummary.stepOne'})}
                 </Text>
-              </View>
-            ) : null}
+              )}
+            </View>
             <View style={styles.justifyContent}>
               <Icon name="chevron-right" size={ms(26)} />
             </View>
@@ -118,23 +121,18 @@ const FormOneSummary = ({navigation}) => {
         <TouchableOpacity
           style={[styles.slideBtn, styles.borderStyle]}
           onPress={() => {
-            if (isShowEdit) {
-              navigation.navigate('FormOne');
-              setShowStep1(false);
-            }
-            setShowEdit((state) => !state);
+            navigation.navigate('FormOneSummaryEdit');
           }}>
           <View style={styles.row}>
-            {isShowEdit ? (
-              <View style={styles.padding16}>
-                <Text style={styles.text}>
-                  {formatMessage({id: 'screen.FormOneSummary.edit'})}
-                </Text>
-                <Text style={styles.text}>
-                  {formatMessage({id: 'screen.FormOneSummary.information'})}
-                </Text>
-              </View>
-            ) : null}
+            <View style={styles.padding16}>
+              <Text style={styles.text}>
+                {formatMessage({id: 'screen.FormOneSummary.edit'})}
+              </Text>
+              <Text style={styles.text}>
+                {formatMessage({id: 'screen.FormOneSummary.information'})}
+              </Text>
+            </View>
+
             <View style={styles.justifyContent}>
               <Icon name="plus" size={ms(26)} />
             </View>
@@ -188,7 +186,7 @@ const styles = ScaledSheet.create({
     justifyContent: 'center',
     borderTopLeftRadius: '8@ms',
     borderBottomLeftRadius: '8@ms',
-    borderWidth: 0.5,
+    borderWidth: 1,
     borderColor: 'black',
   },
   row: {
