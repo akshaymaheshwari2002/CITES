@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useMemo} from 'react';
-import {View, StatusBar, Alert} from 'react-native';
+import {View, StatusBar} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms, s} from 'react-native-size-matters';
@@ -73,10 +73,6 @@ const StepOne = ({navigation, route}) => {
         content: formatMessage({
           id: 'screen.StepOne.WalkThroughContentTwo',
         }),
-        contentstyle: {
-          height: ms(60),
-          width: ms(172),
-        },
       }),
     );
   }, [dispatch, formatMessage, navigation]);
@@ -87,13 +83,11 @@ const StepOne = ({navigation, route}) => {
         <Tooltip
           placement="bottom"
           isVisible={route.params.showToolTip}
+          allowChildInteraction={true}
+          closeOnChildInteraction={false}
           content={formatMessage({
             id: 'screen.StepOne.WalkThroughContentOne',
           })}
-          contentstyle={{
-            height: ms(60),
-            width: ms(300),
-          }}
           onClose={handleTooltipClose}>
           <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
         </Tooltip>
@@ -151,7 +145,6 @@ const styles = ScaledSheet.create({
   toolTipContent: {
     ...Fonts.Lato17B,
   },
-  toolTipContentStyle: {height: 60, width: 202, borderRadius: 10},
   icon: {
     borderRadius: 16,
     borderColor: RawColors.softRed,

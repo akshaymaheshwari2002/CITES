@@ -16,6 +16,9 @@ export default ScaledSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  alignCenter: {
+    alignItems: 'center',
+  },
   shadowEffect: {
     shadowColor: RawColors.black,
     shadowOffset: {width: 0, height: 3},

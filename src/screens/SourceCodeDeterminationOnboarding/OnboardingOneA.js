@@ -20,7 +20,6 @@ const OnboardingOneA = () => {
         <Text style={styles.title}>
           {formatMessage({id: 'screen.OnboardingOneA.title'})}
         </Text>
-
         <Text style={[styles.content, styles.gap]}>
           {formatMessage({id: 'screen.OnboardingOneA.contentOne'})}
         </Text>
@@ -38,7 +37,7 @@ const OnboardingOneA = () => {
 const styles = ScaledSheet.create({
   contentContainer: {
     paddingHorizontal: '34@s',
-    paddingVertical: 30,
+    paddingVertical: '30@vs',
     backgroundColor: RawColors.transparent,
   },
   title: {
@@ -49,12 +48,12 @@ const styles = ScaledSheet.create({
     marginTop: '15@s',
     ...Fonts.Lato30R,
   },
-  gap: {marginTop: '30@s'},
+  gap: {marginTop: '30@vs'},
   content: {
     textAlign: 'center',
     alignSelf: 'center',
     lineHeight: '30@ms',
-    ...Fonts.Lato20R,
+    ...Fonts.Lato17R,
   },
   backgroundImage: {
     resizeMode: 'contain',
