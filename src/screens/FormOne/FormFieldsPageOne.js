@@ -18,7 +18,7 @@ let countries;
   countries = _countries;
 })();
 
-export default (fieldProps = {}) => {
+export default () => {
   const {formatMessage} = createIntl();
   const {
     required,
@@ -35,9 +35,9 @@ export default (fieldProps = {}) => {
       placeholder: formatMessage({id: 'form.label.dateOfInspection'}),
       name: 'dateOfInspection',
       rules: {required},
+      minimumDate: new Date(),
       headerTextIOS: formatMessage({id: 'form.label.dateOfInspection'}),
       fieldType: Constants.DATEPICKER,
-      ...fieldProps._dateOfInspection,
     },
     {
       defaultValue: '',
