@@ -12,10 +12,6 @@ import {
   FormTwo,
   FormThree,
   FormFour,
-  SearchDummy,
-  Notes,
-  DrawerMenu,
-  StepsSummary,
   SourceCode,
   BeginInspection,
   FacilityRegistered,
@@ -98,13 +94,7 @@ const AppNavigator = () => {
         <Stack.Screen name="FormOne" component={FormOne} />
         <Stack.Screen name="FormTwo" component={FormTwo} />
         <Stack.Screen name="FormThree" component={FormThree} />
-
         <Stack.Screen name="FormFour" component={FormFour} />
-        <Stack.Screen name="Search" component={SearchDummy} />
-
-        <Stack.Screen name="Notes" component={Notes} />
-        <Stack.Screen name="DrawerMenu" component={DrawerMenu} />
-        <Stack.Screen name="StepsSummary" component={StepsSummary} />
         <Stack.Screen name="FacilityScore" component={FacilityScore} />
         <Stack.Screen
           name="FacilityScoreInformation"

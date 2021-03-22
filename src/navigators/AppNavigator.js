@@ -53,8 +53,6 @@ const AppNavigator = () => {
           component={TabNavigator}
           options={{headerShown: false}}
         />
-        {/* <Stack.Screen name="StepsSummary" component={StepsSummary} /> */}
-        {/* <Stack.Screen name="FacilityScore" component={FacilityScore} /> */}
         <Stack.Screen
           name="InspectionFlow"
           options={{headerTransparent: true}}
