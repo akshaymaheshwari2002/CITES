@@ -39,6 +39,7 @@ const styles = ScaledSheet.create({
     ...CommonStyles.flex1,
     justifyContent: 'center',
     paddingHorizontal: '20@s',
+    paddingTop: '34@vs',
   },
   word: {
     fontWeight: 'bold',

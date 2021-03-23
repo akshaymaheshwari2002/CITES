@@ -62,14 +62,14 @@ export default () => {
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.placeholder.addressLineOne'}),
+      label: formatMessage({id: 'form.label.addressLineOne'}),
       placeholder: formatMessage({id: 'form.placeholder.addressLineOne'}),
       name: 'facilityAddressLineOne',
       rules: {required},
       fieldContainerStyle: {marginBottom: 0},
     },
     {
-      label: formatMessage({id: 'form.placeholder.addressLineTwo'}),
+      label: formatMessage({id: 'form.label.addressLineTwo'}),
       placeholder: formatMessage({id: 'form.placeholder.addressLineTwo'}),
       defaultValue: '',
       name: 'facilityAddressLineTwo',
