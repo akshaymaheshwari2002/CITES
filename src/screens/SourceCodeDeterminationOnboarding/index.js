@@ -26,7 +26,7 @@ const SourceCodeDeterminationOnboarding = ({navigation}) => {
   const handleForwardPress = useCallback(() => {
     if (activeIndex === data?.length - 1) {
       navigation.navigate('TabNavigator', {
-        screen: 'StepOne',
+        screen: 'DetermineSourceCode',
         params: {showToolTip: true},
       });
     } else {

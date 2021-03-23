@@ -1,5 +1,5 @@
 import React, {useState, useMemo, useCallback} from 'react';
-import {View, Text, TouchableOpacity, Alert} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import Pdf from 'react-native-pdf';
@@ -66,7 +66,7 @@ const FormOneSummary = ({navigation, route}) => {
         style={CommonStyles.flex1}>
         <View style={styles.titleView}>
           <Text style={styles.title}>
-            {formatMessage({id: 'screen.FormTwo.title'}) + ':'}
+            {formatMessage({id: 'screen.FormTwoSummary.title_1'}) + ':'}
           </Text>
           <Text style={styles.title}>
             {formatMessage({id: 'screen.FormOneSummary.title_2'})}
@@ -112,7 +112,7 @@ const FormOneSummary = ({navigation, route}) => {
         <TouchableOpacity
           style={[styles.slideBtn, styles.borderStyle]}
           onPress={() => {
-            Alert.alert('Work in progress');
+            navigation.navigate('FormTwoSummaryEdit');
           }}>
           <View style={styles.row}>
             <View style={styles.padding16}>
@@ -161,13 +161,13 @@ const styles = ScaledSheet.create({
   },
   slideBtnContainerStep: {
     position: 'absolute',
-    top: '105@vs',
+    top: '17@vs',
     right: 0,
     paddingLeft: '5@s',
   },
   slideBtnContainerEdit: {
     position: 'absolute',
-    top: '185@vs',
+    top: '92@vs',
     right: 0,
     paddingLeft: '5@s',
   },

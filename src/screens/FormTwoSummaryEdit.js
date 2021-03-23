@@ -5,15 +5,12 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import {renderToString} from 'react-dom/server';
 import {useIntl} from 'react-intl';
 import {format} from 'date-fns';
-import {
-  saveInspection,
-  saveRegisteredSpecies,
-} from '@store/slices/sessionSlice';
+import {saveInspection} from '@store/slices/sessionSlice';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
 
 import {Container} from '@atoms';
-import {FormOneTemplate, FormOneHeader} from '@molecules';
+import {FormOneHeader, FormTwoTemplate} from '@molecules';
 import {Fonts, RawColors} from '@styles/Themes';
 
 const getHtmlStringFromJsx = (element) => {
@@ -52,20 +49,17 @@ const formatFormDataToDisplay = (data) => ({
     : '',
 });
 
-const FormOneSummaryEdit = ({navigation}) => {
+const FormTwoSummaryEdit = ({navigation}) => {
   const {formatMessage} = useIntl();
   const dispatch = useDispatch();
-  const [facilityDataModified, setfacilityDataModified] = useState({});
-  const [registeredSpeciesModified, setRegisteredSpeciesModified] = useState(
-    [],
-  );
+  const [formTwoDataModified, setformTwoDataModified] = useState({});
 
-  const formData = useSelector(
-    (state) => state.sessionReducer.activeInspection.stepOne?.formOne || {},
+  const facilityData = useSelector(
+    (state) => state.sessionReducer.activeInspection.stepOne?.formOne,
     shallowEqual,
   );
-  const registeredSpecies = useSelector(
-    (state) => state.sessionReducer.activeInspection.registeredSpecies || [],
+  const formTwoData = useSelector(
+    (state) => state.sessionReducer.activeInspection.stepTwo?.formTwo,
     shallowEqual,
   );
   const html = useMemo(
@@ -73,92 +67,109 @@ const FormOneSummaryEdit = ({navigation}) => {
       getHtmlStringFromJsx(
         <>
           <FormOneHeader
-            facilityData={formatFormDataToDisplay(formData)}
-            editable={true}
+            facilityData={formatFormDataToDisplay(facilityData)}
+            form={'two'}
+            editable={false}
           />
-          <FormOneTemplate speciesData={registeredSpecies} editable={true} />
+          <FormTwoTemplate formTwoData={formTwoData} editable={true} />
         </>,
       ),
-    [formData, registeredSpecies],
+    [facilityData, formTwoData],
   );
 
   const handleSubmit = useCallback(() => {
-    const __facilityDataModified = {...facilityDataModified};
-    delete __facilityDataModified._id;
-    __facilityDataModified.facilityOwnerPhone = {
-      callingCode: __facilityDataModified?.facilityOwnerPhone_callingCode ?? '',
-      contactNumber:
-        __facilityDataModified?.facilityOwnerPhone_contactNumber ?? '',
-    };
-    delete __facilityDataModified.facilityOwnerPhone_callingCode;
-    delete __facilityDataModified.facilityOwnerPhone_contactNumber ?? '';
-
+    const __formTwoDataModified = {...formTwoDataModified};
     dispatch(
       saveInspection({
-        stepOne: {
-          formOne: {
-            ...__facilityDataModified,
-            dateOfInspection: formData.dateOfInspection,
-            facilityEstablishmentDate: formData.facilityEstablishmentDate,
-            typeOfInspection: formData.typeOfInspection,
+        stepTwo: {
+          formTwo: {
+            ...__formTwoDataModified,
           },
         },
       }),
     );
-    dispatch(saveRegisteredSpecies(registeredSpeciesModified));
+
     navigation.goBack();
-  }, [
-    dispatch,
-    facilityDataModified,
-    formData.dateOfInspection,
-    formData.facilityEstablishmentDate,
-    formData.typeOfInspection,
-    navigation,
-    registeredSpeciesModified,
-  ]);
+  }, [dispatch, formTwoDataModified, navigation]);
 
   const handleMessage = useCallback(
     (ev) => {
       const data = JSON.parse(ev.nativeEvent.data);
+      console.log(data);
       if (
-        facilityDataModified[data.name] !== undefined &&
-        facilityDataModified[data.name] !== data.value
+        data?.name &&
+        data.name &&
+        data.name.split('.') &&
+        data.name.split('.')[0] === 'formTwo'
       ) {
-        setfacilityDataModified((state) => ({
-          ...state,
-          [data.name]: data.value,
-        }));
-      } else if (data.name ?? data.name.split('.')[0] === 'registeredSpecies') {
-        setRegisteredSpeciesModified((state) => {
-          const _state = [...state];
-          const changedSpeciesIndex = parseInt(data.name.split('.')[1], 10);
-          const changedPropertyKey = data.name.split('.')[2];
-          _state[changedSpeciesIndex] = {
-            ...state[changedSpeciesIndex],
-            [changedPropertyKey]: data.value,
-          };
-          return _state;
-        });
+        if (data.name.split('.')[1] === 'staffHours') {
+          if (
+            formTwoDataModified?.staffHours[data.name.split('.')[2]] !==
+            data.value
+          ) {
+            setformTwoDataModified((state) => ({
+              ...state,
+              staffHours: {
+                ...state.staffHours,
+                [data.name.split('.')[2]]: data.value,
+              },
+            }));
+          }
+        } else if (data.name.split('.')[1] === 'addressOfOtherAnimals') {
+          if (
+            formTwoDataModified?.addressOfOtherAnimals[
+              data.name.split('.')[2]
+            ] !== data.value
+          ) {
+            setformTwoDataModified((state) => {
+              const __addressOfOtherAnimals = [
+                ...(formTwoDataModified?.addressOfOtherAnimals ?? []),
+              ];
+              __addressOfOtherAnimals[data.name.split('.')[2]] = data.value;
+              return {
+                ...state,
+                addressOfOtherAnimals: __addressOfOtherAnimals,
+              };
+            });
+          }
+        } else if (
+          data.name.split('.')[1] === 'accessToVeterinaryServices' ||
+          data.name.split('.')[1] === 'animalKeptAtOtherLocation'
+        ) {
+          if (
+            formTwoDataModified?.[data.name.split('.')[1]]?.[0] !== data?.value
+          ) {
+            setformTwoDataModified((state) => ({
+              ...state,
+              [data.name.split('.')[1]]: [data.value],
+            }));
+          }
+        } else {
+          if (formTwoDataModified?.[data.name.split('.')[1]] !== data?.value) {
+            setformTwoDataModified((state) => ({
+              ...state,
+              [data.name.split('.')[1]]: data?.value,
+            }));
+          }
+        }
       }
     },
-    [facilityDataModified],
+    [formTwoDataModified],
   );
 
   useEffect(() => {
-    if (Object.keys(formData).length) {
-      setfacilityDataModified(formatFormDataToDisplay(formData));
-    }
-  }, [formData]);
+    setformTwoDataModified(formTwoData);
+  }, [formTwoData]);
 
   useEffect(() => {
-    setRegisteredSpeciesModified(registeredSpecies);
-  }, [registeredSpecies]);
+    console.debug(formTwoDataModified);
+  }, [formTwoDataModified]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <View style={styles.titleView}>
         <Text style={styles.title}>
-          {formatMessage({id: 'screen.FormOneSummary.title_1'}) + ':'}
+          {formatMessage({id: 'screen.FormTwoSummary.title_1'}) + ':'}
         </Text>
         <Text style={styles.title}>
           {formatMessage({id: 'screen.FormOneSummary.title_2'})}
@@ -243,13 +254,13 @@ const styles = ScaledSheet.create({
   },
   slideBtnContainerStep: {
     position: 'absolute',
-    top: '17@vs',
+    top: '105@vs',
     right: 0,
     paddingLeft: '5@s',
   },
   slideBtnContainerEdit: {
     position: 'absolute',
-    top: '92@vs',
+    top: '185@vs',
     right: 0,
     paddingLeft: '5@s',
   },
@@ -286,4 +297,4 @@ const styles = ScaledSheet.create({
   },
 });
 
-export default FormOneSummaryEdit;
+export default FormTwoSummaryEdit;

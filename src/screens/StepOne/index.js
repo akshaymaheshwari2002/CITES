@@ -224,8 +224,8 @@ const checkliststyles = ScaledSheet.create({
     ...Fonts.HelveticaNeue13B,
   },
   formOneCell: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    //flexDirection: 'row',
+    //alignItems: 'center',
   },
   productionCalculatorCell: {
     marginVertical: '15@ms',

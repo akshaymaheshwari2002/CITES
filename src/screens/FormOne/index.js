@@ -205,7 +205,16 @@ const FormOne = ({navigation}) => {
           {formatMessage({id: 'screen.FormOne.title'})}
         </Text>
         <Text style={styles.contentOne}>
-          {formatMessage({id: 'screen.FormOne.contentOne'})}
+          {formatMessage({id: 'screen.FormOne.contentOnePartOne'})}
+          <Text style={(styles.contentOne, {...Fonts.Lato15B})}>
+            {formatMessage({id: 'screen.FormOne.contentOnePartOneTwo'})}
+          </Text>
+          <Text style={styles.contentOne}>
+            {formatMessage({id: 'screen.FormOne.contentOnePartOneThree'})}
+          </Text>
+        </Text>
+        <Text style={styles.contentOnePartTwo}>
+          {formatMessage({id: 'screen.FormOne.contentOnePartTwo'})}
         </Text>
         <Text style={styles.contentOnePartTwo}>
           {formatMessage({id: 'screen.FormOne.contentOnePartTwo'})}
