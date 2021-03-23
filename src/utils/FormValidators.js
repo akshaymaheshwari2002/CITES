@@ -57,9 +57,11 @@ export default () => {
         ? true
         : formatMessage({id: 'form.error.invalidPhone'}),
     validBreedingCode: (value) => {
-      return regexBreedingCode.test(value.join().replace(/,/g, ''))
-        ? true
-        : formatMessage({id: 'form.error.invalidBreedingCode'});
+      return value.join('') !== '--'
+        ? regexBreedingCode.test(value.join().replace(/,/g, ''))
+          ? true
+          : formatMessage({id: 'form.error.invalidBreedingCode'})
+        : true;
     },
     validateTextInputArrayAltNumber: (value) =>
       (Array.isArray(value) &&

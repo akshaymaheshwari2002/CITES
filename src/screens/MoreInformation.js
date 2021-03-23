@@ -120,7 +120,7 @@ const styles = ScaledSheet.create({
     ...Fonts.Lato20B,
     textAlign: 'center',
     lineHeight: '21@s',
-    backgroundColor: 'green',
+    //backgroundColor: 'green',
     alignSelf: 'center',
     //marginHorizontal: '20@s',
   },

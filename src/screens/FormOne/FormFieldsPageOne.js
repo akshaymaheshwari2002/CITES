@@ -35,6 +35,7 @@ export default () => {
       placeholder: formatMessage({id: 'form.label.dateOfInspection'}),
       name: 'dateOfInspection',
       rules: {required},
+      minimumDate: new Date(),
       headerTextIOS: formatMessage({id: 'form.label.dateOfInspection'}),
       fieldType: Constants.DATEPICKER,
     },

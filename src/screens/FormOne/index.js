@@ -38,6 +38,7 @@ const FormOne = ({navigation}) => {
     shallowEqual,
   );
   const selectedSpeciesId = watch('_id');
+
   const formFields = useMemo(
     () =>
       formFieldsPage === 1
