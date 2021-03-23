@@ -1,11 +1,12 @@
 import React, {useState, useCallback, useEffect} from 'react';
-import {Modal, Text, Pressable, View} from 'react-native';
-import {ScaledSheet, moderateScale} from 'react-native-size-matters';
+import {Modal, Text, Pressable, View, Image} from 'react-native';
+import {ScaledSheet, moderateScale, ms} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {Container} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
 import {RawColors, Fonts} from '@styles/Themes';
+import {Images} from '@assets';
 
 const OverlayModal = ({isModalVisible, hideModal, helpText}) => {
   const [modalWidth, setModalWidth] = useState('50%'); // width to be set dynamically according to the content
@@ -55,12 +56,7 @@ const OverlayModal = ({isModalVisible, hideModal, helpText}) => {
               setModalViewHeight(Math.round(height));
             }
           }}>
-          <Icon
-            name="information-outline"
-            color={RawColors.darkSalmon}
-            style={styles.helpIcon}
-            size={moderateScale(40)}
-          />
+          <Image source={Images.information} style={styles.helpIcon} />
           <Container.ScrollView style={styles.scrollView}>
             <View
               style={styles.contentContainer}
@@ -108,7 +104,8 @@ const styles = ScaledSheet.create({
     ...CommonStyles.shadowEffect,
   },
   helpIcon: {
-    padding: '12@vs',
+    marginVertical: '10@vs',
+    marginHorizontal: '10@s',
     alignSelf: 'flex-start',
   },
   scrollView: {alignSelf: 'flex-start', width: '100%'},

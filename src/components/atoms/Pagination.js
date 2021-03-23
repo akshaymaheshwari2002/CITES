@@ -40,8 +40,8 @@ const styles = ScaledSheet.create({
     alignSelf: 'center',
   },
   dot: {
-    height: '16@ms',
-    width: '16@ms',
+    height: '12@ms',
+    width: '12@ms',
     marginHorizontal: '6@s',
   },
 });

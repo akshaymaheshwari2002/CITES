@@ -3,6 +3,7 @@ import {Platform, Text, View} from 'react-native';
 import Tooltip, {
   TooltipChildrenContext,
 } from 'react-native-walkthrough-tooltip';
+import {useIntl} from 'react-intl';
 import {ScaledSheet, vs} from 'react-native-size-matters';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import PropTypes from 'prop-types';
@@ -16,6 +17,7 @@ const _Tooltip = ({
   contentstyle,
   ...restProps
 }) => {
+  const {formatMessage} = useIntl();
   return (
     <Tooltip
       useInteractionManager={true}
@@ -25,7 +27,14 @@ const _Tooltip = ({
       arrowSize={styles.arrowSize}
       childContentSpacing={vs(12)}
       allowChildInteraction={false}
-      content={<Text style={Fonts.Lato17R}>{content}</Text>}
+      content={
+        <View style={{flexDirection: 'row'}}>
+          <Text style={Fonts.Lato17B}>
+            {formatMessage({id: 'screen.StepOne.WalkThroughContentTap'})}
+          </Text>
+          <Text style={Fonts.Lato17R}>{content}</Text>
+        </View>
+      }
       {...restProps}>
       <TooltipChildrenContext.Consumer>
         {({tooltipDuplicate}) =>

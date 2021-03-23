@@ -60,13 +60,13 @@ const TextInput = React.forwardRef(
             />
           ) : null}
         </View>
-        {error ? (
-          <Text style={[{color: RawColors.error}, Fonts.Lato15R]}>{error}</Text>
-        ) : null}
         {labelBottom ? (
           <Text style={[{color: RawColors.black}, Fonts.Italic15R]}>
             {labelBottom}
           </Text>
+        ) : null}
+        {error ? (
+          <Text style={[{color: RawColors.error}, Fonts.Lato15R]}>{error}</Text>
         ) : null}
       </>
     );
