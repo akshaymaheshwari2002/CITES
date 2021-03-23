@@ -116,7 +116,7 @@ const styles = ScaledSheet.create({
 });
 
 TextInputArray.propTypes = {
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   error: PropTypes.string,
   count: PropTypes.number,
   onChange: PropTypes.func,
