@@ -21,6 +21,7 @@ import {
   FormOneSummary,
   FormOneSummaryEdit,
   FormTwoSummary,
+  FormTwoSummaryEdit,
   ExampleDialogueStep3,
   ExampleDialogueStep2,
   ExampleDialogueConsentFormStep2,
@@ -99,6 +100,10 @@ const AppNavigator = () => {
           component={FormOneSummaryEdit}
         />
         <Stack.Screen name="FormTwoSummary" component={FormTwoSummary} />
+        <Stack.Screen
+          name="FormTwoSummaryEdit"
+          component={FormTwoSummaryEdit}
+        />
         <Stack.Screen name="Q4MoreInfo" component={Q4MoreInfo} />
         <Stack.Screen name="Q9MoreInfo" component={Q9MoreInfo} />
         <Stack.Screen name="Q1MoreInfo" component={Q1MoreInfo} />

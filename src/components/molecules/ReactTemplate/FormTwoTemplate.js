@@ -1,19 +1,41 @@
 import React from 'react';
 
 import Constants from '@utils/Constants';
+import {getInputFieldElementForFormSummary as getInputFieldElement} from '@utils/CommonFunctions';
 
-const FormTwoTemplate = ({formTwoData = {}}) => {
-  const formTwoSchema = {
-    noOfStaff: 'How many staff currently employed at the Facility: ',
-    noOfPartTime: 'Part Time',
-    noOfFullTime: 'Full Time',
-    isVeterinaryServices:
-      'Does the Operation have access to professional veterinary services?',
-    ifYesVeterinaryServices: 'If yes,what is name and address of vet?',
-    ifYesOtherLocation: 'If yes,what is address of location(s)?',
-    otherLocation: 'Are animals keet at other location(s)?',
-    yes: 'Yes',
-    no: 'No',
+const formTwoLabels = {
+  noOfStaff: 'How many staff currently employed at the Facility: ',
+  noOfPartTime: 'Part Time',
+  noOfFullTime: 'Full Time',
+  isVeterinaryServices:
+    'Does the Operation have access to professional veterinary services?',
+  ifYesVeterinaryServices: 'If yes,what is name and address of vet?',
+  ifYesOtherLocation: 'If yes,what is address of location(s)?',
+  otherLocation: 'Are animals keet at other location(s)?',
+  yes: Constants.YES,
+  no: Constants.NO,
+};
+
+const FormTwoTemplate = ({formTwoData = {}, editable = false}) => {
+  const getInputElementConditionally = ({
+    name,
+    defaultValue,
+    inputSize,
+    type,
+    checked,
+    id,
+    alt = '',
+  }) => {
+    return editable
+      ? getInputFieldElement({
+          name,
+          defaultValue,
+          inputSize,
+          type,
+          checked,
+          id,
+        })
+      : alt;
   };
 
   return (
@@ -23,95 +45,196 @@ const FormTwoTemplate = ({formTwoData = {}}) => {
           <div style={styles.table}>
             <div style={styles.paddingContainer}>
               <p style={styles.text}>
-                <b>{formTwoSchema?.noOfStaff}</b>
+                <b>{formTwoLabels?.noOfStaff}</b>
               </p>
               <div style={styles.rowWithMargin}>
-                <p>{formTwoSchema?.noOfPartTime}</p>
+                <p>{formTwoLabels?.noOfPartTime}</p>
                 <p style={styles.inputText}>
-                  {formTwoData?.staffHours?.partTimeStaffs ?? ''}
+                  {getInputElementConditionally({
+                    name: 'formTwo.staffHours.partTimeStaffs',
+                    defaultValue: formTwoData?.staffHours?.partTimeStaffs ?? '',
+                    inputSize: 15,
+                    type: 'number',
+                    alt: formTwoData?.staffHours?.partTimeStaffs ?? '',
+                  })}
                 </p>
               </div>
               <div style={styles.rowWithMargin}>
-                <p>{formTwoSchema?.noOfFullTime}</p>
+                <p>{formTwoLabels?.noOfFullTime}</p>
                 <p style={styles.inputText}>
-                  {formTwoData?.staffHours?.fullTimeStaffs ?? ''}
+                  {getInputElementConditionally({
+                    name: 'formTwo.staffHours.fullTimeStaffs',
+                    defaultValue: formTwoData?.staffHours?.fullTimeStaffs ?? '',
+                    inputSize: 15,
+                    type: 'number',
+                    alt: formTwoData?.staffHours?.fullTimeStaffs ?? '',
+                  })}
                 </p>
               </div>
               <p style={styles.text}>
-                <b>{formTwoSchema?.isVeterinaryServices}</b>
+                <b>{formTwoLabels?.isVeterinaryServices}</b>
               </p>
               <div style={styles.row}>
                 <div>
                   <div style={styles.rowForCheckBox}>
-                    <input
-                      type="checkbox"
-                      defaultChecked={
+                    {getInputElementConditionally({
+                      name: 'formTwo.accessToVeterinaryServices',
+                      checked:
                         formTwoData?.accessToVeterinaryServices?.[0] ===
-                          Constants.YES ?? false
-                      }
-                    />
-                    <p style={styles.marginText}>{formTwoSchema?.yes}</p>
+                          Constants.YES ?? false,
+                      defaultValue: Constants.YES,
+                      inputSize: 15,
+                      type: 'radio',
+                      id: 'formTwo.accessToVeterinaryServices.yes',
+                      alt: (
+                        <input
+                          type="checkbox"
+                          defaultChecked={
+                            formTwoData?.accessToVeterinaryServices?.[0] ===
+                              Constants.YES ?? false
+                          }
+                        />
+                      ),
+                    })}
+                    <label
+                      htmlFor={'formTwo.accessToVeterinaryServices.yes'}
+                      style={styles.marginText}>
+                      {formTwoLabels?.yes}
+                    </label>
                   </div>
                   <div style={styles.rowForCheckBox}>
-                    <input
-                      type="checkbox"
-                      defaultChecked={
+                    {getInputElementConditionally({
+                      name: 'formTwo.accessToVeterinaryServices',
+                      checked:
                         formTwoData?.accessToVeterinaryServices?.[0] ===
-                          Constants.NO ?? false
-                      }
-                    />
-                    <p style={styles.marginText}>{formTwoSchema?.no}</p>
+                          Constants.NO ?? false,
+                      defaultValue: Constants.NO,
+                      inputSize: 15,
+                      type: 'radio',
+                      id: 'formTwo.accessToVeterinaryServices.no',
+                      alt: (
+                        <input
+                          type="checkbox"
+                          defaultChecked={
+                            formTwoData?.accessToVeterinaryServices?.[0] ===
+                              Constants.NO ?? false
+                          }
+                        />
+                      ),
+                    })}
+                    <label
+                      htmlFor={'formTwo.accessToVeterinaryServices.no'}
+                      style={styles.marginText}>
+                      {formTwoLabels?.no}
+                    </label>
                   </div>
                 </div>
                 <div style={styles.halfContainer}>
-                  <p>{formTwoSchema?.ifYesVeterinaryServices}</p>
+                  <p>{formTwoLabels?.ifYesVeterinaryServices}</p>
                 </div>
                 <div style={styles.inputContainer}>
                   <p style={styles.inputText}>
-                    {formTwoData?.veterinarianName ?? ''}
+                    {getInputElementConditionally({
+                      name: 'formTwo.veterinarianName',
+                      defaultValue: formTwoData?.veterinarianName,
+                      inputSize: 15,
+                      alt: formTwoData?.veterinarianName ?? '',
+                    })}
                   </p>
                   <p style={styles.inputText}>
-                    {(formTwoData?.veterinarianAddress ?? '') +
-                      (formTwoData?.veterinarianCountry ?? '')}
+                    {getInputElementConditionally({
+                      name: 'formTwo.veterinarianAddress',
+                      defaultValue: formTwoData?.veterinarianAddress,
+                      inputSize: 15,
+                      alt: formTwoData?.veterinarianAddress ?? '',
+                    })}
+                    &nbsp;
+                    {getInputElementConditionally({
+                      name: 'formTwo.veterinarianCountry',
+                      defaultValue: formTwoData?.veterinarianCountry,
+                      inputSize: 15,
+                      alt: formTwoData?.veterinarianCountry ?? '',
+                    })}
                   </p>
                 </div>
               </div>
-
               <p style={styles.text}>
-                <b>{formTwoSchema?.otherLocation}</b>
+                <b>{formTwoLabels?.otherLocation}</b>
               </p>
               <div style={styles.row}>
                 <div>
                   <div style={styles.rowForCheckBox}>
-                    <input
-                      type="checkbox"
-                      defaultChecked={
+                    {getInputElementConditionally({
+                      name: 'formTwo.animalKeptAtOtherLocation',
+                      checked:
                         formTwoData?.animalKeptAtOtherLocation?.[0] ===
-                          Constants.YES ?? false
-                      }
-                    />
-                    <p style={styles.marginText}>{formTwoSchema?.yes}</p>
+                          Constants.YES ?? false,
+                      defaultValue: Constants.YES,
+                      inputSize: 15,
+                      type: 'radio',
+                      id: 'formTwo.animalKeptAtOtherLocation.yes',
+                      alt: (
+                        <input
+                          type="checkbox"
+                          defaultChecked={
+                            formTwoData?.animalKeptAtOtherLocation?.[0] ===
+                              Constants.YES ?? false
+                          }
+                        />
+                      ),
+                    })}
+                    <label
+                      htmlFor={'formTwo.animalKeptAtOtherLocation.yes'}
+                      style={styles.marginText}>
+                      {formTwoLabels?.yes}
+                    </label>
                   </div>
                   <div style={styles.rowForCheckBox}>
-                    <input
-                      type="checkbox"
-                      defaultChecked={
+                    {getInputElementConditionally({
+                      name: 'formTwo.animalKeptAtOtherLocation',
+                      checked:
                         formTwoData?.animalKeptAtOtherLocation?.[0] ===
-                          Constants.NO ?? false
-                      }
-                    />
-                    <p style={styles.marginText}>{formTwoSchema?.no}</p>
+                          Constants.NO ?? false,
+                      defaultValue: Constants.NO,
+                      inputSize: 15,
+                      type: 'radio',
+                      id: 'formTwo.animalKeptAtOtherLocation.no',
+                      alt: (
+                        <input
+                          type="checkbox"
+                          defaultChecked={
+                            formTwoData?.animalKeptAtOtherLocation?.[0] ===
+                              Constants.NO ?? false
+                          }
+                        />
+                      ),
+                    })}
+                    <label
+                      htmlFor={'formTwo.animalKeptAtOtherLocation.no'}
+                      style={styles.marginText}>
+                      {formTwoLabels?.no}
+                    </label>
                   </div>
                 </div>
                 <div style={styles.halfContainer}>
-                  <p>{formTwoSchema?.ifYesOtherLocation}</p>
+                  <p>{formTwoLabels?.ifYesOtherLocation}</p>
                 </div>
                 <div style={styles.inputContainer}>
                   <p style={styles.inputText}>
-                    {formTwoData?.addressOfOtherAnimals?.[0] ?? ''}
+                    {getInputElementConditionally({
+                      name: 'formTwo.addressOfOtherAnimals.0',
+                      defaultValue: formTwoData?.addressOfOtherAnimals?.[0],
+                      inputSize: 30,
+                      alt: formTwoData?.addressOfOtherAnimals?.[0] ?? '',
+                    })}
                   </p>
                   <p style={styles.inputText}>
-                    {formTwoData?.addressOfOtherAnimals?.[1] ?? ''}
+                    {getInputElementConditionally({
+                      name: 'formTwo.addressOfOtherAnimals.1',
+                      defaultValue: formTwoData?.addressOfOtherAnimals?.[1],
+                      inputSize: 30,
+                      alt: formTwoData?.addressOfOtherAnimals?.[1] ?? '',
+                    })}
                   </p>
                 </div>
               </div>

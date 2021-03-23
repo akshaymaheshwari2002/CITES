@@ -25,6 +25,7 @@ import MoreInformation from './MoreInformation';
 import FormOneSummary from './FormOneSummary';
 import FormOneSummaryEdit from './FormOneSummaryEdit';
 import FormTwoSummary from './FormTwoSummary';
+import FormTwoSummaryEdit from './FormTwoSummaryEdit';
 import InspectionOnboarding from './InspectionOnboarding';
 import SourceCodeDeterminationOnboarding from './SourceCodeDeterminationOnboarding';
 import ExampleDialogueStep3 from './ExampleDialogueStep3';
@@ -67,6 +68,7 @@ export {
   FormOneSummary,
   FormOneSummaryEdit,
   FormTwoSummary,
+  FormTwoSummaryEdit,
   InspectionOnboarding,
   ExampleDialogueStep3,
   ExampleDialogueConsentFormStep2,
