@@ -1,7 +1,7 @@
 import React, {useRef, useCallback, useState} from 'react';
 import {View, useWindowDimensions, FlatList} from 'react-native';
 import {ms} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import {Container, Header, Pagination} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
@@ -67,7 +67,7 @@ const SourceCodeDeterminationOnboarding = ({navigation}) => {
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
       <Header
         leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={handleBackPress} />
+          <Icon name="chevron-left" size={ms(18)} onPress={handleBackPress} />
         }
         content={
           <Pagination activeIndex={activeIndex} dotsLength={data.length} />
@@ -75,7 +75,7 @@ const SourceCodeDeterminationOnboarding = ({navigation}) => {
         rightContent={
           <Icon
             name="chevron-right"
-            size={ms(26)}
+            size={ms(18)}
             onPress={handleForwardPress}
           />
         }

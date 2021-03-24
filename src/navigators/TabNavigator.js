@@ -1,6 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import {ms} from 'react-native-size-matters';
 
 import {TabBar} from '@molecules';
@@ -46,7 +46,7 @@ const screenOptions = {
   headerStyle: CommonStyles.navigationHeader,
   headerLeft: ({canGoBack, ...navigationProps}) =>
     canGoBack ? (
-      <Icon name="chevron-left" size={ms(26)} {...navigationProps} />
+      <Icon name="chevron-left" size={ms(18)} {...navigationProps} />
     ) : null,
   headerLeftContainerStyle: CommonStyles.navigationLeftContainer,
   headerRightContainerStyle: CommonStyles.navigationRightContainer,

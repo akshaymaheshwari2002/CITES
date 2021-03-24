@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import {ScaledSheet, ms, s, vs} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useIntl} from 'react-intl';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import {shallowEqual, useDispatch, useSelector} from 'react-redux';
@@ -163,10 +163,11 @@ const DetermineSourceCode = ({
           content={formatMessage({
             id: 'screen.StepOne.WalkThroughContentOne',
           })}
+          focusedStyle={styles.headerLeftTooltip}
           onClose={handleHeaderTooltipClose}>
           <Icon
             name="chevron-left"
-            size={ms(26)}
+            size={ms(18)}
             onPress={() => {
               if (interactedQuestionStack.length === 1) {
                 goBack();
@@ -308,6 +309,7 @@ const styles = ScaledSheet.create({
   buttonMoreInformationText: {
     textTransform: 'uppercase',
   },
+  headerLeftTooltip: {marginLeft: '16@s'},
 });
 
 export default DetermineSourceCode;

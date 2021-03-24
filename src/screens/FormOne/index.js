@@ -4,7 +4,7 @@ import {ms, ScaledSheet, verticalScale} from 'react-native-size-matters';
 import {useForm} from 'react-hook-form';
 import {useIntl} from 'react-intl';
 import {shallowEqual, useDispatch, useSelector} from 'react-redux';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import {Button, Container} from '@atoms';
 import {Form} from '@organisms';
@@ -190,7 +190,7 @@ const FormOne = ({navigation}) => {
       headerLeft: (navigationProps) => (
         <Icon
           name="chevron-left"
-          size={ms(26)}
+          size={ms(18)}
           {...navigationProps}
           onPress={handleBackPress}
         />
