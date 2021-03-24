@@ -1,4 +1,4 @@
-import React, {useState, useMemo, useCallback, useEffect} from 'react';
+import React, {useState, useMemo, useCallback} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms} from 'react-native-size-matters';
@@ -9,7 +9,7 @@ import {format} from 'date-fns';
 import {shallowEqual, useSelector} from 'react-redux';
 
 import {Container} from '@atoms';
-import {FormThreeTemplate, FormOneHeader} from '@molecules';
+import {FormThreeTemplate, FormThreeHeader} from '@molecules';
 import {Fonts, RawColors} from '@styles/Themes';
 import {generatePdf} from '@utils/CommonFunctions';
 import CommonStyles from '@styles/CommonStyles';
@@ -60,13 +60,22 @@ const FormThreeSummary = ({navigation, route}) => {
       (async () => {
         const file = await generatePdf({
           templates: [
-            <FormOneHeader facilityData={facilityData} form={'three'} />,
             ...(Array.isArray(registeredSpecies)
               ? registeredSpecies.map((speciesData, index) => (
-                  <FormThreeTemplate
-                    speciesData={formatFormThreeDataToDisplay(speciesData)}
-                    form={'three'}
-                  />
+                  <>
+                    <FormThreeHeader
+                      facilityData={{
+                        ...facilityData,
+                        speciesName: speciesData?.name,
+                      }}
+                      form={'three'}
+                    />
+                    <FormThreeTemplate
+                      speciesData={formatFormThreeDataToDisplay(speciesData)}
+                      form={'three'}
+                    />
+                    <div style={{breakAfter: 'page'}} />
+                  </>
                 ))
               : []),
           ],
@@ -83,7 +92,7 @@ const FormThreeSummary = ({navigation, route}) => {
         style={CommonStyles.flex1}>
         <View style={styles.titleView}>
           <Text style={styles.title}>
-            {formatMessage({id: 'screen.FormTwoSummary.title_1'}) + ':'}
+            {formatMessage({id: 'screen.FormThreeSummary.title_1'}) + ':'}
           </Text>
           <Text style={styles.title}>
             {formatMessage({id: 'screen.FormOneSummary.title_2'})}
