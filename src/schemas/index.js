@@ -122,6 +122,7 @@ export const FORM_FOUR = {
     difficultToBreed: 'bool',
     facilityEstablishedLongEnough: 'bool',
     haveIdentificationMark: 'bool',
+    totalScore: 'int',
   },
 };
 

@@ -216,6 +216,9 @@ const FormOne = ({navigation}) => {
         <Text style={styles.contentOnePartTwo}>
           {formatMessage({id: 'screen.FormOne.contentOnePartTwo'})}
         </Text>
+        <Text style={styles.contentOnePartTwo}>
+          {formatMessage({id: 'screen.FormOne.contentOnePartTwo'})}
+        </Text>
         <Text style={styles.contentTwo}>
           {formatMessage({id: 'screen.FormOne.contentTwo'})}
         </Text>

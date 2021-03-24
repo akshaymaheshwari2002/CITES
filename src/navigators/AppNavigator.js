@@ -7,9 +7,6 @@ import {ms} from 'react-native-size-matters';
 import {navigationRef} from '@utils/RootNavigation';
 import CommonStyles from '@styles/CommonStyles';
 import {
-  FacilityScore,
-  FacilityScoreLessEight,
-  FacilityScoreGreaterEight,
   LanguageSelection,
   InspectionFlow,
   SourceFlow,
@@ -56,19 +53,10 @@ const AppNavigator = () => {
           component={TabNavigator}
           options={{headerShown: false}}
         />
-        <Stack.Screen name="FacilityScore" component={FacilityScore} />
         <Stack.Screen
           name="InspectionFlow"
           options={{headerTransparent: true}}
           component={InspectionFlow}
-        />
-        <Stack.Screen
-          name="FacilityScoreLessEight"
-          component={FacilityScoreLessEight}
-        />
-        <Stack.Screen
-          name="FacilityScoreGreaterEight"
-          component={FacilityScoreGreaterEight}
         />
         <Stack.Screen
           name="DetermineSourceCode"

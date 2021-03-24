@@ -1,12 +1,12 @@
 import ProductionCapacityCalculator from './ProductionCapacityCalculator';
 import FacilityScore from './FacilityScore';
-import FacilityScoreLessEight from './FacilityScoreLessEight';
-import FacilityScoreGreaterEight from './FacilityScoreGreaterEight';
+import FacilityScoreInformation from './FacilityScoreInformation';
 import FeedbackTwo from './FeedbackTwo';
 import LanguageSelection from './LanguageSelection';
 import BeginInspection from './BeginInspection';
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
+import StepThree from './StepThree';
 import FeedbackOne from './FeedbackOne';
 import HomePage from './HomePage';
 import SourceFlow from './SourceFlow';
@@ -20,6 +20,7 @@ import WebView from './WebView';
 import FormOne from './FormOne';
 import FormTwo from './FormTwo';
 import FormThree from './FormThree';
+import FormFour from './FormFour';
 import DetermineSourceCode from './DetermineSourceCode';
 import MoreInformation from './MoreInformation';
 import FormOneSummary from './FormOneSummary';
@@ -42,9 +43,9 @@ import InspectionNotes from './InspectionNotes';
 export {
   FacilityScore,
   MoreInformation,
-  FacilityScoreLessEight,
-  FacilityScoreGreaterEight,
+  FacilityScoreInformation,
   FeedbackTwo,
+  StepThree,
   FacilityRegistered,
   SourceCodeSelection,
   LanguageSelection,
@@ -65,6 +66,7 @@ export {
   FormOne,
   FormTwo,
   FormThree,
+  FormFour,
   DetermineSourceCode,
   FormOneSummary,
   FormOneSummaryEdit,

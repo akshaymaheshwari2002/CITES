@@ -1,18 +1,25 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text} from 'react-native';
-import {Container} from '@atoms';
+import {useSelector, shallowEqual} from 'react-redux';
 import {ScaledSheet} from 'react-native-size-matters';
 
-import {RawColors} from '@styles/Themes';
+import {Container, Button} from '@atoms';
+import {Fonts, RawColors} from '@styles/Themes';
 import {useIntl} from 'react-intl';
 import CommonStyles from '@styles/CommonStyles';
 
-const FacilityScore = () => {
+const FacilityScore = ({navigation: {navigate, goBack}, route}) => {
   const {formatMessage} = useIntl();
+  const savedScore = useSelector(
+    (state) =>
+      state.sessionReducer.activeInspection.stepThree?.formFour.totalScore,
+    shallowEqual,
+  );
 
   return (
-    <Container>
-      <Container.ScrollView style={CommonStyles.screenContainer}>
+    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+      <Container.ScrollView
+        style={[CommonStyles.screenContainer, CommonStyles.flex1]}>
         <View style={styles.title}>
           <Text style={styles.titleContent}>
             {formatMessage({id: 'screen.FacilityScore.headerPartOne'})}
@@ -30,7 +37,23 @@ const FacilityScore = () => {
         <Text style={styles.contentTwo}>
           {formatMessage({id: 'screen.FacilityScore.contentTwo'})}
         </Text>
-        <View style={[CommonStyles.shadowEffect, styles.points]} />
+        <View style={[CommonStyles.shadowEffect, styles.points]}>
+          <Text style={styles.score}>{savedScore}</Text>
+        </View>
+        <Button
+          buttonContent={formatMessage({
+            id: 'general.continue',
+          })}
+          buttonTextStyle={() => {
+            return styles.buttonText;
+          }}
+          buttonStyle={() => {
+            return styles.button;
+          }}
+          onPress={() =>
+            navigate('FacilityScoreInformation', {scoreObtained: savedScore})
+          }
+        />
       </Container.ScrollView>
     </Container>
   );
@@ -76,6 +99,22 @@ const styles = ScaledSheet.create({
     borderWidth: 4,
     borderColor: RawColors.black,
     elevation: 30,
+    justifyContent: 'center',
+  },
+  score: {
+    alignItems: 'center',
+    textAlign: 'center',
+    ...Fonts.Lato20B,
+  },
+  button: {
+    height: '46@vs',
+    width: '290@s',
+    alignSelf: 'center',
+    marginVertical: '20@vs',
+    backgroundColor: RawColors.lightGrey,
+  },
+  buttonText: {
+    ...Fonts.Lato15R,
   },
 });
 

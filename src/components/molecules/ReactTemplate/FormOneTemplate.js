@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {getInputFieldElementForFormSummary as getInputFieldElement} from '@utils/CommonFunctions';
 
 const speciesText = 'Species The Facility is registered to produce: ';

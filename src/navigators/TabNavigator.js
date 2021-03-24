@@ -6,10 +6,12 @@ import {ms} from 'react-native-size-matters';
 import {TabBar} from '@molecules';
 import {
   StepOne,
+  StepThree,
   StepTwo,
   FormOne,
   FormTwo,
   FormThree,
+  FormFour,
   SourceCode,
   BeginInspection,
   FacilityRegistered,
@@ -29,6 +31,8 @@ import {
   FeedbackTwo,
   FeedbackOne,
   StepSummary,
+  FacilityScore,
+  FacilityScoreInformation,
   Q4MoreInfo,
   Q9MoreInfo,
   Q1MoreInfo,
@@ -62,6 +66,8 @@ const AppNavigator = () => {
           initialParams={{showToolTip: false}}
         />
         <Stack.Screen name="StepTwo" component={StepTwo} />
+        <Stack.Screen name="StepThree" component={StepThree} />
+
         <Stack.Screen
           name="SourceCodeSelection"
           component={SourceCodeSelection}
@@ -90,6 +96,12 @@ const AppNavigator = () => {
         <Stack.Screen name="FormOne" component={FormOne} />
         <Stack.Screen name="FormTwo" component={FormTwo} />
         <Stack.Screen name="FormThree" component={FormThree} />
+        <Stack.Screen name="FormFour" component={FormFour} />
+        <Stack.Screen name="FacilityScore" component={FacilityScore} />
+        <Stack.Screen
+          name="FacilityScoreInformation"
+          component={FacilityScoreInformation}
+        />
         <Stack.Screen name="BeginInspection" component={BeginInspection} />
         <Stack.Screen
           name="FacilityRegistered"

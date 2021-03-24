@@ -14,6 +14,7 @@ export default class FormFour {
     difficultToBreed,
     facilityEstablishedLongEnough,
     haveIdentificationMark,
+    totalScore,
   }) {
     this._id = _id || createId('FormFour');
     this.legallyRegisteredToBreedAndKeep = legallyRegisteredToBreedAndKeep;
@@ -27,5 +28,6 @@ export default class FormFour {
     this.difficultToBreed = difficultToBreed;
     this.facilityEstablishedLongEnough = facilityEstablishedLongEnough;
     this.haveIdentificationMark = haveIdentificationMark;
+    this.totalScore = totalScore;
   }
 }

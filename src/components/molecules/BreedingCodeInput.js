@@ -75,7 +75,6 @@ const BreedingCodeInput = React.forwardRef(
             if (index === 2 || index === 5) {
               inputRefs.current[index - 2].focus();
             } else {
-              console.log(__valueArray);
               if (index > 0) {
                 inputRefs.current[index - 1].focus();
               }

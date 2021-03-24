@@ -3,6 +3,7 @@ import {View} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useDispatch, useSelector, shallowEqual} from 'react-redux';
+import Toast from 'react-native-simple-toast';
 
 import {saveInspection} from '@store/slices/sessionSlice';
 import {Container, Button} from '@atoms';
@@ -10,37 +11,46 @@ import {StepHeader, ChecklistCell} from '@molecules';
 import ChecklistContent from './ChecklistContent';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
-import Toast from 'react-native-simple-toast';
 
-const StepTwo = ({navigation}) => {
+const StepThree = ({navigation: {navigate, goBack}}) => {
   const {formatMessage} = useIntl();
   const dispatch = useDispatch();
-  const stepTwoData = useSelector(
-    (state) => state.sessionReducer.activeInspection.stepTwo,
+  const stepThreeData = useSelector(
+    (state) => state.sessionReducer.activeInspection.stepThree,
     shallowEqual,
   );
-  const handleStepTwoSubmit = useCallback(() => {
-    if (Object.keys(stepTwoData).length) {
-      let stepTwoComplete = true;
+  const handleChange = useCallback(
+    (key, value) => {
+      dispatch(
+        saveInspection({
+          stepThree: {
+            [key]: value,
+          },
+        }),
+      );
+    },
+    [dispatch],
+  );
+  const handleStepThreeSubmit = useCallback(() => {
+    if (Object.keys(stepThreeData).length) {
+      let stepThreeComplete = true;
 
-      Object.keys(stepTwoData).forEach((key) => {
-        if (!stepTwoData[key] && key !== 'formTwo' && key !== 'formThree') {
-          stepTwoComplete = false;
+      Object.keys(stepThreeData).forEach((key) => {
+        if (!stepThreeData[key] && key !== 'formFour') {
+          stepThreeComplete = false;
         }
       });
-
-      if (stepTwoComplete) {
-        navigation.navigate('StepThree', {formSummaryStepTwo: true});
+      if (stepThreeComplete) {
+        navigate('StepSummary', {formSummaryStepThree: true});
       }
     } else {
       Toast.show(
         formatMessage({
-          id: 'screen.StepTwo.Alert',
+          id: 'screen.StepThree.Alert',
         }),
       );
     }
-  }, [formatMessage, navigation, stepTwoData]);
-
+  }, [formatMessage, navigate, stepThreeData]);
   const bullet = useMemo(
     () => (
       <View style={checkliststyles.bulletContainer}>
@@ -49,23 +59,9 @@ const StepTwo = ({navigation}) => {
     ),
     [],
   );
-
-  const handleChange = useCallback(
-    (key, value) => {
-      dispatch(
-        saveInspection({
-          stepTwo: {
-            [key]: value,
-          },
-        }),
-      );
-    },
-    [dispatch],
-  );
-
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
-      <StepHeader stepNumber={2} />
+    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+      <StepHeader stepNumber={3} />
       <Container.ScrollView style={CommonStyles.flex1}>
         {ChecklistContent({
           checkliststyles,
@@ -75,37 +71,40 @@ const StepTwo = ({navigation}) => {
             <ChecklistCell
               key={el.id}
               content={el.content}
-              value={stepTwoData?.[el.id]}
+              value={stepThreeData?.[el.id]}
               onChange={(value) => handleChange(el.id, value)}
             />
           );
         })}
         <Button
           buttonContent={formatMessage({
-            id: 'screen.stepTwo.continueToStepThree',
+            id: 'button.stepThree.continueToInspectionSummary',
           })}
           buttonStyle={(pressed) => styles.button}
           buttonTextStyle={(pressed) => styles.buttonTextStyle}
-          onPress={handleStepTwoSubmit}
+          onPress={handleStepThreeSubmit}
         />
       </Container.ScrollView>
     </Container>
   );
 };
 
-export default StepTwo;
+export default StepThree;
 
 const styles = ScaledSheet.create({
   button: {
     backgroundColor: RawColors.sugarCane,
     borderColor: RawColors.prussianBlue,
     marginHorizontal: '30@s',
+    width: '260@s',
+    alignSelf: 'center',
     marginVertical: '20@s',
   },
   buttonTextStyle: {
     textTransform: 'uppercase',
+    textAlign: 'center',
     color: RawColors.smaltBlueApprox,
-    padding: '10@ms',
+    marginHorizontal: '40@s',
     ...Fonts.Lato15R,
   },
 });
@@ -115,14 +114,10 @@ const checkliststyles = ScaledSheet.create({
     color: RawColors.black,
     ...Fonts.Lato17SB,
   },
-  textBold: {
-    color: RawColors.black,
-    ...Fonts.Lato17B,
-  },
   textLink: {
     color: RawColors.black,
     textDecorationLine: 'underline',
-    ...Fonts.Italic15R,
+    ...Fonts.Lato15SB,
   },
   bulletList: {
     flexDirection: 'row',
