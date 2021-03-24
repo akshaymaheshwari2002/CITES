@@ -13,6 +13,7 @@ import DatePicker from './DatePicker';
 import OverlayModal from './OverlayModal';
 import MobileInput from './MobileInput';
 import FormThreeTemplate from './ReactTemplate/FormThreeTemplate';
+import FormFourTemplate from './ReactTemplate/FormFourTemplate';
 
 export {
   TemplateOne,
@@ -30,4 +31,5 @@ export {
   OverlayModal,
   MobileInput,
   FormThreeTemplate,
+  FormFourTemplate,
 };
