@@ -13,7 +13,7 @@ const OnboardingOne = () => {
 
   return (
     <Container.ScrollView>
-      <View style={CommonStyles.flex1}>
+      <View style={[CommonStyles.flex1, styles.contentContainer]}>
         <Text style={styles.txt}>
           {formatMessage({id: 'screen.OnboardingOne.contentOne'})}
           <Text style={Fonts.Lato20B}>
@@ -32,11 +32,14 @@ const OnboardingOne = () => {
 };
 
 const styles = ScaledSheet.create({
+  contentContainer: {
+    paddingTop: '45@vs',
+    paddingBottom: '7@vs',
+  },
   txt: {
     textAlign: 'center',
     lineHeight: '28@ms',
     paddingHorizontal: '39@s',
-    marginTop: '30@vs',
     ...Fonts.Lato20R,
   },
   img: {
