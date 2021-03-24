@@ -11,6 +11,7 @@ const formNumber = {
 const formTitle = {
   one: 'BACKGROUND INFORMATION',
   two: 'FACILITY INFORMATION',
+  three: 'SPECIES INFORMATION',
 };
 const facilitySchema = {
   facilityName: 'Facility name: ',

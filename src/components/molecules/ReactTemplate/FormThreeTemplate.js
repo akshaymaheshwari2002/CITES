@@ -1,51 +1,47 @@
 import React from 'react';
-import {getInputFieldElementForFormSummary as getInputFieldElement} from '@utils/CommonFunctions';
 
-const formText = 'Form';
-const formNumber = {
-  one: 1,
-  two: 2,
-  three: 3,
-  four: 4,
-};
-const formTitle = {
-  one: 'BACKGROUND INFORMATION',
-  two: 'FACILITY INFORMATION',
-  three: 'SPECIES INFORMATION',
-};
-const facilitySchema = {
-  facilityName: 'Facility name: ',
-  owner: 'Facility owner/manager: ',
-  address: 'Facility address: ',
-  citesInformationCode:
-    'CITES register of capitative-breeding information code: ',
-  establishmentDate: 'Facility date of establishment: ',
-  country: 'Country: ',
-  facilityContact: 'Facility contact information:',
-  email: 'Email ',
-  phoneNo: ' Telephone ',
-  dateOfInspection: 'Date of inspection: ',
-  seniorOfficerName: 'Name of Senior Inspecting Officer: ',
-  typeOfInspection: 'Type of inspection: ',
-};
+import {getInputFieldElementForFormSummary as getInputFieldElement} from '@utils/CommonFunctions';
+import Constants from '@utils/Constants';
+
 const formThreeSchema = {
-  firstAcquired: '*Date Species first Acquired?',
-  sourceAndStock: 'Source and life-stage of initial stock?',
+  dateFirstSpeciesAcquired: '*Date Species first Acquired?',
+  lifeStageOfInitialStock: 'Source and life-stage of initial stock?',
   numberOfStock: 'Number of intial stock and sexes? if known ',
   males: ' Males? ',
   females: 'Females? ',
   additionalStock:
     '*Have additional animals been obtained since you acquired initial stock? if so, from where?',
-  isSpeciesBreed: 'Do you BREED these species?',
-  startTime: 'When did you start breeding?',
-  litter: '# litter/clutches per year?',
-  offspring: '# offspring/eggs per year?',
-  prevYear: '# Produced in previous year?',
+  doYouBreedThisSpecies: 'Do you BREED these species?',
+  whenDidYouBreedThisSpecies: 'When did you start breeding?',
+  numberOfLittersPerYear: '# litter/clutches per year?',
+  numberOfOffspringPerLitter: '# offspring/eggs per year?',
+  numberProducedInPreviousYear: '# Produced in previous year?',
   isRanchSpecies: 'Do you RANCH these species?',
-  harvested: 'What life stage(s) is harvested?',
-  prevHarvested: '# harvested in previous year?',
+  lifeStageHarvested: 'What life stage(s) is harvested?',
+  numberHarvestedInPreviousYear: '# harvested in previous year?',
+  adultBreedingStock: 'ADULT BREEDING STOCK',
+  facilityInformation: 'Facility information',
+  inspectorCount: 'Inspector count (where possible)',
+  noOfAdultsPresent: 'Number of adults present?',
+  noOfMalesPresent: 'Number of males present?',
+  noOfFemalesPresent: 'Number of females?',
+  percentageOfFemalesBreedEachYear: 'What % of females breed each year?',
+  foodFedToAdults: 'What do you feed adult animals?',
+  rearingStock: 'REARING STOCK ( CAPTIVE BRED AND RANCHED COMBINED )',
+  noOfJuvenilesPresent: 'Number of juveniles present?',
+  ageAtSexualMaturity: 'Age at sexual maturity (years)?',
+  sizeOrMassAtSexualMaturity: 'Size or mass at sexual maturity (cm or g)?',
+  sizeOrMassAtSaleOrExport: 'Size at sale (cm or g)',
+  percentageOfJuvenilesSurviveBeyond2Weeks_1:
+    'What percentage of juveniles survive beyond 2 weeks?',
+  percentageOfJuvenilesSurviveBeyond2Weeks_2:
+    'Includes mortalities of eggs that didn’t hatch.',
+  foodFedToRearingAndJuveniles:
+    'What do you feed rearing and juvenile animals?',
+  asterisk:
+    'Inspectors should ensure specimens were acquired legally and in compliance with CITES. In the case of App. I specimens, invoices and/or bills of sale must be produced .',
 };
-const FormOneHeader = ({form = 'one', facilityData = {}, editable = false}) => {
+const FormThreeTemplate = ({speciesData = {}, editable = false}) => {
   const getInputElementConditionally = ({name, defaultValue, inputSize}) => {
     return editable
       ? getInputFieldElement({
@@ -53,242 +49,435 @@ const FormOneHeader = ({form = 'one', facilityData = {}, editable = false}) => {
           defaultValue,
           inputSize,
         })
-      : facilityData?.[name];
+      : speciesData?.[name];
   };
 
   return (
-    <div className="App">
-      <div className="App" style={styles.marginContainer}>
-        <div style={styles.topContainer}>
-          <h1>{formText}</h1>
-          <div style={styles.body}>
-            <h1 style={styles.number}>{formNumber?.[form]}</h1>
+    <div className="App" style={styles.marginContainer}>
+      <div style={styles.secondHalf}>
+        <div style={styles.border}>
+          <div style={styles.row}>
+            <div style={styles.textContainer50}>
+              <label style={styles.text1}>
+                {formThreeSchema?.dateFirstSpeciesAcquired}
+              </label>
+              <span style={styles.underlinedText}>
+                {speciesData?.dateFirstSpeciesAcquired ?? ''}
+              </span>
+            </div>
+            <div style={styles.textContainer50}>
+              <p style={styles.text2}>
+                {formThreeSchema?.lifeStageOfInitialStock}
+              </p>
+              <div>
+                <p style={styles.underlinedText}>
+                  {speciesData?.sourceCodeInitialStock ?? ''}
+                  ,&nbsp;
+                  {speciesData?.lifeStageOfInitialStock ?? ''}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div style={styles.row}>
+            <div style={{...styles.textContainer, ...styles.marginRight}}>
+              <label style={styles.text1}>
+                {formThreeSchema?.numberOfStock}
+              </label>
+              <span style={styles.underlinedText}> </span>
+            </div>
+            <div style={styles.textContainer}>
+              <label style={styles.text1}>{formThreeSchema?.males}</label>
+              <span style={{...styles.underlinedText1, ...styles.width50PX}}>
+                {speciesData?.numberOfMalesInitialStock ?? ''}
+              </span>
+            </div>
+            <div style={styles.textContainer}>
+              <label style={styles.text1}>{formThreeSchema?.females}</label>
+              <span style={{...styles.underlinedText1, ...styles.width50PX}}>
+                {speciesData?.numberOfFemalesInitialStock ?? ''}
+              </span>
+            </div>
+          </div>
+          <p style={styles.text1}>{formThreeSchema?.additionalStock}</p>
+          <p style={styles.underlinedText}>
+            {speciesData?.addressOfAdditionalStock ?? ''}
+          </p>
+        </div>
+        <div style={styles.row1}>
+          <div style={styles.border50}>
+            <div style={{...styles.row, ...styles.alignItemsCenter}}>
+              <p style={styles.texts}>
+                {formThreeSchema?.doYouBreedThisSpecies}
+              </p>
+              <p style={styles.texts}>{Constants.YES}</p>
+              <input
+                type="checkbox"
+                defaultChecked={
+                  speciesData?.doYouBreedThisSpecies?.[0] === Constants.YES ??
+                  false
+                }
+              />
+              <p style={styles.texts}>{Constants.NO}</p>
+              <input
+                type="checkbox"
+                defaultChecked={
+                  speciesData?.doYouBreedThisSpecies?.[0] === Constants.NO ??
+                  false
+                }
+              />
+            </div>
+            <div style={styles.textContainer}>
+              <p style={styles.text1}>
+                {formThreeSchema?.whenDidYouBreedThisSpecies}
+              </p>
+              <div>
+                <p style={styles.underlinedText}>
+                  {speciesData?.whenDidYouBreedThisSpecies ?? ''}
+                </p>
+              </div>
+            </div>
+            <div style={styles.textContainer}>
+              <p style={styles.text1}>
+                {formThreeSchema?.numberOfLittersPerYear}
+              </p>
+              <div>
+                <p style={styles.underlinedText}>
+                  {speciesData?.numberOfLittersPerYear ?? ''}
+                </p>
+              </div>
+            </div>
+            <div style={styles.textContainer}>
+              <p style={styles.text1}>
+                {formThreeSchema?.numberOfOffspringPerLitter}
+              </p>
+              <div>
+                <p style={styles.underlinedText}>
+                  {speciesData?.numberOfOffspringPerLitter ?? ''}
+                </p>
+              </div>
+            </div>
+            <div style={styles.textContainer}>
+              <p style={styles.text1}>
+                {formThreeSchema?.numberProducedInPreviousYear}
+              </p>
+              <div>
+                <p style={styles.underlinedText}>
+                  {speciesData?.numberProducedInPreviousYear ?? ''}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div style={styles.border50}>
+            <div style={{...styles.row, ...styles.alignItemsCenter}}>
+              <p style={styles.texts}>{formThreeSchema?.isRanchSpecies}</p>
+              <p style={styles.texts}>{Constants.YES}</p>
+              <input
+                type="checkbox"
+                defaultChecked={
+                  speciesData?.doYouRanchThisSpecies?.[0] === Constants.YES ??
+                  false
+                }
+              />
+              <p style={styles.texts}>{Constants.NO}</p>
+              <input
+                type="checkbox"
+                defaultChecked={
+                  speciesData?.doYouRanchThisSpecies?.[0] === Constants.NO ??
+                  false
+                }
+              />
+            </div>
+            <div style={styles.textContainer}>
+              <p style={styles.text1}>{formThreeSchema?.lifeStageHarvested}</p>
+              <div>
+                <p style={styles.underlinedText}>
+                  {speciesData?.lifeStageHarvested &&
+                  Array.isArray(speciesData.lifeStageHarvested)
+                    ? speciesData.lifeStageHarvested.join(', ')
+                    : null}
+                </p>
+              </div>
+            </div>
+            <div style={styles.textContainer}>
+              <p style={styles.text1}>
+                {formThreeSchema?.numberHarvestedInPreviousYear}
+              </p>
+              <div>
+                <p style={styles.underlinedText}>
+                  {speciesData?.lifeStageHarvested &&
+                  Array.isArray(speciesData.lifeStageHarvested)
+                    ? speciesData.lifeStageHarvested
+                        .map((stage, index) => {
+                          if (
+                            speciesData?.numberHarvestedInPreviousYear &&
+                            Array.isArray(
+                              speciesData?.numberHarvestedInPreviousYear,
+                            )
+                          ) {
+                            return `${stage} - ${speciesData?.numberHarvestedInPreviousYear[index]}`;
+                          } else {
+                            return '';
+                          }
+                        })
+                        .join(', ')
+                    : null}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style={styles.border}>
+          <div style={styles.row}>
+            <div
+              style={{
+                ...styles.textContainer,
+                ...styles.width100,
+              }}>
+              <label
+                style={{
+                  ...styles.text1,
+                  ...styles.width50,
+                }}>
+                {formThreeSchema?.adultBreedingStock}
+              </label>
+              <label
+                style={{
+                  ...styles.text1,
+                  ...styles.width25,
+                }}>
+                {formThreeSchema?.facilityInformation}
+              </label>
+              <label
+                style={{
+                  ...styles.text1,
+                  ...styles.width25,
+                }}>
+                {formThreeSchema?.inspectorCount}
+              </label>
+            </div>
+          </div>
+          <div style={styles.row}>
+            <div
+              style={{
+                ...styles.textContainer,
+                ...styles.width100,
+              }}>
+              <label style={{...styles.text1, ...styles.width50}}>
+                {formThreeSchema?.noOfAdultsPresent}
+              </label>
+              <div style={styles.width25}>
+                <div style={{...styles.underlinedText1, ...styles.width60PX}}>
+                  {speciesData?.noOfAdultsPresentFacilityInfo ?? ''}
+                </div>
+              </div>
+              <div style={styles.width25}>
+                <div style={{...styles.underlinedText1, ...styles.width60PX}}>
+                  {speciesData?.noOfAdultsPresentInspectionInfo ?? ''}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style={styles.row}>
+            <div
+              style={{
+                ...styles.textContainer,
+                ...styles.width100,
+              }}>
+              <label style={{...styles.text1, ...styles.width50}}>
+                {formThreeSchema?.noOfMalesPresent}
+              </label>
+              <div style={styles.width25}>
+                <div style={{...styles.underlinedText1, ...styles.width60PX}}>
+                  {speciesData?.noOfMalesPresentFacilityInfo ?? ''}
+                </div>
+              </div>
+              <div style={styles.width25}>
+                <div style={{...styles.underlinedText1, ...styles.width60PX}}>
+                  {speciesData?.noOfMalesPresentInspectionInfo ?? ''}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style={styles.row}>
+            <div
+              style={{
+                ...styles.textContainer,
+                ...styles.width100,
+              }}>
+              <label style={{...styles.text1, ...styles.width50}}>
+                {formThreeSchema?.noOfFemalesPresent}
+              </label>
+              <div style={styles.width25}>
+                <div style={{...styles.underlinedText1, ...styles.width60PX}}>
+                  {speciesData?.noOfFemalesPresentFacilityInfo ?? ''}
+                </div>
+              </div>
+              <div style={styles.width25}>
+                <div style={{...styles.underlinedText1, ...styles.width60PX}}>
+                  {speciesData?.noOfFemalesPresentInspectionInfo ?? ''}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style={styles.row}>
+            <div
+              style={{
+                ...styles.textContainer,
+                ...styles.width100,
+              }}>
+              <label style={{...styles.text1, ...styles.width50}}>
+                {formThreeSchema?.percentageOfFemalesBreedEachYear}
+              </label>
+              <div style={styles.width50}>
+                <div style={{...styles.underlinedText1, ...styles.width60PX}}>
+                  {speciesData?.percentageOfFemalesBreedEachYear ?? ''}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style={styles.row}>
+            <div
+              style={{
+                ...styles.textContainer,
+                ...styles.width100,
+              }}>
+              <label style={styles.text1}>
+                {formThreeSchema?.foodFedToAdults}
+              </label>
+              <span style={styles.underlinedText}>
+                {speciesData?.foodFedToAdults ?? ''}
+              </span>
+            </div>
           </div>
         </div>
 
-        <h3 style={styles.headText}>{formTitle?.[form]}</h3>
-        <div style={styles.row}>
-          <div style={styles.mainContainer}>
-            <div style={styles.flex}>
-              <div style={styles.halfContent}>
-                <p style={styles.text}>
-                  <b>{facilitySchema?.facilityName}</b>
-                  {getInputElementConditionally({
-                    defaultValue: facilityData?.facilityName,
-                    name: 'facilityName',
-                  })}
-                </p>
-                <p style={styles.text}>
-                  <b>{facilitySchema?.owner}</b>
-                  {getInputElementConditionally({
-                    name: 'facilityOwner',
-                    defaultValue: facilityData?.facilityOwner,
-                  })}
-                </p>
-                <p style={styles.text}>
-                  <b>{facilitySchema?.address}</b>
-                  {getInputElementConditionally({
-                    name: 'facilityAddressLineOne',
-                    defaultValue: facilityData?.facilityAddressLineOne,
-                    inputSize: 12,
-                  })}
-                  {facilityData?.facilityAddressLineTwo && !editable
-                    ? ', '
-                    : null}
-                  {getInputElementConditionally({
-                    name: 'facilityAddressLineTwo',
-                    defaultValue: facilityData?.facilityAddressLineTwo,
-                    inputSize: 12,
-                  })}
-                </p>
-                <p style={styles.text}>
-                  <b>{facilitySchema?.facilityContact}</b>
-                  <br />
-                  <b>{facilitySchema?.email}</b>
-                  {getInputElementConditionally({
-                    name: 'facilityOwnerEmail',
-                    defaultValue: facilityData?.facilityOwnerEmail,
-                    inputSize: 15,
-                  })}
-                  <br />
-                  <span style={styles.whitespace}>
-                    <b>{facilitySchema?.phoneNo}</b>
-                    {'+'}
-                    {getInputElementConditionally({
-                      name: 'facilityOwnerPhone_callingCode',
-                      defaultValue:
-                        facilityData?.facilityOwnerPhone_callingCode,
-                      inputSize: 3,
-                    })}
-                    &nbsp;
-                    {getInputElementConditionally({
-                      name: 'facilityOwnerPhone_contactNumber',
-                      defaultValue:
-                        facilityData?.facilityOwnerPhone_contactNumber,
-                      inputSize: 15,
-                    })}
-                  </span>
-                </p>
-                <p style={styles.text}>
-                  <b>{facilitySchema?.citesInformationCode}</b>
-                  {getInputElementConditionally({
-                    name: 'citesInformationCode',
-                    defaultValue: facilityData?.citesInformationCode,
-                    inputSize: 1,
-                  })}
-                </p>
-                <p style={styles.text}>
-                  <b>{facilitySchema?.establishmentDate}</b>
-                  {facilityData?.facilityEstablishmentDate}
-                  {/* {getInputElementConditionally({
-                  name: 'facilityEstablishmentDate',
-                  defaultValue: facilityData?.facilityEstablishmentDate,
-                  inputSize: 8,
-                })} */}
-                </p>
-                <p style={styles.text}>
-                  <b>{facilitySchema?.country}</b>
-                  {getInputElementConditionally({
-                    name: 'country',
-                    defaultValue: facilityData?.country,
-                  })}
-                </p>
-                <p style={styles.text}>
-                  <b>{facilitySchema?.dateOfInspection}</b>
-                  {facilityData?.dateOfInspection}
-                  {/* {getInputElementConditionally({
-                  name: 'dateOfInspection',
-                  defaultValue: facilityData?.dateOfInspection,
-                  inputSize: 8,
-                })} */}
-                </p>
-                <p style={styles.text}>
-                  <b>{facilitySchema?.typeOfInspection}</b>
-                  {facilityData?.typeOfInspection}
-                  {/* {getInputElementConditionally({
-                  name: 'typeOfInspection',
-                  defaultValue: facilityData?.typeOfInspection,
-                })} */}
-                </p>
+        <div style={styles.border}>
+          <div style={styles.row}>
+            <div
+              style={{
+                ...styles.textContainer,
+                ...styles.width100,
+              }}>
+              <label style={{...styles.text1, ...styles.width50}}>
+                {formThreeSchema?.rearingStock}
+              </label>
+              <label style={{...styles.text1, ...styles.width25}}>
+                {formThreeSchema?.facilityInformation}
+              </label>
+              <label style={{...styles.text1, ...styles.width25}}>
+                {formThreeSchema?.inspectorCount}
+              </label>
+            </div>
+          </div>
+          <div style={styles.row}>
+            <div
+              style={{
+                ...styles.textContainer,
+                ...styles.width100,
+              }}>
+              <label style={{...styles.text1, ...styles.width50}}>
+                {formThreeSchema?.noOfJuvenilesPresent}
+              </label>
+              <div style={styles.width25}>
+                <div style={{...styles.underlinedText1, ...styles.width60PX}}>
+                  {speciesData?.noOfJuvenilesPresentFacilityInfo ?? ''}
+                </div>{' '}
+              </div>
+              <div style={styles.width25}>
+                <div style={{...styles.underlinedText1, ...styles.width60PX}}>
+                  {speciesData?.noOfJuvenilesPresentInspectionInfo ?? ''}
+                </div>
               </div>
             </div>
           </div>
-          <div style={styles.secondHalf}>
-            <div style={styles.border}>
-              <div style={styles.row}>
-                <div style={styles.textContainer}>
-                  <p style={styles.text1}>{formThreeSchema?.firstAcquired}</p>
-                  <div
-                    style={{
-                      flex: 1,
-                      display: 'flex',
-                    }}>
-                    <p style={styles.underlinedText}>12/05/20</p>
-                  </div>
-                </div>
-                <div style={styles.textContainer}>
-                  <p style={styles.text2}>{formThreeSchema?.sourceAndStock}</p>
-                  <div>
-                    <p style={styles.underlinedText}>sources two </p>
-                  </div>
+          <div style={styles.row}>
+            <div
+              style={{
+                ...styles.textContainer,
+                ...styles.width100,
+              }}>
+              <label style={{...styles.text1, ...styles.width50}}>
+                {formThreeSchema?.ageAtSexualMaturity}
+              </label>
+              <div style={styles.width25}>
+                <div style={{...styles.underlinedText1, ...styles.width60PX}}>
+                  {speciesData?.ageAtSexualMaturity ?? ''}
                 </div>
               </div>
-              <div style={styles.row}>
-                <div style={styles.textContainer1}>
-                  <p style={styles.text1}>{formThreeSchema?.numberOfStock}</p>
-                  <div>
-                    <p style={styles.underlinedText}>120520</p>
-                  </div>
-                </div>
-              </div>
-              <div style={{display: 'flex', flexDirection: 'row'}}>
-                <div style={styles.textContainer2}>
-                  <p
-                    style={{
-                      fontSize: 12,
-                      flexDirection: 'row',
-                      alignSelf: 'center',
-                    }}>
-                    {formThreeSchema?.males}
-                  </p>
-                  <div>
-                    <p style={styles.underlinedText1}>100000</p>
-                  </div>
-                </div>
-                <div style={styles.textContainer2}>
-                  <p
-                    style={{
-                      fontSize: 12,
-                      flexDirection: 'row',
-                      alignSelf: 'center',
-                    }}>
-                    {formThreeSchema?.females}
-                  </p>
-                  <div>
-                    <p style={styles.underlinedText1}>20520</p>
-                  </div>
-                </div>
-              </div>
-              <p style={{fontSize: 12}}>{formThreeSchema?.additionalStock}</p>
-              <p style={styles.underlinedText}>123 Charming Avenue Newyork</p>
             </div>
-            <div style={styles.row1}>
-              <div style={styles.border50}>
-                <div style={styles.row}>
-                  <p style={styles.texts}>{formThreeSchema?.isSpeciesBreed}</p>
-                  <p style={styles.texts}>Yes</p>
-                  <input type="checkbox" defaultChecked={true} />
-                  <p style={styles.texts}>No</p>
-                  <input type="checkbox" defaultChecked={false} />
-                </div>
-                <div style={styles.textContainer1}>
-                  <p style={styles.text1}>{formThreeSchema?.startTime}</p>
-                  <div>
-                    <p style={styles.underlinedText}>12/05/20</p>
-                  </div>
-                </div>
-                <div style={styles.textContainer1}>
-                  <p style={styles.text1}>{formThreeSchema?.litter}</p>
-                  <div>
-                    <p style={styles.underlinedText}>12050</p>
-                  </div>
-                </div>
-                <div style={styles.textContainer1}>
-                  <p style={styles.text1}>{formThreeSchema?.offspring}</p>
-                  <div>
-                    <p style={styles.underlinedText}>1220</p>
-                  </div>
-                </div>
-                <div style={styles.textContainer1}>
-                  <p style={styles.text1}>{formThreeSchema?.prevYear}</p>
-                  <div>
-                    <p style={styles.underlinedText}>12020</p>
-                  </div>
+          </div>
+          <div style={styles.row}>
+            <div
+              style={{
+                ...styles.textContainer,
+                ...styles.width100,
+              }}>
+              <label style={{...styles.text1, ...styles.width50}}>
+                {formThreeSchema?.sizeOrMassAtSexualMaturity}
+              </label>
+              <div style={styles.width25}>
+                <div style={{...styles.underlinedText1, ...styles.width60PX}}>
+                  {speciesData?.sizeOrMassAtSexualMaturity ?? ''}
                 </div>
               </div>
-              <div style={styles.border50A}>
-                <div style={styles.row}>
-                  <p style={styles.texts}>{formThreeSchema?.isRanchSpecies}</p>
-                  <p style={styles.texts}>Yes</p>
-                  <input type="checkbox" defaultChecked={true} />
-                  <p style={styles.texts}>No</p>
-                  <input type="checkbox" defaultChecked={false} />
-                </div>
-                {/* <div style={styles.row}> */}
-                <div style={styles.textContainer1}>
-                  <p style={styles.text1}>{formThreeSchema?.harvested}</p>
-                  <div>
-                    <p style={styles.underlinedText}>120520</p>
-                  </div>
-                </div>
-                <div style={styles.textContainer1}>
-                  <p style={styles.text1}>{formThreeSchema?.prevHarvested}</p>
-                  <div>
-                    <p style={styles.underlinedText}>120520</p>
-                  </div>
-                  {/* </div> */}
+            </div>
+          </div>
+          <div style={styles.row}>
+            <div
+              style={{
+                ...styles.textContainer,
+                ...styles.width100,
+              }}>
+              <label style={{...styles.text1, ...styles.width50}}>
+                {formThreeSchema?.sizeOrMassAtSaleOrExport}
+              </label>
+              <div style={styles.width25}>
+                <div style={{...styles.underlinedText1, ...styles.width60PX}}>
+                  {speciesData?.sizeOrMassAtSaleOrExport ?? ''}
                 </div>
               </div>
+            </div>
+          </div>
+          <div style={styles.row}>
+            <div
+              style={{
+                ...styles.textContainer,
+                ...styles.width100,
+              }}>
+              <div style={{...styles.text1, ...styles.width50}}>
+                <label style={styles.text1}>
+                  {formThreeSchema?.percentageOfJuvenilesSurviveBeyond2Weeks_1}
+                </label>
+                <br />
+                <label
+                  style={{
+                    ...styles.text1,
+                    ...styles.fontSize9,
+                    ...styles.italic,
+                  }}>
+                  {formThreeSchema?.percentageOfJuvenilesSurviveBeyond2Weeks_2}
+                </label>
+              </div>
+              <div style={styles.width25}>
+                <div style={{...styles.underlinedText1, ...styles.width60PX}}>
+                  {speciesData?.percentageOfJuvenilesSurviveBeyond2Weeks ?? ''}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style={styles.row}>
+            <div
+              style={{
+                ...styles.textContainer,
+                ...styles.width100,
+              }}>
+              <label style={styles.text1}>
+                {formThreeSchema?.foodFedToRearingAndJuveniles}
+              </label>
+              <span style={styles.underlinedText}>
+                {speciesData?.foodFedToRearingAndJuveniles ?? ''}
+              </span>
             </div>
           </div>
         </div>
@@ -299,59 +488,18 @@ const FormOneHeader = ({form = 'one', facilityData = {}, editable = false}) => {
 
 const styles = {
   marginContainer: {marginRight: 16, marginLeft: 16, marginBottom: 16},
-  topContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignContent: 'flex-start',
-    paddingLeft: '50',
-    paddingBottom: 0,
-    marginBottom: 0,
-  },
-  body: {
-    backgroundColor: 'rgb(239 ,243, 222)',
-    borderRadius: 50,
-    paddingLeft: 30,
-    paddingRight: 30,
-    marginBottom: 0,
-  },
-  headText: {
-    paddingTop: 0,
-    marginTop: 0,
-    paddingLeft: '50',
-    textAlign: 'left',
-  },
-  number: {
-    color: 'red',
-    paddingBottom: 0,
-    marginBottom: 0,
-  },
-  text: {textAlign: 'left'},
-  mainContainer: {
-    border: '1px solid',
-    borderWidth: '1px',
-    width: '40%',
-    backgroundColor: 'rgb(239 ,243, 222)',
-  },
-  flex: {display: 'flex', flexDirection: 'row'},
-  halfContent: {width: '100%', paddingLeft: 5, paddingRight: 5},
-  lastText: {
-    textAlign: 'left',
-    paddingLeft: 5,
-    paddingRight: 5,
-  },
-  whiteSpace: {whiteSpace: 'nowrap'},
   row: {
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
+    marginBottom: 5,
   },
   row1: {
     display: 'flex',
     flexDirection: 'row',
-    // flexWrap: 'wrap',
     width: '100%',
     justifyContent: 'space-between',
-    alignContent: 'space-between',
+    marginBottom: 5,
   },
   secondHalf: {
     marginLeft: 5,
@@ -362,7 +510,6 @@ const styles = {
   border: {
     border: '1px solid',
     borderWidth: '1px',
-    width: '100%',
     backgroundColor: 'rgb(239 ,243, 222)',
     paddingLeft: 5,
     paddingRight: 5,
@@ -371,35 +518,13 @@ const styles = {
   border50: {
     border: '1px solid',
     borderWidth: '1px',
-    width: '47%',
+    width: '48%',
     backgroundColor: 'rgb(239 ,243, 222)',
     paddingLeft: 5,
     paddingRight: 5,
-    marginBottom: 5,
-    marginRight: 5,
-  },
-  border50A: {
-    border: '1px solid',
-    borderWidth: '1px',
-    width: '47%',
-    backgroundColor: 'rgb(239 ,243, 222)',
-    paddingLeft: 5,
-    paddingRight: 5,
-    // display: 'flex',
-    marginBottom: 5,
-    // marginLeft: '6%',
-  },
-
-  rowWithMargin: {
     display: 'flex',
-    flexDirection: 'row',
-    marginLeft: 50,
-  },
-  inputText: {
-    marginLeft: 2,
-    minWidth: 50,
-    textAlign: 'left',
-    borderBottom: '1px dashed',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
   },
   underlinedText: {
     textAlign: 'left',
@@ -407,7 +532,6 @@ const styles = {
     fontSize: 12,
     marginLeft: 5,
     display: 'flex',
-    alignSelf: 'flex-end',
     flex: 1,
   },
   underlinedText1: {
@@ -418,21 +542,19 @@ const styles = {
     flex: 1,
     display: 'flex',
     padding: 5,
-    marginLeft: 5,
-    marginRight: 5,
+    marginLeft: 10,
+    marginRight: 10,
+    minHeight: 14,
+  },
+  textContainer50: {
+    width: '50%',
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'row',
   },
   textContainer: {
-    width: '50%',
     flexDirection: 'row',
-    // display: 'flex',
-  },
-  textContainer1: {
-    // width: '60%',
-    flexDirection: 'row',
-    display: 'flex',
-  },
-  textContainer2: {
-    flexDirection: 'row',
+    alignItems: 'center',
     display: 'flex',
   },
   texts: {
@@ -444,16 +566,38 @@ const styles = {
   },
   text1: {
     fontSize: 12,
-    // display: 'flex',
     flexWrap: 'wrap',
   },
   text2: {
-    // flex: 1,
     marginLeft: 10,
     fontSize: 12,
     flexWrap: 'wrap',
-    // display: 'flex',
+  },
+  fontSize9: {
+    fontSize: 9,
+  },
+  italic: {
+    fontStyle: 'italic',
+  },
+  width100: {
+    width: '100%',
+  },
+  width50: {
+    width: '50%',
+  },
+  width25: {
+    width: '25%',
+  },
+  width50PX: {
+    width: 50,
+  },
+  width60PX: {
+    width: 60,
+  },
+  marginRight: {marginRight: 'auto'},
+  alignItemsCenter: {
+    alignItems: 'center',
   },
 };
 
-export default FormOneHeader;
+export default FormThreeTemplate;

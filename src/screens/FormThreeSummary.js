@@ -1,4 +1,4 @@
-import React, {useState, useMemo, useCallback} from 'react';
+import React, {useState, useMemo, useCallback, useEffect} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms} from 'react-native-size-matters';
@@ -9,16 +9,26 @@ import {format} from 'date-fns';
 import {shallowEqual, useSelector} from 'react-redux';
 
 import {Container} from '@atoms';
-import {FormTwoTemplate, FormOneHeader} from '@molecules';
+import {FormThreeTemplate, FormOneHeader} from '@molecules';
 import {Fonts, RawColors} from '@styles/Themes';
 import {generatePdf} from '@utils/CommonFunctions';
 import CommonStyles from '@styles/CommonStyles';
 
-const FormTwoSummary = ({navigation, route}) => {
+const formatFormThreeDataToDisplay = (data) => ({
+  ...data,
+  dateFirstSpeciesAcquired: data?.dateFirstSpeciesAcquired
+    ? format(Number(data?.dateFirstSpeciesAcquired), 'yyyy/MM/dd')
+    : '',
+  whenDidYouBreedThisSpecies: data?.whenDidYouBreedThisSpecies
+    ? format(Number(data?.whenDidYouBreedThisSpecies), 'yyyy/MM/dd')
+    : '',
+});
+
+const FormThreeSummary = ({navigation, route}) => {
   const {formatMessage} = useIntl();
   const [fileUri, setFileUri] = useState(undefined);
-  const formTwoData = useSelector(
-    (state) => state.sessionReducer.activeInspection.stepTwo?.formTwo,
+  const registeredSpecies = useSelector(
+    (state) => state.sessionReducer.activeInspection.registeredSpecies,
     shallowEqual,
   );
   const formData = useSelector(
@@ -50,13 +60,20 @@ const FormTwoSummary = ({navigation, route}) => {
       (async () => {
         const file = await generatePdf({
           templates: [
-            <FormOneHeader facilityData={facilityData} form={'two'} />,
-            <FormTwoTemplate formTwoData={formTwoData} />,
+            <FormOneHeader facilityData={facilityData} form={'three'} />,
+            ...(Array.isArray(registeredSpecies)
+              ? registeredSpecies.map((speciesData, index) => (
+                  <FormThreeTemplate
+                    speciesData={formatFormThreeDataToDisplay(speciesData)}
+                    form={'three'}
+                  />
+                ))
+              : []),
           ],
         });
         setFileUri({uri: file?.filePath});
       })();
-    }, [facilityData, formTwoData]),
+    }, [facilityData, registeredSpecies]),
   );
 
   return (
@@ -204,4 +221,4 @@ const styles = ScaledSheet.create({
   },
 });
 
-export default FormTwoSummary;
+export default FormThreeSummary;
