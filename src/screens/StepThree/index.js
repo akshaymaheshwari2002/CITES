@@ -1,12 +1,12 @@
 import React, {useMemo, useCallback} from 'react';
 import {View} from 'react-native';
 import {useIntl} from 'react-intl';
-import {ScaledSheet, ms} from 'react-native-size-matters';
+import {ScaledSheet} from 'react-native-size-matters';
 import {useDispatch, useSelector, shallowEqual} from 'react-redux';
-import Icon from 'react-native-vector-icons/Feather';
+import Toast from 'react-native-simple-toast';
 
 import {saveInspection} from '@store/slices/sessionSlice';
-import {Container, Button, Header} from '@atoms';
+import {Container, Button} from '@atoms';
 import {StepHeader, ChecklistCell} from '@molecules';
 import ChecklistContent from './ChecklistContent';
 import {Fonts, RawColors} from '@styles/Themes';
@@ -16,15 +16,14 @@ const StepThree = ({navigation: {navigate, goBack}}) => {
   const {formatMessage} = useIntl();
   const dispatch = useDispatch();
   const stepThreeData = useSelector(
-    (state) => state.sessionReducer.activeInspection.stepTwo,
+    (state) => state.sessionReducer.activeInspection.stepThree,
     shallowEqual,
   );
-
   const handleChange = useCallback(
     (key, value) => {
       dispatch(
         saveInspection({
-          stepTwo: {
+          stepThree: {
             [key]: value,
           },
         }),
@@ -32,7 +31,26 @@ const StepThree = ({navigation: {navigate, goBack}}) => {
     },
     [dispatch],
   );
+  const handleStepThreeSubmit = useCallback(() => {
+    if (Object.keys(stepThreeData).length) {
+      let stepThreeComplete = true;
 
+      Object.keys(stepThreeData).forEach((key) => {
+        if (!stepThreeData[key] && key !== 'formFour') {
+          stepThreeComplete = false;
+        }
+      });
+      if (stepThreeComplete) {
+        navigate('StepSummary', {formSummaryStepThree: true});
+      }
+    } else {
+      Toast.show(
+        formatMessage({
+          id: 'screen.StepThree.Alert',
+        }),
+      );
+    }
+  }, [formatMessage, navigate, stepThreeData]);
   const bullet = useMemo(
     () => (
       <View style={checkliststyles.bulletContainer}>
@@ -43,11 +61,6 @@ const StepThree = ({navigation: {navigate, goBack}}) => {
   );
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={goBack} />
-        }
-      />
       <StepHeader stepNumber={3} />
       <Container.ScrollView style={CommonStyles.flex1}>
         {ChecklistContent({
@@ -69,9 +82,7 @@ const StepThree = ({navigation: {navigate, goBack}}) => {
           })}
           buttonStyle={(pressed) => styles.button}
           buttonTextStyle={(pressed) => styles.buttonTextStyle}
-          onPress={() => {
-            navigate('StepSummary');
-          }}
+          onPress={handleStepThreeSubmit}
         />
       </Container.ScrollView>
     </Container>
@@ -85,12 +96,15 @@ const styles = ScaledSheet.create({
     backgroundColor: RawColors.sugarCane,
     borderColor: RawColors.prussianBlue,
     marginHorizontal: '30@s',
+    width: '260@s',
+    alignSelf: 'center',
     marginVertical: '20@s',
   },
   buttonTextStyle: {
     textTransform: 'uppercase',
+    textAlign: 'center',
     color: RawColors.smaltBlueApprox,
-    padding: '10@ms',
+    marginHorizontal: '40@s',
     ...Fonts.Lato15R,
   },
 });
@@ -131,6 +145,8 @@ const checkliststyles = ScaledSheet.create({
     borderColor: RawColors.prussianBlue,
     backgroundColor: RawColors.white,
     height: '40@vs',
+    marginVertical: '20@s',
+    marginHorizontal: '10@s',
   },
   buttonTextStyle: {
     textTransform: 'uppercase',

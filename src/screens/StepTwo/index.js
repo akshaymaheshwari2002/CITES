@@ -10,14 +10,37 @@ import {StepHeader, ChecklistCell} from '@molecules';
 import ChecklistContent from './ChecklistContent';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
+import Toast from 'react-native-simple-toast';
 
-const StepTwo = () => {
+const StepTwo = ({navigation}) => {
   const {formatMessage} = useIntl();
   const dispatch = useDispatch();
   const stepTwoData = useSelector(
     (state) => state.sessionReducer.activeInspection.stepTwo,
     shallowEqual,
   );
+  const handleStepTwoSubmit = useCallback(() => {
+    if (Object.keys(stepTwoData).length) {
+      let stepTwoComplete = true;
+
+      Object.keys(stepTwoData).forEach((key) => {
+        if (!stepTwoData[key] && key !== 'formTwo' && key !== 'formThree') {
+          stepTwoComplete = false;
+        }
+      });
+
+      if (stepTwoComplete) {
+        navigation.navigate('StepThree', {formSummaryStepTwo: true});
+      }
+    } else {
+      Toast.show(
+        formatMessage({
+          id: 'screen.StepTwo.Alert',
+        }),
+      );
+    }
+  }, [formatMessage, navigation, stepTwoData]);
+
   const bullet = useMemo(
     () => (
       <View style={checkliststyles.bulletContainer}>
@@ -63,7 +86,7 @@ const StepTwo = () => {
           })}
           buttonStyle={(pressed) => styles.button}
           buttonTextStyle={(pressed) => styles.buttonTextStyle}
-          onPress={() => {}}
+          onPress={handleStepTwoSubmit}
         />
       </Container.ScrollView>
     </Container>

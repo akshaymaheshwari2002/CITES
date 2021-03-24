@@ -1,71 +1,97 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {useIsFocused} from '@react-navigation/native';
-import {Text, View, BackHandler} from 'react-native';
-import {ms, ScaledSheet} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/Feather';
-import {useIntl} from 'react-intl';
 import {useDispatch} from 'react-redux';
+import {Text, View, BackHandler} from 'react-native';
+import {ScaledSheet} from 'react-native-size-matters';
+import {useIntl} from 'react-intl';
 
 import HelpText from '@utils/HelpTexts';
-import {Button, Container, Header} from '@atoms';
+import {Button, Container} from '@atoms';
+import {saveInspection} from '@store/slices/sessionSlice';
 import {Fonts, RawColors} from '@styles/Themes';
 import {setHelpText} from '@store/slices/sessionSlice';
 import CommonStyles from '@styles/CommonStyles';
 import form4Questions from './Questions';
-import scoreRelation from './ScoreRelation';
 
 const FormFour = ({navigation: {navigate, goBack}}) => {
   const dispatch = useDispatch();
   const {formatMessage} = useIntl();
-  const scrollViewRef = useRef();
-  const [questionNumber, setQuestionNumber] = useState(1);
-  const [score, setScore] = useState([]);
+  const [questionNumber, setQuestionNumber] = useState(0);
+  const [score, setScore] = useState({});
   const isCurrentScreenFocused = useIsFocused();
-  useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', onbackPress);
-    return () => {
-      BackHandler.removeEventListener('hardwareBackPress', onbackPress);
-    };
-  }, [onbackPress, isCurrentScreenFocused]);
 
   useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', onbackPress);
+    BackHandler.addEventListener('hardwareBackPress', onBackPress);
     return () => {
-      BackHandler.removeEventListener('hardwareBackPress', onbackPress);
+      BackHandler.removeEventListener('hardwareBackPress', onBackPress);
     };
-  }, [onbackPress, isCurrentScreenFocused]);
+  }, [onBackPress, isCurrentScreenFocused]);
 
-  const onbackPress = useCallback(() => {
-    if (isCurrentScreenFocused && questionNumber > 1) {
-      setQuestionNumber(questionNumber - 1);
-      setScore((state) => {
-        state.pop();
-        return state;
-      });
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', onBackPress);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+    };
+  }, [onBackPress, isCurrentScreenFocused]);
+
+  const onBackPress = useCallback(() => {
+    if (isCurrentScreenFocused && questionNumber > 0) {
+      setScore((state) => ({
+        ...state,
+        [form4Questions[questionNumber].name]: null,
+      }));
+      setQuestionNumber((state) => state - 1);
       return true;
     } else {
       return false;
     }
   }, [isCurrentScreenFocused, questionNumber]);
 
-  const handleSum = (_score) => {
-    return _score.reduce((a, b) => {
-      return a + b;
-    }, 0);
-  };
+  const updateScore = useCallback(
+    (isYes) => {
+      const response = isYes ? 'yes' : 'no';
+
+      setScore((state) => ({
+        ...state,
+        [form4Questions[questionNumber].name]:
+          form4Questions[questionNumber][response],
+      }));
+
+      if (questionNumber < form4Questions.length - 1) {
+        setQuestionNumber((state) => state + 1);
+      }
+    },
+    [questionNumber],
+  );
+
+  useEffect(() => {
+    if (score.haveIdentificationMark) {
+      const boolScore = {...score};
+      const totalScore = Object.keys(score).reduce((a, b) => a + score[b], 0);
+
+      Object.keys(boolScore).forEach((name) => {
+        const question = form4Questions.find((ques) => ques.name === name);
+        boolScore[name] = boolScore[name] === question.yes;
+      });
+
+      dispatch(
+        saveInspection({
+          stepThree: {
+            formFour: {
+              ...boolScore,
+              totalScore,
+            },
+          },
+        }),
+      );
+      navigate('TabNavigator', {
+        screen: 'FacilityScore',
+      });
+    }
+  }, [dispatch, navigate, score]);
+
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon
-            name="chevron-left"
-            size={ms(26)}
-            onPress={() => {
-              onbackPress() ? () => {} : goBack();
-            }}
-          />
-        }
-      />
       <Text style={styles.title}>
         {formatMessage({id: 'screen.FormFour.title'})}
       </Text>
@@ -77,7 +103,7 @@ const FormFour = ({navigation: {navigate, goBack}}) => {
           {formatMessage({id: 'screen.FormFour.contentTwo'})}
         </Text>
       </Text>
-      <Container.ScrollView ref={scrollViewRef} style={CommonStyles.flex1}>
+      <Container.ScrollView style={CommonStyles.flex1}>
         <Text style={styles.contentTwo}>
           <Text style={styles.content}>
             {formatMessage({id: 'screen.FormFour.contentThree'})}
@@ -106,20 +132,7 @@ const FormFour = ({navigation: {navigate, goBack}}) => {
           buttonStyle={() => {
             return styles.button;
           }}
-          onPress={() => {
-            if (questionNumber < 11) {
-              setQuestionNumber(questionNumber + 1);
-              setScore((state) => {
-                state.push(scoreRelation[questionNumber].yes);
-                return [...state];
-              });
-            } else if (questionNumber === 11) {
-              const _score = [...score, scoreRelation[questionNumber].yes];
-              setScore(_score);
-              const sum = handleSum(_score);
-              navigate('FacilityScore', {totalScore: sum});
-            }
-          }}
+          onPress={() => updateScore(true)}
         />
         <Button
           buttonContent={formatMessage({
@@ -131,23 +144,7 @@ const FormFour = ({navigation: {navigate, goBack}}) => {
           buttonStyle={() => {
             return styles.button;
           }}
-          onPress={() => {
-            if (questionNumber < 11) {
-              setQuestionNumber(questionNumber + 1);
-              setScore((state) => {
-                state.push(scoreRelation[questionNumber].no);
-                return [...state];
-              });
-            } else if (questionNumber === 11) {
-              const _score = [...score, scoreRelation[questionNumber].no];
-              setScore(_score);
-              const sum = handleSum(_score);
-              navigate('TabNavigator', {
-                screen: 'FacilityScore',
-                params: {totalScore: sum},
-              });
-            }
-          }}
+          onPress={() => updateScore(false)}
         />
         <Button
           buttonContent={formatMessage({

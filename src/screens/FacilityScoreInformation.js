@@ -14,11 +14,6 @@ const FacilityScoreInformation = ({navigation: {navigate, goBack}, route}) => {
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={goBack} />
-        }
-      />
       <Container.ScrollView
         style={[CommonStyles.screenContainer, CommonStyles.flex1]}>
         <View style={styles.title}>

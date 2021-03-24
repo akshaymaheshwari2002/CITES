@@ -1,24 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text} from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
-import {ScaledSheet, ms} from 'react-native-size-matters';
+import {useSelector, shallowEqual} from 'react-redux';
+import {ScaledSheet} from 'react-native-size-matters';
 
-import {Container, Button, Header} from '@atoms';
+import {Container, Button} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import {useIntl} from 'react-intl';
 import CommonStyles from '@styles/CommonStyles';
 
 const FacilityScore = ({navigation: {navigate, goBack}, route}) => {
   const {formatMessage} = useIntl();
-  const score = route.params.totalScore;
+  const savedScore = useSelector(
+    (state) =>
+      state.sessionReducer.activeInspection.stepThree?.formFour.totalScore,
+    shallowEqual,
+  );
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={goBack} />
-        }
-      />
       <Container.ScrollView
         style={[CommonStyles.screenContainer, CommonStyles.flex1]}>
         <View style={styles.title}>
@@ -39,7 +38,7 @@ const FacilityScore = ({navigation: {navigate, goBack}, route}) => {
           {formatMessage({id: 'screen.FacilityScore.contentTwo'})}
         </Text>
         <View style={[CommonStyles.shadowEffect, styles.points]}>
-          <Text style={styles.score}>{score}</Text>
+          <Text style={styles.score}>{savedScore}</Text>
         </View>
         <Button
           buttonContent={formatMessage({
@@ -52,7 +51,7 @@ const FacilityScore = ({navigation: {navigate, goBack}, route}) => {
             return styles.button;
           }}
           onPress={() =>
-            navigate('FacilityScoreInformation', {scoreObtained: score})
+            navigate('FacilityScoreInformation', {scoreObtained: savedScore})
           }
         />
       </Container.ScrollView>

@@ -138,8 +138,8 @@ const styles = ScaledSheet.create({
     height: '46@vs',
     width: '100%',
     alignSelf: 'center',
-    marginVertical: '22@vs',
-    backgroundColor: RawColors.eggshell,
+    marginVertical: '16@vs',
+    backgroundColor: RawColors.sugarCane,
   },
   buttonText: {
     ...Fonts.Lato15R,
