@@ -1,5 +1,5 @@
 import React, {useCallback, useMemo, useRef, useState, useEffect} from 'react';
-import {Text, View, BackHandler, Alert} from 'react-native';
+import {Text, View, BackHandler} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import {ms, vs, ScaledSheet} from 'react-native-size-matters';
 import {useForm} from 'react-hook-form';

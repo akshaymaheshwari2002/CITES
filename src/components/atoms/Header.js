@@ -34,7 +34,7 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingTop: getStatusBarHeight(),
-    paddingHorizontal: '8@s',
+    paddingHorizontal: '16@s',
     ...CommonStyles.navigationHeader,
   },
   contentContainerStyle: {

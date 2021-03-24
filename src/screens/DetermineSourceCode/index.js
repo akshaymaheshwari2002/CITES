@@ -196,7 +196,6 @@ const DetermineSourceCode = ({
           />
         </Tooltip>
       ),
-      headerRightContainerStyle: {marginRight: s(16)},
     });
   }, [
     formatMessage,
