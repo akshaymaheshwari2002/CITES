@@ -97,7 +97,7 @@ const styles = ScaledSheet.create({
     paddingHorizontal: '16@s',
   },
   title: {
-    ...Fonts.HelveticaNeue30B,
+    ...Fonts.HelveticaNeue28B,
     marginTop: '30@vs',
   },
   content: {

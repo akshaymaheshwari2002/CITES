@@ -2,8 +2,9 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {useIsFocused} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
 import {Text, View, BackHandler} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
+import {ScaledSheet, ms} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
+import Icon from 'react-native-vector-icons/Feather';
 
 import HelpText from '@utils/HelpTexts';
 import {Button, Container} from '@atoms';
@@ -13,7 +14,7 @@ import {setHelpText} from '@store/slices/sessionSlice';
 import CommonStyles from '@styles/CommonStyles';
 import form4Questions from './Questions';
 
-const FormFour = ({navigation: {navigate, goBack}}) => {
+const FormFour = ({navigation: {navigate, goBack, setOptions}}) => {
   const dispatch = useDispatch();
   const {formatMessage} = useIntl();
   const [questionNumber, setQuestionNumber] = useState(0);
@@ -25,7 +26,7 @@ const FormFour = ({navigation: {navigate, goBack}}) => {
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', onBackPress);
     };
-  }, [onBackPress, isCurrentScreenFocused]);
+  }, [onBackPress, isCurrentScreenFocused, questionNumber]);
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', onBackPress);
@@ -63,9 +64,30 @@ const FormFour = ({navigation: {navigate, goBack}}) => {
     },
     [questionNumber],
   );
+  useEffect(() => {
+    setOptions({
+      headerLeft: () => (
+        <Icon
+          name="chevron-left"
+          size={ms(26)}
+          onPress={() => {
+            if (questionNumber === 0) {
+              goBack();
+            } else {
+              setScore((state) => ({
+                ...state,
+                [form4Questions[questionNumber].name]: null,
+              }));
+              setQuestionNumber((state) => state - 1);
+            }
+          }}
+        />
+      ),
+    });
+  }, [goBack, questionNumber, setOptions]);
 
   useEffect(() => {
-    if (score.haveIdentificationMark) {
+    if (form4Questions[questionNumber].name === 'haveIdentificationMark') {
       const boolScore = {...score};
       const totalScore = Object.keys(score).reduce((a, b) => a + score[b], 0);
 
@@ -88,7 +110,7 @@ const FormFour = ({navigation: {navigate, goBack}}) => {
         screen: 'FacilityScore',
       });
     }
-  }, [dispatch, navigate, score]);
+  }, [dispatch, navigate, questionNumber, score]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
