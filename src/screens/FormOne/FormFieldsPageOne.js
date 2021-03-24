@@ -222,8 +222,10 @@ export default () => {
     {
       defaultValue: ['', '-', '', '', '-', '', '', ''],
       label: formatMessage({id: 'form.label.citesInformationCode'}),
-      //placeholder: formatMessage({id: 'form.placeHolder.citesInformationCode'}),
       name: 'citesInformationCode',
+      labelBottom: formatMessage({
+        id: 'form.label.citesInformationCodeBottom',
+      }),
       fieldType: Constants.BREEDING_CODE_INPUT,
       rules: {
         validate: {

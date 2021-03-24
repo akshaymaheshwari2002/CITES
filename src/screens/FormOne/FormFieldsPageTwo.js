@@ -44,7 +44,7 @@ export default (fieldProps = {}) => {
     {
       defaultValue: '',
       label: formatMessage({id: 'form.label.specimenExported'}),
-      placeholder: formatMessage({id: 'form.label.specimenExported'}),
+      placeholder: formatMessage({id: 'form.label.numberPlaceHolder'}),
       name: 'numberOfSpeciemenExportedSinceLastInspection',
       rules: {required, validate: {validateNumber}},
       keyboardType: 'number-pad',
