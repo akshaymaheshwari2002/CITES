@@ -9,6 +9,9 @@ export default class FormOne {
     facilityName,
     facilityAddressLineOne,
     facilityAddressLineTwo,
+    city,
+    stateProvienceRegion,
+    zipCode,
     country,
     facilityOwner,
     facilityOwnerEmail,
@@ -23,6 +26,9 @@ export default class FormOne {
     this.facilityName = facilityName;
     this.facilityAddressLineOne = facilityAddressLineOne;
     this.facilityAddressLineTwo = facilityAddressLineTwo;
+    this.city = city;
+    this.stateProvienceRegion = stateProvienceRegion;
+    this.zipCode = zipCode;
     this.country = country;
     this.facilityOwner = facilityOwner;
     this.facilityOwnerEmail = facilityOwnerEmail;

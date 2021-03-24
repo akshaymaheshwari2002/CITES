@@ -35,6 +35,7 @@ export default () => {
       placeholder: formatMessage({id: 'form.label.dateOfInspection'}),
       name: 'dateOfInspection',
       rules: {required},
+      minimumDate: new Date(),
       headerTextIOS: formatMessage({id: 'form.label.dateOfInspection'}),
       fieldType: Constants.DATEPICKER,
     },
@@ -61,13 +62,14 @@ export default () => {
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.facilityAddress'}),
+      label: formatMessage({id: 'form.label.addressLineOne'}),
       placeholder: formatMessage({id: 'form.placeholder.addressLineOne'}),
       name: 'facilityAddressLineOne',
       rules: {required},
       fieldContainerStyle: {marginBottom: 0},
     },
     {
+      label: formatMessage({id: 'form.label.addressLineTwo'}),
       placeholder: formatMessage({id: 'form.placeholder.addressLineTwo'}),
       defaultValue: '',
       name: 'facilityAddressLineTwo',
@@ -80,6 +82,46 @@ export default () => {
       },
     },
     {
+      label: formatMessage({id: 'form.label.city'}),
+      placeholder: formatMessage({id: 'form.placeholder.city'}),
+      defaultValue: '',
+      name: 'city',
+      rules: {required},
+      fieldContainerStyle: {marginBottom: 0},
+      style: {
+        marginVertical: 0,
+        marginTop: verticalScale(6),
+        marginBottom: verticalScale(6),
+      },
+    },
+    {
+      label: formatMessage({id: 'form.placeholder.stateRegion'}),
+      placeholder: formatMessage({id: 'form.placeholder.stateRegion'}),
+      defaultValue: '',
+      name: 'stateProvienceRegion',
+      rules: {required},
+      fieldContainerStyle: {marginBottom: 0},
+      style: {
+        marginVertical: 0,
+        marginTop: verticalScale(6),
+        marginBottom: verticalScale(6),
+      },
+    },
+    {
+      label: formatMessage({id: 'form.label.zipCode'}),
+      placeholder: formatMessage({id: 'form.placeholder.zipCode'}),
+      defaultValue: '',
+      name: 'zipCode',
+      rules: {required},
+      fieldContainerStyle: {marginBottom: 0},
+      style: {
+        marginVertical: 0,
+        marginTop: verticalScale(6),
+        marginBottom: verticalScale(6),
+      },
+    },
+    {
+      label: formatMessage({id: 'form.placeholder.country'}),
       placeholder: formatMessage({id: 'form.placeholder.country'}),
       defaultValue: '',
       name: 'country',
@@ -180,8 +222,10 @@ export default () => {
     {
       defaultValue: ['', '-', '', '', '-', '', '', ''],
       label: formatMessage({id: 'form.label.citesInformationCode'}),
-      //placeholder: formatMessage({id: 'form.placeHolder.citesInformationCode'}),
       name: 'citesInformationCode',
+      labelBottom: formatMessage({
+        id: 'form.label.citesInformationCodeBottom',
+      }),
       fieldType: Constants.BREEDING_CODE_INPUT,
       rules: {
         validate: {

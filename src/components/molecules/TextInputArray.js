@@ -70,19 +70,13 @@ const TextInputArray = React.forwardRef(
 
     return (
       <>
-        <View style={styles.labelContainer}>
-          {label ? (
+        {label ? (
+          typeof label === 'string' ? (
             <Text style={[CommonStyles.flex1, Fonts.Lato15B]}>{label}</Text>
-          ) : null}
-          {showHelpIcon ? (
-            <Icon
-              name="information-outline"
-              color={RawColors.darkSalmon}
-              size={moderateScale(40)}
-              onPress={onHelpIconPress}
-            />
-          ) : null}
-        </View>
+          ) : (
+            label
+          )
+        ) : null}
         <View
           style={buttonText ? styles.containerWithButton : styles.container}>
           {renderFields()}
@@ -122,7 +116,7 @@ const styles = ScaledSheet.create({
 });
 
 TextInputArray.propTypes = {
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   error: PropTypes.string,
   count: PropTypes.number,
   onChange: PropTypes.func,

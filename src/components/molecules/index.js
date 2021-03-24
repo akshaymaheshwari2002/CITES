@@ -12,6 +12,7 @@ import TabBar from './TabBar';
 import DatePicker from './DatePicker';
 import OverlayModal from './OverlayModal';
 import MobileInput from './MobileInput';
+import FormThreeTemplate from './ReactTemplate/FormThreeTemplate';
 
 export {
   TemplateOne,
@@ -28,4 +29,5 @@ export {
   DatePicker,
   OverlayModal,
   MobileInput,
+  FormThreeTemplate,
 };

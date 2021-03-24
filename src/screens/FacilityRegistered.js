@@ -20,13 +20,31 @@ const FacilityRegistered = ({navigation: {navigate}}) => {
             {formatMessage({id: 'screen.FacilityRegistered.title'})}
           </Text>
           <Text style={styles.text}>
-            {formatMessage({id: 'screen.FacilityRegistered.contentOne'})}
+            {formatMessage({id: 'screen.FacilityRegistered.contentOnePartOne'})}
+            <Text style={[styles.text, {...Fonts.Lato15B}]}>
+              {formatMessage({
+                id: 'screen.FacilityRegistered.contentOnePartTwo',
+              })}
+            </Text>
+            {formatMessage({
+              id: 'screen.FacilityRegistered.contentOnePartThree',
+            })}
           </Text>
           <Text style={styles.text}>
             {formatMessage({id: 'screen.FacilityRegistered.contentTwo'})}
           </Text>
           <Text style={styles.text}>
-            {formatMessage({id: 'screen.FacilityRegistered.contentThree'})}
+            {formatMessage({
+              id: 'screen.FacilityRegistered.contentThreePartOne',
+            })}
+            <Text style={[styles.text, {...Fonts.Lato15B}]}>
+              {formatMessage({
+                id: 'screen.FacilityRegistered.contentThreePartTwo',
+              })}
+            </Text>
+            {formatMessage({
+              id: 'screen.FacilityRegistered.contentThreePartThree',
+            })}
           </Text>
           <Button
             buttonContent={
@@ -79,7 +97,7 @@ const styles = ScaledSheet.create({
     paddingHorizontal: '16@s',
   },
   title: {
-    ...Fonts.HelveticaNeue25B,
+    ...Fonts.HelveticaNeue28B,
     marginTop: '30@vs',
   },
   content: {

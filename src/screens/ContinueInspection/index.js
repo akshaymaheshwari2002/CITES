@@ -47,7 +47,7 @@ const ContinueInspection = ({navigation}) => {
               <>
                 <View>
                   <Image
-                    source={Images.continueCircleIcon}
+                    source={Images.eye}
                     style={styles.icon}
                     resizeMode="contain"
                   />

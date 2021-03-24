@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {Platform, Text, View} from 'react-native';
 import Tooltip, {
   TooltipChildrenContext,
 } from 'react-native-walkthrough-tooltip';
+import {useIntl} from 'react-intl';
 import {ScaledSheet, vs} from 'react-native-size-matters';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import PropTypes from 'prop-types';
@@ -16,23 +17,31 @@ const _Tooltip = ({
   contentstyle,
   ...restProps
 }) => {
+  const {formatMessage} = useIntl();
   return (
     <Tooltip
       useInteractionManager={true}
       topAdjustment={Platform.OS === 'android' ? -getStatusBarHeight() : 0}
       backgroundColor={RawColors.backToolTipColor}
-      contentStyle={[styles.content, contentstyle]}
+      contentStyle={styles.content}
       arrowSize={styles.arrowSize}
       childContentSpacing={vs(12)}
       allowChildInteraction={false}
       content={
-        <Text style={[Fonts.Lato20R, styles.contentText]}>{content}</Text>
+        <View style={{flexDirection: 'row'}}>
+          <Text style={Fonts.Lato17B}>
+            {formatMessage({id: 'screen.StepOne.WalkThroughContentTap'})}
+          </Text>
+          <Text style={Fonts.Lato17R}>{content}</Text>
+        </View>
       }
       {...restProps}>
       <TooltipChildrenContext.Consumer>
         {({tooltipDuplicate}) =>
           tooltipDuplicate ? (
-            <View style={[styles.focused, focusedStyle]}>{children}</View>
+            <View style={[styles.focusedChildren, focusedStyle]}>
+              {children}
+            </View>
           ) : (
             children
           )
@@ -43,9 +52,9 @@ const _Tooltip = ({
 };
 
 const styles = ScaledSheet.create({
-  content: {borderRadius: '15@ms'},
-  arrowSize: {height: '8@vs', width: '6@ms'},
-  focused: {
+  content: {borderRadius: '10@ms'},
+  arrowSize: {height: '8@vs', width: '4@ms'},
+  focusedChildren: {
     justifyContent: 'center',
     alignItems: 'center',
     height: '44@ms',
@@ -54,11 +63,6 @@ const styles = ScaledSheet.create({
     borderColor: RawColors.darkSalmon,
     borderWidth: 5,
     backgroundColor: RawColors.white,
-  },
-  contentText: {
-    //marginVertical: '5@vs',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });
 

@@ -156,22 +156,30 @@ export const isNumberInteger = (value) => {
  * @param {string} props.name name for html input field
  * @param {string} props.defaultValue default value in input field
  * @param {number|string} props.inputSize size for input field
+ * @param {string} props.type input field type
+ * @param {string} props.checked optional checked for radio button
+ * @param {string} props.id id for element
  * @returns {JSX.Element}
  */
 export const getInputFieldElementForFormSummary = ({
   name = 'unNamedField',
   defaultValue = '',
   inputSize = 20,
+  type = 'text',
+  checked,
+  id,
 }) => {
   return (
     <span
       dangerouslySetInnerHTML={{
         __html: `
           <input
-            type="text"
+            type="${type}"
             size="${inputSize}"
             name="${name}"
             value="${defaultValue}"
+            ${checked ? 'checked' : ''}
+            ${id ? 'id="' + id + '"' : ''}
             oninput="shipData(this.name, this.value)"
           />`,
       }}

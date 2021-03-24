@@ -49,10 +49,6 @@ const TabBar = () => {
         content: formatMessage({
           id: 'screen.StepOne.WalkThroughContentThree',
         }),
-        contentstyle: {
-          height: ms(60),
-          width: ms(138),
-        },
         sourceCodeOnboarding,
       };
     } else if (consumerName === 'search') {
@@ -62,10 +58,6 @@ const TabBar = () => {
         content: formatMessage({
           id: 'screen.StepOne.WalkThroughContentFour',
         }),
-        contentstyle: {
-          height: ms(121),
-          width: ms(200),
-        },
         sourceCodeOnboarding,
       };
     } else if (consumerName === 'edit') {
@@ -75,10 +67,6 @@ const TabBar = () => {
         content: formatMessage({
           id: 'screen.StepOne.WalkThroughContentFive',
         }),
-        contentstyle: {
-          height: ms(110),
-          width: ms(258),
-        },
         sourceCodeOnboarding,
       };
     } else {
@@ -89,10 +77,6 @@ const TabBar = () => {
           content: formatMessage({
             id: 'screen.StepOne.WalkThroughContentFive',
           }),
-          contentstyle: {
-            height: ms(60),
-            width: ms(236),
-          },
           sourceCodeOnboarding,
         };
       } else {

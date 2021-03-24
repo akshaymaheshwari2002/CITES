@@ -38,6 +38,7 @@ const FormOne = ({navigation}) => {
     shallowEqual,
   );
   const selectedSpeciesId = watch('_id');
+
   const formFields = useMemo(
     () =>
       formFieldsPage === 1
@@ -103,7 +104,6 @@ const FormOne = ({navigation}) => {
           }
         });
         delete data.registeredSpecies;
-
         await dispatch(
           saveInspection({
             stepOne: {
@@ -205,7 +205,13 @@ const FormOne = ({navigation}) => {
           {formatMessage({id: 'screen.FormOne.title'})}
         </Text>
         <Text style={styles.contentOne}>
-          {formatMessage({id: 'screen.FormOne.contentOne'})}
+          {formatMessage({id: 'screen.FormOne.contentOnePartOne'})}
+          <Text style={(styles.contentOne, {...Fonts.Lato15B})}>
+            {formatMessage({id: 'screen.FormOne.contentOnePartOneTwo'})}
+          </Text>
+          <Text style={styles.contentOne}>
+            {formatMessage({id: 'screen.FormOne.contentOnePartOneThree'})}
+          </Text>
         </Text>
         <Text style={styles.contentOnePartTwo}>
           {formatMessage({id: 'screen.FormOne.contentOnePartTwo'})}
@@ -229,7 +235,10 @@ const FormOne = ({navigation}) => {
                 buttonContent={formatMessage({id: 'button.saveAndAdd'})}
               />
               <Button
-                onPress={() => navigation.navigate('FormOneSummary')}
+                onPress={async () => {
+                  await handleSubmit(_handleSubmit)();
+                  navigation.navigate('FormOneSummary');
+                }}
                 buttonStyle={() => ({marginVertical: verticalScale(16)})}
                 buttonContent={formatMessage({id: 'button.viewFormOneSummary'})}
               />
