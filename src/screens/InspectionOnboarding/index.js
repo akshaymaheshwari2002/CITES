@@ -86,7 +86,6 @@ const InspectionOnboarding = ({navigation}) => {
         ref={flatListRef}
         horizontal
         pagingEnabled
-        bounces={false}
         contentContainerStyle={CommonStyles.flexGrow1}
         showsHorizontalScrollIndicator={false}
         data={data}

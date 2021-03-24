@@ -161,13 +161,13 @@ const styles = ScaledSheet.create({
   },
   slideBtnContainerStep: {
     position: 'absolute',
-    top: '105@vs',
+    top: '17@vs',
     right: 0,
     paddingLeft: '5@s',
   },
   slideBtnContainerEdit: {
     position: 'absolute',
-    top: '185@vs',
+    top: '92@vs',
     right: 0,
     paddingLeft: '5@s',
   },

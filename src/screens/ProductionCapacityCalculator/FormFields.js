@@ -1,4 +1,4 @@
-import {ms} from 'react-native-size-matters';
+import {s} from 'react-native-size-matters';
 
 import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
@@ -182,7 +182,7 @@ export default ({modeSelected}) => {
         modeSelected === 1
           ? resultFieldLabelStyleProps
           : {
-              marginRight: ms(30),
+              marginRight: s(33),
             },
     },
   ];

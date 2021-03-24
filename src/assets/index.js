@@ -1,5 +1,6 @@
 export const Images = {
   tick: require('./images/Tick.png'),
+  information: require('./images/157933.png'),
   headerLightCircle: require('./images/Ellipse235.png'),
   headerDarkCircle: require('./images/Ellipse234.png'),
   onboardingOne: require('./images/OnboardingOne.png'),

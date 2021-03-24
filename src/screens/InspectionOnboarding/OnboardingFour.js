@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, Image, View} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet} from 'react-native-size-matters';
+import CommonStyles from '@styles/CommonStyles';
 
 import {Fonts} from '@styles/Themes';
 import {Images} from '@assets';
@@ -12,7 +13,7 @@ const OnboardingFour = () => {
 
   return (
     <Container.ScrollView contentContainerStyle={styles.content}>
-      <Text style={[styles.txt, styles.textWrapper]}>
+      <Text style={styles.text}>
         {formatMessage({id: 'screen.OnboardingFour.contentOne'})}
         <Text style={styles.word}>
           {formatMessage({id: 'screen.OnboardingFour.contentTwo'})}
@@ -29,20 +30,19 @@ const OnboardingFour = () => {
 };
 
 const styles = ScaledSheet.create({
-  textWrapper: {
-    marginTop: '30@vs',
-  },
-  txt: {
+  text: {
     textAlign: 'center',
-    textAlignVertical: 'center',
     ...Fonts.Lato20R,
+    marginTop: '33@vs',
+  },
+  content: {
+    ...CommonStyles.flex1,
+    justifyContent: 'center',
+    paddingHorizontal: '20@s',
+    paddingTop: '34@vs',
   },
   word: {
     fontWeight: 'bold',
-  },
-  content: {
-    paddingHorizontal: '16@s',
-    justifyContent: 'space-evenly',
   },
   img: {
     resizeMode: 'contain',
@@ -51,6 +51,7 @@ const styles = ScaledSheet.create({
   },
   imgContainer: {
     marginTop: '15@vs',
+    paddingHorizontal: '20@s',
   },
 });
 

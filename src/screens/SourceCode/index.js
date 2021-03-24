@@ -61,11 +61,13 @@ const SourceCode = ({navigation, route}) => {
             </Text>
             <View style={styles.gap}>
               <View style={styles.numberRow}>
-                <View style={styles.numberContainer}>
-                  <Text style={styles.number}>
-                    {formatMessage({id: 'screen.SourceCode.NumberOne'})}
-                  </Text>
-                </View>
+                {resultSourceCode !== 'W' ? (
+                  <View style={styles.numberContainer}>
+                    <Text style={styles.number}>
+                      {formatMessage({id: 'screen.SourceCode.NumberOne'})}
+                    </Text>
+                  </View>
+                ) : null}
                 <View>
                   {resultSourceCode !== 'D' ? (
                     <View style={styles.numberRow}>

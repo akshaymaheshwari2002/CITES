@@ -94,7 +94,11 @@ const FormOneSummary = ({navigation, route}) => {
         <TouchableOpacity
           style={styles.slideBtn}
           onPress={() => {
-            navigation.navigate('StepOne');
+            if (formSummaryText) {
+              navigation.navigate('StepTwo');
+            } else {
+              navigation.navigate('StepOne');
+            }
           }}>
           <View style={styles.row}>
             <View style={[styles.padding16, styles.marginDimension]}>
@@ -170,13 +174,13 @@ const styles = ScaledSheet.create({
   },
   slideBtnContainerStep: {
     position: 'absolute',
-    top: '105@vs',
+    top: '17@vs',
     right: 0,
     paddingLeft: '5@s',
   },
   slideBtnContainerEdit: {
     position: 'absolute',
-    top: '185@vs',
+    top: '92@vs',
     right: 0,
     paddingLeft: '5@s',
   },
