@@ -16,9 +16,9 @@ export default {
   NO: 'NO',
   PLANT: 'Plant',
   ANIMAL: 'Animal',
-  APPENDIXI: 'Appendix I',
-  APPENDIXII: 'Appendix II',
-  APPENDIXIII: 'Appendix III',
+  APPENDIXI: 'AppendixI',
+  APPENDIXII: 'AppendixII',
+  APPENDIXIII: 'AppendixIII',
   PLUS: 'PLUS',
   MINUS: 'MINUS',
 };

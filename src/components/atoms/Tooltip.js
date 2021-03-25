@@ -28,7 +28,7 @@ const _Tooltip = ({
       childContentSpacing={vs(12)}
       allowChildInteraction={false}
       content={
-        <Text style={Fonts.Lato17R}>
+        <Text style={[Fonts.Lato17R, styles.textContent]}>
           <Text style={Fonts.Lato17B}>
             {formatMessage({id: 'screen.StepOne.WalkThroughContentTap'})}
           </Text>
@@ -53,6 +53,10 @@ const _Tooltip = ({
 
 const styles = ScaledSheet.create({
   content: {borderRadius: '10@ms'},
+  textContent: {
+    width: '138@s',
+    padding: '5@ms',
+  },
   arrowSize: {height: '8@vs', width: '4@ms'},
   focusedChildren: {
     justifyContent: 'center',
