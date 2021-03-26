@@ -258,7 +258,15 @@ const DetermineSourceCode = ({
             return (
               <Button
                 key={`${index}`}
-                buttonContent={value}
+                buttonContent={
+                  value === 'AppendixI'
+                    ? formatMessage({id: value})
+                    : value === 'AppendixII'
+                    ? formatMessage({id: value})
+                    : value === 'AppendixIII'
+                    ? formatMessage({id: value})
+                    : value
+                }
                 buttonStyle={() => styles.button}
                 buttonTextStyle={() => Fonts.Lato15R}
                 onPress={() => {
