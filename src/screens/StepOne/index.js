@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useMemo} from 'react';
 import {View, StatusBar} from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms, s} from 'react-native-size-matters';
 import {shallowEqual, useDispatch, useSelector} from 'react-redux';
@@ -88,8 +88,9 @@ const StepOne = ({navigation, route}) => {
           content={formatMessage({
             id: 'screen.StepOne.WalkThroughContentOne',
           })}
+          focusedStyle={styles.headerLeftTooltip}
           onClose={handleTooltipClose}>
-          <Icon name="chevron-left" size={ms(26)} onPress={navigation.goBack} />
+          <Icon name="chevron-left" size={ms(18)} onPress={navigation.goBack} />
         </Tooltip>
       ),
     });
@@ -157,8 +158,7 @@ const styles = ScaledSheet.create({
     padding: '10@ms',
     ...Fonts.Lato15R,
   },
-  childrenWrapper: {top: '46@vs', left: '9@s'},
-  toolTip: {top: '84@vs', left: '9@s', position: 'absolute'},
+  headerLeftTooltip: {marginLeft: '16@s'},
 });
 
 const checkliststyles = ScaledSheet.create({

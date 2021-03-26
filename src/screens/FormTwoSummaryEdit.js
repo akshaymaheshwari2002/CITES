@@ -206,7 +206,7 @@ const FormTwoSummaryEdit = ({navigation}) => {
               </Text>
             </View>
             <View style={styles.justifyContent}>
-              <Icon name="chevron-right" size={ms(26)} />
+              <Icon name="chevron-right" size={ms(18)} />
             </View>
           </View>
         </TouchableOpacity>

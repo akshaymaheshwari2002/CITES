@@ -22,7 +22,6 @@ const SourceCode = ({navigation, route}) => {
       headerRight: () => (
         <IconAntDesign
           name="pluscircle"
-          style={{marginRight: s(8)}}
           size={ms(26)}
           onPress={() => navigation.navigate('MoreInformation')}
         />

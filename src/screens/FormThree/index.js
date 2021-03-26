@@ -1,9 +1,9 @@
 import React, {useCallback, useMemo, useRef, useState, useEffect} from 'react';
-import {Text, View, BackHandler, Alert} from 'react-native';
+import {Text, View, BackHandler} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import {ms, vs, ScaledSheet} from 'react-native-size-matters';
 import {useForm} from 'react-hook-form';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useIntl} from 'react-intl';
 import {useDispatch, useSelector, shallowEqual} from 'react-redux';
 
@@ -361,7 +361,7 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
       headerLeft: (navigationProps) => (
         <Icon
           name="chevron-left"
-          size={ms(26)}
+          size={ms(18)}
           {...navigationProps}
           onPress={handleBackPress}
         />
