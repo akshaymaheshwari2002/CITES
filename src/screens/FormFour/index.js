@@ -51,18 +51,45 @@ const FormFour = ({navigation: {navigate, goBack, setOptions}}) => {
   const updateScore = useCallback(
     (isYes) => {
       const response = isYes ? 'yes' : 'no';
-
       setScore((state) => ({
         ...state,
         [form4Questions[questionNumber].name]:
           form4Questions[questionNumber][response],
       }));
-
       if (questionNumber < form4Questions.length - 1) {
         setQuestionNumber((state) => state + 1);
       }
+      if (form4Questions[questionNumber].name === 'haveIdentificationMark') {
+        const boolScore = {...score};
+        console.log(boolScore);
+        setScore((state) => ({
+          ...state,
+          [form4Questions[questionNumber].name]:
+            form4Questions[questionNumber][response],
+        }));
+        const totalScore = Object.keys(score).reduce((a, b) => a + score[b], 0);
+        Object.keys(boolScore).forEach((name) => {
+          const question = form4Questions.find((ques) => ques.name === name);
+          boolScore[name] = boolScore[name] === question.yes;
+        });
+        dispatch(
+          saveInspection({
+            stepThree: {
+              formFour: {
+                ...boolScore,
+                totalScore,
+              },
+            },
+          }),
+        );
+        navigate('TabNavigator', {
+          screen: 'FacilityScore',
+          params: {scoreTotal: totalScore},
+        });
+      }
     },
-    [questionNumber],
+
+    [dispatch, navigate, questionNumber, score],
   );
   useEffect(() => {
     setOptions({
@@ -85,32 +112,6 @@ const FormFour = ({navigation: {navigate, goBack, setOptions}}) => {
       ),
     });
   }, [goBack, questionNumber, setOptions]);
-
-  useEffect(() => {
-    if (form4Questions[questionNumber].name === 'haveIdentificationMark') {
-      const boolScore = {...score};
-      const totalScore = Object.keys(score).reduce((a, b) => a + score[b], 0);
-
-      Object.keys(boolScore).forEach((name) => {
-        const question = form4Questions.find((ques) => ques.name === name);
-        boolScore[name] = boolScore[name] === question.yes;
-      });
-
-      dispatch(
-        saveInspection({
-          stepThree: {
-            formFour: {
-              ...boolScore,
-              totalScore,
-            },
-          },
-        }),
-      );
-      navigate('TabNavigator', {
-        screen: 'FacilityScore',
-      });
-    }
-  }, [dispatch, navigate, questionNumber, score]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
