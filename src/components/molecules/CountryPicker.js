@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Text, TouchableOpacity} from 'react-native';
 import CountryPickerModal from 'react-native-country-picker-modal';
 import {ScaledSheet, ms} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import {RawColors, Fonts} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
@@ -35,7 +35,7 @@ const CountryPicker = forwardRef(
               onBackgroundTextColor: RawColors.black,
             }}
             l
-            closeButton={<Icon name="chevron-left" size={ms(26)} />}
+            closeButton={<Icon name="chevron-left" size={ms(18)} />}
             filterProps={{style: styles.filter, placeholder: 'Select Country'}}
             flatListProps={{style: styles.flatList}}
             renderFlagButton={() => null}

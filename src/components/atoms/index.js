@@ -9,6 +9,7 @@ import Header from './Header';
 import Loader from './Loader';
 import AnimatedView from './AnimatedView';
 import Pagination from './Pagination';
+import LanguageSelectionDropdown from './LanguageSelectionDropdown';
 
 export {
   Container,
@@ -22,4 +23,5 @@ export {
   Loader,
   AnimatedView,
   Pagination,
+  LanguageSelectionDropdown,
 };

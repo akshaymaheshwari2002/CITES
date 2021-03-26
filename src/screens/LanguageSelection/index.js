@@ -1,13 +1,13 @@
 import React, {useCallback, useEffect} from 'react';
 import {Image, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {useIntl} from 'react-intl';
 
-import {Container, Picker} from '@atoms';
+import {Container, Picker, LanguageSelectionDropdown} from '@atoms';
 import {setLocale} from '@store/slices/persistedSlice';
 import {setAppReady} from '@store/slices/sessionSlice';
-import {RawColors, Fonts} from '@styles/Themes';
+import {Fonts} from '@styles/Themes';
 import {Images} from '@assets';
 import LocaleList from './LocaleList';
 
@@ -43,7 +43,7 @@ const LanguageSelection = ({navigation}) => {
           resizeMode="contain"
         />
 
-        <View style={styles.dropDownContainer}>
+        {/* <View style={styles.dropDownContainer}>
           <Picker
             items={LocaleList}
             style={styles.picker}
@@ -53,7 +53,12 @@ const LanguageSelection = ({navigation}) => {
             onChange={handleChange}
             selectedLabelStyle={styles.selectedStyle}
           />
-        </View>
+        </View> */}
+        <LanguageSelectionDropdown
+          items={LocaleList}
+          placeholder={formatMessage({id: 'screen.screen2.selectAnItem'})}
+          onChange={handleChange}
+        />
       </Container.ScrollView>
     </Container>
   );

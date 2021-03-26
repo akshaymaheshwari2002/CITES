@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import {ms, ScaledSheet} from 'react-native-size-matters';
 import PropTypes from 'prop-types';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
@@ -56,7 +56,7 @@ Header.defaultProps = {
   contentContainerStyle: {},
   content: null,
   headerTextStyle: {},
-  leftContent: <Icon name="chevron-left" size={ms(26)} />,
+  leftContent: <Icon name="chevron-left" size={ms(18)} />,
   rightContent: null,
 };
 
