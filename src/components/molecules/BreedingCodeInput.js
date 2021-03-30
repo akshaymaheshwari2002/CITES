@@ -132,10 +132,7 @@ const styles = ScaledSheet.create({
     backgroundColor: RawColors.lightGrey,
     ...CommonStyles.shadowEffectDarker,
   },
-  labelBottom: {
-    // paddingRight: '20@ms',
-    marginHorizontal: '30@ms',
-  },
+  labelBottom: {},
   dash: {
     ...Fonts.HelveticaNeue25B,
     textAlignVertical: 'center',

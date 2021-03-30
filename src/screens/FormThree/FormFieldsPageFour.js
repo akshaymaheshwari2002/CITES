@@ -169,7 +169,7 @@ export default (fieldProps = {}) => {
         id: 'form.label.foodFedToAdults',
       }),
       name: 'foodFedToAdults',
-      rules: {required},
+      //rules: {required},
       fieldType: Constants.TEXTINPUT_ARRAY,
       count: 1,
       buttonText: formatMessage({id: 'button.addFood'}),

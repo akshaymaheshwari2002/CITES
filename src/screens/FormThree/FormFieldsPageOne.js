@@ -28,7 +28,7 @@ export default (fieldProps = {}) => {
       label: formatMessage({id: 'form.label.dateFirstSpeciesAcquired'}),
       placeholder: formatMessage({id: 'form.label.dateFirstSpeciesAcquired'}),
       name: 'dateFirstSpeciesAcquired',
-      rules: {required},
+      //rules: {required},
       headerTextIOS: formatMessage({
         id: 'form.label.dateFirstSpeciesAcquired',
       }),
@@ -53,7 +53,7 @@ export default (fieldProps = {}) => {
       label: formatMessage({id: 'form.label.lifeStageOfInitialStock'}),
       placeholder: formatMessage({id: 'form.label.lifeStageOfInitialStock'}),
       name: 'lifeStageOfInitialStock',
-      rules: {required},
+      //rules: {required},
     },
     {
       defaultValue: '',
@@ -84,7 +84,7 @@ export default (fieldProps = {}) => {
         id: 'form.label.additionalAnimalsAcquiredSinceInitialStock',
       }),
       name: 'additionalAnimalsAcquiredSinceInitialStock',
-      rules: {required},
+      //rules: {required},
       fieldType: Constants.CHOICELIST,
       mode: 'radio-button',
       items: [
@@ -103,7 +103,7 @@ export default (fieldProps = {}) => {
       label: formatMessage({id: 'form.label.addressOfAdditionalStock'}),
       placeholder: formatMessage({id: 'form.label.addressOfAdditionalStock'}),
       name: 'addressOfAdditionalStock',
-      rules: {required},
+      //rules: {required},
     },
   ];
 };

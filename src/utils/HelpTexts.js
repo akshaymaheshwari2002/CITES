@@ -61,18 +61,39 @@ export default {
   typeOfInspection: [
     {text: 'Types of inspections', isBold: true},
     {
-      text: 'An initial inspection is the first inspection of a facility.',
+      text: 'An',
       isBold: false,
+      subText: [
+        {val: ' initial inspection', isSubBold: true},
+        {
+          val: ' is the first inspection of a facility.',
+          isSubBold: false,
+        },
+      ],
+    },
+
+    {
+      text: 'A',
+      isBold: false,
+      subText: [
+        {val: ' routine inspection', isSubBold: true},
+        {
+          val: ' of a facility is undertaken on a regular basis.',
+          isSubBold: false,
+        },
+      ],
     },
     {
-      text:
-        'A routine inspection of a facility is undertaken on a regular basis.',
+      text: 'A',
       isBold: false,
-    },
-    {
-      text:
-        'A follow-up inspection is undertaken to ensure that a facility has complied with any issues raised on a previous initial or routine inspection.',
-      isBold: false,
+      subText: [
+        {val: ' follow-up inspection', isSubBold: true},
+        {
+          val:
+            ' is undertaken to ensure that a facility has complied with any issues raised on a previous initial or routine inspection.',
+          isSubBold: false,
+        },
+      ],
     },
   ],
   staffCurrentAtFacility: [
