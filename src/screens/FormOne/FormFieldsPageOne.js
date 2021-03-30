@@ -48,7 +48,7 @@ export default () => {
         id: 'form.label.nameOfInspectionOfficers',
       }),
       name: 'nameOfInspectionOfficers',
-      // //rules: {required},
+      rules: {required},
       fieldType: Constants.TEXTINPUT_ARRAY,
       buttonText: formatMessage({id: 'button.addInspectionOfficer'}),
       count: 1,
