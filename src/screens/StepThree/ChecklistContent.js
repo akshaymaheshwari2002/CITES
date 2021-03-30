@@ -18,7 +18,11 @@ const checklistContent = ({checkliststyles, bullet}) => {
               id: 'screen.stepThree.inspectionCompleted_1',
             })}
           </Text>
-          <Pressable onPress={() => {}} style={checklistContent.textLink}>
+          <Pressable
+            onPress={() => {
+              navigate('ExampleDialogueStep3');
+            }}
+            style={checklistContent.textLink}>
             <Text style={checkliststyles.textLink}>
               {formatMessage({
                 id: 'screen.stepThree.inspectionCompleted_2',
