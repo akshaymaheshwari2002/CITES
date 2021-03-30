@@ -187,18 +187,19 @@ const styles = ScaledSheet.create({
   },
   slideBtnContainerStep: {
     position: 'absolute',
-    top: '17@vs',
+    top: '16@vs',
     right: 0,
     paddingLeft: '5@s',
   },
   slideBtnContainerEdit: {
     position: 'absolute',
-    top: '92@vs',
+    top: '85@vs',
     right: 0,
     paddingLeft: '5@s',
   },
   slideBtn: {
-    height: '65@vs',
+    height: '50@vs',
+    width: '160@s',
     backgroundColor: RawColors.beige,
     justifyContent: 'center',
     borderTopLeftRadius: '8@ms',
