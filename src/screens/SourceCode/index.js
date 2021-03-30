@@ -104,7 +104,7 @@ const SourceCode = ({navigation, route}) => {
                   id: 'button.continueToStepTwo',
                 })
               : formatMessage({
-                  id: 'button.retuenToHome',
+                  id: 'button.returnToHome',
                 })
           }
           buttonTextStyle={() => {

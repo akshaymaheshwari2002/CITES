@@ -80,7 +80,7 @@ export default (fieldProps = {}) => {
         id: 'form.label.sizeOrMassAtSexualMaturity',
       }),
       name: 'sizeOrMassAtSexualMaturity',
-      rules: {required},
+      //rules: {required},
       keyboardType: 'number-pad',
     },
     {
@@ -90,7 +90,7 @@ export default (fieldProps = {}) => {
         id: 'form.label.sizeOrMassAtSaleOrExport',
       }),
       name: 'sizeOrMassAtSaleOrExport',
-      rules: {required},
+      //rules: {required},
       keyboardType: 'number-pad',
     },
     {
@@ -118,7 +118,7 @@ export default (fieldProps = {}) => {
         id: 'form.label.foodFedToRearingAndJuveniles',
       }),
       name: 'foodFedToRearingAndJuveniles',
-      rules: {required},
+      //rules: {required},
     },
   ];
 };

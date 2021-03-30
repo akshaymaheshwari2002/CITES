@@ -18,6 +18,7 @@ export default class FormOne {
     facilityOwnerPhone,
     facilityEstablishmentDate,
     typeOfInspection,
+    nationalPermitNumber,
     citesInformationCode,
   }) {
     this._id = _id ? new BSON.ObjectId(_id) : new BSON.ObjectId();
@@ -37,6 +38,7 @@ export default class FormOne {
       : facilityOwnerPhone;
     this.facilityEstablishmentDate = facilityEstablishmentDate;
     this.typeOfInspection = typeOfInspection;
+    this.nationalPermitNumber = nationalPermitNumber;
     this.citesInformationCode = citesInformationCode;
   }
 }

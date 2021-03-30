@@ -37,7 +37,7 @@ export default (fieldProps = {}) => {
     {
       label: formatMessage({id: 'form.label.doYouRanchThisSpecies'}),
       name: 'doYouRanchThisSpecies',
-      rules: {required},
+      //rules: {required},
       fieldType: Constants.CHOICELIST,
       mode: 'radio-button',
       items: [
@@ -55,7 +55,7 @@ export default (fieldProps = {}) => {
       label: formatMessage({id: 'form.label.lifeStageHarvested'}),
       placeholder: formatMessage({id: 'form.label.lifeStageHarvested'}),
       name: 'lifeStageHarvested',
-      rules: {required},
+      //rules: {required},
       fieldType: Constants.PICKER,
       items: lifeStageDropDownList.map((value) => ({
         label: value,
@@ -79,7 +79,7 @@ export default (fieldProps = {}) => {
         label: formatMessage({id: 'form.label.AddLifeStage'}),
         placeholder: formatMessage({id: 'form.label.AddLifeStage'}),
         name: 'otherLifeStage',
-        rules: {required},
+        //rules: {required},
       });
     }
     if (_lifeStageHarvestedCopy?.length) {

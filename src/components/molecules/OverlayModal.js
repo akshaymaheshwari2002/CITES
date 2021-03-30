@@ -75,6 +75,21 @@ const OverlayModal = ({isModalVisible, hideModal, helpText}) => {
                           value.isBold ? styles.modalTextBold : styles.modalText
                         }>
                         {value.text}
+                        {value.subText && value.subText.length > 0
+                          ? value.subText.map((value_1, index_1) => {
+                              return (
+                                <Text
+                                  key={`sub_text_key_${index_1}`}
+                                  style={
+                                    value_1.isSubBold
+                                      ? {...Fonts.Lato17B}
+                                      : null
+                                  }>
+                                  {value_1.val}
+                                </Text>
+                              );
+                            })
+                          : null}
                       </Text>
                     );
                   })

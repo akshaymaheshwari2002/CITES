@@ -76,13 +76,13 @@ const FormOneSummary = ({navigation, route}) => {
           </Text>
         </View>
         <View style={styles.subHeading}>
-          <Text style={[Fonts.Lato13R, styles.subHeadingText]}>
+          <Text style={[Fonts.Lato15R, styles.subHeadingText]}>
             {formatMessage({id: 'screen.FormOneSummary.subHeading_1'})}
           </Text>
-          <Text style={[Fonts.Lato13R, styles.subHeadingText]}>
+          <Text style={[Fonts.Lato15R, styles.subHeadingText]}>
             {formatMessage({id: 'screen.FormOneSummary.subHeading_2'})}
           </Text>
-          <Text style={[Fonts.Lato13R, styles.subHeadingText]}>
+          <Text style={[Fonts.Lato1R, styles.subHeadingText]}>
             {formatMessage({id: 'screen.FormOneSummary.subHeading_3'})}
           </Text>
         </View>
@@ -151,7 +151,7 @@ const styles = ScaledSheet.create({
   flexGrow: {flexGrow: 1},
   titleView: {
     paddingHorizontal: '16@s',
-    paddingVertical: '16@vs',
+    paddingTop: '16@vs',
     backgroundColor: RawColors.white,
   },
   ScrollViewStyle: {flexGrow: 1, backgroundColor: RawColors.white},
@@ -174,18 +174,19 @@ const styles = ScaledSheet.create({
   },
   slideBtnContainerStep: {
     position: 'absolute',
-    top: '17@vs',
+    top: '16@vs',
     right: 0,
     paddingLeft: '5@s',
   },
   slideBtnContainerEdit: {
     position: 'absolute',
-    top: '92@vs',
+    top: '85@vs',
     right: 0,
     paddingLeft: '5@s',
   },
   slideBtn: {
-    height: '65@vs',
+    height: '50@vs',
+    width: '160@s',
     backgroundColor: RawColors.beige,
     justifyContent: 'center',
     borderTopLeftRadius: '8@ms',
