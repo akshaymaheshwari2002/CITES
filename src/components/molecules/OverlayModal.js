@@ -91,11 +91,11 @@ const styles = ScaledSheet.create({
   overlay: {
     ...CommonStyles.flex1,
     justifyContent: 'flex-end',
-    paddingBottom: '95@vs',
+    paddingBottom: '54@vs',
   },
   modalView: {
     alignSelf: 'flex-end',
-    height: '80%',
+    height: '92%',
     backgroundColor: RawColors.white,
     borderWidth: 1,
     borderColor: RawColors.silverFoil,

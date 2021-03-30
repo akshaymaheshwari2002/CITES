@@ -112,7 +112,6 @@ export default () => {
       placeholder: formatMessage({id: 'form.placeholder.zipCode'}),
       defaultValue: '',
       name: 'zipCode',
-      rules: {required},
       fieldContainerStyle: {marginBottom: 0},
       style: {
         marginVertical: 0,

@@ -1,14 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
+import {ScaledSheet, s, vs} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 
 import {Fonts, RawColors} from '@styles/Themes';
-import {Container, Button} from '@atoms';
+import {Container, Button, TextInput} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
 
 const ExampleDialogueStep2 = ({navigation: {navigate}}) => {
   const {formatMessage} = useIntl();
+  const [name, setName] = useState();
+  const [collaeaguesName, setCollaeaguesName] = useState();
+  const [
+    collaeaguesOrganisationName,
+    setCollaeaguesOrganisationName,
+  ] = useState();
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
@@ -22,17 +28,25 @@ const ExampleDialogueStep2 = ({navigation: {navigate}}) => {
             {formatMessage({id: 'screen.ExampleDialogue.headerPartTwo'})}
           </Text>
         </View>
-        <Text style={styles.content}>
-          {formatMessage({
-            id: 'screen.ExampleDialogueStep2.contentOne',
-          })}
-
-          <Text style={styles.word}>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
+          <Text style={styles.content}>
             {formatMessage({
-              id: 'screen.ExampleDialogueStep2.contentTwo',
+              id: 'screen.ExampleDialogueStep2.contentOne',
             })}
           </Text>
-        </Text>
+          <TextInput
+            value={name}
+            onChange={setName}
+            placeHolder={formatMessage({
+              id: 'screen.ExampleDialogueStep2.contentTwo',
+            })}
+            style={{width: s(50), marginLeft: s(5)}}
+          />
+        </View>
         <Text style={[styles.content, styles.nogap]}>
           {formatMessage({
             id: 'screen.ExampleDialogueStep2.contentThree',
@@ -43,30 +57,40 @@ const ExampleDialogueStep2 = ({navigation: {navigate}}) => {
             id: 'screen.ExampleDialogueStep2.contentThreeOne',
           })}
         </Text>
-        <Text>
-          <Text style={[styles.word, styles.nogap]}>
-            {formatMessage({
-              id: 'screen.ExampleDialogueStep2.contentFour',
-            })}
-          </Text>
-          <Text style={[styles.content]}>
-            {formatMessage({
-              id: 'screen.ExampleDialogueStep2.contentFive',
-            })}
-          </Text>
-          <Text>
-            <Text style={styles.word}>
-              {formatMessage({
-                id: 'screen.ExampleDialogueStep2.contentSix',
-              })}
-            </Text>
-            <Text style={[styles.content, styles.nogap]}>
-              {formatMessage({
-                id: 'screen.ExampleDialogueStep2.contentSeven',
-              })}
-            </Text>
-          </Text>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
+          <TextInput
+            value={collaeaguesName}
+            onChange={setCollaeaguesName}
+            style={{width: s(10), marginRight: s(10)}}
+          />
+        </View>
+        <Text style={[styles.content, styles.nogap]}>
+          {formatMessage({
+            id: 'screen.ExampleDialogueStep2.contentFive',
+          })}
         </Text>
+        <View
+          style={{
+            alignItems: 'flex-start',
+          }}>
+          <TextInput
+            value={collaeaguesOrganisationName}
+            onChange={setCollaeaguesOrganisationName}
+            style={{
+              width: s(250),
+            }}
+          />
+          <Text style={[styles.content, styles.nogap]}>
+            {formatMessage({
+              id: 'screen.ExampleDialogueStep2.contentSeven',
+            })}
+          </Text>
+        </View>
+
         <Text style={styles.content}>
           {formatMessage({
             id: 'screen.ExampleDialogueStep2.contentEight',
@@ -137,6 +161,7 @@ const styles = ScaledSheet.create({
   },
   nogap: {
     marginTop: '0@s',
+    alignSelf: 'flex-start',
   },
   titleContent: {
     ...Fonts.HelveticaNeue30B,
@@ -148,8 +173,8 @@ const styles = ScaledSheet.create({
     color: RawColors.black,
   },
   content: {
-    width: '100%',
-    alignSelf: 'center',
+    //width: '100%',
+    //alignSelf: 'center',
     ...Fonts.Lato17R,
     lineHeight: 30,
     letterSpacing: 0.41,
