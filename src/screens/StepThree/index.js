@@ -38,6 +38,12 @@ const StepThree = ({navigation: {navigate, goBack}}) => {
       Object.keys(stepThreeData).forEach((key) => {
         if (!stepThreeData[key] && key !== 'formFour') {
           stepThreeComplete = false;
+        } else if (stepThreeComplete !== true) {
+          Toast.show(
+            formatMessage({
+              id: 'screen.StepThree.Alert',
+            }),
+          );
         }
       });
       if (stepThreeComplete) {

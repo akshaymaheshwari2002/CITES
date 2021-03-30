@@ -28,6 +28,12 @@ const StepOne = ({navigation, route}) => {
       Object.keys(stepOneData).forEach((key) => {
         if (!stepOneData[key] && key !== 'formOne') {
           stepOneComplete = false;
+        } else if (stepOneComplete !== true) {
+          Toast.show(
+            formatMessage({
+              id: 'screen.StepOne.Alert',
+            }),
+          );
         }
       });
 

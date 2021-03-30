@@ -26,6 +26,12 @@ const StepTwo = ({navigation}) => {
       Object.keys(stepTwoData).forEach((key) => {
         if (!stepTwoData[key] && key !== 'formTwo' && key !== 'formThree') {
           stepTwoComplete = false;
+        } else if (stepTwoComplete !== true) {
+          Toast.show(
+            formatMessage({
+              id: 'screen.StepTwo.Alert',
+            }),
+          );
         }
       });
 
