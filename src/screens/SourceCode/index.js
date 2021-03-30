@@ -152,7 +152,7 @@ const styles = ScaledSheet.create({
     textAlign: 'center',
     paddingTop: '30@s',
     textAlignVertical: 'center',
-    ...Fonts.Lato19R,
+    ...Fonts.Lato19B,
   },
   notApplicableText: {
     textAlign: 'center',

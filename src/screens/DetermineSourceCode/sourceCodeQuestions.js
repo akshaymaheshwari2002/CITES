@@ -31,7 +31,6 @@ const sourceCodeQuestions = {
   3: {
     content: [
       {text: 'questionContent.questionThreePartOne', isLink: false},
-      {text: 'questionContent.questionThreePartOne', isLink: false},
       {
         text: 'questionContent.questionThreePartThree',
         isLink: {isWebSource: true, target: Config.URL_Q3_MORE_INFO},
@@ -73,8 +72,6 @@ const sourceCodeQuestions = {
     content: [
       {text: 'questionContent.questionSixPartOne', isLink: false},
       {text: 'questionContent.questionSixPartTwo', isLink: false},
-      {text: 'questionContent.questionSixPartThree', isLink: false},
-      {text: 'questionContent.questionSixPartFour', isLink: false},
     ],
     options: [Constants.PLANT, Constants.ANIMAL],
     moreInfo: false,

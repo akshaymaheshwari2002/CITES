@@ -158,9 +158,9 @@ const checkliststyles = ScaledSheet.create({
     textAlignVertical: 'center',
     textAlign: 'center',
     color: RawColors.softRed,
-    paddingHorizontal: '15@ms',
+    paddingHorizontal: '16@ms',
     paddingVertical: '2@ms',
-    ...Fonts.Lato13R,
+    ...Fonts.HelveticaNeue13B,
   },
   buttonLarge: {
     marginTop: '15@ms',

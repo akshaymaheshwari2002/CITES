@@ -21,10 +21,16 @@ const OnboardingThreeA = () => {
         source={Images.onboardingThreeA}
       />
       <Image
-        style={[styles.img, {height: vs(200), marginRight: s(38)}]}
+        style={[
+          styles.img,
+          {height: vs(250), marginRight: s(38), marginTop: s(-40)},
+        ]}
         source={Images.onboardingThreeAPartTwo}
       />
-      <Image style={styles.img} source={Images.backgroundNavbarLower} />
+      <Image
+        style={[styles.img, styles.abImg]}
+        source={Images.backgroundNavbarLower}
+      />
     </Container.ScrollView>
   );
 };
@@ -34,11 +40,15 @@ const styles = ScaledSheet.create({
     textAlign: 'center',
     ...Fonts.Lato20R,
     lineHeight: '26@ms',
-    marginVertical: '30@vs',
+    marginTop: '45@vs',
+    marginBottom: '30@vs',
   },
   img: {
     resizeMode: 'contain',
     alignSelf: 'center',
+  },
+  abImg: {
+    marginTop: '-50@ms',
   },
 });
 
