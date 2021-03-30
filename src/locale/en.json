@@ -431,8 +431,8 @@
   "form.label.doYouBreedThisSpecies": "Do you breed this species?",
   "form.label.whenDidYouBreedThisSpecies": "When did you start breeding this species?",
   "form.label.numberOfLittersPerYear": "Number of litters/clutches per year",
-  "form.label.numberOfOffspringPerLitter": "Number of offspring/eggs in litter/clutch",
-  "form.label.numberProducedInPreviousYear": "Number produced in the previous year",
+  "form.label.numberOfOffspringPerLitter": "Number of offspring in litter/clutch",
+  "form.label.numberProducedInPreviousYear": "Number of offspring produced in the previous year",
   "form.label.doYouRanchThisSpecies": "Do you ranch this species?",
   "form.label.lifeStageHarvested": "Life stage(s) harvested",
   "form.label.AddLifeStage": "Add other life stage",
@@ -450,7 +450,7 @@
   "form.label.ageAtSexualMaturity": "Age at sexual maturity (years)",
   "form.label.sizeOrMassAtSexualMaturity": "Size or mass at sexual maturity (cm or g)",
   "form.label.sizeOrMassAtSaleOrExport": "Approximate size at sale or export (cm or g)",
-  "form.label.percentageOfJuvenilesSurviveBeyond2Weeks": "Percentage of juveniles to survive beyond 2 weeks, including mortalities of eggs that did not hatch.",
+  "form.label.percentageOfJuvenilesSurviveBeyond2Weeks": "Percentage of juveniles to survive beyond 2 weeks, including mortalities of eggs that did not hatch",
   "form.label.foodFedToRearingAndJuveniles": "What do you feed juveniles?",
   "button.submit": "SUBMIT",
   "screen.Onboarding4A5.WalkThroughContentRightHeader": " this for general information on applying source codes",
@@ -551,5 +551,5 @@
   "form.label.zipCode": "ZIP/Postal Code",
   "form.placeholder.stateRegion": "State/Region/Provience",
   "form.placeholder.zipCode": "ZIP/Postal Code",
-  "screen.languageSelection.contentOne":"CapaCITES"
+  "screen.languageSelection.contentOne": "CapaCITES"
 }

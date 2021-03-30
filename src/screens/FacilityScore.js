@@ -38,7 +38,7 @@ const FacilityScore = ({navigation: {navigate, goBack}, route}) => {
         </View>
         <Button
           buttonContent={formatMessage({
-            id: 'general.continue',
+            id: 'button.continueCaps',
           })}
           buttonTextStyle={() => {
             return styles.buttonText;

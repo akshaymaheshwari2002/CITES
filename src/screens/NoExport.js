@@ -54,7 +54,7 @@ const NoExport = ({navigation: {navigate, setOptions}}) => {
           </TouchableOpacity>
           <Button
             buttonContent={formatMessage({
-              id: 'general.continue',
+              id: 'button.continueCaps',
             })}
             buttonTextStyle={() => {
               return styles.buttonText;
