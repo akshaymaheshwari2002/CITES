@@ -113,11 +113,16 @@ const checkliststyles = ScaledSheet.create({
   textGeneral: {
     color: RawColors.black,
     ...Fonts.Lato17SB,
+    paddingRight: '13@ms',
+  },
+  textBold: {
+    color: RawColors.black,
+    ...Fonts.Lato17B,
   },
   textLink: {
     color: RawColors.black,
     textDecorationLine: 'underline',
-    ...Fonts.Lato15SB,
+    ...Fonts.Italic15R,
   },
   bulletList: {
     flexDirection: 'row',
@@ -140,11 +145,10 @@ const checkliststyles = ScaledSheet.create({
   },
   button: {
     alignSelf: 'flex-start',
-    alignItems: 'center',
-    justifyContent: 'center',
     borderColor: RawColors.prussianBlue,
     backgroundColor: RawColors.white,
     height: '40@vs',
+    borderRadius: '24@vs',
     marginVertical: '20@s',
     marginHorizontal: '10@s',
   },
@@ -153,15 +157,14 @@ const checkliststyles = ScaledSheet.create({
     textAlignVertical: 'center',
     textAlign: 'center',
     color: RawColors.softRed,
-    paddingHorizontal: '15@ms',
-    paddingVertical: '2@ms',
-    ...Fonts.Lato13R,
+    paddingHorizontal: '16@ms',
+    ...Fonts.HelveticaNeue13B,
   },
   buttonLarge: {
     marginTop: '15@ms',
   },
   formCell: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    //flexDirection: 'row',
+    //alignItems: 'center',
   },
 });
