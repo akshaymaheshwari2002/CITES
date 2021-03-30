@@ -400,7 +400,7 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
           {formFieldsPage !== 5 ? (
             <Button
               onPress={handleSubmit(_handleSubmit, () => scrollToTop())}
-              buttonContent={formatMessage({id: 'general.continue'})}
+              buttonContent={formatMessage({id: 'button.continueCaps'})}
             />
           ) : (
             <>

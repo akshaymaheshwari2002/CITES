@@ -179,13 +179,13 @@ const FormTwoSummaryEdit = ({navigation}) => {
         </Text>
       </View>
       <View style={styles.subHeading}>
-        <Text style={[Fonts.Lato13R, styles.subHeadingText]}>
+        <Text style={[Fonts.Lato15R, styles.subHeadingText]}>
           {formatMessage({id: 'screen.FormOneSummary.subHeading_1'})}
         </Text>
-        <Text style={[Fonts.Lato13R, styles.subHeadingText]}>
+        <Text style={[Fonts.Lato15R, styles.subHeadingText]}>
           {formatMessage({id: 'screen.FormOneSummary.subHeading_2'})}
         </Text>
-        <Text style={[Fonts.Lato13R, styles.subHeadingText]}>
+        <Text style={[Fonts.Lato15R, styles.subHeadingText]}>
           {formatMessage({id: 'screen.FormOneSummary.subHeading_3'})}
         </Text>
       </View>
@@ -254,18 +254,19 @@ const styles = ScaledSheet.create({
   },
   slideBtnContainerStep: {
     position: 'absolute',
-    top: '105@vs',
+    top: '16@vs',
     right: 0,
     paddingLeft: '5@s',
   },
   slideBtnContainerEdit: {
     position: 'absolute',
-    top: '185@vs',
+    top: '85@vs',
     right: 0,
     paddingLeft: '5@s',
   },
   slideBtn: {
-    height: '65@vs',
+    height: '50@vs',
+    width: '160@s',
     backgroundColor: RawColors.beige,
     justifyContent: 'center',
     borderTopLeftRadius: '8@ms',

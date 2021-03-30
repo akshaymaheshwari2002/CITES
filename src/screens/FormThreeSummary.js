@@ -99,13 +99,13 @@ const FormThreeSummary = ({navigation, route}) => {
           </Text>
         </View>
         <View style={styles.subHeading}>
-          <Text style={[Fonts.Lato13R, styles.subHeadingText]}>
+          <Text style={[Fonts.Lato15R, styles.subHeadingText]}>
             {formatMessage({id: 'screen.FormOneSummary.subHeading_1'})}
           </Text>
-          <Text style={[Fonts.Lato13R, styles.subHeadingText]}>
+          <Text style={[Fonts.Lato15R, styles.subHeadingText]}>
             {formatMessage({id: 'screen.FormOneSummary.subHeading_2'})}
           </Text>
-          <Text style={[Fonts.Lato13R, styles.subHeadingText]}>
+          <Text style={[Fonts.Lato15R, styles.subHeadingText]}>
             {formatMessage({id: 'screen.FormOneSummary.subHeading_3'})}
           </Text>
         </View>

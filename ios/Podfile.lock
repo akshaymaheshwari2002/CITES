@@ -243,6 +243,8 @@ PODS:
     - React-Core
   - react-native-html-to-pdf (0.9.1):
     - React
+  - react-native-image-picker (3.3.2):
+    - React-Core
   - react-native-pdf (6.2.2):
     - React-Core
   - react-native-progress-bar-android (1.0.4):
@@ -381,6 +383,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-config (from `../node_modules/react-native-config`)
   - react-native-html-to-pdf (from `../node_modules/react-native-html-to-pdf`)
+  - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-pdf (from `../node_modules/react-native-pdf`)
   - "react-native-progress-bar-android (from `../node_modules/@react-native-community/progress-bar-android`)"
   - "react-native-progress-view (from `../node_modules/@react-native-community/progress-view`)"
@@ -461,6 +464,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-config"
   react-native-html-to-pdf:
     :path: "../node_modules/react-native-html-to-pdf"
+  react-native-image-picker:
+    :path: "../node_modules/react-native-image-picker"
   react-native-pdf:
     :path: "../node_modules/react-native-pdf"
   react-native-progress-bar-android:
@@ -546,6 +551,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 58aef7155bc9a9683f5b60b35eccea8722a4f53a
   react-native-config: d8b45133fd13d4f23bd2064b72f6e2c08b2763ed
   react-native-html-to-pdf: 599f5b80d5fa2874e22e636336bc700681aaf0ac
+  react-native-image-picker: b42940647478bf106ad3c491d6f5d9d40916d865
   react-native-pdf: 4b5a9e4465a6a3b399e91dc4838eb44ddf716d1f
   react-native-progress-bar-android: be43138ab7da30d51fc038bafa98e9ed594d0c40
   react-native-progress-view: 21b1e29e70c7559c16c9e0a04c4adc19fce6ede2
