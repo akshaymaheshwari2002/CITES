@@ -46,6 +46,10 @@ export default (fieldProps = {}) => {
           value: 1,
           message: formatMessage({id: 'form.error.singleCharacterLimit'}),
         },
+        pattern: {
+          value: /^(D|I|U|X|W|C|F|O|A|R)$/,
+          message: formatMessage({id: 'form.error.singleCharacterAllowed'}),
+        },
       },
     },
     {
@@ -53,7 +57,6 @@ export default (fieldProps = {}) => {
       label: formatMessage({id: 'form.label.lifeStageOfInitialStock'}),
       placeholder: formatMessage({id: 'form.label.lifeStageOfInitialStock'}),
       name: 'lifeStageOfInitialStock',
-      //rules: {required},
     },
     {
       defaultValue: '',

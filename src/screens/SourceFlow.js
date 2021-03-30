@@ -1,6 +1,6 @@
 import React from 'react';
 import {ImageBackground, Text, View, Image} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
+import {vs, ScaledSheet} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 
 import {Container, Button} from '@atoms';
@@ -22,7 +22,7 @@ const SourceFlow = ({navigation}) => {
               style={styles.eye}
               resizeMode="contain"
             />
-            <Text style={styles.header}>
+            <Text style={[styles.header, {marginTop: vs(10)}]}>
               {formatMessage({id: 'screen.SourceFlow.headerPartTwo'})}
             </Text>
             <Text style={styles.header}>
@@ -125,6 +125,7 @@ const styles = ScaledSheet.create({
     ...Fonts.HelveticaNeue26B,
     textAlign: 'right',
     lineHeight: '26@ms',
+
     letterSpacing: '0.45@ms',
   },
   contentContainer: {

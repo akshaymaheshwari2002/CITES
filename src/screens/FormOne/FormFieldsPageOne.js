@@ -180,7 +180,7 @@ export default () => {
       rules: {required},
       fieldType: Constants.TEXTINPUT_ARRAY,
       count: 1,
-      buttonText: formatMessage({id: 'button.addSpecies'}),
+      buttonText: formatMessage({id: 'button.addFood'}),
     },
     {
       label: formatMessage({id: 'form.label.facilityEstablishmentDate'}),
