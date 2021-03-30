@@ -165,6 +165,7 @@ const checkliststyles = ScaledSheet.create({
   textGeneral: {
     color: RawColors.black,
     ...Fonts.Lato17SB,
+    paddingRight: '13@ms',
   },
   textHiddenBullet: {
     color: RawColors.black,
