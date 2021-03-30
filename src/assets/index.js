@@ -35,4 +35,6 @@ export const Images = {
   emojiFive: require('./images/5icon.png'),
   grassHopper: require('./images/616730.png'),
   eye: require('./images/eye.png'),
+  stars: require('./images/stars.png'),
+  star: require('./images/star.png'),
 };
