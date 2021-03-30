@@ -7,6 +7,7 @@ import {useIntl} from 'react-intl';
 import Icon from 'react-native-vector-icons/Feather';
 
 import HelpText from '@utils/HelpTexts';
+import {store} from '@store';
 import {Button, Container} from '@atoms';
 import {saveInspection} from '@store/slices/sessionSlice';
 import {Fonts, RawColors} from '@styles/Themes';
@@ -180,7 +181,7 @@ const FormFour = ({navigation: {navigate, goBack, setOptions}}) => {
             return styles.button;
           }}
           onPress={() => {
-            dispatch(
+            store.dispatch(
               setHelpText(
                 HelpText[form4Questions[questionNumber].moreInfo.helpTextKey],
               ),
