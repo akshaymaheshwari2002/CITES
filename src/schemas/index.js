@@ -88,6 +88,7 @@ export const FORM_ONE = {
     facilityEstablishmentDate: 'string',
     typeOfInspection: 'string[]',
     citesInformationCode: 'string[]',
+    nationalPermitNumber: 'string',
   },
 };
 

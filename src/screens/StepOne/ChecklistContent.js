@@ -172,7 +172,7 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
               onPress={() => {
                 navigate('ExampleDialogueConsentFormStep2');
               }}>
-              <Text style={checkliststyles.textHiddenBullet}>
+              <Text style={[checkliststyles.textLink]}>
                 {formatMessage({
                   id: 'screen.stepOne.toolsEnsured.bullet_4_2',
                 })}

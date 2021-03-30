@@ -14,7 +14,7 @@ const ExampleDialogueConsentFormStep2 = ({navigation: {navigate}}) => {
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
         contentContainerStyle={CommonStyles.screenContainer}
-        style={CommonStyles.flex1}>
+        style={[CommonStyles.flex1]}>
         <View style={styles.title}>
           <Text style={styles.titleContent}>
             {formatMessage({id: 'screen.ExampleDialogue.headerPartOne'})}
@@ -35,6 +35,9 @@ const ExampleDialogueConsentFormStep2 = ({navigation: {navigate}}) => {
           </Text>
           <TextInput
             value={name}
+            placeholder={formatMessage({
+              id: 'screen.ExampleDialogueConsentFormStep2.namePlaceHolder',
+            })}
             onChange={setName}
             style={{width: s(180), marginLeft: s(10)}}
           />

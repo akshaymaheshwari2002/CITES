@@ -58,14 +58,14 @@ export default () => {
       label: formatMessage({id: 'form.label.facilityName'}),
       placeholder: formatMessage({id: 'form.label.facilityName'}),
       name: 'facilityName',
-      rules: {required},
+      //rules: {required},
     },
     {
       defaultValue: '',
       label: formatMessage({id: 'form.label.addressLineOne'}),
       placeholder: formatMessage({id: 'form.placeholder.addressLineOne'}),
       name: 'facilityAddressLineOne',
-      rules: {required},
+      //rules: {required},
       fieldContainerStyle: {marginBottom: 0},
     },
     {
@@ -73,7 +73,7 @@ export default () => {
       placeholder: formatMessage({id: 'form.placeholder.addressLineTwo'}),
       defaultValue: '',
       name: 'facilityAddressLineTwo',
-      rules: {required},
+      //rules: {required},
       fieldContainerStyle: {marginBottom: 0},
       style: {
         marginVertical: 0,
@@ -86,7 +86,7 @@ export default () => {
       placeholder: formatMessage({id: 'form.placeholder.city'}),
       defaultValue: '',
       name: 'city',
-      rules: {required},
+      //rules: {required},
       fieldContainerStyle: {marginBottom: 0},
       style: {
         marginVertical: 0,
@@ -99,7 +99,7 @@ export default () => {
       placeholder: formatMessage({id: 'form.placeholder.stateRegion'}),
       defaultValue: '',
       name: 'stateProvienceRegion',
-      rules: {required},
+      //rules: {required},
       fieldContainerStyle: {marginBottom: 0},
       style: {
         marginVertical: 0,
@@ -112,7 +112,7 @@ export default () => {
       placeholder: formatMessage({id: 'form.placeholder.zipCode'}),
       defaultValue: '',
       name: 'zipCode',
-      rules: {required},
+      //rules: {required},
       fieldContainerStyle: {marginBottom: 0},
       style: {
         marginVertical: 0,
@@ -125,7 +125,7 @@ export default () => {
       placeholder: formatMessage({id: 'form.placeholder.country'}),
       defaultValue: '',
       name: 'country',
-      rules: {required},
+      //rules: {required},
       fieldType: Constants.COUNTRY_PICKER,
       items: countries,
       style: {
@@ -187,7 +187,7 @@ export default () => {
       label: formatMessage({id: 'form.label.facilityEstablishmentDate'}),
       placeholder: formatMessage({id: 'form.label.facilityEstablishmentDate'}),
       name: 'facilityEstablishmentDate',
-      rules: {required},
+      //rules: {required},
       headerTextIOS: formatMessage({
         id: 'form.label.facilityEstablishmentDate',
       }),
@@ -218,6 +218,13 @@ export default () => {
       onHelpIconPress: () => {
         store.dispatch(setHelpText(HelpTexts.typeOfInspection));
       },
+    },
+    {
+      defaultValue: '',
+      label: formatMessage({id: 'form.label.nationalPermitNumber'}),
+      placeholder: formatMessage({id: 'form.placeHolder.nationalPermitNumber'}),
+      name: 'nationalPermitNumber',
+      //rules: {required},
     },
     {
       defaultValue: ['', '-', '', '', '-', '', '', ''],
