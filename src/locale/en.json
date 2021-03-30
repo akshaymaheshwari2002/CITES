@@ -547,8 +547,9 @@
   "screen.StepThree.Alert": "Please Complete Step One First",
   "form.label.city": "City",
   "form.placeholder.city": "City",
-  "form.label.stateRegion": "State/Region/Province",
-  "form.label.zipCode": "ZIP/PostalCode",
-  "form.placeholder.stateRegion": "State/Region/Province",
-  "form.placeholder.zipCode": "ZIP/PostalCode"
+  "form.label.stateRegion": "State/Region/Provience",
+  "form.label.zipCode": "ZIP/Postal Code",
+  "form.placeholder.stateRegion": "State/Region/Provience",
+  "form.placeholder.zipCode": "ZIP/Postal Code",
+  "screen.languageSelection.contentOne":"CapaCITES"
 }

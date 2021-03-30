@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import {Container, Button} from '@atoms';
+import {View, Text, TouchableOpacity} from 'react-native';
+import {Container, Button, ImagePickerModal} from '@atoms';
 import {ScaledSheet, ms, vs, s} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import {useIntl} from 'react-intl';
@@ -14,7 +14,6 @@ const InspectionNotes = ({navigation: {navigate}}) => {
   const {formatMessage} = useIntl();
   const formProps = useForm();
   const {control, errors} = formProps;
-
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
@@ -33,9 +32,13 @@ const InspectionNotes = ({navigation: {navigate}}) => {
             <View style={styles.circle}>
               <Icon name="camera" size={ms(26)} />
             </View>
-            <View style={styles.circle}>
+            <TouchableOpacity
+              style={styles.circle}
+              onPress={() => {
+                <ImagePickerModal />;
+              }}>
               <Icon name="camera" size={ms(26)} />
-            </View>
+            </TouchableOpacity>
           </View>
           <Form
             control={control}
@@ -144,6 +147,25 @@ const styles = ScaledSheet.create({
     color: RawColors.darkGreyBlue,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  cameraContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: 'black',
+  },
+  preview: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  capture: {
+    flex: 0,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    padding: 15,
+    paddingHorizontal: 20,
+    alignSelf: 'center',
+    margin: 20,
   },
 });
 

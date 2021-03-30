@@ -1,6 +1,14 @@
-import React, {useEffect} from 'react';
-import {View, Text, Image, Animated, Easing, AImage} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
+import React, {useEffect, useRef} from 'react';
+import {
+  View,
+  Text,
+  Image,
+  Animated,
+  Easing,
+  ImageBackground,
+} from 'react-native';
+import {ScaledSheet, ms} from 'react-native-size-matters';
+import {useIsFocused} from '@react-navigation/native';
 import {useIntl} from 'react-intl';
 
 import {Fonts, RawColors} from '@styles/Themes';
@@ -9,20 +17,67 @@ import CommonStyles from '@styles/CommonStyles';
 import {Images} from '@assets/';
 
 const StepSummary = ({navigation: {navigate}}) => {
+  const AnimatedImage = Animated.createAnimatedComponent(ImageBackground);
   const {formatMessage} = useIntl();
-  //var AImage = require('react-native-image-animation');
-  const animationImages = [
-    Images.stepSummaryOne,
-    Images.stepSummaryTwo,
-    Images.stepSummaryThree,
-    Images.stepSummaryFour,
-  ];
+  const isFocused = useIsFocused();
+  const animationValue = useRef(new Animated.Value(0)).current;
+  const starScaleX = animationValue.interpolate({
+    inputRange: [0, 0.8, 1],
+    outputRange: [0, 1.5, 1],
+  });
+  const starScaleY = animationValue.interpolate({
+    inputRange: [0, 0.8, 1],
+    outputRange: [0, 1.5, 1],
+  });
+  const circleOpacity = animationValue.interpolate({
+    inputRange: [0, 0.5],
+    outputRange: [1, 0],
+  });
+  const circleScaleX = animationValue.interpolate({
+    inputRange: [0, 0.5],
+    outputRange: [1, 2],
+  });
+  const circleScaleY = animationValue.interpolate({
+    inputRange: [0, 0.5],
+    outputRange: [1, 2],
+  });
+
+  useEffect(() => {
+    if (isFocused) {
+      const ani = Animated.timing(animationValue, {
+        toValue: 1,
+        duration: 1000,
+        easing: Easing.inOut(Easing.ease),
+        useNativeDriver: true,
+      });
+      ani.start();
+    } else {
+      animationValue.setValue(0);
+    }
+  }, [animationValue, isFocused]);
+  const starsStyle = {
+    position: 'absolute',
+    justifyContent: 'center',
+    height: ms(150),
+    width: ms(150),
+    transform: [{scaleX: starScaleX}, {scaleY: starScaleY}],
+  };
+
+  const circleStyle = {
+    position: 'absolute',
+    justifyContent: 'center',
+    height: ms(150),
+    width: ms(150),
+    opacity: circleOpacity,
+    transform: [{scaleX: circleScaleX}, {scaleY: circleScaleY}],
+  };
+
   return (
     <Container>
       <Container.ScrollView
         contentContainerStyle={styles.container}
         style={CommonStyles.flex1}>
-        <View style={{flexDirection: 'row'}}>
+        <View style={styles.topContainer}>
           <View style={styles.title}>
             <Text style={styles.titleOne}>
               {formatMessage({id: 'screen.StepSummary.headerPartOne'})}
@@ -32,17 +87,18 @@ const StepSummary = ({navigation: {navigate}}) => {
             </Text>
           </View>
           <View style={styles.img}>
+            <AnimatedImage
+              source={Images.stars}
+              resizeMode="contain"
+              style={starsStyle}
+            />
+            <AnimatedImage
+              source={Images.star}
+              resizeMode="contain"
+              style={circleStyle}
+            />
             <Image source={Images.stepSummaryOne} style={styles.image} />
           </View>
-          {/* <View style={styles.img}>
-            <AImage
-              resizeMode="contain"
-              animationRepeatCount={0}
-              animationDuration={200}
-              animationImages={animationImages}
-              style={styles.image}
-            />
-          </View> */}
         </View>
 
         <View style={styles.backColor}>
@@ -116,6 +172,10 @@ const styles = ScaledSheet.create({
   container: {
     backgroundColor: RawColors.white,
   },
+  topContainer: {
+    flexDirection: 'row',
+    marginTop: '20@vs',
+  },
   margin: {
     marginHorizontal: '30@s',
     alignItems: 'center',
@@ -140,13 +200,15 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.09@s',
   },
   image: {
-    height: '97@vs',
-    width: '90@s',
-    backgroundColor: RawColors.white,
+    height: '60@ms',
+    width: '60@ms',
+    resizeMode: 'contain',
+    alignSelf: 'center',
   },
   img: {
+    flex: 1,
     alignItems: 'flex-end',
-    marginLeft: '55@s',
+    justifyContent: 'center',
   },
   backColor: {
     backgroundColor: 'white',

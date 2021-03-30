@@ -3,6 +3,7 @@ import Container from './Container';
 import PDFPreview from './PDFPreview';
 import Picker from './Picker';
 import Button from './Button';
+import ImagePickerModal from './ImagePickerModal';
 import Checkbox from './Checkbox';
 import Tooltip from './Tooltip';
 import Header from './Header';
@@ -17,6 +18,7 @@ export {
   PDFPreview,
   Picker,
   Button,
+  ImagePickerModal,
   Checkbox,
   Tooltip,
   Header,

@@ -1,10 +1,10 @@
 import React, {useCallback, useEffect} from 'react';
-import {Image, View} from 'react-native';
+import {Image, View, Text} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useDispatch} from 'react-redux';
 import {useIntl} from 'react-intl';
 
-import {Container, Picker, LanguageSelectionDropdown} from '@atoms';
+import {Container, LanguageSelectionDropdown} from '@atoms';
 import {setLocale} from '@store/slices/persistedSlice';
 import {setAppReady} from '@store/slices/sessionSlice';
 import {Fonts} from '@styles/Themes';
@@ -31,15 +31,11 @@ const LanguageSelection = ({navigation}) => {
     <Container>
       <Container.ScrollView contentContainerStyle={[styles.scrollContainer]}>
         <View style={[styles.logoContainer]}>
-          <Image
-            source={Images?.eye}
-            style={styles.logo}
-            resizeMode="contain"
-          />
+          <Image source={Images?.eye} style={styles.eye} resizeMode="contain" />
         </View>
         <Image
           source={Images?.logo}
-          style={[styles.eye]}
+          style={[styles.logo]}
           resizeMode="contain"
         />
 
@@ -54,6 +50,9 @@ const LanguageSelection = ({navigation}) => {
             selectedLabelStyle={styles.selectedStyle}
           />
         </View> */}
+        <Text style={styles.content}>
+          {formatMessage({id: 'screen.languageSelection.contentOne'})}
+        </Text>
         <LanguageSelectionDropdown
           items={LocaleList}
           placeholder={formatMessage({id: 'screen.screen2.selectAnItem'})}
@@ -79,17 +78,19 @@ const styles = ScaledSheet.create({
   },
   logoContainer: {
     width: '100%',
+    marginTop: '50@vs',
     alignItems: 'center',
   },
-  eye: {
-    marginTop: '35@vs',
-    height: '100@vs',
-    width: '276@s',
-  },
   logo: {
-    marginTop: '35@vs',
-    height: '146@vs',
-    marginBottom: '10@vs',
+    marginTop: '25@vs',
+    height: '97@vs',
+  },
+  eye: {
+    height: '147@vs',
+    width: '190@s',
+  },
+  content: {
+    ...Fonts.Lato30R,
   },
   selectedStyle: {
     ...Fonts.Lato17B,
