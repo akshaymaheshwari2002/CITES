@@ -37,12 +37,21 @@ const TextInputArray = React.forwardRef(
       },
       [onChange, value],
     );
+    const handleDelete = useCallback(
+      (index) => {
+        const _value = value ?? [];
+        _value.splice(index, 1);
+        onChange([..._value]);
+        _setCount((state) => state - 1);
+      },
+      [onChange, value],
+    );
 
     const renderFields = useCallback(() => {
       let fields = [];
       for (let index = 0; index < _count; ++index) {
         fields[index] = (
-          <View style={styles.textInputContainer}>
+          <View key={index} style={styles.textInputContainer}>
             <View style={styles.SectionStyle}>
               <TextInput
                 key={index}
@@ -55,14 +64,14 @@ const TextInputArray = React.forwardRef(
                 name="trash"
                 size={moderateScale(25)}
                 iconStyle={styles.ImageStyle}
-                onPress={() => _setCount((state) => state - 1)}
+                onPress={() => handleDelete(index)}
               />
             </View>
           </View>
         );
       }
       return fields;
-    }, [_count, handleChangeText, placeholder, value]);
+    }, [_count, handleChangeText, handleDelete, placeholder, value]);
 
     useEffect(() => {
       if (count) {
@@ -96,6 +105,7 @@ const TextInputArray = React.forwardRef(
                 borderStyle: 'dashed',
                 borderRadius: 1,
                 borderWidth: 2,
+                borderColor: RawColors.dimGrey,
               })}
               buttonContent={buttonText}
               onPress={() => _setCount((state) => state + 1)}
