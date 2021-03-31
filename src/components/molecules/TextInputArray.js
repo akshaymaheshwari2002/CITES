@@ -39,12 +39,14 @@ const TextInputArray = React.forwardRef(
     );
     const handleDelete = useCallback(
       (index) => {
-        const _value = value ?? [];
-        _value.splice(index, 1);
-        onChange([..._value]);
-        _setCount((state) => state - 1);
+        if (_count > 1) {
+          const _value = value ?? [];
+          _value.splice(index, 1);
+          onChange([..._value]);
+          _setCount((state) => state - 1);
+        }
       },
-      [onChange, value],
+      [_count, onChange, value],
     );
 
     const renderFields = useCallback(() => {
@@ -61,14 +63,16 @@ const TextInputArray = React.forwardRef(
                 placeholder={placeholder}
               />
             </View>
-            <View style={{marginHorizontal: s(8)}}>
-              <Icon
-                name="trash"
-                size={moderateScale(25)}
-                iconStyle={styles.ImageStyle}
-                onPress={() => handleDelete(index)}
-              />
-            </View>
+            {index > 0 ? (
+              <View style={{marginHorizontal: s(8)}}>
+                <Icon
+                  name="trash"
+                  size={moderateScale(25)}
+                  iconStyle={styles.ImageStyle}
+                  onPress={() => handleDelete(index)}
+                />
+              </View>
+            ) : null}
           </View>
         );
       }
