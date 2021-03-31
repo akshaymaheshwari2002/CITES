@@ -445,7 +445,10 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
                 buttonContent={formatMessage({id: 'button.saveAndAdd'})}
               />
               <Button
-                onPress={() => navigate('FormThreeSummary')}
+                onPress={async () => {
+                  await handleSubmit(_handleSubmit)();
+                  navigate('FormThreeSummary');
+                }}
                 buttonStyle={() => ({marginVertical: vs(16)})}
                 buttonContent={formatMessage({
                   id: 'button.viewFormThreeSummary',
