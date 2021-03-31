@@ -23,6 +23,14 @@ import getFormFieldsPageFive from './FormFieldsPageFive';
 
 const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
   const [formFieldsPage, setFormFieldsPage] = useState(1);
+  const [
+    _cmOrGramOfSizeOrMassAtSexualMaturity,
+    setCmOrGramOfSizeOrMassAtSexualMaturity,
+  ] = useState(false);
+  const [
+    _cmOrGramOfSizeOrMassAtSaleOrExport,
+    setCmOrGramOfSizeOrMassAtSaleOrExport,
+  ] = useState(false);
   const registeredSpecies = useSelector(
     (state) => state.sessionReducer.activeInspection?.registeredSpecies || [],
     shallowEqual,
@@ -45,6 +53,16 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
   const _lifeStageHarvested = watch('lifeStageHarvested');
   const _otherLifeStage = watch('otherLifeStage');
   const _numberHarvestedInPreviousYear = watch('numberHarvestedInPreviousYear');
+
+  const handleUnitsOfSizeOrMass = ({key, value}) => {
+    if (key === 'cmOrGramOfSizeOrMassAtSexualMaturity') {
+      setCmOrGramOfSizeOrMassAtSexualMaturity(value);
+      formData.current = {...formData.current, [key]: value};
+    } else if (key === 'cmOrGramOfSizeOrMassAtSaleOrExport') {
+      setCmOrGramOfSizeOrMassAtSaleOrExport(value);
+      formData.current = {...formData.current, [key]: value};
+    }
+  };
 
   const formFields = useMemo(() => {
     const fieldProps = {
@@ -90,16 +108,22 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
       case 4:
         return getFormFieldsPageFour();
       case 5:
-        return getFormFieldsPageFive();
+        return getFormFieldsPageFive({
+          _cmOrGramOfSizeOrMassAtSaleOrExport,
+          _cmOrGramOfSizeOrMassAtSexualMaturity,
+          handleUnitsOfSizeOrMass,
+        });
     }
   }, [
-    formFieldsPage,
     registeredSpecies,
+    formFieldsPage,
     _additionalAnimalsAcquiredSinceInitialStock,
     _doYouBreedThisSpecies,
     _doYouRanchThisSpecies,
     _lifeStageHarvested,
     _otherLifeStage,
+    _cmOrGramOfSizeOrMassAtSaleOrExport,
+    _cmOrGramOfSizeOrMassAtSexualMaturity,
   ]);
 
   useEffect(() => {
@@ -247,6 +271,11 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
           _registeredSpecies.numberHarvestedInPreviousYear = [];
         }
       }
+      console.log(
+        'cmOrGramOfSizeOrMassAtSexualMaturity',
+        _registeredSpecies.cmOrGramOfSizeOrMassAtSexualMaturity,
+        typeof _registeredSpecies.cmOrGramOfSizeOrMassAtSexualMaturity,
+      );
       await dispatch(saveRegisteredSpecies(_registeredSpecies));
 
       if (formFieldsPage < 5) {
@@ -302,7 +331,12 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
   const setSpeciesDataInForm = useCallback(
     async (_selectedSpeciesId) => {
       const selectedSpecies = await get('Species', _selectedSpeciesId);
-
+      setCmOrGramOfSizeOrMassAtSaleOrExport(
+        selectedSpecies?.cmOrGramOfSizeOrMassAtSaleOrExport ?? false,
+      );
+      setCmOrGramOfSizeOrMassAtSexualMaturity(
+        selectedSpecies?.cmOrGramOfSizeOrMassAtSexualMaturity ?? false,
+      );
       selectedSpecies.additionalAnimalsAcquiredSinceInitialStock = selectedSpecies?.additionalAnimalsAcquiredSinceInitialStock.reduce(
         (acc, current) => ({
           ...acc,

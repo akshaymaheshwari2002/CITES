@@ -48,7 +48,11 @@ const TextInput = React.forwardRef(
             {...restProps}
           />
           {labelRight ? (
-            <Text style={[Fonts.Lato15B, labelRightStyle]}>{labelRight}</Text>
+            typeof labelRight === 'string' ? (
+              <Text style={[Fonts.Lato15B, labelRightStyle]}>{labelRight}</Text>
+            ) : (
+              labelRight
+            )
           ) : null}
           {showHelpIcon ? (
             <Icon
@@ -81,7 +85,7 @@ TextInput.propTypes = {
   showHelpIcon: PropTypes.bool,
   onHelpIconPress: PropTypes.func,
   labelBottom: PropTypes.string,
-  labelRight: PropTypes.string,
+  labelRight: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   labelRightStyle: PropTypes.object,
 };
 

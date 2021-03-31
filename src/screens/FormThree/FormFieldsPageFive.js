@@ -1,8 +1,11 @@
-import {ms} from 'react-native-size-matters';
+import React from 'react';
+import {ms, s} from 'react-native-size-matters';
+import {View, Switch, Text} from 'react-native';
 
 import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
 import Constants from '@utils/Constants';
+import {Fonts} from '@styles/Themes';
 
 export default (fieldProps = {}) => {
   const {formatMessage} = createIntl();
@@ -82,6 +85,28 @@ export default (fieldProps = {}) => {
       }),
       name: 'sizeOrMassAtSexualMaturity',
       //rules: {required},
+      labelRight: (
+        <View style={{flexDirection: 'row', flex: 1, alignItems: 'center'}}>
+          <Text style={{...Fonts.Lato15R, margin: s(10)}}>cm</Text>
+          <Switch
+            trackColor={{false: '#767577', true: '#81b0ff'}}
+            thumbColor={
+              fieldProps._cmOrGramOfSizeOrMassAtSexualMaturity
+                ? '#f5dd4b'
+                : '#f4f3f4'
+            }
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={(value) => {
+              fieldProps.handleUnitsOfSizeOrMass({
+                key: 'cmOrGramOfSizeOrMassAtSexualMaturity',
+                value,
+              });
+            }}
+            value={fieldProps._cmOrGramOfSizeOrMassAtSexualMaturity ?? false}
+          />
+          <Text style={{...Fonts.Lato15R, margin: s(10)}}>g</Text>
+        </View>
+      ),
       keyboardType: 'number-pad',
     },
     {
@@ -92,6 +117,28 @@ export default (fieldProps = {}) => {
       }),
       name: 'sizeOrMassAtSaleOrExport',
       //rules: {required},
+      labelRight: (
+        <View style={{flexDirection: 'row', flex: 1, alignItems: 'center'}}>
+          <Text style={{...Fonts.Lato15R, margin: s(10)}}>cm</Text>
+          <Switch
+            trackColor={{false: '#767577', true: '#81b0ff'}}
+            thumbColor={
+              fieldProps._cmOrGramOfSizeOrMassAtSaleOrExport
+                ? '#f5dd4b'
+                : '#f4f3f4'
+            }
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={(value) => {
+              fieldProps.handleUnitsOfSizeOrMass({
+                key: 'cmOrGramOfSizeOrMassAtSaleOrExport',
+                value,
+              });
+            }}
+            value={fieldProps._cmOrGramOfSizeOrMassAtSaleOrExport ?? false}
+          />
+          <Text style={{...Fonts.Lato15R, margin: s(10)}}>g</Text>
+        </View>
+      ),
       keyboardType: 'number-pad',
     },
     {
