@@ -1,8 +1,8 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, Image} from 'react-native';
 import {moderateScale, ScaledSheet} from 'react-native-size-matters';
 import PropTypes from 'prop-types';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/Entypo';
 
 import {TextInput, Button} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
@@ -42,13 +42,23 @@ const TextInputArray = React.forwardRef(
       let fields = [];
       for (let index = 0; index < _count; ++index) {
         fields[index] = (
-          <TextInput
-            key={index}
-            value={value?.[index]}
-            onChangeText={(text) => handleChangeText(text, index)}
-            style={styles.textInput}
-            placeholder={placeholder}
-          />
+          <View style={styles.textInputContainer}>
+            <View style={styles.SectionStyle}>
+              <TextInput
+                key={index}
+                value={value?.[index]}
+                onChangeText={(text) => handleChangeText(text, index)}
+                style={styles.textInput}
+                placeholder={placeholder}
+              />
+              <Icon
+                name="trash"
+                size={moderateScale(25)}
+                iconStyle={styles.ImageStyle}
+                onPress={() => _setCount((state) => state - 1)}
+              />
+            </View>
+          </View>
         );
       }
       return fields;
@@ -107,11 +117,36 @@ const styles = ScaledSheet.create({
     marginBottom: '4@vs',
   },
   containerWithButton: {
+    flex: 1,
     marginVertical: '12@vs',
   },
   textInput: {
-    marginVertical: 0,
-    marginBottom: '8@vs',
+    //marginVertical: 0,
+    //marginBottom: '8@vs',
+    flex: 1,
+  },
+  textInputContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: '12@vs',
+    marginHorizontal: '18@s',
+    backgroundColor: RawColors.lightGrey,
+  },
+  SectionStyle: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: RawColors.lightGrey,
+    height: '50@vs',
+    // borderColor: RawColors.dimGrey,
+    // borderWidth: 0.25,
+  },
+  ImageStyle: {
+    height: '25@s',
+    width: '25@s',
+    resizeMode: 'stretch',
+    alignItems: 'center',
   },
 });
 
