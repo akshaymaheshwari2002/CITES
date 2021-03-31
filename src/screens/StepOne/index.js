@@ -145,6 +145,8 @@ const styles = ScaledSheet.create({
     backgroundColor: RawColors.sugarCane,
     borderColor: RawColors.prussianBlue,
     marginHorizontal: '30@s',
+    width: '260@s',
+    alignSelf: 'center',
     marginVertical: '20@s',
   },
   arrowSize: {height: 10, width: 10},
