@@ -28,68 +28,53 @@ const ExampleDialogueStep2 = ({navigation: {navigate}}) => {
             {formatMessage({id: 'screen.ExampleDialogue.headerPartTwo'})}
           </Text>
         </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}>
-          <Text style={styles.content}>
-            {formatMessage({
-              id: 'screen.ExampleDialogueStep2.contentOne',
-            })}
-          </Text>
-          <TextInput
-            value={name}
-            onChange={setName}
-            placeHolder={formatMessage({
-              id: 'screen.ExampleDialogueStep2.contentTwo',
-            })}
-            style={{width: s(50), marginLeft: s(5)}}
-          />
-        </View>
+
+        <Text style={styles.content}>
+          {formatMessage({
+            id: 'screen.ExampleDialogueStep2.contentOne',
+          })}
+        </Text>
+        <TextInput
+          value={name}
+          onChange={setName}
+          placeholder={formatMessage({
+            id: 'screen.ExampleDialogueStep2.contentTwo',
+          })}
+          style={{width: s(190), marginHorizontal: s(15)}}
+        />
         <Text style={[styles.content, styles.nogap]}>
           {formatMessage({
             id: 'screen.ExampleDialogueStep2.contentThree',
           })}
         </Text>
-        <Text style={[styles.content, styles.nogap]}>
-          {formatMessage({
-            id: 'screen.ExampleDialogueStep2.contentThreeOne',
+
+        <TextInput
+          value={collaeaguesName}
+          onChange={setCollaeaguesName}
+          style={{width: s(190), marginHorizontal: s(15)}}
+          placeholder={formatMessage({
+            id: 'screen.ExampleDialogueStep2.contentFour',
           })}
-        </Text>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}>
-          <TextInput
-            value={collaeaguesName}
-            onChange={setCollaeaguesName}
-            style={{width: s(10), marginRight: s(10)}}
-          />
-        </View>
+        />
         <Text style={[styles.content, styles.nogap]}>
           {formatMessage({
             id: 'screen.ExampleDialogueStep2.contentFive',
           })}
         </Text>
-        <View
-          style={{
-            alignItems: 'flex-start',
-          }}>
-          <TextInput
-            value={collaeaguesOrganisationName}
-            onChange={setCollaeaguesOrganisationName}
-            style={{
-              width: s(250),
-            }}
-          />
-          <Text style={[styles.content, styles.nogap]}>
-            {formatMessage({
-              id: 'screen.ExampleDialogueStep2.contentSeven',
-            })}
-          </Text>
-        </View>
+
+        <TextInput
+          value={collaeaguesOrganisationName}
+          onChange={setCollaeaguesOrganisationName}
+          style={{width: s(190), marginHorizontal: s(15)}}
+          placeholder={formatMessage({
+            id: 'screen.ExampleDialogueStep2.contentSix',
+          })}
+        />
+        <Text style={[styles.content, styles.nogap]}>
+          {formatMessage({
+            id: 'screen.ExampleDialogueStep2.contentSeven',
+          })}
+        </Text>
 
         <Text style={styles.content}>
           {formatMessage({
@@ -171,6 +156,7 @@ const styles = ScaledSheet.create({
   word: {
     ...Fonts.Lato17B,
     color: RawColors.black,
+    textDecorationLine: 'underline',
   },
   content: {
     //width: '100%',

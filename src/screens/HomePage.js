@@ -124,7 +124,7 @@ const styles = ScaledSheet.create({
   filledButton: {
     marginVertical: '16@vs',
     backgroundColor: RawColors.darkSalmon,
-    minHeight: '100@vs',
+    minHeight: '66@vs',
     borderWidth: 0,
   },
   emptyButton: {
@@ -134,7 +134,7 @@ const styles = ScaledSheet.create({
     color: RawColors.white,
     textAlign: 'center',
     lineHeight: '22@ms',
-    ...Fonts.Lato20R,
+    ...Fonts.Lato15R,
   },
 });
 
