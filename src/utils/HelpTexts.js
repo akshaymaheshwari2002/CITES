@@ -104,13 +104,32 @@ export default {
       isBold: false,
     },
     {
-      text:
-        'Full-time employment is usually considered between 30-40 hours a week.',
+      text: '',
       isBold: false,
+      subText: [
+        {
+          val: 'Full-time',
+          isSubBold: true,
+        },
+        {
+          val: ' employment is usually considered between 30-40 hours a week.',
+          isSubBold: false,
+        },
+      ],
     },
     {
-      text: 'Part-time employment is usually less than 30 hours a week.',
+      text: '',
       isBold: false,
+      subText: [
+        {
+          val: 'Part-time',
+          isSubBold: true,
+        },
+        {
+          val: ' employment is usually less than 30 hours a week.',
+          isSubBold: false,
+        },
+      ],
     },
   ],
   professionalVeterinaryServices: [

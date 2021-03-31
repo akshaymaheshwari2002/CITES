@@ -16,12 +16,12 @@ import {RawColors, Fonts} from '@styles/Themes';
 import {Images} from '@assets';
 
 const OverlayModal = ({isModalVisible, hideModal, helpText}) => {
-  const [modalWidth, setModalWidth] = useState('50%'); // width to be set dynamically according to the content
+  const [modalWidth, setModalWidth] = useState('55%'); // width to be set dynamically according to the content
   const [modalViewHeight, setModalViewHeight] = useState(0);
   const [contentContainerHeight, setContentContainerHeight] = useState(0);
 
   useEffect(() => {
-    setModalWidth('50%'); // reset modal width when help text changes
+    setModalWidth('55%'); // reset modal width when help text changes
   }, [helpText]);
 
   useEffect(() => {
@@ -61,7 +61,9 @@ const OverlayModal = ({isModalVisible, hideModal, helpText}) => {
                 }
               }}>
               <Image source={Images.information} style={styles.helpIcon} />
-              <Container.ScrollView style={styles.scrollView}>
+              <Container.ScrollView
+                style={styles.scrollView}
+                contentContainerStyle={styles.scrollView}>
                 <View
                   style={styles.contentContainer}
                   onLayout={(ev) => {
@@ -115,7 +117,7 @@ const styles = ScaledSheet.create({
     ...CommonStyles.flex1,
     flexGrow: 1,
     justifyContent: 'center',
-    marginTop: '100@vs',
+    marginTop: '97@vs',
     marginBottom: '80@vs',
   },
   modalView: {
@@ -126,7 +128,6 @@ const styles = ScaledSheet.create({
     borderColor: RawColors.silverFoil,
     borderTopLeftRadius: '20@vs',
     alignItems: 'center',
-    ...CommonStyles.shadowEffect,
   },
   helpIcon: {
     marginVertical: '10@vs',
@@ -138,7 +139,7 @@ const styles = ScaledSheet.create({
     width: '100%',
   },
   contentContainer: {
-    flexGrow: 1,
+    flex: 1,
     paddingVertical: '15@vs',
     paddingHorizontal: '15@ms',
   },

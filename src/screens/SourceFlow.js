@@ -22,7 +22,7 @@ const SourceFlow = ({navigation}) => {
               style={styles.eye}
               resizeMode="contain"
             />
-            <Text style={[styles.header, {marginTop: vs(10)}]}>
+            <Text style={[styles.header, {marginTop: vs(15)}]}>
               {formatMessage({id: 'screen.SourceFlow.headerPartTwo'})}
             </Text>
             <Text style={styles.header}>
@@ -118,7 +118,7 @@ const styles = ScaledSheet.create({
     height: '60@vs',
     aspectRatio: 1.3194,
     alignSelf: 'flex-end',
-    marginVertical: '10@vs',
+    marginVertical: '15@vs',
   },
   header: {
     color: RawColors.darkGreyBlue,
