@@ -2,6 +2,7 @@ import {ms} from 'react-native-size-matters';
 
 import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
+import Constants from '@utils/Constants';
 
 export default (fieldProps = {}) => {
   const {formatMessage} = createIntl();
@@ -118,7 +119,10 @@ export default (fieldProps = {}) => {
         id: 'form.label.foodFedToRearingAndJuveniles',
       }),
       name: 'foodFedToRearingAndJuveniles',
-      //rules: {required},
+      // rules: {required},
+      fieldType: Constants.TEXTINPUT_ARRAY,
+      count: 1,
+      buttonText: formatMessage({id: 'button.addFood'}),
     },
   ];
 };

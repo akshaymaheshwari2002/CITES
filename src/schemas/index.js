@@ -56,7 +56,7 @@ export const SPECIES = {
     sizeOrMassAtSexualMaturity: 'string?',
     sizeOrMassAtSaleOrExport: 'string?',
     percentageOfJuvenilesSurviveBeyond2Weeks: 'string?',
-    foodFedToRearingAndJuveniles: 'string?',
+    foodFedToRearingAndJuveniles: 'string[]',
   },
 };
 
