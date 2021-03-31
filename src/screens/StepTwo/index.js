@@ -20,7 +20,7 @@ const StepTwo = ({navigation}) => {
     shallowEqual,
   );
   const handleStepTwoSubmit = useCallback(() => {
-    if (Object.keys(stepTwoData).length) {
+    if (stepTwoData && Object.keys(stepTwoData).length) {
       let stepTwoComplete = true;
 
       Object.keys(stepTwoData).forEach((key) => {

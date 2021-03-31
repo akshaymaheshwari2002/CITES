@@ -39,6 +39,12 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Please allow to use calender to set the reminders</string>
+	<key>NSCameraUsageDescription</key>
+	<string> This would allow you to upload your pictures and make video(s). </string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This would allow you to upload your pictures and video(s).</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Lato-Black.ttf</string>

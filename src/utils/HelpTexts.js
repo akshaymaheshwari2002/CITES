@@ -100,6 +100,11 @@ export default {
     {text: 'Hours of employment', isBold: true},
     {
       text:
+        'The number of staff employed will depend on the species cared for, the size of the captive-breeding and/or ranching operation and the complexity of the organization structure. Generally, the more specimens cared for, the more staff are required.',
+      isBold: false,
+    },
+    {
+      text:
         'Full-time employment is usually considered between 30-40 hours a week.',
       isBold: false,
     },
