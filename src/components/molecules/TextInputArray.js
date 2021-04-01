@@ -139,6 +139,7 @@ const styles = ScaledSheet.create({
   textInput: {
     marginVertical: 0,
     flex: 1,
+    marginHorizontal: '5@s',
     borderWidth: 0,
   },
   SectionStyle: {
