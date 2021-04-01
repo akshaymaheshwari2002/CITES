@@ -13,7 +13,7 @@ import {useIntl} from 'react-intl';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import Toast from 'react-native-simple-toast';
 import {useSelector} from 'react-redux';
-import Images from '@assets';
+import {Images} from '@assets';
 import {RawColors, Fonts} from '@styles/Themes';
 //import ScreenWrapper from './ScreenWrapper';
 const options = {
@@ -97,7 +97,7 @@ const ImagePickerModal = ({
       {/* <ScreenWrapper
         isModal={true}
         containerStyle={{
-          backgroundColor: RawColors.raw.black60,
+          backgroundColor: RawColors.black60,
         }}> */}
       <TouchableOpacity style={[styles.modal]} onPress={close}>
         <View style={styles.modal}>
@@ -113,7 +113,7 @@ const ImagePickerModal = ({
               <View
                 style={[
                   styles.imageBackground,
-                  {backgroundColor: RawColors.raw.lightGold12},
+                  {backgroundColor: RawColors.lightGold12},
                 ]}>
                 <Image
                   source={Images.image}

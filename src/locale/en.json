@@ -257,6 +257,8 @@
   "screen.OnboardingTwoA.title": "WHY ARE SOURCE CODES IMPORTANT?",
   "screen.OnboardingTwoA.contentOne": "Applying the correct source code can ensure that accurate analyses of trade data can be undertaken, for example, to identify the production systems used for wildlife, how these evolve over time, and understand the level of risk inherent in trade transactions.",
   "screen.OnboardingThreeA.contentOne": "Answer all questions to arrive at the correct source code for the specimen",
+  "uploadButton.screen.chooseFromGallery":"Choose rom Gallery",
+  "uploadButton.screen.takePhoto":"Take Photo",
   "screen.SourceFlow.headerPartOne": "CITES",
   "screen.SourceFlow.headerPartTwo": "DETERMINATION",
   "screen.SourceFlow.headerPartThree": "OF SOURCE",
