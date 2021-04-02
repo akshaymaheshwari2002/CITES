@@ -51,6 +51,8 @@ const PopupFormEditMenu = ({
               case 4:
                 navigate('FormFour');
                 break;
+              default:
+                break;
             }
           }}
           buttonContent={
@@ -90,6 +92,8 @@ const PopupFormEditMenu = ({
                 break;
               case 4:
                 navigate('FormFourSummaryEdit');
+                break;
+              default:
                 break;
             }
           }}
