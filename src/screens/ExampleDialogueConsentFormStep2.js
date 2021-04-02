@@ -68,11 +68,6 @@ const ExampleDialogueConsentFormStep2 = ({navigation: {navigate}}) => {
               id: 'screen.ExampleDialogueConsentFormStep2.contentSixOne',
             })}
           </Text>
-          <Text style={[styles.content, styles.nogap]}>
-            {formatMessage({
-              id: 'screen.ExampleDialogueConsentFormStep2.contentSixTwo',
-            })}
-          </Text>
           <TextInput
             value={name}
             onChange={setName}

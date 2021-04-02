@@ -3,7 +3,8 @@ import {View, Text, TouchableOpacity, BackHandler} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import Pdf from 'react-native-pdf';
-import Icon from 'react-native-vector-icons/Feather';
+import FeatherIcon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import {useFocusEffect, useIsFocused} from '@react-navigation/native';
 import {format} from 'date-fns';
 import {shallowEqual, useSelector} from 'react-redux';
@@ -194,7 +195,7 @@ const FormThreeSummary = ({navigation, route}) => {
             </View>
 
             <View style={styles.justifyContent}>
-              <Icon name="plus" size={ms(26)} />
+              <FeatherIcon name="plus" size={ms(26)} />
             </View>
           </View>
         </TouchableOpacity>
