@@ -3,7 +3,8 @@ import {View, Text} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet} from 'react-native-size-matters';
 
-import {Fonts} from '@styles/Themes';
+import {Fonts, RawColors} from '@styles/Themes';
+import CommonStyles from '@styles/CommonStyles';
 import {Button} from '@atoms';
 import {navigate} from '@utils/RootNavigation';
 
@@ -16,7 +17,7 @@ const PopupFormEditMenu = ({
   return isShowFormEditMenu ? (
     <View style={styles.containerOne}>
       <View style={styles.containerTwo}>
-        <Text style={{...Fonts.Lato20R}}>
+        <Text style={styles.question}>
           {formNumber === 1
             ? formatMessage({
                 id: 'formEditMenu.formOne.question',
@@ -137,7 +138,7 @@ export default PopupFormEditMenu;
 const styles = ScaledSheet.create({
   containerOne: {
     position: 'absolute',
-    backgroundColor: 'white',
+    backgroundColor: RawColors.transparent,
     height: '100%',
     width: '100%',
     alignItems: 'center',
@@ -147,8 +148,15 @@ const styles = ScaledSheet.create({
     width: '78.4%',
     alignSelf: 'center',
     justifyContent: 'space-evenly',
-    marginTop: '32@vs',
-    paddingBottom: '16@vs',
+    paddingVertical: '32@vs',
+    paddingHorizontal: '16@vs',
+    borderRadius: '8@vs',
+    backgroundColor: RawColors.white,
+    ...CommonStyles.shadowEffectDarker,
+  },
+  question: {
+    ...Fonts.Lato20R,
+    textTransform: 'capitalize',
   },
   buttonStyle: {
     marginTop: '32@vs',
