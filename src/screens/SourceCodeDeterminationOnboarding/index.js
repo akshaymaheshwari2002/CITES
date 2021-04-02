@@ -1,5 +1,5 @@
 import React, {useRef, useCallback, useState} from 'react';
-import {View, useWindowDimensions, FlatList} from 'react-native';
+import {View, useWindowDimensions, FlatList, Platform} from 'react-native';
 import {ms} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
@@ -43,6 +43,25 @@ const SourceCodeDeterminationOnboarding = ({navigation}) => {
       setActiveIndex(index);
     },
     [windowWidth],
+  );
+  const handleMomentumScrollBegin = useCallback(
+    (e) => {
+      const velocity = e.nativeEvent.velocity?.x;
+      const contentOffset = e.nativeEvent.contentOffset;
+      const viewSize = e.nativeEvent.layoutMeasurement;
+      const pageNum = Math.floor(contentOffset.x / viewSize.width);
+
+      if (Platform.OS === 'ios') {
+        if (pageNum === 0 && velocity < 0) {
+          navigation.navigate('SourceFlow');
+        }
+      } else if (pageNum === 0 && velocity > 0) {
+        navigation.navigate('SourceFlow');
+      }
+
+      setActiveIndex(pageNum);
+    },
+    [navigation],
   );
 
   const handleMomentumScrollEnd = useCallback(
@@ -89,6 +108,8 @@ const SourceCodeDeterminationOnboarding = ({navigation}) => {
         data={data}
         keyExtractor={(_, index) => index.toString()}
         onMomentumScrollEnd={handleMomentumScrollEnd}
+        //onScroll={handleMomentumScrollBegin}
+        onMomentumScrollBegin={handleMomentumScrollBegin}
         renderItem={({item: Item}) => (
           <View style={[CommonStyles.flex1, {width: windowWidth}]}>
             <Item />

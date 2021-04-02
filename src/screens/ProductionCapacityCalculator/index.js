@@ -30,7 +30,7 @@ const ProductionCapacityCalculator = ({navigation: {goBack}}) => {
   const getFormFields = useCallback(() => {
     return modeSelected === 1
       ? FormFields({modeSelected}).slice(0, 5)
-      : FormFields({modeSelected}).slice(1);
+      : FormFields({modeSelected}).slice(1).reverse();
   }, [modeSelected]);
 
   useEffect(() => {

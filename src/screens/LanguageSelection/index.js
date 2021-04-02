@@ -23,9 +23,9 @@ const LanguageSelection = ({navigation}) => {
     },
     [dispatch, navigation],
   );
-  useEffect(() => {
+  setTimeout(() => {
     dispatch(setAppReady(true));
-  }, [dispatch]);
+  }, 1000);
 
   return (
     <Container>

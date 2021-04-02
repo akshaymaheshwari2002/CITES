@@ -1,5 +1,11 @@
-import React from 'react';
-import {View, Text, ImageBackground, useWindowDimensions} from 'react-native';
+import React, {useCallback, useSwipe} from 'react';
+import {
+  View,
+  Text,
+  ImageBackground,
+  useWindowDimensions,
+  Platform,
+} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useDispatch} from 'react-redux';
@@ -9,6 +15,7 @@ import {Container, Button, AnimatedView} from '@atoms';
 import {Images} from '@assets';
 import CommonStyles from '@styles/CommonStyles';
 import {setActiveInspection} from '@store/slices/sessionSlice';
+import {navigate} from '@utils/RootNavigation';
 
 const StepsSummary = ({navigation}) => {
   const {formatMessage} = useIntl();
@@ -19,6 +26,10 @@ const StepsSummary = ({navigation}) => {
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
         style={CommonStyles.flex1}
+        horizontal={true}
+        onMomentumScrollEnd={() => {
+          navigate('StepOne');
+        }}
         contentContainerStyle={styles.contentContainer}>
         <ImageBackground
           source={Images.semiCircle}

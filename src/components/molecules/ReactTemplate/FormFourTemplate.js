@@ -1,61 +1,5 @@
 import React from 'react';
-import {getInputFieldElementForFormSummary as getInputFieldElement} from '@utils/CommonFunctions';
 
-const formText = 'Form';
-const formNumber = {
-  one: 1,
-  two: 2,
-  three: 3,
-  four: 4,
-};
-const formTitle = {
-  one: 'BACKGROUND INFORMATION',
-  two: 'FACILITY INFORMATION',
-  three: 'SPECIES INFORMATION',
-};
-const formFourQuestions = [
-  {
-    question:
-      '1.Is the Facility registered to keep and breed all of the species observed during inspection?',
-  },
-  {question: '2.Was unsual activity observed during the inspection?'},
-  {
-    question:
-      '3.Does the Facility have housing facility suitable for the species and life stages in question? etc.',
-  },
-  {
-    question:
-      '4.Are housing/containment facility adequate and/or suitable for the reported annual production levels and stocks of speciemens held in capitivity?',
-  },
-  {
-    question:
-      '5.Does the facility keep up-to-date records on specimens of the species being exported?',
-  },
-  {
-    question:
-      '6.Is there suitable facility for production and/or storage and/or preparation of appropriate food for specimen being raised?',
-  },
-  {
-    question:
-      '7.Is the production output same as estimated production output(from number of parental stock;#males,#females,#juveniles)?',
-  },
-  {
-    question:
-      '8.Do the specimens in the facility show any signs indicating of wild origin?',
-  },
-  {
-    question:
-      '9.Is the species known to be difficult to breed and/or maintain in capativity?',
-  },
-  {
-    question:
-      '10.Has the facility been established long enough to produce the species in the quantities and sizes claimed?',
-  },
-  {
-    question:
-      '11.For species listed in Appendix I,do the parental breeding stock and offspring have a unique and permanent identification mark and number?',
-  },
-];
 const outcome = [
   {result: 'Satisfactory'},
   {result: 'Follow up inspection required'},
@@ -71,7 +15,65 @@ const FormFourTemplate = ({
   form = 'one',
   facilityData = {},
   editable = false,
+  response = {},
 }) => {
+  const formFourQuestions = [
+    {
+      question:
+        '1.Is the Facility registered to keep and breed all of the species observed during inspection?',
+      response: response?.legallyRegisteredToBreedAndKeep,
+    },
+    {
+      question: '2.Was unsual activity observed during the inspection?',
+      response: response?.unusualActivityObserved,
+    },
+    {
+      question:
+        '3.Does the Facility have housing facility suitable for the species and life stages in question? etc.',
+      response: response?.containmentFacilityAvailable,
+    },
+    {
+      question:
+        '4.Are housing/containment facility adequate and/or suitable for the reported annual production levels and stocks of speciemens held in capitivity?',
+      response: response?.containmentFacilityAdequate,
+    },
+    {
+      question:
+        '5.Does the facility keep up-to-date records on specimens of the species being exported?',
+      response: response?.recordsMaintainedForExport,
+    },
+    {
+      question:
+        '6.Is there suitable facility for production and/or storage and/or preparation of appropriate food for specimen being raised?',
+      response: response?.foodFacilitiesAvailable,
+    },
+    {
+      question:
+        '7.Is the production output same as estimated production output(from number of parental stock;#males,#females,#juveniles)?',
+      response: response?.facilityProductionMatchesEstimates,
+    },
+    {
+      question:
+        '8.Do the specimens in the facility show any signs indicating of wild origin?',
+      response: response?.wildOriginSignsShown,
+    },
+    {
+      question:
+        '9.Is the species known to be difficult to breed and/or maintain in capativity?',
+      response: response?.difficultToBreed,
+    },
+    {
+      question:
+        '10.Has the facility been established long enough to produce the species in the quantities and sizes claimed?',
+      response: response?.facilityEstablishedLongEnough,
+    },
+    {
+      question:
+        '11.For species listed in Appendix I,do the parental breeding stock and offspring have a unique and permanent identification mark and number?',
+      response: response?.haveIdentificationMark,
+    },
+  ];
+
   return (
     <div className="App">
       <div className="App" style={styles.marginContainer}>
