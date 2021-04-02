@@ -95,12 +95,6 @@ const ContinueInspection = ({navigation}) => {
         <Text style={styles.title}>
           {formatMessage({id: 'screen.ContinueInspection.title_1'})}
         </Text>
-        <Text style={styles.title}>
-          {formatMessage({id: 'screen.ContinueInspection.title_2'})}
-        </Text>
-        <Text style={styles.title}>
-          {formatMessage({id: 'screen.ContinueInspection.title_3'})}
-        </Text>
       </View>
       <FlatList
         data={activeInspections}
