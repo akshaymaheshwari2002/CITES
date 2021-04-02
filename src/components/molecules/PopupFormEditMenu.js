@@ -141,6 +141,7 @@ const styles = ScaledSheet.create({
     height: '100%',
     width: '100%',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   containerTwo: {
     width: '78.4%',
