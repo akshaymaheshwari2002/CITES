@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {Container, Button, ImagePickerModal} from '@atoms';
 import {ScaledSheet, ms, vs, s} from 'react-native-size-matters';
@@ -14,6 +14,8 @@ const InspectionNotes = ({navigation: {navigate}}) => {
   const {formatMessage} = useIntl();
   const formProps = useForm();
   const {control, errors} = formProps;
+  const [isImagePicker, setIsImagePicker] = useState(false);
+
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
@@ -34,9 +36,7 @@ const InspectionNotes = ({navigation: {navigate}}) => {
             </View>
             <TouchableOpacity
               style={styles.circle}
-              onPress={() => {
-                <ImagePickerModal />;
-              }}>
+              onPress={() => setIsImagePicker(true)}>
               <Icon name="camera" size={ms(26)} />
             </TouchableOpacity>
           </View>
@@ -84,6 +84,11 @@ const InspectionNotes = ({navigation: {navigate}}) => {
             />
           </View>
         </View>
+        <ImagePickerModal
+          visible={isImagePicker}
+          close={() => setIsImagePicker(false)}
+          onImageSelection={() => {}}
+        />
       </Container.ScrollView>
     </Container>
   );
