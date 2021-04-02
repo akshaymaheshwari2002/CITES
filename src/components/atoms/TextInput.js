@@ -20,6 +20,7 @@ const TextInput = React.forwardRef(
       labelRight,
       labelRightStyle,
       onHelpIconPress,
+      multiline,
       ...restProps
     },
     ref,
@@ -45,6 +46,7 @@ const TextInput = React.forwardRef(
             onChangeText={onChange}
             style={[styles.inputContainer, Fonts.Lato15R, style]}
             value={getValue()}
+            multiline={multiline}
             {...restProps}
           />
           {labelRight ? (
@@ -85,6 +87,7 @@ TextInput.propTypes = {
   showHelpIcon: PropTypes.bool,
   onHelpIconPress: PropTypes.func,
   labelBottom: PropTypes.string,
+  multiline: PropTypes.bool,
   labelRight: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   labelRightStyle: PropTypes.object,
 };
@@ -95,6 +98,7 @@ TextInput.defaultProps = {
   onChange: () => {},
   style: {},
   showHelpIcon: false,
+  multiline: false,
   onHelpIconPress: () => {},
   labelBottom: '',
   labelRight: '',

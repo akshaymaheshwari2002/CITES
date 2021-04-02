@@ -56,18 +56,18 @@ const FeedbackTwo = ({navigation: {navigate}}) => {
                 id: 'screen.FeedbackTwo.content',
               }),
               style: {
-                color: RawColors.grey,
-                height: vs(245),
-                width: s(290),
+                color: RawColors.pinkishGrey,
+                height: s(150),
                 marginTop: vs(29),
                 alignSelf: 'center',
                 borderRadius: ms(20),
                 borderWidth: 1,
                 borderColor: RawColors.darkGrey,
                 textAlignVertical: 'top',
-                padding: ms(16),
+                backgroundColor: 'white',
+                paddingHorizontal: s(20),
               },
-              multiLine: true,
+              multiline: true,
             },
           ]}
         />

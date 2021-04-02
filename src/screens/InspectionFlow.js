@@ -13,7 +13,7 @@ const InspectionFlow = ({navigation}) => {
     <Container>
       <ImageBackground
         style={styles.container}
-        source={Images.backgroundPatternTopBlur}
+        source={Images.fullBg}
         imageStyle={styles.resizeModeRepeat}>
         <Container.ScrollView contentContainerStyle={styles.scrollContainer}>
           <View style={styles.headerContainer}>
@@ -32,84 +32,75 @@ const InspectionFlow = ({navigation}) => {
               {formatMessage({id: 'screen.InspectionFlow.headerPartFour'})}
             </Text>
           </View>
-          <ImageBackground
-            style={styles.backgroundContainer}
-            source={Images.backgroundTwoBlur}
-            imageStyle={styles.backgroundImage}>
-            <ImageBackground
-              style={styles.backgroundContainer}
-              source={Images.backgroundOne}
-              imageStyle={styles.backgroundImage}>
-              <View style={styles.contentContainer}>
-                <Button
-                  onPress={() => navigation.navigate('InspectionOnboarding')}
-                  buttonStyle={() => styles.filledButton}
-                  buttonTextStyle={() => ({color: RawColors.black})}
-                  buttonContent={
-                    <>
-                      <Text style={styles.buttonTextOne}>
-                        {formatMessage({
-                          id: 'button.learnUseApp',
-                        })}
-                      </Text>
 
-                      <Text style={styles.buttonTextTwo}>
-                        {formatMessage({
-                          id: 'button.firstInspection',
-                        })}
-                      </Text>
-                    </>
-                  }
-                />
-                <Button
-                  onPress={() =>
-                    navigation.navigate('TabNavigator', {
-                      screen: 'BeginInspection',
-                    })
-                  }
-                  buttonStyle={() => styles.filledButton}
-                  buttonTextStyle={() => ({color: RawColors.black})}
-                  buttonContent={
-                    <>
-                      <Text style={styles.buttonTextOne}>
-                        {formatMessage({
-                          id: 'button.beginInspection',
-                        })}
-                      </Text>
+          <View style={styles.contentContainer}>
+            <Button
+              onPress={() => navigation.navigate('InspectionOnboarding')}
+              buttonStyle={() => styles.filledButton}
+              buttonTextStyle={() => ({color: RawColors.black})}
+              buttonContent={
+                <>
+                  <Text style={styles.buttonTextOne}>
+                    {formatMessage({
+                      id: 'button.learnUseApp',
+                    })}
+                  </Text>
 
-                      <Text style={styles.buttonTextTwo}>
-                        {formatMessage({
-                          id: 'button.newInspection',
-                        })}
-                      </Text>
-                    </>
-                  }
-                />
-                <Button
-                  onPress={() =>
-                    navigation.navigate('TabNavigator', {
-                      screen: 'ContinueInspection',
-                    })
-                  }
-                  buttonStyle={() => styles.filledButton}
-                  buttonContent={
-                    <>
-                      <Text style={styles.buttonTextOne}>
-                        {formatMessage({
-                          id: 'button.continueInspection',
-                        })}
-                      </Text>
-                      <Text style={styles.buttonTextTwo}>
-                        {formatMessage({
-                          id: 'button.startedInspection',
-                        })}
-                      </Text>
-                    </>
-                  }
-                />
-              </View>
-            </ImageBackground>
-          </ImageBackground>
+                  <Text style={styles.buttonTextTwo}>
+                    {formatMessage({
+                      id: 'button.firstInspection',
+                    })}
+                  </Text>
+                </>
+              }
+            />
+            <Button
+              onPress={() =>
+                navigation.navigate('TabNavigator', {
+                  screen: 'BeginInspection',
+                })
+              }
+              buttonStyle={() => styles.filledButton}
+              buttonTextStyle={() => ({color: RawColors.black})}
+              buttonContent={
+                <>
+                  <Text style={styles.buttonTextOne}>
+                    {formatMessage({
+                      id: 'button.beginInspection',
+                    })}
+                  </Text>
+
+                  <Text style={styles.buttonTextTwo}>
+                    {formatMessage({
+                      id: 'button.newInspection',
+                    })}
+                  </Text>
+                </>
+              }
+            />
+            <Button
+              onPress={() =>
+                navigation.navigate('TabNavigator', {
+                  screen: 'ContinueInspection',
+                })
+              }
+              buttonStyle={() => styles.filledButton}
+              buttonContent={
+                <>
+                  <Text style={styles.buttonTextOne}>
+                    {formatMessage({
+                      id: 'button.continueInspection',
+                    })}
+                  </Text>
+                  <Text style={styles.buttonTextTwo}>
+                    {formatMessage({
+                      id: 'button.startedInspection',
+                    })}
+                  </Text>
+                </>
+              }
+            />
+          </View>
         </Container.ScrollView>
       </ImageBackground>
     </Container>
@@ -121,9 +112,7 @@ const styles = ScaledSheet.create({
     flexGrow: 1,
     backgroundColor: RawColors.greyLight,
   },
-  resizeModeRepeat: {
-    resizeMode: 'repeat',
-  },
+  resizeModeRepeat: {},
   scrollContainer: {
     paddingTop: '148@vs',
     backgroundColor: RawColors.transparent,

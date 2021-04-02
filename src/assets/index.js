@@ -15,6 +15,7 @@ export const Images = {
   backgroundTwo: require('./images/Background2.png'),
   backgroundThree: require('./images/Background3.png'),
   backgroundPatternTop: require('./images/Backgroundpatterntop.png'),
+  fullBg: require('./images/full_bg.png'),
   logo: require('./images/cites_logo.png'),
   backgroundPatternTopBlur: require('./images/background_2.png'),
   backgroundTwoBlur: require('./images/Path540.png'),

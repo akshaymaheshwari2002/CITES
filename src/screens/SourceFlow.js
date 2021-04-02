@@ -13,7 +13,7 @@ const SourceFlow = ({navigation}) => {
     <Container>
       <ImageBackground
         style={styles.container}
-        source={Images.backgroundPatternTopBlur}
+        source={Images.fullBg}
         imageStyle={styles.resizeModeRepeat}>
         <Container.ScrollView contentContainerStyle={styles.scrollContainer}>
           <View style={styles.headerContainer}>
@@ -22,66 +22,57 @@ const SourceFlow = ({navigation}) => {
               style={styles.eye}
               resizeMode="contain"
             />
-            <Text style={[styles.header, {marginTop: vs(15)}]}>
+            <Text style={[styles.header, {marginTop: vs(5)}]}>
               {formatMessage({id: 'screen.SourceFlow.headerPartTwo'})}
             </Text>
             <Text style={styles.header}>
               {formatMessage({id: 'screen.SourceFlow.headerPartThree'})}
             </Text>
           </View>
-          <ImageBackground
-            style={styles.backgroundContainer}
-            source={Images.backgroundTwoBlur}
-            imageStyle={styles.backgroundImage}>
-            <ImageBackground
-              style={styles.backgroundContainer}
-              source={Images.backgroundOne}
-              imageStyle={styles.backgroundImage}>
-              <View style={styles.contentContainer}>
-                <Button
-                  onPress={() =>
-                    navigation.navigate('SourceCodeDeterminationOnboarding')
-                  }
-                  buttonStyle={() => styles.filledButton}
-                  buttonTextStyle={() => ({color: RawColors.black})}
-                  buttonContent={
-                    <>
-                      <Text style={styles.buttonText}>
-                        {formatMessage({
-                          id: 'button.learnSourceCode',
-                        })}
-                      </Text>
-                    </>
-                  }
-                />
-                <Button
-                  onPress={() =>
-                    navigation.navigate('TabNavigator', {
-                      screen: 'DetermineSourceCode',
-                    })
-                  }
-                  buttonStyle={() => styles.filledButton}
-                  buttonTextStyle={() => ({color: RawColors.black})}
-                  buttonContent={
-                    <>
-                      <Text style={styles.buttonText}>
-                        {formatMessage({
-                          id: 'button.determineSourceCodeOf',
-                        })}
-                      </Text>
-                    </>
-                  }
-                />
-                <Button
-                  onPress={() => {}}
-                  buttonContent={formatMessage({
-                    id: 'button.giveFeedback',
-                  })}
-                  buttonStyle={() => styles.emptyButton}
-                />
-              </View>
-            </ImageBackground>
-          </ImageBackground>
+
+          <View style={styles.contentContainer}>
+            <Button
+              onPress={() =>
+                navigation.navigate('SourceCodeDeterminationOnboarding')
+              }
+              buttonStyle={() => styles.filledButton}
+              buttonTextStyle={() => ({color: RawColors.black})}
+              buttonContent={
+                <>
+                  <Text style={styles.buttonText}>
+                    {formatMessage({
+                      id: 'button.learnSourceCode',
+                    })}
+                  </Text>
+                </>
+              }
+            />
+            <Button
+              onPress={() =>
+                navigation.navigate('TabNavigator', {
+                  screen: 'DetermineSourceCode',
+                })
+              }
+              buttonStyle={() => styles.filledButton}
+              buttonTextStyle={() => ({color: RawColors.black})}
+              buttonContent={
+                <>
+                  <Text style={styles.buttonText}>
+                    {formatMessage({
+                      id: 'button.determineSourceCodeOf',
+                    })}
+                  </Text>
+                </>
+              }
+            />
+            <Button
+              onPress={() => {}}
+              buttonContent={formatMessage({
+                id: 'button.giveFeedback',
+              })}
+              buttonStyle={() => styles.emptyButton}
+            />
+          </View>
         </Container.ScrollView>
       </ImageBackground>
     </Container>
@@ -93,19 +84,9 @@ const styles = ScaledSheet.create({
     flexGrow: 1,
     backgroundColor: RawColors.greyLight,
   },
-  resizeModeRepeat: {
-    resizeMode: 'repeat',
-  },
   scrollContainer: {
     paddingTop: '148@vs',
     backgroundColor: RawColors.transparent,
-  },
-  backgroundContainer: {
-    flexGrow: 1,
-    paddingTop: '28@vs',
-  },
-  backgroundImage: {
-    resizeMode: 'stretch',
   },
   headerContainer: {
     position: 'absolute',
@@ -118,14 +99,13 @@ const styles = ScaledSheet.create({
     height: '60@vs',
     aspectRatio: 1.3194,
     alignSelf: 'flex-end',
-    marginVertical: '15@vs',
+    marginVertical: '10@vs',
   },
   header: {
     color: RawColors.darkGreyBlue,
     ...Fonts.HelveticaNeue26B,
     textAlign: 'right',
     lineHeight: '26@ms',
-
     letterSpacing: '0.45@ms',
   },
   contentContainer: {

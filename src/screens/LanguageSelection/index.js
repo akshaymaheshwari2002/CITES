@@ -38,18 +38,6 @@ const LanguageSelection = ({navigation}) => {
           style={[styles.logo]}
           resizeMode="contain"
         />
-
-        {/* <View style={styles.dropDownContainer}>
-          <Picker
-            items={LocaleList}
-            style={styles.picker}
-            placeholder={formatMessage({id: 'screen.screen2.selectAnItem'})}
-            placeholderStyle={styles.selectedStyle}
-            // defaultValue={locale}
-            onChange={handleChange}
-            selectedLabelStyle={styles.selectedStyle}
-          />
-        </View> */}
         <Text style={styles.content}>
           {formatMessage({id: 'screen.languageSelection.contentOne'})}
         </Text>
@@ -82,7 +70,7 @@ const styles = ScaledSheet.create({
     alignItems: 'center',
   },
   logo: {
-    marginTop: '25@vs',
+    marginTop: '15@vs',
     height: '97@vs',
   },
   eye: {
