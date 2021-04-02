@@ -551,5 +551,17 @@
   "form.label.zipCode": "ZIP/Postal Code",
   "form.placeholder.stateRegion": "State/Region/Provience",
   "form.placeholder.zipCode": "ZIP/Postal Code",
-  "screen.languageSelection.contentOne": "CapaCITES"
+  "screen.languageSelection.contentOne": "CapaCITES",
+  "formEditMenu.formOne.question": "How would you like to edit form one ?",
+  "formEditMenu.formTwo.question": "How would you like to edit form two ?",
+  "formEditMenu.formThree.question": "How would you like to edit form three ?",
+  "formEditMenu.formFour.question": "How would you like to edit form Four ?",
+  "button.formEditMenu.formOne.EditInForm": "go to form one and edit",
+  "button.formEditMenu.formTwo.EditInForm": "go to form two and edit",
+  "button.formEditMenu.formThree.EditInForm": "go to form three and edit",
+  "button.formEditMenu.formFour.EditInForm": "go to form four and edit",
+  "button.formEditMenu.formOne.EditInSummary": "edit directly into form one summary",
+  "button.formEditMenu.formTwo.EditInSummary": "edit directly into form two summary",
+  "button.formEditMenu.formThree.EditInSummary": "edit directly into form three summary",
+  "button.formEditMenu.formFour.EditInSummary": "edit directly into form four summary"
 }

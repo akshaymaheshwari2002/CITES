@@ -1,15 +1,15 @@
-import React, {useState, useMemo, useCallback} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import React, {useState, useMemo, useCallback, useEffect} from 'react';
+import {View, Text, TouchableOpacity, BackHandler} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import Pdf from 'react-native-pdf';
 import Icon from 'react-native-vector-icons/Feather';
-import {useFocusEffect} from '@react-navigation/native';
+import {useFocusEffect, useIsFocused} from '@react-navigation/native';
 import {format} from 'date-fns';
 import {shallowEqual, useSelector} from 'react-redux';
 
 import {Container} from '@atoms';
-import {FormOneTemplate, FormOneHeader} from '@molecules';
+import {FormOneTemplate, FormOneHeader, PopupFormEditMenu} from '@molecules';
 import {Fonts, RawColors} from '@styles/Themes';
 import {generatePdf} from '@utils/CommonFunctions';
 import CommonStyles from '@styles/CommonStyles';
@@ -17,6 +17,8 @@ import CommonStyles from '@styles/CommonStyles';
 const FormOneSummary = ({navigation, route}) => {
   const {formatMessage} = useIntl();
   const [fileUri, setFileUri] = useState(undefined);
+  const [isShowFormEditMenu, setIsShowFormEditMenu] = useState(false);
+  const isCurrentScreenFocused = useIsFocused();
   const formSummaryText = route?.params?.formSummaryStepTwo
     ? route?.params?.formSummaryStepTwo
     : false;
@@ -61,6 +63,43 @@ const FormOneSummary = ({navigation, route}) => {
       })();
     }, [facilityData, registeredSpecies]),
   );
+
+  const handleBackPress = useCallback(() => {
+    if (isShowFormEditMenu) {
+      setIsShowFormEditMenu(false);
+    } else {
+      navigation.goBack();
+    }
+  }, [isShowFormEditMenu, navigation]);
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerLeft: (navigationProps) => (
+        <Icon
+          name="chevron-left"
+          size={ms(18)}
+          {...navigationProps}
+          onPress={handleBackPress}
+        />
+      ),
+    });
+  }, [handleBackPress, navigation]);
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', onbackPress);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', onbackPress);
+    };
+  }, [onbackPress, isShowFormEditMenu, isCurrentScreenFocused]);
+
+  const onbackPress = useCallback(() => {
+    if (isCurrentScreenFocused && isShowFormEditMenu) {
+      setIsShowFormEditMenu(false);
+      return true;
+    } else {
+      return false;
+    }
+  }, [isCurrentScreenFocused, isShowFormEditMenu]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
@@ -125,7 +164,7 @@ const FormOneSummary = ({navigation, route}) => {
         <TouchableOpacity
           style={[styles.slideBtn, styles.borderStyle]}
           onPress={() => {
-            navigation.navigate('FormOneSummaryEdit');
+            setIsShowFormEditMenu(true);
           }}>
           <View style={styles.row}>
             <View style={styles.padding16}>
@@ -143,6 +182,11 @@ const FormOneSummary = ({navigation, route}) => {
           </View>
         </TouchableOpacity>
       </View>
+      <PopupFormEditMenu
+        formNumber={1}
+        isShowFormEditMenu={isShowFormEditMenu}
+        setIsShowFormEditMenu={setIsShowFormEditMenu}
+      />
     </Container>
   );
 };

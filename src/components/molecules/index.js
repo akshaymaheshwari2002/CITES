@@ -15,6 +15,7 @@ import OverlayModal from './OverlayModal';
 import MobileInput from './MobileInput';
 import FormThreeTemplate from './ReactTemplate/FormThreeTemplate';
 import FormFourTemplate from './ReactTemplate/FormFourTemplate';
+import PopupFormEditMenu from './PopupFormEditMenu';
 
 export {
   TemplateOne,
@@ -34,4 +35,5 @@ export {
   MobileInput,
   FormThreeTemplate,
   FormFourTemplate,
+  PopupFormEditMenu,
 };
