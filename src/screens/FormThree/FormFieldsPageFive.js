@@ -5,7 +5,7 @@ import {View, Switch, Text} from 'react-native';
 import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
 import Constants from '@utils/Constants';
-import {Fonts} from '@styles/Themes';
+import {Fonts, RawColors} from '@styles/Themes';
 
 export default (fieldProps = {}) => {
   const {formatMessage} = createIntl();
@@ -89,10 +89,10 @@ export default (fieldProps = {}) => {
         <View style={{flexDirection: 'row', flex: 1, alignItems: 'center'}}>
           <Text style={{...Fonts.Lato15R, margin: s(10)}}>cm</Text>
           <Switch
-            trackColor={{false: '#767577', true: '#81b0ff'}}
+            trackColor={{false: '#767577', true: RawColors.darkSalmon}}
             thumbColor={
               fieldProps._cmOrGramOfSizeOrMassAtSexualMaturity
-                ? '#f5dd4b'
+                ? RawColors.black
                 : '#f4f3f4'
             }
             ios_backgroundColor="#3e3e3e"
@@ -121,10 +121,10 @@ export default (fieldProps = {}) => {
         <View style={{flexDirection: 'row', flex: 1, alignItems: 'center'}}>
           <Text style={{...Fonts.Lato15R, margin: s(10)}}>cm</Text>
           <Switch
-            trackColor={{false: '#767577', true: '#81b0ff'}}
+            trackColor={{false: '#767577', true: RawColors.darkSalmon}}
             thumbColor={
               fieldProps._cmOrGramOfSizeOrMassAtSaleOrExport
-                ? '#f5dd4b'
+                ? RawColors.black
                 : '#f4f3f4'
             }
             ios_backgroundColor="#3e3e3e"

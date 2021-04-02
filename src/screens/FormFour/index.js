@@ -52,23 +52,22 @@ const FormFour = ({navigation: {navigate, goBack, setOptions}}) => {
   const updateScore = useCallback(
     (isYes) => {
       const response = isYes ? 'yes' : 'no';
-      setScore((state) => ({
-        ...state,
+      const _score = {
+        ...score,
         [form4Questions[questionNumber].name]:
           form4Questions[questionNumber][response],
-      }));
+      };
+      setScore(_score);
       if (questionNumber < form4Questions.length - 1) {
         setQuestionNumber((state) => state + 1);
       }
       if (form4Questions[questionNumber].name === 'haveIdentificationMark') {
-        const boolScore = {...score};
-        console.log(boolScore);
-        setScore((state) => ({
-          ...state,
-          [form4Questions[questionNumber].name]:
-            form4Questions[questionNumber][response],
-        }));
-        const totalScore = Object.keys(score).reduce((a, b) => a + score[b], 0);
+        const boolScore = {..._score};
+
+        const totalScore = Object.keys(_score).reduce(
+          (a, b) => a + _score[b],
+          0,
+        );
         Object.keys(boolScore).forEach((name) => {
           const question = form4Questions.find((ques) => ques.name === name);
           boolScore[name] = boolScore[name] === question.yes;
@@ -80,6 +79,7 @@ const FormFour = ({navigation: {navigate, goBack, setOptions}}) => {
                 ...boolScore,
                 totalScore,
               },
+              formFourCompleted: true,
             },
           }),
         );

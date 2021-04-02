@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useMemo, useCallback, useState} from 'react';
 import {
   View,
   Text,
@@ -10,11 +10,25 @@ import {
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import {useIsFocused} from '@react-navigation/native';
 import {useIntl} from 'react-intl';
+import {generatePdf} from '@utils/CommonFunctions';
+import Pdf from 'react-native-pdf';
+import {useFocusEffect} from '@react-navigation/native';
+import RNPrint from 'react-native-print';
+import {format} from 'date-fns';
+import {shallowEqual, useSelector} from 'react-redux';
 
 import {Fonts, RawColors} from '@styles/Themes';
 import {Container, Button} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
 import {Images} from '@assets/';
+import {
+  FormOneTemplate,
+  FormOneHeader,
+  FormTwoTemplate,
+  FormThreeTemplate,
+  FormThreeHeader,
+  FormFourTemplate,
+} from '@molecules';
 
 const StepSummary = ({navigation: {navigate}}) => {
   const AnimatedImage = Animated.createAnimatedComponent(ImageBackground);
@@ -72,6 +86,94 @@ const StepSummary = ({navigation: {navigate}}) => {
     transform: [{scaleX: circleScaleX}, {scaleY: circleScaleY}],
   };
 
+  const registeredSpecies = useSelector(
+    (state) => state.sessionReducer.activeInspection.registeredSpecies,
+    shallowEqual,
+  );
+  const formData = useSelector(
+    (state) => state.sessionReducer.activeInspection.stepOne?.formOne,
+    shallowEqual,
+  );
+
+  const formTwoData = useSelector(
+    (state) => state.sessionReducer.activeInspection.stepTwo?.formTwo,
+    shallowEqual,
+  );
+  const formFourData = useSelector(
+    (state) => state.sessionReducer.activeInspection.stepThree.formFour,
+    shallowEqual,
+  );
+  useEffect(() => {
+    console.log(formFourData, 'hhh');
+  }, [formFourData]);
+
+  const formatFormThreeDataToDisplay = (data) => ({
+    ...data,
+    dateFirstSpeciesAcquired: data?.dateFirstSpeciesAcquired
+      ? format(Number(data?.dateFirstSpeciesAcquired), 'yyyy/MM/dd')
+      : '',
+    whenDidYouBreedThisSpecies: data?.whenDidYouBreedThisSpecies
+      ? format(Number(data?.whenDidYouBreedThisSpecies), 'yyyy/MM/dd')
+      : '',
+  });
+  const facilityData = useMemo(
+    () => ({
+      ...formData,
+      facilityOwnerPhone_callingCode:
+        formData?.facilityOwnerPhone?.callingCode ?? '',
+      facilityOwnerPhone_contactNumber:
+        formData?.facilityOwnerPhone?.contactNumber ?? '',
+      dateOfInspection: formData?.dateOfInspection
+        ? format(Number(formData?.dateOfInspection), 'MM/dd/yyyy')
+        : '',
+      facilityEstablishmentDate: formData?.facilityEstablishmentDate
+        ? format(Number(formData?.facilityEstablishmentDate), 'MM/dd/yyyy')
+        : '',
+      typeOfInspection: formData?.typeOfInspection
+        ? formData?.typeOfInspection[0]?.replace('_', ' ')
+        : '',
+    }),
+    [formData],
+  );
+  const handleFormsPreview = useCallback(() => {
+    (async () => {
+      const file = await generatePdf({
+        templates: [
+          <FormOneHeader facilityData={facilityData} />,
+          <FormOneTemplate speciesData={registeredSpecies} />,
+          <div style={{breakAfter: 'page'}} />,
+          <FormOneHeader facilityData={facilityData} form={'two'} />,
+          <FormTwoTemplate formTwoData={formTwoData} />,
+          <div style={{breakAfter: 'page'}} />,
+          ...(Array.isArray(registeredSpecies)
+            ? registeredSpecies.map((speciesData, index) => (
+                <>
+                  <FormThreeHeader
+                    facilityData={{
+                      ...facilityData,
+                      speciesName: speciesData?.name,
+                    }}
+                    form={'three'}
+                  />
+                  <FormThreeTemplate
+                    speciesData={formatFormThreeDataToDisplay(speciesData)}
+                    form={'three'}
+                  />
+                  <div style={{breakAfter: 'page'}} />
+                </>
+              ))
+            : []),
+          <FormOneHeader facilityData={facilityData} form={'four'} />,
+          <FormFourTemplate
+            facilityData={facilityData}
+            response={formFourData}
+          />,
+        ],
+      });
+      RNPrint.print({filePath: file?.filePath});
+    })();
+  }, [facilityData, formFourData, formTwoData, registeredSpecies]);
+
   return (
     <Container>
       <Container.ScrollView
@@ -123,7 +225,7 @@ const StepSummary = ({navigation: {navigate}}) => {
               buttonStyle={() => {
                 return styles.button;
               }}
-              onPress={() => navigate()}
+              onPress={handleFormsPreview}
             />
             <Button
               buttonContent={formatMessage({

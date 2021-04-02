@@ -86,11 +86,17 @@ const FormFourTemplate = ({
                   style={index % 2 === 0 ? styles.evenRow : styles.oddRow}>
                   <p style={styles.width70}>{data?.question}</p>
                   <div style={styles.marginTop5}>
-                    <input type="checkbox" defaultChecked={false} />
+                    <input
+                      type="checkbox"
+                      defaultChecked={data?.response === false ? true : false}
+                    />
                   </div>
                   <p style={styles.yesNoText}>No(0)</p>
                   <div style={styles.marginTop5}>
-                    <input type="checkbox" defaultChecked={true} />
+                    <input
+                      type="checkbox"
+                      defaultChecked={data?.response === true ? true : false}
+                    />
                   </div>
                   <p style={styles.yesNoText}>Yes(1)</p>
                 </div>
@@ -102,6 +108,7 @@ const FormFourTemplate = ({
           <div style={styles.flex1}>
             <p style={styles.headingText}>
               <b>{formFourSchema?.falicityScore}</b>
+              <b> {response.totalScore}</b>
             </p>
             <p style={styles.inputText}>{formFourSchema?.facilitydetails}</p>
           </div>
@@ -115,7 +122,7 @@ const FormFourTemplate = ({
                   <input
                     style={styles.inputStyle}
                     type="checkbox"
-                    defaultChecked={true}
+                    defaultChecked={response.totalScore > 11 ? true : false}
                   />
                   <p style={styles.outcomeText}>{outcome[0]?.result}</p>
                 </div>
@@ -123,7 +130,11 @@ const FormFourTemplate = ({
                   <input
                     style={styles.inputStyle}
                     type="checkbox"
-                    defaultChecked={true}
+                    defaultChecked={
+                      response.totalScore > 8 && response.totalScore > 11
+                        ? true
+                        : false
+                    }
                   />
                   <p style={styles.outcomeText}>{outcome[1]?.result}</p>
                 </div>
@@ -131,7 +142,7 @@ const FormFourTemplate = ({
                   <input
                     style={styles.inputStyle}
                     type="checkbox"
-                    defaultChecked={true}
+                    defaultChecked={response.totalScore < 8 ? true : false}
                   />
                   <p style={styles.outcomeText}>{outcome[2]?.result}</p>
                 </div>

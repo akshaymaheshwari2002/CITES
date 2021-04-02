@@ -271,11 +271,6 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
           _registeredSpecies.numberHarvestedInPreviousYear = [];
         }
       }
-      console.log(
-        'cmOrGramOfSizeOrMassAtSexualMaturity',
-        _registeredSpecies.cmOrGramOfSizeOrMassAtSexualMaturity,
-        typeof _registeredSpecies.cmOrGramOfSizeOrMassAtSexualMaturity,
-      );
       await dispatch(saveRegisteredSpecies(_registeredSpecies));
 
       if (formFieldsPage < 5) {
