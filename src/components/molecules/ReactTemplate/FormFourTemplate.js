@@ -108,7 +108,7 @@ const FormFourTemplate = ({
           <div style={styles.flex1}>
             <p style={styles.headingText}>
               <b>{formFourSchema?.falicityScore}</b>
-              <b> {response.totalScore}</b>
+              <b> {response?.totalScore}</b>
             </p>
             <p style={styles.inputText}>{formFourSchema?.facilitydetails}</p>
           </div>
@@ -122,7 +122,7 @@ const FormFourTemplate = ({
                   <input
                     style={styles.inputStyle}
                     type="checkbox"
-                    defaultChecked={response.totalScore > 11 ? true : false}
+                    defaultChecked={response?.totalScore > 11 ? true : false}
                   />
                   <p style={styles.outcomeText}>{outcome[0]?.result}</p>
                 </div>
@@ -131,7 +131,7 @@ const FormFourTemplate = ({
                     style={styles.inputStyle}
                     type="checkbox"
                     defaultChecked={
-                      response.totalScore > 8 && response.totalScore > 11
+                      response?.totalScore > 8 && response?.totalScore > 11
                         ? true
                         : false
                     }
@@ -142,7 +142,7 @@ const FormFourTemplate = ({
                   <input
                     style={styles.inputStyle}
                     type="checkbox"
-                    defaultChecked={response.totalScore < 8 ? true : false}
+                    defaultChecked={response?.totalScore < 8 ? true : false}
                   />
                   <p style={styles.outcomeText}>{outcome[2]?.result}</p>
                 </div>

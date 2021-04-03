@@ -13,6 +13,7 @@ import {useIntl} from 'react-intl';
 import {generatePdf} from '@utils/CommonFunctions';
 import Pdf from 'react-native-pdf';
 import {useFocusEffect} from '@react-navigation/native';
+import RNShare from 'react-native-share';
 import RNPrint from 'react-native-print';
 import {format} from 'date-fns';
 import {shallowEqual, useSelector} from 'react-redux';
@@ -237,7 +238,7 @@ const StepSummary = ({navigation: {navigate}}) => {
               buttonStyle={() => {
                 return styles.button;
               }}
-              onPress={() => navigate()}
+              // onPress={() => RNShare.open()}
             />
             <Button
               buttonContent={formatMessage({
