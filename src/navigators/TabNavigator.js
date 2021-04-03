@@ -2,6 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {ms} from 'react-native-size-matters';
+import {Pressable} from 'react-native';
 
 import {TabBar} from '@molecules';
 import {
@@ -48,9 +49,11 @@ const screenOptions = {
   title: null,
   headerBackTitle: ' ',
   headerStyle: CommonStyles.navigationHeader,
-  headerLeft: ({canGoBack, ...navigationProps}) =>
+  headerLeft: ({canGoBack, onPress, ...navigationProps}) =>
     canGoBack ? (
-      <Icon name="chevron-left" size={ms(18)} {...navigationProps} />
+      <Pressable hitSlop={10} onPress={onPress}>
+        <Icon name="chevron-left" size={ms(18)} {...navigationProps} />
+      </Pressable>
     ) : null,
   headerLeftContainerStyle: CommonStyles.navigationLeftContainer,
   headerRightContainerStyle: CommonStyles.navigationRightContainer,

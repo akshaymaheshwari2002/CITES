@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useIsFocused} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
-import {Text, View, BackHandler} from 'react-native';
+import {Text, View, BackHandler, Pressable} from 'react-native';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 import Icon from 'react-native-vector-icons/Feather';
@@ -95,9 +95,8 @@ const FormFour = ({navigation: {navigate, goBack, setOptions}}) => {
   useEffect(() => {
     setOptions({
       headerLeft: () => (
-        <Icon
-          name="chevron-left"
-          size={ms(26)}
+        <Pressable
+          hitSlop={10}
           onPress={() => {
             if (questionNumber === 0) {
               goBack();
@@ -108,8 +107,9 @@ const FormFour = ({navigation: {navigate, goBack, setOptions}}) => {
               }));
               setQuestionNumber((state) => state - 1);
             }
-          }}
-        />
+          }}>
+          <Icon name="chevron-left" size={ms(26)} />
+        </Pressable>
       ),
     });
   }, [goBack, questionNumber, setOptions]);

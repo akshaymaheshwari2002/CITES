@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, Pressable} from 'react-native';
 import {ms, ScaledSheet, verticalScale} from 'react-native-size-matters';
 import {useForm} from 'react-hook-form';
 import {useIntl} from 'react-intl';
@@ -188,12 +188,9 @@ const FormOne = ({navigation}) => {
   useEffect(() => {
     navigation.setOptions({
       headerLeft: (navigationProps) => (
-        <Icon
-          name="chevron-left"
-          size={ms(18)}
-          {...navigationProps}
-          onPress={handleBackPress}
-        />
+        <Pressable hitSlop={10} onPress={handleBackPress}>
+          <Icon name="chevron-left" size={ms(18)} {...navigationProps} />
+        </Pressable>
       ),
     });
   }, [handleBackPress, navigation]);

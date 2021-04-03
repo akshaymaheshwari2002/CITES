@@ -1,5 +1,11 @@
 import React, {useState, useMemo, useCallback, useEffect} from 'react';
-import {View, Text, TouchableOpacity, BackHandler} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  BackHandler,
+  Pressable,
+} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import Pdf from 'react-native-pdf';
@@ -75,12 +81,9 @@ const FormOneSummary = ({navigation, route}) => {
   useEffect(() => {
     navigation.setOptions({
       headerLeft: (navigationProps) => (
-        <Icon
-          name="chevron-left"
-          size={ms(18)}
-          {...navigationProps}
-          onPress={handleBackPress}
-        />
+        <Pressable hitSlop={10} onPress={handleBackPress}>
+          <Icon name="chevron-left" size={ms(18)} {...navigationProps} />
+        </Pressable>
       ),
     });
   }, [handleBackPress, navigation]);

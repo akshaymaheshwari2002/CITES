@@ -1,5 +1,11 @@
 import React, {useRef, useCallback, useState} from 'react';
-import {View, useWindowDimensions, FlatList, Platform} from 'react-native';
+import {
+  View,
+  useWindowDimensions,
+  FlatList,
+  Platform,
+  Pressable,
+} from 'react-native';
 import {ms} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
@@ -86,17 +92,17 @@ const SourceCodeDeterminationOnboarding = ({navigation}) => {
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
       <Header
         leftContent={
-          <Icon name="chevron-left" size={ms(18)} onPress={handleBackPress} />
+          <Pressable hitSlop={10} onPress={handleBackPress}>
+            <Icon name="chevron-left" size={ms(18)} />
+          </Pressable>
         }
         content={
           <Pagination activeIndex={activeIndex} dotsLength={data.length} />
         }
         rightContent={
-          <Icon
-            name="chevron-right"
-            size={ms(18)}
-            onPress={handleForwardPress}
-          />
+          <Pressable hitSlop={10} onPress={handleForwardPress}>
+            <Icon name="chevron-right" size={ms(18)} />
+          </Pressable>
         }
       />
       <FlatList

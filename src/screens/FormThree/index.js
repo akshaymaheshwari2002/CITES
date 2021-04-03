@@ -1,5 +1,5 @@
 import React, {useCallback, useMemo, useRef, useState, useEffect} from 'react';
-import {Text, View, BackHandler} from 'react-native';
+import {Text, View, BackHandler, Pressable} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import {ms, vs, ScaledSheet} from 'react-native-size-matters';
 import {useForm} from 'react-hook-form';
@@ -388,12 +388,9 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
   useEffect(() => {
     setOptions({
       headerLeft: (navigationProps) => (
-        <Icon
-          name="chevron-left"
-          size={ms(18)}
-          {...navigationProps}
-          onPress={handleBackPress}
-        />
+        <Pressable hitSlop={10} onPress={handleBackPress}>
+          <Icon name="chevron-left" size={ms(18)} {...navigationProps} />
+        </Pressable>
       ),
     });
   }, [handleBackPress, setOptions]);

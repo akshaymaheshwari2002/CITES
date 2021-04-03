@@ -5,6 +5,7 @@ import {
   BackHandler,
   TouchableOpacity,
   Dimensions,
+  Pressable,
 } from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import {ScaledSheet, ms, s, vs} from 'react-native-size-matters';
@@ -157,28 +158,28 @@ const DetermineSourceCode = ({
   useEffect(() => {
     setOptions({
       headerLeft: () => (
-        <Tooltip
-          placement="bottom"
-          isVisible={route.params.showToolTip}
-          content={formatMessage({
-            id: 'screen.StepOne.WalkThroughContentOne',
-          })}
-          focusedStyle={styles.headerLeftTooltip}
-          onClose={handleHeaderTooltipClose}>
-          <Icon
-            name="chevron-left"
-            size={ms(18)}
-            onPress={() => {
-              if (interactedQuestionStack.length === 1) {
-                goBack();
-              } else {
-                setInteractedQuestionStack([
-                  ...interactedQuestionStack.slice(0, -1),
-                ]);
-              }
-            }}
-          />
-        </Tooltip>
+        <Pressable
+          hitSlop={10}
+          onPress={() => {
+            if (interactedQuestionStack.length === 1) {
+              goBack();
+            } else {
+              setInteractedQuestionStack([
+                ...interactedQuestionStack.slice(0, -1),
+              ]);
+            }
+          }}>
+          <Tooltip
+            placement="bottom"
+            isVisible={route.params.showToolTip}
+            content={formatMessage({
+              id: 'screen.StepOne.WalkThroughContentOne',
+            })}
+            focusedStyle={styles.headerLeftTooltip}
+            onClose={handleHeaderTooltipClose}>
+            <Icon name="chevron-left" size={ms(18)} />
+          </Tooltip>
+        </Pressable>
       ),
       headerRight: () => (
         <Tooltip
