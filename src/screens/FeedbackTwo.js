@@ -93,36 +93,38 @@ const FeedbackTwo = ({navigation: {navigate}}) => {
             />
           </TouchableOpacity>
         </View>
-        <Form
-          control={control}
-          formProps={formProps}
-          errors={errors}
-          formFields={[
-            {
-              defaultValue: '',
-              name: 'FeedbackTwo',
-              rules: {
-                required: formatMessage({id: 'form.error.fieldRequired'}),
+        <View style={styles.form}>
+          <Form
+            control={control}
+            formProps={formProps}
+            errors={errors}
+            formFields={[
+              {
+                defaultValue: '',
+                name: 'FeedbackTwo',
+                rules: {
+                  required: formatMessage({id: 'form.error.fieldRequired'}),
+                },
+                placeholder: formatMessage({
+                  id: 'screen.FeedbackTwo.content',
+                }),
+                style: {
+                  color: RawColors.black,
+                  height: s(150),
+                  marginTop: vs(29),
+                  alignSelf: 'center',
+                  borderRadius: ms(20),
+                  borderWidth: 1,
+                  borderColor: RawColors.darkGrey,
+                  textAlignVertical: 'top',
+                  backgroundColor: 'white',
+                  paddingHorizontal: s(20),
+                },
+                multiline: true,
               },
-              placeholder: formatMessage({
-                id: 'screen.FeedbackTwo.content',
-              }),
-              style: {
-                color: RawColors.pinkishGrey,
-                height: s(150),
-                marginTop: vs(29),
-                alignSelf: 'center',
-                borderRadius: ms(20),
-                borderWidth: 1,
-                borderColor: RawColors.darkGrey,
-                textAlignVertical: 'top',
-                backgroundColor: 'white',
-                paddingHorizontal: s(20),
-              },
-              multiline: true,
-            },
-          ]}
-        />
+            ]}
+          />
+        </View>
         <Button
           buttonContent={formatMessage({
             id: 'button.submit',
@@ -133,7 +135,7 @@ const FeedbackTwo = ({navigation: {navigate}}) => {
           buttonStyle={() => {
             return styles.button;
           }}
-          onPress={() => navigate('TabNavigator', {screen: 'StepOne'})}
+          onPress={() => navigate('HomePage')}
         />
       </Container.ScrollView>
     </Container>
@@ -158,6 +160,10 @@ const styles = ScaledSheet.create({
     ...Fonts.HelveticaNeue40B,
     lineHeight: '49@s',
     letterSpacing: '0.64@s',
+  },
+  form: {
+    width: '290@s',
+    alignSelf: 'center',
   },
   questionContainer: {
     marginTop: '16@s',

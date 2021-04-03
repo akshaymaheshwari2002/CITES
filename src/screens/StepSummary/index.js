@@ -13,7 +13,7 @@ import {useIntl} from 'react-intl';
 import {generatePdf} from '@utils/CommonFunctions';
 import Pdf from 'react-native-pdf';
 import {useFocusEffect} from '@react-navigation/native';
-import RNShare from 'react-native-share';
+import Share from 'react-native-share';
 import RNPrint from 'react-native-print';
 import {format} from 'date-fns';
 import {shallowEqual, useSelector} from 'react-redux';
@@ -175,6 +175,13 @@ const StepSummary = ({navigation: {navigate}}) => {
     })();
   }, [facilityData, formFourData, formTwoData, registeredSpecies]);
 
+  const options = {
+    message: 'Share form pdf ',
+    title: 'Share',
+    url:
+      'file:/data/user/0/com.rnboilerplate/cache/PDF_ca1720f2-2165-4a63-8abe-17caa6e82a963617777987712499348.pdf',
+  };
+
   return (
     <Container>
       <Container.ScrollView
@@ -238,7 +245,7 @@ const StepSummary = ({navigation: {navigate}}) => {
               buttonStyle={() => {
                 return styles.button;
               }}
-              // onPress={() => RNShare.open()}
+              onPress={() => Share.open(options)}
             />
             <Button
               buttonContent={formatMessage({

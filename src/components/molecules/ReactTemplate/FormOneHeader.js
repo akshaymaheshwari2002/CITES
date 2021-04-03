@@ -189,6 +189,7 @@ const styles = {
     color: 'red',
     paddingBottom: 0,
     marginBottom: 0,
+    textAlign: 'center',
   },
   text: {textAlign: 'left'},
   mainContainer: {
