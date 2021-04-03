@@ -110,11 +110,6 @@ const ImagePickerModal = ({
       transparent={true}
       visible={visible}
       onRequestClose={close}>
-      {/* <ScreenWrapper
-        isModal={true}
-        containerStyle={{
-          backgroundColor: RawColors.black60,
-        }}> */}
       <TouchableOpacity style={[styles.modal]} onPress={close}>
         <View style={styles.modal}>
           <View style={[styles.container]}>
@@ -156,7 +151,6 @@ const ImagePickerModal = ({
           </View>
         </View>
       </TouchableOpacity>
-      {/* </ScreenWrapper> */}
     </Modal>
   );
 };
@@ -183,7 +177,6 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingVertical: 9,
     fontSize: 14,
-    fontFamily: '',
   },
   icon: {
     width: 20,
