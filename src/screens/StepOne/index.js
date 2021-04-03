@@ -1,10 +1,11 @@
 import React, {useCallback, useEffect, useMemo} from 'react';
-import {View, StatusBar} from 'react-native';
+import {View, StatusBar, Pressable} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms, s} from 'react-native-size-matters';
 import {shallowEqual, useDispatch, useSelector} from 'react-redux';
 import Toast from 'react-native-simple-toast';
+import {useIsFocused} from '@react-navigation/core';
 
 import {Container, Button, Tooltip} from '@atoms';
 import {StepHeader, ChecklistCell} from '@molecules';
@@ -15,6 +16,7 @@ import {setTooltipProps, saveInspection} from '@store/slices/sessionSlice';
 
 const StepOne = ({navigation, route}) => {
   const {formatMessage} = useIntl();
+  const isFocused = useIsFocused();
   const dispatch = useDispatch();
   const stepOneData = useSelector(
     (state) => state.sessionReducer.activeInspection.stepOne || {},
@@ -86,25 +88,27 @@ const StepOne = ({navigation, route}) => {
   useEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
-        <Tooltip
-          placement="bottom"
-          isVisible={route.params.showToolTip}
-          allowChildInteraction={true}
-          closeOnChildInteraction={false}
-          content={formatMessage({
-            id: 'screen.StepOne.WalkThroughContentOne',
-          })}
-          focusedStyle={styles.headerLeftTooltip}
-          onClose={handleTooltipClose}>
-          <Icon name="chevron-left" size={ms(18)} onPress={navigation.goBack} />
-        </Tooltip>
+        <Pressable hitSlop={10} onPress={navigation.goBack}>
+          <Tooltip
+            placement="bottom"
+            isVisible={route.params.showToolTip}
+            allowChildInteraction={true}
+            closeOnChildInteraction={false}
+            content={formatMessage({
+              id: 'screen.StepOne.WalkThroughContentOne',
+            })}
+            focusedStyle={styles.headerLeftTooltip}
+            onClose={handleTooltipClose}>
+            <Icon name="chevron-left" size={ms(18)} />
+          </Tooltip>
+        </Pressable>
       ),
     });
   }, [formatMessage, handleTooltipClose, navigation, route.params.showToolTip]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
-      <StepHeader stepNumber={1} />
+      <StepHeader stepNumber={1} showAnimation={isFocused} />
       <Container.ScrollView style={CommonStyles.flex1}>
         {ChecklistContent({
           checkliststyles,

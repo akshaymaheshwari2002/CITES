@@ -104,9 +104,6 @@ const StepSummary = ({navigation: {navigate}}) => {
     (state) => state.sessionReducer.activeInspection.stepThree.formFour,
     shallowEqual,
   );
-  useEffect(() => {
-    console.log(formFourData, 'hhh');
-  }, [formFourData]);
 
   const formatFormThreeDataToDisplay = (data) => ({
     ...data,

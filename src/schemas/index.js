@@ -7,6 +7,24 @@ export const PHONE = {
   },
 };
 
+export const NOTES = {
+  name: 'Notes',
+  properties: {
+    text: 'string',
+    timeStamp: 'string',
+  },
+};
+
+export const PHOTOS = {
+  name: 'Photos',
+  properties: {
+    fileName: 'string',
+    fileSize: 'int',
+    uri: 'string',
+    timeStamp: 'string',
+  },
+};
+
 export const ADDRESS = {
   name: 'Address',
   properties: {

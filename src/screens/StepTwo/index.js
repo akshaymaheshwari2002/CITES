@@ -3,6 +3,7 @@ import {View} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useDispatch, useSelector, shallowEqual} from 'react-redux';
+import {useIsFocused} from '@react-navigation/core';
 
 import {saveInspection} from '@store/slices/sessionSlice';
 import {Container, Button} from '@atoms';
@@ -14,6 +15,7 @@ import Toast from 'react-native-simple-toast';
 
 const StepTwo = ({navigation}) => {
   const {formatMessage} = useIntl();
+  const isFocused = useIsFocused();
   const dispatch = useDispatch();
   const stepTwoData = useSelector(
     (state) => state.sessionReducer.activeInspection.stepTwo,
@@ -71,7 +73,7 @@ const StepTwo = ({navigation}) => {
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
-      <StepHeader stepNumber={2} />
+      <StepHeader stepNumber={2} showAnimation={isFocused} />
       <Container.ScrollView style={CommonStyles.flex1}>
         {ChecklistContent({
           checkliststyles,

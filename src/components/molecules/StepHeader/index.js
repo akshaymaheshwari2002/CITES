@@ -1,15 +1,36 @@
-import React from 'react';
-import {Text, View, useWindowDimensions} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
+import React, {useEffect, useState} from 'react';
+import {Text, View} from 'react-native';
+import {ScaledSheet, ms} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
+import AnimatedSplash from 'react-native-animated-splash-screen';
 
-import {AnimatedView} from '@atoms';
 import {RawColors, Fonts} from '@styles/Themes';
+import {Images} from '@assets';
 
-const StepHeader = ({stepNumber = 1}) => {
+const StepHeader = ({stepNumber = 1, showAnimation = false}) => {
   const intl = useIntl();
-  const windowWidth = useWindowDimensions().width;
-  const windowHeight = useWindowDimensions().height;
+  const [_showAnimation, _setShowAnimation] = useState(true);
+  const [startAnimation, setStartAnimation] = useState(false);
+
+  useEffect(() => {
+    if (_showAnimation) {
+      setTimeout(() => {
+        setStartAnimation(true);
+      }, 1000);
+    } else {
+      setStartAnimation(false);
+    }
+  }, [_showAnimation]);
+
+  useEffect(() => {
+    if (showAnimation) {
+      _setShowAnimation(false);
+    }
+  }, [showAnimation]);
+
+  useEffect(() => {
+    _setShowAnimation(showAnimation);
+  }, [showAnimation]);
 
   return (
     <View style={styles.container}>
@@ -39,13 +60,18 @@ const StepHeader = ({stepNumber = 1}) => {
           </Text>
         </View>
         <View style={styles.roundWrap}>
-          <AnimatedView
-            startXPos={-windowWidth}
-            startYPos={windowHeight / 3}
-            elevatedXValue={0}
-            elevatedYValue={100}>
+          {showAnimation ? (
+            <AnimatedSplash
+              translucent={true}
+              isLoaded={startAnimation}
+              logoImage={Images.logo}
+              logoHeight={ms(150)}
+              logoWidth={ms(150)}>
+              <Text style={styles.step}>{stepNumber}</Text>
+            </AnimatedSplash>
+          ) : (
             <Text style={styles.step}>{stepNumber}</Text>
-          </AnimatedView>
+          )}
         </View>
       </View>
       <View style={styles.descriptionTextView}>

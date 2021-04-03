@@ -1,20 +1,25 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {Container, Button, ImagePickerModal} from '@atoms';
 import {ScaledSheet, ms, vs, s} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import {useIntl} from 'react-intl';
-import {useForm} from 'react-hook-form';
+import {useDispatch} from 'react-redux';
 
 import {Fonts, RawColors} from '@styles/Themes';
-import {Form} from '@organisms';
+import {TextInput} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
+import {saveNotes} from '@store/slices/sessionSlice';
 
 const InspectionNotes = ({navigation: {navigate}}) => {
   const {formatMessage} = useIntl();
-  const formProps = useForm();
-  const {control, errors} = formProps;
+  const dispatch = useDispatch();
   const [isImagePicker, setIsImagePicker] = useState(false);
+  const [notesText, setNotesText] = useState('');
+
+  const handlePress = useCallback(() => {
+    dispatch(saveNotes({notes: notesText}));
+  }, [dispatch, notesText]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
@@ -40,34 +45,13 @@ const InspectionNotes = ({navigation: {navigate}}) => {
               <Icon name="camera" size={ms(26)} />
             </TouchableOpacity>
           </View>
-          <Form
-            control={control}
-            formProps={formProps}
-            errors={errors}
-            formFields={[
-              {
-                defaultValue: '',
-                name: 'InspectionNotes',
-                rules: {
-                  required: formatMessage({id: 'form.error.fieldRequired'}),
-                },
-                placeholder: formatMessage({
-                  id: 'button.addInspectionNotes',
-                }),
-                style: {
-                  backgroundColor: RawColors.greyShade,
-                  borderStyle: 'dashed',
-                  marginTop: vs(29),
-                  marginHorizontal: s(20),
-                  alignSelf: 'center',
-                  borderWidth: 2,
-                  borderRadius: 1,
-                  borderColor: RawColors.dimGrey,
-                  textAlign: 'center',
-                  color: RawColors.darkGreyBlue,
-                },
-              },
-            ]}
+          <TextInput
+            value={notesText}
+            onChange={setNotesText}
+            placeholder={formatMessage({
+              id: 'button.addInspectionNotes',
+            })}
+            style={styles.textInput}
           />
           <View style={styles.buttonPadding}>
             <Button
@@ -80,7 +64,7 @@ const InspectionNotes = ({navigation: {navigate}}) => {
               buttonStyle={() => {
                 return styles.button;
               }}
-              onPress={() => navigate()}
+              onPress={handlePress}
             />
           </View>
         </View>
@@ -105,6 +89,18 @@ const styles = ScaledSheet.create({
   buttonPadding: {
     paddingBottom: '20@s',
     marginTop: '248@s',
+  },
+  textInput: {
+    backgroundColor: RawColors.greyShade,
+    borderStyle: 'dashed',
+    marginTop: vs(29),
+    marginHorizontal: s(20),
+    alignSelf: 'center',
+    borderWidth: 2,
+    borderRadius: 1,
+    borderColor: RawColors.dimGrey,
+    textAlign: 'center',
+    color: RawColors.darkGreyBlue,
   },
   titleOne: {
     ...Fonts.HelveticaNeue30B,

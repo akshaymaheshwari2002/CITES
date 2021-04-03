@@ -9,11 +9,13 @@ import {
   PermissionsAndroid,
   Platform,
 } from 'react-native';
+import {useDispatch} from 'react-redux';
 import {useIntl} from 'react-intl';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import Toast from 'react-native-simple-toast';
 import {useSelector} from 'react-redux';
 import {Images} from '@assets';
+import {saveNotes} from '@store/slices/sessionSlice';
 import {RawColors, Fonts} from '@styles/Themes';
 //import ScreenWrapper from './ScreenWrapper';
 const options = {
@@ -28,7 +30,9 @@ const ImagePickerModal = ({
   onImageSelection = () => {},
 }) => {
   const {formatMessage} = useIntl();
+  const dispatch = useDispatch();
   const isTablet = useSelector((state) => state.persistedReducer.isTablet);
+
   const isImageSizeValid = useCallback((size) => {
     var totalSizeMB = size / Math.pow(1024, 2);
     if (totalSizeMB <= 5) {
@@ -38,6 +42,7 @@ const ImagePickerModal = ({
       return false;
     }
   }, []);
+
   const requestCameraPermission = useCallback(async () => {
     if (Platform.OS === 'android') {
       try {
@@ -53,6 +58,7 @@ const ImagePickerModal = ({
       return true;
     }
   }, []);
+
   const launchGallery = useCallback(() => {
     launchImageLibrary(options, (response) => {
       if (response.didCancel) {
@@ -69,6 +75,7 @@ const ImagePickerModal = ({
       }
     });
   }, [close, isImageSizeValid, onImageSelection]);
+
   const launchCameraApp = useCallback(async () => {
     const permissionGranted = await requestCameraPermission();
     if (permissionGranted) {
@@ -80,6 +87,8 @@ const ImagePickerModal = ({
         } else {
           if (isImageSizeValid(response.fileSize)) {
             onImageSelection(response);
+            const result = dispatch(saveNotes({photos: response}));
+            console.log(result, '123456');
             close();
           } else {
             close();
@@ -87,7 +96,14 @@ const ImagePickerModal = ({
         }
       });
     }
-  }, [close, isImageSizeValid, onImageSelection, requestCameraPermission]);
+  }, [
+    close,
+    dispatch,
+    isImageSizeValid,
+    onImageSelection,
+    requestCameraPermission,
+  ]);
+
   return (
     <Modal
       animationType="fade"
@@ -144,6 +160,7 @@ const ImagePickerModal = ({
     </Modal>
   );
 };
+
 const styles = StyleSheet.create({
   modal: {
     flex: 1,
@@ -183,4 +200,5 @@ const styles = StyleSheet.create({
   },
   dismiss: {marginVertical: 10, alignItems: 'flex-end'},
 });
+
 export default ImagePickerModal;
