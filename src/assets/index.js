@@ -1,7 +1,7 @@
 export const Images = {
   tick: require('./images/Tick.png'),
   closeButton: require('./images/group.png'),
-  images: require('./images/iconspaceImageFile25Px.png'),
+  image: require('./images/iconspaceImageFile25Px.png'),
   camera: require('./images/photo.png'),
   information: require('./images/157933.png'),
   headerLightCircle: require('./images/Ellipse235.png'),
