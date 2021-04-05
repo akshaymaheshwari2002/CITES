@@ -158,7 +158,7 @@ const checkliststyles = ScaledSheet.create({
     height: '40@vs',
     borderRadius: '24@vs',
     marginVertical: '20@s',
-    marginHorizontal: '10@s',
+    paddingRight: '13@ms',
   },
   buttonTextStyle: {
     textTransform: 'uppercase',
