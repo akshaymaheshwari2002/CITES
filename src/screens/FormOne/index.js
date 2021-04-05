@@ -248,9 +248,6 @@ const FormOne = ({navigation}) => {
         <Text style={styles.contentOnePartTwo}>
           {formatMessage({id: 'screen.FormOne.contentOnePartTwo'})}
         </Text>
-        <Text style={styles.contentOnePartTwo}>
-          {formatMessage({id: 'screen.FormOne.contentOnePartTwo'})}
-        </Text>
         <Text style={styles.contentTwo}>
           {formatMessage({id: 'screen.FormOne.contentTwo'})}
         </Text>
@@ -265,10 +262,12 @@ const FormOne = ({navigation}) => {
             />
           ) : (
             <>
-              <Button
-                onPress={handleSubmit(_handleSubmit)}
-                buttonContent={formatMessage({id: 'button.saveAndAdd'})}
-              />
+              {registeredSpecies.length > 1 ? (
+                <Button
+                  onPress={handleSubmit(_handleSubmit)}
+                  buttonContent={formatMessage({id: 'button.saveAndAdd'})}
+                />
+              ) : null}
               <Button
                 onPress={async () => {
                   await handleSubmit(_handleSubmit)();

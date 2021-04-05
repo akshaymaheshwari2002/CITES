@@ -75,6 +75,7 @@ const AppNavigator = () => {
           name="InspectionOnboarding"
           options={{headerShown: false}}
           component={InspectionOnboarding}
+          initialParams={{defaultIndex: 0}}
         />
         <Stack.Screen
           name="SourceCodeDeterminationOnboarding"

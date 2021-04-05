@@ -18,10 +18,10 @@ import OnboardingFour from './OnboardingFour';
 
 const data = [OnboardingOne, OnboardingTwo, OnboardingThree, OnboardingFour];
 
-const InspectionOnboarding = ({navigation}) => {
+const InspectionOnboarding = ({navigation, route}) => {
   const flatListRef = useRef({});
   const {width: windowWidth} = useWindowDimensions();
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(route.params.defaultIndex);
 
   const handleBackPress = useCallback(() => {
     if (activeIndex === 0) {
@@ -52,6 +52,7 @@ const InspectionOnboarding = ({navigation}) => {
     },
     [windowWidth],
   );
+
   const handleMomentumScrollBegin = useCallback(
     (e) => {
       const velocity = e.nativeEvent.velocity?.x;
@@ -71,6 +72,7 @@ const InspectionOnboarding = ({navigation}) => {
     },
     [navigation],
   );
+
   const handleMomentumScrollEnd = useCallback(
     (e) => {
       const contentOffset = e.nativeEvent.contentOffset;
@@ -80,7 +82,7 @@ const InspectionOnboarding = ({navigation}) => {
       if (activeIndex === pageNum && activeIndex === data?.length - 1) {
         navigation.navigate('TabNavigator', {
           screen: 'StepOne',
-          params: {showToolTip: true},
+          params: {showToolTip: true, isOnboardingScreen: true},
         });
       }
 

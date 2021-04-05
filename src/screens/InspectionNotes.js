@@ -53,20 +53,18 @@ const InspectionNotes = ({navigation: {navigate}}) => {
             })}
             style={styles.textInput}
           />
-          <View style={styles.buttonPadding}>
-            <Button
-              buttonContent={formatMessage({
-                id: 'button.saveAndGoBack',
-              })}
-              buttonTextStyle={() => {
-                return styles.buttonText;
-              }}
-              buttonStyle={() => {
-                return styles.button;
-              }}
-              onPress={handlePress}
-            />
-          </View>
+          <Button
+            buttonContent={formatMessage({
+              id: 'button.saveAndGoBack',
+            })}
+            buttonTextStyle={() => {
+              return styles.buttonText;
+            }}
+            buttonStyle={() => {
+              return styles.button;
+            }}
+            onPress={handlePress}
+          />
         </View>
         <ImagePickerModal
           visible={isImagePicker}
@@ -86,17 +84,13 @@ const styles = ScaledSheet.create({
     height: '100@s',
     backgroundColor: 'white',
   },
-  buttonPadding: {
-    paddingBottom: '20@s',
-    marginTop: '248@s',
-  },
   textInput: {
     backgroundColor: RawColors.greyShade,
     borderStyle: 'dashed',
     marginTop: vs(29),
     marginHorizontal: s(20),
     alignSelf: 'center',
-    borderWidth: 2,
+    borderWidth: 1,
     borderRadius: 1,
     borderColor: RawColors.dimGrey,
     textAlign: 'center',
@@ -123,17 +117,17 @@ const styles = ScaledSheet.create({
     borderRadius: '52@vs',
     height: '50@s',
     width: '50@s',
-    backgroundColor: RawColors.gaussianblack,
+    backgroundColor: RawColors.silverFoil,
     marginHorizontal: '15@s',
     marginTop: '16@s',
     alignItems: 'center',
     justifyContent: 'center',
   },
-
   button: {
     height: '46@vs',
     width: '290@s',
     alignSelf: 'center',
+    marginTop: 'auto',
     backgroundColor: RawColors.eggshell,
   },
   buttonOne: {

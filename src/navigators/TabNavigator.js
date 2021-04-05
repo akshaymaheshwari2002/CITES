@@ -106,7 +106,11 @@ const AppNavigator = () => {
           name="FacilityScoreInformation"
           component={FacilityScoreInformation}
         />
-        <Stack.Screen name="BeginInspection" component={BeginInspection} />
+        <Stack.Screen
+          name="BeginInspection"
+          component={BeginInspection}
+          initialParams={{fromOnboarding: false}}
+        />
         <Stack.Screen
           name="FacilityRegistered"
           component={FacilityRegistered}

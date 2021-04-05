@@ -31,9 +31,6 @@ const FacilityRegistered = ({navigation: {navigate}}) => {
             })}
           </Text>
           <Text style={styles.text}>
-            {formatMessage({id: 'screen.FacilityRegistered.contentTwo'})}
-          </Text>
-          <Text style={styles.text}>
             {formatMessage({
               id: 'screen.FacilityRegistered.contentThreePartOne',
             })}

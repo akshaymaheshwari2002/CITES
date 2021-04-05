@@ -124,7 +124,7 @@ const FormOneSummary = ({navigation, route}) => {
           <Text style={[Fonts.Lato15R, styles.subHeadingText]}>
             {formatMessage({id: 'screen.FormOneSummary.subHeading_2'})}
           </Text>
-          <Text style={[Fonts.Lato1R, styles.subHeadingText]}>
+          <Text style={[Fonts.Lato15R, styles.subHeadingText]}>
             {formatMessage({id: 'screen.FormOneSummary.subHeading_3'})}
           </Text>
         </View>
@@ -180,7 +180,7 @@ const FormOneSummary = ({navigation, route}) => {
             </View>
 
             <View style={styles.justifyContent}>
-              <Icon name="plus" size={ms(26)} />
+              <Icon name="plus" size={ms(18)} />
             </View>
           </View>
         </TouchableOpacity>

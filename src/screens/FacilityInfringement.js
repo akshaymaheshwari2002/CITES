@@ -21,10 +21,10 @@ const FacilityInfringement = ({navigation: {navigate}}) => {
           <Text style={styles.content}>
             {formatMessage({id: 'screen.FacilityInfringement.contentOne'})}
           </Text>
-          <Text style={styles.content}>
+          <Text style={[styles.content, styles.nogap]}>
             {formatMessage({id: 'screen.FacilityInfringement.contentTwo'})}
           </Text>
-          <Text style={[styles.content, styles.nogap]}>
+          <Text style={styles.content}>
             {formatMessage({id: 'screen.FacilityInfringement.contentThree'})}
           </Text>
           <Text style={[styles.content, styles.nogap]}>

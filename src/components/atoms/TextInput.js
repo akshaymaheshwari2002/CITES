@@ -67,7 +67,7 @@ const TextInput = React.forwardRef(
           ) : null}
         </View>
         {labelBottom ? (
-          <Text style={[{color: RawColors.black}, Fonts.Italic15R]}>
+          <Text style={[{color: RawColors.black}, Fonts.Italic13R]}>
             {labelBottom}
           </Text>
         ) : null}

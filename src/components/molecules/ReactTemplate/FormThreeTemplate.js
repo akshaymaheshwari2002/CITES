@@ -634,7 +634,7 @@ const FormThreeTemplate = ({
                     checked:
                       speciesData?.cmOrGramOfSizeOrMassAtSexualMaturity ??
                       false,
-                    defaultValue: true,
+                    defaultValue: 'cm',
                     inputSize: 15,
                     type: 'radio',
                     id: `formThree.${speciesIndex}.cmOrGramOfSizeOrMassAtSexualMaturity.cm`,
@@ -646,7 +646,7 @@ const FormThreeTemplate = ({
                     checked:
                       speciesData?.cmOrGramOfSizeOrMassAtSexualMaturity ??
                       false,
-                    defaultValue: false,
+                    defaultValue: 'g',
                     inputSize: 15,
                     type: 'radio',
                     id: `formThree.${speciesIndex}.cmOrGramOfSizeOrMassAtSexualMaturity.g`,
@@ -694,7 +694,7 @@ const FormThreeTemplate = ({
                     name: `formThree.${speciesIndex}.cmOrGramOfSizeOrMassAtSaleOrExport`,
                     checked:
                       speciesData?.cmOrGramOfSizeOrMassAtSaleOrExport ?? false,
-                    defaultValue: true,
+                    defaultValue: 'cm',
                     inputSize: 15,
                     type: 'radio',
                     id: `formThree.${speciesIndex}.cmOrGramOfSizeOrMassAtSaleOrExport.cm`,
@@ -705,7 +705,7 @@ const FormThreeTemplate = ({
                     name: `formThree.${speciesIndex}.cmOrGramOfSizeOrMassAtSaleOrExport`,
                     checked:
                       speciesData?.cmOrGramOfSizeOrMassAtSaleOrExport ?? false,
-                    defaultValue: false,
+                    defaultValue: 'g',
                     inputSize: 15,
                     type: 'radio',
                     id: `formThree.${speciesIndex}.cmOrGramOfSizeOrMassAtSaleOrExport.g`,

@@ -90,7 +90,11 @@ const TabBar = () => {
               {name: 'InspectionFlow'},
               {
                 name: 'TabNavigator',
-                state: {routes: [{name: 'BeginInspection'}]},
+                state: {
+                  routes: [
+                    {name: 'BeginInspection', params: {fromOnboarding: true}},
+                  ],
+                },
               },
             ],
           }),
