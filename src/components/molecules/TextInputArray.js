@@ -110,7 +110,7 @@ const TextInputArray = React.forwardRef(
               buttonStyle={() => ({
                 borderStyle: 'dashed',
                 borderRadius: 1,
-                borderWidth: 2,
+                borderWidth: 1,
                 borderColor: RawColors.dimGrey,
               })}
               buttonContent={buttonText}

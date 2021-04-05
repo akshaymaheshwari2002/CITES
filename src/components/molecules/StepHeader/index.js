@@ -64,7 +64,7 @@ const StepHeader = ({stepNumber = 1, showAnimation = false}) => {
             <AnimatedSplash
               translucent={true}
               isLoaded={startAnimation}
-              logoImage={Images.logo}
+              customComponent={<Text style={styles.step}>{stepNumber}</Text>}
               logoHeight={ms(150)}
               logoWidth={ms(150)}>
               <Text style={styles.step}>{stepNumber}</Text>
