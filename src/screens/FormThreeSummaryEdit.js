@@ -1,18 +1,19 @@
-import React, {useMemo, useCallback} from 'react';
+import React, {useMemo, useCallback, useState, useEffect} from 'react';
 import {renderToString} from 'react-dom/server';
 import {WebView as RNWebView} from 'react-native-webview';
-import {View, Text, TouchableOpacity, Alert} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
-import {useIsFocused} from '@react-navigation/native';
 import {format} from 'date-fns';
 import {shallowEqual, useSelector, useDispatch} from 'react-redux';
 
 import {Container} from '@atoms';
 import {FormThreeTemplate, FormThreeHeader} from '@molecules';
+import {saveRegisteredSpecies} from '@store/slices/sessionSlice';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
+import Constants from '@utils/Constants';
 
 const getHtmlStringFromJsx = (element) => {
   return `
@@ -47,7 +48,9 @@ const formatFormThreeDataToDisplay = (data) => ({
 const FormThreeSummaryEdit = ({navigation, route}) => {
   const {formatMessage} = useIntl();
   const dispatch = useDispatch();
-  const isCurrentScreenFocused = useIsFocused();
+  const [registeredSpeciesModified, setRegisteredSpeciesModified] = useState(
+    [],
+  );
   const registeredSpecies = useSelector(
     (state) => state.sessionReducer.activeInspection.registeredSpecies,
     shallowEqual,
@@ -56,6 +59,11 @@ const FormThreeSummaryEdit = ({navigation, route}) => {
     (state) => state.sessionReducer.activeInspection.stepOne?.formOne,
     shallowEqual,
   );
+
+  useEffect(() => {
+    setRegisteredSpeciesModified(registeredSpecies);
+  }, [registeredSpecies]);
+
   const facilityData = useMemo(
     () => ({
       ...formData,
@@ -105,10 +113,73 @@ const FormThreeSummaryEdit = ({navigation, route}) => {
     [facilityData, registeredSpecies],
   );
 
-  const handleMessage = useCallback((ev) => {
-    const data = JSON.parse(ev.nativeEvent.data);
-    console.debug(data);
-  }, []);
+  const handleMessage = useCallback(
+    (ev) => {
+      const data = JSON.parse(ev.nativeEvent.data);
+
+      setRegisteredSpeciesModified(() => {
+        const _state = [...registeredSpeciesModified];
+        const changedSpeciesIndex = parseInt(data.name.split('.')[1], 10);
+        const changedPropertyKey = data.name.split('.')[2];
+        if (
+          changedPropertyKey === 'dateFirstSpeciesAcquired' ||
+          changedPropertyKey === 'whenDidYouBreedThisSpecies'
+        ) {
+          _state[changedSpeciesIndex] = {
+            ...registeredSpeciesModified[changedSpeciesIndex],
+            [changedPropertyKey]: String(Date.parse(data.value) ?? ''),
+          };
+        } else if (
+          changedPropertyKey === 'foodFedToAdults' ||
+          changedPropertyKey === 'foodFedToRearingAndJuveniles'
+        ) {
+          _state[changedSpeciesIndex] = {
+            ...registeredSpeciesModified[changedSpeciesIndex],
+            [changedPropertyKey]: Array.isArray(
+              data.value?.split(',')?.map((value) => value?.trim() ?? ''),
+            )
+              ? data.value?.split(',')?.map((value) => value?.trim() ?? '')
+              : [],
+          };
+        } else if (
+          changedPropertyKey === 'doYouBreedThisSpecies' ||
+          changedPropertyKey === 'doYouRanchThisSpecies'
+        ) {
+          _state[changedSpeciesIndex] = {
+            ...registeredSpeciesModified[changedSpeciesIndex],
+            [changedPropertyKey]: data.value ? [data.value] : [Constants.NO],
+          };
+        } else if (
+          changedPropertyKey === 'cmOrGramOfSizeOrMassAtSexualMaturity' ||
+          changedPropertyKey === 'cmOrGramOfSizeOrMassAtSaleOrExport'
+        ) {
+          _state[changedSpeciesIndex] = {
+            ...registeredSpeciesModified[changedSpeciesIndex],
+            [changedPropertyKey]:
+              data.value === 'cm' ? true : data.value === 'g' ? false : true,
+          };
+        } else {
+          _state[changedSpeciesIndex] = {
+            ...registeredSpeciesModified[changedSpeciesIndex],
+            [changedPropertyKey]: data.value,
+          };
+        }
+        return _state;
+      });
+    },
+    [registeredSpeciesModified],
+  );
+
+  const handleSubmit = useCallback(() => {
+    dispatch(
+      saveRegisteredSpecies(
+        Array.isArray(registeredSpeciesModified)
+          ? [...registeredSpeciesModified]
+          : [],
+      ),
+    );
+    navigation.goBack();
+  }, [dispatch, navigation, registeredSpeciesModified]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
@@ -144,12 +215,7 @@ const FormThreeSummaryEdit = ({navigation, route}) => {
         />
       </Container.ScrollView>
       <View style={styles.slideBtnContainerStep}>
-        <TouchableOpacity
-          style={styles.slideBtn}
-          onPress={() => {
-            // handleSubmit
-            Alert.alert('Work in progress');
-          }}>
+        <TouchableOpacity style={styles.slideBtn} onPress={handleSubmit}>
           <View style={styles.row}>
             <View style={[styles.padding16, styles.marginDimension]}>
               <Text style={styles.text}>
