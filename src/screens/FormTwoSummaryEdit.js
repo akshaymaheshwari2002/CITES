@@ -161,10 +161,6 @@ const FormTwoSummaryEdit = ({navigation}) => {
     setformTwoDataModified(formTwoData);
   }, [formTwoData]);
 
-  useEffect(() => {
-    console.debug(formTwoDataModified);
-  }, [formTwoDataModified]);
-
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <View style={styles.titleView}>

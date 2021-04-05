@@ -41,15 +41,30 @@ const formThreeSchema = {
   asterisk:
     'Inspectors should ensure specimens were acquired legally and in compliance with CITES. In the case of App. I specimens, invoices and/or bills of sale must be produced .',
 };
-const FormThreeTemplate = ({speciesData = {}, editable = false}) => {
-  const getInputElementConditionally = ({name, defaultValue, inputSize}) => {
+const FormThreeTemplate = ({
+  speciesData = {},
+  speciesIndex = 0,
+  editable = false,
+}) => {
+  const getInputElementConditionally = ({
+    name,
+    defaultValue,
+    inputSize,
+    type,
+    checked,
+    id,
+    alt = '',
+  }) => {
     return editable
       ? getInputFieldElement({
           name,
           defaultValue,
           inputSize,
+          type,
+          checked,
+          id,
         })
-      : speciesData?.[name];
+      : alt;
   };
 
   return (
@@ -63,7 +78,13 @@ const FormThreeTemplate = ({speciesData = {}, editable = false}) => {
               {formThreeSchema?.dateFirstSpeciesAcquired}
             </label>
             <span style={styles.underlinedText}>
-              {speciesData?.dateFirstSpeciesAcquired ?? ''}
+              {getInputElementConditionally({
+                name: `formThree.${speciesIndex}.dateFirstSpeciesAcquired`,
+                defaultValue: speciesData?.dateFirstSpeciesAcquired ?? '',
+                inputSize: 15,
+                type: 'date',
+                alt: speciesData?.dateFirstSpeciesAcquired ?? '',
+              })}
             </span>
           </div>
           <div style={styles.textContainer50}>
@@ -72,9 +93,19 @@ const FormThreeTemplate = ({speciesData = {}, editable = false}) => {
             </p>
             <div>
               <p style={styles.underlinedText}>
-                {speciesData?.sourceCodeInitialStock ?? ''}
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.sourceCodeInitialStock`,
+                  defaultValue: speciesData?.sourceCodeInitialStock ?? '',
+                  inputSize: 15,
+                  alt: speciesData?.sourceCodeInitialStock ?? '',
+                })}
                 ,&nbsp;
-                {speciesData?.lifeStageOfInitialStock ?? ''}
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.lifeStageOfInitialStock`,
+                  defaultValue: speciesData?.lifeStageOfInitialStock ?? '',
+                  inputSize: 15,
+                  alt: speciesData?.lifeStageOfInitialStock ?? '',
+                })}
               </p>
             </div>
           </div>
@@ -87,19 +118,34 @@ const FormThreeTemplate = ({speciesData = {}, editable = false}) => {
           <div style={styles.textContainer}>
             <label style={styles.text1}>{formThreeSchema?.males}</label>
             <span style={{...styles.underlinedText1, ...styles.width50PX}}>
-              {speciesData?.numberOfMalesInitialStock ?? ''}
+              {getInputElementConditionally({
+                name: 'formThree.numberOfMalesInitialStock',
+                defaultValue: speciesData?.numberOfMalesInitialStock ?? '',
+                inputSize: 2,
+                alt: speciesData?.numberOfMalesInitialStock ?? '',
+              })}
             </span>
           </div>
           <div style={styles.textContainer}>
             <label style={styles.text1}>{formThreeSchema?.females}</label>
             <span style={{...styles.underlinedText1, ...styles.width50PX}}>
-              {speciesData?.numberOfFemalesInitialStock ?? ''}
+              {getInputElementConditionally({
+                name: 'formThree.numberOfFemalesInitialStock',
+                defaultValue: speciesData?.numberOfFemalesInitialStock ?? '',
+                inputSize: 2,
+                alt: speciesData?.numberOfFemalesInitialStock ?? '',
+              })}
             </span>
           </div>
         </div>
         <p style={styles.text1}>{formThreeSchema?.additionalStock}</p>
         <p style={styles.underlinedText}>
-          {speciesData?.addressOfAdditionalStock ?? ''}
+          {getInputElementConditionally({
+            name: `formThree.${speciesIndex}.addressOfAdditionalStock`,
+            defaultValue: speciesData?.addressOfAdditionalStock ?? '',
+            inputSize: 15,
+            alt: speciesData?.addressOfAdditionalStock ?? '',
+          })}
         </p>
       </div>
       <div style={styles.row1}>
@@ -107,21 +153,45 @@ const FormThreeTemplate = ({speciesData = {}, editable = false}) => {
           <div style={{...styles.row, ...styles.alignItemsCenter}}>
             <p style={styles.texts}>{formThreeSchema?.doYouBreedThisSpecies}</p>
             <p style={styles.texts}>{Constants.YES}</p>
-            <input
-              type="checkbox"
-              defaultChecked={
+            {getInputElementConditionally({
+              name: `formThree.${speciesIndex}.doYouBreedThisSpecies`,
+              checked:
                 speciesData?.doYouBreedThisSpecies?.[0] === Constants.YES ??
-                false
-              }
-            />
+                false,
+              defaultValue: Constants.YES,
+              inputSize: 15,
+              type: 'radio',
+              id: `formThree.${speciesIndex}.doYouBreedThisSpecies.yes`,
+              alt: (
+                <input
+                  type="checkbox"
+                  defaultChecked={
+                    speciesData?.doYouBreedThisSpecies?.[0] === Constants.YES ??
+                    false
+                  }
+                />
+              ),
+            })}
             <p style={styles.texts}>{Constants.NO}</p>
-            <input
-              type="checkbox"
-              defaultChecked={
+            {getInputElementConditionally({
+              name: `formThree.${speciesIndex}.doYouBreedThisSpecies`,
+              checked:
                 speciesData?.doYouBreedThisSpecies?.[0] === Constants.NO ??
-                false
-              }
-            />
+                false,
+              defaultValue: Constants.NO,
+              inputSize: 15,
+              type: 'radio',
+              id: `formThree.${speciesIndex}.doYouBreedThisSpecies.no`,
+              alt: (
+                <input
+                  type="checkbox"
+                  defaultChecked={
+                    speciesData?.doYouBreedThisSpecies?.[0] === Constants.NO ??
+                    false
+                  }
+                />
+              ),
+            })}
           </div>
           <div style={styles.textContainer}>
             <p style={styles.text1}>
@@ -129,7 +199,13 @@ const FormThreeTemplate = ({speciesData = {}, editable = false}) => {
             </p>
             <div>
               <p style={styles.underlinedText}>
-                {speciesData?.whenDidYouBreedThisSpecies ?? ''}
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.whenDidYouBreedThisSpecies`,
+                  defaultValue: speciesData?.whenDidYouBreedThisSpecies ?? '',
+                  inputSize: 15,
+                  type: 'date',
+                  alt: speciesData?.whenDidYouBreedThisSpecies ?? '',
+                })}
               </p>
             </div>
           </div>
@@ -139,7 +215,13 @@ const FormThreeTemplate = ({speciesData = {}, editable = false}) => {
             </p>
             <div>
               <p style={styles.underlinedText}>
-                {speciesData?.numberOfLittersPerYear ?? ''}
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.numberOfLittersPerYear`,
+                  defaultValue: speciesData?.numberOfLittersPerYear ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.numberOfLittersPerYear ?? '',
+                })}
               </p>
             </div>
           </div>
@@ -149,7 +231,13 @@ const FormThreeTemplate = ({speciesData = {}, editable = false}) => {
             </p>
             <div>
               <p style={styles.underlinedText}>
-                {speciesData?.numberOfOffspringPerLitter ?? ''}
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.numberOfOffspringPerLitter`,
+                  defaultValue: speciesData?.numberOfOffspringPerLitter ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.numberOfOffspringPerLitter ?? '',
+                })}
               </p>
             </div>
           </div>
@@ -159,7 +247,13 @@ const FormThreeTemplate = ({speciesData = {}, editable = false}) => {
             </p>
             <div>
               <p style={styles.underlinedText}>
-                {speciesData?.numberProducedInPreviousYear ?? ''}
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.numberProducedInPreviousYear`,
+                  defaultValue: speciesData?.numberProducedInPreviousYear ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.numberProducedInPreviousYear ?? '',
+                })}
               </p>
             </div>
           </div>
@@ -168,21 +262,45 @@ const FormThreeTemplate = ({speciesData = {}, editable = false}) => {
           <div style={{...styles.row, ...styles.alignItemsCenter}}>
             <p style={styles.texts}>{formThreeSchema?.isRanchSpecies}</p>
             <p style={styles.texts}>{Constants.YES}</p>
-            <input
-              type="checkbox"
-              defaultChecked={
+            {getInputElementConditionally({
+              name: `formThree.${speciesIndex}.doYouRanchThisSpecies`,
+              checked:
                 speciesData?.doYouRanchThisSpecies?.[0] === Constants.YES ??
-                false
-              }
-            />
+                false,
+              defaultValue: Constants.YES,
+              inputSize: 15,
+              type: 'radio',
+              id: `formThree.${speciesIndex}.doYouRanchThisSpecies.yes`,
+              alt: (
+                <input
+                  type="checkbox"
+                  defaultChecked={
+                    speciesData?.doYouRanchThisSpecies?.[0] === Constants.YES ??
+                    false
+                  }
+                />
+              ),
+            })}
             <p style={styles.texts}>{Constants.NO}</p>
-            <input
-              type="checkbox"
-              defaultChecked={
+            {getInputElementConditionally({
+              name: `formThree.${speciesIndex}.doYouRanchThisSpecies`,
+              checked:
                 speciesData?.doYouRanchThisSpecies?.[0] === Constants.NO ??
-                false
-              }
-            />
+                false,
+              defaultValue: Constants.NO,
+              inputSize: 15,
+              type: 'radio',
+              id: `formThree.${speciesIndex}.doYouRanchThisSpecies.no`,
+              alt: (
+                <input
+                  type="checkbox"
+                  defaultChecked={
+                    speciesData?.doYouRanchThisSpecies?.[0] === Constants.NO ??
+                    false
+                  }
+                />
+              ),
+            })}
           </div>
           <div style={styles.textContainer}>
             <p style={styles.text1}>{formThreeSchema?.lifeStageHarvested}</p>
@@ -265,12 +383,26 @@ const FormThreeTemplate = ({speciesData = {}, editable = false}) => {
             </label>
             <div style={styles.width25}>
               <div style={{...styles.underlinedText1, ...styles.width60PX}}>
-                {speciesData?.noOfAdultsPresentFacilityInfo ?? ''}
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.noOfAdultsPresentFacilityInfo`,
+                  defaultValue:
+                    speciesData?.noOfAdultsPresentFacilityInfo ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.noOfAdultsPresentFacilityInfo ?? '',
+                })}
               </div>
             </div>
             <div style={styles.width25}>
               <div style={{...styles.underlinedText1, ...styles.width60PX}}>
-                {speciesData?.noOfAdultsPresentInspectionInfo ?? ''}
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.noOfAdultsPresentInspectionInfo`,
+                  defaultValue:
+                    speciesData?.noOfAdultsPresentInspectionInfo ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.noOfAdultsPresentInspectionInfo ?? '',
+                })}
               </div>
             </div>
           </div>
@@ -286,12 +418,25 @@ const FormThreeTemplate = ({speciesData = {}, editable = false}) => {
             </label>
             <div style={styles.width25}>
               <div style={{...styles.underlinedText1, ...styles.width60PX}}>
-                {speciesData?.noOfMalesPresentFacilityInfo ?? ''}
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.noOfMalesPresentFacilityInfo`,
+                  defaultValue: speciesData?.noOfMalesPresentFacilityInfo ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.noOfMalesPresentFacilityInfo ?? '',
+                })}
               </div>
             </div>
             <div style={styles.width25}>
               <div style={{...styles.underlinedText1, ...styles.width60PX}}>
-                {speciesData?.noOfMalesPresentInspectionInfo ?? ''}
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.noOfMalesPresentInspectionInfo`,
+                  defaultValue:
+                    speciesData?.noOfMalesPresentInspectionInfo ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.noOfMalesPresentInspectionInfo ?? '',
+                })}
               </div>
             </div>
           </div>
@@ -307,12 +452,26 @@ const FormThreeTemplate = ({speciesData = {}, editable = false}) => {
             </label>
             <div style={styles.width25}>
               <div style={{...styles.underlinedText1, ...styles.width60PX}}>
-                {speciesData?.noOfFemalesPresentFacilityInfo ?? ''}
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.noOfFemalesPresentFacilityInfo`,
+                  defaultValue:
+                    speciesData?.noOfFemalesPresentFacilityInfo ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.noOfFemalesPresentFacilityInfo ?? '',
+                })}
               </div>
             </div>
             <div style={styles.width25}>
               <div style={{...styles.underlinedText1, ...styles.width60PX}}>
-                {speciesData?.noOfFemalesPresentInspectionInfo ?? ''}
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.noOfFemalesPresentInspectionInfo`,
+                  defaultValue:
+                    speciesData?.noOfFemalesPresentInspectionInfo ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.noOfFemalesPresentInspectionInfo ?? '',
+                })}
               </div>
             </div>
           </div>
@@ -328,7 +487,14 @@ const FormThreeTemplate = ({speciesData = {}, editable = false}) => {
             </label>
             <div style={styles.width50}>
               <div style={{...styles.underlinedText1, ...styles.width60PX}}>
-                {speciesData?.percentageOfFemalesBreedEachYear ?? ''}
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.percentageOfFemalesBreedEachYear`,
+                  defaultValue:
+                    speciesData?.percentageOfFemalesBreedEachYear ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.percentageOfFemalesBreedEachYear ?? '',
+                })}
               </div>
             </div>
           </div>
@@ -343,7 +509,15 @@ const FormThreeTemplate = ({speciesData = {}, editable = false}) => {
               {formThreeSchema?.foodFedToAdults}
             </label>
             <span style={styles.underlinedText}>
-              {speciesData?.foodFedToAdults ?? ''}
+              {speciesData?.foodFedToAdults &&
+              Array.isArray(speciesData.foodFedToAdults)
+                ? getInputElementConditionally({
+                    name: `formThree.${speciesIndex}.foodFedToAdults`,
+                    defaultValue: speciesData.foodFedToAdults.join(', '),
+                    inputSize: 15,
+                    alt: speciesData.foodFedToAdults.join(', ') ?? '',
+                  })
+                : null}
             </span>
           </div>
         </div>
@@ -377,12 +551,26 @@ const FormThreeTemplate = ({speciesData = {}, editable = false}) => {
             </label>
             <div style={styles.width25}>
               <div style={{...styles.underlinedText1, ...styles.width60PX}}>
-                {speciesData?.noOfJuvenilesPresentFacilityInfo ?? ''}
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.noOfJuvenilesPresentFacilityInfo`,
+                  defaultValue:
+                    speciesData?.noOfJuvenilesPresentFacilityInfo ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.noOfJuvenilesPresentFacilityInfo ?? '',
+                })}
               </div>{' '}
             </div>
             <div style={styles.width25}>
               <div style={{...styles.underlinedText1, ...styles.width60PX}}>
-                {speciesData?.noOfJuvenilesPresentInspectionInfo ?? ''}
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.noOfJuvenilesPresentInspectionInfo`,
+                  defaultValue:
+                    speciesData?.noOfJuvenilesPresentInspectionInfo ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.noOfJuvenilesPresentInspectionInfo ?? '',
+                })}
               </div>
             </div>
           </div>
@@ -398,7 +586,13 @@ const FormThreeTemplate = ({speciesData = {}, editable = false}) => {
             </label>
             <div style={styles.width25}>
               <div style={{...styles.underlinedText1, ...styles.width60PX}}>
-                {speciesData?.ageAtSexualMaturity ?? ''}
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.ageAtSexualMaturity`,
+                  defaultValue: speciesData?.ageAtSexualMaturity ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.ageAtSexualMaturity ?? '',
+                })}
               </div>
             </div>
           </div>
@@ -412,10 +606,55 @@ const FormThreeTemplate = ({speciesData = {}, editable = false}) => {
             <label style={{...styles.text1, ...styles.width50}}>
               {formThreeSchema?.sizeOrMassAtSexualMaturity}
             </label>
-            <div style={styles.width25}>
+            <div
+              style={{
+                ...styles.width25,
+                ...(editable
+                  ? {...styles.row, ...styles.alignItemsCenter}
+                  : {}),
+              }}>
               <div style={{...styles.underlinedText1, ...styles.width60PX}}>
-                {speciesData?.sizeOrMassAtSexualMaturity ?? ''}
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.sizeOrMassAtSexualMaturity`,
+                  defaultValue: speciesData?.sizeOrMassAtSexualMaturity ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.sizeOrMassAtSexualMaturity ?? '',
+                })}
+                {!editable
+                  ? speciesData?.cmOrGramOfSizeOrMassAtSexualMaturity
+                    ? ' cm'
+                    : ' g'
+                  : null}
               </div>
+              {editable ? (
+                <>
+                  {getInputElementConditionally({
+                    name: `formThree.${speciesIndex}.cmOrGramOfSizeOrMassAtSexualMaturity`,
+                    checked:
+                      speciesData?.cmOrGramOfSizeOrMassAtSexualMaturity ??
+                      false,
+                    defaultValue: 'cm',
+                    inputSize: 15,
+                    type: 'radio',
+                    id: `formThree.${speciesIndex}.cmOrGramOfSizeOrMassAtSexualMaturity.cm`,
+                    alt: '',
+                  })}
+                  <p style={styles.texts}>{'cm'}</p>
+                  {getInputElementConditionally({
+                    name: `formThree.${speciesIndex}.cmOrGramOfSizeOrMassAtSexualMaturity`,
+                    checked:
+                      speciesData?.cmOrGramOfSizeOrMassAtSexualMaturity ??
+                      false,
+                    defaultValue: 'g',
+                    inputSize: 15,
+                    type: 'radio',
+                    id: `formThree.${speciesIndex}.cmOrGramOfSizeOrMassAtSexualMaturity.g`,
+                    alt: '',
+                  })}
+                  <p style={styles.texts}>{'g'}</p>
+                </>
+              ) : null}
             </div>
           </div>
         </div>
@@ -428,10 +667,53 @@ const FormThreeTemplate = ({speciesData = {}, editable = false}) => {
             <label style={{...styles.text1, ...styles.width50}}>
               {formThreeSchema?.sizeOrMassAtSaleOrExport}
             </label>
-            <div style={styles.width25}>
+            <div
+              style={{
+                ...styles.width25,
+                ...(editable
+                  ? {...styles.row, ...styles.alignItemsCenter}
+                  : {}),
+              }}>
               <div style={{...styles.underlinedText1, ...styles.width60PX}}>
-                {speciesData?.sizeOrMassAtSaleOrExport ?? ''}
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.sizeOrMassAtSaleOrExport`,
+                  defaultValue: speciesData?.sizeOrMassAtSaleOrExport ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.sizeOrMassAtSaleOrExport ?? '',
+                })}
+                {!editable
+                  ? speciesData?.cmOrGramOfSizeOrMassAtSaleOrExport
+                    ? ' cm'
+                    : ' g'
+                  : null}
               </div>
+              {editable ? (
+                <>
+                  {getInputElementConditionally({
+                    name: `formThree.${speciesIndex}.cmOrGramOfSizeOrMassAtSaleOrExport`,
+                    checked:
+                      speciesData?.cmOrGramOfSizeOrMassAtSaleOrExport ?? false,
+                    defaultValue: 'cm',
+                    inputSize: 15,
+                    type: 'radio',
+                    id: `formThree.${speciesIndex}.cmOrGramOfSizeOrMassAtSaleOrExport.cm`,
+                    alt: '',
+                  })}
+                  <p style={styles.texts}>{'cm'}</p>
+                  {getInputElementConditionally({
+                    name: `formThree.${speciesIndex}.cmOrGramOfSizeOrMassAtSaleOrExport`,
+                    checked:
+                      speciesData?.cmOrGramOfSizeOrMassAtSaleOrExport ?? false,
+                    defaultValue: 'g',
+                    inputSize: 15,
+                    type: 'radio',
+                    id: `formThree.${speciesIndex}.cmOrGramOfSizeOrMassAtSaleOrExport.g`,
+                    alt: '',
+                  })}
+                  <p style={styles.texts}>{'g'}</p>
+                </>
+              ) : null}
             </div>
           </div>
         </div>
@@ -457,7 +739,15 @@ const FormThreeTemplate = ({speciesData = {}, editable = false}) => {
             </div>
             <div style={styles.width25}>
               <div style={{...styles.underlinedText1, ...styles.width60PX}}>
-                {speciesData?.percentageOfJuvenilesSurviveBeyond2Weeks ?? ''}
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.percentageOfJuvenilesSurviveBeyond2Weeks`,
+                  defaultValue:
+                    speciesData?.percentageOfJuvenilesSurviveBeyond2Weeks ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt:
+                    speciesData?.percentageOfJuvenilesSurviveBeyond2Weeks ?? '',
+                })}
               </div>
             </div>
           </div>
@@ -473,7 +763,18 @@ const FormThreeTemplate = ({speciesData = {}, editable = false}) => {
               {formThreeSchema?.foodFedToRearingAndJuveniles}
             </label>
             <span style={styles.underlinedText}>
-              {speciesData?.foodFedToRearingAndJuveniles ?? ''}
+              {speciesData?.foodFedToRearingAndJuveniles &&
+              Array.isArray(speciesData.foodFedToRearingAndJuveniles)
+                ? getInputElementConditionally({
+                    name: `formThree.${speciesIndex}.foodFedToRearingAndJuveniles`,
+                    defaultValue: speciesData.foodFedToRearingAndJuveniles.join(
+                      ', ',
+                    ),
+                    inputSize: 15,
+                    alt:
+                      speciesData.foodFedToRearingAndJuveniles.join(', ') ?? '',
+                  })
+                : null}
             </span>
           </div>
         </div>
