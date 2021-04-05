@@ -36,7 +36,11 @@ const CountryPicker = forwardRef(
             }}
             l
             closeButton={<Icon name="chevron-left" size={ms(18)} />}
-            filterProps={{style: styles.filter, placeholder: 'Select Country'}}
+            filterProps={{
+              style: styles.filter,
+              placeholder: 'Select or start typing country',
+              autoFocus: true,
+            }}
             flatListProps={{style: styles.flatList}}
             renderFlagButton={() => null}
             modalProps={{

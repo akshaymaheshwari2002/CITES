@@ -202,7 +202,6 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
             {formatMessage({
               id: 'screen.stepOne.inspectionCoincides.arrange',
             })}
-            :
           </Text>
           <View style={checkliststyles.bulletList}>
             {bullet}

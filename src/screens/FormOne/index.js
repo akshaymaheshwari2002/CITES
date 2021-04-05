@@ -5,6 +5,7 @@ import {useForm} from 'react-hook-form';
 import {useIntl} from 'react-intl';
 import {shallowEqual, useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import {getAllCountries} from 'react-native-country-picker-modal';
 
 import {Button, Container} from '@atoms';
 import {Form} from '@organisms';
@@ -23,7 +24,7 @@ import {get} from '@utils/RealmHelper';
 const FormOne = ({navigation}) => {
   const dispatch = useDispatch();
   const {formatMessage} = useIntl();
-  const {reset, control, errors, watch, handleSubmit} = useForm({
+  const {reset, control, errors, watch, handleSubmit, setValue} = useForm({
     shouldFocusError: false,
     mode: 'onBlur',
   });
@@ -38,6 +39,8 @@ const FormOne = ({navigation}) => {
     shallowEqual,
   );
   const selectedSpeciesId = watch('_id');
+  const country = watch('country');
+  const facilityOwnerPhone = watch('facilityOwnerPhone');
 
   const formFields = useMemo(
     () =>
@@ -194,6 +197,38 @@ const FormOne = ({navigation}) => {
       ),
     });
   }, [handleBackPress, navigation]);
+
+  useEffect(() => {
+    if (country) {
+      (async () => {
+        let selectedCountry;
+        let selectedCallingCountry;
+        let countries;
+
+        countries = await getAllCountries();
+        countries = countries.map(({name, cca2, callingCode}) => ({
+          name,
+          cca2,
+          callingCode,
+        }));
+
+        selectedCountry = countries.find((item) => item.name === country);
+        selectedCallingCountry = countries.find(
+          (item) => item.cca2 === facilityOwnerPhone.cca2,
+        );
+
+        if (selectedCountry.name !== selectedCallingCountry.name) {
+          selectedCallingCountry = {
+            ...facilityOwnerPhone,
+            cca2: selectedCountry.cca2,
+            callingCode: selectedCountry.callingCode[0],
+          };
+
+          setValue('facilityOwnerPhone', selectedCallingCountry);
+        }
+      })();
+    }
+  }, [country, facilityOwnerPhone, setValue]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>

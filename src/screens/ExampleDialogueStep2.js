@@ -98,6 +98,11 @@ const ExampleDialogueStep2 = ({navigation: {navigate}}) => {
         </Text>
         <Text style={styles.content}>
           {formatMessage({
+            id: 'screen.ExampleDialogueStep2.contentFourteen',
+          })}
+        </Text>
+        <Text style={styles.content}>
+          {formatMessage({
             id: 'screen.ExampleDialogueStep2.contentTen',
           })}
         </Text>
@@ -109,16 +114,6 @@ const ExampleDialogueStep2 = ({navigation: {navigate}}) => {
         <Text style={styles.content}>
           {formatMessage({
             id: 'screen.ExampleDialogueStep2.contentTwelve',
-          })}
-        </Text>
-        <Text style={styles.content}>
-          {formatMessage({
-            id: 'screen.ExampleDialogueStep2.contentThirteen',
-          })}
-        </Text>
-        <Text style={styles.content}>
-          {formatMessage({
-            id: 'screen.ExampleDialogueStep2.contentFourteen',
           })}
         </Text>
 
@@ -156,7 +151,6 @@ const styles = ScaledSheet.create({
   word: {
     ...Fonts.Lato17B,
     color: RawColors.black,
-    textDecorationLine: 'underline',
   },
   content: {
     //width: '100%',
