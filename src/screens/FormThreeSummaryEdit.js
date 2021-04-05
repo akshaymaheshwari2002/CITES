@@ -93,7 +93,7 @@ const FormThreeSummaryEdit = ({navigation, route}) => {
                   />
                   <FormThreeTemplate
                     speciesData={formatFormThreeDataToDisplay(speciesData)}
-                    form={'three'}
+                    speciesIndex={index}
                     editable={true}
                   />
                   <div style={{breakAfter: 'page'}} />
