@@ -10,8 +10,9 @@ export const PHONE = {
 export const NOTES = {
   name: 'Notes',
   properties: {
+    timeStamp: 'int',
+    title: 'string',
     text: 'string',
-    timeStamp: 'string',
   },
 };
 
@@ -202,8 +203,8 @@ export const INSPECTION = {
     stepOne: 'StepOne?',
     stepTwo: 'StepTwo?',
     stepThree: 'StepThree?',
-    notes: 'string[]',
-    photos: 'string[]',
+    notes: 'Notes[]',
+    photos: 'Photos[]',
     registeredSpecies: 'Species[]',
   },
 };

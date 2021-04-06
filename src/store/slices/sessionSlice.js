@@ -41,8 +41,8 @@ export const saveNotes = createAsyncThunk(
   'saveNotes',
   async (payload, {getState}) => {
     const activeInspectionId = getState().sessionReducer.activeInspection._id;
-    const notes = getState().sessionReducer.activeInspection.notes;
-    const photos = getState().sessionReducer.activeInspection.photos;
+    const notes = [...getState().sessionReducer.activeInspection.notes];
+    const photos = [...getState().sessionReducer.activeInspection.photos];
 
     if (payload.notes) {
       notes.push(payload.notes);
@@ -94,6 +94,10 @@ const sessionSlice = createSlice({
     },
     [saveRegisteredSpecies.fulfilled]: (state, action) => {
       state.activeInspection.registeredSpecies = action.payload;
+    },
+    [saveNotes.fulfilled]: (state, action) => {
+      state.activeInspection.notes = action.payload.notes;
+      state.activeInspection.photos = action.payload.photos;
     },
   },
 });

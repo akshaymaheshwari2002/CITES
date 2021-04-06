@@ -1,78 +1,138 @@
-import React, {useCallback, useState} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
-import {Container, Button, ImagePickerModal} from '@atoms';
-import {ScaledSheet, ms, vs, s} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/EvilIcons';
+import React, {useCallback, useState, useEffect} from 'react';
+import {View, Text, TouchableOpacity, Image, FlatList} from 'react-native';
+import {ScaledSheet, vs, s} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector, shallowEqual} from 'react-redux';
 
+import {Container, Button, ImagePickerModal} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
-import {TextInput} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
 import {saveNotes} from '@store/slices/sessionSlice';
+import {Images} from '@assets/';
+import {PopupNotesInput} from '@molecules';
 
-const InspectionNotes = ({navigation: {navigate}}) => {
+const InspectionNotes = ({navigation: {navigate, goBack}}) => {
   const {formatMessage} = useIntl();
   const dispatch = useDispatch();
   const [isImagePicker, setIsImagePicker] = useState(false);
+  const [popUp, setPopUp] = useState(false);
+  //const [notes, setNotes] = useState([]);
+  const [notesTitle, setNotesTitle] = useState('');
   const [notesText, setNotesText] = useState('');
+  const notes = useSelector(
+    (state) => state.sessionReducer.activeInspection.notes,
+  );
+
+  useEffect(() => {
+    console.log({notes}, '1234');
+  }, [notes]);
 
   const handlePress = useCallback(() => {
-    dispatch(saveNotes({notes: notesText}));
-  }, [dispatch, notesText]);
+    console.log(notes, '12345679');
+    const timeStamp = Date.now();
+    const title = notesTitle;
+    const text = notesText;
+    dispatch(saveNotes({notes: {title, text, timeStamp}}));
+    setPopUp(false);
+  }, [dispatch, notes, notesText, notesTitle]);
+
+  const renderItem = useCallback(({item}) => {
+    const timeStamp = item?.timeStamp;
+
+    return (
+      <View style={styles.row_parent}>
+        <Button
+          buttonStyle={() => styles.buttonFlatList}
+          buttonContent={
+            <>
+              <Text style={styles.date}>
+                {timeStamp
+                  ? new Date(parseInt(timeStamp, 10)).toLocaleDateString()
+                  : 'NA'}
+              </Text>
+              <Text style={styles.time}>
+                {timeStamp
+                  ? new Date(parseInt(timeStamp, 10)).toLocaleTimeString()
+                  : 'NA'}
+              </Text>
+              <Text style={styles.flatlistTitle}>{item?.title}</Text>
+              <Text style={styles.flatlistText}>{item?.text}</Text>
+            </>
+          }
+        />
+      </View>
+    );
+  }, []);
 
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
-      <Container.ScrollView
-        contentContainerStyle={styles.container}
-        style={CommonStyles.flex1}>
-        <View style={styles.title}>
-          <Text style={styles.titleOne}>
-            {formatMessage({id: 'screen.InspectionNotes.headerPartOne'})}
-          </Text>
-          <Text style={[styles.titleOne, styles.nogap]}>
-            {formatMessage({id: 'screen.InspectionNotes.headerPartTwo'})}
-          </Text>
-        </View>
-        <View style={styles.backColor}>
-          <View style={styles.row}>
-            <View style={styles.circle}>
-              <Icon name="camera" size={ms(26)} />
-            </View>
-            <TouchableOpacity
-              style={styles.circle}
-              onPress={() => setIsImagePicker(true)}>
-              <Icon name="camera" size={ms(26)} />
-            </TouchableOpacity>
+    <>
+      <Container safeAreaViewProps={{edges: ['right', 'left']}}>
+        <View
+          contentContainerStyle={styles.container}
+          style={CommonStyles.flex1}>
+          <View style={styles.title}>
+            <Text style={styles.titleOne}>
+              {formatMessage({id: 'screen.InspectionNotes.headerPartOne'})}
+            </Text>
+            <Text style={[styles.titleOne, styles.nogap]}>
+              {formatMessage({id: 'screen.InspectionNotes.headerPartTwo'})}
+            </Text>
           </View>
-          <TextInput
-            value={notesText}
-            onChange={setNotesText}
-            placeholder={formatMessage({
-              id: 'button.addInspectionNotes',
-            })}
-            style={styles.textInput}
-          />
-          <Button
-            buttonContent={formatMessage({
-              id: 'button.saveAndGoBack',
-            })}
-            buttonTextStyle={() => {
-              return styles.buttonText;
-            }}
-            buttonStyle={() => {
-              return styles.button;
-            }}
-            onPress={handlePress}
+          <View style={styles.content}>
+            <Text style={styles.contentText}>
+              {formatMessage({id: 'screen.InspectionNotes.contentOne'})}
+            </Text>
+          </View>
+          <View style={styles.backColor}>
+            <View style={styles.row}>
+              <TouchableOpacity style={styles.circle} onPress={() => {}}>
+                <Image source={Images.flashLightButton} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.circle}
+                onPress={() => setIsImagePicker(true)}>
+                <Image source={Images.cameraButton} />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.textInputContainer}>
+              <Button
+                buttonStyle={() => ({
+                  borderStyle: 'dashed',
+                  borderRadius: 1,
+                  borderWidth: 1,
+                  borderColor: RawColors.dimGrey,
+                })}
+                buttonTextStyle={() => styles.buttonTextStyle}
+                buttonContent={formatMessage({
+                  id: 'button.addInspectionNotes',
+                })}
+                onPress={() => {
+                  setPopUp(true);
+                }}
+              />
+            </View>
+            <FlatList
+              data={notes}
+              keyExtractor={(_, index) => index.toString()}
+              renderItem={renderItem}
+            />
+          </View>
+          <ImagePickerModal
+            visible={isImagePicker}
+            close={() => setIsImagePicker(false)}
+            onImageSelection={() => {}}
           />
         </View>
-        <ImagePickerModal
-          visible={isImagePicker}
-          close={() => setIsImagePicker(false)}
-          onImageSelection={() => {}}
-        />
-      </Container.ScrollView>
-    </Container>
+      </Container>
+      <PopupNotesInput
+        isShowPopupNotesInput={popUp}
+        onPress={handlePress}
+        notesTitle={notesTitle}
+        notesText={notesText}
+        setNotesTitle={setNotesTitle}
+        setNotesText={setNotesText}
+      />
+    </>
   );
 };
 
@@ -84,12 +144,13 @@ const styles = ScaledSheet.create({
     height: '100@s',
     backgroundColor: 'white',
   },
+  textInputContainer: {
+    marginTop: vs(20),
+    paddingHorizontal: s(15),
+  },
   textInput: {
     backgroundColor: RawColors.greyShade,
     borderStyle: 'dashed',
-    marginTop: vs(29),
-    marginHorizontal: s(20),
-    alignSelf: 'center',
     borderWidth: 1,
     borderRadius: 1,
     borderColor: RawColors.dimGrey,
@@ -104,9 +165,17 @@ const styles = ScaledSheet.create({
     marginTop: '25@s',
   },
   nogap: {marginTop: 0},
+  content: {
+    height: '45@vs',
+  },
+  contentText: {
+    ...Fonts.Lato15R,
+    color: RawColors.charcoalGrey60,
+    marginVertical: '15@vs',
+    marginHorizontal: '20@s',
+  },
   backColor: {
-    backgroundColor: 'white',
-    marginTop: '30@s',
+    backgroundColor: RawColors.white,
     flex: 1,
   },
   row: {
@@ -114,10 +183,6 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
   },
   circle: {
-    borderRadius: '52@vs',
-    height: '50@s',
-    width: '50@s',
-    backgroundColor: RawColors.silverFoil,
     marginHorizontal: '15@s',
     marginTop: '16@s',
     alignItems: 'center',
@@ -129,13 +194,6 @@ const styles = ScaledSheet.create({
     alignSelf: 'center',
     marginTop: 'auto',
     backgroundColor: RawColors.eggshell,
-  },
-  buttonOne: {
-    height: '46@vs',
-    width: '290@s',
-    alignSelf: 'center',
-    marginVertical: '22@vs',
-    backgroundColor: RawColors.greyShade,
   },
   buttonText: {
     ...Fonts.Lato15R,
@@ -161,6 +219,49 @@ const styles = ScaledSheet.create({
     paddingHorizontal: 20,
     alignSelf: 'center',
     margin: 20,
+  },
+  footer: {
+    width: '100%',
+    height: '15@s',
+  },
+  row_parent: {
+    zIndex: -1,
+    width: '100%',
+    minHeight: '120@s',
+    paddingVertical: '15@s',
+    paddingHorizontal: s(15),
+  },
+  buttonFlatList: {
+    flex: 1,
+    alignItems: 'flex-start',
+    borderRadius: 0,
+    borderWidth: 0,
+    backgroundColor: RawColors.eggshell,
+    padding: '16@s',
+    width: '358@s',
+    height: '120@vs',
+    elevation: '5@s',
+    ...CommonStyles.shadowEffectDarker,
+  },
+  date: {
+    ...Fonts.Lato15B,
+    color: RawColors.brightRed,
+  },
+  time: {
+    ...Fonts.Lato14R,
+    color: RawColors.brightRed,
+  },
+  flatlistTitle: {
+    marginTop: '12@vs',
+    ...Fonts.Lato15B,
+  },
+  flatlistText: {
+    marginTop: '8@vs',
+    ...Fonts.Lato14R,
+  },
+  buttonTextStyle: {
+    ...Fonts.Lato15R,
+    color: RawColors.backToolTipColor,
   },
 });
 

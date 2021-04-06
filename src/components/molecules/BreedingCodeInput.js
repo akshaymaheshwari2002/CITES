@@ -116,11 +116,12 @@ const styles = ScaledSheet.create({
   container: {
     marginTop: '12@vs',
     marginBottom: '4@vs',
+    height: '46@vs',
+    //backgroundColor: 'red',
     flexDirection: 'row',
   },
   input: {
-    width: '40@ms',
-    height: '40@ms',
+    width: '45@ms',
     backgroundColor: 'green',
     marginRight: '7@vs',
   },
@@ -130,7 +131,6 @@ const styles = ScaledSheet.create({
     marginBottom: '8@vs',
     textAlign: 'center',
     backgroundColor: RawColors.lightGrey,
-    ...CommonStyles.shadowEffectDarker,
   },
   labelBottom: {},
   dash: {
