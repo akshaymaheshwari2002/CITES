@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
-import {View, Text, Image, Linking} from 'react-native';
-import {ScaledSheet, ms, s} from 'react-native-size-matters';
+import {View, Text, Image, Linking, TouchableOpacity} from 'react-native';
+import {ScaledSheet, ms} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 
 import {Fonts, RawColors} from '@styles/Themes';
@@ -8,18 +8,16 @@ import {Images} from '@assets/';
 import {Container, Button} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 
-const NoExport = ({navigation: {navigate, goBack, setOptions}}) => {
+const NoExport = ({navigation: {navigate, setOptions}}) => {
   const {formatMessage} = useIntl();
 
   useEffect(() => {
     setOptions({
-      rightContent: () => (
+      headerRight: () => (
         <IconAntDesign
           name="pluscircle"
           size={ms(26)}
-          style={{marginRight: s(8)}}
           onPress={() => {
             navigate('MoreInformation');
           }}
@@ -56,7 +54,7 @@ const NoExport = ({navigation: {navigate, goBack, setOptions}}) => {
           </TouchableOpacity>
           <Button
             buttonContent={formatMessage({
-              id: 'general.continue',
+              id: 'button.continueCaps',
             })}
             buttonTextStyle={() => {
               return styles.buttonText;

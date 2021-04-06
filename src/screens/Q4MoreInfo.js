@@ -69,7 +69,7 @@ const styles = ScaledSheet.create({
   },
   titleContent: {
     ...Fonts.HelveticaNeue20B,
-    lineHeight: '37@s',
+    // lineHeight: '37@s',
     letterSpacing: '0.72@s',
   },
   icon: {

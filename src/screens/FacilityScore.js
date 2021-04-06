@@ -10,11 +10,7 @@ import CommonStyles from '@styles/CommonStyles';
 
 const FacilityScore = ({navigation: {navigate, goBack}, route}) => {
   const {formatMessage} = useIntl();
-  const savedScore = useSelector(
-    (state) =>
-      state.sessionReducer.activeInspection.stepThree?.formFour.totalScore,
-    shallowEqual,
-  );
+  const savedScore = route.params.scoreTotal;
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
@@ -42,7 +38,7 @@ const FacilityScore = ({navigation: {navigate, goBack}, route}) => {
         </View>
         <Button
           buttonContent={formatMessage({
-            id: 'general.continue',
+            id: 'button.continueCaps',
           })}
           buttonTextStyle={() => {
             return styles.buttonText;

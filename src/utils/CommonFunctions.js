@@ -5,9 +5,11 @@ import RNHTMLtoPDF from 'react-native-html-to-pdf';
 
 import createIntl from './Intl';
 import messages_en from '@locale/en.json';
+import messages_vi from '@locale/vi.json';
 
 export const getMessages = () => ({
   en: messages_en,
+  vi: messages_vi,
 });
 
 export const getDeviceLocale = () => {

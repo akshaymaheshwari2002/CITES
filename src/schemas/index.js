@@ -7,6 +7,24 @@ export const PHONE = {
   },
 };
 
+export const NOTES = {
+  name: 'Notes',
+  properties: {
+    text: 'string',
+    timeStamp: 'string',
+  },
+};
+
+export const PHOTOS = {
+  name: 'Photos',
+  properties: {
+    fileName: 'string',
+    fileSize: 'int',
+    uri: 'string',
+    timeStamp: 'string',
+  },
+};
+
 export const ADDRESS = {
   name: 'Address',
   properties: {
@@ -54,9 +72,11 @@ export const SPECIES = {
     noOfJuvenilesPresentInspectionInfo: 'int?',
     ageAtSexualMaturity: 'string?',
     sizeOrMassAtSexualMaturity: 'string?',
+    cmOrGramOfSizeOrMassAtSexualMaturity: 'bool?',
     sizeOrMassAtSaleOrExport: 'string?',
+    cmOrGramOfSizeOrMassAtSaleOrExport: 'bool?',
     percentageOfJuvenilesSurviveBeyond2Weeks: 'string?',
-    foodFedToRearingAndJuveniles: 'string?',
+    foodFedToRearingAndJuveniles: 'string[]',
   },
 };
 
@@ -88,6 +108,7 @@ export const FORM_ONE = {
     facilityEstablishmentDate: 'string',
     typeOfInspection: 'string[]',
     citesInformationCode: 'string[]',
+    nationalPermitNumber: 'string',
   },
 };
 

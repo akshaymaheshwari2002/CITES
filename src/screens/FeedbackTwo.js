@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, Image} from 'react-native';
 
 import {ScaledSheet, ms, vs, s} from 'react-native-size-matters';
@@ -10,11 +10,13 @@ import {Fonts, RawColors} from '@styles/Themes';
 import {Container, Button} from '@atoms';
 import {Form} from '@organisms';
 import CommonStyles from '@styles/CommonStyles';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const FeedbackTwo = ({navigation: {navigate}}) => {
   const {formatMessage} = useIntl();
   const formProps = useForm();
   const {control, errors} = formProps;
+  const [isEmojiSelected, setIsEmojiSelected] = useState(0);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
@@ -35,42 +37,94 @@ const FeedbackTwo = ({navigation: {navigate}}) => {
           </Text>
         </View>
         <View style={styles.iconContainer}>
-          <Image source={Images.emojiOne} style={styles.emoji} />
-          <Image source={Images.emojiTwo} style={styles.emoji} />
-          <Image source={Images.emojiThree} style={styles.emoji} />
-          <Image source={Images.emojiFour} style={styles.emoji} />
-          <Image source={Images.emojiFive} style={styles.emoji} />
+          <TouchableOpacity
+            onPress={() => {
+              setIsEmojiSelected(1);
+            }}>
+            <Image
+              source={Images.emojiOne}
+              style={
+                isEmojiSelected === 1 ? styles.emojiSelected : styles.emoji
+              }
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              setIsEmojiSelected(2);
+            }}>
+            <Image
+              source={Images.emojiTwo}
+              style={
+                isEmojiSelected === 2 ? styles.emojiSelected : styles.emoji
+              }
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              setIsEmojiSelected(3);
+            }}>
+            <Image
+              source={Images.emojiThree}
+              style={
+                isEmojiSelected === 3 ? styles.emojiSelected : styles.emoji
+              }
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              setIsEmojiSelected(4);
+            }}>
+            <Image
+              source={Images.emojiFour}
+              style={
+                isEmojiSelected === 4 ? styles.emojiSelected : styles.emoji
+              }
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              setIsEmojiSelected(5);
+            }}>
+            <Image
+              source={Images.emojiFive}
+              style={
+                isEmojiSelected === 5 ? styles.emojiSelected : styles.emoji
+              }
+            />
+          </TouchableOpacity>
         </View>
-        <Form
-          control={control}
-          formProps={formProps}
-          errors={errors}
-          formFields={[
-            {
-              defaultValue: '',
-              name: 'FeedbackTwo',
-              rules: {
-                required: formatMessage({id: 'form.error.fieldRequired'}),
+        <View style={styles.form}>
+          <Form
+            control={control}
+            formProps={formProps}
+            errors={errors}
+            formFields={[
+              {
+                defaultValue: '',
+                name: 'FeedbackTwo',
+                rules: {
+                  required: formatMessage({id: 'form.error.fieldRequired'}),
+                },
+                placeholder: formatMessage({
+                  id: 'screen.FeedbackTwo.content',
+                }),
+                style: {
+                  color: RawColors.black,
+                  height: s(150),
+                  marginTop: vs(29),
+                  alignSelf: 'center',
+                  borderRadius: ms(20),
+                  borderWidth: 1,
+                  borderColor: RawColors.darkGrey,
+                  textAlignVertical: 'top',
+                  backgroundColor: 'white',
+                  paddingHorizontal: s(20),
+                },
+                multiline: true,
               },
-              placeholder: formatMessage({
-                id: 'screen.FeedbackTwo.content',
-              }),
-              style: {
-                color: RawColors.grey,
-                height: vs(245),
-                width: s(290),
-                marginTop: vs(29),
-                alignSelf: 'center',
-                borderRadius: ms(20),
-                borderWidth: 1,
-                borderColor: RawColors.darkGrey,
-                textAlignVertical: 'top',
-                padding: ms(16),
-              },
-              multiLine: true,
-            },
-          ]}
-        />
+            ]}
+          />
+        </View>
         <Button
           buttonContent={formatMessage({
             id: 'button.submit',
@@ -81,7 +135,7 @@ const FeedbackTwo = ({navigation: {navigate}}) => {
           buttonStyle={() => {
             return styles.button;
           }}
-          onPress={() => navigate('TabNavigator', {screen: 'StepOne'})}
+          onPress={() => navigate('HomePage')}
         />
       </Container.ScrollView>
     </Container>
@@ -96,11 +150,20 @@ const styles = ScaledSheet.create({
   },
   emoji: {
     marginHorizontal: '7@s',
+    tintColor: RawColors.black,
+  },
+  emojiSelected: {
+    marginHorizontal: '7@s',
+    tintColor: RawColors.darkSalmon,
   },
   titleContent: {
     ...Fonts.HelveticaNeue40B,
     lineHeight: '49@s',
     letterSpacing: '0.64@s',
+  },
+  form: {
+    width: '290@s',
+    alignSelf: 'center',
   },
   questionContainer: {
     marginTop: '16@s',

@@ -40,6 +40,9 @@ export default (fieldProps = {}) => {
       name: 'numberOfBreedingAdults',
       rules: {required, validate: {validateNumber}},
       keyboardType: 'number-pad',
+      labelBottom: formatMessage({
+        id: 'form.label.specimenBottom',
+      }),
     },
     {
       defaultValue: '',
@@ -55,7 +58,7 @@ export default (fieldProps = {}) => {
     {
       defaultValue: '',
       label: formatMessage({id: 'form.label.sourceCode'}),
-      placeholder: formatMessage({id: 'form.label.sourceCode'}),
+      placeholder: formatMessage({id: 'form.placeholder.sourceCode'}),
       name: 'sourceCodeOfPreviousExport',
       rules: {
         required,

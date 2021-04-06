@@ -14,6 +14,7 @@ const resultFieldStyleProps = {
   fontWeight: 'bold',
   color: RawColors.black,
   borderWidth: 3,
+  margingTop: vs(200),
   borderColor: RawColors.black,
 };
 const resultFieldLabelStyleProps = {
@@ -30,21 +31,21 @@ const ProductionCapacityCalculator = ({navigation: {goBack}}) => {
   const getFormFields = useCallback(() => {
     return modeSelected === 1
       ? FormFields({modeSelected}).slice(0, 5)
-      : FormFields({modeSelected}).slice(1);
+      : FormFields({modeSelected}).slice(1).reverse();
   }, [modeSelected]);
 
   useEffect(() => {
     const field =
       modeSelected === 1
-        ? getFormFields({modeSelected}).slice(-1)[0]
-        : getFormFields({modeSelected})[0];
+        ? FormFields({modeSelected})[5]
+        : FormFields({modeSelected})[0];
     setResultFieldInputProps({
       label: field.label,
       showHelpIcon: true,
       onHelpIconPress: field.onHelpIconPress,
       labelStyle: resultFieldLabelStyleProps,
     });
-  }, [modeSelected, getFormFields]);
+  }, [modeSelected]);
 
   const onSubmit = useCallback(
     (data) => {
@@ -160,7 +161,7 @@ const ProductionCapacityCalculator = ({navigation: {goBack}}) => {
           })}
           onPress={handleSubmit(onSubmit)}
         />
-        <View style={{...styles.marginBottomVS28}}>
+        <View style={{...styles.marginBottomVS28, marginTop: vs(28)}}>
           <TextInput
             value={resultFieldValue}
             {...resultFieldInputProps}
@@ -183,6 +184,7 @@ const ProductionCapacityCalculator = ({navigation: {goBack}}) => {
 const styles = ScaledSheet.create({
   title: {
     paddingHorizontal: '16@vs',
+    paddingBottom: '30@vs',
     ...Fonts.HelveticaNeue30B,
   },
   paragraph: {

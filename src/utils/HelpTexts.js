@@ -61,30 +61,75 @@ export default {
   typeOfInspection: [
     {text: 'Types of inspections', isBold: true},
     {
-      text: 'An initial inspection is the first inspection of a facility.',
+      text: 'An',
       isBold: false,
+      subText: [
+        {val: ' initial inspection', isSubBold: true},
+        {
+          val: ' is the first inspection of a facility.',
+          isSubBold: false,
+        },
+      ],
+    },
+
+    {
+      text: 'A',
+      isBold: false,
+      subText: [
+        {val: ' routine inspection', isSubBold: true},
+        {
+          val: ' of a facility is undertaken on a regular basis.',
+          isSubBold: false,
+        },
+      ],
     },
     {
-      text:
-        'A routine inspection of a facility is undertaken on a regular basis.',
+      text: 'A',
       isBold: false,
-    },
-    {
-      text:
-        'A follow-up inspection is undertaken to ensure that a facility has complied with any issues raised on a previous initial or routine inspection.',
-      isBold: false,
+      subText: [
+        {val: ' follow-up inspection', isSubBold: true},
+        {
+          val:
+            ' is undertaken to ensure that a facility has complied with any issues raised on a previous initial or routine inspection.',
+          isSubBold: false,
+        },
+      ],
     },
   ],
   staffCurrentAtFacility: [
     {text: 'Hours of employment', isBold: true},
     {
       text:
-        'Full-time employment is usually considered between 30-40 hours a week.',
+        'The number of staff employed will depend on the species cared for, the size of the captive-breeding and/or ranching operation and the complexity of the organization structure. Generally, the more specimens cared for, the more staff are required.',
       isBold: false,
     },
     {
-      text: 'Part-time employment is usually less than 30 hours a week.',
+      text: '',
       isBold: false,
+      subText: [
+        {
+          val: 'Full-time',
+          isSubBold: true,
+        },
+        {
+          val: ' employment is usually considered between 30-40 hours a week.',
+          isSubBold: false,
+        },
+      ],
+    },
+    {
+      text: '',
+      isBold: false,
+      subText: [
+        {
+          val: 'Part-time',
+          isSubBold: true,
+        },
+        {
+          val: ' employment is usually less than 30 hours a week.',
+          isSubBold: false,
+        },
+      ],
     },
   ],
   professionalVeterinaryServices: [
@@ -104,36 +149,80 @@ export default {
     },
   ],
   formFour: [
-    'Facilities should have permits to keep the species observed during the inspection. This should also include species not bred for commercial export, but kept privately.',
+    {
+      text:
+        'Facilities should have permits to keep the species observed during the inspection. This should also include species not bred for commercial export, but kept privately.',
+      isBold: false,
+    },
   ],
   formFourOne: [
-    'Unusual activity observed during an inspection should be noted. This may include, but not be limited to: denial of inspection officer to an area of the facility (that may be used for housing specimens not permitted in trade, or the facility may not have a license to keep); evidence of shipments of specimens not permitted in trade; and the manager or owner of the facility not being able to provide information about specimens kept at the facility, or know where to locate this information.',
+    {
+      text:
+        'Unusual activity observed during an inspection should be noted. This may include, but not be limited to: denial of inspection officer to an area of the facility (that may be used for housing specimens not permitted in trade, or the facility may not have a license to keep); evidence of shipments of specimens not permitted in trade; and the manager or owner of the facility not being able to provide information about specimens kept at the facility, or know where to locate this information.',
+      isBold: false,
+    },
   ],
   formFourTwo: [
-    'Suitable enclosures or containment facilities should prevent specimens from escaping into the wild; prevent wild specimens entering the facility and enclosures or containment facilities to mix with captive-bred specimens; and provide necessary amenities for species-specific growth and development. Suitable species-specific enclosures or containment facilities may include: wire cages, glass aquaria, ponds (e.g., for turtles and fish), terrariums (e.g., for reptiles), aviaries (e.g., for birds), yards and fenced paddocks (e.g., for mammals). There may also be specific construction materials and minimum height requirements depending on the species. Adequate structures and facilities should be available in every enclosure for healthy growth of the animals, such as food and water bowls or trays, adequate hiding and basking areas, appropriate wet and dry areas for amphibious species, suitable illumination and temperature, etc.',
+    {
+      text:
+        'Suitable enclosures or containment facilities should prevent specimens from escaping into the wild; prevent wild specimens entering the facility and enclosures or containment facilities to mix with captive-bred specimens; and provide necessary amenities for species-specific growth and development. Suitable species-specific enclosures or containment facilities may include: wire cages, glass aquaria, ponds (e.g., for turtles and fish), terrariums (e.g., for reptiles), aviaries (e.g., for birds), yards and fenced paddocks (e.g., for mammals). There may also be specific construction materials and minimum height requirements depending on the species. Adequate structures and facilities should be available in every enclosure for healthy growth of the animals, such as food and water bowls or trays, adequate hiding and basking areas, appropriate wet and dry areas for amphibious species, suitable illumination and temperature, etc.',
+      isBold: false,
+    },
   ],
   formFourThree: [
-    'Unusual activity observed during an inspection should be noted. This may include, but not be limited to: denial of inspection officer to an area of the facility (that may be used for housing specimens not permitted in trade, or the facility may not have a license to keep); evidence of shipments of specimens not permitted in trade; and the manager or owner of the facility not being able to provide information about specimens kept at the facility, or know where to locate this information.',
+    {
+      text:
+        'Unusual activity observed during an inspection should be noted. This may include, but not be limited to: denial of inspection officer to an area of the facility (that may be used for housing specimens not permitted in trade, or the facility may not have a license to keep); evidence of shipments of specimens not permitted in trade; and the manager or owner of the facility not being able to provide information about specimens kept at the facility, or know where to locate this information.',
+      isBold: false,
+    },
   ],
   formFourFour: [
-    'Maintenance of records is an integral part of managing captive-breeding and/or ranching operations. Genuine ranching and captive breeding facilities usually keep records of all stock, general husbandry practices and treatment of any diseases or injured specimens. Other records may be kept on: Mortality and disposal of dead specimens; Annual production of stock (neonates, eggs, hatching percentages, etc.) Number and source of parental stock; and Age and identification (e.g., band or tag numbers, transponders, distinguishing marks) of specimen. Records may be as simple as hand-written notes in diaries to elaborate online studbooks.',
+    {
+      text:
+        'Maintenance of records is an integral part of managing captive-breeding and/or ranching operations. Genuine ranching and captive breeding facilities usually keep records of all stock, general husbandry practices and treatment of any diseases or injured specimens. Other records may be kept on: Mortality and disposal of dead specimens; Annual production of stock (neonates, eggs, hatching percentages, etc.) Number and source of parental stock; and Age and identification (e.g., band or tag numbers, transponders, distinguishing marks) of specimen. Records may be as simple as hand-written notes in diaries to elaborate online studbooks.',
+      isBold: false,
+    },
   ],
   formFourFive: [
-    'Facilities should provide adequate species-specific food for all life stages of specimens kept. For example, juvenile pythons may require small mice while adults may require large rats or chickens.',
+    {
+      text:
+        'Facilities should provide adequate species-specific food for all life stages of specimens kept. For example, juvenile pythons may require small mice while adults may require large rats or chickens.',
+      isBold: false,
+    },
   ],
   formFourSix: [
-    'Specimens declared as captive-bred from facilities that appear to exceed their breeding capacity is indicative of possible suspicious activity. Inspectors should use the Production Capacity Calculator (page 5) provided to determine probable output. This question does not relate to ranching facilities, but must be addressed where a facilities claims to undertake any form breeding in a controlled environment.',
+    {
+      text:
+        'Specimens declared as captive-bred from facilities that appear to exceed their breeding capacity is indicative of possible suspicious activity. Inspectors should use the Production Capacity Calculator (page 5) provided to determine probable output. This question does not relate to ranching facilities, but must be addressed where a facilities claims to undertake any form breeding in a controlled environment.',
+      isBold: false,
+    },
   ],
   formFourSeven: [
-    'Specimens taken from the wild often exhibit symptoms not found in captive specimens, which may alert inspectors to potentially false claims of captive breeding. Such indicators may include: High levels of stress (mammals pacing within cages, raw noses of snakes, high levels of aggression or passivity and torpor); Physical damage (scars on skin of all species, broken turtle carapaces, wounds from snares); and High parasite loads (ticks on snakes, lizards and turtles, lice on mammals and birds) or skin problems (bald/bare areas, scale abnormalities, shell rot, etc.).',
+    {
+      text:
+        'Specimens taken from the wild often exhibit symptoms not found in captive specimens, which may alert inspectors to potentially false claims of captive breeding. Such indicators may include: High levels of stress (mammals pacing within cages, raw noses of snakes, high levels of aggression or passivity and torpor); Physical damage (scars on skin of all species, broken turtle carapaces, wounds from snares); and High parasite loads (ticks on snakes, lizards and turtles, lice on mammals and birds) or skin problems (bald/bare areas, scale abnormalities, shell rot, etc.).',
+      isBold: false,
+    },
   ],
   formFourEight: [
-    'Facilities claiming to produce large numbers of specimens of species known to be difficult to breed and/or maintain in captivity may warrant greater scrutiny than facilities raising easy to keep species.',
+    {
+      text:
+        'Facilities claiming to produce large numbers of specimens of species known to be difficult to breed and/or maintain in captivity may warrant greater scrutiny than facilities raising easy to keep species.',
+      isBold: false,
+    },
   ],
   formFourNine: [
-    'High volumes of trade in specimens from recently established facilities may indicate suspicious activity. The facility should be established long enough to produce offspring (if claiming the specimens are captive-bred). Examples when this may be the case include species that grow slowly or take many years to reach maturity, and species producing few offspring per litter of clutch.',
+    {
+      text:
+        'High volumes of trade in specimens from recently established facilities may indicate suspicious activity. The facility should be established long enough to produce offspring (if claiming the specimens are captive-bred). Examples when this may be the case include species that grow slowly or take many years to reach maturity, and species producing few offspring per litter of clutch.',
+      isBold: false,
+    },
   ],
   formFourTen: [
-    'CITES Appendix I specimens are required to be marked with a permanent identification (see Resolution Conf. 12.10 (Rev. CoP15)). Non-compliance with this requirement may signal other ways in which the facility is not complying.',
+    {
+      text:
+        'CITES Appendix I specimens are required to be marked with a permanent identification (see Resolution Conf. 12.10 (Rev. CoP15)). Non-compliance with this requirement may signal other ways in which the facility is not complying.',
+      isBold: false,
+    },
   ],
 };

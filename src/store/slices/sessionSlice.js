@@ -36,6 +36,34 @@ export const saveRegisteredSpecies = createAsyncThunk(
   },
 );
 
+export const saveNotes = createAsyncThunk(
+  'saveNotes',
+  async (payload, {getState}) => {
+    const activeInspectionId = getState().sessionReducer.activeInspection._id;
+    const notes = getState().sessionReducer.activeInspection.notes;
+    const photos = getState().sessionReducer.activeInspection.photos;
+
+    if (payload.notes) {
+      notes.push(payload.notes);
+    }
+
+    if (payload.photos) {
+      photos.push(payload.photos);
+    }
+
+    const upsertedData = await upsert(
+      'Inspection',
+      new Inspection({
+        _id: activeInspectionId,
+        notes,
+        photos,
+      }),
+    );
+
+    return upsertedData;
+  },
+);
+
 const sessionSlice = createSlice({
   name: 'sessionSlice',
   initialState: INITIAL_SESSION_STATE,

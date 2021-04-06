@@ -41,452 +41,760 @@ const formThreeSchema = {
   asterisk:
     'Inspectors should ensure specimens were acquired legally and in compliance with CITES. In the case of App. I specimens, invoices and/or bills of sale must be produced .',
 };
-const FormThreeTemplate = ({speciesData = {}, editable = false}) => {
-  const getInputElementConditionally = ({name, defaultValue, inputSize}) => {
+const FormThreeTemplate = ({
+  speciesData = {},
+  speciesIndex = 0,
+  editable = false,
+}) => {
+  const getInputElementConditionally = ({
+    name,
+    defaultValue,
+    inputSize,
+    type,
+    checked,
+    id,
+    alt = '',
+  }) => {
     return editable
       ? getInputFieldElement({
           name,
           defaultValue,
           inputSize,
+          type,
+          checked,
+          id,
         })
-      : speciesData?.[name];
+      : alt;
   };
 
   return (
-    <div className="App" style={styles.marginContainer}>
-      <div style={styles.secondHalf}>
-        <div style={styles.border}>
-          <div style={styles.row}>
-            <div style={styles.textContainer50}>
-              <label style={styles.text1}>
-                {formThreeSchema?.dateFirstSpeciesAcquired}
-              </label>
-              <span style={styles.underlinedText}>
-                {speciesData?.dateFirstSpeciesAcquired ?? ''}
-              </span>
-            </div>
-            <div style={styles.textContainer50}>
-              <p style={styles.text2}>
-                {formThreeSchema?.lifeStageOfInitialStock}
-              </p>
-              <div>
-                <p style={styles.underlinedText}>
-                  {speciesData?.sourceCodeInitialStock ?? ''}
-                  ,&nbsp;
-                  {speciesData?.lifeStageOfInitialStock ?? ''}
-                </p>
-              </div>
-            </div>
+    <div
+      className="App"
+      style={{...styles.marginContainer, ...styles.container}}>
+      <div style={styles.border}>
+        <div style={styles.row}>
+          <div style={styles.textContainer50}>
+            <label style={styles.text1}>
+              {formThreeSchema?.dateFirstSpeciesAcquired}
+            </label>
+            <span style={styles.underlinedText}>
+              {getInputElementConditionally({
+                name: `formThree.${speciesIndex}.dateFirstSpeciesAcquired`,
+                defaultValue: speciesData?.dateFirstSpeciesAcquired ?? '',
+                inputSize: 15,
+                type: 'date',
+                alt: speciesData?.dateFirstSpeciesAcquired ?? '',
+              })}
+            </span>
           </div>
-          <div style={styles.row}>
-            <div style={{...styles.textContainer, ...styles.marginRight}}>
-              <label style={styles.text1}>
-                {formThreeSchema?.numberOfStock}
-              </label>
-              <span style={styles.underlinedText}> </span>
-            </div>
-            <div style={styles.textContainer}>
-              <label style={styles.text1}>{formThreeSchema?.males}</label>
-              <span style={{...styles.underlinedText1, ...styles.width50PX}}>
-                {speciesData?.numberOfMalesInitialStock ?? ''}
-              </span>
-            </div>
-            <div style={styles.textContainer}>
-              <label style={styles.text1}>{formThreeSchema?.females}</label>
-              <span style={{...styles.underlinedText1, ...styles.width50PX}}>
-                {speciesData?.numberOfFemalesInitialStock ?? ''}
-              </span>
-            </div>
-          </div>
-          <p style={styles.text1}>{formThreeSchema?.additionalStock}</p>
-          <p style={styles.underlinedText}>
-            {speciesData?.addressOfAdditionalStock ?? ''}
-          </p>
-        </div>
-        <div style={styles.row1}>
-          <div style={styles.border50}>
-            <div style={{...styles.row, ...styles.alignItemsCenter}}>
-              <p style={styles.texts}>
-                {formThreeSchema?.doYouBreedThisSpecies}
+          <div style={styles.textContainer50}>
+            <p style={styles.text2}>
+              {formThreeSchema?.lifeStageOfInitialStock}
+            </p>
+            <div>
+              <p style={styles.underlinedText}>
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.sourceCodeInitialStock`,
+                  defaultValue: speciesData?.sourceCodeInitialStock ?? '',
+                  inputSize: 15,
+                  alt: speciesData?.sourceCodeInitialStock ?? '',
+                })}
+                ,&nbsp;
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.lifeStageOfInitialStock`,
+                  defaultValue: speciesData?.lifeStageOfInitialStock ?? '',
+                  inputSize: 15,
+                  alt: speciesData?.lifeStageOfInitialStock ?? '',
+                })}
               </p>
-              <p style={styles.texts}>{Constants.YES}</p>
-              <input
-                type="checkbox"
-                defaultChecked={
-                  speciesData?.doYouBreedThisSpecies?.[0] === Constants.YES ??
-                  false
-                }
-              />
-              <p style={styles.texts}>{Constants.NO}</p>
-              <input
-                type="checkbox"
-                defaultChecked={
-                  speciesData?.doYouBreedThisSpecies?.[0] === Constants.NO ??
-                  false
-                }
-              />
-            </div>
-            <div style={styles.textContainer}>
-              <p style={styles.text1}>
-                {formThreeSchema?.whenDidYouBreedThisSpecies}
-              </p>
-              <div>
-                <p style={styles.underlinedText}>
-                  {speciesData?.whenDidYouBreedThisSpecies ?? ''}
-                </p>
-              </div>
-            </div>
-            <div style={styles.textContainer}>
-              <p style={styles.text1}>
-                {formThreeSchema?.numberOfLittersPerYear}
-              </p>
-              <div>
-                <p style={styles.underlinedText}>
-                  {speciesData?.numberOfLittersPerYear ?? ''}
-                </p>
-              </div>
-            </div>
-            <div style={styles.textContainer}>
-              <p style={styles.text1}>
-                {formThreeSchema?.numberOfOffspringPerLitter}
-              </p>
-              <div>
-                <p style={styles.underlinedText}>
-                  {speciesData?.numberOfOffspringPerLitter ?? ''}
-                </p>
-              </div>
-            </div>
-            <div style={styles.textContainer}>
-              <p style={styles.text1}>
-                {formThreeSchema?.numberProducedInPreviousYear}
-              </p>
-              <div>
-                <p style={styles.underlinedText}>
-                  {speciesData?.numberProducedInPreviousYear ?? ''}
-                </p>
-              </div>
-            </div>
-          </div>
-          <div style={styles.border50}>
-            <div style={{...styles.row, ...styles.alignItemsCenter}}>
-              <p style={styles.texts}>{formThreeSchema?.isRanchSpecies}</p>
-              <p style={styles.texts}>{Constants.YES}</p>
-              <input
-                type="checkbox"
-                defaultChecked={
-                  speciesData?.doYouRanchThisSpecies?.[0] === Constants.YES ??
-                  false
-                }
-              />
-              <p style={styles.texts}>{Constants.NO}</p>
-              <input
-                type="checkbox"
-                defaultChecked={
-                  speciesData?.doYouRanchThisSpecies?.[0] === Constants.NO ??
-                  false
-                }
-              />
-            </div>
-            <div style={styles.textContainer}>
-              <p style={styles.text1}>{formThreeSchema?.lifeStageHarvested}</p>
-              <div>
-                <p style={styles.underlinedText}>
-                  {speciesData?.lifeStageHarvested &&
-                  Array.isArray(speciesData.lifeStageHarvested)
-                    ? speciesData.lifeStageHarvested.join(', ')
-                    : null}
-                </p>
-              </div>
-            </div>
-            <div style={styles.textContainer}>
-              <p style={styles.text1}>
-                {formThreeSchema?.numberHarvestedInPreviousYear}
-              </p>
-              <div>
-                <p style={styles.underlinedText}>
-                  {speciesData?.lifeStageHarvested &&
-                  Array.isArray(speciesData.lifeStageHarvested)
-                    ? speciesData.lifeStageHarvested
-                        .map((stage, index) => {
-                          if (
-                            speciesData?.numberHarvestedInPreviousYear &&
-                            Array.isArray(
-                              speciesData?.numberHarvestedInPreviousYear,
-                            )
-                          ) {
-                            return `${stage} - ${speciesData?.numberHarvestedInPreviousYear[index]}`;
-                          } else {
-                            return '';
-                          }
-                        })
-                        .join(', ')
-                    : null}
-                </p>
-              </div>
             </div>
           </div>
         </div>
-        <div style={styles.border}>
-          <div style={styles.row}>
-            <div
-              style={{
-                ...styles.textContainer,
-                ...styles.width100,
-              }}>
-              <label
-                style={{
-                  ...styles.text1,
-                  ...styles.width50,
-                }}>
-                {formThreeSchema?.adultBreedingStock}
-              </label>
-              <label
-                style={{
-                  ...styles.text1,
-                  ...styles.width25,
-                }}>
-                {formThreeSchema?.facilityInformation}
-              </label>
-              <label
-                style={{
-                  ...styles.text1,
-                  ...styles.width25,
-                }}>
-                {formThreeSchema?.inspectorCount}
-              </label>
+        <div style={styles.row}>
+          <div style={{...styles.textContainer, ...styles.marginRight}}>
+            <label style={styles.text1}>{formThreeSchema?.numberOfStock}</label>
+            <span style={styles.underlinedText}> </span>
+          </div>
+          <div style={styles.textContainer}>
+            <label style={styles.text1}>{formThreeSchema?.males}</label>
+            <span style={{...styles.underlinedText1, ...styles.width50PX}}>
+              {getInputElementConditionally({
+                name: 'formThree.numberOfMalesInitialStock',
+                defaultValue: speciesData?.numberOfMalesInitialStock ?? '',
+                inputSize: 2,
+                alt: speciesData?.numberOfMalesInitialStock ?? '',
+              })}
+            </span>
+          </div>
+          <div style={styles.textContainer}>
+            <label style={styles.text1}>{formThreeSchema?.females}</label>
+            <span style={{...styles.underlinedText1, ...styles.width50PX}}>
+              {getInputElementConditionally({
+                name: 'formThree.numberOfFemalesInitialStock',
+                defaultValue: speciesData?.numberOfFemalesInitialStock ?? '',
+                inputSize: 2,
+                alt: speciesData?.numberOfFemalesInitialStock ?? '',
+              })}
+            </span>
+          </div>
+        </div>
+        <p style={styles.text1}>{formThreeSchema?.additionalStock}</p>
+        <p style={styles.underlinedText}>
+          {getInputElementConditionally({
+            name: `formThree.${speciesIndex}.addressOfAdditionalStock`,
+            defaultValue: speciesData?.addressOfAdditionalStock ?? '',
+            inputSize: 15,
+            alt: speciesData?.addressOfAdditionalStock ?? '',
+          })}
+        </p>
+      </div>
+      <div style={styles.row1}>
+        <div style={styles.border50}>
+          <div style={{...styles.row, ...styles.alignItemsCenter}}>
+            <p style={styles.texts}>{formThreeSchema?.doYouBreedThisSpecies}</p>
+            <p style={styles.texts}>{Constants.YES}</p>
+            {getInputElementConditionally({
+              name: `formThree.${speciesIndex}.doYouBreedThisSpecies`,
+              checked:
+                speciesData?.doYouBreedThisSpecies?.[0] === Constants.YES ??
+                false,
+              defaultValue: Constants.YES,
+              inputSize: 15,
+              type: 'radio',
+              id: `formThree.${speciesIndex}.doYouBreedThisSpecies.yes`,
+              alt: (
+                <input
+                  type="checkbox"
+                  defaultChecked={
+                    speciesData?.doYouBreedThisSpecies?.[0] === Constants.YES ??
+                    false
+                  }
+                />
+              ),
+            })}
+            <p style={styles.texts}>{Constants.NO}</p>
+            {getInputElementConditionally({
+              name: `formThree.${speciesIndex}.doYouBreedThisSpecies`,
+              checked:
+                speciesData?.doYouBreedThisSpecies?.[0] === Constants.NO ??
+                false,
+              defaultValue: Constants.NO,
+              inputSize: 15,
+              type: 'radio',
+              id: `formThree.${speciesIndex}.doYouBreedThisSpecies.no`,
+              alt: (
+                <input
+                  type="checkbox"
+                  defaultChecked={
+                    speciesData?.doYouBreedThisSpecies?.[0] === Constants.NO ??
+                    false
+                  }
+                />
+              ),
+            })}
+          </div>
+          <div style={styles.textContainer}>
+            <p style={styles.text1}>
+              {formThreeSchema?.whenDidYouBreedThisSpecies}
+            </p>
+            <div>
+              <p style={styles.underlinedText}>
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.whenDidYouBreedThisSpecies`,
+                  defaultValue: speciesData?.whenDidYouBreedThisSpecies ?? '',
+                  inputSize: 15,
+                  type: 'date',
+                  alt: speciesData?.whenDidYouBreedThisSpecies ?? '',
+                })}
+              </p>
             </div>
           </div>
-          <div style={styles.row}>
-            <div
+          <div style={styles.textContainer}>
+            <p style={styles.text1}>
+              {formThreeSchema?.numberOfLittersPerYear}
+            </p>
+            <div>
+              <p style={styles.underlinedText}>
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.numberOfLittersPerYear`,
+                  defaultValue: speciesData?.numberOfLittersPerYear ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.numberOfLittersPerYear ?? '',
+                })}
+              </p>
+            </div>
+          </div>
+          <div style={styles.textContainer}>
+            <p style={styles.text1}>
+              {formThreeSchema?.numberOfOffspringPerLitter}
+            </p>
+            <div>
+              <p style={styles.underlinedText}>
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.numberOfOffspringPerLitter`,
+                  defaultValue: speciesData?.numberOfOffspringPerLitter ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.numberOfOffspringPerLitter ?? '',
+                })}
+              </p>
+            </div>
+          </div>
+          <div style={styles.textContainer}>
+            <p style={styles.text1}>
+              {formThreeSchema?.numberProducedInPreviousYear}
+            </p>
+            <div>
+              <p style={styles.underlinedText}>
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.numberProducedInPreviousYear`,
+                  defaultValue: speciesData?.numberProducedInPreviousYear ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.numberProducedInPreviousYear ?? '',
+                })}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div style={styles.border50}>
+          <div style={{...styles.row, ...styles.alignItemsCenter}}>
+            <p style={styles.texts}>{formThreeSchema?.isRanchSpecies}</p>
+            <p style={styles.texts}>{Constants.YES}</p>
+            {getInputElementConditionally({
+              name: `formThree.${speciesIndex}.doYouRanchThisSpecies`,
+              checked:
+                speciesData?.doYouRanchThisSpecies?.[0] === Constants.YES ??
+                false,
+              defaultValue: Constants.YES,
+              inputSize: 15,
+              type: 'radio',
+              id: `formThree.${speciesIndex}.doYouRanchThisSpecies.yes`,
+              alt: (
+                <input
+                  type="checkbox"
+                  defaultChecked={
+                    speciesData?.doYouRanchThisSpecies?.[0] === Constants.YES ??
+                    false
+                  }
+                />
+              ),
+            })}
+            <p style={styles.texts}>{Constants.NO}</p>
+            {getInputElementConditionally({
+              name: `formThree.${speciesIndex}.doYouRanchThisSpecies`,
+              checked:
+                speciesData?.doYouRanchThisSpecies?.[0] === Constants.NO ??
+                false,
+              defaultValue: Constants.NO,
+              inputSize: 15,
+              type: 'radio',
+              id: `formThree.${speciesIndex}.doYouRanchThisSpecies.no`,
+              alt: (
+                <input
+                  type="checkbox"
+                  defaultChecked={
+                    speciesData?.doYouRanchThisSpecies?.[0] === Constants.NO ??
+                    false
+                  }
+                />
+              ),
+            })}
+          </div>
+          <div style={styles.textContainer}>
+            <p style={styles.text1}>{formThreeSchema?.lifeStageHarvested}</p>
+            <div>
+              <p style={styles.underlinedText}>
+                {speciesData?.lifeStageHarvested &&
+                Array.isArray(speciesData.lifeStageHarvested)
+                  ? speciesData.lifeStageHarvested.join(', ')
+                  : null}
+              </p>
+            </div>
+          </div>
+          <div style={styles.textContainer}>
+            <p style={styles.text1}>
+              {formThreeSchema?.numberHarvestedInPreviousYear}
+            </p>
+            <div>
+              <p style={styles.underlinedText}>
+                {speciesData?.lifeStageHarvested &&
+                Array.isArray(speciesData.lifeStageHarvested)
+                  ? speciesData.lifeStageHarvested
+                      .map((stage, index) => {
+                        if (
+                          speciesData?.numberHarvestedInPreviousYear &&
+                          Array.isArray(
+                            speciesData?.numberHarvestedInPreviousYear,
+                          )
+                        ) {
+                          return `${stage} - ${speciesData?.numberHarvestedInPreviousYear[index]}`;
+                        } else {
+                          return '';
+                        }
+                      })
+                      .join(', ')
+                  : null}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style={styles.border}>
+        <div style={styles.row}>
+          <div
+            style={{
+              ...styles.textContainer,
+              ...styles.width100,
+            }}>
+            <label
               style={{
-                ...styles.textContainer,
-                ...styles.width100,
+                ...styles.text1,
+                ...styles.width50,
+                ...styles.bold,
               }}>
-              <label style={{...styles.text1, ...styles.width50}}>
-                {formThreeSchema?.noOfAdultsPresent}
-              </label>
-              <div style={styles.width25}>
-                <div style={{...styles.underlinedText1, ...styles.width60PX}}>
-                  {speciesData?.noOfAdultsPresentFacilityInfo ?? ''}
-                </div>
+              {formThreeSchema?.adultBreedingStock}
+            </label>
+            <label
+              style={{
+                ...styles.text1,
+                ...styles.width25,
+              }}>
+              {formThreeSchema?.facilityInformation}
+            </label>
+            <label
+              style={{
+                ...styles.text1,
+                ...styles.width25,
+              }}>
+              {formThreeSchema?.inspectorCount}
+            </label>
+          </div>
+        </div>
+        <div style={styles.row}>
+          <div
+            style={{
+              ...styles.textContainer,
+              ...styles.width100,
+            }}>
+            <label style={{...styles.text1, ...styles.width50}}>
+              {formThreeSchema?.noOfAdultsPresent}
+            </label>
+            <div style={styles.width25}>
+              <div style={{...styles.underlinedText1, ...styles.width60PX}}>
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.noOfAdultsPresentFacilityInfo`,
+                  defaultValue:
+                    speciesData?.noOfAdultsPresentFacilityInfo ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.noOfAdultsPresentFacilityInfo ?? '',
+                })}
               </div>
-              <div style={styles.width25}>
-                <div style={{...styles.underlinedText1, ...styles.width60PX}}>
-                  {speciesData?.noOfAdultsPresentInspectionInfo ?? ''}
-                </div>
+            </div>
+            <div style={styles.width25}>
+              <div style={{...styles.underlinedText1, ...styles.width60PX}}>
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.noOfAdultsPresentInspectionInfo`,
+                  defaultValue:
+                    speciesData?.noOfAdultsPresentInspectionInfo ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.noOfAdultsPresentInspectionInfo ?? '',
+                })}
               </div>
             </div>
           </div>
-          <div style={styles.row}>
-            <div
-              style={{
-                ...styles.textContainer,
-                ...styles.width100,
-              }}>
-              <label style={{...styles.text1, ...styles.width50}}>
-                {formThreeSchema?.noOfMalesPresent}
-              </label>
-              <div style={styles.width25}>
-                <div style={{...styles.underlinedText1, ...styles.width60PX}}>
-                  {speciesData?.noOfMalesPresentFacilityInfo ?? ''}
-                </div>
+        </div>
+        <div style={styles.row}>
+          <div
+            style={{
+              ...styles.textContainer,
+              ...styles.width100,
+            }}>
+            <label style={{...styles.text1, ...styles.width50}}>
+              {formThreeSchema?.noOfMalesPresent}
+            </label>
+            <div style={styles.width25}>
+              <div style={{...styles.underlinedText1, ...styles.width60PX}}>
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.noOfMalesPresentFacilityInfo`,
+                  defaultValue: speciesData?.noOfMalesPresentFacilityInfo ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.noOfMalesPresentFacilityInfo ?? '',
+                })}
               </div>
-              <div style={styles.width25}>
-                <div style={{...styles.underlinedText1, ...styles.width60PX}}>
-                  {speciesData?.noOfMalesPresentInspectionInfo ?? ''}
-                </div>
+            </div>
+            <div style={styles.width25}>
+              <div style={{...styles.underlinedText1, ...styles.width60PX}}>
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.noOfMalesPresentInspectionInfo`,
+                  defaultValue:
+                    speciesData?.noOfMalesPresentInspectionInfo ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.noOfMalesPresentInspectionInfo ?? '',
+                })}
               </div>
             </div>
           </div>
-          <div style={styles.row}>
-            <div
-              style={{
-                ...styles.textContainer,
-                ...styles.width100,
-              }}>
-              <label style={{...styles.text1, ...styles.width50}}>
-                {formThreeSchema?.noOfFemalesPresent}
-              </label>
-              <div style={styles.width25}>
-                <div style={{...styles.underlinedText1, ...styles.width60PX}}>
-                  {speciesData?.noOfFemalesPresentFacilityInfo ?? ''}
-                </div>
+        </div>
+        <div style={styles.row}>
+          <div
+            style={{
+              ...styles.textContainer,
+              ...styles.width100,
+            }}>
+            <label style={{...styles.text1, ...styles.width50}}>
+              {formThreeSchema?.noOfFemalesPresent}
+            </label>
+            <div style={styles.width25}>
+              <div style={{...styles.underlinedText1, ...styles.width60PX}}>
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.noOfFemalesPresentFacilityInfo`,
+                  defaultValue:
+                    speciesData?.noOfFemalesPresentFacilityInfo ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.noOfFemalesPresentFacilityInfo ?? '',
+                })}
               </div>
-              <div style={styles.width25}>
-                <div style={{...styles.underlinedText1, ...styles.width60PX}}>
-                  {speciesData?.noOfFemalesPresentInspectionInfo ?? ''}
-                </div>
+            </div>
+            <div style={styles.width25}>
+              <div style={{...styles.underlinedText1, ...styles.width60PX}}>
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.noOfFemalesPresentInspectionInfo`,
+                  defaultValue:
+                    speciesData?.noOfFemalesPresentInspectionInfo ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.noOfFemalesPresentInspectionInfo ?? '',
+                })}
               </div>
             </div>
           </div>
-          <div style={styles.row}>
-            <div
-              style={{
-                ...styles.textContainer,
-                ...styles.width100,
-              }}>
-              <label style={{...styles.text1, ...styles.width50}}>
-                {formThreeSchema?.percentageOfFemalesBreedEachYear}
-              </label>
-              <div style={styles.width50}>
-                <div style={{...styles.underlinedText1, ...styles.width60PX}}>
-                  {speciesData?.percentageOfFemalesBreedEachYear ?? ''}
-                </div>
+        </div>
+        <div style={styles.row}>
+          <div
+            style={{
+              ...styles.textContainer,
+              ...styles.width100,
+            }}>
+            <label style={{...styles.text1, ...styles.width50}}>
+              {formThreeSchema?.percentageOfFemalesBreedEachYear}
+            </label>
+            <div style={styles.width50}>
+              <div style={{...styles.underlinedText1, ...styles.width60PX}}>
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.percentageOfFemalesBreedEachYear`,
+                  defaultValue:
+                    speciesData?.percentageOfFemalesBreedEachYear ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.percentageOfFemalesBreedEachYear ?? '',
+                })}
               </div>
             </div>
           </div>
-          <div style={styles.row}>
+        </div>
+        <div style={styles.row}>
+          <div
+            style={{
+              ...styles.textContainer,
+              ...styles.width100,
+            }}>
+            <label style={styles.text1}>
+              {formThreeSchema?.foodFedToAdults}
+            </label>
+            <span style={styles.underlinedText}>
+              {speciesData?.foodFedToAdults &&
+              Array.isArray(speciesData.foodFedToAdults)
+                ? getInputElementConditionally({
+                    name: `formThree.${speciesIndex}.foodFedToAdults`,
+                    defaultValue: speciesData.foodFedToAdults.join(', '),
+                    inputSize: 15,
+                    alt: speciesData.foodFedToAdults.join(', ') ?? '',
+                  })
+                : null}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div style={styles.border}>
+        <div style={styles.row}>
+          <div
+            style={{
+              ...styles.textContainer,
+              ...styles.width100,
+            }}>
+            <label style={{...styles.text1, ...styles.width50, ...styles.bold}}>
+              {formThreeSchema?.rearingStock}
+            </label>
+            <label style={{...styles.text1, ...styles.width25}}>
+              {formThreeSchema?.facilityInformation}
+            </label>
+            <label style={{...styles.text1, ...styles.width25}}>
+              {formThreeSchema?.inspectorCount}
+            </label>
+          </div>
+        </div>
+        <div style={styles.row}>
+          <div
+            style={{
+              ...styles.textContainer,
+              ...styles.width100,
+            }}>
+            <label style={{...styles.text1, ...styles.width50}}>
+              {formThreeSchema?.noOfJuvenilesPresent}
+            </label>
+            <div style={styles.width25}>
+              <div style={{...styles.underlinedText1, ...styles.width60PX}}>
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.noOfJuvenilesPresentFacilityInfo`,
+                  defaultValue:
+                    speciesData?.noOfJuvenilesPresentFacilityInfo ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.noOfJuvenilesPresentFacilityInfo ?? '',
+                })}
+              </div>{' '}
+            </div>
+            <div style={styles.width25}>
+              <div style={{...styles.underlinedText1, ...styles.width60PX}}>
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.noOfJuvenilesPresentInspectionInfo`,
+                  defaultValue:
+                    speciesData?.noOfJuvenilesPresentInspectionInfo ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.noOfJuvenilesPresentInspectionInfo ?? '',
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style={styles.row}>
+          <div
+            style={{
+              ...styles.textContainer,
+              ...styles.width100,
+            }}>
+            <label style={{...styles.text1, ...styles.width50}}>
+              {formThreeSchema?.ageAtSexualMaturity}
+            </label>
+            <div style={styles.width25}>
+              <div style={{...styles.underlinedText1, ...styles.width60PX}}>
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.ageAtSexualMaturity`,
+                  defaultValue: speciesData?.ageAtSexualMaturity ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.ageAtSexualMaturity ?? '',
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style={styles.row}>
+          <div
+            style={{
+              ...styles.textContainer,
+              ...styles.width100,
+            }}>
+            <label style={{...styles.text1, ...styles.width50}}>
+              {formThreeSchema?.sizeOrMassAtSexualMaturity}
+            </label>
             <div
               style={{
-                ...styles.textContainer,
-                ...styles.width100,
+                ...styles.width25,
+                ...(editable
+                  ? {...styles.row, ...styles.alignItemsCenter}
+                  : {}),
               }}>
+              <div style={{...styles.underlinedText1, ...styles.width60PX}}>
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.sizeOrMassAtSexualMaturity`,
+                  defaultValue: speciesData?.sizeOrMassAtSexualMaturity ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.sizeOrMassAtSexualMaturity ?? '',
+                })}
+                {!editable
+                  ? speciesData?.cmOrGramOfSizeOrMassAtSexualMaturity
+                    ? ' cm'
+                    : ' g'
+                  : null}
+              </div>
+              {editable ? (
+                <>
+                  {getInputElementConditionally({
+                    name: `formThree.${speciesIndex}.cmOrGramOfSizeOrMassAtSexualMaturity`,
+                    checked:
+                      speciesData?.cmOrGramOfSizeOrMassAtSexualMaturity ??
+                      false,
+                    defaultValue: 'cm',
+                    inputSize: 15,
+                    type: 'radio',
+                    id: `formThree.${speciesIndex}.cmOrGramOfSizeOrMassAtSexualMaturity.cm`,
+                    alt: '',
+                  })}
+                  <p style={styles.texts}>{'cm'}</p>
+                  {getInputElementConditionally({
+                    name: `formThree.${speciesIndex}.cmOrGramOfSizeOrMassAtSexualMaturity`,
+                    checked:
+                      speciesData?.cmOrGramOfSizeOrMassAtSexualMaturity ??
+                      false,
+                    defaultValue: 'g',
+                    inputSize: 15,
+                    type: 'radio',
+                    id: `formThree.${speciesIndex}.cmOrGramOfSizeOrMassAtSexualMaturity.g`,
+                    alt: '',
+                  })}
+                  <p style={styles.texts}>{'g'}</p>
+                </>
+              ) : null}
+            </div>
+          </div>
+        </div>
+        <div style={styles.row}>
+          <div
+            style={{
+              ...styles.textContainer,
+              ...styles.width100,
+            }}>
+            <label style={{...styles.text1, ...styles.width50}}>
+              {formThreeSchema?.sizeOrMassAtSaleOrExport}
+            </label>
+            <div
+              style={{
+                ...styles.width25,
+                ...(editable
+                  ? {...styles.row, ...styles.alignItemsCenter}
+                  : {}),
+              }}>
+              <div style={{...styles.underlinedText1, ...styles.width60PX}}>
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.sizeOrMassAtSaleOrExport`,
+                  defaultValue: speciesData?.sizeOrMassAtSaleOrExport ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt: speciesData?.sizeOrMassAtSaleOrExport ?? '',
+                })}
+                {!editable
+                  ? speciesData?.cmOrGramOfSizeOrMassAtSaleOrExport
+                    ? ' cm'
+                    : ' g'
+                  : null}
+              </div>
+              {editable ? (
+                <>
+                  {getInputElementConditionally({
+                    name: `formThree.${speciesIndex}.cmOrGramOfSizeOrMassAtSaleOrExport`,
+                    checked:
+                      speciesData?.cmOrGramOfSizeOrMassAtSaleOrExport ?? false,
+                    defaultValue: 'cm',
+                    inputSize: 15,
+                    type: 'radio',
+                    id: `formThree.${speciesIndex}.cmOrGramOfSizeOrMassAtSaleOrExport.cm`,
+                    alt: '',
+                  })}
+                  <p style={styles.texts}>{'cm'}</p>
+                  {getInputElementConditionally({
+                    name: `formThree.${speciesIndex}.cmOrGramOfSizeOrMassAtSaleOrExport`,
+                    checked:
+                      speciesData?.cmOrGramOfSizeOrMassAtSaleOrExport ?? false,
+                    defaultValue: 'g',
+                    inputSize: 15,
+                    type: 'radio',
+                    id: `formThree.${speciesIndex}.cmOrGramOfSizeOrMassAtSaleOrExport.g`,
+                    alt: '',
+                  })}
+                  <p style={styles.texts}>{'g'}</p>
+                </>
+              ) : null}
+            </div>
+          </div>
+        </div>
+        <div style={styles.row}>
+          <div
+            style={{
+              ...styles.textContainer,
+              ...styles.width100,
+            }}>
+            <div style={{...styles.text1, ...styles.width50}}>
               <label style={styles.text1}>
-                {formThreeSchema?.foodFedToAdults}
+                {formThreeSchema?.percentageOfJuvenilesSurviveBeyond2Weeks_1}
               </label>
-              <span style={styles.underlinedText}>
-                {speciesData?.foodFedToAdults ?? ''}
-              </span>
+              <br />
+              <label
+                style={{
+                  ...styles.text1,
+                  ...styles.fontSize9,
+                  ...styles.italic,
+                }}>
+                {formThreeSchema?.percentageOfJuvenilesSurviveBeyond2Weeks_2}
+              </label>
+            </div>
+            <div style={styles.width25}>
+              <div style={{...styles.underlinedText1, ...styles.width60PX}}>
+                {getInputElementConditionally({
+                  name: `formThree.${speciesIndex}.percentageOfJuvenilesSurviveBeyond2Weeks`,
+                  defaultValue:
+                    speciesData?.percentageOfJuvenilesSurviveBeyond2Weeks ?? '',
+                  inputSize: 15,
+                  type: 'number',
+                  alt:
+                    speciesData?.percentageOfJuvenilesSurviveBeyond2Weeks ?? '',
+                })}
+              </div>
             </div>
           </div>
         </div>
 
-        <div style={styles.border}>
-          <div style={styles.row}>
-            <div
-              style={{
-                ...styles.textContainer,
-                ...styles.width100,
-              }}>
-              <label style={{...styles.text1, ...styles.width50}}>
-                {formThreeSchema?.rearingStock}
-              </label>
-              <label style={{...styles.text1, ...styles.width25}}>
-                {formThreeSchema?.facilityInformation}
-              </label>
-              <label style={{...styles.text1, ...styles.width25}}>
-                {formThreeSchema?.inspectorCount}
-              </label>
-            </div>
-          </div>
-          <div style={styles.row}>
-            <div
-              style={{
-                ...styles.textContainer,
-                ...styles.width100,
-              }}>
-              <label style={{...styles.text1, ...styles.width50}}>
-                {formThreeSchema?.noOfJuvenilesPresent}
-              </label>
-              <div style={styles.width25}>
-                <div style={{...styles.underlinedText1, ...styles.width60PX}}>
-                  {speciesData?.noOfJuvenilesPresentFacilityInfo ?? ''}
-                </div>{' '}
-              </div>
-              <div style={styles.width25}>
-                <div style={{...styles.underlinedText1, ...styles.width60PX}}>
-                  {speciesData?.noOfJuvenilesPresentInspectionInfo ?? ''}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div style={styles.row}>
-            <div
-              style={{
-                ...styles.textContainer,
-                ...styles.width100,
-              }}>
-              <label style={{...styles.text1, ...styles.width50}}>
-                {formThreeSchema?.ageAtSexualMaturity}
-              </label>
-              <div style={styles.width25}>
-                <div style={{...styles.underlinedText1, ...styles.width60PX}}>
-                  {speciesData?.ageAtSexualMaturity ?? ''}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div style={styles.row}>
-            <div
-              style={{
-                ...styles.textContainer,
-                ...styles.width100,
-              }}>
-              <label style={{...styles.text1, ...styles.width50}}>
-                {formThreeSchema?.sizeOrMassAtSexualMaturity}
-              </label>
-              <div style={styles.width25}>
-                <div style={{...styles.underlinedText1, ...styles.width60PX}}>
-                  {speciesData?.sizeOrMassAtSexualMaturity ?? ''}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div style={styles.row}>
-            <div
-              style={{
-                ...styles.textContainer,
-                ...styles.width100,
-              }}>
-              <label style={{...styles.text1, ...styles.width50}}>
-                {formThreeSchema?.sizeOrMassAtSaleOrExport}
-              </label>
-              <div style={styles.width25}>
-                <div style={{...styles.underlinedText1, ...styles.width60PX}}>
-                  {speciesData?.sizeOrMassAtSaleOrExport ?? ''}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div style={styles.row}>
-            <div
-              style={{
-                ...styles.textContainer,
-                ...styles.width100,
-              }}>
-              <div style={{...styles.text1, ...styles.width50}}>
-                <label style={styles.text1}>
-                  {formThreeSchema?.percentageOfJuvenilesSurviveBeyond2Weeks_1}
-                </label>
-                <br />
-                <label
-                  style={{
-                    ...styles.text1,
-                    ...styles.fontSize9,
-                    ...styles.italic,
-                  }}>
-                  {formThreeSchema?.percentageOfJuvenilesSurviveBeyond2Weeks_2}
-                </label>
-              </div>
-              <div style={styles.width25}>
-                <div style={{...styles.underlinedText1, ...styles.width60PX}}>
-                  {speciesData?.percentageOfJuvenilesSurviveBeyond2Weeks ?? ''}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div style={styles.row}>
-            <div
-              style={{
-                ...styles.textContainer,
-                ...styles.width100,
-              }}>
-              <label style={styles.text1}>
-                {formThreeSchema?.foodFedToRearingAndJuveniles}
-              </label>
-              <span style={styles.underlinedText}>
-                {speciesData?.foodFedToRearingAndJuveniles ?? ''}
-              </span>
-            </div>
+        <div style={styles.row}>
+          <div
+            style={{
+              ...styles.textContainer,
+              ...styles.width100,
+            }}>
+            <label style={styles.text1}>
+              {formThreeSchema?.foodFedToRearingAndJuveniles}
+            </label>
+            <span style={styles.underlinedText}>
+              {speciesData?.foodFedToRearingAndJuveniles &&
+              Array.isArray(speciesData.foodFedToRearingAndJuveniles)
+                ? getInputElementConditionally({
+                    name: `formThree.${speciesIndex}.foodFedToRearingAndJuveniles`,
+                    defaultValue: speciesData.foodFedToRearingAndJuveniles.join(
+                      ', ',
+                    ),
+                    inputSize: 15,
+                    alt:
+                      speciesData.foodFedToRearingAndJuveniles.join(', ') ?? '',
+                  })
+                : null}
+            </span>
           </div>
         </div>
+      </div>
+      <div style={{...styles.row, ...styles.fontSize9}}>
+        <div style={styles.asterisk}>*</div>
+        &nbsp;
+        {`${formThreeSchema?.asterisk}`}
       </div>
     </div>
   );
 };
 
 const styles = {
+  container: {
+    marginLeft: 5,
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+  },
   marginContainer: {marginRight: 16, marginLeft: 16, marginBottom: 16},
   row: {
     display: 'flex',
@@ -500,12 +808,6 @@ const styles = {
     width: '100%',
     justifyContent: 'space-between',
     marginBottom: 5,
-  },
-  secondHalf: {
-    marginLeft: 5,
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
   },
   border: {
     border: '1px solid',
@@ -579,6 +881,9 @@ const styles = {
   italic: {
     fontStyle: 'italic',
   },
+  bold: {
+    fontStyle: 'bold',
+  },
   width100: {
     width: '100%',
   },
@@ -597,6 +902,9 @@ const styles = {
   marginRight: {marginRight: 'auto'},
   alignItemsCenter: {
     alignItems: 'center',
+  },
+  asterisk: {
+    color: 'red',
   },
 };
 

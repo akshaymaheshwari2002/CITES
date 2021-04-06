@@ -1,8 +1,8 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {Text, View} from 'react-native';
-import {moderateScale, ScaledSheet} from 'react-native-size-matters';
+import {Text, View, Image} from 'react-native';
+import {moderateScale, ScaledSheet, s} from 'react-native-size-matters';
 import PropTypes from 'prop-types';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/Entypo';
 
 import {TextInput, Button} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
@@ -37,22 +37,47 @@ const TextInputArray = React.forwardRef(
       },
       [onChange, value],
     );
+    const handleDelete = useCallback(
+      (index) => {
+        if (_count > 1) {
+          const _value = value ?? [];
+          _value.splice(index, 1);
+          onChange([..._value]);
+          _setCount((state) => state - 1);
+        }
+      },
+      [_count, onChange, value],
+    );
 
     const renderFields = useCallback(() => {
       let fields = [];
       for (let index = 0; index < _count; ++index) {
         fields[index] = (
-          <TextInput
-            key={index}
-            value={value?.[index]}
-            onChangeText={(text) => handleChangeText(text, index)}
-            style={styles.textInput}
-            placeholder={placeholder}
-          />
+          <View style={styles.SectionStyle} key={index}>
+            <View style={CommonStyles.flex1}>
+              <TextInput
+                key={index}
+                value={value?.[index]}
+                onChangeText={(text) => handleChangeText(text, index)}
+                style={styles.textInput}
+                placeholder={placeholder}
+              />
+            </View>
+            {index > 0 ? (
+              <View style={{marginHorizontal: s(8)}}>
+                <Icon
+                  name="trash"
+                  size={moderateScale(25)}
+                  iconStyle={styles.ImageStyle}
+                  onPress={() => handleDelete(index)}
+                />
+              </View>
+            ) : null}
+          </View>
         );
       }
       return fields;
-    }, [_count, handleChangeText, placeholder, value]);
+    }, [_count, handleChangeText, handleDelete, placeholder, value]);
 
     useEffect(() => {
       if (count) {
@@ -85,7 +110,8 @@ const TextInputArray = React.forwardRef(
               buttonStyle={() => ({
                 borderStyle: 'dashed',
                 borderRadius: 1,
-                borderWidth: 2,
+                borderWidth: 1,
+                borderColor: RawColors.dimGrey,
               })}
               buttonContent={buttonText}
               onPress={() => _setCount((state) => state + 1)}
@@ -107,11 +133,32 @@ const styles = ScaledSheet.create({
     marginBottom: '4@vs',
   },
   containerWithButton: {
+    flex: 1,
     marginVertical: '12@vs',
   },
   textInput: {
     marginVertical: 0,
+    flex: 1,
+    marginHorizontal: '5@s',
+    borderWidth: 0,
+  },
+  SectionStyle: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: '12@vs',
+    flexDirection: 'row',
+    height: '50@vs',
+    borderColor: RawColors.dimGrey,
+    borderWidth: 1,
     marginBottom: '8@vs',
+    backgroundColor: RawColors.lightGrey,
+  },
+  ImageStyle: {
+    height: '25@s',
+    width: '25@s',
+    resizeMode: 'stretch',
+    alignItems: 'center',
   },
 });
 

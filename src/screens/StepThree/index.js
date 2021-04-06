@@ -4,6 +4,7 @@ import {useIntl} from 'react-intl';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useDispatch, useSelector, shallowEqual} from 'react-redux';
 import Toast from 'react-native-simple-toast';
+import {useIsFocused} from '@react-navigation/core';
 
 import {saveInspection} from '@store/slices/sessionSlice';
 import {Container, Button} from '@atoms';
@@ -14,6 +15,7 @@ import CommonStyles from '@styles/CommonStyles';
 
 const StepThree = ({navigation: {navigate, goBack}}) => {
   const {formatMessage} = useIntl();
+  const isFocused = useIsFocused();
   const dispatch = useDispatch();
   const stepThreeData = useSelector(
     (state) => state.sessionReducer.activeInspection.stepThree,
@@ -38,6 +40,12 @@ const StepThree = ({navigation: {navigate, goBack}}) => {
       Object.keys(stepThreeData).forEach((key) => {
         if (!stepThreeData[key] && key !== 'formFour') {
           stepThreeComplete = false;
+        } else if (stepThreeComplete !== true) {
+          Toast.show(
+            formatMessage({
+              id: 'screen.StepThree.Alert',
+            }),
+          );
         }
       });
       if (stepThreeComplete) {
@@ -61,7 +69,7 @@ const StepThree = ({navigation: {navigate, goBack}}) => {
   );
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <StepHeader stepNumber={3} />
+      <StepHeader stepNumber={3} showAnimation={isFocused} />
       <Container.ScrollView style={CommonStyles.flex1}>
         {ChecklistContent({
           checkliststyles,
@@ -113,11 +121,16 @@ const checkliststyles = ScaledSheet.create({
   textGeneral: {
     color: RawColors.black,
     ...Fonts.Lato17SB,
+    paddingRight: '13@ms',
+  },
+  textBold: {
+    color: RawColors.black,
+    ...Fonts.Lato17B,
   },
   textLink: {
     color: RawColors.black,
     textDecorationLine: 'underline',
-    ...Fonts.Lato15SB,
+    ...Fonts.Italic15R,
   },
   bulletList: {
     flexDirection: 'row',
@@ -140,28 +153,26 @@ const checkliststyles = ScaledSheet.create({
   },
   button: {
     alignSelf: 'flex-start',
-    alignItems: 'center',
-    justifyContent: 'center',
     borderColor: RawColors.prussianBlue,
     backgroundColor: RawColors.white,
     height: '40@vs',
+    borderRadius: '24@vs',
     marginVertical: '20@s',
-    marginHorizontal: '10@s',
+    paddingRight: '13@ms',
   },
   buttonTextStyle: {
     textTransform: 'uppercase',
     textAlignVertical: 'center',
     textAlign: 'center',
     color: RawColors.softRed,
-    paddingHorizontal: '15@ms',
-    paddingVertical: '2@ms',
-    ...Fonts.Lato13R,
+    paddingHorizontal: '16@ms',
+    ...Fonts.HelveticaNeue13B,
   },
   buttonLarge: {
     marginTop: '15@ms',
   },
   formCell: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    //flexDirection: 'row',
+    //alignItems: 'center',
   },
 });

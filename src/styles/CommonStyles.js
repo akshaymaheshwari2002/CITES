@@ -33,10 +33,10 @@ export default ScaledSheet.create({
     height: '98@vs',
   },
   navigationLeftContainer: {
-    paddingLeft: '8@s',
+    paddingLeft: '16@s',
   },
   navigationRightContainer: {
-    paddingRight: '8@s',
+    paddingRight: '16@s',
   },
   screenContainer: {
     flexGrow: 1,

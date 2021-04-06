@@ -37,6 +37,8 @@ export default class Species {
     ageAtSexualMaturity,
     sizeOrMassAtSexualMaturity,
     sizeOrMassAtSaleOrExport,
+    cmOrGramOfSizeOrMassAtSexualMaturity,
+    cmOrGramOfSizeOrMassAtSaleOrExport,
     percentageOfJuvenilesSurviveBeyond2Weeks,
     foodFedToRearingAndJuveniles,
   }) {
@@ -111,7 +113,9 @@ export default class Species {
       : noOfJuvenilesPresentInspectionInfo;
     this.ageAtSexualMaturity = ageAtSexualMaturity;
     this.sizeOrMassAtSexualMaturity = sizeOrMassAtSexualMaturity;
+    this.cmOrGramOfSizeOrMassAtSexualMaturity = cmOrGramOfSizeOrMassAtSexualMaturity;
     this.sizeOrMassAtSaleOrExport = sizeOrMassAtSaleOrExport;
+    this.cmOrGramOfSizeOrMassAtSaleOrExport = cmOrGramOfSizeOrMassAtSaleOrExport;
     this.percentageOfJuvenilesSurviveBeyond2Weeks = percentageOfJuvenilesSurviveBeyond2Weeks;
     this.foodFedToRearingAndJuveniles = foodFedToRearingAndJuveniles;
   }

@@ -14,6 +14,7 @@ const MoreInformation = ({navigation: {navigate, goBack}}) => {
     {
       id: 'dummy1235',
       contentOne: 'screen.moreInfoButtonOneContentOne',
+      subContentOne: 'screen.moreInfoButtonSubContentTwo',
       contentTwo: 'screen.moreInfoButtonOneContentTwo',
     },
     {
@@ -31,6 +32,7 @@ const MoreInformation = ({navigation: {navigate, goBack}}) => {
     {
       id: 'dummy1237',
       contentOne: 'screen.moreInfoButtonFourContentOne',
+      subContentOne: 'screen.moreInfoButtonFourSubContentTwo',
       contentTwo: 'screen.moreInfoButtonFourContentTwo',
       url: Config.URL_MORE_INFO_THREE,
     },
@@ -65,6 +67,11 @@ const MoreInformation = ({navigation: {navigate, goBack}}) => {
                       <Text style={styles.letter}>
                         {formatMessage({id: item.contentOne})}
                       </Text>
+                      {item.subContentOne ? (
+                        <Text style={styles.letter}>
+                          {formatMessage({id: item.subContentOne})}
+                        </Text>
+                      ) : null}
                       <Text style={styles.letterDescription}>
                         {formatMessage({id: item.contentTwo})}
                       </Text>
@@ -115,20 +122,16 @@ const styles = ScaledSheet.create({
   },
 
   letter: {
-    width: '180@s',
+    width: '225@s',
     color: RawColors.black,
     ...Fonts.Lato20B,
     textAlign: 'center',
-    lineHeight: '21@s',
-    //backgroundColor: 'green',
     alignSelf: 'center',
-    //marginHorizontal: '20@s',
   },
   letterDescription: {
-    // minWidth: '130@ms',
     color: RawColors.black,
     textAlign: 'center',
-    ...Fonts.Lato15R,
+    ...Fonts.Lato20R,
     lineHeight: '30@ms',
   },
   flex: {flex: 1},

@@ -1,7 +1,13 @@
 import React, {useRef, useCallback, useState} from 'react';
-import {View, useWindowDimensions, FlatList} from 'react-native';
+import {
+  View,
+  useWindowDimensions,
+  FlatList,
+  Platform,
+  Pressable,
+} from 'react-native';
 import {ms} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import {Container, Header, Pagination} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
@@ -44,6 +50,25 @@ const SourceCodeDeterminationOnboarding = ({navigation}) => {
     },
     [windowWidth],
   );
+  const handleMomentumScrollBegin = useCallback(
+    (e) => {
+      const velocity = e.nativeEvent.velocity?.x;
+      const contentOffset = e.nativeEvent.contentOffset;
+      const viewSize = e.nativeEvent.layoutMeasurement;
+      const pageNum = Math.floor(contentOffset.x / viewSize.width);
+
+      if (Platform.OS === 'ios') {
+        if (pageNum === 0 && velocity < 0) {
+          navigation.navigate('SourceFlow');
+        }
+      } else if (pageNum === 0 && velocity > 0) {
+        navigation.navigate('SourceFlow');
+      }
+
+      setActiveIndex(pageNum);
+    },
+    [navigation],
+  );
 
   const handleMomentumScrollEnd = useCallback(
     (e) => {
@@ -67,29 +92,30 @@ const SourceCodeDeterminationOnboarding = ({navigation}) => {
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
       <Header
         leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={handleBackPress} />
+          <Pressable hitSlop={10} onPress={handleBackPress}>
+            <Icon name="chevron-left" size={ms(18)} />
+          </Pressable>
         }
         content={
           <Pagination activeIndex={activeIndex} dotsLength={data.length} />
         }
         rightContent={
-          <Icon
-            name="chevron-right"
-            size={ms(26)}
-            onPress={handleForwardPress}
-          />
+          <Pressable hitSlop={10} onPress={handleForwardPress}>
+            <Icon name="chevron-right" size={ms(18)} />
+          </Pressable>
         }
       />
       <FlatList
         ref={flatListRef}
         horizontal
         pagingEnabled
-        bounces={false}
         contentContainerStyle={CommonStyles.flexGrow1}
         showsHorizontalScrollIndicator={false}
         data={data}
         keyExtractor={(_, index) => index.toString()}
         onMomentumScrollEnd={handleMomentumScrollEnd}
+        //onScroll={handleMomentumScrollBegin}
+        onMomentumScrollBegin={handleMomentumScrollBegin}
         renderItem={({item: Item}) => (
           <View style={[CommonStyles.flex1, {width: windowWidth}]}>
             <Item />

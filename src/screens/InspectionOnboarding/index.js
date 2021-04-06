@@ -1,7 +1,13 @@
 import React, {useRef, useCallback, useState} from 'react';
-import {View, useWindowDimensions, FlatList} from 'react-native';
+import {
+  View,
+  useWindowDimensions,
+  FlatList,
+  Platform,
+  Pressable,
+} from 'react-native';
 import {ms} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import {Container, Header, Pagination} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
@@ -12,10 +18,10 @@ import OnboardingFour from './OnboardingFour';
 
 const data = [OnboardingOne, OnboardingTwo, OnboardingThree, OnboardingFour];
 
-const InspectionOnboarding = ({navigation}) => {
+const InspectionOnboarding = ({navigation, route}) => {
   const flatListRef = useRef({});
   const {width: windowWidth} = useWindowDimensions();
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(route.params.defaultIndex);
 
   const handleBackPress = useCallback(() => {
     if (activeIndex === 0) {
@@ -47,6 +53,26 @@ const InspectionOnboarding = ({navigation}) => {
     [windowWidth],
   );
 
+  const handleMomentumScrollBegin = useCallback(
+    (e) => {
+      const velocity = e.nativeEvent.velocity?.x;
+      const contentOffset = e.nativeEvent.contentOffset;
+      const viewSize = e.nativeEvent.layoutMeasurement;
+      const pageNum = Math.floor(contentOffset.x / viewSize.width);
+
+      if (Platform.OS === 'ios') {
+        if (pageNum === 0 && velocity < 0) {
+          navigation.navigate('InspectionFlow');
+        }
+      } else if (pageNum === 0 && velocity > 0) {
+        navigation.navigate('InspectionFlow');
+      }
+
+      setActiveIndex(pageNum);
+    },
+    [navigation],
+  );
+
   const handleMomentumScrollEnd = useCallback(
     (e) => {
       const contentOffset = e.nativeEvent.contentOffset;
@@ -56,7 +82,7 @@ const InspectionOnboarding = ({navigation}) => {
       if (activeIndex === pageNum && activeIndex === data?.length - 1) {
         navigation.navigate('TabNavigator', {
           screen: 'StepOne',
-          params: {showToolTip: true},
+          params: {showToolTip: true, isOnboardingScreen: true},
         });
       }
 
@@ -69,17 +95,17 @@ const InspectionOnboarding = ({navigation}) => {
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
       <Header
         leftContent={
-          <Icon name="chevron-left" size={ms(26)} onPress={handleBackPress} />
+          <Pressable hitSlop={10} onPress={handleBackPress}>
+            <Icon name="chevron-left" size={ms(18)} />
+          </Pressable>
         }
         content={
           <Pagination activeIndex={activeIndex} dotsLength={data.length} />
         }
         rightContent={
-          <Icon
-            name="chevron-right"
-            size={ms(26)}
-            onPress={handleForwardPress}
-          />
+          <Pressable hitSlop={10} onPress={handleForwardPress}>
+            <Icon name="chevron-right" size={ms(18)} />
+          </Pressable>
         }
       />
       <FlatList
@@ -91,6 +117,7 @@ const InspectionOnboarding = ({navigation}) => {
         data={data}
         keyExtractor={(_, index) => index.toString()}
         onMomentumScrollEnd={handleMomentumScrollEnd}
+        onMomentumScrollBegin={handleMomentumScrollBegin}
         renderItem={({item: Item}) => (
           <View style={[CommonStyles.flex1, {width: windowWidth}]}>
             <Item />

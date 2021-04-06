@@ -1,6 +1,7 @@
 import TemplateOne from './ReactTemplate/TemplateOne';
 import FormOneTemplate from './ReactTemplate/FormOneTemplate';
 import FormOneHeader from './ReactTemplate/FormOneHeader';
+import FormThreeHeader from './ReactTemplate/FormThreeHeader';
 import FormTwoTemplate from './ReactTemplate/FormTwoTemplate';
 import StepHeader from './StepHeader';
 import ChecklistCell from './ChecklistCell';
@@ -13,11 +14,14 @@ import DatePicker from './DatePicker';
 import OverlayModal from './OverlayModal';
 import MobileInput from './MobileInput';
 import FormThreeTemplate from './ReactTemplate/FormThreeTemplate';
+import FormFourTemplate from './ReactTemplate/FormFourTemplate';
+import PopupFormEditMenu from './PopupFormEditMenu';
 
 export {
   TemplateOne,
   FormOneTemplate,
   FormOneHeader,
+  FormThreeHeader,
   FormTwoTemplate,
   StepHeader,
   ChecklistCell,
@@ -30,4 +34,6 @@ export {
   OverlayModal,
   MobileInput,
   FormThreeTemplate,
+  FormFourTemplate,
+  PopupFormEditMenu,
 };

@@ -1,27 +1,213 @@
-import React from 'react';
-import {View, Text} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
+import React, {useEffect, useRef, useMemo, useCallback, useState} from 'react';
+import {
+  View,
+  Text,
+  Image,
+  Animated,
+  Easing,
+  ImageBackground,
+} from 'react-native';
+import {ScaledSheet, ms} from 'react-native-size-matters';
+import {useIsFocused} from '@react-navigation/native';
 import {useIntl} from 'react-intl';
+import {generatePdf} from '@utils/CommonFunctions';
+import Pdf from 'react-native-pdf';
+import {useFocusEffect} from '@react-navigation/native';
+import Share from 'react-native-share';
+import RNPrint from 'react-native-print';
+import {format} from 'date-fns';
+import {shallowEqual, useSelector} from 'react-redux';
 
 import {Fonts, RawColors} from '@styles/Themes';
 import {Container, Button} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
+import {Images} from '@assets/';
+import {
+  FormOneTemplate,
+  FormOneHeader,
+  FormTwoTemplate,
+  FormThreeTemplate,
+  FormThreeHeader,
+  FormFourTemplate,
+} from '@molecules';
 
 const StepSummary = ({navigation: {navigate}}) => {
+  const AnimatedImage = Animated.createAnimatedComponent(ImageBackground);
   const {formatMessage} = useIntl();
+  const isFocused = useIsFocused();
+  const animationValue = useRef(new Animated.Value(0)).current;
+  const starScaleX = animationValue.interpolate({
+    inputRange: [0, 0.8, 1],
+    outputRange: [0, 1.5, 1],
+  });
+  const starScaleY = animationValue.interpolate({
+    inputRange: [0, 0.8, 1],
+    outputRange: [0, 1.5, 1],
+  });
+  const circleOpacity = animationValue.interpolate({
+    inputRange: [0, 0.5],
+    outputRange: [1, 0],
+  });
+  const circleScaleX = animationValue.interpolate({
+    inputRange: [0, 0.5],
+    outputRange: [1, 2],
+  });
+  const circleScaleY = animationValue.interpolate({
+    inputRange: [0, 0.5],
+    outputRange: [1, 2],
+  });
+
+  useEffect(() => {
+    if (isFocused) {
+      const ani = Animated.timing(animationValue, {
+        toValue: 1,
+        duration: 1000,
+        easing: Easing.inOut(Easing.ease),
+        useNativeDriver: true,
+      });
+      ani.start();
+    } else {
+      animationValue.setValue(0);
+    }
+  }, [animationValue, isFocused]);
+  const starsStyle = {
+    position: 'absolute',
+    justifyContent: 'center',
+    height: ms(150),
+    width: ms(150),
+    transform: [{scaleX: starScaleX}, {scaleY: starScaleY}],
+  };
+
+  const circleStyle = {
+    position: 'absolute',
+    justifyContent: 'center',
+    height: ms(150),
+    width: ms(150),
+    opacity: circleOpacity,
+    transform: [{scaleX: circleScaleX}, {scaleY: circleScaleY}],
+  };
+
+  const registeredSpecies = useSelector(
+    (state) => state.sessionReducer.activeInspection.registeredSpecies,
+    shallowEqual,
+  );
+  const formData = useSelector(
+    (state) => state.sessionReducer.activeInspection.stepOne?.formOne,
+    shallowEqual,
+  );
+
+  const formTwoData = useSelector(
+    (state) => state.sessionReducer.activeInspection.stepTwo?.formTwo,
+    shallowEqual,
+  );
+  const formFourData = useSelector(
+    (state) => state.sessionReducer.activeInspection.stepThree.formFour,
+    shallowEqual,
+  );
+
+  const formatFormThreeDataToDisplay = (data) => ({
+    ...data,
+    dateFirstSpeciesAcquired: data?.dateFirstSpeciesAcquired
+      ? format(Number(data?.dateFirstSpeciesAcquired), 'yyyy/MM/dd')
+      : '',
+    whenDidYouBreedThisSpecies: data?.whenDidYouBreedThisSpecies
+      ? format(Number(data?.whenDidYouBreedThisSpecies), 'yyyy/MM/dd')
+      : '',
+  });
+  const facilityData = useMemo(
+    () => ({
+      ...formData,
+      facilityOwnerPhone_callingCode:
+        formData?.facilityOwnerPhone?.callingCode ?? '',
+      facilityOwnerPhone_contactNumber:
+        formData?.facilityOwnerPhone?.contactNumber ?? '',
+      dateOfInspection: formData?.dateOfInspection
+        ? format(Number(formData?.dateOfInspection), 'MM/dd/yyyy')
+        : '',
+      facilityEstablishmentDate: formData?.facilityEstablishmentDate
+        ? format(Number(formData?.facilityEstablishmentDate), 'MM/dd/yyyy')
+        : '',
+      typeOfInspection: formData?.typeOfInspection
+        ? formData?.typeOfInspection[0]?.replace('_', ' ')
+        : '',
+    }),
+    [formData],
+  );
+  const handleFormsPreview = useCallback(() => {
+    (async () => {
+      const file = await generatePdf({
+        templates: [
+          <FormOneHeader facilityData={facilityData} />,
+          <FormOneTemplate speciesData={registeredSpecies} />,
+          <div style={{breakAfter: 'page'}} />,
+          <FormOneHeader facilityData={facilityData} form={'two'} />,
+          <FormTwoTemplate formTwoData={formTwoData} />,
+          <div style={{breakAfter: 'page'}} />,
+          ...(Array.isArray(registeredSpecies)
+            ? registeredSpecies.map((speciesData, index) => (
+                <>
+                  <FormThreeHeader
+                    facilityData={{
+                      ...facilityData,
+                      speciesName: speciesData?.name,
+                    }}
+                    form={'three'}
+                  />
+                  <FormThreeTemplate
+                    speciesData={formatFormThreeDataToDisplay(speciesData)}
+                    form={'three'}
+                  />
+                  <div style={{breakAfter: 'page'}} />
+                </>
+              ))
+            : []),
+          <FormOneHeader facilityData={facilityData} form={'four'} />,
+          <FormFourTemplate
+            facilityData={facilityData}
+            response={formFourData}
+          />,
+        ],
+      });
+      RNPrint.print({filePath: file?.filePath});
+    })();
+  }, [facilityData, formFourData, formTwoData, registeredSpecies]);
+
+  const options = {
+    message: 'Share form pdf ',
+    title: 'Share',
+    url:
+      'file:/data/user/0/com.rnboilerplate/cache/PDF_ca1720f2-2165-4a63-8abe-17caa6e82a963617777987712499348.pdf',
+  };
+
   return (
     <Container>
       <Container.ScrollView
         contentContainerStyle={styles.container}
         style={CommonStyles.flex1}>
-        <View style={styles.title}>
-          <Text style={styles.titleOne}>
-            {formatMessage({id: 'screen.StepSummary.headerPartOne'})}
-          </Text>
-          <Text style={styles.titleTwo}>
-            {formatMessage({id: 'screen.StepSummary.headerPartTwo'})}
-          </Text>
+        <View style={styles.topContainer}>
+          <View style={styles.title}>
+            <Text style={styles.titleOne}>
+              {formatMessage({id: 'screen.StepSummary.headerPartOne'})}
+            </Text>
+            <Text style={styles.titleTwo}>
+              {formatMessage({id: 'screen.StepSummary.headerPartTwo'})}
+            </Text>
+          </View>
+          <View style={styles.img}>
+            <AnimatedImage
+              source={Images.stars}
+              resizeMode="contain"
+              style={starsStyle}
+            />
+            <AnimatedImage
+              source={Images.star}
+              resizeMode="contain"
+              style={circleStyle}
+            />
+            <Image source={Images.stepSummaryOne} style={styles.image} />
+          </View>
         </View>
+
         <View style={styles.backColor}>
           <View style={styles.margin}>
             <Text style={styles.contentOne}>
@@ -44,7 +230,7 @@ const StepSummary = ({navigation: {navigate}}) => {
               buttonStyle={() => {
                 return styles.button;
               }}
-              onPress={() => navigate()}
+              onPress={handleFormsPreview}
             />
             <Button
               buttonContent={formatMessage({
@@ -56,7 +242,7 @@ const StepSummary = ({navigation: {navigate}}) => {
               buttonStyle={() => {
                 return styles.button;
               }}
-              onPress={() => navigate()}
+              onPress={() => Share.open(options)}
             />
             <Button
               buttonContent={formatMessage({
@@ -91,14 +277,18 @@ const StepSummary = ({navigation: {navigate}}) => {
 
 const styles = ScaledSheet.create({
   container: {
-    backgroundColor: RawColors.whiteTwo,
+    backgroundColor: RawColors.white,
+  },
+  topContainer: {
+    flexDirection: 'row',
+    marginTop: '20@vs',
   },
   margin: {
     marginHorizontal: '30@s',
     alignItems: 'center',
   },
   title: {
-    height: '100@s',
+    height: '100@vs',
     backgroundColor: 'white',
   },
   titleOne: {
@@ -115,6 +305,17 @@ const styles = ScaledSheet.create({
     marginTop: '10@s',
     marginLeft: '15@s',
     letterSpacing: '0.09@s',
+  },
+  image: {
+    height: '60@ms',
+    width: '60@ms',
+    resizeMode: 'contain',
+    alignSelf: 'center',
+  },
+  img: {
+    flex: 1,
+    alignItems: 'flex-end',
+    justifyContent: 'center',
   },
   backColor: {
     backgroundColor: 'white',

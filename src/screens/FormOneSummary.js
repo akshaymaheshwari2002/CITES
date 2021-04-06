@@ -1,15 +1,21 @@
-import React, {useState, useMemo, useCallback} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import React, {useState, useMemo, useCallback, useEffect} from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  BackHandler,
+  Pressable,
+} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import Pdf from 'react-native-pdf';
 import Icon from 'react-native-vector-icons/Feather';
-import {useFocusEffect} from '@react-navigation/native';
+import {useFocusEffect, useIsFocused} from '@react-navigation/native';
 import {format} from 'date-fns';
 import {shallowEqual, useSelector} from 'react-redux';
 
 import {Container} from '@atoms';
-import {FormOneTemplate, FormOneHeader} from '@molecules';
+import {FormOneTemplate, FormOneHeader, PopupFormEditMenu} from '@molecules';
 import {Fonts, RawColors} from '@styles/Themes';
 import {generatePdf} from '@utils/CommonFunctions';
 import CommonStyles from '@styles/CommonStyles';
@@ -17,6 +23,8 @@ import CommonStyles from '@styles/CommonStyles';
 const FormOneSummary = ({navigation, route}) => {
   const {formatMessage} = useIntl();
   const [fileUri, setFileUri] = useState(undefined);
+  const [isShowFormEditMenu, setIsShowFormEditMenu] = useState(false);
+  const isCurrentScreenFocused = useIsFocused();
   const formSummaryText = route?.params?.formSummaryStepTwo
     ? route?.params?.formSummaryStepTwo
     : false;
@@ -62,6 +70,40 @@ const FormOneSummary = ({navigation, route}) => {
     }, [facilityData, registeredSpecies]),
   );
 
+  const handleBackPress = useCallback(() => {
+    if (isShowFormEditMenu) {
+      setIsShowFormEditMenu(false);
+    } else {
+      navigation.goBack();
+    }
+  }, [isShowFormEditMenu, navigation]);
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerLeft: (navigationProps) => (
+        <Pressable hitSlop={10} onPress={handleBackPress}>
+          <Icon name="chevron-left" size={ms(18)} {...navigationProps} />
+        </Pressable>
+      ),
+    });
+  }, [handleBackPress, navigation]);
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', onbackPress);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', onbackPress);
+    };
+  }, [onbackPress, isShowFormEditMenu, isCurrentScreenFocused]);
+
+  const onbackPress = useCallback(() => {
+    if (isCurrentScreenFocused && isShowFormEditMenu) {
+      setIsShowFormEditMenu(false);
+      return true;
+    } else {
+      return false;
+    }
+  }, [isCurrentScreenFocused, isShowFormEditMenu]);
+
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
@@ -76,13 +118,13 @@ const FormOneSummary = ({navigation, route}) => {
           </Text>
         </View>
         <View style={styles.subHeading}>
-          <Text style={[Fonts.Lato13R, styles.subHeadingText]}>
+          <Text style={[Fonts.Lato15R, styles.subHeadingText]}>
             {formatMessage({id: 'screen.FormOneSummary.subHeading_1'})}
           </Text>
-          <Text style={[Fonts.Lato13R, styles.subHeadingText]}>
+          <Text style={[Fonts.Lato15R, styles.subHeadingText]}>
             {formatMessage({id: 'screen.FormOneSummary.subHeading_2'})}
           </Text>
-          <Text style={[Fonts.Lato13R, styles.subHeadingText]}>
+          <Text style={[Fonts.Lato15R, styles.subHeadingText]}>
             {formatMessage({id: 'screen.FormOneSummary.subHeading_3'})}
           </Text>
         </View>
@@ -116,7 +158,7 @@ const FormOneSummary = ({navigation, route}) => {
               )}
             </View>
             <View style={styles.justifyContent}>
-              <Icon name="chevron-right" size={ms(26)} />
+              <Icon name="chevron-right" size={ms(18)} />
             </View>
           </View>
         </TouchableOpacity>
@@ -125,7 +167,7 @@ const FormOneSummary = ({navigation, route}) => {
         <TouchableOpacity
           style={[styles.slideBtn, styles.borderStyle]}
           onPress={() => {
-            navigation.navigate('FormOneSummaryEdit');
+            setIsShowFormEditMenu(true);
           }}>
           <View style={styles.row}>
             <View style={styles.padding16}>
@@ -138,11 +180,16 @@ const FormOneSummary = ({navigation, route}) => {
             </View>
 
             <View style={styles.justifyContent}>
-              <Icon name="plus" size={ms(26)} />
+              <Icon name="plus" size={ms(18)} />
             </View>
           </View>
         </TouchableOpacity>
       </View>
+      <PopupFormEditMenu
+        formNumber={1}
+        isShowFormEditMenu={isShowFormEditMenu}
+        setIsShowFormEditMenu={setIsShowFormEditMenu}
+      />
     </Container>
   );
 };
@@ -151,7 +198,7 @@ const styles = ScaledSheet.create({
   flexGrow: {flexGrow: 1},
   titleView: {
     paddingHorizontal: '16@s',
-    paddingVertical: '16@vs',
+    paddingTop: '16@vs',
     backgroundColor: RawColors.white,
   },
   ScrollViewStyle: {flexGrow: 1, backgroundColor: RawColors.white},
@@ -174,18 +221,19 @@ const styles = ScaledSheet.create({
   },
   slideBtnContainerStep: {
     position: 'absolute',
-    top: '17@vs',
+    top: '16@vs',
     right: 0,
     paddingLeft: '5@s',
   },
   slideBtnContainerEdit: {
     position: 'absolute',
-    top: '92@vs',
+    top: '85@vs',
     right: 0,
     paddingLeft: '5@s',
   },
   slideBtn: {
-    height: '65@vs',
+    height: '50@vs',
+    width: '160@s',
     backgroundColor: RawColors.beige,
     justifyContent: 'center',
     borderTopLeftRadius: '8@ms',

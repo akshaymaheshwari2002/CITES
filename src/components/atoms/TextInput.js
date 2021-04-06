@@ -20,6 +20,7 @@ const TextInput = React.forwardRef(
       labelRight,
       labelRightStyle,
       onHelpIconPress,
+      multiline,
       ...restProps
     },
     ref,
@@ -45,10 +46,15 @@ const TextInput = React.forwardRef(
             onChangeText={onChange}
             style={[styles.inputContainer, Fonts.Lato15R, style]}
             value={getValue()}
+            multiline={multiline}
             {...restProps}
           />
           {labelRight ? (
-            <Text style={[Fonts.Lato15B, labelRightStyle]}>{labelRight}</Text>
+            typeof labelRight === 'string' ? (
+              <Text style={[Fonts.Lato15B, labelRightStyle]}>{labelRight}</Text>
+            ) : (
+              labelRight
+            )
           ) : null}
           {showHelpIcon ? (
             <Icon
@@ -61,17 +67,12 @@ const TextInput = React.forwardRef(
           ) : null}
         </View>
         {labelBottom ? (
-          <Text style={[{color: RawColors.black}, Fonts.Italic15R]}>
+          <Text style={[{color: RawColors.black}, Fonts.Italic13R]}>
             {labelBottom}
           </Text>
         ) : null}
         {error ? (
           <Text style={[{color: RawColors.error}, Fonts.Lato15R]}>{error}</Text>
-        ) : null}
-        {labelBottom ? (
-          <Text style={[{color: RawColors.black}, Fonts.Italic15R]}>
-            {labelBottom}
-          </Text>
         ) : null}
       </>
     );
@@ -86,7 +87,8 @@ TextInput.propTypes = {
   showHelpIcon: PropTypes.bool,
   onHelpIconPress: PropTypes.func,
   labelBottom: PropTypes.string,
-  labelRight: PropTypes.string,
+  multiline: PropTypes.bool,
+  labelRight: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   labelRightStyle: PropTypes.object,
 };
 
@@ -96,6 +98,7 @@ TextInput.defaultProps = {
   onChange: () => {},
   style: {},
   showHelpIcon: false,
+  multiline: false,
   onHelpIconPress: () => {},
   labelBottom: '',
   labelRight: '',

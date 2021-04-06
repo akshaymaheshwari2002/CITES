@@ -1,9 +1,9 @@
 import React, {useCallback, useMemo, useRef, useState, useEffect} from 'react';
-import {Text, View, BackHandler, Alert} from 'react-native';
+import {Text, View, BackHandler, Pressable} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import {ms, vs, ScaledSheet} from 'react-native-size-matters';
 import {useForm} from 'react-hook-form';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useIntl} from 'react-intl';
 import {useDispatch, useSelector, shallowEqual} from 'react-redux';
 
@@ -23,6 +23,14 @@ import getFormFieldsPageFive from './FormFieldsPageFive';
 
 const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
   const [formFieldsPage, setFormFieldsPage] = useState(1);
+  const [
+    _cmOrGramOfSizeOrMassAtSexualMaturity,
+    setCmOrGramOfSizeOrMassAtSexualMaturity,
+  ] = useState(false);
+  const [
+    _cmOrGramOfSizeOrMassAtSaleOrExport,
+    setCmOrGramOfSizeOrMassAtSaleOrExport,
+  ] = useState(false);
   const registeredSpecies = useSelector(
     (state) => state.sessionReducer.activeInspection?.registeredSpecies || [],
     shallowEqual,
@@ -45,6 +53,16 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
   const _lifeStageHarvested = watch('lifeStageHarvested');
   const _otherLifeStage = watch('otherLifeStage');
   const _numberHarvestedInPreviousYear = watch('numberHarvestedInPreviousYear');
+
+  const handleUnitsOfSizeOrMass = ({key, value}) => {
+    if (key === 'cmOrGramOfSizeOrMassAtSexualMaturity') {
+      setCmOrGramOfSizeOrMassAtSexualMaturity(value);
+      formData.current = {...formData.current, [key]: value};
+    } else if (key === 'cmOrGramOfSizeOrMassAtSaleOrExport') {
+      setCmOrGramOfSizeOrMassAtSaleOrExport(value);
+      formData.current = {...formData.current, [key]: value};
+    }
+  };
 
   const formFields = useMemo(() => {
     const fieldProps = {
@@ -90,16 +108,22 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
       case 4:
         return getFormFieldsPageFour();
       case 5:
-        return getFormFieldsPageFive();
+        return getFormFieldsPageFive({
+          _cmOrGramOfSizeOrMassAtSaleOrExport,
+          _cmOrGramOfSizeOrMassAtSexualMaturity,
+          handleUnitsOfSizeOrMass,
+        });
     }
   }, [
-    formFieldsPage,
     registeredSpecies,
+    formFieldsPage,
     _additionalAnimalsAcquiredSinceInitialStock,
     _doYouBreedThisSpecies,
     _doYouRanchThisSpecies,
     _lifeStageHarvested,
     _otherLifeStage,
+    _cmOrGramOfSizeOrMassAtSaleOrExport,
+    _cmOrGramOfSizeOrMassAtSexualMaturity,
   ]);
 
   useEffect(() => {
@@ -300,9 +324,14 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
   }, [formFieldsPage, selectedSpeciesId, setSpeciesDataInForm]);
 
   const setSpeciesDataInForm = useCallback(
-    (_selectedSpeciesId) => {
-      const selectedSpecies = get('Species', _selectedSpeciesId);
-
+    async (_selectedSpeciesId) => {
+      const selectedSpecies = await get('Species', _selectedSpeciesId);
+      setCmOrGramOfSizeOrMassAtSaleOrExport(
+        selectedSpecies?.cmOrGramOfSizeOrMassAtSaleOrExport ?? false,
+      );
+      setCmOrGramOfSizeOrMassAtSexualMaturity(
+        selectedSpecies?.cmOrGramOfSizeOrMassAtSexualMaturity ?? false,
+      );
       selectedSpecies.additionalAnimalsAcquiredSinceInitialStock = selectedSpecies?.additionalAnimalsAcquiredSinceInitialStock.reduce(
         (acc, current) => ({
           ...acc,
@@ -359,12 +388,9 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
   useEffect(() => {
     setOptions({
       headerLeft: (navigationProps) => (
-        <Icon
-          name="chevron-left"
-          size={ms(26)}
-          {...navigationProps}
-          onPress={handleBackPress}
-        />
+        <Pressable hitSlop={10} onPress={handleBackPress}>
+          <Icon name="chevron-left" size={ms(18)} {...navigationProps} />
+        </Pressable>
       ),
     });
   }, [handleBackPress, setOptions]);
@@ -400,7 +426,7 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
           {formFieldsPage !== 5 ? (
             <Button
               onPress={handleSubmit(_handleSubmit, () => scrollToTop())}
-              buttonContent={formatMessage({id: 'general.continue'})}
+              buttonContent={formatMessage({id: 'button.continueCaps'})}
             />
           ) : (
             <>
@@ -411,7 +437,10 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
                 buttonContent={formatMessage({id: 'button.saveAndAdd'})}
               />
               <Button
-                onPress={() => navigate('FormThreeSummary')}
+                onPress={async () => {
+                  await handleSubmit(_handleSubmit)();
+                  navigate('FormThreeSummary');
+                }}
                 buttonStyle={() => ({marginVertical: vs(16)})}
                 buttonContent={formatMessage({
                   id: 'button.viewFormThreeSummary',

@@ -14,9 +14,9 @@ import CommonStyles from '@styles/CommonStyles';
 
 const tabButtons = [
   {name: 'home', icon: 'home', screen: 'LanguageSelection'},
-  {name: 'search', icon: 'search'},
-  {name: 'edit', icon: 'edit-3'},
-  {name: 'list', icon: 'list'},
+  {name: 'search', icon: 'search', screen: ''},
+  {name: 'edit', icon: 'edit-3', screen: 'InspectionNotes'},
+  {name: 'list', icon: 'list', screen: ''},
 ];
 
 const TabBar = () => {
@@ -90,7 +90,11 @@ const TabBar = () => {
               {name: 'InspectionFlow'},
               {
                 name: 'TabNavigator',
-                state: {routes: [{name: 'BeginInspection'}]},
+                state: {
+                  routes: [
+                    {name: 'BeginInspection', params: {fromOnboarding: true}},
+                  ],
+                },
               },
             ],
           }),

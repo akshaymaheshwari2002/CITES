@@ -1,30 +1,80 @@
-import React from 'react';
-import {View, Text, ImageBackground, useWindowDimensions} from 'react-native';
+import React, {useEffect} from 'react';
+import {
+  View,
+  Text,
+  ImageBackground,
+  useWindowDimensions,
+  Pressable,
+} from 'react-native';
 import {useIntl} from 'react-intl';
-import {ScaledSheet} from 'react-native-size-matters';
+import {ScaledSheet, ms} from 'react-native-size-matters';
 import {useDispatch} from 'react-redux';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import {RawColors, Fonts} from '@styles/Themes';
 import {Container, Button, AnimatedView} from '@atoms';
 import {Images} from '@assets';
 import CommonStyles from '@styles/CommonStyles';
 import {setActiveInspection} from '@store/slices/sessionSlice';
+import {navigate} from '@utils/RootNavigation';
+import {CommonActions} from '@react-navigation/routers';
 
-const StepsSummary = ({navigation}) => {
+const BeginInspection = ({navigation, route}) => {
   const {formatMessage} = useIntl();
   const windowWidth = useWindowDimensions().height;
+  const isOnboardingScreen = route?.params?.isOnboardingScreen;
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
+        <Pressable
+          hitSlop={10}
+          onPress={() => {
+            if (route.params.fromOnboarding) {
+              navigation.dispatch(
+                CommonActions.reset({
+                  index: 3,
+                  routes: [
+                    {name: 'LanguageSelection'},
+                    {name: 'HomePage'},
+                    {name: 'InspectionFlow'},
+                    {name: 'InspectionOnboarding', params: {defaultIndex: 3}},
+                  ],
+                }),
+              );
+            } else {
+              navigation.goBack();
+            }
+          }}>
+          <Icon name="chevron-left" size={ms(18)} />
+        </Pressable>
+      ),
+    });
+  }, [
+    formatMessage,
+    isOnboardingScreen,
+    navigation,
+    route.params.fromOnboarding,
+  ]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
         style={CommonStyles.flex1}
+        horizontal={true}
+        onMomentumScrollEnd={() => {
+          navigate('StepOne');
+        }}
         contentContainerStyle={styles.contentContainer}>
         <ImageBackground
           source={Images.semiCircle}
           style={CommonStyles.flex1}
           imageStyle={styles.backgroundImage}>
-          <AnimatedView startXPos={windowWidth} startYPos={0}>
+          <AnimatedView
+            startXPos={windowWidth}
+            elevatedYValue={0}
+            startYPos={0}>
             <Text style={styles.title}>
               {formatMessage({id: 'screen.StepsSummary.headerPartOne'})}
             </Text>
@@ -147,6 +197,9 @@ const styles = ScaledSheet.create({
   },
   button: {
     marginBottom: '24@vs',
+    width: '290@s',
+    alignSelf: 'center',
+    //minHeight: '66@vs',
   },
   buttonText: {
     textTransform: 'uppercase',
@@ -155,4 +208,4 @@ const styles = ScaledSheet.create({
   },
 });
 
-export default StepsSummary;
+export default BeginInspection;

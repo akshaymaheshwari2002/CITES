@@ -1,5 +1,5 @@
 import React, {useCallback} from 'react';
-import {Image, ImageBackground, View} from 'react-native';
+import {Image, ImageBackground, View, Text} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 import {useDispatch} from 'react-redux';
@@ -25,6 +25,9 @@ const HomePage = ({navigation}) => {
         imageStyle={styles.resizeModeRepeat}>
         <Container.ScrollView contentContainerStyle={styles.scrollContainer}>
           <Image source={Images.logo} style={styles.logo} />
+          <Text style={styles.content}>
+            {formatMessage({id: 'screen.languageSelection.contentOne'})}
+          </Text>
           <ImageBackground
             style={styles.backgroundContainer}
             source={Images.backgroundThree}
@@ -41,7 +44,7 @@ const HomePage = ({navigation}) => {
                   <Button
                     onPress={handlePress}
                     buttonStyle={() => styles.filledButton}
-                    buttonTextStyle={() => ({color: RawColors.white})}
+                    buttonTextStyle={() => styles.buttonText}
                     buttonContent={formatMessage({
                       id: 'button.inspectFacility',
                     })}
@@ -52,13 +55,17 @@ const HomePage = ({navigation}) => {
                       navigation.navigate('SourceFlow');
                     }}
                     buttonStyle={() => styles.filledButton}
-                    buttonTextStyle={() => ({color: RawColors.white})}
+                    buttonTextStyle={() => styles.buttonText}
                     buttonContent={formatMessage({
                       id: 'button.determineSourceCode',
                     })}
                   />
                   <Button
-                    onPress={() => {}}
+                    onPress={() => {
+                      navigation.navigate('TabNavigator', {
+                        screen: 'FeedbackTwo',
+                      });
+                    }}
                     buttonContent={formatMessage({
                       id: 'button.giveFeedback',
                     })}
@@ -98,8 +105,13 @@ const styles = ScaledSheet.create({
     top: '80@vs',
     resizeMode: 'contain',
     alignSelf: 'center',
-    height: '146@vs',
-    width: '250@s',
+    height: '97@vs',
+    width: '169@s',
+  },
+  content: {
+    ...Fonts.Lato30R,
+    top: '55@vs',
+    alignSelf: 'center',
   },
   contentContainer: {
     flex: 1,

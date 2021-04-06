@@ -10,7 +10,7 @@ export default () => {
     {
       label: formatMessage({id: 'form.label.doYouBreedThisSpecies'}),
       name: 'doYouBreedThisSpecies',
-      rules: {required},
+      //rules: {required},
       fieldType: Constants.CHOICELIST,
       mode: 'radio-button',
       items: [
@@ -29,7 +29,7 @@ export default () => {
       label: formatMessage({id: 'form.label.whenDidYouBreedThisSpecies'}),
       placeholder: formatMessage({id: 'form.label.whenDidYouBreedThisSpecies'}),
       name: 'whenDidYouBreedThisSpecies',
-      rules: {required},
+      //rules: {required},
       headerTextIOS: formatMessage({
         id: 'form.label.whenDidYouBreedThisSpecies',
       }),
@@ -40,7 +40,7 @@ export default () => {
       label: formatMessage({id: 'form.label.numberOfLittersPerYear'}),
       placeholder: formatMessage({id: 'form.label.numberOfLittersPerYear'}),
       name: 'numberOfLittersPerYear',
-      rules: {required},
+      //rules: {required},
       keyboardType: 'number-pad',
     },
     {
@@ -48,7 +48,7 @@ export default () => {
       label: formatMessage({id: 'form.label.numberOfOffspringPerLitter'}),
       placeholder: formatMessage({id: 'form.label.numberOfOffspringPerLitter'}),
       name: 'numberOfOffspringPerLitter',
-      rules: {required},
+      //rules: {required},
       keyboardType: 'number-pad',
     },
     {
@@ -58,7 +58,7 @@ export default () => {
         id: 'form.label.numberProducedInPreviousYear',
       }),
       name: 'numberProducedInPreviousYear',
-      rules: {required},
+      //rules: {required},
       keyboardType: 'number-pad',
     },
   ];

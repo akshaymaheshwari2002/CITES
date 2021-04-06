@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React from 'react';
 import {Platform, Text, View} from 'react-native';
 import Tooltip, {
   TooltipChildrenContext,
@@ -28,12 +28,12 @@ const _Tooltip = ({
       childContentSpacing={vs(12)}
       allowChildInteraction={false}
       content={
-        <View style={{flexDirection: 'row'}}>
+        <Text style={[Fonts.Lato17R, styles.textContent]}>
           <Text style={Fonts.Lato17B}>
             {formatMessage({id: 'screen.StepOne.WalkThroughContentTap'})}
           </Text>
-          <Text style={Fonts.Lato17R}>{content}</Text>
-        </View>
+          {content}
+        </Text>
       }
       {...restProps}>
       <TooltipChildrenContext.Consumer>
@@ -53,13 +53,17 @@ const _Tooltip = ({
 
 const styles = ScaledSheet.create({
   content: {borderRadius: '10@ms'},
+  textContent: {
+    width: '138@s',
+    padding: '5@ms',
+  },
   arrowSize: {height: '8@vs', width: '4@ms'},
   focusedChildren: {
     justifyContent: 'center',
     alignItems: 'center',
     height: '44@ms',
     width: '44@ms',
-    borderRadius: '24@ms',
+    borderRadius: '22@ms',
     borderColor: RawColors.darkSalmon,
     borderWidth: 5,
     backgroundColor: RawColors.white,

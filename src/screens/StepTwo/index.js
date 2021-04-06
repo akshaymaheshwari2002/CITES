@@ -3,6 +3,7 @@ import {View} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useDispatch, useSelector, shallowEqual} from 'react-redux';
+import {useIsFocused} from '@react-navigation/core';
 
 import {saveInspection} from '@store/slices/sessionSlice';
 import {Container, Button} from '@atoms';
@@ -14,18 +15,25 @@ import Toast from 'react-native-simple-toast';
 
 const StepTwo = ({navigation}) => {
   const {formatMessage} = useIntl();
+  const isFocused = useIsFocused();
   const dispatch = useDispatch();
   const stepTwoData = useSelector(
     (state) => state.sessionReducer.activeInspection.stepTwo,
     shallowEqual,
   );
   const handleStepTwoSubmit = useCallback(() => {
-    if (Object.keys(stepTwoData).length) {
+    if (stepTwoData && Object.keys(stepTwoData).length) {
       let stepTwoComplete = true;
 
       Object.keys(stepTwoData).forEach((key) => {
         if (!stepTwoData[key] && key !== 'formTwo' && key !== 'formThree') {
           stepTwoComplete = false;
+        } else if (stepTwoComplete !== true) {
+          Toast.show(
+            formatMessage({
+              id: 'screen.StepTwo.Alert',
+            }),
+          );
         }
       });
 
@@ -65,7 +73,7 @@ const StepTwo = ({navigation}) => {
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
-      <StepHeader stepNumber={2} />
+      <StepHeader stepNumber={2} showAnimation={isFocused} />
       <Container.ScrollView style={CommonStyles.flex1}>
         {ChecklistContent({
           checkliststyles,
@@ -114,6 +122,7 @@ const checkliststyles = ScaledSheet.create({
   textGeneral: {
     color: RawColors.black,
     ...Fonts.Lato17SB,
+    paddingRight: '13@ms',
   },
   textBold: {
     color: RawColors.black,
@@ -145,28 +154,26 @@ const checkliststyles = ScaledSheet.create({
   },
   button: {
     alignSelf: 'flex-start',
-    alignItems: 'center',
-    justifyContent: 'center',
     borderColor: RawColors.prussianBlue,
     backgroundColor: RawColors.white,
     height: '40@vs',
+    borderRadius: '24@vs',
     marginVertical: '20@s',
-    marginHorizontal: '10@s',
+    paddingRight: '13@ms',
   },
   buttonTextStyle: {
     textTransform: 'uppercase',
     textAlignVertical: 'center',
     textAlign: 'center',
     color: RawColors.softRed,
-    paddingHorizontal: '15@ms',
-    paddingVertical: '2@ms',
-    ...Fonts.Lato13R,
+    paddingHorizontal: '16@ms',
+    ...Fonts.HelveticaNeue13B,
   },
   buttonLarge: {
     marginTop: '15@ms',
   },
   formCell: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    //flexDirection: 'row',
+    //alignItems: 'center',
   },
 });

@@ -1,10 +1,11 @@
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, Pressable} from 'react-native';
 import {ms, ScaledSheet, verticalScale} from 'react-native-size-matters';
 import {useForm} from 'react-hook-form';
 import {useIntl} from 'react-intl';
 import {shallowEqual, useDispatch, useSelector} from 'react-redux';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import {getAllCountries} from 'react-native-country-picker-modal';
 
 import {Button, Container} from '@atoms';
 import {Form} from '@organisms';
@@ -23,7 +24,7 @@ import {get} from '@utils/RealmHelper';
 const FormOne = ({navigation}) => {
   const dispatch = useDispatch();
   const {formatMessage} = useIntl();
-  const {reset, control, errors, watch, handleSubmit} = useForm({
+  const {reset, control, errors, watch, handleSubmit, setValue} = useForm({
     shouldFocusError: false,
     mode: 'onBlur',
   });
@@ -38,6 +39,8 @@ const FormOne = ({navigation}) => {
     shallowEqual,
   );
   const selectedSpeciesId = watch('_id');
+  const country = watch('country');
+  const facilityOwnerPhone = watch('facilityOwnerPhone');
 
   const formFields = useMemo(
     () =>
@@ -188,15 +191,44 @@ const FormOne = ({navigation}) => {
   useEffect(() => {
     navigation.setOptions({
       headerLeft: (navigationProps) => (
-        <Icon
-          name="chevron-left"
-          size={ms(26)}
-          {...navigationProps}
-          onPress={handleBackPress}
-        />
+        <Pressable hitSlop={10} onPress={handleBackPress}>
+          <Icon name="chevron-left" size={ms(18)} {...navigationProps} />
+        </Pressable>
       ),
     });
   }, [handleBackPress, navigation]);
+
+  useEffect(() => {
+    if (country) {
+      (async () => {
+        let selectedCountry;
+        let selectedCallingCountry;
+        let countries;
+
+        countries = await getAllCountries();
+        countries = countries.map(({name, cca2, callingCode}) => ({
+          name,
+          cca2,
+          callingCode,
+        }));
+
+        selectedCountry = countries.find((item) => item.name === country);
+        selectedCallingCountry = countries.find(
+          (item) => item.cca2 === facilityOwnerPhone.cca2,
+        );
+
+        if (selectedCountry.name !== selectedCallingCountry.name) {
+          selectedCallingCountry = {
+            ...facilityOwnerPhone,
+            cca2: selectedCountry.cca2,
+            callingCode: selectedCountry.callingCode[0],
+          };
+
+          setValue('facilityOwnerPhone', selectedCallingCountry);
+        }
+      })();
+    }
+  }, [country, facilityOwnerPhone, setValue]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
@@ -216,9 +248,6 @@ const FormOne = ({navigation}) => {
         <Text style={styles.contentOnePartTwo}>
           {formatMessage({id: 'screen.FormOne.contentOnePartTwo'})}
         </Text>
-        <Text style={styles.contentOnePartTwo}>
-          {formatMessage({id: 'screen.FormOne.contentOnePartTwo'})}
-        </Text>
         <Text style={styles.contentTwo}>
           {formatMessage({id: 'screen.FormOne.contentTwo'})}
         </Text>
@@ -233,10 +262,12 @@ const FormOne = ({navigation}) => {
             />
           ) : (
             <>
-              <Button
-                onPress={handleSubmit(_handleSubmit)}
-                buttonContent={formatMessage({id: 'button.saveAndAdd'})}
-              />
+              {registeredSpecies.length > 1 ? (
+                <Button
+                  onPress={handleSubmit(_handleSubmit)}
+                  buttonContent={formatMessage({id: 'button.saveAndAdd'})}
+                />
+              ) : null}
               <Button
                 onPress={async () => {
                   await handleSubmit(_handleSubmit)();

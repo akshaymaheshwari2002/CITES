@@ -53,7 +53,7 @@ export default ({
     {
       label: formatMessage({id: 'form.label.professionalVeterinaryServices'}),
       name: 'accessToVeterinaryServices',
-      rules: {required},
+      //rules: {required},
       fieldType: Constants.CHOICELIST,
       mode: 'radio-button',
       items: [
@@ -107,7 +107,7 @@ export default ({
     {
       label: formatMessage({id: 'form.label.animalKeptAtOtherLocation'}),
       name: 'animalKeptAtOtherLocation',
-      rules: {required},
+      //rules: {required},
       fieldType: Constants.CHOICELIST,
       mode: 'radio-button',
       items: [

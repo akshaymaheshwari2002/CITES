@@ -5,10 +5,11 @@ import {
   BackHandler,
   TouchableOpacity,
   Dimensions,
+  Pressable,
 } from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import {ScaledSheet, ms, s, vs} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useIntl} from 'react-intl';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import {shallowEqual, useDispatch, useSelector} from 'react-redux';
@@ -157,27 +158,28 @@ const DetermineSourceCode = ({
   useEffect(() => {
     setOptions({
       headerLeft: () => (
-        <Tooltip
-          placement="bottom"
-          isVisible={route.params.showToolTip}
-          content={formatMessage({
-            id: 'screen.StepOne.WalkThroughContentOne',
-          })}
-          onClose={handleHeaderTooltipClose}>
-          <Icon
-            name="chevron-left"
-            size={ms(26)}
-            onPress={() => {
-              if (interactedQuestionStack.length === 1) {
-                goBack();
-              } else {
-                setInteractedQuestionStack([
-                  ...interactedQuestionStack.slice(0, -1),
-                ]);
-              }
-            }}
-          />
-        </Tooltip>
+        <Pressable
+          hitSlop={10}
+          onPress={() => {
+            if (interactedQuestionStack.length === 1) {
+              goBack();
+            } else {
+              setInteractedQuestionStack([
+                ...interactedQuestionStack.slice(0, -1),
+              ]);
+            }
+          }}>
+          <Tooltip
+            placement="bottom"
+            isVisible={route.params.showToolTip}
+            content={formatMessage({
+              id: 'screen.StepOne.WalkThroughContentOne',
+            })}
+            focusedStyle={styles.headerLeftTooltip}
+            onClose={handleHeaderTooltipClose}>
+            <Icon name="chevron-left" size={ms(18)} />
+          </Tooltip>
+        </Pressable>
       ),
       headerRight: () => (
         <Tooltip
@@ -196,7 +198,6 @@ const DetermineSourceCode = ({
           />
         </Tooltip>
       ),
-      headerRightContainerStyle: {marginRight: s(16)},
     });
   }, [
     formatMessage,
@@ -258,7 +259,15 @@ const DetermineSourceCode = ({
             return (
               <Button
                 key={`${index}`}
-                buttonContent={value}
+                buttonContent={
+                  value === 'AppendixI'
+                    ? formatMessage({id: value})
+                    : value === 'AppendixII'
+                    ? formatMessage({id: value})
+                    : value === 'AppendixIII'
+                    ? formatMessage({id: value})
+                    : value
+                }
                 buttonStyle={() => styles.button}
                 buttonTextStyle={() => Fonts.Lato15R}
                 onPress={() => {
@@ -309,6 +318,7 @@ const styles = ScaledSheet.create({
   buttonMoreInformationText: {
     textTransform: 'uppercase',
   },
+  headerLeftTooltip: {marginLeft: '16@s'},
 });
 
 export default DetermineSourceCode;

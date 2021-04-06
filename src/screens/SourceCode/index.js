@@ -22,7 +22,6 @@ const SourceCode = ({navigation, route}) => {
       headerRight: () => (
         <IconAntDesign
           name="pluscircle"
-          style={{marginRight: s(8)}}
           size={ms(26)}
           onPress={() => navigation.navigate('MoreInformation')}
         />
@@ -34,8 +33,18 @@ const SourceCode = ({navigation, route}) => {
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView style={CommonStyles.flex1}>
         <View style={styles.container}>
-          <View style={styles.titleContainer}>
-            <Text style={styles.title}>
+          <View
+            style={
+              resultSourceCode !== 'NotApplicable'
+                ? styles.titleContainer
+                : styles.notApplicableTitleContainer
+            }>
+            <Text
+              style={
+                resultSourceCode !== 'NotApplicable'
+                  ? styles.title
+                  : styles.notApplicableTitle
+              }>
               {formatMessage({id: 'screen.SourceCode.title'})}
             </Text>
             {!(resultSourceCode === 'NotApplicable') ? (
@@ -105,7 +114,7 @@ const SourceCode = ({navigation, route}) => {
                   id: 'button.continueToStepTwo',
                 })
               : formatMessage({
-                  id: 'button.retuenToHome',
+                  id: 'button.returnToHome',
                 })
           }
           buttonTextStyle={() => {
@@ -132,6 +141,20 @@ const styles = ScaledSheet.create({
     backgroundColor: RawColors.darkRed,
     height: '266@s',
   },
+  notApplicableTitleContainer: {
+    marginVertical: '15@vs',
+    borderRadius: '90@s',
+    minHeight: '180@s',
+    minWidth: '180@s',
+    aspectRatio: 1,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    backgroundColor: RawColors.white,
+  },
+  notApplicableTitle: {
+    textAlign: 'center',
+    ...Fonts.Lato19B,
+  },
   titleContainer: {
     marginVertical: '15@vs',
     borderRadius: '90@s',
@@ -139,12 +162,9 @@ const styles = ScaledSheet.create({
     minWidth: '180@s',
     aspectRatio: 1,
     justifyContent: 'center',
-    alignContent: 'center',
-    alignItems: 'center',
     alignSelf: 'center',
     padding: '10@s',
-    backgroundColor: RawColors.white,
-    textAlignVertical: 'center',
+    backgroundColor: RawColors.eggshell,
     borderColor: 'rgba(0, 0, 0, 0.16)',
     borderWidth: 2,
     ...CommonStyles.shadowEffectDarker,
@@ -152,8 +172,7 @@ const styles = ScaledSheet.create({
   title: {
     textAlign: 'center',
     paddingTop: '30@s',
-    textAlignVertical: 'center',
-    ...Fonts.Lato19R,
+    ...Fonts.Lato19B,
   },
   notApplicableText: {
     textAlign: 'center',

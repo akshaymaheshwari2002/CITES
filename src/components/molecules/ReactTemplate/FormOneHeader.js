@@ -17,8 +17,7 @@ const facilitySchema = {
   facilityName: 'Facility name: ',
   owner: 'Facility owner/manager: ',
   address: 'Facility address: ',
-  citesInformationCode:
-    'CITES register of capitative-breeding information code: ',
+  citesInformationCode: 'CITES register of captive-breeding information code: ',
   establishmentDate: 'Facility date of establishment: ',
   country: 'Country: ',
   facilityContact: 'Facility contact information:',
@@ -189,6 +188,7 @@ const styles = {
     color: 'red',
     paddingBottom: 0,
     marginBottom: 0,
+    textAlign: 'center',
   },
   text: {textAlign: 'left'},
   mainContainer: {

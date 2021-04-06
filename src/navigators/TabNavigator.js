@@ -1,7 +1,8 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import {ms} from 'react-native-size-matters';
+import {Pressable} from 'react-native';
 
 import {TabBar} from '@molecules';
 import {
@@ -25,6 +26,7 @@ import {
   FormTwoSummary,
   FormTwoSummaryEdit,
   FormThreeSummary,
+  FormThreeSummaryEdit,
   ExampleDialogueStep3,
   ExampleDialogueStep2,
   ExampleDialogueConsentFormStep2,
@@ -48,9 +50,11 @@ const screenOptions = {
   title: null,
   headerBackTitle: ' ',
   headerStyle: CommonStyles.navigationHeader,
-  headerLeft: ({canGoBack, ...navigationProps}) =>
+  headerLeft: ({canGoBack, onPress, ...navigationProps}) =>
     canGoBack ? (
-      <Icon name="chevron-left" size={ms(26)} {...navigationProps} />
+      <Pressable hitSlop={10} onPress={onPress}>
+        <Icon name="chevron-left" size={ms(18)} {...navigationProps} />
+      </Pressable>
     ) : null,
   headerLeftContainerStyle: CommonStyles.navigationLeftContainer,
   headerRightContainerStyle: CommonStyles.navigationRightContainer,
@@ -102,7 +106,11 @@ const AppNavigator = () => {
           name="FacilityScoreInformation"
           component={FacilityScoreInformation}
         />
-        <Stack.Screen name="BeginInspection" component={BeginInspection} />
+        <Stack.Screen
+          name="BeginInspection"
+          component={BeginInspection}
+          initialParams={{fromOnboarding: false}}
+        />
         <Stack.Screen
           name="FacilityRegistered"
           component={FacilityRegistered}
@@ -118,6 +126,10 @@ const AppNavigator = () => {
           component={FormTwoSummaryEdit}
         />
         <Stack.Screen name="FormThreeSummary" component={FormThreeSummary} />
+        <Stack.Screen
+          name="FormThreeSummaryEdit"
+          component={FormThreeSummaryEdit}
+        />
         <Stack.Screen name="Q4MoreInfo" component={Q4MoreInfo} />
         <Stack.Screen name="Q9MoreInfo" component={Q9MoreInfo} />
         <Stack.Screen name="Q1MoreInfo" component={Q1MoreInfo} />
