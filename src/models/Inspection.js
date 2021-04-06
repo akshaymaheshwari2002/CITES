@@ -1,5 +1,4 @@
-import {BSON} from 'realm';
-
+import {createId} from '@utils/RealmHelper';
 import {StepOne, StepTwo, StepThree, Species} from './';
 
 export default class Inspection {
@@ -12,7 +11,7 @@ export default class Inspection {
     notes,
     photos,
   }) {
-    this._id = _id ? new BSON.ObjectId(_id) : new BSON.ObjectId();
+    this._id = _id || createId('Inspection');
     this.stepOne = stepOne ? new StepOne(stepOne) : stepOne;
     this.stepTwo = stepTwo ? new StepTwo(stepTwo) : stepTwo;
     this.stepThree = stepThree ? new StepThree(stepThree) : stepThree;

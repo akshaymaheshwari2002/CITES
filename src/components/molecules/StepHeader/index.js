@@ -65,6 +65,7 @@ const StepHeader = ({stepNumber = 1, showAnimation = false}) => {
               translucent={true}
               isLoaded={startAnimation}
               customComponent={<Text style={styles.step}>{stepNumber}</Text>}
+              backgroundColor={RawColors.transparent}
               logoHeight={ms(150)}
               logoWidth={ms(150)}>
               <View style={{height: ms(130), justifyContent: 'center'}}>

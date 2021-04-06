@@ -81,8 +81,8 @@ const FormTwo = ({navigation}) => {
   );
 
   const setActiveFormDataOnMount = useCallback(
-    async (_activeFormTwoId) => {
-      const activeFormData = await get('FormTwo', _activeFormTwoId);
+    (_activeFormTwoId) => {
+      const activeFormData = get('FormTwo', _activeFormTwoId);
 
       activeFormData.accessToVeterinaryServices = activeFormData?.accessToVeterinaryServices.reduce(
         (acc, current) => ({
