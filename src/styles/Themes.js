@@ -45,6 +45,7 @@ const RawColors = {
   beige: 'rgb(238,244,220)',
   marine: 'rgb(8,56,99)',
   gaussianblack: 'rgba(25,2,2,0.3)',
+  darkPeach: 'rgb(47,65,75)',
 };
 
 const Fonts = {

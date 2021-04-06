@@ -116,7 +116,10 @@ const StepOne = ({navigation, route}) => {
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
-      <StepHeader stepNumber={1} showAnimation={isFocused} />
+      <StepHeader
+        stepNumber={1}
+        showAnimation={route.params.notShowAnimation ? false : isFocused}
+      />
       <Container.ScrollView style={CommonStyles.flex1}>
         {ChecklistContent({
           checkliststyles,

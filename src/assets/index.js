@@ -2,6 +2,8 @@ export const Images = {
   tick: require('./images/Tick.png'),
   closeButton: require('./images/group.png'),
   image: require('./images/iconspaceImageFile25Px.png'),
+  flashLightButton: require('./images/Flashlightbutton.png'),
+  cameraButton: require('./images/Camerabutton.png'),
   camera: require('./images/photo.png'),
   information: require('./images/157933.png'),
   headerLightCircle: require('./images/Ellipse235.png'),

@@ -16,6 +16,7 @@ import MobileInput from './MobileInput';
 import FormThreeTemplate from './ReactTemplate/FormThreeTemplate';
 import FormFourTemplate from './ReactTemplate/FormFourTemplate';
 import PopupFormEditMenu from './PopupFormEditMenu';
+import PopupNotesInput from './PopupNotesInput';
 
 export {
   TemplateOne,
@@ -36,4 +37,5 @@ export {
   FormThreeTemplate,
   FormFourTemplate,
   PopupFormEditMenu,
+  PopupNotesInput,
 };

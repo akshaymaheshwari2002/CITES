@@ -112,6 +112,7 @@ const TextInputArray = React.forwardRef(
                 borderRadius: 1,
                 borderWidth: 1,
                 borderColor: RawColors.dimGrey,
+                marginTop: s(15),
               })}
               buttonContent={buttonText}
               onPress={() => _setCount((state) => state + 1)}

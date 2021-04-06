@@ -35,7 +35,7 @@ const InspectionOnboarding = ({navigation, route}) => {
     if (activeIndex === data?.length - 1) {
       navigation.navigate('TabNavigator', {
         screen: 'StepOne',
-        params: {showToolTip: true},
+        params: {showToolTip: true, notShowAnimation: true},
       });
     } else {
       scrollToActiveIndex(activeIndex + 1);
