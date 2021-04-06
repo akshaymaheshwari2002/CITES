@@ -11,11 +11,17 @@ import {ScaledSheet, moderateScale, ms} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {Container} from '@atoms';
+import SideMenu from './SideMenu';
 import CommonStyles from '@styles/CommonStyles';
 import {RawColors, Fonts} from '@styles/Themes';
 import {Images} from '@assets';
 
-const OverlayModal = ({isModalVisible, hideModal, helpText}) => {
+const OverlayModal = ({
+  isModalVisible,
+  hideModal,
+  helpText,
+  isShowSideMenu,
+}) => {
   const [modalWidth, setModalWidth] = useState('55%'); // width to be set dynamically according to the content
   const [modalViewHeight, setModalViewHeight] = useState(0);
   const [contentContainerHeight, setContentContainerHeight] = useState(0);
@@ -49,65 +55,69 @@ const OverlayModal = ({isModalVisible, hideModal, helpText}) => {
       transparent={true}
       visible={isModalVisible}
       onRequestClose={hideModal}>
-      <TouchableWithoutFeedback onPressOut={hideModal}>
-        <View style={styles.overlay}>
-          <TouchableWithoutFeedback>
-            <View
-              style={[styles.modalView, {width: modalWidth}]}
-              onLayout={(ev) => {
-                const height = ev.nativeEvent.layout.height;
-                if (Math.round(height) !== modalViewHeight) {
-                  setModalViewHeight(Math.round(height));
-                }
-              }}>
-              <Image source={Images.information} style={styles.helpIcon} />
-              <Container.ScrollView
-                style={styles.scrollView}
-                contentContainerStyle={styles.scrollView}>
-                <View
-                  style={styles.contentContainer}
-                  onLayout={(ev) => {
-                    const height = ev.nativeEvent.layout.height;
-                    if (Math.round(height) !== contentContainerHeight) {
-                      setContentContainerHeight(Math.round(height));
-                    }
-                  }}>
-                  {helpText
-                    ? helpText.map((value, index) => {
-                        return (
-                          <Text
-                            key={`text_key_${index}`}
-                            style={
-                              value.isBold
-                                ? styles.modalTextBold
-                                : styles.modalText
-                            }>
-                            {value.text}
-                            {value.subText && value.subText.length > 0
-                              ? value.subText.map((value_1, index_1) => {
-                                  return (
-                                    <Text
-                                      key={`sub_text_key_${index_1}`}
-                                      style={
-                                        value_1.isSubBold
-                                          ? {...Fonts.Lato17B}
-                                          : null
-                                      }>
-                                      {value_1.val}
-                                    </Text>
-                                  );
-                                })
-                              : null}
-                          </Text>
-                        );
-                      })
-                    : null}
-                </View>
-              </Container.ScrollView>
-            </View>
-          </TouchableWithoutFeedback>
-        </View>
-      </TouchableWithoutFeedback>
+      {isShowSideMenu ? (
+        <SideMenu hideModal={hideModal} />
+      ) : (
+        <TouchableWithoutFeedback onPressOut={hideModal}>
+          <View style={styles.overlay}>
+            <TouchableWithoutFeedback>
+              <View
+                style={[styles.modalView, {width: modalWidth}]}
+                onLayout={(ev) => {
+                  const height = ev.nativeEvent.layout.height;
+                  if (Math.round(height) !== modalViewHeight) {
+                    setModalViewHeight(Math.round(height));
+                  }
+                }}>
+                <Image source={Images.information} style={styles.helpIcon} />
+                <Container.ScrollView
+                  style={styles.scrollView}
+                  contentContainerStyle={styles.scrollView}>
+                  <View
+                    style={styles.contentContainer}
+                    onLayout={(ev) => {
+                      const height = ev.nativeEvent.layout.height;
+                      if (Math.round(height) !== contentContainerHeight) {
+                        setContentContainerHeight(Math.round(height));
+                      }
+                    }}>
+                    {helpText
+                      ? helpText.map((value, index) => {
+                          return (
+                            <Text
+                              key={`text_key_${index}`}
+                              style={
+                                value.isBold
+                                  ? styles.modalTextBold
+                                  : styles.modalText
+                              }>
+                              {value.text}
+                              {value.subText && value.subText.length > 0
+                                ? value.subText.map((value_1, index_1) => {
+                                    return (
+                                      <Text
+                                        key={`sub_text_key_${index_1}`}
+                                        style={
+                                          value_1.isSubBold
+                                            ? {...Fonts.Lato17B}
+                                            : null
+                                        }>
+                                        {value_1.val}
+                                      </Text>
+                                    );
+                                  })
+                                : null}
+                            </Text>
+                          );
+                        })
+                      : null}
+                  </View>
+                </Container.ScrollView>
+              </View>
+            </TouchableWithoutFeedback>
+          </View>
+        </TouchableWithoutFeedback>
+      )}
     </Modal>
   );
 };
