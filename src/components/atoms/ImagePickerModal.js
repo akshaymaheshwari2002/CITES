@@ -132,7 +132,7 @@ const ImagePickerModal = ({
                   style={isTablet ? styles.image : styles.icon}
                 />
               </View>
-              <Text style={[styles.btnText, Fonts.fontRoboto16R]}>
+              <Text style={[styles.btnText, Fonts.Lato15R]}>
                 {formatMessage({id: 'uploadButton.screen.chooseFromGallery'})}
               </Text>
             </TouchableOpacity>
@@ -144,7 +144,7 @@ const ImagePickerModal = ({
                   style={isTablet ? styles.image : styles.icon}
                 />
               </View>
-              <Text style={[styles.btnText, Fonts.fontRoboto16R]}>
+              <Text style={[styles.btnText, Fonts.Lato15R]}>
                 {formatMessage({id: 'uploadButton.screen.takePhoto'})}
               </Text>
             </TouchableOpacity>

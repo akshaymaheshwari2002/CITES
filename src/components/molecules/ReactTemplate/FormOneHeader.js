@@ -1,7 +1,7 @@
 import React from 'react';
 import {getInputFieldElementForFormSummary as getInputFieldElement} from '@utils/CommonFunctions';
 
-const formText = 'Form';
+const formText = 'FORM';
 const formNumber = {
   one: 1,
   two: 2,
@@ -172,8 +172,8 @@ const styles = {
     marginBottom: 0,
   },
   body: {
-    backgroundColor: 'rgb(239 ,243, 222)',
-    borderRadius: 50,
+    //backgroundColor: 'rgb(239 ,243, 222)',
+    //borderRadius: 50,
     paddingLeft: 30,
     paddingRight: 30,
     marginBottom: 0,

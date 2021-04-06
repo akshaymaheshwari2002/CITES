@@ -1,6 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, Text, Linking, Platform} from 'react-native';
-import {verticalScale} from 'react-native-size-matters';
+import {s, verticalScale} from 'react-native-size-matters';
 import {getAllCountries} from 'react-native-country-picker-modal';
 
 import {store} from '@store';
@@ -76,6 +76,7 @@ export default ({
       label: formatMessage({id: 'form.label.vetNameAndAddress'}),
       placeholder: formatMessage({id: 'form.placeholder.veterinarianName'}),
       name: 'veterinarianName',
+      labelStyle: {marginRight: s(80)},
       rules: isAccessToVeterinaryServices ? {required} : {},
       fieldContainerStyle: {marginBottom: 0},
     },
@@ -140,11 +141,11 @@ export default ({
             {formatMessage({
               id: 'form.label.addressOfOtherAnimalsPartOne',
             })}
-            <Text style={{...Fonts.Lato15I, textDecorationLine: 'underline'}}>
-              {formatMessage({
-                id: 'form.label.addressOfOtherAnimalsPartTwo',
-              })}
-            </Text>
+          </Text>
+          <Text style={{...Fonts.Lato15I, textDecorationLine: 'underline'}}>
+            {formatMessage({
+              id: 'form.label.addressOfOtherAnimalsPartTwo',
+            })}
           </Text>
         </TouchableOpacity>
       ),

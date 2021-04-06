@@ -79,7 +79,7 @@ const ProductionCapacityCalculator = ({navigation: {goBack}}) => {
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Text style={styles.title}>
         {intl.formatMessage({
-          id: 'screen.ProductionCapacityCalculator.titleText',
+          id: 'button.stepThree.productionCapacityCalculated',
         })}
       </Text>
       <Container.ScrollView

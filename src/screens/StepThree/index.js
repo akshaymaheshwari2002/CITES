@@ -129,6 +129,7 @@ const checkliststyles = ScaledSheet.create({
   },
   textLink: {
     color: RawColors.black,
+    marginTop: '5@vs',
     textDecorationLine: 'underline',
     ...Fonts.Italic15R,
   },

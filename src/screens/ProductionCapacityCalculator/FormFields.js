@@ -2,7 +2,7 @@ import {s} from 'react-native-size-matters';
 
 import getValidators from '@utils/FormValidators';
 import createIntl from '@utils/Intl';
-import {RawColors} from '@styles/Themes';
+import {Fonts, RawColors} from '@styles/Themes';
 import {setHelpText} from '@store/slices/sessionSlice';
 import {store} from '@store';
 import HelpText from '@utils/HelpTexts';

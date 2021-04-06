@@ -114,6 +114,7 @@ const TextInputArray = React.forwardRef(
                 borderColor: RawColors.dimGrey,
                 marginTop: s(15),
               })}
+              buttonTextStyle={() => ({color: RawColors.dimGrey})}
               buttonContent={buttonText}
               onPress={() => _setCount((state) => state + 1)}
             />
@@ -153,6 +154,7 @@ const styles = ScaledSheet.create({
     borderColor: RawColors.dimGrey,
     borderWidth: 1,
     marginBottom: '8@vs',
+    marginTop: 0,
     backgroundColor: RawColors.lightGrey,
   },
   ImageStyle: {

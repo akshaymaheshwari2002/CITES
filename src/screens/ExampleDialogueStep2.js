@@ -103,11 +103,6 @@ const ExampleDialogueStep2 = ({navigation: {navigate}}) => {
         </Text>
         <Text style={styles.content}>
           {formatMessage({
-            id: 'screen.ExampleDialogueStep2.contentTen',
-          })}
-        </Text>
-        <Text style={styles.content}>
-          {formatMessage({
             id: 'screen.ExampleDialogueStep2.contentEleven',
           })}
         </Text>

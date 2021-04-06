@@ -1,6 +1,6 @@
 export default {
   countTotalBreedingFemale: [
-    {text: 'Number # of breeding females', isBold: true},
+    {text: 'Number of breeding females', isBold: true},
     {
       text:
         'The total number of breeding females observed or claimed to be at the facility. Enter as a whole number.',

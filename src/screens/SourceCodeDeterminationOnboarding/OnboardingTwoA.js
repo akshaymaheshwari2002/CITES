@@ -46,7 +46,8 @@ const styles = ScaledSheet.create({
     textAlign: 'center',
     alignSelf: 'center',
     lineHeight: '34@ms',
-    marginTop: '16@vs',
+    marginHorizontal: '20@s',
+    marginTop: '15@s',
     ...Fonts.Lato30R,
   },
   backgroundImage: {

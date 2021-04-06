@@ -78,19 +78,20 @@ const styles = ScaledSheet.create({
   container: {
     marginTop: '12@vs',
     marginBottom: '4@vs',
-    width: '100@s',
+    width: '40@s',
     marginHorizontal: '20@s',
   },
   containerWithButton: {
     marginVertical: '12@vs',
   },
   textInput: {
+    textAlign: 'center',
     marginVertical: 0,
     marginBottom: '8@vs',
   },
   operator: {
-    padding: '8@s',
-    marginLeft: '15@s',
+    padding: '2@s',
+    marginLeft: '5@s',
   },
   alignCenter: {
     alignItems: 'center',
