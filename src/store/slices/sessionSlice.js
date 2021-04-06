@@ -6,6 +6,7 @@ import {Inspection, Species} from '@models';
 
 export const INITIAL_SESSION_STATE = {
   helpText: null,
+  isShowSideMenu: false,
   tooltipProps: null,
   activeInspection: {},
   appReady: false,
@@ -71,6 +72,9 @@ const sessionSlice = createSlice({
     setHelpText: (state, action) => {
       state.helpText = action.payload;
     },
+    setIsShowSideMenu: (state, action) => {
+      state.isShowSideMenu = action.payload;
+    },
     setTooltipProps: (state, action) => {
       state.tooltipProps = action.payload;
     },
@@ -100,6 +104,7 @@ const sessionSlice = createSlice({
 
 export const {
   setHelpText,
+  setIsShowSideMenu,
   setTooltipProps,
   setActiveInspection,
   setAppReady,

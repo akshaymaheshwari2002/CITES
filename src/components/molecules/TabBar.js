@@ -8,7 +8,7 @@ import {useIntl} from 'react-intl';
 import {CommonActions, useNavigation} from '@react-navigation/native';
 
 import {RawColors} from '@styles/Themes';
-import {setTooltipProps} from '@store/slices/sessionSlice';
+import {setTooltipProps, setIsShowSideMenu} from '@store/slices/sessionSlice';
 import {Tooltip} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
 
@@ -31,11 +31,15 @@ const TabBar = () => {
 
   const handlePress = useCallback(
     (item) => {
-      if (item.screen) {
-        navigation.navigate(item.screen);
+      if (item.name === 'list') {
+        dispatch(setIsShowSideMenu(true));
+      } else {
+        if (item.screen) {
+          navigation.navigate(item.screen);
+        }
       }
     },
-    [navigation],
+    [dispatch, navigation],
   );
 
   const handleTooltipClose = useCallback(() => {

@@ -10,13 +10,20 @@ import {AppNavigator} from '@navigators';
 import {RawColors, ThemeProvider, Themes} from '@styles/Themes';
 import createIntl from '@utils/Intl';
 import {OverlayModal} from '@molecules';
-import {setHelpText, setAppReady} from '@store/slices/sessionSlice';
+import {
+  setHelpText,
+  setAppReady,
+  setIsShowSideMenu,
+} from '@store/slices/sessionSlice';
 import {Images} from '@assets';
 
 const App = () => {
   const currentTheme = useSelector((state) => state.persistedReducer.theme);
   const locale = useSelector((state) => state.persistedReducer.locale);
   const helpText = useSelector((state) => state.sessionReducer.helpText);
+  const isShowSideMenu = useSelector(
+    (state) => state.sessionReducer.isShowSideMenu,
+  );
   const appReady = useSelector((state) => state.sessionReducer.appReady);
 
   const theme = useMemo(() => Themes[currentTheme] || Themes.DEFAULT, [
@@ -41,10 +48,12 @@ const App = () => {
           logoWidth={ms(150)}>
           <SafeAreaProvider>
             <OverlayModal
-              isModalVisible={helpText ? true : false}
+              isModalVisible={helpText || isShowSideMenu ? true : false}
               helpText={helpText}
+              isShowSideMenu={isShowSideMenu}
               hideModal={() => {
                 dispatch(setHelpText(null));
+                dispatch(setIsShowSideMenu(false));
               }}
             />
             <AppNavigator setAppReady={() => setAppReady(true)} />
