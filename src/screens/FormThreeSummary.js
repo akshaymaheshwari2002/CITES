@@ -108,9 +108,9 @@ const FormThreeSummary = ({navigation, route}) => {
 
   useEffect(() => {
     navigation.setOptions({
-      headerLeft: (navigationProps) => (
+      headerLeft: () => (
         <Pressable hitSlop={10} onPress={handleBackPress}>
-          <Icon name="chevron-left" size={ms(18)} {...navigationProps} />
+          <Icon name="chevron-left" size={ms(18)} />
         </Pressable>
       ),
     });
@@ -198,7 +198,7 @@ const FormThreeSummary = ({navigation, route}) => {
             </View>
 
             <View style={styles.justifyContent}>
-              <FeatherIcon name="plus" size={ms(26)} />
+              <FeatherIcon name="plus" size={ms(18)} />
             </View>
           </View>
         </TouchableOpacity>

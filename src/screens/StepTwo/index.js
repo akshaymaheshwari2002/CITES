@@ -22,32 +22,30 @@ const StepTwo = ({navigation}) => {
     shallowEqual,
   );
   const handleStepTwoSubmit = useCallback(() => {
-    if (stepTwoData && Object.keys(stepTwoData).length) {
-      let stepTwoComplete = true;
-
-      Object.keys(stepTwoData).forEach((key) => {
-        if (!stepTwoData[key] && key !== 'formTwo' && key !== 'formThree') {
-          stepTwoComplete = false;
-        } else if (stepTwoComplete !== true) {
-          Toast.show(
-            formatMessage({
-              id: 'screen.StepTwo.Alert',
-            }),
-          );
-        }
-      });
-
-      if (stepTwoComplete) {
-        navigation.navigate('StepThree', {formSummaryStepTwo: true});
-      }
-    } else {
-      Toast.show(
-        formatMessage({
-          id: 'screen.StepTwo.Alert',
-        }),
-      );
-    }
-  }, [formatMessage, navigation, stepTwoData]);
+    // if (stepTwoData && Object.keys(stepTwoData).length) {
+    //   let stepTwoComplete = true;
+    //   Object.keys(stepTwoData).forEach((key) => {
+    //     if (!stepTwoData[key] && key !== 'formTwo' && key !== 'formThree') {
+    //       stepTwoComplete = false;
+    //     } else if (stepTwoComplete !== true) {
+    //       Toast.show(
+    //         formatMessage({
+    //           id: 'screen.StepTwo.Alert',
+    //         }),
+    //       );
+    //     }
+    //   });
+    //   if (stepTwoComplete) {
+    navigation.navigate('StepThree', {formSummaryStepTwo: true});
+    //   }
+    // } else {
+    //   Toast.show(
+    //     formatMessage({
+    //       id: 'screen.StepTwo.Alert',
+    //     }),
+    //   );
+    // }
+  }, [navigation]);
 
   const bullet = useMemo(
     () => (

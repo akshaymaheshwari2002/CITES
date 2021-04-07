@@ -74,7 +74,7 @@ const Q9MoreInfo = () => {
         contentContainerStyle={CommonStyles.screenContainer}
         style={CommonStyles.flex1}>
         <View style={styles.margin}>
-          <Text style={[Fonts.Lato15B, styles.contentOne, styles.itemHeadline]}>
+          <Text style={[Fonts.Lato20B, styles.contentOne, styles.itemHeadline]}>
             {formatMessage({id: 'screen.q9MoreInfo.contentOne'})}
           </Text>
           <Text style={[Fonts.Lato20R, styles.itemHeadline]}>

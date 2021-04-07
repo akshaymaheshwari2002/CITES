@@ -9,7 +9,7 @@ import {
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import Pdf from 'react-native-pdf';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useFocusEffect, useIsFocused} from '@react-navigation/native';
 import {format} from 'date-fns';
 import {shallowEqual, useSelector} from 'react-redux';
@@ -77,9 +77,9 @@ const FormTwoSummary = ({navigation, route}) => {
 
   useEffect(() => {
     navigation.setOptions({
-      headerLeft: (navigationProps) => (
+      headerLeft: () => (
         <Pressable hitSlop={10} onPress={handleBackPress}>
-          <Icon name="chevron-left" size={ms(18)} {...navigationProps} />
+          <Icon name="chevron-left" size={ms(18)} />
         </Pressable>
       ),
     });
@@ -167,7 +167,7 @@ const FormTwoSummary = ({navigation, route}) => {
             </View>
 
             <View style={styles.justifyContent}>
-              <Icon name="plus" size={ms(26)} />
+              <Icon name="plus" size={ms(18)} />
             </View>
           </View>
         </TouchableOpacity>

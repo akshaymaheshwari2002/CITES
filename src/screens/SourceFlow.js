@@ -66,11 +66,15 @@ const SourceFlow = ({navigation}) => {
               }
             />
             <Button
-              onPress={() => {}}
               buttonContent={formatMessage({
                 id: 'button.giveFeedback',
               })}
               buttonStyle={() => styles.emptyButton}
+              onPress={() =>
+                navigation.navigate('TabNavigator', {
+                  screen: 'FeedbackTwo',
+                })
+              }
             />
           </View>
         </Container.ScrollView>

@@ -9,8 +9,8 @@ const formTwoLabels = {
   noOfFullTime: 'Full Time',
   isVeterinaryServices:
     'Does the Operation have access to professional veterinary services?',
-  ifYesVeterinaryServices: 'If yes,what is name and address of vet?',
-  ifYesOtherLocation: 'If yes,what is address of location(s)?',
+  ifYesVeterinaryServices: 'If yes, what is name and address of vet?',
+  ifYesOtherLocation: 'If yes, what is address of location(s)?',
   otherLocation: 'Are animals keet at other location(s)?',
   yes: Constants.YES,
   no: Constants.NO,
@@ -48,8 +48,8 @@ const FormTwoTemplate = ({formTwoData = {}, editable = false}) => {
                 <b>{formTwoLabels?.noOfStaff}</b>
               </p>
               <div style={styles.rowWithMargin}>
-                <p>{formTwoLabels?.noOfPartTime}</p>
-                <p style={styles.inputText}>
+                <div>{formTwoLabels?.noOfPartTime}</div>
+                <div style={styles.inputText}>
                   {getInputElementConditionally({
                     name: 'formTwo.staffHours.partTimeStaffs',
                     defaultValue: formTwoData?.staffHours?.partTimeStaffs ?? '',
@@ -57,11 +57,12 @@ const FormTwoTemplate = ({formTwoData = {}, editable = false}) => {
                     type: 'number',
                     alt: formTwoData?.staffHours?.partTimeStaffs ?? '',
                   })}
-                </p>
+                </div>
               </div>
+              &nbsp;
               <div style={styles.rowWithMargin}>
-                <p>{formTwoLabels?.noOfFullTime}</p>
-                <p style={styles.inputText}>
+                <div>{formTwoLabels?.noOfFullTime}</div>
+                <div style={styles.inputText}>
                   {getInputElementConditionally({
                     name: 'formTwo.staffHours.fullTimeStaffs',
                     defaultValue: formTwoData?.staffHours?.fullTimeStaffs ?? '',
@@ -69,7 +70,7 @@ const FormTwoTemplate = ({formTwoData = {}, editable = false}) => {
                     type: 'number',
                     alt: formTwoData?.staffHours?.fullTimeStaffs ?? '',
                   })}
-                </p>
+                </div>
               </div>
               <p style={styles.text}>
                 <b>{formTwoLabels?.isVeterinaryServices}</b>
@@ -129,8 +130,8 @@ const FormTwoTemplate = ({formTwoData = {}, editable = false}) => {
                     </label>
                   </div>
                 </div>
-                <div style={styles.halfContainer}>
-                  <p>{formTwoLabels?.ifYesVeterinaryServices}</p>
+                <div style={styles.marginLeft}>
+                  {formTwoLabels?.ifYesVeterinaryServices}
                 </div>
                 <div style={styles.inputContainer}>
                   <p style={styles.inputText}>
@@ -216,8 +217,8 @@ const FormTwoTemplate = ({formTwoData = {}, editable = false}) => {
                     </label>
                   </div>
                 </div>
-                <div style={styles.halfContainer}>
-                  <p>{formTwoLabels?.ifYesOtherLocation}</p>
+                <div style={styles.marginLeft}>
+                  {formTwoLabels?.ifYesOtherLocation}
                 </div>
                 <div style={styles.inputContainer}>
                   <p style={styles.inputText}>
@@ -229,6 +230,7 @@ const FormTwoTemplate = ({formTwoData = {}, editable = false}) => {
                     })}
                   </p>
                   <p style={styles.inputText}>
+                    &nbsp;
                     {getInputElementConditionally({
                       name: 'formTwo.addressOfOtherAnimals.1',
                       defaultValue: formTwoData?.addressOfOtherAnimals?.[1],
@@ -299,6 +301,9 @@ const styles = {
   inputContainer: {
     flex: 1,
     alignSelf: 'flex-end',
+  },
+  marginLeft: {
+    marginLeft: 10,
   },
 };
 
