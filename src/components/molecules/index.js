@@ -15,6 +15,7 @@ import OverlayModal from './OverlayModal';
 import MobileInput from './MobileInput';
 import FormThreeTemplate from './ReactTemplate/FormThreeTemplate';
 import FormFourTemplate from './ReactTemplate/FormFourTemplate';
+import InspectionNotesTemplate from './ReactTemplate/InspectionNotesTemplate';
 import PopupFormEditMenu from './PopupFormEditMenu';
 import SideMenu from './SideMenu';
 import PopupNotesInput from './PopupNotesInput';
@@ -37,6 +38,7 @@ export {
   MobileInput,
   FormThreeTemplate,
   FormFourTemplate,
+  InspectionNotesTemplate,
   PopupFormEditMenu,
   SideMenu,
   PopupNotesInput,

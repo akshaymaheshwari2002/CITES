@@ -2,30 +2,56 @@ import React from 'react';
 import {getInputFieldElementForFormSummary as getInputFieldElement} from '@utils/CommonFunctions';
 
 const heading = 'Inspection Notes';
+const notes = ['Title', 'Message', 'Date', 'Time'];
 
-const FormOneTemplate = ({notes = []}) => {
+const InspectionNotesTemplate = ({notesData = [], editable = false}) => {
   return (
     <div className="App">
       <div className="App" style={styles.box}>
-        <p style={styles.headText}>
-          <b>{heading}</b>
-        </p>
-      </div>
-      <div>
-        <p style={styles.headText}>
-          <b>{notesTitle}</b>
-        </p>
-      </div>
-      <div>
-        <p style={styles.headText}>{notes.title}</p>
-      </div>
-      <div>
-        <p style={styles.headText}>
-          <b>{notesText}</b>
-        </p>
-      </div>
-      <div>
-        <p style={styles.headText}>{notes.text}</p>
+        <h1>{heading}</h1>
+        <div style={styles.container}>
+          <div style={styles.table}>
+            <div style={styles.row}>
+              {notes?.map((data, index) => (
+                <div key={index} style={styles.cell}>
+                  <b>{data}</b>
+                </div>
+              ))}
+            </div>
+            {notesData?.map((data, index) => {
+              const timeStamp = data?.timeStamp;
+              const date = timeStamp
+                ? new Date(parseInt(timeStamp, 10)).toLocaleDateString()
+                : '';
+              const time = timeStamp
+                ? new Date(parseInt(timeStamp, 10)).toLocaleTimeString()
+                : '';
+
+              return (
+                <div key={index} style={styles.row}>
+                  <div style={styles.cell}>{data?.title}</div>
+                  <div style={styles.cell}>{data.text}</div>
+                  <div style={styles.cell}>{date}</div>
+                  <div style={styles.cell}>{time}</div>
+                </div>
+              );
+            })}
+            {notesData?.length >= 4
+              ? null
+              : new Array(4 - notesData?.length)
+                  ?.fill(' ')
+                  ?.map((data, index) => {
+                    return (
+                      <div key={index} style={styles.row}>
+                        <div style={styles.cell} />
+                        <div style={styles.cell} />
+                        <div style={styles.cell} />
+                        <div style={styles.cell} />
+                      </div>
+                    );
+                  })}
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -63,13 +89,14 @@ const styles = {
     flexDirection: 'row',
   },
   cell: {
-    flex: 1,
+    //flex: 1,
     padding: 5,
     borderWidth: 0.5,
     border: '0.5px solid',
-    minHeight: 40,
+    //minHeight: 40,
+    minWidth: 100,
     textAlign: 'center',
   },
 };
 
-export default FormOneTemplate;
+export default InspectionNotesTemplate;

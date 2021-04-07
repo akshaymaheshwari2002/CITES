@@ -1,10 +1,10 @@
 import React, {useCallback} from 'react';
-import {View, Text} from 'react-native';
-import {moderateScale, ScaledSheet, ms} from 'react-native-size-matters';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {ScaledSheet, ms} from 'react-native-size-matters';
 import PropTypes from 'prop-types';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {Counter} from '@molecules';
+import {Images} from '@assets';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
 
@@ -40,13 +40,12 @@ const CounterPair = React.forwardRef(
             <Text style={[CommonStyles.flex1, Fonts.Lato15B]}>{label}</Text>
           ) : null}
           {showHelpIcon ? (
-            <Icon
-              name="information-outline"
-              color={RawColors.darkSalmon}
-              size={moderateScale(40)}
-              onPress={onHelpIconPress}
-              style={{marginLeft: ms(50)}}
-            />
+            <TouchableOpacity onPress={onHelpIconPress}>
+              <Image
+                source={Images.information}
+                style={{height: ms(40), width: ms(40)}}
+              />
+            </TouchableOpacity>
           ) : null}
         </View>
         <Counter

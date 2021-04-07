@@ -1,10 +1,10 @@
 import React, {useCallback, useEffect} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {moderateScale} from 'react-native-size-matters';
+import {ms} from 'react-native-size-matters';
 
 import {ChecklistCell} from '@molecules';
+import {Images} from '@assets';
 import CommonStyles from '@styles/CommonStyles';
 import {Fonts, RawColors} from '@styles/Themes';
 
@@ -67,12 +67,12 @@ const ChoiceList = React.forwardRef(
           ) : null}
         </View>
         {showHelpIcon ? (
-          <Icon
-            name="information-outline"
-            color={RawColors.darkSalmon}
-            size={moderateScale(40)}
-            onPress={onHelpIconPress}
-          />
+          <TouchableOpacity onPress={onHelpIconPress}>
+            <Image
+              source={Images.information}
+              style={{height: ms(40), width: ms(40)}}
+            />
+          </TouchableOpacity>
         ) : null}
       </View>
     );
