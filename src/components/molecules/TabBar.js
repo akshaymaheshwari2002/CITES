@@ -14,7 +14,7 @@ import CommonStyles from '@styles/CommonStyles';
 
 const tabButtons = [
   {name: 'home', icon: 'home', screen: 'LanguageSelection'},
-  {name: 'search', icon: 'search', screen: ''},
+  {name: 'search', icon: 'search', screen: 'Search'},
   {name: 'edit', icon: 'edit-3', screen: 'InspectionNotes'},
   {name: 'list', icon: 'list', screen: ''},
 ];

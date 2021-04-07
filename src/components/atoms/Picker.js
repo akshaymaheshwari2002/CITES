@@ -1,11 +1,11 @@
 import React, {useCallback} from 'react';
-import {Text, View, Platform} from 'react-native';
+import {Text, View, Platform, TouchableOpacity, Image} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import PropTypes from 'prop-types';
 import {ScaledSheet, ms} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {RawColors, Fonts} from '@styles/Themes';
+import {Images} from '@assets';
 import CommonStyles from '@styles/CommonStyles';
 
 const Picker = React.forwardRef(
@@ -37,12 +37,12 @@ const Picker = React.forwardRef(
             <Text style={[CommonStyles.flex1, Fonts.Lato15R]}>{label}</Text>
           ) : null}
           {showHelpIcon ? (
-            <Icon
-              name="information-outline"
-              color={RawColors.darkSalmon}
-              size={ms(40)}
-              onPress={onHelpIconPress}
-            />
+            <TouchableOpacity onPress={onHelpIconPress}>
+              <Image
+                source={Images.information}
+                style={{height: ms(40), width: ms(40)}}
+              />
+            </TouchableOpacity>
           ) : null}
         </View>
         <DropDownPicker

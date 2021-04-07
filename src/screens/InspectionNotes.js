@@ -23,16 +23,14 @@ const InspectionNotes = ({navigation: {navigate, goBack}}) => {
     (state) => state.sessionReducer.activeInspection.notes,
   );
 
-  useEffect(() => {
-    console.log({notes}, '1234');
-  }, [notes]);
-
   const handlePress = useCallback(() => {
     console.log(notes, '12345679');
     const timeStamp = Date.now();
     const title = notesTitle;
     const text = notesText;
     dispatch(saveNotes({notes: {title, text, timeStamp}}));
+    setNotesText('');
+    setNotesTitle('');
     setPopUp(false);
   }, [dispatch, notes, notesText, notesTitle]);
 

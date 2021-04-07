@@ -41,6 +41,7 @@ import {
   NoExport,
   MoreInformation,
   InspectionNotes,
+  Search,
 } from '@screens';
 import CommonStyles from '@styles/CommonStyles';
 
@@ -149,6 +150,7 @@ const AppNavigator = () => {
           component={DetermineSourceCode}
           initialParams={{showToolTip: false}}
         />
+        <Stack.Screen name="Search" component={Search} />
       </Stack.Navigator>
       <TabBar />
     </>

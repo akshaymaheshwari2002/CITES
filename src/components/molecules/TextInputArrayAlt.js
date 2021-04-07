@@ -1,11 +1,11 @@
 import React, {useCallback} from 'react';
-import {Text, View} from 'react-native';
-import {moderateScale, ScaledSheet} from 'react-native-size-matters';
+import {Text, View, Image, TouchableOpacity} from 'react-native';
+import {ms, ScaledSheet} from 'react-native-size-matters';
 import PropTypes from 'prop-types';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {TextInput} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
+import {Images} from '@assets';
 import CommonStyles from '@styles/CommonStyles';
 
 const TextInputArrayAlt = React.forwardRef(
@@ -53,12 +53,12 @@ const TextInputArrayAlt = React.forwardRef(
             <Text style={[CommonStyles.flex1, Fonts.Lato15B]}>{label}</Text>
           ) : null}
           {showHelpIcon ? (
-            <Icon
-              name="information-outline"
-              color={RawColors.darkSalmon}
-              size={moderateScale(40)}
-              onPress={onHelpIconPress}
-            />
+            <TouchableOpacity onPress={onHelpIconPress}>
+              <Image
+                source={Images.information}
+                style={{height: ms(40), width: ms(40)}}
+              />
+            </TouchableOpacity>
           ) : null}
         </View>
         <View style={styles.container}>{renderFields()}</View>
