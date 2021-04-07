@@ -165,6 +165,7 @@ const ProductionCapacityCalculator = ({navigation: {goBack}}) => {
           <TextInput
             value={resultFieldValue}
             {...resultFieldInputProps}
+            labelStyle={Fonts.Lato16B}
             editable={false}
             style={resultFieldStyleProps}
           />

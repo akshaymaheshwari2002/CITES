@@ -38,6 +38,7 @@ const RawColors = {
   error: '#dd4746',
   darkBlue: '#2A414C',
   approxTwilightBlue: '#FBFCF6',
+  approxDolphin: 'rgba(118,118,128,0.12)',
   backToolTipColor: 'rgba(0,0,0,0.5)',
   sideMenu: '#00000029',
   lightContinueInspection: '#F6F9EF',
@@ -81,7 +82,7 @@ const Fonts = {
   },
   Lato16B: {
     fontFamily: 'Lato-Bold',
-    fontSize: moderateScale(22),
+    fontSize: moderateScale(16),
   },
   Lato22B: {
     fontFamily: 'Lato-Bold',

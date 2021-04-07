@@ -15,42 +15,42 @@ import {navigate} from '@utils/RootNavigation';
 
 const SideMenu = ({hideModal}) => {
   const {width: windowWidth} = useWindowDimensions();
-  const activeInspection = useSelector((state) => {
-    return state?.sessionReducer?.activeInspection;
-  });
-  const [isInspectionActive, setIsInspectionActive] = useState(false);
-  const [isStepOneCompleted, setIsStepOneCompleted] = useState(false);
-  const [isStepTwoCompleted, setIsStepTwoCompleted] = useState(false);
+  // const activeInspection = useSelector((state) => {
+  //   return state?.sessionReducer?.activeInspection;
+  // });
+  // const [isInspectionActive, setIsInspectionActive] = useState(false);
+  // const [isStepOneCompleted, setIsStepOneCompleted] = useState(false);
+  // const [isStepTwoCompleted, setIsStepTwoCompleted] = useState(false);
 
-  useEffect(() => {
-    setIsInspectionActive(Boolean(Object.keys(activeInspection ?? {}).length));
-  }, [activeInspection, setIsInspectionActive]);
+  // useEffect(() => {
+  //   setIsInspectionActive(Boolean(Object.keys(activeInspection ?? {}).length));
+  // }, [activeInspection, setIsInspectionActive]);
 
-  useEffect(() => {
-    setIsStepOneCompleted(
-      Boolean(
-        activeInspection?.stepOne &&
-          Object.values(activeInspection?.stepOne ?? {}).reduce(
-            (accumulator, currentValue) =>
-              !currentValue ? false : accumulator,
-            true,
-          ),
-      ),
-    );
-  }, [activeInspection, setIsInspectionActive, setIsStepOneCompleted]);
+  // useEffect(() => {
+  //   setIsStepOneCompleted(
+  //     Boolean(
+  //       activeInspection?.stepOne &&
+  //         Object.values(activeInspection?.stepOne ?? {}).reduce(
+  //           (accumulator, currentValue) =>
+  //             !currentValue ? false : accumulator,
+  //           true,
+  //         ),
+  //     ),
+  //   );
+  // }, [activeInspection, setIsInspectionActive, setIsStepOneCompleted]);
 
-  useEffect(() => {
-    setIsStepTwoCompleted(
-      Boolean(
-        activeInspection?.stepTwo &&
-          Object.values(activeInspection?.stepTwo ?? {}).reduce(
-            (accumulator, currentValue) =>
-              !currentValue ? false : accumulator,
-            true,
-          ),
-      ),
-    );
-  }, [activeInspection, setIsInspectionActive, setIsStepTwoCompleted]);
+  // useEffect(() => {
+  //   setIsStepTwoCompleted(
+  //     Boolean(
+  //       activeInspection?.stepTwo &&
+  //         Object.values(activeInspection?.stepTwo ?? {}).reduce(
+  //           (accumulator, currentValue) =>
+  //             !currentValue ? false : accumulator,
+  //           true,
+  //         ),
+  //     ),
+  //   );
+  // }, [activeInspection, setIsInspectionActive, setIsStepTwoCompleted]);
 
   return (
     <TouchableOpacity
@@ -75,66 +75,54 @@ const SideMenu = ({hideModal}) => {
                 navigate('StepOne');
               }}
             />
-            {isInspectionActive && isStepOneCompleted ? (
-              <Button
-                buttonContent={'Step 2'}
-                buttonStyle={() => styles.button}
-                buttonTextStyle={() => styles.buttonTextStyle}
-                onPress={() => {
-                  navigate('StepTwo');
-                }}
-              />
-            ) : null}
-            {isInspectionActive && isStepOneCompleted && isStepTwoCompleted ? (
-              <Button
-                buttonContent={'Step 3'}
-                buttonStyle={() => styles.button}
-                buttonTextStyle={() => styles.buttonTextStyle}
-                onPress={() => {
-                  navigate('StepThree');
-                }}
-              />
-            ) : null}
-            {isInspectionActive ? (
-              <Button
-                buttonContent={'Form 1'}
-                buttonStyle={() => styles.button}
-                buttonTextStyle={() => styles.buttonTextStyle}
-                onPress={() => {
-                  navigate('FormOne');
-                }}
-              />
-            ) : null}
-            {isInspectionActive && isStepOneCompleted ? (
-              <Button
-                buttonContent={'Form 2'}
-                buttonStyle={() => styles.button}
-                buttonTextStyle={() => styles.buttonTextStyle}
-                onPress={() => {
-                  navigate('FormTwo');
-                }}
-              />
-            ) : null}
-            {isInspectionActive && isStepOneCompleted ? (
-              <Button
-                buttonContent={'Form 3'}
-                buttonStyle={() => styles.button}
-                buttonTextStyle={() => styles.buttonTextStyle}
-                onPress={() => {
-                  navigate('FormThree');
-                }}
-              />
-            ) : null}
-            {isInspectionActive && isStepOneCompleted && isStepTwoCompleted ? (
-              <Button
-                buttonContent={'Form 4'}
-                buttonStyle={() => styles.button}
-                buttonTextStyle={() => styles.buttonTextStyle}
-                onPress={() => {
-                  navigate('FormFour');
-                }}
-              />
-            ) : null}
+            <Button
+              buttonContent={'Step 2'}
+              buttonStyle={() => styles.button}
+              buttonTextStyle={() => styles.buttonTextStyle}
+              onPress={() => {
+                navigate('StepTwo');
+              }}
+            />
+            <Button
+              buttonContent={'Step 3'}
+              buttonStyle={() => styles.button}
+              buttonTextStyle={() => styles.buttonTextStyle}
+              onPress={() => {
+                navigate('StepThree');
+              }}
+            />
+            <Button
+              buttonContent={'Form 1'}
+              buttonStyle={() => styles.button}
+              buttonTextStyle={() => styles.buttonTextStyle}
+              onPress={() => {
+                navigate('FormOne');
+              }}
+            />
+            <Button
+              buttonContent={'Form 2'}
+              buttonStyle={() => styles.button}
+              buttonTextStyle={() => styles.buttonTextStyle}
+              onPress={() => {
+                navigate('FormTwo');
+              }}
+            />
+            <Button
+              buttonContent={'Form 3'}
+              buttonStyle={() => styles.button}
+              buttonTextStyle={() => styles.buttonTextStyle}
+              onPress={() => {
+                navigate('FormThree');
+              }}
+            />
+            <Button
+              buttonContent={'Form 4'}
+              buttonStyle={() => styles.button}
+              buttonTextStyle={() => styles.buttonTextStyle}
+              onPress={() => {
+                navigate('FormFour');
+              }}
+            />
             <Button
               buttonContent={'Determine Source'}
               buttonStyle={() => styles.button}

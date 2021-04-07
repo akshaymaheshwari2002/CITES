@@ -40,6 +40,7 @@ import Q9MoreInfo from './Q9MoreInfo';
 import Q1MoreInfo from './Q1MoreInfo';
 import NoExport from './NoExport';
 import InspectionNotes from './InspectionNotes';
+import Search from './Search';
 
 export {
   FacilityScore,
@@ -84,4 +85,5 @@ export {
   Q1MoreInfo,
   InspectionNotes,
   NoExport,
+  Search,
 };

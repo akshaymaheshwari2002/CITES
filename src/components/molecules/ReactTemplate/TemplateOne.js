@@ -17,8 +17,7 @@ const facilitySchema = {
   facilityName: 'Facility name: ',
   owner: 'Facility owner/manager: ',
   address: 'Facility address: ',
-  citesInformationCode:
-    'CITES register of capitative-breeding information code: ',
+  citesInformationCode: 'CITES Appendix I captive-breeding code: ',
   establishmentDate: 'Facility date of establishment: ',
   country: 'Country: ',
   facilityContact: 'Facility contact information:',
