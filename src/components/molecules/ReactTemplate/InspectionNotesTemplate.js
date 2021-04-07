@@ -79,7 +79,8 @@ const styles = {
     gridTemplateColumns: 'auto auto auto',
   },
   table: {
-    display: 'table',
+    display: 'flex',
+    flexDirection: 'column',
     width: '100%',
     borderWidth: 1.5,
     border: '1.5px solid',
@@ -89,12 +90,11 @@ const styles = {
     flexDirection: 'row',
   },
   cell: {
-    //flex: 1,
     padding: 5,
     borderWidth: 0.5,
+    wordWrap: 'normal',
     border: '0.5px solid',
-    //minHeight: 40,
-    minWidth: 100,
+    width: '25%',
     textAlign: 'center',
   },
 };
