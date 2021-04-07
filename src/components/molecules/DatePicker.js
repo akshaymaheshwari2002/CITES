@@ -1,12 +1,12 @@
 import React, {useCallback, useState} from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {Text, TouchableOpacity, View, Image} from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import PropTypes from 'prop-types';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {TextInput} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
-import {moderateScale, ScaledSheet} from 'react-native-size-matters';
+import {ms, ScaledSheet} from 'react-native-size-matters';
+import {Images} from '@assets';
 import CommonStyles from '@styles/CommonStyles';
 
 const DatePicker = React.forwardRef(
@@ -45,12 +45,12 @@ const DatePicker = React.forwardRef(
             <Text style={[CommonStyles.flex1, Fonts.Lato15B]}>{label}</Text>
           ) : null}
           {showHelpIcon ? (
-            <Icon
-              name="information-outline"
-              color={RawColors.darkSalmon}
-              size={moderateScale(40)}
-              onPress={onHelpIconPress}
-            />
+            <TouchableOpacity onPress={onHelpIconPress}>
+              <Image
+                source={Images.information}
+                style={{height: ms(40), width: ms(40)}}
+              />
+            </TouchableOpacity>
           ) : null}
         </View>
         <TouchableOpacity

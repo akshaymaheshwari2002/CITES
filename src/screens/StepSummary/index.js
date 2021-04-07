@@ -29,6 +29,7 @@ import {
   FormThreeTemplate,
   FormThreeHeader,
   FormFourTemplate,
+  InspectionNotesTemplate,
 } from '@molecules';
 
 const StepSummary = ({navigation: {navigate}}) => {
@@ -104,6 +105,10 @@ const StepSummary = ({navigation: {navigate}}) => {
     (state) => state.sessionReducer.activeInspection.stepThree.formFour,
     shallowEqual,
   );
+  const notes = useSelector(
+    (state) => state.sessionReducer.activeInspection.notes,
+    shallowEqual,
+  );
 
   const formatFormThreeDataToDisplay = (data) => ({
     ...data,
@@ -166,11 +171,13 @@ const StepSummary = ({navigation: {navigate}}) => {
             facilityData={facilityData}
             response={formFourData}
           />,
+          <div style={{breakAfter: 'page'}} />,
+          <InspectionNotesTemplate notesData={notes} />,
         ],
       });
       RNPrint.print({filePath: file?.filePath});
     })();
-  }, [facilityData, formFourData, formTwoData, registeredSpecies]);
+  }, [facilityData, formFourData, formTwoData, notes, registeredSpecies]);
 
   const options = {
     message: 'Share form pdf ',

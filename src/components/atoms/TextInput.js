@@ -1,9 +1,15 @@
 import React, {useCallback} from 'react';
-import {TextInput as Input, Text, View} from 'react-native';
-import PropTypes from 'prop-types';
+import {
+  TextInput as Input,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import {ms, ScaledSheet} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import {Images} from '@assets';
+import PropTypes from 'prop-types';
 import {RawColors, Fonts} from '@styles/Themes';
 
 const TextInput = React.forwardRef(
@@ -57,13 +63,12 @@ const TextInput = React.forwardRef(
             )
           ) : null}
           {showHelpIcon ? (
-            <Icon
-              style={styles.fieldHelpIcon}
-              name="information-outline"
-              color={RawColors.darkSalmon}
-              size={ms(40)}
-              onPress={onHelpIconPress}
-            />
+            <TouchableOpacity onPress={onHelpIconPress}>
+              <Image
+                source={Images.information}
+                style={{height: ms(40), width: ms(40)}}
+              />
+            </TouchableOpacity>
           ) : null}
         </View>
         {labelBottom ? (
