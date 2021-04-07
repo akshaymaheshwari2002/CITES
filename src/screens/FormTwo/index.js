@@ -118,7 +118,11 @@ const FormTwo = ({navigation}) => {
           {formatMessage({id: 'screen.FormTwo.title'})}
         </Text>
         <Text style={styles.contentOne}>
-          {formatMessage({id: 'screen.FormTwo.contentOne'})}
+          {formatMessage({id: 'screen.FormTwo.contentOne_1'})}
+          <Text style={(styles.contentOne, {...Fonts.Lato15B})}>
+            {formatMessage({id: 'screen.FormTwo.contentOne_2'})}
+          </Text>
+          {formatMessage({id: 'screen.FormTwo.contentOne_3'})}
         </Text>
         <Text style={styles.contentTwo}>
           {formatMessage({id: 'screen.FormTwo.contentTwo'})}

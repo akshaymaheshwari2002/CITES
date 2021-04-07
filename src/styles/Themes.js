@@ -81,7 +81,7 @@ const Fonts = {
   },
   Lato16B: {
     fontFamily: 'Lato-Bold',
-    fontSize: moderateScale(22),
+    fontSize: moderateScale(16),
   },
   Lato22B: {
     fontFamily: 'Lato-Bold',
