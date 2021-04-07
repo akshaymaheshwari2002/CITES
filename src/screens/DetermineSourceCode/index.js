@@ -246,7 +246,9 @@ const DetermineSourceCode = ({
                 </Text>
               </TouchableOpacity>
             ) : (
-              <Text style={styles.text} key={index.toString()}>
+              <Text
+                style={[styles.text, value?.textStyle ?? {}]}
+                key={index.toString()}>
                 {formatMessage({id: value.text})}
               </Text>
             );
@@ -289,6 +291,7 @@ const styles = ScaledSheet.create({
     flex: 1,
     alignItems: 'center',
     paddingTop: '30@vs',
+    width: '100%',
   },
   link: {
     ...Fonts.Lato20B,
@@ -297,11 +300,13 @@ const styles = ScaledSheet.create({
     letterSpacing: 0.48,
     textAlign: 'center',
     textDecorationLine: 'underline',
+    paddingHorizontal: '10@s',
   },
   text: {
     ...Fonts.Lato20R,
     marginTop: '15@vs',
     textAlign: 'center',
+    paddingHorizontal: '10@s',
   },
   buttonContainer: {
     height: '200@vs',

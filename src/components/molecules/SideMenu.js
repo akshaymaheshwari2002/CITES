@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   useWindowDimensions,
@@ -18,6 +18,39 @@ const SideMenu = ({hideModal}) => {
   const activeInspection = useSelector((state) => {
     return state?.sessionReducer?.activeInspection;
   });
+  const [isInspectionActive, setIsInspectionActive] = useState(false);
+  const [isStepOneCompleted, setIsStepOneCompleted] = useState(false);
+  const [isStepTwoCompleted, setIsStepTwoCompleted] = useState(false);
+
+  useEffect(() => {
+    setIsInspectionActive(Boolean(Object.keys(activeInspection ?? {}).length));
+  }, [activeInspection, setIsInspectionActive]);
+
+  useEffect(() => {
+    setIsStepOneCompleted(
+      Boolean(
+        activeInspection?.stepOne &&
+          Object.values(activeInspection?.stepOne ?? {}).reduce(
+            (accumulator, currentValue) =>
+              !currentValue ? false : accumulator,
+            true,
+          ),
+      ),
+    );
+  }, [activeInspection, setIsInspectionActive, setIsStepOneCompleted]);
+
+  useEffect(() => {
+    setIsStepTwoCompleted(
+      Boolean(
+        activeInspection?.stepTwo &&
+          Object.values(activeInspection?.stepTwo ?? {}).reduce(
+            (accumulator, currentValue) =>
+              !currentValue ? false : accumulator,
+            true,
+          ),
+      ),
+    );
+  }, [activeInspection, setIsInspectionActive, setIsStepTwoCompleted]);
 
   return (
     <TouchableOpacity
@@ -33,7 +66,7 @@ const SideMenu = ({hideModal}) => {
         ]}
         contentContainerStyle={styles.contentWrapper}>
         <TouchableWithoutFeedback>
-          <View>
+          <View style={styles.height100}>
             <Button
               buttonContent={'Step 1'}
               buttonStyle={() => styles.button}
@@ -42,13 +75,7 @@ const SideMenu = ({hideModal}) => {
                 navigate('StepOne');
               }}
             />
-            {Object.keys(activeInspection ?? {}).length &&
-            activeInspection?.stepOne &&
-            Object.values(activeInspection?.stepOne ?? {}).reduce(
-              (accumulator, currentValue) =>
-                !currentValue ? false : accumulator,
-              true,
-            ) ? (
+            {isInspectionActive && isStepOneCompleted ? (
               <Button
                 buttonContent={'Step 2'}
                 buttonStyle={() => styles.button}
@@ -58,13 +85,7 @@ const SideMenu = ({hideModal}) => {
                 }}
               />
             ) : null}
-            {Object.keys(activeInspection ?? {}).length &&
-            activeInspection?.stepTwo &&
-            Object.values(activeInspection?.stepTwo ?? {}).reduce(
-              (accumulator, currentValue) =>
-                !currentValue ? false : accumulator,
-              true,
-            ) ? (
+            {isInspectionActive && isStepOneCompleted && isStepTwoCompleted ? (
               <Button
                 buttonContent={'Step 3'}
                 buttonStyle={() => styles.button}
@@ -74,7 +95,7 @@ const SideMenu = ({hideModal}) => {
                 }}
               />
             ) : null}
-            {Object.keys(activeInspection ?? {}).length ? (
+            {isInspectionActive ? (
               <Button
                 buttonContent={'Form 1'}
                 buttonStyle={() => styles.button}
@@ -84,13 +105,7 @@ const SideMenu = ({hideModal}) => {
                 }}
               />
             ) : null}
-            {Object.keys(activeInspection ?? {}).length &&
-            activeInspection?.stepOne &&
-            Object.values(activeInspection?.stepOne ?? {}).reduce(
-              (accumulator, currentValue) =>
-                !currentValue ? false : accumulator,
-              true,
-            ) ? (
+            {isInspectionActive && isStepOneCompleted ? (
               <Button
                 buttonContent={'Form 2'}
                 buttonStyle={() => styles.button}
@@ -100,13 +115,7 @@ const SideMenu = ({hideModal}) => {
                 }}
               />
             ) : null}
-            {Object.keys(activeInspection ?? {}).length &&
-            activeInspection?.stepOne &&
-            Object.values(activeInspection?.stepOne ?? {}).reduce(
-              (accumulator, currentValue) =>
-                !currentValue ? false : accumulator,
-              true,
-            ) ? (
+            {isInspectionActive && isStepOneCompleted ? (
               <Button
                 buttonContent={'Form 3'}
                 buttonStyle={() => styles.button}
@@ -116,13 +125,7 @@ const SideMenu = ({hideModal}) => {
                 }}
               />
             ) : null}
-            {Object.keys(activeInspection ?? {}).length &&
-            activeInspection?.stepTwo &&
-            Object.values(activeInspection?.stepTwo ?? {}).reduce(
-              (accumulator, currentValue) =>
-                !currentValue ? false : accumulator,
-              true,
-            ) ? (
+            {isInspectionActive && isStepOneCompleted && isStepTwoCompleted ? (
               <Button
                 buttonContent={'Form 4'}
                 buttonStyle={() => styles.button}
@@ -184,6 +187,9 @@ const styles = ScaledSheet.create({
     color: RawColors.black,
     padding: '10@ms',
     ...Fonts.Lato15R,
+  },
+  height100: {
+    height: '100%',
   },
 });
 
