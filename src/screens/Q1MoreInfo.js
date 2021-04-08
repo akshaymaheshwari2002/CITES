@@ -108,8 +108,8 @@ export default Q1MoreInfo;
 
 const styles = ScaledSheet.create({
   margin: {
-    marginHorizontal: '30@s',
-    alignItems: 'center',
+    marginHorizontal: '16@s',
+    alignItems: 'flex-start',
   },
   title: {
     marginTop: '40@vs',
@@ -119,7 +119,7 @@ const styles = ScaledSheet.create({
   titleContent: {
     ...Fonts.HelveticaNeue20B,
     marginHorizontal: '10@s',
-    lineHeight: '26@s',
+    lineHeight: '23@s',
     letterSpacing: '0.32@s',
   },
   button: {
@@ -135,14 +135,14 @@ const styles = ScaledSheet.create({
     minWidth: '130@ms',
     color: RawColors.black,
     textAlign: 'center',
-    ...Fonts.Italic15R,
+    ...Fonts.Regular15R,
     lineHeight: '20@s',
   },
   contentTwo: {
     minWidth: '130@ms',
     color: RawColors.black,
     textAlign: 'center',
-    ...Fonts.Italic15R,
+    ...Fonts.Regular15R,
     lineHeight: '20@s',
   },
   footer: {

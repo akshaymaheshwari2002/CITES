@@ -169,6 +169,13 @@ export default {
       isBold: false,
     },
   ],
+  formFourNew: [
+    {
+      text:
+        'Suitable enclosures or containment facilities should provide adequate equipment, structure and space for breeding animals to live. There should be adequate enclosures or containment facilities to produce the number of offspring and/or specimens claimed to be produced by the facility.',
+      isBold: false,
+    },
+  ],
   formFourThree: [
     {
       text:

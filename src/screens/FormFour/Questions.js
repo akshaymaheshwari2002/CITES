@@ -34,7 +34,7 @@ const form4Questions = [
     content: 'formFour.q4',
     for: 'formFourFor2',
     moreInfo: {
-      helpTextKey: 'formFourThree',
+      helpTextKey: 'formFourNew',
     },
     yes: 2,
     no: 0,
