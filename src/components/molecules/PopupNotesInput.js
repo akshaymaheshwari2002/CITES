@@ -14,13 +14,14 @@ const PopupNotesInput = ({
   notesText = '',
   setNotesTitle = () => {},
   setNotesText = () => {},
+  setPopUp = () => {},
 }) => {
   const {formatMessage} = useIntl();
 
   return isShowPopupNotesInput ? (
     <View style={styles.containerOne}>
       <View style={styles.containerTwo}>
-        <View style={{height: vs(200)}}>
+        <View style={{height: vs(300)}}>
           <TextInput
             value={notesTitle}
             onChange={setNotesTitle}
@@ -44,6 +45,16 @@ const PopupNotesInput = ({
               id: 'general.save',
             })}
             onPress={onPress}
+          />
+          <Button
+            buttonStyle={() => styles.buttonStyle}
+            buttonTextStyle={() => styles.buttonTextStyle}
+            buttonContent={formatMessage({
+              id: 'general.cancel',
+            })}
+            onPress={() => {
+              setPopUp(false);
+            }}
           />
         </View>
       </View>

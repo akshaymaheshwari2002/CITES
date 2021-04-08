@@ -562,5 +562,20 @@
   "button.formEditMenu.formOne.EditInSummary": "chỉnh sửa trực tiếp thành một bản tóm tắt",
   "button.formEditMenu.formTwo.EditInSummary": "chỉnh sửa trực tiếp thành hai bản tóm tắt",
   "button.formEditMenu.formThree.EditInSummary": "chỉnh sửa trực tiếp thành ba bản tóm tắt",
-  "button.formEditMenu.formFour.EditInSummary": "chỉnh sửa trực tiếp thành Bốn bản tóm tắt"
+  "button.formEditMenu.formFour.EditInSummary": "chỉnh sửa trực tiếp thành Bốn bản tóm tắt",
+  "label.inspectionNotes": "Ghi chú kiểm tra",
+  "screen.InspectionNotes.contentOne": "Ghi chép và chụp ảnh cuộc kiểm tra.",
+  "screen.InspectionNotes.notesTitle": "Tiêu đề ghi chú",
+  "screen.InspectionNotes.notesText": "Văn bản Ghi chú",
+  "form.placeholder.nameOfInspectionOfficers": "Name of inspection officer",
+  "popup.InspectionNotes.beginInspection": "Bạn không có kiểm tra tích cực.",
+  "drawer.productionCapacityCalculator": "MÁY TÍNH NĂNG LỰC SẢN XUẤT",
+  "drawer.determineSourceCode": "XÁC ĐỊNH MÃ NGUỒN",
+  "drawer.formFour": "MẪU 4",
+  "drawer.formThree": "MẪU 3",
+  "drawer.formTwo": "MẪU 2",
+  "drawer.formOne": "MẪU 1",
+  "drawer.stepThree": "BƯỚC 3",
+  "drawer.stepTwo": "BƯỚC 2",
+  "drawer.stepOne": "BƯỚC 1"
 }

@@ -1,8 +1,15 @@
 import React, {useCallback, useState, useEffect} from 'react';
-import {View, Text, TouchableOpacity, Image, FlatList} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  FlatList,
+  Alert,
+} from 'react-native';
 import {ScaledSheet, vs, s} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
-import {useDispatch, useSelector, shallowEqual} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {Container, Button, ImagePickerModal} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
@@ -11,12 +18,11 @@ import {saveNotes} from '@store/slices/sessionSlice';
 import {Images} from '@assets/';
 import {PopupNotesInput} from '@molecules';
 
-const InspectionNotes = ({navigation: {navigate, goBack}}) => {
+const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
   const {formatMessage} = useIntl();
   const dispatch = useDispatch();
   const [isImagePicker, setIsImagePicker] = useState(false);
   const [popUp, setPopUp] = useState(false);
-  //const [notes, setNotes] = useState([]);
   const [notesTitle, setNotesTitle] = useState('');
   const [notesText, setNotesText] = useState('');
   const notes = useSelector(
@@ -28,7 +34,11 @@ const InspectionNotes = ({navigation: {navigate, goBack}}) => {
     const timeStamp = Date.now();
     const title = notesTitle;
     const text = notesText;
-    dispatch(saveNotes({notes: {title, text, timeStamp}}));
+    const notesTextLength = notesText.length;
+    const notesTitleLength = notesTitle.length;
+    if (notesTextLength > 1 && notesTitleLength > 1) {
+      dispatch(saveNotes({notes: {title, text, timeStamp}}));
+    }
     setNotesText('');
     setNotesTitle('');
     setPopUp(false);
@@ -36,7 +46,6 @@ const InspectionNotes = ({navigation: {navigate, goBack}}) => {
 
   const renderItem = useCallback(({item}) => {
     const timeStamp = item?.timeStamp;
-
     return (
       <View style={styles.row_parent}>
         <Button
@@ -122,14 +131,25 @@ const InspectionNotes = ({navigation: {navigate, goBack}}) => {
           />
         </View>
       </Container>
-      <PopupNotesInput
-        isShowPopupNotesInput={popUp}
-        onPress={handlePress}
-        notesTitle={notesTitle}
-        notesText={notesText}
-        setNotesTitle={setNotesTitle}
-        setNotesText={setNotesText}
-      />
+      {notes ? (
+        <PopupNotesInput
+          isShowPopupNotesInput={popUp}
+          onPress={handlePress}
+          notesTitle={notesTitle}
+          notesText={notesText}
+          setNotesTitle={setNotesTitle}
+          setNotesText={setNotesText}
+          setPopUp={setPopUp}
+        />
+      ) : (
+        <>
+          {Alert.alert(
+            formatMessage({
+              id: 'popup.InspectionNotes.beginInspection',
+            }),
+          )}
+        </>
+      )}
     </>
   );
 };
@@ -237,7 +257,6 @@ const styles = ScaledSheet.create({
     backgroundColor: RawColors.eggshell,
     padding: '16@s',
     width: '358@s',
-    height: '120@vs',
     elevation: '5@s',
     ...CommonStyles.shadowEffectDarker,
   },

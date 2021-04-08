@@ -567,5 +567,16 @@
   "label.inspectionNotes": "Inspection Notes",
   "screen.InspectionNotes.contentOne": "Take notes and photos of the inspection.",
   "screen.InspectionNotes.notesTitle": "Notes Title",
-  "screen.InspectionNotes.notesText": "Notes Text"
+  "screen.InspectionNotes.notesText": "Notes Text",
+  "form.placeholder.nameOfInspectionOfficers": "Name of inspection officer",
+  "popup.InspectionNotes.beginInspection": "You have no active inspection.",
+  "drawer.productionCapacityCalculator": "PRODUCTION CAPACITY CALCULATOR",
+  "drawer.determineSourceCode": "DETERMINE SOURCE CODE",
+  "drawer.formFour": "FORM 4",
+  "drawer.formThree": "FORM 3",
+  "drawer.formTwo": "FORM 2",
+  "drawer.formOne": "FORM 1",
+  "drawer.stepThree": "STEP 3",
+  "drawer.stepTwo": "STEP 2",
+  "drawer.stepOne": "STEP 1"
 }

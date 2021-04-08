@@ -117,7 +117,7 @@ const ImagePickerModal = ({
               <Image
                 resizeMode="contain"
                 source={Images.closeButton}
-                style={styles.closeIcon}
+                style={styles.icon}
               />
             </TouchableOpacity>
             <TouchableOpacity style={styles.btn} onPress={launchGallery}>
@@ -127,7 +127,7 @@ const ImagePickerModal = ({
                   {backgroundColor: RawColors.lightGold12},
                 ]}>
                 <Image
-                  source={Images.image}
+                  source={Images.gallery}
                   resizeMode="contain"
                   style={isTablet ? styles.image : styles.icon}
                 />
@@ -159,28 +159,30 @@ const styles = StyleSheet.create({
   modal: {
     flex: 1,
     justifyContent: 'flex-end',
+    paddingBottom: 24,
   },
   container: {
-    paddingHorizontal: 16,
-    paddingVertical: 16,
-    backgroundColor: RawColors.white,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    //paddingHorizontal: 50,
+    //paddingVertical: 16,
+    paddingBottom: 50,
+    backgroundColor: RawColors.whiteTwo,
   },
   btn: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
     marginBottom: 10,
     alignItems: 'center',
+    //j/ustifyContent: 'center',
+    marginHorizontal: 80,
   },
   btnText: {
-    paddingLeft: 20,
+    paddingLeft: 5,
     paddingVertical: 9,
-    fontSize: 14,
+    ...Fonts.Lato15R,
+    color: RawColors.backToolTipColor,
   },
   icon: {
-    width: 20,
-    height: 20,
+    width: 24,
+    height: 24,
   },
   image: {
     width: 30,
@@ -191,7 +193,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 25,
   },
-  dismiss: {marginVertical: 10, alignItems: 'flex-end'},
+  dismiss: {marginVertical: 15, alignItems: 'flex-end', marginHorizontal: 20},
 });
 
 export default ImagePickerModal;
