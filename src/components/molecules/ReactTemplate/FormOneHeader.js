@@ -26,7 +26,7 @@ const facilitySchema = {
   dateOfInspection: 'Date of inspection: ',
   seniorOfficerName: 'Name of Senior Inspecting Officer: ',
   typeOfInspection: 'Type of inspection: ',
-  nationalPermitNumber: 'National permit number',
+  nationalPermitNumber: 'National permit number: ',
 };
 
 const FormOneHeader = ({form = 'one', facilityData = {}, editable = false}) => {
