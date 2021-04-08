@@ -3,12 +3,12 @@ import {ms, s} from 'react-native-size-matters';
 import {View, Switch, Text} from 'react-native';
 
 import getValidators from '@utils/FormValidators';
-import createIntl from '@utils/Intl';
+import {getIntl} from '@utils/Intl';
 import Constants from '@utils/Constants';
 import {Fonts, RawColors} from '@styles/Themes';
 
 export default (fieldProps = {}) => {
-  const {formatMessage} = createIntl();
+  const {formatMessage} = getIntl();
   const {
     required,
     validateInteger,

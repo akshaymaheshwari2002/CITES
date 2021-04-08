@@ -1,30 +1,9 @@
 import React from 'react';
-import {NativeModules, Platform, PermissionsAndroid} from 'react-native';
+import {Platform, PermissionsAndroid} from 'react-native';
 import {renderToStaticMarkup} from 'react-dom/server';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 
-import createIntl from './Intl';
-import messages_en from '@locale/en.json';
-import messages_vi from '@locale/vi.json';
-
-export const getMessages = () => ({
-  en: messages_en,
-  vi: messages_vi,
-});
-
-export const getDeviceLocale = () => {
-  let locale =
-    Platform.OS === 'ios'
-      ? NativeModules.SettingsManager?.settings?.AppleLocale?.split(/[_|-]/)[0]
-      : NativeModules.I18nManager?.localeIdentifier?.split(/[_|-]/)[0];
-
-  const messages = getMessages();
-
-  if (!messages[locale]) {
-    locale = 'en';
-  }
-  return locale;
-};
+import {getIntl} from './Intl';
 
 export const isJSONParsable = (string) => {
   try {
@@ -54,9 +33,8 @@ export const generatePdf = async ({
   templates = [],
   fileName,
   saveFile = false,
-  locale = 'en',
 }) => {
-  const intl = createIntl(locale);
+  const intl = getIntl();
 
   let options = {
     html: templates.map((value) => renderToStaticMarkup(value)).join(''),

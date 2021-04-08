@@ -1,4 +1,4 @@
-import React, {useCallback, useState, useRef} from 'react';
+import React, {useCallback, useState, useRef, useMemo} from 'react';
 import {View, Text, Pressable, Animated, Easing} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {ScaledSheet, ms, vs} from 'react-native-size-matters';
@@ -11,19 +11,26 @@ const LanguageSelectionDropdown = ({items, placeholder, onChange}) => {
   const dropDownOpacity = useRef(new Animated.Value(0)).current;
   const dropDownHeightValue = useRef(new Animated.Value(0)).current;
 
-  const spin = spinValueArrow.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0deg', '180deg'],
-  });
+  const spin = useMemo(
+    () =>
+      spinValueArrow.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['0deg', '180deg'],
+      }),
+    [spinValueArrow],
+  );
 
-  const dropDownAnimationStyle = {
-    maxHeight: dropDownHeightValue.interpolate({
-      inputRange: [0, 1],
-      outputRange: [0, vs(300)],
-      easing: Easing.linear,
+  const dropDownAnimationStyle = useMemo(
+    () => ({
+      maxHeight: dropDownHeightValue.interpolate({
+        inputRange: [0, 1],
+        outputRange: [0, vs(300)],
+        easing: Easing.linear,
+      }),
+      opacity: dropDownOpacity,
     }),
-    opacity: dropDownOpacity,
-  };
+    [dropDownHeightValue, dropDownOpacity],
+  );
 
   const animate = useCallback(
     ({toValue = 1, callbackFunc = () => {}}) => {
@@ -51,21 +58,24 @@ const LanguageSelectionDropdown = ({items, placeholder, onChange}) => {
     [dropDownHeightValue, dropDownOpacity, spinValueArrow],
   );
 
-  const toggleDropdown = (targetState = !isOpen) => {
-    if (targetState) {
-      setIsOpen(true);
-      animate({toValue: 1});
-    } else {
-      animate({
-        toValue: 0,
-        callbackFunc: () => {
-          setIsOpen(false);
-        },
-      });
-    }
-  };
+  const toggleDropdown = useMemo(
+    () => (targetState = !isOpen) => {
+      if (targetState) {
+        setIsOpen(true);
+        animate({toValue: 1});
+      } else {
+        animate({
+          toValue: 0,
+          callbackFunc: () => {
+            setIsOpen(false);
+          },
+        });
+      }
+    },
+    [animate, isOpen],
+  );
 
-  const ItemElement = ({value, index, wideColumn, onPress}) => {
+  const ItemElement = useCallback(({value, wideColumn, onPress}) => {
     return (
       <Pressable
         onPress={onPress}
@@ -87,7 +97,7 @@ const LanguageSelectionDropdown = ({items, placeholder, onChange}) => {
         )}
       </Pressable>
     );
-  };
+  }, []);
 
   return (
     <View style={styles.containerView}>
