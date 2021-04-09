@@ -33,9 +33,9 @@ export default ({
         fullTimeStaffs: '0',
         partTimeStaffs: '0',
       },
-      label: formatMessage({id: 'form.label.employmentHours'}),
-      label_1: formatMessage({id: 'form.label.fullTime'}),
-      label_2: formatMessage({id: 'form.label.partTime'}),
+      label: formatMessage({id: 'form.FormTwo.label.employmentHours'}),
+      label_1: formatMessage({id: 'form.FormTwo.label.fullTime'}),
+      label_2: formatMessage({id: 'form.FormTwo.label.partTime'}),
       name: 'staffHours',
       fieldType: Constants.COUNTER_PAIR,
       showHelpIcon: true,
@@ -51,7 +51,9 @@ export default ({
       },
     },
     {
-      label: formatMessage({id: 'form.label.professionalVeterinaryServices'}),
+      label: formatMessage({
+        id: 'form.FormTwo.label.professionalVeterinaryServices',
+      }),
       name: 'accessToVeterinaryServices',
       //rules: {required},
       fieldType: Constants.CHOICELIST,
@@ -73,15 +75,19 @@ export default ({
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.vetNameAndAddress'}),
-      placeholder: formatMessage({id: 'form.placeholder.veterinarianName'}),
+      label: formatMessage({id: 'form.FormTwo.label.vetNameAndAddress'}),
+      placeholder: formatMessage({
+        id: 'form.FormTwo.placeholder.veterinarianName',
+      }),
       name: 'veterinarianName',
       labelStyle: {marginRight: s(80)},
       rules: isAccessToVeterinaryServices ? {required} : {},
       fieldContainerStyle: {marginBottom: 0},
     },
     {
-      placeholder: formatMessage({id: 'form.placeholder.veterinarianAddress'}),
+      placeholder: formatMessage({
+        id: 'form.FormTwo.placeholder.veterinarianAddress',
+      }),
       defaultValue: '',
       name: 'veterinarianAddress',
       rules: isAccessToVeterinaryServices ? {required} : {},
@@ -93,7 +99,7 @@ export default ({
       },
     },
     {
-      placeholder: formatMessage({id: 'form.placeholder.country'}),
+      placeholder: formatMessage({id: 'form.FormTwo.placeholder.country'}),
       defaultValue: '',
       name: 'veterinarianCountry',
       rules: isAccessToVeterinaryServices ? {required} : {},
@@ -106,7 +112,9 @@ export default ({
       },
     },
     {
-      label: formatMessage({id: 'form.label.animalKeptAtOtherLocation'}),
+      label: formatMessage({
+        id: 'form.FormTwo.label.animalKeptAtOtherLocation',
+      }),
       name: 'animalKeptAtOtherLocation',
       //rules: {required},
       fieldType: Constants.CHOICELIST,
@@ -139,12 +147,12 @@ export default ({
           }}>
           <Text style={{...Fonts.Lato15R}}>
             {formatMessage({
-              id: 'form.label.addressOfOtherAnimalsPartOne',
+              id: 'form.FormTwo.label.addressOfOtherAnimalsPartOne',
             })}
           </Text>
           <Text style={{...Fonts.Lato15I, textDecorationLine: 'underline'}}>
             {formatMessage({
-              id: 'form.label.addressOfOtherAnimalsPartTwo',
+              id: 'form.FormTwo.label.addressOfOtherAnimalsPartTwo',
             })}
           </Text>
         </TouchableOpacity>

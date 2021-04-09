@@ -5,7 +5,6 @@ import {useIntl} from 'react-intl';
 import AnimatedSplash from 'react-native-animated-splash-screen';
 
 import {RawColors, Fonts} from '@styles/Themes';
-import {Images} from '@assets';
 
 const StepHeader = ({stepNumber = 1, showAnimation = false}) => {
   const intl = useIntl();

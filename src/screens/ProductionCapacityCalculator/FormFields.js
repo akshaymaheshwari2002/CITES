@@ -30,11 +30,16 @@ export default ({modeSelected}) => {
   return [
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.countTotalBreedingFemale'}),
+      label: formatMessage({
+        id: 'form.ProductionCapacityCalculator.label.countTotalBreedingFemale',
+      }),
       placeholder:
         modeSelected === 2
           ? '0'
-          : formatMessage({id: 'form.placeholder.countTotalBreedingFemale'}),
+          : formatMessage({
+              id:
+                'form.ProductionCapacityCalculator.placeholder.countTotalBreedingFemale',
+            }),
       name: 'countTotalBreedingFemale',
       rules:
         modeSelected === 1
@@ -62,10 +67,12 @@ export default ({modeSelected}) => {
     {
       defaultValue: '',
       label: formatMessage({
-        id: 'form.label.percentageBreedingFemalePerSeason',
+        id:
+          'form.ProductionCapacityCalculator.label.percentageBreedingFemalePerSeason',
       }),
       placeholder: formatMessage({
-        id: 'form.placeholder.percentageBreedingFemalePerSeason',
+        id:
+          'form.ProductionCapacityCalculator.placeholder.percentageBreedingFemalePerSeason',
       }),
       placeholderTextColor: RawColors.grey,
       name: 'percentageBreedingFemalePerSeason',
@@ -84,8 +91,12 @@ export default ({modeSelected}) => {
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.countLitterPerYear'}),
-      placeholder: formatMessage({id: 'form.placeholder.countLitterPerYear'}),
+      label: formatMessage({
+        id: 'form.ProductionCapacityCalculator.label.countLitterPerYear',
+      }),
+      placeholder: formatMessage({
+        id: 'form.ProductionCapacityCalculator.placeholder.countLitterPerYear',
+      }),
       placeholderTextColor: RawColors.grey,
       name: 'countLitterPerYear',
       rules: {
@@ -104,9 +115,12 @@ export default ({modeSelected}) => {
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.countOffspringPerLitter'}),
+      label: formatMessage({
+        id: 'form.ProductionCapacityCalculator.label.countOffspringPerLitter',
+      }),
       placeholder: formatMessage({
-        id: 'form.placeholder.countOffspringPerLitter',
+        id:
+          'form.ProductionCapacityCalculator.placeholder.countOffspringPerLitter',
       }),
       placeholderTextColor: RawColors.grey,
       name: 'countOffspringPerLitter',
@@ -126,9 +140,13 @@ export default ({modeSelected}) => {
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.percentageSurvivingInTwoWeek'}),
+      label: formatMessage({
+        id:
+          'form.ProductionCapacityCalculator.label.percentageSurvivingInTwoWeek',
+      }),
       placeholder: formatMessage({
-        id: 'form.placeholder.percentageSurvivingInTwoWeek',
+        id:
+          'form.ProductionCapacityCalculator.placeholder.percentageSurvivingInTwoWeek',
       }),
       placeholderTextColor: RawColors.grey,
       name: 'percentageSurvivingInTwoWeek',
@@ -148,13 +166,15 @@ export default ({modeSelected}) => {
     {
       defaultValue: '',
       label: formatMessage({
-        id: 'form.label.approximateYoungProducedPerYear',
+        id:
+          'form.ProductionCapacityCalculator.label.approximateYoungProducedPerYear',
       }),
       placeholder:
         modeSelected === 1
           ? '0'
           : formatMessage({
-              id: 'form.placeholder.approximateYoungProducedPerYear',
+              id:
+                'form.ProductionCapacityCalculator.placeholder.approximateYoungProducedPerYear',
             }),
       name: 'approximateYoungProducedPerYear',
       rules:

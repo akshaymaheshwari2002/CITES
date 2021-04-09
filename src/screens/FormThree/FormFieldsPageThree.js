@@ -35,7 +35,7 @@ export default (fieldProps = {}) => {
 
   const formFields = [
     {
-      label: formatMessage({id: 'form.label.doYouRanchThisSpecies'}),
+      label: formatMessage({id: 'form.FormThree.label.doYouRanchThisSpecies'}),
       name: 'doYouRanchThisSpecies',
       //rules: {required},
       fieldType: Constants.CHOICELIST,
@@ -52,8 +52,10 @@ export default (fieldProps = {}) => {
       ],
     },
     {
-      label: formatMessage({id: 'form.label.lifeStageHarvested'}),
-      placeholder: formatMessage({id: 'form.label.lifeStageHarvested'}),
+      label: formatMessage({id: 'form.FormThree.label.lifeStageHarvested'}),
+      placeholder: formatMessage({
+        id: 'form.FormThree.label.lifeStageHarvested',
+      }),
       name: 'lifeStageHarvested',
       //rules: {required},
       fieldType: Constants.PICKER,
@@ -76,15 +78,17 @@ export default (fieldProps = {}) => {
     if (indexOfOther !== -1) {
       formFields.push({
         defaultValue: '',
-        label: formatMessage({id: 'form.label.AddLifeStage'}),
-        placeholder: formatMessage({id: 'form.label.AddLifeStage'}),
+        label: formatMessage({id: 'form.FormThree.label.AddLifeStage'}),
+        placeholder: formatMessage({id: 'form.FormThree.label.AddLifeStage'}),
         name: 'otherLifeStage',
         //rules: {required},
       });
     }
     if (_lifeStageHarvestedCopy?.length) {
       formFields.push({
-        label: formatMessage({id: 'form.label.numberHarvestedInPreviousYear'}),
+        label: formatMessage({
+          id: 'form.FormThree.label.numberHarvestedInPreviousYear',
+        }),
         name: 'numberHarvestedInPreviousYear',
         rules: {
           validate: {

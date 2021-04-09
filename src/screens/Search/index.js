@@ -34,7 +34,9 @@ const Search = ({navigation}) => {
 
     __searchResults = __searchResults.filter((el) => {
       if (
-        el.key.split('.')[0] === 'screen' &&
+        (el.key.split('.')[0] === 'screen' ||
+          el.key.split('.')[0] === 'form' ||
+          el.key.split('.')[0] === 'questionContent') &&
         routeNames.includes(el.targetRoute)
       ) {
         return true;
@@ -42,14 +44,15 @@ const Search = ({navigation}) => {
         return false;
       }
     });
-
-    __searchResults = __searchResults.filter((el) => {
-      if (true) {
-        return true;
-      } else {
-        return false;
-      }
-    });
+    //console.log(__searchResults, '123');
+    // __searchResults = __searchResults.filter((el) => {
+    //   console.log(__searchResults, '12345');
+    //   if (true) {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // });
 
     setSearchResultFilterd(__searchResults);
   }, [intlMessages, routeNames, searchString]);
@@ -61,6 +64,10 @@ const Search = ({navigation}) => {
       setSearchResultFilterd([]);
     }
   }, [searchString, executeSearch, routeNames]);
+
+  // useEffect(() => {
+  //   console.log(searchResultFiltered, '123456');
+  // }, [searchResultFiltered]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
