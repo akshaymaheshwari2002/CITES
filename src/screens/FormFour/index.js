@@ -129,7 +129,7 @@ const FormFour = ({navigation: {navigate, goBack, setOptions}}) => {
       </Text>
       <Container.ScrollView style={CommonStyles.flex1}>
         <Text style={styles.contentTwo}>
-          <Text style={styles.content}>
+          <Text style={styles.contentM}>
             {formatMessage({id: 'screen.FormFour.contentThree'})}
           </Text>
         </Text>
@@ -202,21 +202,28 @@ const styles = ScaledSheet.create({
   contentOne: {
     marginHorizontal: '16@s',
     marginBottom: '16@vs',
+    textAlign: 'left',
   },
   content: {
     color: RawColors.charcoalGrey60,
     ...Fonts.Lato15R,
+    textAlign: 'left',
+  },
+  contentM: {
+    color: RawColors.charcoalGrey60,
+    ...Fonts.Lato13R,
+    textAlign: 'left',
   },
   word: {
     color: RawColors.black,
-    ...Fonts.Lato15B,
+    ...Fonts.Lato15R,
   },
   question: {
     ...Fonts.Lato15R,
     color: RawColors.black,
   },
   questionContainer: {
-    marginTop: '20@s',
+    marginTop: '10@s',
     padding: '16@ms',
   },
   contentTwo: {
@@ -232,21 +239,21 @@ const styles = ScaledSheet.create({
     ...Fonts.HelveticaNeue20B,
   },
   _content1: {
-    ...Fonts.HelveticaNeue19B,
+    ...Fonts.HelveticaNeue17B,
   },
   button: {
     height: '46@vs',
     width: '290@s',
     alignSelf: 'center',
-    marginVertical: '15@vs',
+    marginVertical: '10@vs',
     backgroundColor: RawColors.lightGrey,
   },
   infobutton: {
     height: '46@vs',
     width: '290@s',
     alignSelf: 'center',
-    marginVertical: '15@vs',
-    backgroundColor: RawColors.lightGrey,
+    marginVertical: '10@vs',
+    backgroundColor: RawColors.sugarCane,
   },
   buttonText: {
     ...Fonts.Lato15R,
