@@ -138,7 +138,7 @@ export default () => {
       label: formatMessage({id: 'form.label.facilityOwner'}),
       placeholder: formatMessage({id: 'form.label.facilityOwner'}),
       name: 'facilityOwner',
-      rules: {required},
+      // rules: {required},
     },
     {
       label: formatMessage({id: 'form.label.facilityOwnerEmail'}),
@@ -146,7 +146,6 @@ export default () => {
       name: 'facilityOwnerEmail',
       fieldContainerStyle: {marginBottom: 0},
       rules: {
-        required,
         pattern: validateEmail,
       },
     },

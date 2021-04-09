@@ -122,19 +122,19 @@ const styles = ScaledSheet.create({
   },
 
   letter: {
-    width: '225@s',
+    width: '220@s',
     color: RawColors.black,
     ...Fonts.Lato20B,
     textAlign: 'center',
     alignSelf: 'center',
   },
   letterDescription: {
-    width: '225@s',
+    width: '200@s',
     color: RawColors.black,
     textAlign: 'center',
     alignSelf: 'center',
     ...Fonts.Lato15R,
-    lineHeight: '30@ms',
+    lineHeight: '20@ms',
   },
   flex: {flex: 1},
   footer: {

@@ -27,7 +27,10 @@ export default (fieldProps = {}) => {
         id: 'form.label.numberPlaceHolder',
       }),
       name: 'numberOfSpecimen',
-      rules: {required, validate: {validateNumber}},
+      rules: {
+        // required,
+        validate: {validateNumber},
+      },
       keyboardType: 'number-pad',
       labelBottom: formatMessage({
         id: 'form.label.specimenBottom',
@@ -38,7 +41,10 @@ export default (fieldProps = {}) => {
       label: formatMessage({id: 'form.label.noOfBreedingAdult'}),
       placeholder: formatMessage({id: 'form.label.numberPlaceHolder'}),
       name: 'numberOfBreedingAdults',
-      rules: {required, validate: {validateNumber}},
+      rules: {
+        // required,
+        validate: {validateNumber},
+      },
       keyboardType: 'number-pad',
       labelBottom: formatMessage({
         id: 'form.label.specimenBottom',
@@ -49,7 +55,10 @@ export default (fieldProps = {}) => {
       label: formatMessage({id: 'form.label.specimenExported'}),
       placeholder: formatMessage({id: 'form.label.numberPlaceHolder'}),
       name: 'numberOfSpeciemenExportedSinceLastInspection',
-      rules: {required, validate: {validateNumber}},
+      rules: {
+        // required,
+        validate: {validateNumber},
+      },
       keyboardType: 'number-pad',
       labelBottom: formatMessage({
         id: 'form.label.specimenBottom',
@@ -61,7 +70,7 @@ export default (fieldProps = {}) => {
       placeholder: formatMessage({id: 'form.placeholder.sourceCode'}),
       name: 'sourceCodeOfPreviousExport',
       rules: {
-        required,
+        // required,
         maxLength: {
           value: 1,
           message: formatMessage({id: 'form.error.singleCharacterLimit'}),

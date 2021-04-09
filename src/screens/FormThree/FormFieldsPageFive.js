@@ -29,7 +29,7 @@ export default (fieldProps = {}) => {
       }),
       name: 'noOfJuvenilesPresentFacilityInfo',
       rules: {
-        required,
+        // required,
         validate: {
           validateNumber,
           validatePositiveNumber,
@@ -52,7 +52,7 @@ export default (fieldProps = {}) => {
       }),
       name: 'noOfJuvenilesPresentInspectionInfo',
       rules: {
-        required,
+        // required,
         validate: {
           validateNumber,
           validatePositiveNumber,
@@ -69,7 +69,7 @@ export default (fieldProps = {}) => {
       placeholder: formatMessage({id: 'form.label.ageAtSexualMaturity'}),
       name: 'ageAtSexualMaturity',
       rules: {
-        required,
+        // required,
         validate: {
           validateNumber,
           validatePositiveNumber,
@@ -151,7 +151,7 @@ export default (fieldProps = {}) => {
       }),
       name: 'percentageOfJuvenilesSurviveBeyond2Weeks',
       rules: {
-        required,
+        // required,
         validate: {
           validateNumber,
           validateNumberPercentageNonFraction,
