@@ -244,8 +244,8 @@
   "button.stepThree.productionCapacityCalculated": "PRODUCTION CAPACITY CALCULATOR",
   "screen.stepThree.requirementCheckedForAdditionalInspectiond.bullet_head": "If required, arrange for additional inspection if discrepancies exist, such as:",
   "screen.stepThree.requirementCheckedForAdditionalInspectiond.bullet_1": "Difference between estimated and observed numbers of offspring",
-  "screen.stepThree.requirementCheckedForAdditionalInspectiond.bullet_2": "Lack of suitable infrastructure, such as enclosures of boundaries.",
-  "screen.stepThree.requirementCheckedForAdditionalInspectiond.bullet_3": "Lack of parental breeding stock.",
+  "screen.stepThree.requirementCheckedForAdditionalInspectiond.bullet_2": "Lack of suitable infrastructure, such as enclosures of boundaries",
+  "screen.stepThree.requirementCheckedForAdditionalInspectiond.bullet_3": "Lack of parental breeding stock",
   "button.stepThree.continueToInspectionSummary": "CONTINUE TO INSPECTION SUMMARY",
   "screen.stepTwo.recordsExaminedForStock": "Examine facility records for stock. This may include, for example, husbandry, feeding or health records.",
 

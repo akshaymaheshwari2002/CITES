@@ -131,6 +131,7 @@ const styles = ScaledSheet.create({
   letterDescription: {
     width: '200@s',
     color: RawColors.black,
+    marginTop: '7@vs',
     textAlign: 'center',
     alignSelf: 'center',
     ...Fonts.Lato15R,

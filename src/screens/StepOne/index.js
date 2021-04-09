@@ -21,7 +21,6 @@ const StepOne = ({navigation, route}) => {
     (state) => state.sessionReducer.activeInspection.stepOne || {},
     shallowEqual,
   );
-  const isOnboardingScreen = route?.params?.isOnboardingScreen;
 
   const handleStepOneSubmit = useCallback(() => {
     // if (Object.keys(stepOneData).length) {
@@ -107,7 +106,6 @@ const StepOne = ({navigation, route}) => {
   }, [
     formatMessage,
     handleTooltipClose,
-    isOnboardingScreen,
     navigation,
     route.params,
     route.params.showToolTip,

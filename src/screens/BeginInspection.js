@@ -22,7 +22,6 @@ import {CommonActions} from '@react-navigation/routers';
 const BeginInspection = ({navigation, route}) => {
   const {formatMessage} = useIntl();
   const windowWidth = useWindowDimensions().height;
-  const isOnboardingScreen = route?.params?.isOnboardingScreen;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -51,12 +50,7 @@ const BeginInspection = ({navigation, route}) => {
         </Pressable>
       ),
     });
-  }, [
-    formatMessage,
-    isOnboardingScreen,
-    navigation,
-    route.params.fromOnboarding,
-  ]);
+  }, [formatMessage, navigation, route.params.fromOnboarding]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import {getInputFieldElementForFormSummary as getInputFieldElement} from '@utils/CommonFunctions';
 
-const formText = 'Form';
+const formText = 'FORM';
 const formNumber = {
   one: 1,
   two: 2,
@@ -39,7 +39,7 @@ const FormThreeHeader = ({
     <div className="App" style={styles.marginContainer}>
       <div style={styles.topContainer}>
         <h1>{formText}</h1>
-        <div style={styles.numberWrapper}>
+        <div style={styles.body}>
           <h1 style={styles.number}>{formNumber?.[form]}</h1>
         </div>
       </div>
@@ -97,15 +97,10 @@ const styles = {
     paddingBottom: 0,
     marginBottom: 0,
   },
-  numberWrapper: {
-    backgroundColor: 'rgb(239 ,243, 222)',
-    borderRadius: 50,
-    display: 'flex',
+  body: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: 60,
-    height: 60,
-    marginBottom: 0,
+    marginBottom: 25,
     marginLeft: 12,
   },
   headText: {
@@ -115,7 +110,10 @@ const styles = {
     textAlign: 'left',
   },
   number: {
-    color: 'red',
+    textAlignVertical: 'top',
+    paddingBottom: 0,
+    marginBottom: 0,
+    textAlign: 'center',
   },
   text: {textAlign: 'left', fontSize: 12},
   mainContainer: {
