@@ -38,10 +38,7 @@ const Picker = React.forwardRef(
           ) : null}
           {showHelpIcon ? (
             <TouchableOpacity onPress={onHelpIconPress}>
-              <Image
-                source={Images.information}
-                style={{height: ms(40), width: ms(40)}}
-              />
+              <Image source={Images.information} style={styles.helpIcon} />
             </TouchableOpacity>
           ) : null}
         </View>
@@ -96,6 +93,7 @@ const styles = ScaledSheet.create({
     color: RawColors.error,
     ...Platform.select({ios: {zIndex: -1}}),
   },
+  helpIcon: {height: ms(40), width: ms(40), marginHorizontal: ms(8)},
 });
 
 Picker.propTypes = {

@@ -1,10 +1,10 @@
 import {Platform} from 'react-native';
 import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
-import createIntl from '@utils/Intl';
+import {getIntl} from '@utils/Intl';
 
 export default (fieldProps = {}) => {
-  const {formatMessage} = createIntl();
+  const {formatMessage} = getIntl();
   const {
     required,
     validateNumber,
@@ -41,7 +41,7 @@ export default (fieldProps = {}) => {
       placeholder: formatMessage({id: 'form.label.sourceCodeInitialStock'}),
       name: 'sourceCodeInitialStock',
       rules: {
-        required,
+        // required,
         maxLength: {
           value: 1,
           message: formatMessage({id: 'form.error.singleCharacterLimit'}),
@@ -64,7 +64,7 @@ export default (fieldProps = {}) => {
       placeholder: formatMessage({id: 'form.label.numberOfMalesInitialStock'}),
       name: 'numberOfMalesInitialStock',
       rules: {
-        required,
+        // required,
         validate: {validateNumber, validatePositiveNumber, validateInteger},
       },
       keyboardType: 'number-pad',
@@ -77,7 +77,7 @@ export default (fieldProps = {}) => {
       }),
       name: 'numberOfFemalesInitialStock',
       rules: {
-        required,
+        // required,
         validate: {validateNumber, validatePositiveNumber, validateInteger},
       },
       keyboardType: 'number-pad',

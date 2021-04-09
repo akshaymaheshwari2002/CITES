@@ -4,11 +4,11 @@ import {View, Text, Pressable} from 'react-native';
 import {Button} from '@atoms';
 import Config from '@config';
 import {navigate} from '@utils/RootNavigation';
-import createIntl from '@utils/Intl';
+import {getIntl} from '@utils/Intl';
 import {store} from '@store';
 
 const checklistContent = ({checkliststyles = {}, bullet = null}) => {
-  const {formatMessage} = createIntl();
+  const {formatMessage} = getIntl();
   const formOneCompleted = store.getState().sessionReducer.activeInspection
     .stepOne?.formOneCompleted;
 

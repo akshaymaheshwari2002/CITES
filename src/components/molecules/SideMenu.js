@@ -5,9 +5,9 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
 } from 'react-native';
-import {useSelector} from 'react-redux';
 import {ScaledSheet, vs} from 'react-native-size-matters';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
+import {useIntl} from 'react-intl';
 
 import {Fonts, RawColors} from '@styles/Themes';
 import {Container, Button} from '@atoms';
@@ -15,6 +15,7 @@ import {navigate} from '@utils/RootNavigation';
 
 const SideMenu = ({hideModal}) => {
   const {width: windowWidth} = useWindowDimensions();
+  const {formatMessage} = useIntl();
   // const activeInspection = useSelector((state) => {
   //   return state?.sessionReducer?.activeInspection;
   // });
@@ -68,7 +69,9 @@ const SideMenu = ({hideModal}) => {
         <TouchableWithoutFeedback>
           <View style={styles.height100}>
             <Button
-              buttonContent={'Step 1'}
+              buttonContent={formatMessage({
+                id: 'drawer.stepOne',
+              })}
               buttonStyle={() => styles.button}
               buttonTextStyle={() => styles.buttonTextStyle}
               onPress={() => {
@@ -76,7 +79,9 @@ const SideMenu = ({hideModal}) => {
               }}
             />
             <Button
-              buttonContent={'Step 2'}
+              buttonContent={formatMessage({
+                id: 'drawer.stepTwo',
+              })}
               buttonStyle={() => styles.button}
               buttonTextStyle={() => styles.buttonTextStyle}
               onPress={() => {
@@ -84,7 +89,9 @@ const SideMenu = ({hideModal}) => {
               }}
             />
             <Button
-              buttonContent={'Step 3'}
+              buttonContent={formatMessage({
+                id: 'drawer.stepThree',
+              })}
               buttonStyle={() => styles.button}
               buttonTextStyle={() => styles.buttonTextStyle}
               onPress={() => {
@@ -92,7 +99,9 @@ const SideMenu = ({hideModal}) => {
               }}
             />
             <Button
-              buttonContent={'Form 1'}
+              buttonContent={formatMessage({
+                id: 'drawer.formOne',
+              })}
               buttonStyle={() => styles.button}
               buttonTextStyle={() => styles.buttonTextStyle}
               onPress={() => {
@@ -100,7 +109,9 @@ const SideMenu = ({hideModal}) => {
               }}
             />
             <Button
-              buttonContent={'Form 2'}
+              buttonContent={formatMessage({
+                id: 'drawer.formTwo',
+              })}
               buttonStyle={() => styles.button}
               buttonTextStyle={() => styles.buttonTextStyle}
               onPress={() => {
@@ -108,7 +119,9 @@ const SideMenu = ({hideModal}) => {
               }}
             />
             <Button
-              buttonContent={'Form 3'}
+              buttonContent={formatMessage({
+                id: 'drawer.formThree',
+              })}
               buttonStyle={() => styles.button}
               buttonTextStyle={() => styles.buttonTextStyle}
               onPress={() => {
@@ -116,7 +129,9 @@ const SideMenu = ({hideModal}) => {
               }}
             />
             <Button
-              buttonContent={'Form 4'}
+              buttonContent={formatMessage({
+                id: 'drawer.formFour',
+              })}
               buttonStyle={() => styles.button}
               buttonTextStyle={() => styles.buttonTextStyle}
               onPress={() => {
@@ -124,7 +139,9 @@ const SideMenu = ({hideModal}) => {
               }}
             />
             <Button
-              buttonContent={'Determine Source'}
+              buttonContent={formatMessage({
+                id: 'drawer.determineSourceCode',
+              })}
               buttonStyle={() => styles.button}
               buttonTextStyle={() => styles.buttonTextStyle}
               onPress={() => {
@@ -132,7 +149,9 @@ const SideMenu = ({hideModal}) => {
               }}
             />
             <Button
-              buttonContent={'Production Capacity Calculator'}
+              buttonContent={formatMessage({
+                id: 'drawer.productionCapacityCalculator',
+              })}
               buttonStyle={() => styles.button}
               buttonTextStyle={() => styles.buttonTextStyle}
               onPress={() => {

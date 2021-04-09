@@ -64,10 +64,7 @@ const TextInput = React.forwardRef(
           ) : null}
           {showHelpIcon ? (
             <TouchableOpacity onPress={onHelpIconPress}>
-              <Image
-                source={Images.information}
-                style={{height: ms(40), width: ms(40)}}
-              />
+              <Image source={Images.information} style={styles.helpIcon} />
             </TouchableOpacity>
           ) : null}
         </View>
@@ -125,6 +122,7 @@ const styles = ScaledSheet.create({
     flexShrink: 0,
     marginHorizontal: '4@ms',
   },
+  helpIcon: {height: ms(40), width: ms(40), marginHorizontal: ms(8)},
 });
 
 export default TextInput;

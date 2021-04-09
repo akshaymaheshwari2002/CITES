@@ -52,6 +52,10 @@ const RawColors = {
 };
 
 const Fonts = {
+  Didot80B: {
+    fontFamily: 'Didot',
+    fontSize: moderateScale(80),
+  },
   Didot56B: {
     fontFamily: 'Didot',
     fontSize: moderateScale(56),

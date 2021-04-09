@@ -68,10 +68,7 @@ const ChoiceList = React.forwardRef(
         </View>
         {showHelpIcon ? (
           <TouchableOpacity onPress={onHelpIconPress}>
-            <Image
-              source={Images.information}
-              style={{height: ms(40), width: ms(40)}}
-            />
+            <Image source={Images.information} style={styles.helpIcon} />
           </TouchableOpacity>
         ) : null}
       </View>
@@ -88,6 +85,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   checkboxContainer: {padding: 0, marginRight: 16},
+  helpIcon: {height: ms(40), width: ms(40), marginHorizontal: ms(8)},
 });
 
 ChoiceList.propTypes = {

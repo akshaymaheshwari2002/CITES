@@ -128,7 +128,7 @@ const styles = ScaledSheet.create({
     flexGrow: 1,
     justifyContent: 'center',
     marginTop: '97@vs',
-    marginBottom: '54@vs',
+    marginBottom: '80@vs',
   },
   modalView: {
     flexGrow: 1,

@@ -2,10 +2,10 @@ import {ms} from 'react-native-size-matters';
 
 import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
-import createIntl from '@utils/Intl';
+import {getIntl} from '@utils/Intl';
 
 export default (fieldProps = {}) => {
-  const {formatMessage} = createIntl();
+  const {formatMessage} = getIntl();
   const {
     required,
     validateInteger,
@@ -26,7 +26,7 @@ export default (fieldProps = {}) => {
       }),
       name: 'noOfAdultsPresentFacilityInfo',
       rules: {
-        required,
+        // required,
         validate: {
           validateNumber,
           validatePositiveNumber,
@@ -48,7 +48,7 @@ export default (fieldProps = {}) => {
       }),
       name: 'noOfAdultsPresentInspectionInfo',
       rules: {
-        required,
+        // requi/red,
         validate: {
           validateNumber,
           validatePositiveNumber,
@@ -70,7 +70,7 @@ export default (fieldProps = {}) => {
       }),
       name: 'noOfMalesPresentFacilityInfo',
       rules: {
-        required,
+        // required,
         validate: {
           validateNumber,
           validatePositiveNumber,
@@ -92,7 +92,7 @@ export default (fieldProps = {}) => {
       }),
       name: 'noOfMalesPresentInspectionInfo',
       rules: {
-        required,
+        // required,
         validate: {
           validateNumber,
           validatePositiveNumber,
@@ -114,7 +114,7 @@ export default (fieldProps = {}) => {
       }),
       name: 'noOfFemalesPresentFacilityInfo',
       rules: {
-        required,
+        // required,
         validate: {
           validateNumber,
           validatePositiveNumber,
@@ -136,7 +136,7 @@ export default (fieldProps = {}) => {
       }),
       name: 'noOfFemalesPresentInspectionInfo',
       rules: {
-        required,
+        // required,
         validate: {
           validateNumber,
           validatePositiveNumber,
@@ -155,7 +155,7 @@ export default (fieldProps = {}) => {
       }),
       name: 'percentageOfFemalesBreedEachYear',
       rules: {
-        required,
+        // required,
         validate: {
           validateNumber,
           validateNumberPercentageNonFraction,

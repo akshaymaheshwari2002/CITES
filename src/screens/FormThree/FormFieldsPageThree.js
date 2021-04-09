@@ -1,7 +1,7 @@
 import {Platform} from 'react-native';
 import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
-import createIntl from '@utils/Intl';
+import {getIntl} from '@utils/Intl';
 
 const lifeStageDropDownList = [
   'Adult',
@@ -24,7 +24,7 @@ const lifeStageDropDownList = [
 ];
 
 export default (fieldProps = {}) => {
-  const {formatMessage} = createIntl();
+  const {formatMessage} = getIntl();
   const {
     required,
     requiredTextInputArrayAlt,

@@ -10,6 +10,7 @@ import CommonStyles from '@styles/CommonStyles';
 const ExampleDialogueConsentFormStep2 = ({navigation: {navigate}}) => {
   const {formatMessage} = useIntl();
   const [name, setName] = useState();
+  const [legislation, setLegislation] = useState();
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
@@ -69,8 +70,8 @@ const ExampleDialogueConsentFormStep2 = ({navigation: {navigate}}) => {
             })}
           </Text>
           <TextInput
-            value={name}
-            onChange={setName}
+            value={legislation}
+            onChange={setLegislation}
             placeholder={formatMessage({
               id: 'screen.ExampleDialogueConsentFormStep2.contentSeven',
             })}

@@ -1,9 +1,9 @@
 import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
-import createIntl from '@utils/Intl';
+import {getIntl} from '@utils/Intl';
 
 export default () => {
-  const {formatMessage} = createIntl();
+  const {formatMessage} = getIntl();
   const {required} = getValidators();
 
   return [

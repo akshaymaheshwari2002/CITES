@@ -113,8 +113,6 @@ const styles = ScaledSheet.create({
   },
   title: {
     marginTop: '40@vs',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   titleContent: {
     ...Fonts.HelveticaNeue20B,
@@ -124,7 +122,6 @@ const styles = ScaledSheet.create({
   },
   button: {
     height: '80@ms',
-    width: '290@s',
     marginTop: '35@s',
     backgroundColor: RawColors.lightGrey,
   },
@@ -132,7 +129,6 @@ const styles = ScaledSheet.create({
     marginTop: 'auto',
   },
   content: {
-    minWidth: '130@ms',
     color: RawColors.black,
     textAlign: 'center',
     ...Fonts.Regular15R,

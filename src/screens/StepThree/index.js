@@ -34,31 +34,31 @@ const StepThree = ({navigation: {navigate, goBack}}) => {
     [dispatch],
   );
   const handleStepThreeSubmit = useCallback(() => {
-    if (Object.keys(stepThreeData).length) {
-      let stepThreeComplete = true;
+    // if (Object.keys(stepThreeData).length) {
+    //   let stepThreeComplete = true;
 
-      Object.keys(stepThreeData).forEach((key) => {
-        if (!stepThreeData[key] && key !== 'formFour') {
-          stepThreeComplete = false;
-        } else if (stepThreeComplete !== true) {
-          Toast.show(
-            formatMessage({
-              id: 'screen.StepThree.Alert',
-            }),
-          );
-        }
-      });
-      if (stepThreeComplete) {
-        navigate('StepSummary', {formSummaryStepThree: true});
-      }
-    } else {
-      Toast.show(
-        formatMessage({
-          id: 'screen.StepThree.Alert',
-        }),
-      );
-    }
-  }, [formatMessage, navigate, stepThreeData]);
+    //   Object.keys(stepThreeData).forEach((key) => {
+    //     if (!stepThreeData[key] && key !== 'formFour') {
+    //       stepThreeComplete = false;
+    //     } else if (stepThreeComplete !== true) {
+    //       Toast.show(
+    //         formatMessage({
+    //           id: 'screen.StepThree.Alert',
+    //         }),
+    //       );
+    //     }
+    //   });
+    //   if (stepThreeComplete) {
+    navigate('StepSummary', {formSummaryStepThree: true});
+    //   }
+    // } else {
+    //   Toast.show(
+    //     formatMessage({
+    //       id: 'screen.StepThree.Alert',
+    //     }),
+    //   );
+    // }
+  }, [navigate]);
   const bullet = useMemo(
     () => (
       <View style={checkliststyles.bulletContainer}>

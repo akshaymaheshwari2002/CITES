@@ -25,32 +25,32 @@ const StepOne = ({navigation, route}) => {
   const isOnboardingScreen = route?.params?.isOnboardingScreen;
 
   const handleStepOneSubmit = useCallback(() => {
-    if (Object.keys(stepOneData).length) {
-      let stepOneComplete = true;
+    // if (Object.keys(stepOneData).length) {
+    //   let stepOneComplete = true;
 
-      Object.keys(stepOneData).forEach((key) => {
-        if (!stepOneData[key] && key !== 'formOne') {
-          stepOneComplete = false;
-        } else if (stepOneComplete !== true) {
-          Toast.show(
-            formatMessage({
-              id: 'screen.StepOne.Alert',
-            }),
-          );
-        }
-      });
+    //   Object.keys(stepOneData).forEach((key) => {
+    //     if (!stepOneData[key] && key !== 'formOne') {
+    //       stepOneComplete = false;
+    //     } else if (stepOneComplete !== true) {
+    //       Toast.show(
+    //         formatMessage({
+    //           id: 'screen.StepOne.Alert',
+    //         }),
+    //       );
+    //     }
+    //   });
 
-      if (stepOneComplete) {
-        navigation.navigate('StepTwo', {formSummaryStepTwo: true});
-      }
-    } else {
-      Toast.show(
-        formatMessage({
-          id: 'screen.StepOne.Alert',
-        }),
-      );
-    }
-  }, [formatMessage, navigation, stepOneData]);
+    // if (stepOneComplete) {
+    navigation.navigate('StepTwo', {formSummaryStepTwo: true});
+    // }
+    // } else {
+    //   Toast.show(
+    //     formatMessage({
+    //       id: 'screen.StepOne.Alert',
+    //     }),
+    //   );
+    // }
+  }, [navigation]);
   const bullet = useMemo(
     () => (
       <View style={checkliststyles.bulletContainer}>
@@ -188,7 +188,7 @@ const checkliststyles = ScaledSheet.create({
   textGeneral: {
     color: RawColors.black,
     ...Fonts.Lato17SB,
-    paddingRight: '13@ms',
+    paddingRight: '12@ms',
   },
   textHiddenBullet: {
     color: RawColors.black,

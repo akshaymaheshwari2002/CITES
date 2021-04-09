@@ -5,14 +5,14 @@ import {useSelector} from 'react-redux';
 
 import {Container, TextInput, Button} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
-import createIntl from '@utils/Intl';
+import {getIntl} from '@utils/Intl';
 import {RawColors, Fonts} from '@styles/Themes';
 
 const Search = ({navigation}) => {
   const [searchString, setSearchString] = useState('');
   const [searchResultFiltered, setSearchResultFilterd] = useState([]);
   const locale = useSelector((state) => state.persistedReducer.locale);
-  const intlMessages = useMemo(() => createIntl(locale)?.messages, [locale]);
+  const intlMessages = useMemo(() => getIntl(locale)?.messages, [locale]);
   const routeNames = useMemo(
     () => navigation?.dangerouslyGetState()?.routeNames,
     [navigation],
@@ -88,6 +88,9 @@ const Search = ({navigation}) => {
                   buttonContent={
                     <>
                       <View style={styles.resultWrapper}>
+                        <Text style={[styles.text, {...Fonts.Lato20B}]}>
+                          {el.targetRoute}
+                        </Text>
                         <Text numberOfLines={2} style={styles.text}>
                           {el.value}
                         </Text>
@@ -137,7 +140,7 @@ const styles = ScaledSheet.create({
   },
   resultWrapper: {
     marginBottom: vs(10),
-    flexDirection: 'row',
+    flexDirection: 'column',
   },
   text: {
     flex: 1,

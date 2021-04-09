@@ -1,10 +1,10 @@
 export const Images = {
   tick: require('./images/Tick.png'),
   closeButton: require('./images/group.png'),
-  image: require('./images/iconspaceImageFile25Px.png'),
+  gallery: require('./images/3342176.png'),
   flashLightButton: require('./images/Flashlightbutton.png'),
   cameraButton: require('./images/Camerabutton.png'),
-  camera: require('./images/photo.png'),
+  camera: require('./images/CameraIcon.png'),
   information: require('./images/157933.png'),
   headerLightCircle: require('./images/Ellipse235.png'),
   headerDarkCircle: require('./images/Ellipse234.png'),

@@ -5,14 +5,14 @@ import {
   isNumberPercentageFraction,
   isNumberPositive,
 } from '@utils/CommonFunctions';
-import createIntl from '@utils/Intl';
+import {getIntl} from '@utils/Intl';
 // A - BR - 001;
 
 const regexPhone = /^[1-9]+[0-9]*$/;
 const regexBreedingCode = /^[A-Z]-[A-Z][A-Z]-[0-9][0-9][0-9]$/;
 
 export default () => {
-  const {formatMessage} = createIntl();
+  const {formatMessage} = getIntl();
 
   return {
     required: formatMessage({id: 'form.error.fieldRequired'}),

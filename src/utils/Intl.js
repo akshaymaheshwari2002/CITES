@@ -1,15 +1,45 @@
-import {createIntl, createIntlCache} from 'react-intl';
+import {createIntl as createReactIntl, createIntlCache} from 'react-intl';
+import {NativeModules, Platform} from 'react-native';
 
 import Config from '@config';
-import {getMessages} from './CommonFunctions';
 import {store} from '@store';
+import messages_en from '@locale/en.json';
+import messages_vi from '@locale/vi.json';
 
 const cache = createIntlCache();
+let intl;
 
-export default (locale) => {
-  const currentLocale =
-    locale || store.getState().persistedReducer.locale || Config.DEFAULT_LOCALE;
-  const messages = getMessages()[currentLocale];
+export const getMessages = () => ({
+  en: messages_en,
+  vi: messages_vi,
+});
 
-  return createIntl({locale: currentLocale, messages}, cache);
+export const getDeviceLocale = () => {
+  let locale =
+    Platform.OS === 'ios'
+      ? NativeModules.SettingsManager?.settings?.AppleLocale?.split(/[_|-]/)[0]
+      : NativeModules.I18nManager?.localeIdentifier?.split(/[_|-]/)[0];
+
+  const messages = getMessages();
+
+  if (!messages[locale]) {
+    locale = 'en';
+  }
+  return locale;
+};
+
+export const createIntl = (_locale) => {
+  const locale =
+    _locale ||
+    store.getState().persistedReducer.locale ||
+    Config.DEFAULT_LOCALE;
+  const messages = getMessages()[locale];
+
+  intl = createReactIntl({locale, messages}, cache);
+
+  return intl;
+};
+
+export const getIntl = () => {
+  return intl || createIntl();
 };

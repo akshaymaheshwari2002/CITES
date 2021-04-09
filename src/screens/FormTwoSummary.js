@@ -9,7 +9,7 @@ import {
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import Pdf from 'react-native-pdf';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useFocusEffect, useIsFocused} from '@react-navigation/native';
 import {format} from 'date-fns';
 import {shallowEqual, useSelector} from 'react-redux';
@@ -67,39 +67,39 @@ const FormTwoSummary = ({navigation, route}) => {
     }, [facilityData, formTwoData]),
   );
 
-  const handleBackPress = useCallback(() => {
-    if (isShowFormEditMenu) {
-      setIsShowFormEditMenu(false);
-    } else {
-      navigation.goBack();
-    }
-  }, [isShowFormEditMenu, navigation]);
+  // const handleBackPress = useCallback(() => {
+  //   if (isShowFormEditMenu) {
+  //     setIsShowFormEditMenu(false);
+  //   } else {
+  //     navigation.goBack();
+  //   }
+  // }, [isShowFormEditMenu, navigation]);
 
-  useEffect(() => {
-    navigation.setOptions({
-      headerLeft: (navigationProps) => (
-        <Pressable hitSlop={10} onPress={handleBackPress}>
-          <Icon name="chevron-left" size={ms(18)} {...navigationProps} />
-        </Pressable>
-      ),
-    });
-  }, [handleBackPress, navigation]);
+  // useEffect(() => {
+  //   navigation.setOptions({
+  //     headerLeft: () => (
+  //       <Pressable hitSlop={10} onPress={handleBackPress}>
+  //         <Icon name="chevron-left" size={ms(18)} />
+  //       </Pressable>
+  //     ),
+  //   });
+  // }, [handleBackPress, navigation]);
 
-  useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', onbackPress);
-    return () => {
-      BackHandler.removeEventListener('hardwareBackPress', onbackPress);
-    };
-  }, [onbackPress, isShowFormEditMenu, isCurrentScreenFocused]);
+  // useEffect(() => {
+  //   BackHandler.addEventListener('hardwareBackPress', onbackPress);
+  //   return () => {
+  //     BackHandler.removeEventListener('hardwareBackPress', onbackPress);
+  //   };
+  // }, [onbackPress, isShowFormEditMenu, isCurrentScreenFocused]);
 
-  const onbackPress = useCallback(() => {
-    if (isCurrentScreenFocused && isShowFormEditMenu) {
-      setIsShowFormEditMenu(false);
-      return true;
-    } else {
-      return false;
-    }
-  }, [isCurrentScreenFocused, isShowFormEditMenu]);
+  // const onbackPress = useCallback(() => {
+  //   if (isCurrentScreenFocused && isShowFormEditMenu) {
+  //     setIsShowFormEditMenu(false);
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }, [isCurrentScreenFocused, isShowFormEditMenu]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
@@ -153,8 +153,11 @@ const FormTwoSummary = ({navigation, route}) => {
       <View style={styles.slideBtnContainerEdit}>
         <TouchableOpacity
           style={[styles.slideBtn, styles.borderStyle]}
+          // onPress={() => {
+          //   setIsShowFormEditMenu(true);
+          // }}
           onPress={() => {
-            setIsShowFormEditMenu(true);
+            navigation.navigate('FormTwoSummaryEdit');
           }}>
           <View style={styles.row}>
             <View style={styles.padding16}>
@@ -167,16 +170,16 @@ const FormTwoSummary = ({navigation, route}) => {
             </View>
 
             <View style={styles.justifyContent}>
-              <Icon name="plus" size={ms(26)} />
+              <Icon name="plus" size={ms(18)} />
             </View>
           </View>
         </TouchableOpacity>
       </View>
-      <PopupFormEditMenu
+      {/* <PopupFormEditMenu
         formNumber={2}
         isShowFormEditMenu={isShowFormEditMenu}
         setIsShowFormEditMenu={setIsShowFormEditMenu}
-      />
+      /> */}
     </Container>
   );
 };

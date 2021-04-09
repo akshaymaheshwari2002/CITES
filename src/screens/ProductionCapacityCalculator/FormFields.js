@@ -1,7 +1,7 @@
 import {s} from 'react-native-size-matters';
 
 import getValidators from '@utils/FormValidators';
-import createIntl from '@utils/Intl';
+import {getIntl} from '@utils/Intl';
 import {Fonts, RawColors} from '@styles/Themes';
 import {setHelpText} from '@store/slices/sessionSlice';
 import {store} from '@store';
@@ -18,7 +18,7 @@ const resultFieldLabelStyleProps = {
 };
 
 export default ({modeSelected}) => {
-  const {formatMessage} = createIntl();
+  const {formatMessage} = getIntl();
   const {
     required,
     validateInteger,

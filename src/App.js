@@ -8,13 +8,9 @@ import {ms} from 'react-native-size-matters';
 
 import {AppNavigator} from '@navigators';
 import {RawColors, ThemeProvider, Themes} from '@styles/Themes';
-import createIntl from '@utils/Intl';
+import {createIntl} from '@utils/Intl';
 import {OverlayModal} from '@molecules';
-import {
-  setHelpText,
-  setAppReady,
-  setIsShowSideMenu,
-} from '@store/slices/sessionSlice';
+import {setHelpText, setIsShowSideMenu} from '@store/slices/sessionSlice';
 import {Images} from '@assets';
 
 const App = () => {
@@ -25,7 +21,6 @@ const App = () => {
     (state) => state.sessionReducer.isShowSideMenu,
   );
   const appReady = useSelector((state) => state.sessionReducer.appReady);
-
   const theme = useMemo(() => Themes[currentTheme] || Themes.DEFAULT, [
     currentTheme,
   ]);
@@ -56,7 +51,7 @@ const App = () => {
                 dispatch(setIsShowSideMenu(false));
               }}
             />
-            <AppNavigator setAppReady={() => setAppReady(true)} />
+            <AppNavigator />
           </SafeAreaProvider>
         </AnimatedSplash>
       </RawIntlProvider>

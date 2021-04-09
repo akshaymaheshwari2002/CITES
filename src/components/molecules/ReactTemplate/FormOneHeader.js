@@ -26,6 +26,7 @@ const facilitySchema = {
   dateOfInspection: 'Date of inspection: ',
   seniorOfficerName: 'Name of Senior Inspecting Officer: ',
   typeOfInspection: 'Type of inspection: ',
+  nationalPermitNumber: 'National permit number: ',
 };
 
 const FormOneHeader = ({form = 'one', facilityData = {}, editable = false}) => {
@@ -153,6 +154,10 @@ const FormOneHeader = ({form = 'one', facilityData = {}, editable = false}) => {
                   defaultValue: facilityData?.typeOfInspection,
                 })} */}
               </p>
+              <p style={styles.text}>
+                <b>{facilitySchema?.nationalPermitNumber}</b>
+                {facilityData?.nationalPermitNumber}
+              </p>
             </div>
           </div>
         </div>
@@ -185,7 +190,6 @@ const styles = {
     textAlign: 'left',
   },
   number: {
-    color: 'red',
     paddingBottom: 0,
     marginBottom: 0,
     textAlign: 'center',

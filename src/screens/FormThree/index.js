@@ -387,9 +387,9 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
 
   useEffect(() => {
     setOptions({
-      headerLeft: (navigationProps) => (
+      headerLeft: () => (
         <Pressable hitSlop={10} onPress={handleBackPress}>
-          <Icon name="chevron-left" size={ms(18)} {...navigationProps} />
+          <Icon name="chevron-left" size={ms(18)} />
         </Pressable>
       ),
     });

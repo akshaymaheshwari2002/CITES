@@ -41,10 +41,7 @@ const CounterPair = React.forwardRef(
           ) : null}
           {showHelpIcon ? (
             <TouchableOpacity onPress={onHelpIconPress}>
-              <Image
-                source={Images.information}
-                style={{height: ms(40), width: ms(40)}}
-              />
+              <Image source={Images.information} style={styles.helpIcon} />
             </TouchableOpacity>
           ) : null}
         </View>
@@ -77,6 +74,7 @@ const styles = ScaledSheet.create({
     flex: 1,
     marginBottom: '12@vs',
   },
+  helpIcon: {height: ms(40), width: ms(40), marginHorizontal: ms(8)},
 });
 
 CounterPair.propTypes = {

@@ -3,12 +3,12 @@ import {View, Text, Pressable} from 'react-native';
 
 import {Button} from '@atoms';
 import {navigate} from '@utils/RootNavigation';
-import createIntl from '@utils/Intl';
+import {getIntl} from '@utils/Intl';
 import {setContinueToStepTwo} from '@store/slices/sessionSlice';
 import {store} from '@store';
 
 const checklistContent = ({checkliststyles, bullet}) => {
-  const {formatMessage} = createIntl();
+  const {formatMessage} = getIntl();
   const {dispatch} = store;
 
   return [

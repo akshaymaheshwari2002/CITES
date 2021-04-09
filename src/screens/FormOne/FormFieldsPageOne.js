@@ -5,7 +5,7 @@ import {store} from '@store';
 import Config from '@config';
 import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
-import createIntl from '@utils/Intl';
+import {getIntl} from '@utils/Intl';
 import {setHelpText} from '@store/slices/sessionSlice';
 import HelpTexts from '@utils/HelpTexts';
 
@@ -19,7 +19,7 @@ let countries;
 })();
 
 export default () => {
-  const {formatMessage} = createIntl();
+  const {formatMessage} = getIntl();
   const {
     required,
     requiredMobileInput,
@@ -45,7 +45,7 @@ export default () => {
         id: 'form.label.nameOfInspectionOfficers',
       }),
       placeholder: formatMessage({
-        id: 'form.label.nameOfInspectionOfficers',
+        id: 'form.placeholder.nameOfInspectionOfficers',
       }),
       name: 'nameOfInspectionOfficers',
       rules: {required},
@@ -138,7 +138,7 @@ export default () => {
       label: formatMessage({id: 'form.label.facilityOwner'}),
       placeholder: formatMessage({id: 'form.label.facilityOwner'}),
       name: 'facilityOwner',
-      rules: {required},
+      // rules: {required},
     },
     {
       label: formatMessage({id: 'form.label.facilityOwnerEmail'}),
@@ -146,7 +146,6 @@ export default () => {
       name: 'facilityOwnerEmail',
       fieldContainerStyle: {marginBottom: 0},
       rules: {
-        required,
         pattern: validateEmail,
       },
     },

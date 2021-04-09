@@ -1,11 +1,11 @@
 import React from 'react';
 import {getInputFieldElementForFormSummary as getInputFieldElement} from '@utils/CommonFunctions';
 
-const speciesText = 'Species The Facility is registered to produce: ';
+const speciesText = 'Species the facility is registered to produce: ';
 const speciesAttributes = [
   'Species name',
   'Total number of Specimen at last inspection',
-  'Total number of breeding Adults',
+  'Total number of breeding adults',
   'Total number of Speciment exported since last inspection',
   'Source code, as stated on previous export permits',
 ];
