@@ -4,11 +4,11 @@ import {getIntl} from '@utils/Intl';
 
 export default () => {
   const {formatMessage} = getIntl();
-  const {required} = getValidators();
+  //const {required} = getValidators();
 
   return [
     {
-      label: formatMessage({id: 'form.label.doYouBreedThisSpecies'}),
+      label: formatMessage({id: 'form.FormThree.label.doYouBreedThisSpecies'}),
       name: 'doYouBreedThisSpecies',
       //rules: {required},
       fieldType: Constants.CHOICELIST,
@@ -26,36 +26,48 @@ export default () => {
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.whenDidYouBreedThisSpecies'}),
-      placeholder: formatMessage({id: 'form.label.whenDidYouBreedThisSpecies'}),
+      label: formatMessage({
+        id: 'form.FormThree.label.whenDidYouBreedThisSpecies',
+      }),
+      placeholder: formatMessage({
+        id: 'form.FormThree.label.whenDidYouBreedThisSpecies',
+      }),
       name: 'whenDidYouBreedThisSpecies',
       //rules: {required},
       headerTextIOS: formatMessage({
-        id: 'form.label.whenDidYouBreedThisSpecies',
+        id: 'form.FormThree.label.whenDidYouBreedThisSpecies',
       }),
       fieldType: Constants.DATEPICKER,
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.numberOfLittersPerYear'}),
-      placeholder: formatMessage({id: 'form.label.numberOfLittersPerYear'}),
+      label: formatMessage({id: 'form.FormThree.label.numberOfLittersPerYear'}),
+      placeholder: formatMessage({
+        id: 'form.FormThree.label.numberOfLittersPerYear',
+      }),
       name: 'numberOfLittersPerYear',
       //rules: {required},
       keyboardType: 'number-pad',
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.numberOfOffspringPerLitter'}),
-      placeholder: formatMessage({id: 'form.label.numberOfOffspringPerLitter'}),
+      label: formatMessage({
+        id: 'form.FormThree.label.numberOfOffspringPerLitter',
+      }),
+      placeholder: formatMessage({
+        id: 'form.FormThree.label.numberOfOffspringPerLitter',
+      }),
       name: 'numberOfOffspringPerLitter',
       //rules: {required},
       keyboardType: 'number-pad',
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.numberProducedInPreviousYear'}),
+      label: formatMessage({
+        id: 'form.FormThree.label.numberProducedInPreviousYear',
+      }),
       placeholder: formatMessage({
-        id: 'form.label.numberProducedInPreviousYear',
+        id: 'form.FormThree.label.numberProducedInPreviousYear',
       }),
       name: 'numberProducedInPreviousYear',
       //rules: {required},

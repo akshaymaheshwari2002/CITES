@@ -31,21 +31,21 @@ export default () => {
   return [
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.dateOfInspection'}),
-      placeholder: formatMessage({id: 'form.label.dateOfInspection'}),
+      label: formatMessage({id: 'form.FormOne.label.dateOfInspection'}),
+      placeholder: formatMessage({id: 'form.FormOne.label.dateOfInspection'}),
       name: 'dateOfInspection',
       rules: {required},
       minimumDate: new Date(),
-      headerTextIOS: formatMessage({id: 'form.label.dateOfInspection'}),
+      headerTextIOS: formatMessage({id: 'form.FormOne.label.dateOfInspection'}),
       fieldType: Constants.DATEPICKER,
     },
     {
       defaultValue: '',
       label: formatMessage({
-        id: 'form.label.nameOfInspectionOfficers',
+        id: 'form.FormOne.label.nameOfInspectionOfficers',
       }),
       placeholder: formatMessage({
-        id: 'form.placeholder.nameOfInspectionOfficers',
+        id: 'form.FormOne.placeholder.nameOfInspectionOfficers',
       }),
       name: 'nameOfInspectionOfficers',
       rules: {required},
@@ -55,22 +55,26 @@ export default () => {
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.facilityName'}),
-      placeholder: formatMessage({id: 'form.label.facilityName'}),
+      label: formatMessage({id: 'form.FormOne.label.facilityName'}),
+      placeholder: formatMessage({id: 'form.FormOne.label.facilityName'}),
       name: 'facilityName',
       //rules: {required},
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.addressLineOne'}),
-      placeholder: formatMessage({id: 'form.placeholder.addressLineOne'}),
+      label: formatMessage({id: 'form.FormOne.label.addressLineOne'}),
+      placeholder: formatMessage({
+        id: 'form.FormOne.placeholder.addressLineOne',
+      }),
       name: 'facilityAddressLineOne',
       //rules: {required},
       fieldContainerStyle: {marginBottom: 0},
     },
     {
-      label: formatMessage({id: 'form.label.addressLineTwo'}),
-      placeholder: formatMessage({id: 'form.placeholder.addressLineTwo'}),
+      label: formatMessage({id: 'form.FormOne.label.addressLineTwo'}),
+      placeholder: formatMessage({
+        id: 'form.FormOne.placeholder.addressLineTwo',
+      }),
       defaultValue: '',
       name: 'facilityAddressLineTwo',
       //rules: {required},
@@ -82,8 +86,8 @@ export default () => {
       },
     },
     {
-      label: formatMessage({id: 'form.label.city'}),
-      placeholder: formatMessage({id: 'form.placeholder.city'}),
+      label: formatMessage({id: 'form.FormOne.label.city'}),
+      placeholder: formatMessage({id: 'form.FormOne.placeholder.city'}),
       defaultValue: '',
       name: 'city',
       //rules: {required},
@@ -95,8 +99,8 @@ export default () => {
       },
     },
     {
-      label: formatMessage({id: 'form.placeholder.stateRegion'}),
-      placeholder: formatMessage({id: 'form.placeholder.stateRegion'}),
+      label: formatMessage({id: 'form.FormOne.placeholder.stateRegion'}),
+      placeholder: formatMessage({id: 'form.FormOne.placeholder.stateRegion'}),
       defaultValue: '',
       name: 'stateProvienceRegion',
       //rules: {required},
@@ -108,8 +112,8 @@ export default () => {
       },
     },
     {
-      label: formatMessage({id: 'form.label.zipCode'}),
-      placeholder: formatMessage({id: 'form.placeholder.zipCode'}),
+      label: formatMessage({id: 'form.FormOne.label.zipCode'}),
+      placeholder: formatMessage({id: 'form.FormOne.placeholder.zipCode'}),
       defaultValue: '',
       name: 'zipCode',
       fieldContainerStyle: {marginBottom: 0},
@@ -120,8 +124,8 @@ export default () => {
       },
     },
     {
-      label: formatMessage({id: 'form.placeholder.country'}),
-      placeholder: formatMessage({id: 'form.placeholder.country'}),
+      label: formatMessage({id: 'form.FormOne.placeholder.country'}),
+      placeholder: formatMessage({id: 'form.FormOne.placeholder.country'}),
       defaultValue: '',
       name: 'country',
       //rules: {required},
@@ -135,14 +139,14 @@ export default () => {
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.facilityOwner'}),
-      placeholder: formatMessage({id: 'form.label.facilityOwner'}),
+      label: formatMessage({id: 'form.FormOne.label.facilityOwner'}),
+      placeholder: formatMessage({id: 'form.FormOne.label.facilityOwner'}),
       name: 'facilityOwner',
       // rules: {required},
     },
     {
-      label: formatMessage({id: 'form.label.facilityOwnerEmail'}),
-      placeholder: formatMessage({id: 'form.placeholder.emailId'}),
+      label: formatMessage({id: 'form.FormOne.label.facilityOwnerEmail'}),
+      placeholder: formatMessage({id: 'form.FormOne.placeholder.emailId'}),
       name: 'facilityOwnerEmail',
       fieldContainerStyle: {marginBottom: 0},
       rules: {
@@ -155,7 +159,7 @@ export default () => {
         callingCode: Config.DEFAULT_COUNTRY_CODE,
         cca2: Config.DEFAULT_COUNTRY,
       },
-      placeholder: formatMessage({id: 'form.placeholder.phoneNumber'}),
+      placeholder: formatMessage({id: 'form.FormOne.placeholder.phoneNumber'}),
       style: {
         marginVertical: 0,
         marginTop: verticalScale(6),
@@ -171,9 +175,9 @@ export default () => {
       fieldType: Constants.MOBILE_INPUT,
     },
     {
-      label: formatMessage({id: 'form.label.registeredSpecies'}),
+      label: formatMessage({id: 'form.FormOne.label.registeredSpecies'}),
       placeholder: formatMessage({
-        id: 'form.label.registeredSpeciesPlaceholder',
+        id: 'form.FormOne.label.registeredSpeciesPlaceholder',
       }),
       name: 'registeredSpecies',
       rules: {required},
@@ -182,33 +186,37 @@ export default () => {
       buttonText: formatMessage({id: 'button.addSpecies'}),
     },
     {
-      label: formatMessage({id: 'form.label.facilityEstablishmentDate'}),
-      placeholder: formatMessage({id: 'form.label.facilityEstablishmentDate'}),
+      label: formatMessage({
+        id: 'form.FormOne.label.facilityEstablishmentDate',
+      }),
+      placeholder: formatMessage({
+        id: 'form.FormOne.label.facilityEstablishmentDate',
+      }),
       name: 'facilityEstablishmentDate',
       //rules: {required},
       headerTextIOS: formatMessage({
-        id: 'form.label.facilityEstablishmentDate',
+        id: 'form.FormOne.label.facilityEstablishmentDate',
       }),
       fieldType: Constants.DATEPICKER,
       maximumDate: new Date(),
     },
     {
-      label: formatMessage({id: 'form.label.typeOfInspection'}),
+      label: formatMessage({id: 'form.FormOne.label.typeOfInspection'}),
       name: 'typeOfInspection',
       rules: {required},
       fieldType: Constants.CHOICELIST,
       mode: 'radio-button',
       items: [
         {
-          content: formatMessage({id: 'form.label.initialInspection'}),
+          content: formatMessage({id: 'form.FormOne.label.initialInspection'}),
           name: Constants.INITIAL_INSPECTION,
         },
         {
-          content: formatMessage({id: 'form.label.routineInspection'}),
+          content: formatMessage({id: 'form.FormOne.label.routineInspection'}),
           name: Constants.ROUTINE_INSPECTION,
         },
         {
-          content: formatMessage({id: 'form.label.followUpInspection'}),
+          content: formatMessage({id: 'form.FormOne.label.followUpInspection'}),
           name: Constants.FOLLOWUP_INSPECTION,
         },
       ],
@@ -219,17 +227,19 @@ export default () => {
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.nationalPermitNumber'}),
-      placeholder: formatMessage({id: 'form.placeHolder.nationalPermitNumber'}),
+      label: formatMessage({id: 'form.FormOne.label.nationalPermitNumber'}),
+      placeholder: formatMessage({
+        id: 'form.FormOne.placeHolder.nationalPermitNumber',
+      }),
       name: 'nationalPermitNumber',
       //rules: {required},
     },
     {
       defaultValue: ['', '-', '', '', '-', '', '', ''],
-      label: formatMessage({id: 'form.label.citesInformationCode'}),
+      label: formatMessage({id: 'form.FormOne.label.citesInformationCode'}),
       name: 'citesInformationCode',
       labelBottom: formatMessage({
-        id: 'form.label.citesInformationCodeBottom',
+        id: 'form.FormOne.label.citesInformationCodeBottom',
       }),
       fieldType: Constants.BREEDING_CODE_INPUT,
       rules: {

@@ -17,12 +17,14 @@ export default (fieldProps = {}) => {
   return [
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.noOfAdultsPresentFacilityInfo'}),
+      label: formatMessage({
+        id: 'form.FormThree.label.noOfAdultsPresentFacilityInfo',
+      }),
       labelRight: formatMessage({
-        id: 'form.label.facilityInformation',
+        id: 'form.FormThree.label.facilityInformation',
       }),
       placeholder: formatMessage({
-        id: 'form.label.noOfAdultsPresentFacilityInfo',
+        id: 'form.FormThree.label.noOfAdultsPresentFacilityInfo',
       }),
       name: 'noOfAdultsPresentFacilityInfo',
       rules: {
@@ -41,10 +43,10 @@ export default (fieldProps = {}) => {
     {
       defaultValue: '',
       labelRight: formatMessage({
-        id: 'form.label.inspectionInformation',
+        id: 'form.FormThree.label.inspectionInformation',
       }),
       placeholder: formatMessage({
-        id: 'form.label.noOfAdultsPresentFacilityInfo',
+        id: 'form.FormThree.label.noOfAdultsPresentFacilityInfo',
       }),
       name: 'noOfAdultsPresentInspectionInfo',
       rules: {
@@ -61,12 +63,14 @@ export default (fieldProps = {}) => {
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.noOfMalesPresentFacilityInfo'}),
+      label: formatMessage({
+        id: 'form.FormThree.label.noOfMalesPresentFacilityInfo',
+      }),
       labelRight: formatMessage({
-        id: 'form.label.facilityInformation',
+        id: 'form.FormThree.label.facilityInformation',
       }),
       placeholder: formatMessage({
-        id: 'form.label.noOfMalesPresentFacilityInfo',
+        id: 'form.FormThree.label.noOfMalesPresentFacilityInfo',
       }),
       name: 'noOfMalesPresentFacilityInfo',
       rules: {
@@ -85,10 +89,10 @@ export default (fieldProps = {}) => {
     {
       defaultValue: '',
       labelRight: formatMessage({
-        id: 'form.label.inspectionInformation',
+        id: 'form.FormThree.label.inspectionInformation',
       }),
       placeholder: formatMessage({
-        id: 'form.label.noOfMalesPresentFacilityInfo',
+        id: 'form.FormThree.label.noOfMalesPresentFacilityInfo',
       }),
       name: 'noOfMalesPresentInspectionInfo',
       rules: {
@@ -105,12 +109,14 @@ export default (fieldProps = {}) => {
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.noOfFemalesPresentFacilityInfo'}),
+      label: formatMessage({
+        id: 'form.FormThree.label.noOfFemalesPresentFacilityInfo',
+      }),
       labelRight: formatMessage({
-        id: 'form.label.facilityInformation',
+        id: 'form.FormThree.label.facilityInformation',
       }),
       placeholder: formatMessage({
-        id: 'form.label.noOfFemalesPresentFacilityInfo',
+        id: 'form.FormThree.label.noOfFemalesPresentFacilityInfo',
       }),
       name: 'noOfFemalesPresentFacilityInfo',
       rules: {
@@ -129,10 +135,10 @@ export default (fieldProps = {}) => {
     {
       defaultValue: '',
       labelRight: formatMessage({
-        id: 'form.label.inspectionInformation',
+        id: 'form.FormThree.label.inspectionInformation',
       }),
       placeholder: formatMessage({
-        id: 'form.label.noOfFemalesPresentFacilityInfo',
+        id: 'form.FormThree.label.noOfFemalesPresentFacilityInfo',
       }),
       name: 'noOfFemalesPresentInspectionInfo',
       rules: {
@@ -149,9 +155,11 @@ export default (fieldProps = {}) => {
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.percentageOfFemalesBreedEachYear'}),
+      label: formatMessage({
+        id: 'form.FormThree.label.percentageOfFemalesBreedEachYear',
+      }),
       placeholder: formatMessage({
-        id: 'form.label.percentageOfFemalesBreedEachYear',
+        id: 'form.FormThree.label.percentageOfFemalesBreedEachYear',
       }),
       name: 'percentageOfFemalesBreedEachYear',
       rules: {
@@ -164,9 +172,9 @@ export default (fieldProps = {}) => {
       keyboardType: 'number-pad',
     },
     {
-      label: formatMessage({id: 'form.label.foodFedToAdults'}),
+      label: formatMessage({id: 'form.FormThree.label.foodFedToAdults'}),
       placeholder: formatMessage({
-        id: 'form.label.foodFedToAdults',
+        id: 'form.FormThree.label.foodFedToAdults',
       }),
       name: 'foodFedToAdults',
       //rules: {required},
