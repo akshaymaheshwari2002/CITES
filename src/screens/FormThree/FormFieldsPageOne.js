@@ -49,7 +49,7 @@ export default (fieldProps = {}) => {
       }),
       name: 'sourceCodeInitialStock',
       rules: {
-        required,
+        // required,
         maxLength: {
           value: 1,
           message: formatMessage({
@@ -84,7 +84,7 @@ export default (fieldProps = {}) => {
       }),
       name: 'numberOfMalesInitialStock',
       rules: {
-        required,
+        // required,
         validate: {validateNumber, validatePositiveNumber, validateInteger},
       },
       keyboardType: 'number-pad',
@@ -99,7 +99,7 @@ export default (fieldProps = {}) => {
       }),
       name: 'numberOfFemalesInitialStock',
       rules: {
-        required,
+        // required,
         validate: {validateNumber, validatePositiveNumber, validateInteger},
       },
       keyboardType: 'number-pad',

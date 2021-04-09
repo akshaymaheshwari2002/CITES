@@ -137,7 +137,7 @@ const FormFour = ({navigation: {navigate, goBack, setOptions}}) => {
           <Text style={styles._content}>
             {formatMessage({id: 'screen.FormFour.contentFour'})}
           </Text>
-          <Text style={styles._content}>
+          <Text style={styles._content1}>
             {formatMessage({id: form4Questions[questionNumber].for})}
           </Text>
         </View>
@@ -178,7 +178,7 @@ const FormFour = ({navigation: {navigate, goBack, setOptions}}) => {
             return styles.buttonText;
           }}
           buttonStyle={() => {
-            return styles.button;
+            return styles.infobutton;
           }}
           onPress={() => {
             store.dispatch(
@@ -208,7 +208,7 @@ const styles = ScaledSheet.create({
     ...Fonts.Lato15R,
   },
   word: {
-    color: RawColors.charcoalGrey60,
+    color: RawColors.black,
     ...Fonts.Lato15B,
   },
   question: {
@@ -231,7 +231,17 @@ const styles = ScaledSheet.create({
   _content: {
     ...Fonts.HelveticaNeue20B,
   },
+  _content1: {
+    ...Fonts.HelveticaNeue19B,
+  },
   button: {
+    height: '46@vs',
+    width: '290@s',
+    alignSelf: 'center',
+    marginVertical: '15@vs',
+    backgroundColor: RawColors.lightGrey,
+  },
+  infobutton: {
     height: '46@vs',
     width: '290@s',
     alignSelf: 'center',

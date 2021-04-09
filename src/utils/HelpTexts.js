@@ -169,6 +169,13 @@ export default {
       isBold: false,
     },
   ],
+  formFourNew: [
+    {
+      text:
+        'Suitable enclosures or containment facilities should provide adequate equipment, structure and space for breeding animals to live. There should be adequate enclosures or containment facilities to produce the number of offspring and/or specimens claimed to be produced by the facility.',
+      isBold: false,
+    },
+  ],
   formFourThree: [
     {
       text:
@@ -214,7 +221,7 @@ export default {
   formFourNine: [
     {
       text:
-        'High volumes of trade in specimens from recently established facilities may indicate suspicious activity. The facility should be established long enough to produce offspring (if claiming the specimens are captive-bred). Examples when this may be the case include species that grow slowly or take many years to reach maturity, and species producing few offspring per litter of clutch.',
+        'High volumes of trade in specimens from recently established facilities may indicate suspicious activity.  The facility should be established long enough to produce offspring (if claiming the specimens are captive-bred). Examples when this may be the case include species that grow slowly or take many years to reach maturity, and species producing few offspring per litter of clutch.',
       isBold: false,
     },
   ],

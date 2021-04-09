@@ -142,7 +142,7 @@ export default () => {
       label: formatMessage({id: 'form.FormOne.label.facilityOwner'}),
       placeholder: formatMessage({id: 'form.FormOne.label.facilityOwner'}),
       name: 'facilityOwner',
-      rules: {required},
+      // rules: {required},
     },
     {
       label: formatMessage({id: 'form.FormOne.label.facilityOwnerEmail'}),
@@ -150,7 +150,6 @@ export default () => {
       name: 'facilityOwnerEmail',
       fieldContainerStyle: {marginBottom: 0},
       rules: {
-        required,
         pattern: validateEmail,
       },
     },

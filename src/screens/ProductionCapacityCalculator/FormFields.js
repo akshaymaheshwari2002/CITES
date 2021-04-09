@@ -169,13 +169,7 @@ export default ({modeSelected}) => {
         id:
           'form.ProductionCapacityCalculator.label.approximateYoungProducedPerYear',
       }),
-      placeholder:
-        modeSelected === 1
-          ? '0'
-          : formatMessage({
-              id:
-                'form.ProductionCapacityCalculator.placeholder.approximateYoungProducedPerYear',
-            }),
+      placeholder: modeSelected === 1 ? '0' : '0',
       name: 'approximateYoungProducedPerYear',
       rules:
         modeSelected === 2

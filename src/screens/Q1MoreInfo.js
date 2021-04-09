@@ -108,23 +108,20 @@ export default Q1MoreInfo;
 
 const styles = ScaledSheet.create({
   margin: {
-    marginHorizontal: '30@s',
-    alignItems: 'center',
+    marginHorizontal: '16@s',
+    alignItems: 'flex-start',
   },
   title: {
     marginTop: '40@vs',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   titleContent: {
     ...Fonts.HelveticaNeue20B,
     marginHorizontal: '10@s',
-    lineHeight: '26@s',
+    lineHeight: '23@s',
     letterSpacing: '0.32@s',
   },
   button: {
     height: '80@ms',
-    width: '290@s',
     marginTop: '35@s',
     backgroundColor: RawColors.lightGrey,
   },
@@ -132,17 +129,16 @@ const styles = ScaledSheet.create({
     marginTop: 'auto',
   },
   content: {
-    minWidth: '130@ms',
     color: RawColors.black,
     textAlign: 'center',
-    ...Fonts.Italic15R,
+    ...Fonts.Regular15R,
     lineHeight: '20@s',
   },
   contentTwo: {
     minWidth: '130@ms',
     color: RawColors.black,
     textAlign: 'center',
-    ...Fonts.Italic15R,
+    ...Fonts.Regular15R,
     lineHeight: '20@s',
   },
   footer: {

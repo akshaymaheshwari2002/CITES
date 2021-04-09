@@ -112,7 +112,6 @@ const TextInputArray = React.forwardRef(
                 borderRadius: 1,
                 borderWidth: 1,
                 borderColor: RawColors.dimGrey,
-                marginTop: s(15),
               })}
               buttonTextStyle={() => ({color: RawColors.dimGrey})}
               buttonContent={buttonText}
@@ -153,7 +152,6 @@ const styles = ScaledSheet.create({
     height: '50@vs',
     borderColor: RawColors.dimGrey,
     borderWidth: 1,
-    marginBottom: '8@vs',
     marginTop: 0,
     backgroundColor: RawColors.lightGrey,
   },

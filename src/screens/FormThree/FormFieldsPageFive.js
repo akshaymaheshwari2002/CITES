@@ -31,7 +31,7 @@ export default (fieldProps = {}) => {
       }),
       name: 'noOfJuvenilesPresentFacilityInfo',
       rules: {
-        required,
+        // required,
         validate: {
           validateNumber,
           validatePositiveNumber,
@@ -54,7 +54,7 @@ export default (fieldProps = {}) => {
       }),
       name: 'noOfJuvenilesPresentInspectionInfo',
       rules: {
-        required,
+        // required,
         validate: {
           validateNumber,
           validatePositiveNumber,
@@ -73,7 +73,7 @@ export default (fieldProps = {}) => {
       }),
       name: 'ageAtSexualMaturity',
       rules: {
-        required,
+        // required,
         validate: {
           validateNumber,
           validatePositiveNumber,
@@ -159,7 +159,7 @@ export default (fieldProps = {}) => {
       }),
       name: 'percentageOfJuvenilesSurviveBeyond2Weeks',
       rules: {
-        required,
+        // required,
         validate: {
           validateNumber,
           validateNumberPercentageNonFraction,
