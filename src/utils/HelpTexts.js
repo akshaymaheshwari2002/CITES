@@ -221,7 +221,7 @@ export default {
   formFourNine: [
     {
       text:
-        'High volumes of trade in specimens from recently established facilities may indicate suspicious activity. The facility should be established long enough to produce offspring (if claiming the specimens are captive-bred). Examples when this may be the case include species that grow slowly or take many years to reach maturity, and species producing few offspring per litter of clutch.',
+        'High volumes of trade in specimens from recently established facilities may indicate suspicious activity.  The facility should be established long enough to produce offspring (if claiming the specimens are captive-bred). Examples when this may be the case include species that grow slowly or take many years to reach maturity, and species producing few offspring per litter of clutch.',
       isBold: false,
     },
   ],

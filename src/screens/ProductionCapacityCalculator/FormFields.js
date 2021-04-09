@@ -150,12 +150,7 @@ export default ({modeSelected}) => {
       label: formatMessage({
         id: 'form.label.approximateYoungProducedPerYear',
       }),
-      placeholder:
-        modeSelected === 1
-          ? '0'
-          : formatMessage({
-              id: 'form.placeholder.approximateYoungProducedPerYear',
-            }),
+      placeholder: modeSelected === 1 ? '0' : '0',
       name: 'approximateYoungProducedPerYear',
       rules:
         modeSelected === 2
