@@ -88,6 +88,9 @@ const Search = ({navigation}) => {
                   buttonContent={
                     <>
                       <View style={styles.resultWrapper}>
+                        <Text style={[styles.text, {...Fonts.Lato20B}]}>
+                          {el.targetRoute}
+                        </Text>
                         <Text numberOfLines={2} style={styles.text}>
                           {el.value}
                         </Text>
@@ -137,7 +140,7 @@ const styles = ScaledSheet.create({
   },
   resultWrapper: {
     marginBottom: vs(10),
-    flexDirection: 'row',
+    flexDirection: 'column',
   },
   text: {
     flex: 1,

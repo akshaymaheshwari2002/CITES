@@ -129,9 +129,11 @@ const styles = ScaledSheet.create({
     alignSelf: 'center',
   },
   letterDescription: {
+    width: '225@s',
     color: RawColors.black,
     textAlign: 'center',
-    ...Fonts.Lato20R,
+    alignSelf: 'center',
+    ...Fonts.Lato15R,
     lineHeight: '30@ms',
   },
   flex: {flex: 1},

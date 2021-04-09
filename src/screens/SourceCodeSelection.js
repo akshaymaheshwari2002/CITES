@@ -100,7 +100,7 @@ const styles = ScaledSheet.create({
     color: RawColors.black,
     lineHeight: '25@s',
     textAlign: 'center',
-    ...Fonts.Lato15R,
+    ...Fonts.Lato20R,
   },
   flex: {flex: 1},
   footer: {

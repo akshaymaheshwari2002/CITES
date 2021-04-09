@@ -36,6 +36,7 @@ const BreedingCodeInput = React.forwardRef(
                 style={styles.textInput}
                 placeholder={placeholder}
                 maxLength={1}
+                autoCapitalize="characters"
               />
             </View>
           );

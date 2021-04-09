@@ -45,7 +45,7 @@ export default () => {
         id: 'form.label.nameOfInspectionOfficers',
       }),
       placeholder: formatMessage({
-        id: 'form.label.nameOfInspectionOfficers',
+        id: 'form.placeholder.nameOfInspectionOfficers',
       }),
       name: 'nameOfInspectionOfficers',
       rules: {required},
