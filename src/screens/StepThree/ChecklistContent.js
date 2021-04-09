@@ -86,12 +86,11 @@ const checklistContent = ({checkliststyles, bullet}) => {
       id: 'requirementCheckedForAdditionalInspection',
       content: (
         <View>
-          <Text style={checkliststyles.textGeneral}>
+          <Text style={[checkliststyles.textGeneral, {marginRight: 10}]}>
             {formatMessage({
               id:
                 'screen.stepThree.requirementCheckedForAdditionalInspectiond.bullet_head',
             })}
-            :
           </Text>
           <View style={checkliststyles.bulletList}>
             {bullet}

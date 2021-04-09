@@ -122,7 +122,6 @@ const Fonts = {
   Lato15R: {
     fontFamily: 'Lato-Regular',
     fontSize: moderateScale(15),
-    textAlign: 'center',
   },
   Lato17R: {
     fontFamily: 'Lato-Regular',

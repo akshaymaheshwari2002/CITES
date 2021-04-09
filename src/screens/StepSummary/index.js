@@ -102,7 +102,7 @@ const StepSummary = ({navigation: {navigate}}) => {
     shallowEqual,
   );
   const formFourData = useSelector(
-    (state) => state.sessionReducer.activeInspection.stepThree.formFour,
+    (state) => state.sessionReducer.activeInspection.stepThree?.formFour,
     shallowEqual,
   );
   const notes = useSelector(
