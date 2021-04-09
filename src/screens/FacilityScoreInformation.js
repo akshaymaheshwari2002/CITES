@@ -1,8 +1,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {Container, Header, Button} from '@atoms';
-import Icon from 'react-native-vector-icons/Feather';
-import {ScaledSheet, ms} from 'react-native-size-matters';
+import {Container, Button} from '@atoms';
+import {ScaledSheet} from 'react-native-size-matters';
 
 import {RawColors, Fonts} from '@styles/Themes';
 import {useIntl} from 'react-intl';

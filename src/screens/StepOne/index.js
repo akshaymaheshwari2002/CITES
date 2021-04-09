@@ -4,7 +4,6 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms, s} from 'react-native-size-matters';
 import {shallowEqual, useDispatch, useSelector} from 'react-redux';
-import Toast from 'react-native-simple-toast';
 import {useIsFocused} from '@react-navigation/core';
 
 import {Container, Button, Tooltip} from '@atoms';
