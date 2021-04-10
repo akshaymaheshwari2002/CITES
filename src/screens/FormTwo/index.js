@@ -45,7 +45,7 @@ const FormTwo = ({navigation}) => {
   }, [_accessToVeterinaryServices, _animalKeptAtOtherLocation]);
 
   const _handleSubmit = useCallback(
-    async (data) => {
+    async (data, callback = () => {}) => {
       formData.current = {...formData.current, ...data};
 
       await dispatch(
@@ -64,9 +64,9 @@ const FormTwo = ({navigation}) => {
         }),
       );
       dispatch(saveInspection({stepTwo: {formTwoCompleted: true}}));
-      navigation.navigate('TabNavigator', {screen: 'StepTwo'});
+      callback();
     },
-    [dispatch, navigation],
+    [dispatch],
   );
 
   const scrollToTop = useCallback(() => {
@@ -130,11 +130,19 @@ const FormTwo = ({navigation}) => {
         <View style={styles.formContainer}>
           <Form {...{control, errors}} formFields={formFields} />
           <Button
-            onPress={handleSubmit(_handleSubmit, () => scrollToTop())}
+            onPress={handleSubmit((args) =>
+              _handleSubmit(args, () =>
+                navigation.navigate('TabNavigator', {screen: 'StepTwo'}),
+              ),
+            )}
             buttonContent={formatMessage({id: 'button.continueWithStep2'})}
           />
           <Button
-            onPress={() => navigation.navigate('FormTwoSummary')}
+            onPress={handleSubmit((args) =>
+              _handleSubmit(args, () =>
+                navigation.navigate('TabNavigator', {screen: 'FormTwoSummary'}),
+              ),
+            )}
             buttonStyle={() => ({marginVertical: verticalScale(16)})}
             buttonContent={formatMessage({id: 'button.viewForm2Summary'})}
           />

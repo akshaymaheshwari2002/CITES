@@ -580,5 +580,7 @@
   "drawer.formOne": "FORM 1",
   "drawer.stepThree": "STEP 3",
   "drawer.stepTwo": "STEP 2",
-  "drawer.stepOne": "STEP 1"
+  "drawer.stepOne": "STEP 1",
+  "button.addOrganisation": "+ Add Organisation",
+  "button.addColleague": "+ Add Colleague",
 }
