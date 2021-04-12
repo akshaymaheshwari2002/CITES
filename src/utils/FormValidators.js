@@ -32,7 +32,9 @@ export default () => {
         }, true)) ||
       formatMessage({id: 'form.error.allFieldsRequired'}),
     validateNumber: (value) =>
-      isNumber(value) || formatMessage({id: 'form.error.number'}),
+      value &&
+      value.length &&
+      (isNumber(value) || formatMessage({id: 'form.error.number'})),
     validatePositiveNumber: (value) =>
       isNumberPositive(value) ||
       formatMessage({id: 'form.error.positiveNumber'}),
