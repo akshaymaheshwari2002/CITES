@@ -172,6 +172,7 @@ const StepSummary = ({navigation: {navigate}}) => {
             response={formFourData}
           />,
           <div style={{breakAfter: 'page'}} />,
+          <FormOneHeader facilityData={facilityData} form={'notes'} />,
           <InspectionNotesTemplate notesData={notes} />,
         ],
       });
