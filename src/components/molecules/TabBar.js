@@ -5,7 +5,11 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Feather';
 import {useSelector, shallowEqual, useDispatch} from 'react-redux';
 import {useIntl} from 'react-intl';
-import {CommonActions, useNavigation} from '@react-navigation/native';
+import {
+  CommonActions,
+  useNavigation,
+  useNavigationState,
+} from '@react-navigation/native';
 
 import {RawColors} from '@styles/Themes';
 import {setTooltipProps, setIsShowSideMenu} from '@store/slices/sessionSlice';
@@ -24,6 +28,9 @@ const TabBar = () => {
   const {bottom: marginBottom} = useSafeAreaInsets();
   const dispatch = useDispatch();
   const navigation = useNavigation();
+  const a = useNavigationState((state) => {
+    console.log(state);
+  });
   const tooltipProps = useSelector(
     (state) => state.sessionReducer.tooltipProps,
     shallowEqual,

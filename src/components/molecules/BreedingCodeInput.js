@@ -130,6 +130,7 @@ const styles = ScaledSheet.create({
     marginVertical: 0,
     marginBottom: '8@vs',
     textAlign: 'center',
+    aspectRatio: 1,
     backgroundColor: RawColors.lightGrey,
   },
   labelBottom: {

@@ -70,6 +70,9 @@ const StepOne = ({navigation, route}) => {
     },
     [dispatch],
   );
+  useEffect(() => {
+    console.log(route, '3455');
+  }, [route]);
 
   const handleTooltipClose = useCallback(() => {
     navigation.setParams({showToolTip: false});
