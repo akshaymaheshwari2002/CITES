@@ -21,60 +21,46 @@ const HomePage = ({navigation}) => {
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
       <ImageBackground
         style={styles.container}
-        source={Images.backgroundPatternTop}
+        source={Images.fullBgTwo}
         imageStyle={styles.resizeModeRepeat}>
         <Container.ScrollView contentContainerStyle={styles.scrollContainer}>
           <Image source={Images.logo} style={styles.logo} />
           <Text style={styles.content}>
             {formatMessage({id: 'screen.languageSelection.contentOne'})}
           </Text>
-          <ImageBackground
-            style={styles.backgroundContainer}
-            source={Images.backgroundThree}
-            imageStyle={styles.backgroundImage}>
-            <ImageBackground
-              style={styles.backgroundContainer}
-              source={Images.backgroundTwo}
-              imageStyle={styles.backgroundImage}>
-              <ImageBackground
-                style={styles.backgroundContainer}
-                source={Images.backgroundOne}
-                imageStyle={styles.backgroundImage}>
-                <View style={styles.contentContainer}>
-                  <Button
-                    onPress={handlePress}
-                    buttonStyle={() => styles.filledButton}
-                    buttonTextStyle={() => styles.buttonText}
-                    buttonContent={formatMessage({
-                      id: 'button.inspectFacility',
-                    })}
-                  />
-                  <Button
-                    onPress={() => {
-                      dispatch(setContinueToStepTwo(false));
-                      navigation.navigate('SourceFlow');
-                    }}
-                    buttonStyle={() => styles.filledButton}
-                    buttonTextStyle={() => styles.buttonText}
-                    buttonContent={formatMessage({
-                      id: 'button.determineSourceCode',
-                    })}
-                  />
-                  <Button
-                    onPress={() => {
-                      navigation.navigate('TabNavigator', {
-                        screen: 'FeedbackTwo',
-                      });
-                    }}
-                    buttonContent={formatMessage({
-                      id: 'button.giveFeedback',
-                    })}
-                    buttonStyle={() => styles.emptyButton}
-                  />
-                </View>
-              </ImageBackground>
-            </ImageBackground>
-          </ImageBackground>
+
+          <View style={styles.contentContainer}>
+            <Button
+              onPress={handlePress}
+              buttonStyle={() => styles.filledButton}
+              buttonTextStyle={() => styles.buttonText}
+              buttonContent={formatMessage({
+                id: 'button.inspectFacility',
+              })}
+            />
+            <Button
+              onPress={() => {
+                dispatch(setContinueToStepTwo(false));
+                navigation.navigate('SourceFlow');
+              }}
+              buttonStyle={() => styles.filledButton}
+              buttonTextStyle={() => styles.buttonText}
+              buttonContent={formatMessage({
+                id: 'button.determineSourceCode',
+              })}
+            />
+            <Button
+              onPress={() => {
+                navigation.navigate('TabNavigator', {
+                  screen: 'FeedbackTwo',
+                });
+              }}
+              buttonContent={formatMessage({
+                id: 'button.giveFeedback',
+              })}
+              buttonStyle={() => styles.emptyButton}
+            />
+          </View>
         </Container.ScrollView>
       </ImageBackground>
     </Container>
@@ -86,9 +72,7 @@ const styles = ScaledSheet.create({
     flexGrow: 1,
     backgroundColor: RawColors.darkSalmon,
   },
-  resizeModeRepeat: {
-    resizeMode: 'repeat',
-  },
+  resizeModeRepeat: {},
   scrollContainer: {
     paddingTop: '120@vs',
     backgroundColor: RawColors.transparent,
@@ -97,12 +81,10 @@ const styles = ScaledSheet.create({
     flexGrow: 1,
     paddingTop: '28@vs',
   },
-  backgroundImage: {
-    resizeMode: 'stretch',
-  },
+  backgroundImage: {},
   logo: {
     position: 'absolute',
-    top: '80@vs',
+    top: '50@vs',
     resizeMode: 'contain',
     alignSelf: 'center',
     height: '97@vs',
@@ -110,7 +92,7 @@ const styles = ScaledSheet.create({
   },
   content: {
     ...Fonts.Lato30R,
-    top: '55@vs',
+    top: '25@vs',
     alignSelf: 'center',
   },
   contentContainer: {
@@ -129,6 +111,7 @@ const styles = ScaledSheet.create({
   },
   emptyButton: {
     marginVertical: '16@vs',
+    backgroundColor: RawColors.sugarCane,
   },
   buttonText: {
     color: RawColors.white,
