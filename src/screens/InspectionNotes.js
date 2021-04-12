@@ -22,9 +22,9 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
   const {formatMessage} = useIntl();
   const dispatch = useDispatch();
   const [isImagePicker, setIsImagePicker] = useState(false);
-  const [popUp, setPopUp] = useState(false);
-  const [notesTitle, setNotesTitle] = useState('');
   const [notesText, setNotesText] = useState('');
+  const [popUp, setPopUp] = useState(false);
+
   const notes = useSelector(
     (state) => state.sessionReducer.activeInspection.notes,
   );
@@ -32,44 +32,50 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
   const handlePress = useCallback(() => {
     console.log(notes, '12345679');
     const timeStamp = Date.now();
-    const title = notesTitle;
     const text = notesText;
     const notesTextLength = notesText.length;
-    const notesTitleLength = notesTitle.length;
-    if (notesTextLength > 1 && notesTitleLength > 1) {
-      dispatch(saveNotes({notes: {title, text, timeStamp}}));
+    if (notesTextLength > 1) {
+      dispatch(saveNotes({notes: {text, timeStamp}}));
     }
     setNotesText('');
-    setNotesTitle('');
     setPopUp(false);
-  }, [dispatch, notes, notesText, notesTitle]);
+  }, [dispatch, notes, notesText]);
 
-  const renderItem = useCallback(({item}) => {
-    const timeStamp = item?.timeStamp;
-    return (
-      <View style={styles.row_parent}>
-        <Button
-          buttonStyle={() => styles.buttonFlatList}
-          buttonContent={
-            <>
-              <Text style={styles.date}>
-                {timeStamp
-                  ? new Date(parseInt(timeStamp, 10)).toLocaleDateString()
-                  : 'NA'}
-              </Text>
-              <Text style={styles.time}>
-                {timeStamp
-                  ? new Date(parseInt(timeStamp, 10)).toLocaleTimeString()
-                  : 'NA'}
-              </Text>
-              <Text style={styles.flatlistTitle}>{item?.title}</Text>
-              <Text style={styles.flatlistText}>{item?.text}</Text>
-            </>
-          }
-        />
-      </View>
-    );
-  }, []);
+  const renderItem = useCallback(
+    ({item}) => {
+      const timeStamp = item?.timeStamp;
+      return (
+        <View style={styles.row_parent}>
+          <View style={styles.dateTime}>
+            <Text style={styles.datetimeText}>
+              {timeStamp
+                ? new Date(parseInt(timeStamp, 10)).toLocaleDateString()
+                : 'NA'}
+            </Text>
+            <Text style={styles.datetimeText}>
+              {formatMessage({
+                id: 'screen.InspectionNotes.contentAt',
+              })}
+            </Text>
+            <Text style={styles.datetimeText}>
+              {timeStamp
+                ? new Date(parseInt(timeStamp, 10)).toLocaleTimeString()
+                : 'NA'}
+            </Text>
+          </View>
+          <Button
+            buttonStyle={() => styles.buttonFlatList}
+            buttonContent={
+              <>
+                <Text style={styles.flatlistText}>{item?.text}</Text>
+              </>
+            }
+          />
+        </View>
+      );
+    },
+    [formatMessage],
+  );
 
   return (
     <>
@@ -101,27 +107,23 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
                 <Image source={Images.cameraButton} />
               </TouchableOpacity>
             </View>
-            <View style={styles.textInputContainer}>
-              <Button
-                buttonStyle={() => ({
-                  borderStyle: 'dashed',
-                  borderRadius: 1,
-                  borderWidth: 1,
-                  borderColor: RawColors.dimGrey,
-                })}
-                buttonTextStyle={() => styles.buttonTextStyle}
-                buttonContent={formatMessage({
-                  id: 'button.addInspectionNotes',
-                })}
-                onPress={() => {
-                  setPopUp(true);
-                }}
-              />
-            </View>
             <FlatList
               data={notes}
               keyExtractor={(_, index) => index.toString()}
               renderItem={renderItem}
+              ListFooterComponent={
+                <Button
+                  buttonStyle={() => styles.buttonStyle}
+                  buttonTextStyle={() => styles.buttonTextStyle}
+                  buttonContent={formatMessage({
+                    id: 'button.addInspectionNotes',
+                  })}
+                  onPress={() => {
+                    setPopUp(true);
+                  }}
+                />
+              }
+              ListFooterComponentStyle={styles.textInputContainer}
             />
           </View>
           <ImagePickerModal
@@ -135,9 +137,7 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
         <PopupNotesInput
           isShowPopupNotesInput={popUp}
           onPress={handlePress}
-          notesTitle={notesTitle}
           notesText={notesText}
-          setNotesTitle={setNotesTitle}
           setNotesText={setNotesText}
           setPopUp={setPopUp}
         />
@@ -160,20 +160,10 @@ const styles = ScaledSheet.create({
   },
   title: {
     height: '100@s',
-    backgroundColor: 'white',
+    backgroundColor: RawColors.white,
   },
   textInputContainer: {
-    marginTop: vs(20),
     paddingHorizontal: s(15),
-  },
-  textInput: {
-    backgroundColor: RawColors.greyShade,
-    borderStyle: 'dashed',
-    borderWidth: 1,
-    borderRadius: 1,
-    borderColor: RawColors.dimGrey,
-    textAlign: 'center',
-    color: RawColors.darkGreyBlue,
   },
   titleOne: {
     ...Fonts.HelveticaNeue30B,
@@ -202,7 +192,7 @@ const styles = ScaledSheet.create({
   },
   circle: {
     marginHorizontal: '15@s',
-    marginTop: '16@s',
+    marginTop: '16@vs',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -219,62 +209,40 @@ const styles = ScaledSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  cameraContainer: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: 'black',
-  },
-  preview: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  capture: {
-    flex: 0,
-    backgroundColor: '#fff',
-    borderRadius: 5,
-    padding: 15,
-    paddingHorizontal: 20,
-    alignSelf: 'center',
-    margin: 20,
-  },
-  footer: {
-    width: '100%',
-    height: '15@s',
-  },
   row_parent: {
-    zIndex: -1,
-    width: '100%',
-    minHeight: '120@s',
-    paddingVertical: '15@s',
-    paddingHorizontal: s(15),
+    width: '341@s',
+    minHeight: '20@vs',
+    paddingVertical: '15@vs',
+    paddingHorizontal: s(16),
   },
   buttonFlatList: {
     flex: 1,
+    zIndex: -10,
     alignItems: 'flex-start',
+    borderWidth: 2,
     borderRadius: 0,
-    borderWidth: 0,
-    backgroundColor: RawColors.eggshell,
-    padding: '16@s',
-    width: '358@s',
-    elevation: '5@s',
-    ...CommonStyles.shadowEffectDarker,
   },
-  date: {
-    ...Fonts.Lato15B,
-    color: RawColors.brightRed,
+  dateTime: {
+    position: 'absolute',
+    backgroundColor: RawColors.white,
+    flexDirection: 'row',
+    width: '120@s',
+    marginLeft: '40@s',
+    height: '20@vs',
+    marginTop: '6@vs',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  time: {
-    ...Fonts.Lato14R,
-    color: RawColors.brightRed,
+  datetimeText: {
+    ...Fonts.Lato10R,
+    color: RawColors.black,
   },
-  flatlistTitle: {
-    marginTop: '12@vs',
-    ...Fonts.Lato15B,
-  },
-  flatlistText: {
-    marginTop: '8@vs',
-    ...Fonts.Lato14R,
+  buttonStyle: {
+    borderStyle: 'dashed',
+    borderRadius: 1,
+    borderWidth: 1,
+    marginTop: '10@vs',
+    borderColor: RawColors.dimGrey,
   },
   buttonTextStyle: {
     ...Fonts.Lato15R,

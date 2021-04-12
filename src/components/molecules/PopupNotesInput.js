@@ -10,9 +10,7 @@ import {Button, TextInput} from '@atoms';
 const PopupNotesInput = ({
   isShowPopupNotesInput = false,
   onPress = () => {},
-  notesTitle = '',
   notesText = '',
-  setNotesTitle = () => {},
   setNotesText = () => {},
   setPopUp = () => {},
 }) => {
@@ -21,15 +19,7 @@ const PopupNotesInput = ({
   return isShowPopupNotesInput ? (
     <View style={styles.containerOne}>
       <View style={styles.containerTwo}>
-        <View style={{height: vs(300)}}>
-          <TextInput
-            value={notesTitle}
-            onChange={setNotesTitle}
-            placeholder={formatMessage({
-              id: 'screen.InspectionNotes.notesTitle',
-            })}
-            style={{width: s(190), marginHorizontal: s(15)}}
-          />
+        <View style={{height: vs(220)}}>
           <TextInput
             value={notesText}
             onChange={setNotesText}

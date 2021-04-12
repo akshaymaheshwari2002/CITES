@@ -586,5 +586,6 @@
   "drawer.stepTwo": "STEP 2",
   "drawer.stepOne": "STEP 1",
   "button.addOrganisation": "+ Add Organisation",
-  "button.addColleague": "+ Add Colleague"
+  "button.addColleague": "+ Add Colleague",
+  "screen.InspectionNotes.contentAt": " at "
 }

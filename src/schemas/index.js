@@ -11,7 +11,6 @@ export const NOTES = {
   name: 'Notes',
   properties: {
     timeStamp: 'int',
-    title: 'string',
     text: 'string',
   },
 };

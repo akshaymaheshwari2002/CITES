@@ -79,6 +79,10 @@ const Fonts = {
     fontFamily: 'Lato-Regular',
     fontSize: moderateScale(19),
   },
+  Lato10R: {
+    fontFamily: 'Lato-Regular',
+    fontSize: moderateScale(10),
+  },
   Lato12R: {
     fontFamily: 'Lato-Regular',
     fontSize: moderateScale(12),
