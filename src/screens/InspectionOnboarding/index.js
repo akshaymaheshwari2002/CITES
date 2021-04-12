@@ -103,7 +103,7 @@ const InspectionOnboarding = ({navigation, route}) => {
       <Header
         leftContent={
           <Pressable hitSlop={10} onPress={handleBackPress}>
-            <Icon name="chevron-left" size={ms(18)} />
+            <Icon name="chevron-left" size={ms(22)} />
           </Pressable>
         }
         content={
@@ -111,7 +111,7 @@ const InspectionOnboarding = ({navigation, route}) => {
         }
         rightContent={
           <Pressable hitSlop={10} onPress={handleForwardPress}>
-            <Icon name="chevron-right" size={ms(18)} />
+            <Icon name="chevron-right" size={ms(22)} />
           </Pressable>
         }
       />

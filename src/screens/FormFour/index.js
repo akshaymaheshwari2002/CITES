@@ -108,7 +108,7 @@ const FormFour = ({navigation: {navigate, goBack, setOptions}}) => {
               setQuestionNumber((state) => state - 1);
             }
           }}>
-          <Icon name="chevron-left" size={ms(26)} />
+          <Icon name="chevron-left" size={ms(22)} />
         </Pressable>
       ),
     });

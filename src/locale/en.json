@@ -438,7 +438,7 @@
   "screen.StepSummary.headerPartOne": "SUMMARY",
   "screen.StepSummary.headerPartTwo": "INSPECTION COMPLETED",
   "screen.StepSummary.contentOne": "Well done!",
-  "screen.StepSummary.contentTwo": "You have completed the inspection and all associated forms.",
+  "screen.StepSummary.contentTwo": "You have completed the inspection and all forms.",
   "screen.StepSummary.contentThree": "What would you like to do?",
   "button.printForms": "PRINT FORMS",
   "button.shareForms": "SHARE FORMS",
@@ -586,5 +586,5 @@
   "drawer.stepTwo": "STEP 2",
   "drawer.stepOne": "STEP 1",
   "button.addOrganisation": "+ Add Organisation",
-  "button.addColleague": "+ Add Colleague",
+  "button.addColleague": "+ Add Colleague"
 }

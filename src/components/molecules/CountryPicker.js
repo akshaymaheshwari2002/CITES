@@ -35,7 +35,7 @@ const CountryPicker = forwardRef(
               onBackgroundTextColor: RawColors.black,
             }}
             l
-            closeButton={<Icon name="chevron-left" size={ms(18)} />}
+            closeButton={<Icon name="chevron-left" size={ms(22)} />}
             filterProps={{
               style: styles.filter,
               placeholder: 'Select or start typing country',
