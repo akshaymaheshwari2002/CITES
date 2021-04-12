@@ -122,7 +122,6 @@ const styles = ScaledSheet.create({
   },
   input: {
     width: '45@ms',
-    backgroundColor: 'green',
     marginRight: '6@vs',
   },
   textInput: {
