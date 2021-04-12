@@ -150,7 +150,7 @@
   "screen.FeedbackOne.contentFour": "What would you like to do?",
   "screen.FacilityScore.headerPartOne": "FACILITY",
   "screen.FacilityScore.headerPartTwo": "SCORE",
-  "screen.FacilityScore.title": "All forms completed. A number of points has been summed to determine the final facility score. Use this facility score to make a final determination about the facility.",
+  "screen.FacilityScore.title": "All forms completed. Points have been summed to determine the final facility score. Use this facility score to make a final determination about the facilities claims of captive breeding and/or ranching.",
   "screen.FacilityScoreGreaterEight.contentOne": "8-11",
   "screen.FacilityScoreLessEight.contentOne": "< 8",
   "screen.FacilityScoreGreaterEleven.contentOne": "> 11",
