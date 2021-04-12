@@ -194,6 +194,7 @@ const styles = ScaledSheet.create({
     width: '290@s',
     alignSelf: 'center',
     //minHeight: '66@vs',
+    backgroundColor: RawColors.sugarCane,
   },
   buttonText: {
     textTransform: 'uppercase',

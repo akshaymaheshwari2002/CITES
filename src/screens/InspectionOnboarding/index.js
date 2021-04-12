@@ -1,4 +1,4 @@
-import React, {useRef, useCallback, useState} from 'react';
+import React, {useRef, useCallback, useState, useEffect} from 'react';
 import {
   View,
   useWindowDimensions,
@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import {ms} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import {useDispatch} from 'react-redux';
 
 import {Container, Header, Pagination} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
@@ -15,11 +16,13 @@ import OnboardingOne from './OnboardingOne';
 import OnboardingTwo from './OnboardingTwo';
 import OnboardingThree from './OnboardingThree';
 import OnboardingFour from './OnboardingFour';
+import {setActiveInspection} from '@store/slices/sessionSlice';
 
 const data = [OnboardingOne, OnboardingTwo, OnboardingThree, OnboardingFour];
 
 const InspectionOnboarding = ({navigation, route}) => {
   const flatListRef = useRef({});
+  const dispatch = useDispatch();
   const {width: windowWidth} = useWindowDimensions();
   const [activeIndex, setActiveIndex] = useState(route.params.defaultIndex);
 
@@ -90,6 +93,10 @@ const InspectionOnboarding = ({navigation, route}) => {
     },
     [activeIndex, navigation],
   );
+
+  useEffect(() => {
+    dispatch(setActiveInspection({}));
+  }, []);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
