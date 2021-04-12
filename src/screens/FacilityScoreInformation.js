@@ -50,23 +50,40 @@ const FacilityScoreInformation = ({navigation: {navigate, goBack}, route}) => {
         </Text>
         {score < 8 ? (
           <Text style={styles.contentThree}>
-            {formatMessage({id: 'screen.FacilityScoreLessEight.contentThree'})}
+            <Text>
+              {formatMessage({
+                id: 'screen.FacilityScoreLessEight.contentThreePartOne',
+              })}
+            </Text>
+            <Text style={{...Fonts.Lato17B}}>
+              {formatMessage({
+                id: 'screen.FacilityScoreLessEight.contentThreePartTwo',
+              })}
+            </Text>
+            <Text>
+              {formatMessage({
+                id: 'screen.FacilityScoreLessEight.contentThreePartThree',
+              })}
+            </Text>
           </Text>
         ) : score > 11 ? (
           <>
             <Text style={styles.contentThree}>
-              {formatMessage({
-                id: 'screen.FacilityScoreGreaterEleven.contentThreePartOne',
-              })}
-              <Text style={styles.content}>
+              <Text>
                 {formatMessage({
-                  id: 'screen.FacilityScoreGreaterEleven.contentThreePartTwo',
+                  id: 'screen.FacilityScoreGreaterEleven.contentThreePartOne',
                 })}
-              </Text>
-              <Text style={{...Fonts.Lato15R}}>
-                {formatMessage({
-                  id: 'screen.FacilityScoreGreaterEleven.contentThreePartThree',
-                })}
+                <Text style={{...Fonts.Lato17B}}>
+                  {formatMessage({
+                    id: 'screen.FacilityScoreGreaterEleven.contentThreePartTwo',
+                  })}
+                </Text>
+                <Text>
+                  {formatMessage({
+                    id:
+                      'screen.FacilityScoreGreaterEleven.contentThreePartThree',
+                  })}
+                </Text>
               </Text>
             </Text>
             <Text style={styles.contentThree}>
@@ -77,9 +94,21 @@ const FacilityScoreInformation = ({navigation: {navigate, goBack}, route}) => {
           </>
         ) : (
           <Text style={styles.contentThree}>
-            {formatMessage({
-              id: 'screen.FacilityScoreGreaterEight.contentThree',
-            })}
+            <Text>
+              {formatMessage({
+                id: 'screen.FacilityScoreGreaterEight.contentThreePartOne',
+              })}
+            </Text>
+            <Text style={{...Fonts.Lato17B}}>
+              {formatMessage({
+                id: 'screen.FacilityScoreGreaterEight.contentThreePartTwo',
+              })}
+            </Text>
+            <Text>
+              {formatMessage({
+                id: 'screen.FacilityScoreGreaterEight.contentThreePartThree',
+              })}
+            </Text>
           </Text>
         )}
         <Button
@@ -102,39 +131,38 @@ const FacilityScoreInformation = ({navigation: {navigate, goBack}, route}) => {
 const styles = ScaledSheet.create({
   title: {
     marginTop: '20@s',
-    // height: '62@vs',
-    // width: '136@s',
+    height: '50@vs',
+    width: '136@s',
   },
   titleContent: {
-    fontWeight: 'bold',
     lineHeight: '26@s',
     letterSpacing: '0.48@s',
-    fontSize: 28,
+    ...Fonts.HelveticaNeue30B,
   },
   titleCommon: {
     color: RawColors.grey,
-    marginTop: '5%',
+    marginTop: '10@ms',
     lineHeight: '20@vs',
-    letterSpacing: 0.24,
-    fontSize: 13,
+    letterSpacing: 0.2,
+    ...Fonts.Lato15R,
   },
   contentOne: {
     color: RawColors.black,
     textAlign: 'center',
-    marginTop: '12%',
-    ...Fonts.Lato22B,
+    marginTop: '20@ms',
+    ...Fonts.HelveticaNeue30B,
   },
   contentTwo: {
     color: RawColors.black,
-    ...Fonts.Lato22B,
+    ...Fonts.HelveticaNeue30B,
     textAlign: 'center',
   },
   contentThree: {
     color: RawColors.black,
-    marginHorizontal: '16@s',
-    marginTop: '23@s',
+    marginHorizontal: '10@s',
+    marginTop: '15@s',
     textAlign: 'center',
-    lineHeight: '15@s',
+    lineHeight: '18@s',
     letterSpacing: '0.36@s',
     ...Fonts.Lato15R,
   },
@@ -145,7 +173,7 @@ const styles = ScaledSheet.create({
     height: '46@vs',
     width: '290@s',
     alignSelf: 'center',
-    marginVertical: '20@vs',
+    marginVertical: '25@vs',
     backgroundColor: RawColors.lightGrey,
   },
   buttonText: {

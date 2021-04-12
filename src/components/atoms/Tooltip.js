@@ -54,7 +54,6 @@ const _Tooltip = ({
 const styles = ScaledSheet.create({
   content: {borderRadius: '10@ms'},
   textContent: {
-    width: '138@s',
     padding: '5@ms',
   },
   arrowSize: {height: '8@vs', width: '4@ms'},

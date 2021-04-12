@@ -82,7 +82,7 @@ const InspectionOnboarding = ({navigation, route}) => {
       if (activeIndex === pageNum && activeIndex === data?.length - 1) {
         navigation.navigate('TabNavigator', {
           screen: 'StepOne',
-          params: {showToolTip: true},
+          params: {showToolTip: true, notShowAnimation: true},
         });
       }
 

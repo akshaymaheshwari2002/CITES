@@ -1,6 +1,5 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {View, Text} from 'react-native';
-import {useSelector, shallowEqual} from 'react-redux';
 import {ScaledSheet} from 'react-native-size-matters';
 
 import {Container, Button} from '@atoms';
@@ -58,14 +57,13 @@ const FacilityScore = ({navigation: {navigate, goBack}, route}) => {
 const styles = ScaledSheet.create({
   title: {
     marginTop: '20@s',
-    height: '62@vs',
+    height: '50@vs',
     width: '136@s',
   },
   titleContent: {
-    fontWeight: 'bold',
     lineHeight: '26@s',
     letterSpacing: '0.48@s',
-    fontSize: 28,
+    ...Fonts.HelveticaNeue30B,
   },
   titleCommon: {
     color: RawColors.grey,
@@ -73,6 +71,7 @@ const styles = ScaledSheet.create({
     lineHeight: '20@vs',
     letterSpacing: 0.24,
     fontSize: 13,
+    ...Fonts.Lato15R,
   },
   contentOne: {
     color: RawColors.black,
@@ -80,12 +79,14 @@ const styles = ScaledSheet.create({
     fontSize: 30,
     textAlign: 'center',
     marginTop: '12%',
+    ...Fonts.HelveticaNeue30B,
   },
   contentTwo: {
     color: RawColors.black,
     fontWeight: 'bold',
     fontSize: 30,
     textAlign: 'center',
+    ...Fonts.HelveticaNeue30B,
   },
   points: {
     marginHorizontal: '43@s',
@@ -93,20 +94,22 @@ const styles = ScaledSheet.create({
     backgroundColor: RawColors.lightGrey,
     height: '92@s',
     borderWidth: 4,
+    ...Fonts.HelveticaNeue30B,
     borderColor: RawColors.black,
     elevation: 30,
     justifyContent: 'center',
+    ...Fonts.HelveticaNeue30B,
   },
   score: {
     alignItems: 'center',
     textAlign: 'center',
-    ...Fonts.Lato20B,
+    ...Fonts.HelveticaNeue30B,
   },
   button: {
     height: '46@vs',
     width: '290@s',
     alignSelf: 'center',
-    marginVertical: '20@vs',
+    marginVertical: '35@vs',
     backgroundColor: RawColors.lightGrey,
   },
   buttonText: {
