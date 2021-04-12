@@ -189,10 +189,11 @@ const StepSummary = ({navigation: {navigate}}) => {
   };
 
   return (
-    <Container>
+    <Container.ScrollView safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
         contentContainerStyle={styles.container}
-        style={CommonStyles.flex1}>
+        style={CommonStyles.flex1}
+        safeAreaViewProps={{edges: ['right', 'left']}}>
         <View style={styles.topContainer}>
           <View style={styles.title}>
             <Text style={styles.titleOne}>
@@ -280,7 +281,7 @@ const StepSummary = ({navigation: {navigate}}) => {
           </View>
         </View>
       </Container.ScrollView>
-    </Container>
+    </Container.ScrollView>
   );
 };
 
@@ -337,7 +338,7 @@ const styles = ScaledSheet.create({
   contentOne: {
     width: '100%',
     ...Fonts.Lato20SB,
-    marginTop: '20@vs',
+    marginTop: '15@vs',
     color: RawColors.black,
   },
   content: {
@@ -345,14 +346,14 @@ const styles = ScaledSheet.create({
     ...Fonts.Lato17R,
     lineHeight: 22,
     letterSpacing: 0.41,
-    marginTop: '18@s',
+    marginTop: '10@s',
     color: RawColors.black,
   },
   button: {
-    height: '46@vs',
+    height: '40@vs',
     width: '100%',
     alignSelf: 'center',
-    marginVertical: '10@vs',
+    marginTop: '10@vs',
     backgroundColor: RawColors.sugarCane,
   },
   buttonText: {

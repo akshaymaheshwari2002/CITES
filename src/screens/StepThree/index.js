@@ -68,7 +68,7 @@ const StepThree = ({navigation: {navigate, goBack}}) => {
     [],
   );
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <StepHeader stepNumber={3} showAnimation={isFocused} />
       <Container.ScrollView style={CommonStyles.flex1}>
         {ChecklistContent({

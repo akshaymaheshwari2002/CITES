@@ -130,6 +130,7 @@ const styles = ScaledSheet.create({
     borderColor: RawColors.silverFoil,
     borderTopLeftRadius: '20@vs',
     alignItems: 'center',
+    borderBottomWidth: 1.5,
   },
   helpIcon: {
     marginVertical: '10@vs',
