@@ -1,101 +1,50 @@
 import React from 'react';
-import {getInputFieldElementForFormSummary as getInputFieldElement} from '@utils/CommonFunctions';
-
-const heading = 'Inspection Notes';
-const notes = ['Title', 'Message', 'Date', 'Time'];
 
 const InspectionNotesTemplate = ({notesData = [], editable = false}) => {
   return (
-    <div className="App">
-      <div className="App" style={styles.box}>
-        <h1>{heading}</h1>
-        <div style={styles.container}>
-          <div style={styles.table}>
-            <div style={styles.row}>
-              {notes?.map((data, index) => (
-                <div key={index} style={styles.cell}>
-                  <b>{data}</b>
-                </div>
-              ))}
-            </div>
-            {notesData?.map((data, index) => {
-              const timeStamp = data?.timeStamp;
-              const date = timeStamp
-                ? new Date(parseInt(timeStamp, 10)).toLocaleDateString()
-                : '';
-              const time = timeStamp
-                ? new Date(parseInt(timeStamp, 10)).toLocaleTimeString()
-                : '';
+    <div style={styles.container}>
+      {notesData?.map((data, index) => {
+        const timeStamp = data?.timeStamp;
+        const date = timeStamp
+          ? new Date(parseInt(timeStamp, 10)).toLocaleDateString()
+          : '';
+        const time = timeStamp
+          ? new Date(parseInt(timeStamp, 10)).toLocaleTimeString()
+          : '';
 
-              return (
-                <div key={index} style={styles.row}>
-                  <div style={styles.cell}>{data?.title}</div>
-                  <div style={styles.cell}>{data.text}</div>
-                  <div style={styles.cell}>{date}</div>
-                  <div style={styles.cell}>{time}</div>
-                </div>
-              );
-            })}
-            {notesData?.length >= 4
-              ? null
-              : new Array(4 - notesData?.length)
-                  ?.fill(' ')
-                  ?.map((data, index) => {
-                    return (
-                      <div key={index} style={styles.row}>
-                        <div style={styles.cell} />
-                        <div style={styles.cell} />
-                        <div style={styles.cell} />
-                        <div style={styles.cell} />
-                      </div>
-                    );
-                  })}
-          </div>
-        </div>
-      </div>
+        return (
+          <fieldset key={index} style={styles.fieldset}>
+            <legend style={styles.legend}>
+              {date}&nbsp;{time}
+            </legend>
+            {data?.title ? <div style={styles.text}>{data?.title}</div> : null}
+            <div style={styles.text}>{data.text}</div>
+          </fieldset>
+        );
+      })}
     </div>
   );
 };
 
 const styles = {
-  box: {
+  container: {
     marginRight: 16,
     marginLeft: 16,
+    display: 'flex',
+    flexDirection: 'column',
   },
-  headText: {
-    marginBottom: 10,
-    textAlign: 'left',
+  fieldset: {
+    borderWidth: 1.5,
+    border: '1.5px solid',
+    marginTop: 16,
   },
-  container: {
-    width: '100%',
-    backgroundColor: 'rgb(239 ,243, 222)',
+  legend: {
+    fontWeight: 'bold',
   },
   text: {
     textAlign: 'left',
-  },
-  gridContainer: {
-    width: '100%',
-    display: 'grid',
-    gridTemplateColumns: 'auto auto auto',
-  },
-  table: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '100%',
-    borderWidth: 1.5,
-    border: '1.5px solid',
-  },
-  row: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
-  cell: {
-    padding: 5,
-    borderWidth: 0.5,
     wordWrap: 'normal',
-    border: '0.5px solid',
-    width: '25%',
-    textAlign: 'center',
+    padding: 5,
   },
 };
 
