@@ -53,9 +53,11 @@ export default () => {
       message: formatMessage({id: 'form.error.invalidPhone'}),
     },
     validateMobileInput: (value) =>
-      regexPhone.test(value?.contactNumber)
-        ? true
-        : formatMessage({id: 'form.error.invalidPhone'}),
+      value.length
+        ? regexPhone.test(value?.contactNumber)
+          ? true
+          : formatMessage({id: 'form.error.invalidPhone'})
+        : true,
     validBreedingCode: (value) => {
       return value.join('') !== '--'
         ? regexBreedingCode.test(value.join().replace(/,/g, ''))

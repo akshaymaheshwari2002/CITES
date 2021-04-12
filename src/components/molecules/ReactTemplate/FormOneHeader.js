@@ -12,6 +12,8 @@ const formTitle = {
   one: 'BACKGROUND INFORMATION',
   two: 'FACILITY INFORMATION',
   three: 'SPECIES INFORMATION',
+  notes_1: 'INSPECTION',
+  notes_2: 'NOTES + PHOTOS',
 };
 const facilitySchema = {
   facilityName: 'Facility name: ',
@@ -44,13 +46,25 @@ const FormOneHeader = ({form = 'one', facilityData = {}, editable = false}) => {
     <div className="App">
       <div className="App" style={styles.marginContainer}>
         <div style={styles.topContainer}>
-          <h1>{formText}</h1>
-          <div style={styles.body}>
-            <h1 style={styles.number}>{formNumber?.[form]}</h1>
-          </div>
+          {form !== 'notes' ? (
+            <>
+              <h1>{formText}</h1>
+              <div style={styles.body}>
+                <h1 style={styles.number}>{formNumber?.[form]}</h1>
+              </div>
+            </>
+          ) : (
+            <h2>
+              {formTitle.notes_1}
+              <br />
+              {formTitle.notes_2}
+            </h2>
+          )}
         </div>
 
-        <h3 style={styles.headText}>{formTitle?.[form]}</h3>
+        {form !== 'notes' ? (
+          <h3 style={styles.headText}>{formTitle?.[form]}</h3>
+        ) : null}
         <div style={styles.mainContainer}>
           <div style={styles.flex}>
             <div style={styles.halfContent}>

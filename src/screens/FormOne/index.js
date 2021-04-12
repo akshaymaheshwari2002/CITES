@@ -24,7 +24,16 @@ import {get} from '@utils/RealmHelper';
 const FormOne = ({navigation}) => {
   const dispatch = useDispatch();
   const {formatMessage} = useIntl();
-  const {reset, control, errors, watch, handleSubmit, setValue} = useForm({
+  const {
+    reset,
+    control,
+    errors,
+    watch,
+    handleSubmit,
+    setValue,
+    getValues,
+    formState: {isDirty},
+  } = useForm({
     shouldFocusError: false,
     mode: 'onBlur',
   });
@@ -40,7 +49,6 @@ const FormOne = ({navigation}) => {
   );
   const selectedSpeciesId = watch('_id');
   const country = watch('country');
-  const facilityOwnerPhone = watch('facilityOwnerPhone');
 
   const formFields = useMemo(
     () =>
@@ -168,6 +176,22 @@ const FormOne = ({navigation}) => {
     navigation.navigate('TabNavigator', {screen: 'StepOne'});
   }, [dispatch, isSpeciesDataComplete, navigation]);
 
+  const updateFacilityOwnerPhone = useCallback(
+    async (_country) => {
+      const countries = await getAllCountries();
+      const facilityOwnerPhone = getValues('facilityOwnerPhone');
+      const selectedCountry = countries.find((item) => item.name === _country);
+      const updatedFacilityOwnerPhone = {
+        ...facilityOwnerPhone,
+        cca2: selectedCountry.cca2,
+        callingCode: selectedCountry.callingCode[0],
+      };
+
+      setValue('facilityOwnerPhone', updatedFacilityOwnerPhone);
+    },
+    [getValues, setValue],
+  );
+
   useEffect(() => {
     reset(formData.current);
   }, [formFieldsPage, reset]);
@@ -190,7 +214,7 @@ const FormOne = ({navigation}) => {
 
   useEffect(() => {
     navigation.setOptions({
-      headerLeft: (navigationProps) => (
+      headerLeft: () => (
         <Pressable hitSlop={10} onPress={handleBackPress}>
           <Icon name="chevron-left" size={ms(22)} />
         </Pressable>
@@ -199,36 +223,10 @@ const FormOne = ({navigation}) => {
   }, [handleBackPress, navigation]);
 
   useEffect(() => {
-    if (country) {
-      (async () => {
-        let selectedCountry;
-        let selectedCallingCountry;
-        let countries;
-
-        countries = await getAllCountries();
-        countries = countries.map(({name, cca2, callingCode}) => ({
-          name,
-          cca2,
-          callingCode,
-        }));
-
-        selectedCountry = countries.find((item) => item.name === country);
-        selectedCallingCountry = countries.find(
-          (item) => item.cca2 === facilityOwnerPhone.cca2,
-        );
-
-        if (selectedCountry.name !== selectedCallingCountry.name) {
-          selectedCallingCountry = {
-            ...facilityOwnerPhone,
-            cca2: selectedCountry.cca2,
-            callingCode: selectedCountry.callingCode[0],
-          };
-
-          setValue('facilityOwnerPhone', selectedCallingCountry);
-        }
-      })();
+    if (country && isDirty) {
+      updateFacilityOwnerPhone(country);
     }
-  }, [country, facilityOwnerPhone, setValue]);
+  }, [country, isDirty, updateFacilityOwnerPhone]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
