@@ -195,7 +195,7 @@ const FormOneSummaryEdit = ({navigation}) => {
               </Text>
             </View>
             <View style={styles.justifyContent}>
-              <Icon name="chevron-right" size={ms(18)} />
+              <Icon name="chevron-right" size={ms(22)} />
             </View>
           </View>
         </TouchableOpacity>

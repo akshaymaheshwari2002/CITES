@@ -1,4 +1,4 @@
-import React, {useRef, useCallback, useState} from 'react';
+import React, {useRef, useCallback, useState, useEffect} from 'react';
 import {
   View,
   useWindowDimensions,
@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import {ms} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import {useDispatch} from 'react-redux';
 
 import {Container, Header, Pagination} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
@@ -15,11 +16,13 @@ import OnboardingOne from './OnboardingOne';
 import OnboardingTwo from './OnboardingTwo';
 import OnboardingThree from './OnboardingThree';
 import OnboardingFour from './OnboardingFour';
+import {setActiveInspection} from '@store/slices/sessionSlice';
 
 const data = [OnboardingOne, OnboardingTwo, OnboardingThree, OnboardingFour];
 
 const InspectionOnboarding = ({navigation, route}) => {
   const flatListRef = useRef({});
+  const dispatch = useDispatch();
   const {width: windowWidth} = useWindowDimensions();
   const [activeIndex, setActiveIndex] = useState(route.params.defaultIndex);
 
@@ -82,7 +85,7 @@ const InspectionOnboarding = ({navigation, route}) => {
       if (activeIndex === pageNum && activeIndex === data?.length - 1) {
         navigation.navigate('TabNavigator', {
           screen: 'StepOne',
-          params: {showToolTip: true, isOnboardingScreen: true},
+          params: {showToolTip: true, notShowAnimation: true},
         });
       }
 
@@ -91,12 +94,16 @@ const InspectionOnboarding = ({navigation, route}) => {
     [activeIndex, navigation],
   );
 
+  useEffect(() => {
+    dispatch(setActiveInspection({}));
+  }, []);
+
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
       <Header
         leftContent={
           <Pressable hitSlop={10} onPress={handleBackPress}>
-            <Icon name="chevron-left" size={ms(18)} />
+            <Icon name="chevron-left" size={ms(22)} />
           </Pressable>
         }
         content={
@@ -104,7 +111,7 @@ const InspectionOnboarding = ({navigation, route}) => {
         }
         rightContent={
           <Pressable hitSlop={10} onPress={handleForwardPress}>
-            <Icon name="chevron-right" size={ms(18)} />
+            <Icon name="chevron-right" size={ms(22)} />
           </Pressable>
         }
       />

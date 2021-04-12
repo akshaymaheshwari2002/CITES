@@ -5,6 +5,7 @@ import {useIntl} from 'react-intl';
 
 import {Fonts, RawColors} from '@styles/Themes';
 import {Container, Button, TextInput} from '@atoms';
+import {TextInputArray} from '@molecules';
 import CommonStyles from '@styles/CommonStyles';
 
 const ExampleDialogueStep2 = ({navigation: {navigate}}) => {
@@ -40,36 +41,44 @@ const ExampleDialogueStep2 = ({navigation: {navigate}}) => {
           placeholder={formatMessage({
             id: 'screen.ExampleDialogueStep2.contentTwo',
           })}
-          style={{width: s(190), marginHorizontal: s(15)}}
+          style={styles.textInput}
         />
         <Text style={[styles.content, styles.nogap]}>
           {formatMessage({
             id: 'screen.ExampleDialogueStep2.contentThree',
           })}
         </Text>
-
-        <TextInput
-          value={collaeaguesName}
-          onChange={setCollaeaguesName}
-          style={{width: s(190), marginHorizontal: s(15)}}
-          placeholder={formatMessage({
-            id: 'screen.ExampleDialogueStep2.contentFour',
-          })}
-        />
+        <View style={styles.textInput}>
+          <TextInputArray
+            value={collaeaguesName}
+            onChange={setCollaeaguesName}
+            style={{width: s(190), marginHorizontal: s(15)}}
+            placeholder={formatMessage({
+              id: 'screen.ExampleDialogueStep2.contentFour',
+            })}
+            buttonText={formatMessage({
+              id: 'button.addColleague',
+            })}
+          />
+        </View>
         <Text style={[styles.content, styles.nogap]}>
           {formatMessage({
             id: 'screen.ExampleDialogueStep2.contentFive',
           })}
         </Text>
-
-        <TextInput
-          value={collaeaguesOrganisationName}
-          onChange={setCollaeaguesOrganisationName}
-          style={{width: s(190), marginHorizontal: s(15)}}
-          placeholder={formatMessage({
-            id: 'screen.ExampleDialogueStep2.contentSix',
-          })}
-        />
+        <View style={styles.textInput}>
+          <TextInputArray
+            value={collaeaguesOrganisationName}
+            onChange={setCollaeaguesOrganisationName}
+            style={{width: s(190), marginHorizontal: s(15)}}
+            placeholder={formatMessage({
+              id: 'screen.ExampleDialogueStep2.contentSix',
+            })}
+            buttonText={formatMessage({
+              id: 'button.addOrganisation',
+            })}
+          />
+        </View>
         <Text style={[styles.content, styles.nogap]}>
           {formatMessage({
             id: 'screen.ExampleDialogueStep2.contentSeven',
@@ -168,6 +177,7 @@ const styles = ScaledSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  textInput: {marginHorizontal: s(15)},
 });
 
 export default ExampleDialogueStep2;

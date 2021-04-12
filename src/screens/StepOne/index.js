@@ -4,7 +4,6 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms, s} from 'react-native-size-matters';
 import {shallowEqual, useDispatch, useSelector} from 'react-redux';
-import Toast from 'react-native-simple-toast';
 import {useIsFocused} from '@react-navigation/core';
 
 import {Container, Button, Tooltip} from '@atoms';
@@ -22,7 +21,6 @@ const StepOne = ({navigation, route}) => {
     (state) => state.sessionReducer.activeInspection.stepOne || {},
     shallowEqual,
   );
-  const isOnboardingScreen = route?.params?.isOnboardingScreen;
 
   const handleStepOneSubmit = useCallback(() => {
     // if (Object.keys(stepOneData).length) {
@@ -72,6 +70,9 @@ const StepOne = ({navigation, route}) => {
     },
     [dispatch],
   );
+  useEffect(() => {
+    console.log(route, '3455');
+  }, [route]);
 
   const handleTooltipClose = useCallback(() => {
     navigation.setParams({showToolTip: false});
@@ -100,7 +101,7 @@ const StepOne = ({navigation, route}) => {
             })}
             focusedStyle={styles.headerLeftTooltip}
             onClose={handleTooltipClose}>
-            <Icon name="chevron-left" size={ms(18)} />
+            <Icon name="chevron-left" size={ms(22)} />
           </Tooltip>
         </Pressable>
       ),
@@ -108,7 +109,6 @@ const StepOne = ({navigation, route}) => {
   }, [
     formatMessage,
     handleTooltipClose,
-    isOnboardingScreen,
     navigation,
     route.params,
     route.params.showToolTip,

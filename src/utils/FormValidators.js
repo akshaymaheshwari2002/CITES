@@ -32,7 +32,9 @@ export default () => {
         }, true)) ||
       formatMessage({id: 'form.error.allFieldsRequired'}),
     validateNumber: (value) =>
-      isNumber(value) || formatMessage({id: 'form.error.number'}),
+      value &&
+      value.length &&
+      (isNumber(value) || formatMessage({id: 'form.error.number'})),
     validatePositiveNumber: (value) =>
       isNumberPositive(value) ||
       formatMessage({id: 'form.error.positiveNumber'}),
@@ -53,9 +55,11 @@ export default () => {
       message: formatMessage({id: 'form.error.invalidPhone'}),
     },
     validateMobileInput: (value) =>
-      regexPhone.test(value?.contactNumber)
-        ? true
-        : formatMessage({id: 'form.error.invalidPhone'}),
+      value.length
+        ? regexPhone.test(value?.contactNumber)
+          ? true
+          : formatMessage({id: 'form.error.invalidPhone'})
+        : true,
     validBreedingCode: (value) => {
       return value.join('') !== '--'
         ? regexBreedingCode.test(value.join().replace(/,/g, ''))

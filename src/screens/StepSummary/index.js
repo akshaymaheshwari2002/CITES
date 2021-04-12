@@ -43,7 +43,7 @@ const StepSummary = ({navigation: {navigate}}) => {
   });
   const starScaleY = animationValue.interpolate({
     inputRange: [0, 0.8, 1],
-    outputRange: [0, 1.5, 1],
+    outputRange: [0.5, 2, 1],
   });
   const circleOpacity = animationValue.interpolate({
     inputRange: [0, 0.5],
@@ -62,7 +62,7 @@ const StepSummary = ({navigation: {navigate}}) => {
     if (isFocused) {
       const ani = Animated.timing(animationValue, {
         toValue: 1,
-        duration: 1000,
+        duration: 1500,
         easing: Easing.inOut(Easing.ease),
         useNativeDriver: true,
       });
@@ -73,9 +73,10 @@ const StepSummary = ({navigation: {navigate}}) => {
   }, [animationValue, isFocused]);
   const starsStyle = {
     position: 'absolute',
-    justifyContent: 'center',
-    height: ms(150),
+    //justifyContent: 'center',
+    height: ms(170),
     width: ms(150),
+    //backgroundColor: 'red',
     transform: [{scaleX: starScaleX}, {scaleY: starScaleY}],
   };
 
@@ -102,7 +103,7 @@ const StepSummary = ({navigation: {navigate}}) => {
     shallowEqual,
   );
   const formFourData = useSelector(
-    (state) => state.sessionReducer.activeInspection.stepThree.formFour,
+    (state) => state.sessionReducer.activeInspection.stepThree?.formFour,
     shallowEqual,
   );
   const notes = useSelector(
@@ -172,6 +173,7 @@ const StepSummary = ({navigation: {navigate}}) => {
             response={formFourData}
           />,
           <div style={{breakAfter: 'page'}} />,
+          <FormOneHeader facilityData={facilityData} form={'notes'} />,
           <InspectionNotesTemplate notesData={notes} />,
         ],
       });
@@ -235,7 +237,7 @@ const StepSummary = ({navigation: {navigate}}) => {
                 return styles.buttonText;
               }}
               buttonStyle={() => {
-                return styles.button;
+                return [styles.button, {marginTop: ms(25)}];
               }}
               onPress={handleFormsPreview}
             />
@@ -284,19 +286,21 @@ const StepSummary = ({navigation: {navigate}}) => {
 
 const styles = ScaledSheet.create({
   container: {
-    backgroundColor: RawColors.white,
+    backgroundColor: RawColors.snow,
   },
   topContainer: {
     flexDirection: 'row',
     marginTop: '20@vs',
+    zIndex: 10,
+    backgroundColor: RawColors.white,
   },
   margin: {
     marginHorizontal: '30@s',
     alignItems: 'center',
   },
   title: {
+    backgroundColor: RawColors.white,
     height: '100@vs',
-    backgroundColor: 'white',
   },
   titleOne: {
     ...Fonts.HelveticaNeue30B,
@@ -314,10 +318,12 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.09@s',
   },
   image: {
-    height: '60@ms',
-    width: '60@ms',
+    height: '80@ms',
+    width: '80@ms',
     resizeMode: 'contain',
     alignSelf: 'center',
+    marginBottom: '20@s',
+    zIndex: 10,
   },
   img: {
     flex: 1,
@@ -325,13 +331,13 @@ const styles = ScaledSheet.create({
     justifyContent: 'center',
   },
   backColor: {
-    backgroundColor: 'white',
-    marginTop: '30@s',
+    backgroundColor: RawColors.white,
+    marginTop: '30@vs',
   },
   contentOne: {
     width: '100%',
     ...Fonts.Lato20SB,
-    marginTop: '30@s',
+    marginTop: '20@vs',
     color: RawColors.black,
   },
   content: {
@@ -339,14 +345,14 @@ const styles = ScaledSheet.create({
     ...Fonts.Lato17R,
     lineHeight: 22,
     letterSpacing: 0.41,
-    marginTop: '20@s',
+    marginTop: '18@s',
     color: RawColors.black,
   },
   button: {
     height: '46@vs',
     width: '100%',
     alignSelf: 'center',
-    marginVertical: '16@vs',
+    marginVertical: '10@vs',
     backgroundColor: RawColors.sugarCane,
   },
   buttonText: {

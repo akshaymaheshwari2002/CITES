@@ -20,12 +20,14 @@ export default (fieldProps = {}) => {
   return [
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.noOfJuvenilesPresentFacilityInfo'}),
+      label: formatMessage({
+        id: 'form.FormThree.label.noOfJuvenilesPresentFacilityInfo',
+      }),
       labelRight: formatMessage({
-        id: 'form.label.facilityInformation',
+        id: 'form.FormThree.label.facilityInformation',
       }),
       placeholder: formatMessage({
-        id: 'form.label.noOfJuvenilesPresentFacilityInfo',
+        id: 'form.FormThree.label.noOfJuvenilesPresentFacilityInfo',
       }),
       name: 'noOfJuvenilesPresentFacilityInfo',
       rules: {
@@ -45,10 +47,10 @@ export default (fieldProps = {}) => {
     {
       defaultValue: '',
       labelRight: formatMessage({
-        id: 'form.label.inspectionInformation',
+        id: 'form.FormThree.label.inspectionInformation',
       }),
       placeholder: formatMessage({
-        id: 'form.label.noOfJuvenilesPresentFacilityInfo',
+        id: 'form.FormThree.label.noOfJuvenilesPresentFacilityInfo',
       }),
       name: 'noOfJuvenilesPresentInspectionInfo',
       rules: {
@@ -65,8 +67,10 @@ export default (fieldProps = {}) => {
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.ageAtSexualMaturity'}),
-      placeholder: formatMessage({id: 'form.label.ageAtSexualMaturity'}),
+      label: formatMessage({id: 'form.FormThree.label.ageAtSexualMaturity'}),
+      placeholder: formatMessage({
+        id: 'form.FormThree.label.ageAtSexualMaturity',
+      }),
       name: 'ageAtSexualMaturity',
       rules: {
         // required,
@@ -79,9 +83,11 @@ export default (fieldProps = {}) => {
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.sizeOrMassAtSexualMaturity'}),
+      label: formatMessage({
+        id: 'form.FormThree.label.sizeOrMassAtSexualMaturity',
+      }),
       placeholder: formatMessage({
-        id: 'form.label.sizeOrMassAtSexualMaturity',
+        id: 'form.FormThree.label.sizeOrMassAtSexualMaturity',
       }),
       name: 'sizeOrMassAtSexualMaturity',
       //rules: {required},
@@ -111,9 +117,11 @@ export default (fieldProps = {}) => {
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.sizeOrMassAtSaleOrExport'}),
+      label: formatMessage({
+        id: 'form.FormThree.label.sizeOrMassAtSaleOrExport',
+      }),
       placeholder: formatMessage({
-        id: 'form.label.sizeOrMassAtSaleOrExport',
+        id: 'form.FormThree.label.sizeOrMassAtSaleOrExport',
       }),
       name: 'sizeOrMassAtSaleOrExport',
       //rules: {required},
@@ -144,10 +152,10 @@ export default (fieldProps = {}) => {
     {
       defaultValue: '',
       label: formatMessage({
-        id: 'form.label.percentageOfJuvenilesSurviveBeyond2Weeks',
+        id: 'form.FormThree.label.percentageOfJuvenilesSurviveBeyond2Weeks',
       }),
       placeholder: formatMessage({
-        id: 'form.label.percentageOfJuvenilesSurviveBeyond2Weeks',
+        id: 'form.FormThree.label.percentageOfJuvenilesSurviveBeyond2Weeks',
       }),
       name: 'percentageOfJuvenilesSurviveBeyond2Weeks',
       rules: {
@@ -161,9 +169,11 @@ export default (fieldProps = {}) => {
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.foodFedToRearingAndJuveniles'}),
+      label: formatMessage({
+        id: 'form.FormThree.label.foodFedToRearingAndJuveniles',
+      }),
       placeholder: formatMessage({
-        id: 'form.label.foodFedToRearingAndJuveniles',
+        id: 'form.FormThree.label.foodFedToRearingAndJuveniles',
       }),
       name: 'foodFedToRearingAndJuveniles',
       // rules: {required},

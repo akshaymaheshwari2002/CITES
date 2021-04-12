@@ -39,7 +39,7 @@ const MobileNumber = forwardRef(
               onBackgroundTextColor: RawColors.black,
               ...Fonts.Lato15R,
             }}
-            closeButton={<Icon name="chevron-left" size={ms(18)} />}
+            closeButton={<Icon name="chevron-left" size={ms(22)} />}
             filterProps={{style: styles.filter, placeholder: 'Select Country'}}
             flatListProps={{style: styles.flatList}}
             modalProps={{animationType: 'fade', transparent: true}}

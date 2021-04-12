@@ -5,7 +5,7 @@ const sourceCodeQuestions = {
   1: {
     content: [
       {
-        text: 'questionContent.questionOne',
+        text: 'questionContent.DetermineSourceCode.questionOne',
         isLink: false,
       },
     ],
@@ -18,7 +18,7 @@ const sourceCodeQuestions = {
   2: {
     content: [
       {
-        text: 'questionContent.questionTwo',
+        text: 'questionContent.DetermineSourceCode.questionTwo',
         isLink: false,
       },
     ],
@@ -30,10 +30,16 @@ const sourceCodeQuestions = {
   },
   3: {
     content: [
-      {text: 'questionContent.questionThreePartOne', isLink: false},
-      {text: 'questionContent.questionThreePartTwo', isLink: false},
       {
-        text: 'questionContent.questionThreePartThree',
+        text: 'questionContent.DetermineSourceCode.questionThreePartOne',
+        isLink: false,
+      },
+      {
+        text: 'questionContent.DetermineSourceCode.questionThreePartTwo',
+        isLink: false,
+      },
+      {
+        text: 'questionContent.DetermineSourceCode.questionThreePartThree',
         isLink: {isWebSource: true, target: Config.URL_Q3_MORE_INFO},
       },
     ],
@@ -46,7 +52,7 @@ const sourceCodeQuestions = {
   4: {
     content: [
       {
-        text: 'questionContent.questionFour',
+        text: 'questionContent.DetermineSourceCode.questionFour',
         isLink: false,
       },
     ],
@@ -59,7 +65,7 @@ const sourceCodeQuestions = {
   5: {
     content: [
       {
-        text: 'questionContent.questionFive',
+        text: 'questionContent.DetermineSourceCode.questionFive',
         isLink: false,
       },
     ],
@@ -71,9 +77,12 @@ const sourceCodeQuestions = {
   },
   6: {
     content: [
-      {text: 'questionContent.questionSixPartOne', isLink: false},
       {
-        text: 'questionContent.questionSixPartTwo',
+        text: 'questionContent.DetermineSourceCode.questionSixPartOne',
+        isLink: false,
+      },
+      {
+        text: 'questionContent.DetermineSourceCode.questionSixPartTwo',
         isLink: false,
         textStyle: {
           marginTop: 0,
@@ -84,14 +93,19 @@ const sourceCodeQuestions = {
     moreInfo: false,
   },
   7: {
-    content: [{text: 'questionContent.questionSeven', isLink: false}],
+    content: [
+      {
+        text: 'questionContent.DetermineSourceCode.questionSeven',
+        isLink: false,
+      },
+    ],
     options: [Constants.YES, Constants.NO],
     moreInfo: false,
   },
   8: {
     content: [
       {
-        text: 'questionContent.questionEight',
+        text: 'questionContent.DetermineSourceCode.questionEight',
         isLink: false,
       },
     ],
@@ -103,9 +117,12 @@ const sourceCodeQuestions = {
   },
   9: {
     content: [
-      {text: 'questionContent.questionNinePartOne', isLink: false},
       {
-        text: 'questionContent.questionNinePartTwo',
+        text: 'questionContent.DetermineSourceCode.questionNinePartOne',
+        isLink: false,
+      },
+      {
+        text: 'questionContent.DetermineSourceCode.questionNinePartTwo',
         isLink: {isWebSource: false, target: 'Q9MoreInfo'},
       },
     ],
@@ -118,11 +135,11 @@ const sourceCodeQuestions = {
   10: {
     content: [
       {
-        text: 'questionContent.questionTenPartOne',
+        text: 'questionContent.DetermineSourceCode.questionTenPartOne',
         isLink: false,
       },
       {
-        text: 'questionContent.questionTenPartTwo',
+        text: 'questionContent.DetermineSourceCode.questionTenPartTwo',
         isLink: {isWebSource: true, target: Config.URL_Q10_MORE_INFO},
       },
     ],
@@ -135,7 +152,7 @@ const sourceCodeQuestions = {
   11: {
     content: [
       {
-        text: 'questionContent.questionEleven',
+        text: 'questionContent.DetermineSourceCode.questionEleven',
         isLink: false,
       },
     ],
@@ -147,12 +164,18 @@ const sourceCodeQuestions = {
   },
   12: {
     content: [
-      {text: 'questionContent.questionTwelvePartOne', isLink: false},
       {
-        text: 'questionContent.questionTwelvePartTwo',
+        text: 'questionContent.DetermineSourceCode.questionTwelvePartOne',
+        isLink: false,
+      },
+      {
+        text: 'questionContent.DetermineSourceCode.questionTwelvePartTwo',
         isLink: {isWebSource: true, target: Config.URL_Q12_MORE_INFO},
       },
-      {text: 'questionContent.questionTwelvePartThree', isLink: false},
+      {
+        text: 'questionContent.DetermineSourceCode.questionTwelvePartThree',
+        isLink: false,
+      },
     ],
     options: [Constants.YES, Constants.NO],
     moreInfo: {
@@ -163,22 +186,31 @@ const sourceCodeQuestions = {
   13: {
     content: [
       {
-        text: 'questionContent.questionThirteenPartOne',
+        text: 'questionContent.DetermineSourceCode.questionThirteenPartOne',
         isLink: false,
       },
       {
-        text: 'questionContent.questionThirteenPartTwo',
-        isLink: {isWebSource: false, target: 'Q9MoreInfo'},
-      },
-      {text: 'questionContent.questionThirteenPartThree', isLink: false},
-      {text: 'questionContent.questionThirteenPartFour', isLink: false},
-      {text: 'questionContent.questionThirteenPartFive', isLink: false},
-      {
-        text: 'questionContent.questionThirteenPartTwo',
+        text: 'questionContent.DetermineSourceCode.questionThirteenPartTwo',
         isLink: {isWebSource: false, target: 'Q9MoreInfo'},
       },
       {
-        text: 'questionContent.questionThirteenPartSix',
+        text: 'questionContent.DetermineSourceCode.questionThirteenPartThree',
+        isLink: false,
+      },
+      {
+        text: 'questionContent.DetermineSourceCode.questionThirteenPartFour',
+        isLink: false,
+      },
+      {
+        text: 'questionContent.DetermineSourceCode.questionThirteenPartFive',
+        isLink: false,
+      },
+      {
+        text: 'questionContent.DetermineSourceCode.questionThirteenPartTwo',
+        isLink: {isWebSource: false, target: 'Q9MoreInfo'},
+      },
+      {
+        text: 'questionContent.DetermineSourceCode.questionThirteenPartSix',
         isLink: false,
       },
     ],
@@ -191,7 +223,7 @@ const sourceCodeQuestions = {
   14: {
     content: [
       {
-        text: 'questionContent.questionFourteen',
+        text: 'questionContent.DetermineSourceCode.questionFourteen',
         isLink: false,
       },
     ],
@@ -204,12 +236,15 @@ const sourceCodeQuestions = {
   15: {
     content: [
       {
-        text: 'questionContent.questionFifteenPartOne',
+        text: 'questionContent.DetermineSourceCode.questionFifteenPartOne',
         isLink: false,
       },
-      {text: 'questionContent.questionFifteenPartTwo', isLink: false},
       {
-        text: 'questionContent.questionFifteenPartThree',
+        text: 'questionContent.DetermineSourceCode.questionFifteenPartTwo',
+        isLink: false,
+      },
+      {
+        text: 'questionContent.DetermineSourceCode.questionFifteenPartThree',
         isLink: false,
       },
     ],
@@ -222,12 +257,15 @@ const sourceCodeQuestions = {
   16: {
     content: [
       {
-        text: 'questionContent.questionSixteenPartOne',
+        text: 'questionContent.DetermineSourceCode.questionSixteenPartOne',
         isLink: false,
       },
-      {text: 'questionContent.questionSixteenPartTwo', isLink: false},
       {
-        text: 'questionContent.questionSixteenPartThree',
+        text: 'questionContent.DetermineSourceCode.questionSixteenPartTwo',
+        isLink: false,
+      },
+      {
+        text: 'questionContent.DetermineSourceCode.questionSixteenPartThree',
         isLink: false,
       },
     ],
@@ -240,20 +278,23 @@ const sourceCodeQuestions = {
   17: {
     content: [
       {
-        text: 'questionContent.questionSeventeenPartOne',
+        text: 'questionContent.DetermineSourceCode.questionSeventeenPartOne',
         isLink: false,
       },
       {
-        text: 'questionContent.questionSeventeenPartTwo',
+        text: 'questionContent.DetermineSourceCode.questionSeventeenPartTwo',
         isLink: {isWebSource: false, target: 'Q9MoreInfo'},
       },
-      {text: 'questionContent.questionSeventeenPartThree', isLink: false},
       {
-        text: 'questionContent.questionSeventeenPartFour',
+        text: 'questionContent.DetermineSourceCode.questionSeventeenPartThree',
         isLink: false,
       },
       {
-        text: 'questionContent.questionSeventeenPartTwo',
+        text: 'questionContent.DetermineSourceCode.questionSeventeenPartFour',
+        isLink: false,
+      },
+      {
+        text: 'questionContent.DetermineSourceCode.questionSeventeenPartTwo',
         isLink: {isWebSource: false, target: 'Q9MoreInfo'},
       },
     ],
@@ -262,12 +303,22 @@ const sourceCodeQuestions = {
     moreInfo: false,
   },
   18: {
-    content: [{text: 'questionContent.questionEighteen', isLink: false}],
+    content: [
+      {
+        text: 'questionContent.DetermineSourceCode.questionEighteen',
+        isLink: false,
+      },
+    ],
     options: [Constants.APPENDIXI, Constants.APPENDIXII, Constants.APPENDIXIII],
     moreInfo: false,
   },
   19: {
-    content: [{text: 'questionContent.questionNineteen', isLink: false}],
+    content: [
+      {
+        text: 'questionContent.DetermineSourceCode.questionNineteen',
+        isLink: false,
+      },
+    ],
     options: [Constants.YES, Constants.NO],
     moreInfo: {
       isWebResource: true,
@@ -277,7 +328,7 @@ const sourceCodeQuestions = {
   20: {
     content: [
       {
-        text: 'questionContent.questionTwenty',
+        text: 'questionContent.DetermineSourceCode.questionTwenty',
         isLink: false,
       },
     ],
@@ -289,9 +340,12 @@ const sourceCodeQuestions = {
   },
   21: {
     content: [
-      {text: 'questionContent.questionTwentyOnePartOne', isLink: false},
       {
-        text: 'questionContent.questionTwentyOnePartTwo',
+        text: 'questionContent.DetermineSourceCode.questionTwentyOnePartOne',
+        isLink: false,
+      },
+      {
+        text: 'questionContent.DetermineSourceCode.questionTwentyOnePartTwo',
         isLink: {isWebSource: false, target: 'Q9MoreInfo'},
       },
     ],
@@ -301,11 +355,11 @@ const sourceCodeQuestions = {
   22: {
     content: [
       {
-        text: 'questionContent.questionTwentyTwoPartOne',
+        text: 'questionContent.DetermineSourceCode.questionTwentyTwoPartOne',
         isLink: false,
       },
       {
-        text: 'questionContent.questionTwentyTwoPartTwo',
+        text: 'questionContent.DetermineSourceCode.questionTwentyTwoPartTwo',
         isLink: {isWebSource: true, target: Config.URL_Q22_MORE_INFO},
       },
     ],
@@ -318,11 +372,11 @@ const sourceCodeQuestions = {
   23: {
     content: [
       {
-        text: 'questionContent.questionTwentyThreePartOne',
+        text: 'questionContent.DetermineSourceCode.questionTwentyThreePartOne',
         isLink: false,
       },
       {
-        text: 'questionContent.questionTwentyThreePartTwo',
+        text: 'questionContent.DetermineSourceCode.questionTwentyThreePartTwo',
         isLink: {isWebSource: true, target: Config.URL_Q23_MORE_INFO},
       },
     ],
@@ -333,14 +387,19 @@ const sourceCodeQuestions = {
     },
   },
   24: {
-    content: [{text: 'questionContent.questionTwentyFour', isLink: false}],
+    content: [
+      {
+        text: 'questionContent.DetermineSourceCode.questionTwentyFour',
+        isLink: false,
+      },
+    ],
     options: [Constants.YES, Constants.NO],
     moreInfo: false,
   },
   25: {
     content: [
       {
-        text: 'questionContent.questionTwentyFive',
+        text: 'questionContent.DetermineSourceCode.questionTwentyFive',
         isLink: false,
       },
     ],
@@ -348,14 +407,19 @@ const sourceCodeQuestions = {
     moreInfo: false,
   },
   26: {
-    content: [{text: 'questionContent.questionTwentySix', isLink: false}],
+    content: [
+      {
+        text: 'questionContent.DetermineSourceCode.questionTwentySix',
+        isLink: false,
+      },
+    ],
     options: [Constants.APPENDIXI, Constants.APPENDIXII, Constants.APPENDIXIII],
     moreInfo: false,
   },
   27: {
     content: [
       {
-        text: 'questionContent.questionTwentySeven',
+        text: 'questionContent.DetermineSourceCode.questionTwentySeven',
         isLink: false,
       },
     ],
@@ -365,7 +429,7 @@ const sourceCodeQuestions = {
   28: {
     content: [
       {
-        text: 'questionContent.questionTwentyEight',
+        text: 'questionContent.DetermineSourceCode.questionTwentyEight',
         isLink: false,
       },
     ],

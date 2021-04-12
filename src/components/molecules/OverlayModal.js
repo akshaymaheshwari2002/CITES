@@ -1,14 +1,6 @@
 import React, {useState, useCallback, useEffect} from 'react';
-import {
-  Modal,
-  Text,
-  Pressable,
-  View,
-  Image,
-  TouchableWithoutFeedback,
-} from 'react-native';
-import {ScaledSheet, moderateScale, ms} from 'react-native-size-matters';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Modal, Text, View, Image, TouchableWithoutFeedback} from 'react-native';
+import {ScaledSheet} from 'react-native-size-matters';
 
 import {Container} from '@atoms';
 import SideMenu from './SideMenu';

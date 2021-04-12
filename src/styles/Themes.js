@@ -122,7 +122,6 @@ const Fonts = {
   Lato15R: {
     fontFamily: 'Lato-Regular',
     fontSize: moderateScale(15),
-    textAlign: 'center',
   },
   Lato17R: {
     fontFamily: 'Lato-Regular',
@@ -164,15 +163,15 @@ const Fonts = {
     fontFamily: 'HelveticaNeue-Bold',
     fontSize: moderateScale(13),
   },
-  HelveticaNeue18B: {
+  HelveticaNeue17B: {
     fontFamily: 'HelveticaNeue-Bold',
-    fontSize: moderateScale(18),
+    fontSize: moderateScale(17),
   },
   HelveticaNeue20B: {
     fontFamily: 'HelveticaNeue-Bold',
     fontSize: moderateScale(20),
   },
-  HelveticaNeue19B: {
+  HelveticaNeue18B: {
     fontFamily: 'HelveticaNeue-Bold',
     fontSize: moderateScale(18),
   },

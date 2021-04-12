@@ -197,9 +197,9 @@ const styles = ScaledSheet.create({
   letterDescription: {
     backgroundColor: RawColors.darkRed,
     justifyContent: 'center',
-    alignContent: 'center',
+    alignItems: 'center',
     color: RawColors.white,
-    marginVertical: '15@s',
+    marginTop: '10@vs',
     paddingBottom: '15@s',
   },
   letterDescriptionText: {

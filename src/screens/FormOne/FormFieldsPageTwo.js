@@ -10,8 +10,8 @@ export default (fieldProps = {}) => {
   return [
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.selectSpecies'}),
-      placeholder: formatMessage({id: 'form.label.selectSpecies'}),
+      label: formatMessage({id: 'form.FormOne.label.selectSpecies'}),
+      placeholder: formatMessage({id: 'form.FormOne.label.selectSpecies'}),
       name: '_id',
       rules: {required},
       fieldType: Constants.PICKER,
@@ -21,10 +21,10 @@ export default (fieldProps = {}) => {
     {
       defaultValue: '',
       label: formatMessage({
-        id: 'form.label.totalSpecimen',
+        id: 'form.FormOne.label.totalSpecimen',
       }),
       placeholder: formatMessage({
-        id: 'form.label.numberPlaceHolder',
+        id: 'form.FormOne.label.numberPlaceHolder',
       }),
       name: 'numberOfSpecimen',
       rules: {
@@ -33,13 +33,13 @@ export default (fieldProps = {}) => {
       },
       keyboardType: 'number-pad',
       labelBottom: formatMessage({
-        id: 'form.label.specimenBottom',
+        id: 'form.FormOne.label.specimenBottom',
       }),
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.noOfBreedingAdult'}),
-      placeholder: formatMessage({id: 'form.label.numberPlaceHolder'}),
+      label: formatMessage({id: 'form.FormOne.label.noOfBreedingAdult'}),
+      placeholder: formatMessage({id: 'form.FormOne.label.numberPlaceHolder'}),
       name: 'numberOfBreedingAdults',
       rules: {
         // required,
@@ -47,13 +47,13 @@ export default (fieldProps = {}) => {
       },
       keyboardType: 'number-pad',
       labelBottom: formatMessage({
-        id: 'form.label.specimenBottom',
+        id: 'form.FormOne.label.specimenBottom',
       }),
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.specimenExported'}),
-      placeholder: formatMessage({id: 'form.label.numberPlaceHolder'}),
+      label: formatMessage({id: 'form.FormOne.label.specimenExported'}),
+      placeholder: formatMessage({id: 'form.FormOne.label.numberPlaceHolder'}),
       name: 'numberOfSpeciemenExportedSinceLastInspection',
       rules: {
         // required,
@@ -61,13 +61,13 @@ export default (fieldProps = {}) => {
       },
       keyboardType: 'number-pad',
       labelBottom: formatMessage({
-        id: 'form.label.specimenBottom',
+        id: 'form.FormOne.label.specimenBottom',
       }),
     },
     {
       defaultValue: '',
-      label: formatMessage({id: 'form.label.sourceCode'}),
-      placeholder: formatMessage({id: 'form.placeholder.sourceCode'}),
+      label: formatMessage({id: 'form.FormOne.label.sourceCode'}),
+      placeholder: formatMessage({id: 'form.FormOne.placeholder.sourceCode'}),
       name: 'sourceCodeOfPreviousExport',
       rules: {
         // required,

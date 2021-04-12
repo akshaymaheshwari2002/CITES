@@ -150,6 +150,7 @@ const checkliststyles = ScaledSheet.create({
     height: '8@ms',
     width: '8@ms',
     borderRadius: '4@ms',
+    marginRight: '2@s',
     backgroundColor: RawColors.black,
   },
   button: {

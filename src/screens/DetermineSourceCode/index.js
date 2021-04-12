@@ -177,7 +177,7 @@ const DetermineSourceCode = ({
             })}
             focusedStyle={styles.headerLeftTooltip}
             onClose={handleHeaderTooltipClose}>
-            <Icon name="chevron-left" size={ms(18)} />
+            <Icon name="chevron-left" size={ms(22)} />
           </Tooltip>
         </Pressable>
       ),

@@ -1,7 +1,7 @@
 const form4Questions = [
   {
     name: 'legallyRegisteredToBreedAndKeep',
-    content: 'formFour.q1',
+    content: 'form.FormFour.q1',
     for: 'formFourFor1',
     moreInfo: {
       helpTextKey: 'formFour',
@@ -11,7 +11,7 @@ const form4Questions = [
   },
   {
     name: 'unusualActivityObserved',
-    content: 'formFour.q2',
+    content: 'form.FormFour.q2',
     for: 'formFourFor1',
     moreInfo: {
       helpTextKey: 'formFourOne',
@@ -21,7 +21,7 @@ const form4Questions = [
   },
   {
     name: 'containmentFacilityAvailable',
-    content: 'formFour.q3',
+    content: 'form.FormFour.q3',
     for: 'formFourFor2',
     moreInfo: {
       helpTextKey: 'formFourTwo',
@@ -31,7 +31,7 @@ const form4Questions = [
   },
   {
     name: 'containmentFacilityAdequate',
-    content: 'formFour.q4',
+    content: 'form.FormFour.q4',
     for: 'formFourFor2',
     moreInfo: {
       helpTextKey: 'formFourNew',
@@ -41,7 +41,7 @@ const form4Questions = [
   },
   {
     name: 'recordsMaintainedForExport',
-    content: 'formFour.q5',
+    content: 'form.FormFour.q5',
     for: 'formFourFor2',
     moreInfo: {
       helpTextKey: 'formFourFour',
@@ -51,7 +51,7 @@ const form4Questions = [
   },
   {
     name: 'foodFacilitiesAvailable',
-    content: 'formFour.q6',
+    content: 'form.FormFour.q6',
     for: 'formFourFor2',
     moreInfo: {
       helpTextKey: 'formFourFive',
@@ -61,7 +61,7 @@ const form4Questions = [
   },
   {
     name: 'facilityProductionMatchesEstimates',
-    content: 'formFour.q7',
+    content: 'form.FormFour.q7',
     for: 'formFourFor3',
     moreInfo: {
       helpTextKey: 'formFourSix',
@@ -71,7 +71,7 @@ const form4Questions = [
   },
   {
     name: 'wildOriginSignsShown',
-    content: 'formFour.q8',
+    content: 'form.FormFour.q8',
     for: 'formFourFor3',
     moreInfo: {
       helpTextKey: 'formFourSeven',
@@ -81,7 +81,7 @@ const form4Questions = [
   },
   {
     name: 'difficultToBreed',
-    content: 'formFour.q9',
+    content: 'form.FormFour.q9',
     for: 'formFourFor3',
     moreInfo: {
       helpTextKey: 'formFourEight',
@@ -91,7 +91,7 @@ const form4Questions = [
   },
   {
     name: 'facilityEstablishedLongEnough',
-    content: 'formFour.q10',
+    content: 'form.FormFour.q10',
     for: 'formFourFor3',
     moreInfo: {
       helpTextKey: 'formFourNine',
@@ -101,7 +101,7 @@ const form4Questions = [
   },
   {
     name: 'haveIdentificationMark',
-    content: 'formFour.q11',
+    content: 'form.FormFour.q11',
     for: 'formFourFor4',
     moreInfo: {
       helpTextKey: 'formFourTen',
