@@ -192,7 +192,7 @@ const FormOne = ({navigation}) => {
     navigation.setOptions({
       headerLeft: (navigationProps) => (
         <Pressable hitSlop={10} onPress={handleBackPress}>
-          <Icon name="chevron-left" size={ms(18)} />
+          <Icon name="chevron-left" size={ms(22)} />
         </Pressable>
       ),
     });

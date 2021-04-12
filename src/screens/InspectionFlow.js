@@ -128,8 +128,8 @@ const styles = ScaledSheet.create({
     position: 'absolute',
     alignSelf: 'center',
     alignItems: 'flex-end',
-    width: '78.4%',
     top: '58@vs',
+    right: '30@s',
   },
   eye: {
     height: '60@vs',
@@ -140,7 +140,6 @@ const styles = ScaledSheet.create({
   header: {
     color: RawColors.darkGreyBlue,
     ...Fonts.HelveticaNeue26B,
-    textAlign: 'right',
     lineHeight: '26@ms',
     letterSpacing: '0.45@ms',
   },

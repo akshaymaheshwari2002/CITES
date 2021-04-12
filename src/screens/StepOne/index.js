@@ -101,7 +101,7 @@ const StepOne = ({navigation, route}) => {
             })}
             focusedStyle={styles.headerLeftTooltip}
             onClose={handleTooltipClose}>
-            <Icon name="chevron-left" size={ms(18)} />
+            <Icon name="chevron-left" size={ms(22)} />
           </Tooltip>
         </Pressable>
       ),

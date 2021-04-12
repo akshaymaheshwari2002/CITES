@@ -54,7 +54,7 @@ const screenOptions = {
   headerLeft: ({canGoBack, onPress, ...navigationProps}) =>
     canGoBack ? (
       <Pressable hitSlop={10} onPress={onPress}>
-        <Icon name="chevron-left" size={ms(18)} {...navigationProps} />
+        <Icon name="chevron-left" size={ms(22)} {...navigationProps} />
       </Pressable>
     ) : null,
   headerLeftContainerStyle: CommonStyles.navigationLeftContainer,

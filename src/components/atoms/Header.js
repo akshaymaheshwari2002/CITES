@@ -56,7 +56,7 @@ Header.defaultProps = {
   contentContainerStyle: {},
   content: null,
   headerTextStyle: {},
-  leftContent: <Icon name="chevron-left" size={ms(18)} />,
+  leftContent: <Icon name="chevron-left" size={ms(22)} />,
   rightContent: null,
 };
 

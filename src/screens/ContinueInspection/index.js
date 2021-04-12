@@ -126,12 +126,12 @@ const ContinueInspection = ({navigation}) => {
 const styles = ScaledSheet.create({
   flexGrow: {flexGrow: 1},
   titleView: {
-    paddingHorizontal: '16@s',
+    paddingHorizontal: '14@s',
     paddingVertical: '16@vs',
     backgroundColor: RawColors.white,
   },
   title: {
-    lineHeight: '35@ms',
+    lineHeight: '30@ms',
     textTransform: 'uppercase',
     ...Fonts.HelveticaNeue30B,
   },

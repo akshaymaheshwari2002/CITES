@@ -46,7 +46,7 @@ const BeginInspection = ({navigation, route}) => {
               navigation.goBack();
             }
           }}>
-          <Icon name="chevron-left" size={ms(18)} />
+          <Icon name="chevron-left" size={ms(22)} />
         </Pressable>
       ),
     });
@@ -143,7 +143,7 @@ const BeginInspection = ({navigation, route}) => {
 const styles = ScaledSheet.create({
   contentContainer: {
     backgroundColor: RawColors.transparent,
-    paddingHorizontal: '16@s',
+    paddingHorizontal: '14@s',
     paddingTop: '16@vs',
   },
   backgroundImage: {
@@ -167,9 +167,9 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  pointOne: {marginLeft: '110@s'},
-  pointTwo: {marginLeft: '150@s', paddingVertical: '36@vs'},
-  pointThree: {marginLeft: '110@s'},
+  pointOne: {marginLeft: '108@s'},
+  pointTwo: {marginLeft: '148@s', paddingVertical: '36@vs'},
+  pointThree: {marginLeft: '108@s'},
   numberContainer: {
     height: '40@ms',
     width: '40@ms',
