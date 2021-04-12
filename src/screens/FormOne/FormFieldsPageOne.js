@@ -168,7 +168,7 @@ export default () => {
       keyboardType: 'number-pad',
       rules: {
         validate: {
-          requiredMobileInput,
+          // requiredMobileInput,
           validateMobileInput,
         },
       },
@@ -203,7 +203,7 @@ export default () => {
     {
       label: formatMessage({id: 'form.FormOne.label.typeOfInspection'}),
       name: 'typeOfInspection',
-      rules: {required},
+      // rules: {required},
       fieldType: Constants.CHOICELIST,
       mode: 'radio-button',
       items: [
