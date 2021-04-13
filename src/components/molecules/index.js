@@ -3,6 +3,7 @@ import FormOneTemplate from './ReactTemplate/FormOneTemplate';
 import FormOneHeader from './ReactTemplate/FormOneHeader';
 import FormThreeHeader from './ReactTemplate/FormThreeHeader';
 import FormTwoTemplate from './ReactTemplate/FormTwoTemplate';
+import ConsentForm from './ReactTemplate/ConsentForm';
 import StepHeader from './StepHeader';
 import ChecklistCell from './ChecklistCell';
 import TextInputArray from './TextInputArray';
@@ -26,6 +27,7 @@ export {
   FormOneHeader,
   FormThreeHeader,
   FormTwoTemplate,
+  ConsentForm,
   StepHeader,
   ChecklistCell,
   TextInputArray,

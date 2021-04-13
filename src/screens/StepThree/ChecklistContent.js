@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, Pressable} from 'react-native';
+import {vs} from 'react-native-size-matters';
 
 import {Button} from '@atoms';
 import {navigate} from '@utils/RootNavigation';
@@ -49,7 +50,10 @@ const checklistContent = ({checkliststyles, bullet}) => {
               checkliststyles.button,
               checkliststyles.buttonLarge,
             ]}
-            buttonTextStyle={(pressed) => checkliststyles.buttonTextStyle}
+            buttonTextStyle={(pressed) => [
+              checkliststyles.buttonTextStyle,
+              {paddingHorizontal: vs(16)},
+            ]}
             onPress={() => {
               navigate('FormFour');
             }}
@@ -72,7 +76,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
             })}
             buttonStyle={(pressed) => [
               checkliststyles.button,
-              checkliststyles.buttonLarge,
+              checkliststyles.productionCalculatorCell,
             ]}
             buttonTextStyle={(pressed) => checkliststyles.buttonTextStyle}
             onPress={() => {

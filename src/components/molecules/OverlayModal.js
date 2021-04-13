@@ -1,6 +1,13 @@
 import React, {useState, useCallback, useEffect} from 'react';
-import {Modal, Text, View, Image, TouchableWithoutFeedback} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
+import {
+  Modal,
+  Text,
+  View,
+  Image,
+  TouchableWithoutFeedback,
+  TouchableOpacity,
+} from 'react-native';
+import {ScaledSheet, vs} from 'react-native-size-matters';
 
 import {Container} from '@atoms';
 import SideMenu from './SideMenu';
@@ -14,32 +21,32 @@ const OverlayModal = ({
   helpText,
   isShowSideMenu,
 }) => {
-  const [modalWidth, setModalWidth] = useState('55%'); // width to be set dynamically according to the content
-  const [modalViewHeight, setModalViewHeight] = useState(0);
-  const [contentContainerHeight, setContentContainerHeight] = useState(0);
+  const modalWidth = '55%'; // width to be set dynamically according to the content
+  // const [modalViewHeight, setModalViewHeight] = useState(0);
+  // const [contentContainerHeight, setContentContainerHeight] = useState(0);
 
-  useEffect(() => {
-    setModalWidth('55%'); // reset modal width when help text changes
-  }, [helpText]);
+  // useEffect(() => {
+  //   setModalWidth('55%'); // reset modal width when help text changes
+  // }, [helpText]);
 
-  useEffect(() => {
-    if (
-      modalViewHeight &&
-      contentContainerHeight &&
-      modalViewHeight < contentContainerHeight
-    ) {
-      increaseWidth();
-    }
-  }, [modalViewHeight, contentContainerHeight, increaseWidth]);
+  // useEffect(() => {
+  //   if (
+  //     modalViewHeight &&
+  //     contentContainerHeight &&
+  //     modalViewHeight < contentContainerHeight
+  //   ) {
+  //     increaseWidth();
+  //   }
+  // }, [modalViewHeight, contentContainerHeight, increaseWidth]);
 
-  const increaseWidth = useCallback(() => {
-    if (modalWidth === '50%') {
-      setModalWidth('75%');
-    } else if (modalWidth === '75%') {
-      setModalWidth('100%');
-    } else {
-    }
-  }, [modalWidth]);
+  // const increaseWidth = useCallback(() => {
+  //   if (modalWidth === '50%') {
+  //     setModalWidth('75%');
+  //   } else if (modalWidth === '75%') {
+  //     setModalWidth('100%');
+  //   } else {
+  //   }
+  // }, [modalWidth]);
 
   return (
     <Modal
@@ -55,24 +62,35 @@ const OverlayModal = ({
             <TouchableWithoutFeedback>
               <View
                 style={[styles.modalView, {width: modalWidth}]}
-                onLayout={(ev) => {
-                  const height = ev.nativeEvent.layout.height;
-                  if (Math.round(height) !== modalViewHeight) {
-                    setModalViewHeight(Math.round(height));
-                  }
-                }}>
-                <Image source={Images.information} style={styles.helpIcon} />
+                // onLayout={(ev) => {
+                //   const height = ev.nativeEvent.layout.height;
+                //   if (Math.round(height) !== modalViewHeight) {
+                //     setModalViewHeight(Math.round(height));
+                //   }
+                // }}
+              >
+                <View style={styles.iconsContainer}>
+                  <Image source={Images.information} style={styles.helpIcon} />
+                  <TouchableOpacity onPress={hideModal}>
+                    <Image
+                      source={Images.closeButton}
+                      style={styles.crossIcon}
+                    />
+                  </TouchableOpacity>
+                </View>
                 <Container.ScrollView
                   style={styles.scrollView}
                   contentContainerStyle={styles.scrollView}>
                   <View
+                    onStartShouldSetResponder={() => true}
                     style={styles.contentContainer}
-                    onLayout={(ev) => {
-                      const height = ev.nativeEvent.layout.height;
-                      if (Math.round(height) !== contentContainerHeight) {
-                        setContentContainerHeight(Math.round(height));
-                      }
-                    }}>
+                    // onLayout={(ev) => {
+                    //   const height = ev.nativeEvent.layout.height;
+                    //   if (Math.round(height) !== contentContainerHeight) {
+                    //     setContentContainerHeight(Math.round(height));
+                    //   }
+                    // }}
+                  >
                     {helpText
                       ? helpText.map((value, index) => {
                           return (
@@ -132,9 +150,18 @@ const styles = ScaledSheet.create({
     alignItems: 'center',
   },
   helpIcon: {
-    marginVertical: '10@vs',
-    marginHorizontal: '10@s',
+    marginRight: '100@s',
     alignSelf: 'flex-start',
+  },
+  crossIcon: {
+    alignSelf: 'flex-end',
+    marginHorizontal: 0,
+    height: '28@s',
+    width: '28@s',
+  },
+  iconsContainer: {
+    flexDirection: 'row',
+    marginVertical: '10@vs',
   },
   scrollView: {
     alignSelf: 'flex-start',

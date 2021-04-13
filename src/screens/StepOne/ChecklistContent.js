@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, Pressable} from 'react-native';
+import {vs} from 'react-native-size-matters';
 
 import {Button} from '@atoms';
 import Config from '@config';
@@ -81,7 +82,7 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
     {
       id: 'formOneCompleted',
       content: (
-        <View style={checkliststyles.formOneCell}>
+        <View>
           <Text style={checkliststyles.textGeneral}>
             {formatMessage({
               id: 'screen.stepOne.formOneCompleted.complete',
@@ -96,7 +97,10 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
               id: 'screen.stepOne.formOneCompleted.FormOne',
             })}
             buttonStyle={(pressed) => checkliststyles.button}
-            buttonTextStyle={(pressed) => checkliststyles.buttonTextStyle}
+            buttonTextStyle={(pressed) => [
+              checkliststyles.buttonTextStyle,
+              {paddingHorizontal: vs(16)},
+            ]}
           />
         </View>
       ),

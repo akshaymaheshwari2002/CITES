@@ -1,16 +1,31 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import {View, Text} from 'react-native';
 import {ScaledSheet, s, ms} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
+import RNPrint from 'react-native-print';
 
 import {Fonts, RawColors} from '@styles/Themes';
 import {Container, Button, TextInput} from '@atoms';
+import {ConsentForm} from '@molecules';
+import {generatePdf} from '@utils/CommonFunctions';
 import CommonStyles from '@styles/CommonStyles';
 
 const ExampleDialogueConsentFormStep2 = ({navigation: {navigate}}) => {
   const {formatMessage} = useIntl();
   const [name, setName] = useState();
   const [legislation, setLegislation] = useState();
+
+  const handlePrint = useCallback(() => {
+    (async () => {
+      const file = await generatePdf({
+        templates: [
+          <ConsentForm name={name} nationalLegislation={legislation} />,
+        ],
+      });
+      RNPrint.print({filePath: file?.filePath});
+    })();
+  }, [legislation, name]);
+
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
@@ -102,7 +117,7 @@ const ExampleDialogueConsentFormStep2 = ({navigation: {navigate}}) => {
             buttonStyle={() => {
               return styles.buttonPrint;
             }}
-            onPress={() => navigate('TabNavigator', {screen: 'StepOne'})}
+            onPress={handlePrint}
           />
           <Button
             buttonContent={formatMessage({

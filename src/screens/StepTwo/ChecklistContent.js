@@ -48,10 +48,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
             buttonContent={formatMessage({
               id: 'button.stepTwo.confirmFormOneContent',
             })}
-            buttonStyle={(pressed) => [
-              checkliststyles.button,
-              checkliststyles.buttonLarge,
-            ]}
+            buttonStyle={(pressed) => [checkliststyles.button]}
             buttonTextStyle={(pressed) => checkliststyles.buttonTextStyle}
             onPress={() => {
               navigate('FormOneSummary', {formSummaryStepTwo: true});
@@ -160,10 +157,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
             buttonContent={formatMessage({
               id: 'button.stepTwo.sourceDetermined',
             })}
-            buttonStyle={(pressed) => [
-              checkliststyles.button,
-              checkliststyles.buttonLarge,
-            ]}
+            buttonStyle={(pressed) => [checkliststyles.button]}
             buttonTextStyle={(pressed) => checkliststyles.buttonTextStyle}
             onPress={() => {
               dispatch(setContinueToStepTwo(true));

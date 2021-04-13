@@ -11,7 +11,7 @@ import {StepHeader, ChecklistCell} from '@molecules';
 import ChecklistContent from './ChecklistContent';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
-import Toast from 'react-native-simple-toast';
+//import Toast from 'react-native-simple-toast';
 
 const StepTwo = ({navigation}) => {
   const {formatMessage} = useIntl();
@@ -155,10 +155,11 @@ const checkliststyles = ScaledSheet.create({
     alignSelf: 'flex-start',
     borderColor: RawColors.prussianBlue,
     backgroundColor: RawColors.white,
-    height: '40@vs',
-    borderRadius: '24@vs',
-    marginVertical: '20@s',
-    paddingRight: '13@ms',
+    minHeight: '32@vs',
+    borderRadius: '20@vs',
+    marginTop: '8@s',
+    paddingVertical: 5,
+    paddingHorizontal: '8@ms',
   },
   buttonTextStyle: {
     textTransform: 'uppercase',
@@ -167,12 +168,5 @@ const checkliststyles = ScaledSheet.create({
     color: RawColors.softRed,
     paddingHorizontal: '16@ms',
     ...Fonts.HelveticaNeue13B,
-  },
-  buttonLarge: {
-    marginTop: '15@ms',
-  },
-  formCell: {
-    //flexDirection: 'row',
-    //alignItems: 'center',
   },
 });

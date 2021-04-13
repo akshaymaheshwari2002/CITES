@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useDispatch, useSelector, shallowEqual} from 'react-redux';
-import Toast from 'react-native-simple-toast';
+//import Toast from 'react-native-simple-toast';
 import {useIsFocused} from '@react-navigation/core';
 
 import {saveInspection} from '@store/slices/sessionSlice';
@@ -156,25 +156,20 @@ const checkliststyles = ScaledSheet.create({
   button: {
     alignSelf: 'flex-start',
     borderColor: RawColors.prussianBlue,
-    backgroundColor: RawColors.white,
-    height: '40@vs',
-    borderRadius: '24@vs',
-    marginVertical: '20@s',
-    paddingRight: '13@ms',
+    minHeight: '32@vs',
+    borderRadius: '20@vs',
+    marginTop: '8@s',
+    paddingVertical: '5@vs',
+    paddingHorizontal: '8@ms',
   },
   buttonTextStyle: {
-    textTransform: 'uppercase',
     textAlignVertical: 'center',
     textAlign: 'center',
     color: RawColors.softRed,
-    paddingHorizontal: '16@ms',
+    paddingHorizontal: '8@ms',
     ...Fonts.HelveticaNeue13B,
   },
-  buttonLarge: {
-    marginTop: '15@ms',
-  },
-  formCell: {
-    //flexDirection: 'row',
-    //alignItems: 'center',
+  productionCalculatorCell: {
+    marginVertical: '5@ms',
   },
 });
