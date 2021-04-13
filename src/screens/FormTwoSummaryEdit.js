@@ -95,7 +95,6 @@ const FormTwoSummaryEdit = ({navigation}) => {
   const handleMessage = useCallback(
     (ev) => {
       const data = JSON.parse(ev.nativeEvent.data);
-      console.log(data);
       if (
         data?.name &&
         data.name &&

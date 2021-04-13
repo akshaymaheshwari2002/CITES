@@ -1,29 +1,20 @@
 import React from 'react';
 import {getInputFieldElementForFormSummary as getInputFieldElement} from '@utils/CommonFunctions';
 
-const formText = 'FORM';
 const formNumber = {
   one: 1,
   two: 2,
   three: 3,
   four: 4,
 };
-const formTitle = {
-  one: 'BACKGROUND INFORMATION',
-  two: 'FACILITY INFORMATION',
-  three: 'SPECIES INFORMATION',
-};
-const facilitySchema = {
-  facilityName: 'Facility name: ',
-  dateOfInspection: 'Date of inspection: ',
-  seniorOfficerName: 'Name of Senior Inspecting Officer: ',
-  speciesName: 'Species: ',
-};
 
 const FormThreeHeader = ({
   form = 'one',
   facilityData = {},
   editable = false,
+  formText = {},
+  formTitle = {},
+  facilitySchema = {},
 }) => {
   const getInputElementConditionally = ({name, defaultValue, inputSize}) => {
     return editable
@@ -38,7 +29,7 @@ const FormThreeHeader = ({
   return (
     <div className="App" style={styles.marginContainer}>
       <div style={styles.topContainer}>
-        <h1>{formText}</h1>
+        <h1>{formText?.formText}</h1>
         <div style={styles.body}>
           <h1 style={styles.number}>{formNumber?.[form]}</h1>
         </div>

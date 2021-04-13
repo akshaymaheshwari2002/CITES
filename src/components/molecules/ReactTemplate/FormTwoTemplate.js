@@ -1,22 +1,13 @@
 import React from 'react';
-
 import Constants from '@utils/Constants';
+
 import {getInputFieldElementForFormSummary as getInputFieldElement} from '@utils/CommonFunctions';
 
-const formTwoLabels = {
-  noOfStaff: 'How many staff currently employed at the Facility: ',
-  noOfPartTime: 'Part Time',
-  noOfFullTime: 'Full Time',
-  isVeterinaryServices:
-    'Does the Operation have access to professional veterinary services?',
-  ifYesVeterinaryServices: 'If yes, what is name and address of vet?',
-  ifYesOtherLocation: 'If yes, what is address of location(s)?',
-  otherLocation: 'Are animals keet at other location(s)?',
-  yes: Constants.YES,
-  no: Constants.NO,
-};
-
-const FormTwoTemplate = ({formTwoData = {}, editable = false}) => {
+const FormTwoTemplate = ({
+  formTwoData = {},
+  editable = false,
+  formTwoLabels = {},
+}) => {
   const getInputElementConditionally = ({
     name,
     defaultValue,
@@ -100,7 +91,7 @@ const FormTwoTemplate = ({formTwoData = {}, editable = false}) => {
                     <label
                       htmlFor={'formTwo.accessToVeterinaryServices.yes'}
                       style={styles.marginText}>
-                      {formTwoLabels?.yes}
+                      {formTwoLabels?.[Constants.YES]}
                     </label>
                   </div>
                   <div style={styles.rowForCheckBox}>
@@ -126,7 +117,7 @@ const FormTwoTemplate = ({formTwoData = {}, editable = false}) => {
                     <label
                       htmlFor={'formTwo.accessToVeterinaryServices.no'}
                       style={styles.marginText}>
-                      {formTwoLabels?.no}
+                      {formTwoLabels?.[Constants.NO]}
                     </label>
                   </div>
                 </div>
@@ -187,7 +178,7 @@ const FormTwoTemplate = ({formTwoData = {}, editable = false}) => {
                     <label
                       htmlFor={'formTwo.animalKeptAtOtherLocation.yes'}
                       style={styles.marginText}>
-                      {formTwoLabels?.yes}
+                      {formTwoLabels?.[Constants.YES]}
                     </label>
                   </div>
                   <div style={styles.rowForCheckBox}>
@@ -213,7 +204,7 @@ const FormTwoTemplate = ({formTwoData = {}, editable = false}) => {
                     <label
                       htmlFor={'formTwo.animalKeptAtOtherLocation.no'}
                       style={styles.marginText}>
-                      {formTwoLabels?.no}
+                      {formTwoLabels?.[Constants.NO]}
                     </label>
                   </div>
                 </div>

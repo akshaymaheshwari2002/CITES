@@ -1,16 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {getInputFieldElementForFormSummary as getInputFieldElement} from '@utils/CommonFunctions';
 
-const speciesText = 'Species the facility is registered to produce: ';
-const speciesAttributes = [
-  'Species name',
-  'Total number of Specimen at last inspection',
-  'Total number of breeding adults',
-  'Total number of Speciment exported since last inspection',
-  'Source code, as stated on previous export permits',
-];
-
-const FormOneTemplate = ({speciesData = [], editable = false}) => {
+const FormOneTemplate = ({
+  speciesData = [],
+  editable = false,
+  formOneLabels = {},
+}) => {
   const getInputElementConditionally = ({
     name,
     defaultValue,
@@ -25,20 +20,24 @@ const FormOneTemplate = ({speciesData = [], editable = false}) => {
         })
       : alt;
   };
+  useEffect(() => {
+    console.log(formOneLabels, '123450');
+  }, [formOneLabels]);
+
   return (
     <div className="App">
       <div className="App" style={styles.box}>
         <p style={styles.headText}>
-          <b>{speciesText}</b>
+          <b>{formOneLabels.speciesText}</b>
         </p>
         <div style={styles.container}>
           <div style={styles.table}>
             <div style={styles.row}>
-              {speciesAttributes?.map((data, index) => (
+              {Object.keys(formOneLabels ?? {})?.forEach((index) => {
                 <div key={index} style={styles.cell}>
-                  <b>{data}</b>
-                </div>
-              ))}
+                  <b>{formOneLabels[index + 1]}</b>
+                </div>;
+              })}
             </div>
             {speciesData?.map((data, index) => {
               return (

@@ -19,6 +19,12 @@ import {FormOneTemplate, FormOneHeader, PopupFormEditMenu} from '@molecules';
 import {Fonts, RawColors} from '@styles/Themes';
 import {generatePdf} from '@utils/CommonFunctions';
 import CommonStyles from '@styles/CommonStyles';
+import {
+  formText,
+  formTitle,
+  facilitySchema,
+  formOneLabels,
+} from '@utils/TranslationMapping';
 
 const FormOneSummary = ({navigation, route}) => {
   const {formatMessage} = useIntl();
@@ -56,18 +62,85 @@ const FormOneSummary = ({navigation, route}) => {
     [formData],
   );
 
+  const formTextLabel = useMemo(() => {
+    let translatedFormText = {};
+    Object.keys(formText ?? {}).forEach((id, index) => {
+      translatedFormText = {
+        ...translatedFormText,
+        [id]: formatMessage({
+          id: formText[id],
+        }),
+      };
+    });
+    return translatedFormText;
+  }, [formatMessage]);
+
+  const formTitleLabels = useMemo(() => {
+    let translatedFormTitle = {};
+    Object.keys(formTitle ?? {}).forEach((id, index) => {
+      translatedFormTitle = {
+        ...translatedFormTitle,
+        [id]: formatMessage({
+          id: formTitle[id],
+        }),
+      };
+    });
+    return translatedFormTitle;
+  }, [formatMessage]);
+
+  const facilitySchemaLabels = useMemo(() => {
+    let translatedfacilitySchema = {};
+    Object.keys(facilitySchema ?? {}).forEach((id, index) => {
+      translatedfacilitySchema = {
+        ...translatedfacilitySchema,
+        [id]: formatMessage({
+          id: facilitySchema[id],
+        }),
+      };
+    });
+    return translatedfacilitySchema;
+  }, [formatMessage]);
+
+  const labels = useMemo(() => {
+    let translatedLabels = {};
+    Object.keys(formOneLabels ?? {}).forEach((id, index) => {
+      translatedLabels = {
+        ...translatedLabels,
+        [id]: formatMessage({
+          id: formOneLabels[id],
+        }),
+      };
+    });
+    return translatedLabels;
+  }, [formatMessage]);
+
   useFocusEffect(
     useCallback(() => {
       (async () => {
         const file = await generatePdf({
           templates: [
-            <FormOneHeader facilityData={facilityData} />,
-            <FormOneTemplate speciesData={registeredSpecies} />,
+            <FormOneHeader
+              facilityData={facilityData}
+              formText={formTextLabel}
+              formTitle={formTitleLabels}
+              facilitySchema={facilitySchemaLabels}
+            />,
+            <FormOneTemplate
+              speciesData={registeredSpecies}
+              formOneLabels={labels}
+            />,
           ],
         });
         setFileUri({uri: file?.filePath});
       })();
-    }, [facilityData, registeredSpecies]),
+    }, [
+      facilityData,
+      facilitySchemaLabels,
+      formTextLabel,
+      formTitleLabels,
+      labels,
+      registeredSpecies,
+    ]),
   );
 
   // const handleBackPress = useCallback(() => {

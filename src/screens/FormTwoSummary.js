@@ -1,11 +1,5 @@
-import React, {useState, useMemo, useCallback, useEffect} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  BackHandler,
-  Pressable,
-} from 'react-native';
+import React, {useState, useMemo, useCallback} from 'react';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import Pdf from 'react-native-pdf';
@@ -15,16 +9,26 @@ import {format} from 'date-fns';
 import {shallowEqual, useSelector} from 'react-redux';
 
 import {Container} from '@atoms';
-import {FormTwoTemplate, FormOneHeader, PopupFormEditMenu} from '@molecules';
+import {
+  FormTwoTemplate,
+  FormOneHeader,
+  //PopupFormEditMenu,
+} from '@molecules';
 import {Fonts, RawColors} from '@styles/Themes';
 import {generatePdf} from '@utils/CommonFunctions';
 import CommonStyles from '@styles/CommonStyles';
+import {
+  formText,
+  formTitle,
+  facilitySchema,
+  formTwoLabels,
+} from '@utils/TranslationMapping';
 
 const FormTwoSummary = ({navigation, route}) => {
   const {formatMessage} = useIntl();
   const [fileUri, setFileUri] = useState(undefined);
-  const [isShowFormEditMenu, setIsShowFormEditMenu] = useState(false);
-  const isCurrentScreenFocused = useIsFocused();
+  //const [isShowFormEditMenu, setIsShowFormEditMenu] = useState(false);
+  //const isCurrentScreenFocused = useIsFocused();
   const formTwoData = useSelector(
     (state) => state.sessionReducer.activeInspection.stepTwo?.formTwo,
     shallowEqual,
@@ -52,19 +56,83 @@ const FormTwoSummary = ({navigation, route}) => {
     }),
     [formData],
   );
+  const formTextLabel = useMemo(() => {
+    let translatedLabels = {};
+    Object.keys(formText ?? {}).forEach((id, index) => {
+      translatedLabels = {
+        ...translatedLabels,
+        [id]: formatMessage({
+          id: formText[id],
+        }),
+      };
+    });
+    return translatedLabels;
+  }, [formatMessage]);
+  const formTitleLabels = useMemo(() => {
+    let translatedLabels = {};
+    Object.keys(formTitle ?? {}).forEach((id, index) => {
+      translatedLabels = {
+        ...translatedLabels,
+        [id]: formatMessage({
+          id: formTitle[id],
+        }),
+      };
+    });
+    return translatedLabels;
+  }, [formatMessage]);
+  const facilitySchemaLabels = useMemo(() => {
+    let translatedLabels = {};
+    Object.keys(facilitySchema ?? {}).forEach((id, index) => {
+      translatedLabels = {
+        ...translatedLabels,
+        [id]: formatMessage({
+          id: facilitySchema[id],
+        }),
+      };
+    });
+    return translatedLabels;
+  }, [formatMessage]);
+  const labels = useMemo(() => {
+    let translatedLabels = {};
+    Object.keys(formTwoLabels ?? {}).forEach((id, index) => {
+      translatedLabels = {
+        ...translatedLabels,
+        [id]: formatMessage({
+          id: formTwoLabels[id],
+        }),
+      };
+    });
+    return translatedLabels;
+  }, [formatMessage]);
 
   useFocusEffect(
     useCallback(() => {
       (async () => {
         const file = await generatePdf({
           templates: [
-            <FormOneHeader facilityData={facilityData} form={'two'} />,
-            <FormTwoTemplate formTwoData={formTwoData} />,
+            <FormOneHeader
+              facilityData={facilityData}
+              form={'two'}
+              formText={formTextLabel}
+              formTitle={formTitleLabels}
+              facilitySchema={facilitySchemaLabels}
+            />,
+            <FormTwoTemplate
+              formTwoData={formTwoData}
+              formTwoLabels={labels}
+            />,
           ],
         });
         setFileUri({uri: file?.filePath});
       })();
-    }, [facilityData, formTwoData]),
+    }, [
+      facilityData,
+      facilitySchemaLabels,
+      formTextLabel,
+      formTitleLabels,
+      formTwoData,
+      labels,
+    ]),
   );
 
   // const handleBackPress = useCallback(() => {

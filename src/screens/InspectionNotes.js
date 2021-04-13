@@ -30,7 +30,6 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
   );
 
   const handlePress = useCallback(() => {
-    console.log(notes, '12345679');
     const timeStamp = Date.now();
     const text = notesText;
     const notesTextLength = notesText.length;
@@ -39,7 +38,7 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
     }
     setNotesText('');
     setPopUp(false);
-  }, [dispatch, notes, notesText]);
+  }, [dispatch, notesText]);
 
   const renderItem = useCallback(
     ({item}) => {

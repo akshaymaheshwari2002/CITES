@@ -1,37 +1,21 @@
 import React from 'react';
 import {getInputFieldElementForFormSummary as getInputFieldElement} from '@utils/CommonFunctions';
 
-const formText = 'FORM';
 const formNumber = {
   one: 1,
   two: 2,
   three: 3,
   four: 4,
 };
-const formTitle = {
-  one: 'BACKGROUND INFORMATION',
-  two: 'FACILITY INFORMATION',
-  three: 'SPECIES INFORMATION',
-  notes_1: 'INSPECTION',
-  notes_2: 'NOTES + PHOTOS',
-};
-const facilitySchema = {
-  facilityName: 'Facility name: ',
-  owner: 'Facility owner/manager: ',
-  address: 'Facility address: ',
-  citesInformationCode: 'CITES Appendix I captive-breeding code: ',
-  establishmentDate: 'Facility date of establishment: ',
-  country: 'Country: ',
-  facilityContact: 'Facility contact information:',
-  email: 'Email ',
-  phoneNo: ' Telephone ',
-  dateOfInspection: 'Date of inspection: ',
-  seniorOfficerName: 'Name of Senior Inspecting Officer: ',
-  typeOfInspection: 'Type of inspection: ',
-  nationalPermitNumber: 'National permit number: ',
-};
 
-const FormOneHeader = ({form = 'one', facilityData = {}, editable = false}) => {
+const FormOneHeader = ({
+  form = 'one',
+  facilityData = {},
+  editable = false,
+  formText = {},
+  formTitle = {},
+  facilitySchema = {},
+}) => {
   const getInputElementConditionally = ({name, defaultValue, inputSize}) => {
     return editable
       ? getInputFieldElement({
@@ -48,16 +32,16 @@ const FormOneHeader = ({form = 'one', facilityData = {}, editable = false}) => {
         <div style={styles.topContainer}>
           {form !== 'notes' ? (
             <>
-              <h1>{formText}</h1>
+              <h1>{formText?.formText}</h1>
               <div style={styles.body}>
                 <h1 style={styles.number}>{formNumber?.[form]}</h1>
               </div>
             </>
           ) : (
             <h2>
-              {formTitle.notes_1}
+              {formTitle?.notes_1}
               <br />
-              {formTitle.notes_2}
+              {formTitle?.notes_2}
             </h2>
           )}
         </div>

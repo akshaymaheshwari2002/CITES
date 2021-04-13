@@ -28,9 +28,6 @@ const TabBar = () => {
   const {bottom: marginBottom} = useSafeAreaInsets();
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const a = useNavigationState((state) => {
-    console.log(state);
-  });
   const tooltipProps = useSelector(
     (state) => state.sessionReducer.tooltipProps,
     shallowEqual,

@@ -88,7 +88,6 @@ const ImagePickerModal = ({
           if (isImageSizeValid(response.fileSize)) {
             onImageSelection(response);
             const result = dispatch(saveNotes({photos: response}));
-            console.log(result, '123456');
             close();
           } else {
             close();

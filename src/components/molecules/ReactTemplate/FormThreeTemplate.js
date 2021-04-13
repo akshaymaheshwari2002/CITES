@@ -3,48 +3,11 @@ import React from 'react';
 import {getInputFieldElementForFormSummary as getInputFieldElement} from '@utils/CommonFunctions';
 import Constants from '@utils/Constants';
 
-const formThreeSchema = {
-  dateFirstSpeciesAcquired: '*Date Species first Acquired?',
-  lifeStageOfInitialStock: 'Source and life-stage of initial stock?',
-  numberOfStock: 'Number of intial stock and sexes? if known ',
-  males: ' Males? ',
-  females: 'Females? ',
-  additionalStock:
-    '*Have additional animals been obtained since you acquired initial stock? if so, from where?',
-  doYouBreedThisSpecies: 'Do you BREED these species?',
-  whenDidYouBreedThisSpecies: 'When did you start breeding?',
-  numberOfLittersPerYear: '# litter/clutches per year?',
-  numberOfOffspringPerLitter: '# offspring/eggs per year?',
-  numberProducedInPreviousYear: '# Produced in previous year?',
-  isRanchSpecies: 'Do you RANCH these species?',
-  lifeStageHarvested: 'What life stage(s) is harvested?',
-  numberHarvestedInPreviousYear: '# harvested in previous year?',
-  adultBreedingStock: 'ADULT BREEDING STOCK',
-  facilityInformation: 'Facility information',
-  inspectorCount: 'Inspector count (where possible)',
-  noOfAdultsPresent: 'Number of adults present?',
-  noOfMalesPresent: 'Number of males present?',
-  noOfFemalesPresent: 'Number of females?',
-  percentageOfFemalesBreedEachYear: 'What % of females breed each year?',
-  foodFedToAdults: 'What do you feed adult animals?',
-  rearingStock: 'REARING STOCK ( CAPTIVE BRED AND RANCHED COMBINED )',
-  noOfJuvenilesPresent: 'Number of juveniles present?',
-  ageAtSexualMaturity: 'Age at sexual maturity (years)?',
-  sizeOrMassAtSexualMaturity: 'Size or mass at sexual maturity (cm or g)?',
-  sizeOrMassAtSaleOrExport: 'Size at sale (cm or g)',
-  percentageOfJuvenilesSurviveBeyond2Weeks_1:
-    'What percentage of juveniles survive beyond 2 weeks?',
-  percentageOfJuvenilesSurviveBeyond2Weeks_2:
-    'Includes mortalities of eggs that didn’t hatch.',
-  foodFedToRearingAndJuveniles:
-    'What do you feed rearing and juvenile animals?',
-  asterisk:
-    'Inspectors should ensure specimens were acquired legally and in compliance with CITES. In the case of App. I specimens, invoices and/or bills of sale must be produced .',
-};
 const FormThreeTemplate = ({
   speciesData = {},
   speciesIndex = 0,
   editable = false,
+  formThreeSchema = {},
 }) => {
   const getInputElementConditionally = ({
     name,
