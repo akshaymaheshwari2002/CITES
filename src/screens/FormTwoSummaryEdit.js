@@ -12,6 +12,12 @@ import Icon from 'react-native-vector-icons/Feather';
 import {Container} from '@atoms';
 import {FormOneHeader, FormTwoTemplate} from '@molecules';
 import {Fonts, RawColors} from '@styles/Themes';
+import {
+  formText,
+  formTitle,
+  facilitySchema,
+  formTwoLabels,
+} from '@utils/TranslationMapping';
 
 const getHtmlStringFromJsx = (element) => {
   return `
@@ -62,6 +68,56 @@ const FormTwoSummaryEdit = ({navigation}) => {
     (state) => state.sessionReducer.activeInspection.stepTwo?.formTwo,
     shallowEqual,
   );
+
+  const formTextLabel = useMemo(() => {
+    let translatedLabels = {};
+    Object.keys(formText ?? {}).forEach((id, index) => {
+      translatedLabels = {
+        ...translatedLabels,
+        [id]: formatMessage({
+          id: formText[id],
+        }),
+      };
+    });
+    return translatedLabels;
+  }, [formatMessage]);
+  const formTitleLabels = useMemo(() => {
+    let translatedLabels = {};
+    Object.keys(formTitle ?? {}).forEach((id, index) => {
+      translatedLabels = {
+        ...translatedLabels,
+        [id]: formatMessage({
+          id: formTitle[id],
+        }),
+      };
+    });
+    return translatedLabels;
+  }, [formatMessage]);
+  const facilitySchemaLabels = useMemo(() => {
+    let translatedLabels = {};
+    Object.keys(facilitySchema ?? {}).forEach((id, index) => {
+      translatedLabels = {
+        ...translatedLabels,
+        [id]: formatMessage({
+          id: facilitySchema[id],
+        }),
+      };
+    });
+    return translatedLabels;
+  }, [formatMessage]);
+  const labels = useMemo(() => {
+    let translatedLabels = {};
+    Object.keys(formTwoLabels ?? {}).forEach((id, index) => {
+      translatedLabels = {
+        ...translatedLabels,
+        [id]: formatMessage({
+          id: formTwoLabels[id],
+        }),
+      };
+    });
+    return translatedLabels;
+  }, [formatMessage]);
+
   const html = useMemo(
     () =>
       getHtmlStringFromJsx(
@@ -70,11 +126,25 @@ const FormTwoSummaryEdit = ({navigation}) => {
             facilityData={formatFormDataToDisplay(facilityData)}
             form={'two'}
             editable={false}
+            formText={formTextLabel}
+            formTitle={formTitleLabels}
+            facilitySchema={facilitySchemaLabels}
           />
-          <FormTwoTemplate formTwoData={formTwoData} editable={true} />
+          <FormTwoTemplate
+            formTwoData={formTwoData}
+            editable={true}
+            formTwoLabels={labels}
+          />
         </>,
       ),
-    [facilityData, formTwoData],
+    [
+      facilityData,
+      facilitySchemaLabels,
+      formTextLabel,
+      formTitleLabels,
+      formTwoData,
+      labels,
+    ],
   );
 
   const handleSubmit = useCallback(() => {

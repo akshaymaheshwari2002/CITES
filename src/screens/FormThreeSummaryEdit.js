@@ -14,6 +14,12 @@ import {saveRegisteredSpecies} from '@store/slices/sessionSlice';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
 import Constants from '@utils/Constants';
+import {
+  formText,
+  formTitle,
+  facilitySchemaThree,
+  formThreeSchema,
+} from '@utils/TranslationMapping';
 
 const getHtmlStringFromJsx = (element) => {
   return `
@@ -84,6 +90,58 @@ const FormThreeSummaryEdit = ({navigation, route}) => {
     [formData],
   );
 
+  const formTextLabel = useMemo(() => {
+    let translatedFormText = {};
+    Object.keys(formText ?? {}).forEach((id, index) => {
+      translatedFormText = {
+        ...translatedFormText,
+        [id]: formatMessage({
+          id: formText[id],
+        }),
+      };
+    });
+    return translatedFormText;
+  }, [formatMessage]);
+
+  const formTitleLabels = useMemo(() => {
+    let translatedFormTitle = {};
+    Object.keys(formTitle ?? {}).forEach((id, index) => {
+      translatedFormTitle = {
+        ...translatedFormTitle,
+        [id]: formatMessage({
+          id: formTitle[id],
+        }),
+      };
+    });
+    return translatedFormTitle;
+  }, [formatMessage]);
+
+  const facilitySchemaLabels = useMemo(() => {
+    let translatedfacilitySchema = {};
+    Object.keys(facilitySchemaThree ?? {}).forEach((id, index) => {
+      translatedfacilitySchema = {
+        ...translatedfacilitySchema,
+        [id]: formatMessage({
+          id: facilitySchemaThree[id],
+        }),
+      };
+    });
+    return translatedfacilitySchema;
+  }, [formatMessage]);
+
+  const labels = useMemo(() => {
+    let translatedLabels = {};
+    Object.keys(formThreeSchema ?? {}).forEach((id, index) => {
+      translatedLabels = {
+        ...translatedLabels,
+        [id]: formatMessage({
+          id: formThreeSchema[id],
+        }),
+      };
+    });
+    return translatedLabels;
+  }, [formatMessage]);
+
   const html = useMemo(
     () =>
       getHtmlStringFromJsx(
@@ -98,11 +156,15 @@ const FormThreeSummaryEdit = ({navigation, route}) => {
                     }}
                     form={'three'}
                     editable={false}
+                    formText={formTextLabel}
+                    formTitle={formTitleLabels}
+                    facilitySchema={facilitySchemaLabels}
                   />
                   <FormThreeTemplate
                     speciesData={formatFormThreeDataToDisplay(speciesData)}
                     speciesIndex={index}
                     editable={true}
+                    formThreeSchema={labels}
                   />
                   <div style={{breakAfter: 'page'}} />
                 </React.Fragment>
@@ -110,7 +172,14 @@ const FormThreeSummaryEdit = ({navigation, route}) => {
             : null}
         </>,
       ),
-    [facilityData, registeredSpecies],
+    [
+      facilityData,
+      facilitySchemaLabels,
+      formTextLabel,
+      formTitleLabels,
+      labels,
+      registeredSpecies,
+    ],
   );
 
   const handleMessage = useCallback(

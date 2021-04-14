@@ -15,6 +15,13 @@ import Icon from 'react-native-vector-icons/Feather';
 import {Container} from '@atoms';
 import {FormOneTemplate, FormOneHeader} from '@molecules';
 import {Fonts, RawColors} from '@styles/Themes';
+import CommonStyles from '@styles/CommonStyles';
+import {
+  formText,
+  formTitle,
+  facilitySchema,
+  formOneLabels,
+} from '@utils/TranslationMapping';
 
 const getHtmlStringFromJsx = (element) => {
   return `
@@ -68,6 +75,59 @@ const FormOneSummaryEdit = ({navigation}) => {
     (state) => state.sessionReducer.activeInspection.registeredSpecies || [],
     shallowEqual,
   );
+
+  const formTextLabel = useMemo(() => {
+    let translatedFormText = {};
+    Object.keys(formText ?? {}).forEach((id, index) => {
+      translatedFormText = {
+        ...translatedFormText,
+        [id]: formatMessage({
+          id: formText[id],
+        }),
+      };
+    });
+    return translatedFormText;
+  }, [formatMessage]);
+
+  const formTitleLabels = useMemo(() => {
+    let translatedFormTitle = {};
+    Object.keys(formTitle ?? {}).forEach((id, index) => {
+      translatedFormTitle = {
+        ...translatedFormTitle,
+        [id]: formatMessage({
+          id: formTitle[id],
+        }),
+      };
+    });
+    return translatedFormTitle;
+  }, [formatMessage]);
+
+  const facilitySchemaLabels = useMemo(() => {
+    let translatedfacilitySchema = {};
+    Object.keys(facilitySchema ?? {}).forEach((id, index) => {
+      translatedfacilitySchema = {
+        ...translatedfacilitySchema,
+        [id]: formatMessage({
+          id: facilitySchema[id],
+        }),
+      };
+    });
+    return translatedfacilitySchema;
+  }, [formatMessage]);
+
+  const labels = useMemo(() => {
+    let translatedLabels = {};
+    Object.keys(formOneLabels ?? {}).forEach((id, index) => {
+      translatedLabels = {
+        ...translatedLabels,
+        [id]: formatMessage({
+          id: formOneLabels[id],
+        }),
+      };
+    });
+    return translatedLabels;
+  }, [formatMessage]);
+
   const html = useMemo(
     () =>
       getHtmlStringFromJsx(
@@ -75,11 +135,25 @@ const FormOneSummaryEdit = ({navigation}) => {
           <FormOneHeader
             facilityData={formatFormDataToDisplay(formData)}
             editable={true}
+            formText={formTextLabel}
+            formTitle={formTitleLabels}
+            facilitySchema={facilitySchemaLabels}
           />
-          <FormOneTemplate speciesData={registeredSpecies} editable={true} />
+          <FormOneTemplate
+            speciesData={registeredSpecies}
+            editable={true}
+            formOneLabels={labels}
+          />
         </>,
       ),
-    [formData, registeredSpecies],
+    [
+      facilitySchemaLabels,
+      formData,
+      formTextLabel,
+      formTitleLabels,
+      labels,
+      registeredSpecies,
+    ],
   );
 
   const handleSubmit = useCallback(() => {
