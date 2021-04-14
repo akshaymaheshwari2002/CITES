@@ -20,9 +20,6 @@ const FormOneTemplate = ({
         })
       : alt;
   };
-  useEffect(() => {
-    console.log(formOneLabels, '123450');
-  }, [formOneLabels]);
 
   return (
     <div className="App">
@@ -33,11 +30,15 @@ const FormOneTemplate = ({
         <div style={styles.container}>
           <div style={styles.table}>
             <div style={styles.row}>
-              {Object.keys(formOneLabels ?? {})?.forEach((index) => {
-                <div key={index} style={styles.cell}>
-                  <b>{formOneLabels[index + 1]}</b>
-                </div>;
-              })}
+              {Object.keys(formOneLabels)
+                .filter((key) => key !== 'speciesText')
+                .map((key) => {
+                  return (
+                    <div key={key} style={styles.cell}>
+                      <b>{formOneLabels[key]}</b>
+                    </div>
+                  );
+                })}
             </div>
             {speciesData?.map((data, index) => {
               return (
