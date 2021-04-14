@@ -146,48 +146,50 @@ const FormFour = ({navigation: {navigate, goBack, setOptions}}) => {
             {formatMessage({id: form4Questions[questionNumber].content})}
           </Text>
         </View>
-        <Button
-          buttonContent={formatMessage({
-            id: 'button.yes',
-          })}
-          buttonTextStyle={() => {
-            return styles.buttonText;
-          }}
-          buttonStyle={() => {
-            return styles.button;
-          }}
-          onPress={() => updateScore(true)}
-        />
-        <Button
-          buttonContent={formatMessage({
-            id: 'button.no',
-          })}
-          buttonTextStyle={() => {
-            return styles.buttonText;
-          }}
-          buttonStyle={() => {
-            return styles.button;
-          }}
-          onPress={() => updateScore(false)}
-        />
-        <Button
-          buttonContent={formatMessage({
-            id: 'button.moreInfo',
-          })}
-          buttonTextStyle={() => {
-            return styles.buttonText;
-          }}
-          buttonStyle={() => {
-            return styles.infobutton;
-          }}
-          onPress={() => {
-            store.dispatch(
-              setHelpText(
-                HelpText[form4Questions[questionNumber].moreInfo.helpTextKey],
-              ),
-            );
-          }}
-        />
+        <View style={styles.buttonContainer}>
+          <Button
+            buttonContent={formatMessage({
+              id: 'button.yes',
+            })}
+            buttonTextStyle={() => {
+              return styles.buttonText;
+            }}
+            buttonStyle={() => {
+              return styles.button;
+            }}
+            onPress={() => updateScore(true)}
+          />
+          <Button
+            buttonContent={formatMessage({
+              id: 'button.no',
+            })}
+            buttonTextStyle={() => {
+              return styles.buttonText;
+            }}
+            buttonStyle={() => {
+              return styles.button;
+            }}
+            onPress={() => updateScore(false)}
+          />
+          <Button
+            buttonContent={formatMessage({
+              id: 'button.moreInfo',
+            })}
+            buttonTextStyle={() => {
+              return styles.buttonText;
+            }}
+            buttonStyle={() => {
+              return styles.infobutton;
+            }}
+            onPress={() => {
+              store.dispatch(
+                setHelpText(
+                  HelpText[form4Questions[questionNumber].moreInfo.helpTextKey],
+                ),
+              );
+            }}
+          />
+        </View>
       </Container.ScrollView>
     </Container>
   );
@@ -225,6 +227,7 @@ const styles = ScaledSheet.create({
   questionContainer: {
     marginTop: '10@s',
     padding: '16@ms',
+    height: '80@vs',
   },
   contentTwo: {
     marginBottom: '16@vs',
@@ -240,6 +243,10 @@ const styles = ScaledSheet.create({
   },
   _content1: {
     ...Fonts.HelveticaNeue17B,
+  },
+  buttonContainer: {
+    height: '200@vs',
+    justifyContent: 'space-evenly',
   },
   button: {
     height: '46@vs',
