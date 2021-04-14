@@ -96,7 +96,7 @@ const InspectionOnboarding = ({navigation, route}) => {
 
   useEffect(() => {
     dispatch(setActiveInspection({}));
-  }, []);
+  }, [dispatch]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
