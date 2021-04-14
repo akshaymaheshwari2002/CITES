@@ -58,16 +58,16 @@ const StepSummary = ({navigation: {navigate}}) => {
     outputRange: [0.5, 2, 1],
   });
   const circleOpacity = animationValue.interpolate({
-    inputRange: [0, 0.5],
+    inputRange: [0, 1],
     outputRange: [1, 0],
   });
   const circleScaleX = animationValue.interpolate({
-    inputRange: [0, 0.5],
-    outputRange: [1, 2],
+    inputRange: [0, 0.4, 0.6, 1],
+    outputRange: [1, 0.5, 1.1, 1.1],
   });
   const circleScaleY = animationValue.interpolate({
-    inputRange: [0, 0.5],
-    outputRange: [1, 2],
+    inputRange: [0, 0.4, 0.6, 1],
+    outputRange: [1, 0.5, 1.1, 1.1],
   });
 
   useEffect(() => {
