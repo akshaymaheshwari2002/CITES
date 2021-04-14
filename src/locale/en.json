@@ -653,5 +653,11 @@
   "form.FormThree.formSchema30": "What do you feed rearing and juvenile animals?",
   "form.FormThree.formSchema31": "Inspectors should ensure specimens were acquired legally and in compliance with CITES. In the case of App. I specimens, invoices and/or bills of sale must be produced .",
   "general.yes": "YES",
-  "general.no": "NO"
+  "general.no": "NO",
+  "form.FormFour.outCome1": "Satisfactory",
+  "form.FormFour.outCome2": "Follow up inspection required",
+  "form.FormFour.outCome3": "Unsatisfactory",
+  "form.FormFour.formSchema1": "FACILITY SCORE :",
+  "form.FormFour.formSchema2": "* From summary of points in brackets ",
+  "form.FormFour.formSchema3": "INSPECTION OUTCOME :"
 }

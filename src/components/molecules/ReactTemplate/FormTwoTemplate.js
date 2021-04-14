@@ -2,6 +2,7 @@ import React from 'react';
 import Constants from '@utils/Constants';
 
 import {getInputFieldElementForFormSummary as getInputFieldElement} from '@utils/CommonFunctions';
+import {RawColors} from '@styles/Themes';
 
 const FormTwoTemplate = ({
   formTwoData = {},
@@ -265,6 +266,8 @@ const styles = {
     minWidth: 50,
     textAlign: 'left',
     borderBottom: '1px dashed',
+    color: RawColors.black,
+    fontWeight: 'bold',
   },
   table: {
     display: 'table',

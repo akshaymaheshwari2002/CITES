@@ -1,75 +1,57 @@
 import React from 'react';
 
-const outcome = [
-  {result: 'Satisfactory'},
-  {result: 'Follow up inspection required'},
-  {result: 'Unsatisfactory'},
-];
-const formFourSchema = {
-  falicityScore: 'FACILITY SCORE :',
-  facilitydetails: '* From summary of points in brackets ',
-  inspectionOutcome: 'INSPECTION OUTCOME :',
-};
-
 const FormFourTemplate = ({
   form = 'one',
   facilityData = {},
   editable = false,
+  outcome = {},
+  formFourSchema = {},
+  formFourQuestions = {},
   response = {},
 }) => {
-  const formFourQuestions = [
+  const formFourQuestion = [
     {
-      question:
-        '1.Is the Facility registered to keep and breed all of the species observed during inspection?',
+      question: formFourQuestions?.q1,
       response: response?.legallyRegisteredToBreedAndKeep,
     },
     {
-      question: '2.Was unsual activity observed during the inspection?',
+      question: formFourQuestions?.q2,
       response: response?.unusualActivityObserved,
     },
     {
-      question:
-        '3.Does the Facility have housing facility suitable for the species and life stages in question? etc.',
+      question: formFourQuestions?.q3,
       response: response?.containmentFacilityAvailable,
     },
     {
-      question:
-        '4.Are housing/containment facility adequate and/or suitable for the reported annual production levels and stocks of speciemens held in capitivity?',
+      question: formFourQuestions?.q4,
       response: response?.containmentFacilityAdequate,
     },
     {
-      question:
-        '5.Does the facility keep up-to-date records on specimens of the species being exported?',
+      question: formFourQuestions?.q5,
       response: response?.recordsMaintainedForExport,
     },
     {
-      question:
-        '6.Is there suitable facility for production and/or storage and/or preparation of appropriate food for specimen being raised?',
+      question: formFourQuestions?.q6,
       response: response?.foodFacilitiesAvailable,
     },
     {
-      question:
-        '7.Is the production output same as estimated production output(from number of parental stock;#males,#females,#juveniles)?',
+      question: formFourQuestions?.q7,
       response: response?.facilityProductionMatchesEstimates,
     },
     {
-      question:
-        '8.Do the specimens in the facility show any signs indicating of wild origin?',
+      question: formFourQuestions?.q8,
       response: response?.wildOriginSignsShown,
     },
     {
-      question:
-        '9.Is the species known to be difficult to breed and/or maintain in capativity?',
+      question: formFourQuestions?.q9,
       response: response?.difficultToBreed,
     },
     {
-      question:
-        '10.Has the facility been established long enough to produce the species in the quantities and sizes claimed?',
+      question: formFourQuestions?.q10,
       response: response?.facilityEstablishedLongEnough,
     },
     {
-      question:
-        '11.For species listed in Appendix I,do the parental breeding stock and offspring have a unique and permanent identification mark and number?',
+      question: formFourQuestions?.q11,
       response: response?.haveIdentificationMark,
     },
   ];
@@ -79,7 +61,7 @@ const FormFourTemplate = ({
       <div className="App" style={styles.marginContainer}>
         <div style={styles.container}>
           <div style={styles.table}>
-            {formFourQuestions?.map((data, index) => {
+            {formFourQuestion?.map((data, index) => {
               return (
                 <div
                   key={index}
@@ -124,7 +106,7 @@ const FormFourTemplate = ({
                     type="checkbox"
                     defaultChecked={response?.totalScore > 11 ? true : false}
                   />
-                  <p style={styles.outcomeText}>{outcome[0]?.result}</p>
+                  <p style={styles.outcomeText}>{outcome?.result1}</p>
                 </div>
                 <div style={styles.rowInput}>
                   <input
@@ -136,7 +118,7 @@ const FormFourTemplate = ({
                         : false
                     }
                   />
-                  <p style={styles.outcomeText}>{outcome[1]?.result}</p>
+                  <p style={styles.outcomeText}>{outcome?.result2}</p>
                 </div>
                 <div style={styles.rowInput}>
                   <input
@@ -144,7 +126,7 @@ const FormFourTemplate = ({
                     type="checkbox"
                     defaultChecked={response?.totalScore < 8 ? true : false}
                   />
-                  <p style={styles.outcomeText}>{outcome[2]?.result}</p>
+                  <p style={styles.outcomeText}>{outcome?.result3}</p>
                 </div>
               </div>
             </div>

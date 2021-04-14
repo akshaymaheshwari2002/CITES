@@ -31,6 +31,18 @@ import {
   FormFourTemplate,
   InspectionNotesTemplate,
 } from '@molecules';
+import {
+  formText,
+  formTitle,
+  facilitySchema,
+  formOneLabels,
+  formTwoLabels,
+  facilitySchemaThree,
+  formThreeSchema,
+  outcome,
+  formFourSchema,
+  formFourQuestions,
+} from '@utils/TranslationMapping';
 
 const StepSummary = ({navigation: {navigate}}) => {
   const AnimatedImage = Animated.createAnimatedComponent(ImageBackground);
@@ -139,15 +151,157 @@ const StepSummary = ({navigation: {navigate}}) => {
     }),
     [formData],
   );
+
+  const formTextLabel = useMemo(() => {
+    let translatedFormText = {};
+    Object.keys(formText ?? {}).forEach((id, index) => {
+      translatedFormText = {
+        ...translatedFormText,
+        [id]: formatMessage({
+          id: formText[id],
+        }),
+      };
+    });
+    return translatedFormText;
+  }, [formatMessage]);
+
+  const formTitleLabels = useMemo(() => {
+    let translatedFormTitle = {};
+    Object.keys(formTitle ?? {}).forEach((id, index) => {
+      translatedFormTitle = {
+        ...translatedFormTitle,
+        [id]: formatMessage({
+          id: formTitle[id],
+        }),
+      };
+    });
+    return translatedFormTitle;
+  }, [formatMessage]);
+
+  const facilitySchemaLabels = useMemo(() => {
+    let translatedfacilitySchema = {};
+    Object.keys(facilitySchema ?? {}).forEach((id, index) => {
+      translatedfacilitySchema = {
+        ...translatedfacilitySchema,
+        [id]: formatMessage({
+          id: facilitySchema[id],
+        }),
+      };
+    });
+    return translatedfacilitySchema;
+  }, [formatMessage]);
+  const facilitySchemaLabelsThree = useMemo(() => {
+    let translatedfacilitySchema = {};
+    Object.keys(facilitySchemaThree ?? {}).forEach((id, index) => {
+      translatedfacilitySchema = {
+        ...translatedfacilitySchema,
+        [id]: formatMessage({
+          id: facilitySchemaThree[id],
+        }),
+      };
+    });
+    return translatedfacilitySchema;
+  }, [formatMessage]);
+
+  const labelsOne = useMemo(() => {
+    let translatedLabels = {};
+    Object.keys(formOneLabels ?? {}).forEach((id, index) => {
+      translatedLabels = {
+        ...translatedLabels,
+        [id]: formatMessage({
+          id: formOneLabels[id],
+        }),
+      };
+    });
+    return translatedLabels;
+  }, [formatMessage]);
+  const labelsTwo = useMemo(() => {
+    let translatedLabels = {};
+    Object.keys(formTwoLabels ?? {}).forEach((id, index) => {
+      translatedLabels = {
+        ...translatedLabels,
+        [id]: formatMessage({
+          id: formTwoLabels[id],
+        }),
+      };
+    });
+    return translatedLabels;
+  }, [formatMessage]);
+  const labelsThree = useMemo(() => {
+    let translatedLabels = {};
+    Object.keys(formThreeSchema ?? {}).forEach((id, index) => {
+      translatedLabels = {
+        ...translatedLabels,
+        [id]: formatMessage({
+          id: formThreeSchema[id],
+        }),
+      };
+    });
+    return translatedLabels;
+  }, [formatMessage]);
+  const labelsFour = useMemo(() => {
+    let translatedLabels = {};
+    Object.keys(formFourQuestions ?? {}).forEach((id, index) => {
+      translatedLabels = {
+        ...translatedLabels,
+        [id]: formatMessage({
+          id: formFourQuestions[id],
+        }),
+      };
+    });
+    return translatedLabels;
+  }, [formatMessage]);
+  const outcomeLabels = useMemo(() => {
+    let translatedLabels = {};
+    Object.keys(outcome ?? {}).forEach((id, index) => {
+      translatedLabels = {
+        ...translatedLabels,
+        [id]: formatMessage({
+          id: outcome[id],
+        }),
+      };
+    });
+    return translatedLabels;
+  }, [formatMessage]);
+  const formFourSchemaLabels = useMemo(() => {
+    let translatedLabels = {};
+    Object.keys(formFourSchema ?? {}).forEach((id, index) => {
+      translatedLabels = {
+        ...translatedLabels,
+        [id]: formatMessage({
+          id: formFourSchema[id],
+        }),
+      };
+    });
+    return translatedLabels;
+  }, [formatMessage]);
+
   const handleFormsPreview = useCallback(() => {
     (async () => {
       const file = await generatePdf({
         templates: [
-          <FormOneHeader facilityData={facilityData} />,
-          <FormOneTemplate speciesData={registeredSpecies} />,
+          <FormOneHeader
+            facilityData={facilityData}
+            formText={formTextLabel}
+            formTitle={formTitleLabels}
+            facilitySchema={facilitySchemaLabels}
+          />,
+          <FormOneTemplate
+            speciesData={registeredSpecies}
+            formOneLabels={labelsOne}
+          />,
           <div style={{breakAfter: 'page'}} />,
-          <FormOneHeader facilityData={facilityData} form={'two'} />,
-          <FormTwoTemplate formTwoData={formTwoData} />,
+          <FormOneHeader
+            facilityData={facilityData}
+            form={'two'}
+            formText={formTextLabel}
+            formTitle={formTitleLabels}
+            facilitySchema={facilitySchemaLabels}
+          />,
+          <FormTwoTemplate
+            formTwoData={formTwoData}
+            formTwoLabels={labelsTwo}
+          />,
           <div style={{breakAfter: 'page'}} />,
           ...(Array.isArray(registeredSpecies)
             ? registeredSpecies.map((speciesData, index) => (
@@ -158,28 +312,63 @@ const StepSummary = ({navigation: {navigate}}) => {
                       speciesName: speciesData?.name,
                     }}
                     form={'three'}
+                    formText={formTextLabel}
+                    formTitle={formTitleLabels}
+                    facilitySchema={facilitySchemaLabelsThree}
                   />
                   <FormThreeTemplate
                     speciesData={formatFormThreeDataToDisplay(speciesData)}
                     form={'three'}
+                    formThreeSchema={labelsThree}
                   />
                   <div style={{breakAfter: 'page'}} />
                 </>
               ))
             : []),
-          <FormOneHeader facilityData={facilityData} form={'four'} />,
+          <FormOneHeader
+            facilityData={facilityData}
+            form={'four'}
+            formText={formTextLabel}
+            formTitle={formTitleLabels}
+            facilitySchema={facilitySchemaLabels}
+          />,
           <FormFourTemplate
             facilityData={facilityData}
             response={formFourData}
+            outcome={outcomeLabels}
+            formFourSchema={formFourSchemaLabels}
+            formFourQuestions={labelsFour}
           />,
           <div style={{breakAfter: 'page'}} />,
-          <FormOneHeader facilityData={facilityData} form={'notes'} />,
+          <FormOneHeader
+            facilityData={facilityData}
+            form={'notes'}
+            formText={formTextLabel}
+            formTitle={formTitleLabels}
+            facilitySchema={facilitySchemaLabels}
+          />,
           <InspectionNotesTemplate notesData={notes} />,
         ],
       });
       RNPrint.print({filePath: file?.filePath});
     })();
-  }, [facilityData, formFourData, formTwoData, notes, registeredSpecies]);
+  }, [
+    facilityData,
+    facilitySchemaLabels,
+    facilitySchemaLabelsThree,
+    formFourData,
+    formFourSchemaLabels,
+    formTextLabel,
+    formTitleLabels,
+    formTwoData,
+    labelsFour,
+    labelsOne,
+    labelsThree,
+    labelsTwo,
+    notes,
+    outcomeLabels,
+    registeredSpecies,
+  ]);
 
   const options = {
     message: 'Share form pdf ',

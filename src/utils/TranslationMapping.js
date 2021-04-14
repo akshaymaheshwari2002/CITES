@@ -91,6 +91,32 @@ const formThreeSchema = {
   foodFedToRearingAndJuveniles: 'form.FormThree.formSchema30',
   asterisk: 'form.FormThree.formSchema31',
 };
+
+const outcome = {
+  result1: 'form.FormFour.outCome1',
+  result2: 'form.FormFour.outCome2',
+  result3: 'form.FormFour.outCome3',
+};
+const formFourSchema = {
+  falicityScore: 'form.FormFour.formSchema1',
+  facilitydetails: 'form.FormFour.formSchema2',
+  inspectionOutcome: 'form.FormFour.formSchema3',
+};
+
+const formFourQuestions = {
+  q1: 'form.FormFour.q1',
+  q2: 'form.FormFour.q2',
+  q3: 'form.FormFour.q3',
+  q4: 'form.FormFour.q4',
+  q5: 'form.FormFour.q5',
+  q6: 'form.FormFour.q6',
+  q7: 'form.FormFour.q7',
+  q8: 'form.FormFour.q8',
+  q9: 'form.FormFour.q9',
+  q10: 'form.FormFour.q10',
+  q11: 'form.FormFour.q11',
+};
+
 export {
   formText,
   formTitle,
@@ -100,4 +126,7 @@ export {
   formOneLabels,
   formTwoLabels,
   formThreeSchema,
+  outcome,
+  formFourSchema,
+  formFourQuestions,
 };
