@@ -116,7 +116,6 @@ const styles = ScaledSheet.create({
   },
   titleContent: {
     ...Fonts.HelveticaNeue20B,
-    marginHorizontal: '10@s',
     lineHeight: '23@s',
     letterSpacing: '0.32@s',
   },
@@ -124,6 +123,7 @@ const styles = ScaledSheet.create({
     height: '80@ms',
     marginTop: '35@s',
     backgroundColor: RawColors.lightGrey,
+    width: '280@s',
   },
   buttonWrapper: {
     marginTop: 'auto',

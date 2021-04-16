@@ -6,12 +6,12 @@ import {ScaledSheet, ms, s} from 'react-native-size-matters';
 import {shallowEqual, useDispatch, useSelector} from 'react-redux';
 import {useIsFocused} from '@react-navigation/core';
 
-import {Container, Button, Tooltip} from '@atoms';
+import {Container, Button} from '@atoms';
 import {StepHeader, ChecklistCell} from '@molecules';
 import ChecklistContent from './ChecklistContent';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
-import {setTooltipProps, saveInspection} from '@store/slices/sessionSlice';
+import {saveInspection} from '@store/slices/sessionSlice';
 
 const StepOne = ({navigation, route}) => {
   const {formatMessage} = useIntl();
@@ -20,6 +20,15 @@ const StepOne = ({navigation, route}) => {
   const stepOneData = useSelector(
     (state) => state.sessionReducer.activeInspection.stepOne || {},
     shallowEqual,
+  );
+
+  const bullet = useMemo(
+    () => (
+      <View style={checkliststyles.bulletContainer}>
+        <View style={checkliststyles.bullet} />
+      </View>
+    ),
+    [],
   );
 
   const handleStepOneSubmit = useCallback(() => {
@@ -49,14 +58,6 @@ const StepOne = ({navigation, route}) => {
     //   );
     // }
   }, [navigation]);
-  const bullet = useMemo(
-    () => (
-      <View style={checkliststyles.bulletContainer}>
-        <View style={checkliststyles.bullet} />
-      </View>
-    ),
-    [],
-  );
 
   const handleChange = useCallback(
     (key, value) => {
@@ -70,46 +71,16 @@ const StepOne = ({navigation, route}) => {
     },
     [dispatch],
   );
-  
-  const handleTooltipClose = useCallback(() => {
-    navigation.setParams({showToolTip: false});
-    dispatch(
-      setTooltipProps({
-        consumerName: 'home',
-        isVisible: true,
-        content: formatMessage({
-          id: 'screen.StepOne.WalkThroughContentTwo',
-        }),
-      }),
-    );
-  }, [dispatch, formatMessage, navigation]);
 
   useEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
         <Pressable hitSlop={10} onPress={navigation.goBack}>
-          <Tooltip
-            placement="bottom"
-            isVisible={route.params.showToolTip}
-            allowChildInteraction={true}
-            closeOnChildInteraction={false}
-            content={formatMessage({
-              id: 'screen.StepOne.WalkThroughContentOne',
-            })}
-            focusedStyle={styles.headerLeftTooltip}
-            onClose={handleTooltipClose}>
-            <Icon name="chevron-left" size={ms(22)} />
-          </Tooltip>
+          <Icon name="chevron-left" size={ms(22)} />
         </Pressable>
       ),
     });
-  }, [
-    formatMessage,
-    handleTooltipClose,
-    navigation,
-    route.params,
-    route.params.showToolTip,
-  ]);
+  }, [navigation]);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
