@@ -38,7 +38,7 @@ const BeginInspection = ({navigation, route}) => {
                     {name: 'LanguageSelection'},
                     {name: 'HomePage'},
                     {name: 'InspectionFlow'},
-                    {name: 'InspectionOnboarding', params: {defaultIndex: 3}},
+                    {name: 'InspectionOnboarding', params: {defaultIndex: 0}},
                   ],
                 }),
               );
