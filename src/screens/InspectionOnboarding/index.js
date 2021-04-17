@@ -92,15 +92,17 @@ const InspectionOnboarding = ({navigation, route}) => {
 
   const handleTooltipClose = useCallback(() => {
     setShowToolTip(false);
-    dispatch(
-      setTooltipProps({
-        consumerName: 'home',
-        isVisible: true,
-        content: formatMessage({
-          id: 'screen.StepOne.WalkThroughContentTwo',
+    setTimeout(() => {
+      dispatch(
+        setTooltipProps({
+          consumerName: 'home',
+          isVisible: true,
+          content: formatMessage({
+            id: 'screen.StepOne.WalkThroughContentTwo',
+          }),
         }),
-      }),
-    );
+      );
+    }, 100);
   }, [dispatch, formatMessage]);
 
   useEffect(() => {

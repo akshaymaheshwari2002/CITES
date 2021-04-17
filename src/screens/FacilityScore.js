@@ -12,7 +12,7 @@ const FacilityScore = ({navigation: {navigate, goBack}, route}) => {
   const savedScore = route.params.scoreTotal;
 
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
         style={[CommonStyles.screenContainer, CommonStyles.flex1]}>
         <View style={styles.title}>
@@ -57,11 +57,9 @@ const FacilityScore = ({navigation: {navigate, goBack}, route}) => {
 const styles = ScaledSheet.create({
   title: {
     marginTop: '20@s',
-    height: '50@vs',
     width: '136@s',
   },
   titleContent: {
-    lineHeight: '26@s',
     letterSpacing: '0.48@s',
     ...Fonts.HelveticaNeue30B,
   },

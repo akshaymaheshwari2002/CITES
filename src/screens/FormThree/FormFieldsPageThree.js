@@ -99,7 +99,8 @@ export default (fieldProps = {}) => {
           },
         },
         fieldType: Constants.TEXTINPUT_ARRAY_ALT,
-        ...Platform.select({ios: {fieldContainerStyle: {zIndex: 1}}}),
+        ...Platform.select({ios: {fieldContainerStyle: {zIndex: -1}}}),
+        keyboardType: 'number-pad',
       });
     }
   }

@@ -77,20 +77,23 @@ const DetermineSourceCode = ({
 
   const handleHeaderTooltipClose = useCallback(() => {
     setParams({showToolTip: false});
-    dispatch(
-      setTooltipProps({
-        consumerName: 'home',
-        isVisible: true,
-        content: formatMessage({
-          id: 'screen.StepOne.WalkThroughContentTwo',
+    setTimeout(() => {
+      dispatch(
+        setTooltipProps({
+          consumerName: 'home',
+          isVisible: true,
+          content: formatMessage({
+            id: 'screen.StepOne.WalkThroughContentTwo',
+          }),
+          sourceCodeOnboarding: true,
         }),
-        sourceCodeOnboarding: true,
-      }),
-    );
+      );
+    }, 100);
   }, [dispatch, formatMessage, setParams]);
 
   const handleLeftButtonTooltipClose = useCallback(() => {
     setParams({showToolTip: false});
+
     dispatch(
       setTooltipProps({
         consumerName: 'headerRightButton',

@@ -162,6 +162,7 @@ export default ({
       fieldType: Constants.TEXTINPUT_ARRAY,
       count: 1,
       buttonText: formatMessage({id: 'form.button.addAddress'}),
+      placeholder: formatMessage({id: 'form.button.placeholder.addAddress'}),
     },
   ];
 };
