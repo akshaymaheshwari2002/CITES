@@ -48,6 +48,7 @@ const StepSummary = ({navigation: {navigate}}) => {
   const AnimatedImage = Animated.createAnimatedComponent(ImageBackground);
   const {formatMessage} = useIntl();
   const isFocused = useIsFocused();
+  const [filePath, setFilePath] = useState('');
   const animationValue = useRef(new Animated.Value(0)).current;
   const starScaleX = animationValue.interpolate({
     inputRange: [0, 0.8, 1],
@@ -351,6 +352,8 @@ const StepSummary = ({navigation: {navigate}}) => {
         ],
       });
       RNPrint.print({filePath: file?.filePath});
+      console.log(file?.filePath);
+      setFilePath(file?.filePath);
     })();
   }, [
     facilityData,
@@ -373,8 +376,7 @@ const StepSummary = ({navigation: {navigate}}) => {
   const options = {
     message: 'Share form pdf ',
     title: 'Share',
-    url:
-      'file:/data/user/0/com.rnboilerplate/cache/PDF_ca1720f2-2165-4a63-8abe-17caa6e82a963617777987712499348.pdf',
+    url: 'file:' + filePath,
   };
 
   return (
