@@ -430,12 +430,14 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
             />
           ) : (
             <>
-              <Button
-                onPress={handleSubmit(_handleSubmit, () => {
-                  scrollToTop();
-                })}
-                buttonContent={formatMessage({id: 'button.saveAndAdd'})}
-              />
+              {registeredSpecies.length > 1 ? (
+                <Button
+                  onPress={handleSubmit(_handleSubmit, () => {
+                    scrollToTop();
+                  })}
+                  buttonContent={formatMessage({id: 'button.saveAndAdd'})}
+                />
+              ) : null}
               <Button
                 onPress={async () => {
                   await handleSubmit(_handleSubmit)();

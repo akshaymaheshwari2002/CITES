@@ -69,17 +69,19 @@ export default (fieldProps = {}) => {
       label: formatMessage({id: 'form.FormOne.label.sourceCode'}),
       placeholder: formatMessage({id: 'form.FormOne.placeholder.sourceCode'}),
       name: 'sourceCodeOfPreviousExport',
-      rules: {
-        // required,
-        maxLength: {
-          value: 1,
-          message: formatMessage({id: 'form.error.singleCharacterLimit'}),
-        },
-        pattern: {
-          value: /^(D|I|U|X|W|C|F|O|A|R)$/,
-          message: formatMessage({id: 'form.error.singleCharacterAllowed'}),
-        },
-      },
+      fieldType: Constants.PICKER,
+      ...fieldProps._sourceCode,
+      // rules: {
+      //   // required,
+      //   maxLength: {
+      //     value: 1,
+      //     message: formatMessage({id: 'form.error.singleCharacterLimit'}),
+      //   },
+      //   pattern: {
+      //     value: /^(D|I|U|X|W|C|F|O|A|R)$/,
+      //     message: formatMessage({id: 'form.error.singleCharacterAllowed'}),
+      //   },
+      // },
     },
   ];
 };
