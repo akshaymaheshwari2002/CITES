@@ -496,7 +496,6 @@ const styles = ScaledSheet.create({
   },
   titleOne: {
     ...Fonts.HelveticaNeue30B,
-    lineHeight: '26@s',
     letterSpacing: '0.48@s',
     marginLeft: '15@s',
     marginTop: '20@s',

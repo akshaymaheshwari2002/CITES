@@ -115,7 +115,7 @@ const FormFour = ({navigation: {navigate, goBack, setOptions}}) => {
   }, [goBack, questionNumber, setOptions]);
 
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Text style={styles.title}>
         {formatMessage({id: 'screen.FormFour.title'})}
       </Text>

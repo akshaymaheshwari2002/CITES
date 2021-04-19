@@ -73,7 +73,6 @@ const AppNavigator = () => {
         <Stack.Screen name="WebView" component={WebView} />
         <Stack.Screen
           name="InspectionOnboarding"
-          options={{headerShown: false}}
           component={InspectionOnboarding}
           initialParams={{defaultIndex: 0}}
         />

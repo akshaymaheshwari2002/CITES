@@ -6,25 +6,36 @@ import {
   Platform,
   Pressable,
 } from 'react-native';
-import {ms} from 'react-native-size-matters';
+import {ms, ScaledSheet} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useDispatch} from 'react-redux';
+import {useIntl} from 'react-intl';
 
-import {Container, Header, Pagination} from '@atoms';
+import {Container, Pagination, Tooltip} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
 import OnboardingOne from './OnboardingOne';
 import OnboardingTwo from './OnboardingTwo';
 import OnboardingThree from './OnboardingThree';
 import OnboardingFour from './OnboardingFour';
-import {setActiveInspection} from '@store/slices/sessionSlice';
+import OnboardingFive from './OnboardingFive';
+import {setActiveInspection, setTooltipProps} from '@store/slices/sessionSlice';
+import {TabBar} from '@molecules';
 
-const data = [OnboardingOne, OnboardingTwo, OnboardingThree, OnboardingFour];
+const data = [
+  OnboardingOne,
+  OnboardingTwo,
+  OnboardingThree,
+  OnboardingFour,
+  OnboardingFive,
+];
 
 const InspectionOnboarding = ({navigation, route}) => {
   const flatListRef = useRef({});
   const dispatch = useDispatch();
+  const {formatMessage} = useIntl();
   const {width: windowWidth} = useWindowDimensions();
-  const [activeIndex, setActiveIndex] = useState(route.params.defaultIndex);
+  const [activeIndex, setActiveIndex] = useState();
+  const [showToolTip, setShowToolTip] = useState(false);
 
   const handleBackPress = useCallback(() => {
     if (activeIndex === 0) {
@@ -35,15 +46,10 @@ const InspectionOnboarding = ({navigation, route}) => {
   }, [activeIndex, navigation, scrollToActiveIndex]);
 
   const handleForwardPress = useCallback(() => {
-    if (activeIndex === data?.length - 1) {
-      navigation.navigate('TabNavigator', {
-        screen: 'StepOne',
-        params: {showToolTip: true, notShowAnimation: true},
-      });
-    } else {
+    if (activeIndex < data?.length - 1) {
       scrollToActiveIndex(activeIndex + 1);
     }
-  }, [activeIndex, navigation, scrollToActiveIndex]);
+  }, [activeIndex, scrollToActiveIndex]);
 
   const scrollToActiveIndex = useCallback(
     (index) => {
@@ -76,63 +82,115 @@ const InspectionOnboarding = ({navigation, route}) => {
     [navigation],
   );
 
-  const handleMomentumScrollEnd = useCallback(
-    (e) => {
-      const contentOffset = e.nativeEvent.contentOffset;
-      const viewSize = e.nativeEvent.layoutMeasurement;
-      const pageNum = Math.floor(contentOffset.x / viewSize.width);
+  const handleMomentumScrollEnd = useCallback((e) => {
+    const contentOffset = e.nativeEvent.contentOffset;
+    const viewSize = e.nativeEvent.layoutMeasurement;
+    const pageNum = Math.floor(contentOffset.x / viewSize.width);
 
-      if (activeIndex === pageNum && activeIndex === data?.length - 1) {
-        navigation.navigate('TabNavigator', {
-          screen: 'StepOne',
-          params: {showToolTip: true, notShowAnimation: true},
-        });
-      }
+    setActiveIndex(pageNum);
+  }, []);
 
-      setActiveIndex(pageNum);
-    },
-    [activeIndex, navigation],
-  );
+  const handleTooltipClose = useCallback(() => {
+    setShowToolTip(false);
+    setTimeout(() => {
+      dispatch(
+        setTooltipProps({
+          consumerName: 'home',
+          isVisible: true,
+          content: formatMessage({
+            id: 'screen.StepOne.WalkThroughContentTwo',
+          }),
+        }),
+      );
+    }, 100);
+  }, [dispatch, formatMessage]);
+
+  useEffect(() => {
+    if (activeIndex === 4) {
+      setShowToolTip(true);
+    }
+  }, [activeIndex]);
 
   useEffect(() => {
     dispatch(setActiveInspection({}));
   }, [dispatch]);
 
-  return (
-    <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
-      <Header
-        leftContent={
-          <Pressable hitSlop={10} onPress={handleBackPress}>
+  useEffect(() => {
+    if (route.params.defaultIndex >= 0) {
+      flatListRef.current?.scrollToOffset({
+        offset: route.params.defaultIndex * windowWidth,
+        animated: true,
+      });
+      setActiveIndex(route.params.defaultIndex);
+    }
+  }, [route.params.defaultIndex, windowWidth]);
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
+        <Pressable hitSlop={10} onPress={handleBackPress}>
+          <Tooltip
+            placement="bottom"
+            isVisible={showToolTip}
+            allowChildInteraction={true}
+            closeOnChildInteraction={false}
+            content={formatMessage({
+              id: 'screen.StepOne.WalkThroughContentOne',
+            })}
+            focusedStyle={styles.headerLeftTooltip}
+            onClose={handleTooltipClose}>
             <Icon name="chevron-left" size={ms(22)} />
-          </Pressable>
-        }
-        content={
-          <Pagination activeIndex={activeIndex} dotsLength={data.length} />
-        }
-        rightContent={
-          <Pressable hitSlop={10} onPress={handleForwardPress}>
-            <Icon name="chevron-right" size={ms(22)} />
-          </Pressable>
-        }
-      />
-      <FlatList
-        ref={flatListRef}
-        horizontal
-        pagingEnabled
-        contentContainerStyle={CommonStyles.flexGrow1}
-        showsHorizontalScrollIndicator={false}
-        data={data}
-        keyExtractor={(_, index) => index.toString()}
-        onMomentumScrollEnd={handleMomentumScrollEnd}
-        onMomentumScrollBegin={handleMomentumScrollBegin}
-        renderItem={({item: Item}) => (
-          <View style={[CommonStyles.flex1, {width: windowWidth}]}>
-            <Item />
-          </View>
-        )}
-      />
-    </Container>
+          </Tooltip>
+        </Pressable>
+      ),
+      headerTitle: () => (
+        <Pagination activeIndex={activeIndex} dotsLength={data.length} />
+      ),
+      headerRight: () => (
+        <Pressable hitSlop={10} onPress={handleForwardPress}>
+          <Icon name="chevron-right" size={ms(22)} />
+        </Pressable>
+      ),
+    });
+  }, [
+    activeIndex,
+    formatMessage,
+    handleBackPress,
+    handleForwardPress,
+    handleTooltipClose,
+    navigation,
+    showToolTip,
+  ]);
+
+  return (
+    <>
+      <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
+        <FlatList
+          ref={flatListRef}
+          horizontal
+          pagingEnabled
+          contentContainerStyle={CommonStyles.flexGrow1}
+          showsHorizontalScrollIndicator={false}
+          data={data}
+          keyExtractor={(_, index) => index.toString()}
+          onMomentumScrollEnd={handleMomentumScrollEnd}
+          onMomentumScrollBegin={handleMomentumScrollBegin}
+          renderItem={({item: Item, index}) => {
+            return (
+              <View style={[CommonStyles.flex1, {width: windowWidth}]}>
+                <Item />
+              </View>
+            );
+          }}
+        />
+      </Container>
+      <TabBar />
+    </>
   );
 };
+
+const styles = ScaledSheet.create({
+  headerLeftTooltip: {marginLeft: '16@s'},
+});
 
 export default InspectionOnboarding;

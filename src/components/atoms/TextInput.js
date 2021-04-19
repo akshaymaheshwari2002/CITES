@@ -27,6 +27,7 @@ const TextInput = React.forwardRef(
       labelRightStyle,
       onHelpIconPress,
       multiline,
+      numberOfLines,
       ...restProps
     },
     ref,
@@ -53,7 +54,9 @@ const TextInput = React.forwardRef(
             style={[styles.inputContainer, Fonts.Lato15R, style]}
             value={getValue()}
             multiline={multiline}
+            numberOfLines={numberOfLines}
             {...restProps}
+            placeholderTextColor={RawColors.grey}
           />
           {labelRight ? (
             typeof labelRight === 'string' ? (
@@ -90,6 +93,7 @@ TextInput.propTypes = {
   onHelpIconPress: PropTypes.func,
   labelBottom: PropTypes.string,
   multiline: PropTypes.bool,
+  numberOfLines: PropTypes.number,
   labelRight: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   labelRightStyle: PropTypes.object,
 };
@@ -101,6 +105,7 @@ TextInput.defaultProps = {
   style: {},
   showHelpIcon: false,
   multiline: false,
+  numberOfLines: 1,
   onHelpIconPress: () => {},
   labelBottom: '',
   labelRight: '',
