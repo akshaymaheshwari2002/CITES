@@ -81,7 +81,7 @@ export default ({
       }),
       name: 'veterinarianName',
       labelStyle: {marginRight: s(80)},
-      rules: isAccessToVeterinaryServices ? {required} : {},
+      //rules: isAccessToVeterinaryServices ? {required} : {},
       fieldContainerStyle: {marginBottom: 0},
     },
     {
@@ -90,7 +90,7 @@ export default ({
       }),
       defaultValue: '',
       name: 'veterinarianAddress',
-      rules: isAccessToVeterinaryServices ? {required} : {},
+      //rules: isAccessToVeterinaryServices ? {required} : {},
       fieldContainerStyle: {marginBottom: 0},
       style: {
         marginVertical: 0,
@@ -102,7 +102,7 @@ export default ({
       placeholder: formatMessage({id: 'form.FormTwo.placeholder.country'}),
       defaultValue: '',
       name: 'veterinarianCountry',
-      rules: isAccessToVeterinaryServices ? {required} : {},
+      //rules: isAccessToVeterinaryServices ? {required} : {},
       fieldType: Constants.COUNTRY_PICKER,
       items: countries,
       style: {

@@ -92,7 +92,6 @@ export default (fieldProps = {}) => {
         name: 'numberHarvestedInPreviousYear',
         rules: {
           validate: {
-            requiredTextInputArrayAlt,
             validateTextInputArrayAltNumber,
             validateTextInputArrayAltPositiveNumber,
             validateTextInputArrayAltInteger,

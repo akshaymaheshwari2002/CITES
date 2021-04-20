@@ -507,10 +507,10 @@ const styles = ScaledSheet.create({
   titleTwo: {
     ...Fonts.Lato15R,
     color: RawColors.charcoalGrey60,
-    lineHeight: '18@s',
-    marginTop: '10@s',
+    //lineHeight: '18@s',
+    //marginTop: '10@s',
     marginLeft: '15@s',
-    letterSpacing: '0.09@s',
+    //letterSpacing: '0.09@s',
   },
   image: {
     height: '80@ms',

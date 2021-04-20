@@ -66,7 +66,6 @@ const styles = ScaledSheet.create({
   content: {
     alignSelf: 'center',
     ...Fonts.Lato15R,
-    lineHeight: 22,
     letterSpacing: 0.36,
     color: RawColors.black,
     marginTop: '20@s',
