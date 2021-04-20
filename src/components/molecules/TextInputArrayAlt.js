@@ -38,6 +38,7 @@ const TextInputArrayAlt = React.forwardRef(
                 onChangeText={(text) => handleChangeText(text, index)}
                 style={styles.textInput}
                 placeholder={placeholder}
+                keyboardType="number-pad"
               />
             </View>
           </View>

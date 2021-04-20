@@ -57,9 +57,9 @@ const OverlayModal = ({
       {isShowSideMenu ? (
         <SideMenu hideModal={hideModal} />
       ) : (
-        <TouchableWithoutFeedback onPressOut={hideModal}>
+        <TouchableWithoutFeedback onPressOut={hideModal} onPressIn={hideModal}>
           <View style={styles.overlay}>
-            <TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPressIn={hideModal}>
               <View
                 style={[styles.modalView, {width: modalWidth}]}
                 // onLayout={(ev) => {
@@ -94,30 +94,32 @@ const OverlayModal = ({
                     {helpText
                       ? helpText.map((value, index) => {
                           return (
-                            <Text
-                              key={`text_key_${index}`}
-                              style={
-                                value.isBold
-                                  ? styles.modalTextBold
-                                  : styles.modalText
-                              }>
-                              {value.text}
-                              {value.subText && value.subText.length > 0
-                                ? value.subText.map((value_1, index_1) => {
-                                    return (
-                                      <Text
-                                        key={`sub_text_key_${index_1}`}
-                                        style={
-                                          value_1.isSubBold
-                                            ? {...Fonts.Lato17B}
-                                            : null
-                                        }>
-                                        {value_1.val}
-                                      </Text>
-                                    );
-                                  })
-                                : null}
-                            </Text>
+                            <TouchableOpacity onPressIn={hideModal}>
+                              <Text
+                                key={`text_key_${index}`}
+                                style={
+                                  value.isBold
+                                    ? styles.modalTextBold
+                                    : styles.modalText
+                                }>
+                                {value.text}
+                                {value.subText && value.subText.length > 0
+                                  ? value.subText.map((value_1, index_1) => {
+                                      return (
+                                        <Text
+                                          key={`sub_text_key_${index_1}`}
+                                          style={
+                                            value_1.isSubBold
+                                              ? {...Fonts.Lato17B}
+                                              : null
+                                          }>
+                                          {value_1.val}
+                                        </Text>
+                                      );
+                                    })
+                                  : null}
+                              </Text>
+                            </TouchableOpacity>
                           );
                         })
                       : null}
