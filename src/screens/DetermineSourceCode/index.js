@@ -88,7 +88,7 @@ const DetermineSourceCode = ({
           sourceCodeOnboarding: true,
         }),
       );
-    }, 100);
+    }, 50);
   }, [dispatch, formatMessage, setParams]);
 
   const handleLeftButtonTooltipClose = useCallback(() => {

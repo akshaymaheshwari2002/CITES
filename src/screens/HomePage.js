@@ -91,9 +91,10 @@ const styles = ScaledSheet.create({
     width: '169@s',
   },
   content: {
-    ...Fonts.Lato30R,
-    top: '25@vs',
+    position: 'absolute',
+    top: '148@vs',
     alignSelf: 'center',
+    ...Fonts.Lato30R,
   },
   contentContainer: {
     flex: 1,

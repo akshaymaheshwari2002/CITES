@@ -9,7 +9,7 @@ export default {
     {text: 'For example, 50.', isBold: false},
   ],
   percentageBreedingFemalePerSeason: [
-    {text: 'Mean percentage % of females breeding per season', isBold: true},
+    {text: 'Mean percentage of females breeding per season', isBold: true},
     {
       text:
         'The mean percentage (proportion) of females producing a clutch or litter per year. This information can be supplied by the facility, but should be confirmed using reliable external sources.',
@@ -18,7 +18,7 @@ export default {
     {text: 'For example, enter 70% enter as 0.7.', isBold: false},
   ],
   countLitterPerYear: [
-    {text: 'Mean number # of litters / clutches per year', isBold: true},
+    {text: 'Mean number of litters / clutches per year', isBold: true},
     {
       text:
         'The mean number of litters or clutches produced by females per year. This information can be supplied by the facility, but should be confirmed using reliable external sources.',
@@ -28,7 +28,7 @@ export default {
   ],
   countOffspringPerLitter: [
     {
-      text: 'Mean number # of offspring / eggs in litter / clutch',
+      text: 'Mean number of offspring / eggs in litter / clutch',
       isBold: true,
     },
     {
@@ -39,7 +39,7 @@ export default {
     {text: 'For example, enter as a whole number, such as 20.', isBold: false},
   ],
   percentageSurvivingInTwoWeek: [
-    {text: 'Mean percentage % of surviving after two weeks', isBold: true},
+    {text: 'Mean percentage of surviving after two weeks', isBold: true},
     {
       text:
         'The mean number of eggs or live offspring produced that survive two weeks after hatching or birth. Enter as a percentage (of offspring surviving).',
@@ -49,7 +49,7 @@ export default {
   ],
   approximateYoungProducedPerYear: [
     {
-      text: 'Number # of young per year at the facility inspected',
+      text: 'Number of young per year at the facility inspected',
       isBold: true,
     },
     {

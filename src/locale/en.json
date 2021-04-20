@@ -47,7 +47,7 @@
   "form.ProductionCapacityCalculator.label.percentageSurvivingInTwoWeek": "Percentage offspring of surviving after two weeks",
   "form.ProductionCapacityCalculator.placeholder.percentageSurvivingInTwoWeek": "For example, enter 80% as 0.8",
   "form.ProductionCapacityCalculator.label.approximateYoungProducedPerYear": "Approximate number of specimens capable of being produced by the facility per year",
-  "form.ProductionCapacityCalculator.placeholder.approximateYoungProducedPerYear": "Number # of young per year at the facility inspected",
+  "form.ProductionCapacityCalculator.placeholder.approximateYoungProducedPerYear": "Number of young per year at the facility inspected",
   "form.FormOne.label.dateOfInspection": "Date of inspection",
   "form.FormOne.label.nameOfInspectionOfficers": "Name of inspection officer(s)",
   "form.FormOne.placeholder.nameOfInspectionOfficers": "Name of inspection officer",
