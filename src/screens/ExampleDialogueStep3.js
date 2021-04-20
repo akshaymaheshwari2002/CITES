@@ -37,7 +37,7 @@ const ExampleDialogueStep3 = ({navigation: {navigate}}) => {
         </Text>
         <Button
           buttonContent={formatMessage({
-            id: 'button.continueWithStep2',
+            id: 'button.continueWithStep3',
           })}
           buttonTextStyle={() => {
             return styles.buttonText;

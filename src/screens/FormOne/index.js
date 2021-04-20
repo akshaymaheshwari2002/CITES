@@ -49,6 +49,7 @@ const FormOne = ({navigation}) => {
   );
   const selectedSpeciesId = watch('_id');
   const country = watch('country');
+  const sourceCode = ['A', 'F', 'R'];
 
   const formFields = useMemo(
     () =>
@@ -61,8 +62,14 @@ const FormOne = ({navigation}) => {
                 value: _id,
               })),
             },
+            _sourceCode: {
+              items: sourceCode.map((value) => ({
+                label: value,
+                value: value,
+              })),
+            },
           }),
-    [formFieldsPage, registeredSpecies],
+    [formFieldsPage, registeredSpecies, sourceCode],
   );
 
   const setActiveFormDataOnMount = useCallback(
