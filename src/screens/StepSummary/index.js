@@ -11,8 +11,6 @@ import {ScaledSheet, ms} from 'react-native-size-matters';
 import {useIsFocused} from '@react-navigation/native';
 import {useIntl} from 'react-intl';
 import {generatePdf} from '@utils/CommonFunctions';
-import Pdf from 'react-native-pdf';
-import {useFocusEffect} from '@react-navigation/native';
 import Share from 'react-native-share';
 import RNPrint from 'react-native-print';
 import {format} from 'date-fns';
@@ -86,10 +84,8 @@ const StepSummary = ({navigation: {navigate}}) => {
   }, [animationValue, isFocused]);
   const starsStyle = {
     position: 'absolute',
-    //justifyContent: 'center',
     height: ms(170),
     width: ms(150),
-    //backgroundColor: 'red',
     transform: [{scaleX: starScaleX}, {scaleY: starScaleY}],
   };
 
@@ -352,7 +348,6 @@ const StepSummary = ({navigation: {navigate}}) => {
         ],
       });
       RNPrint.print({filePath: file?.filePath});
-      console.log(file?.filePath);
       setFilePath(file?.filePath);
     })();
   }, [

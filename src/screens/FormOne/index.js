@@ -49,7 +49,19 @@ const FormOne = ({navigation}) => {
   );
   const selectedSpeciesId = watch('_id');
   const country = watch('country');
-  const sourceCode = ['A', 'F', 'R'];
+  const sourceCode = [
+    'A',
+    'F',
+    'R',
+    'I',
+    'O',
+    'W',
+    'C',
+    'D',
+    'U',
+    'X',
+    'NotApplicable',
+  ];
 
   const formFields = useMemo(
     () =>
