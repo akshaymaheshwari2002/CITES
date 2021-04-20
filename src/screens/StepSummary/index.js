@@ -282,10 +282,12 @@ const StepSummary = ({navigation: {navigate}}) => {
             formText={formTextLabel}
             formTitle={formTitleLabels}
             facilitySchema={facilitySchemaLabels}
+            isPrint={true}
           />,
           <FormOneTemplate
             speciesData={registeredSpecies}
             formOneLabels={labelsOne}
+            isPrint={true}
           />,
           <div style={{breakAfter: 'page'}} />,
           <FormOneHeader
@@ -294,10 +296,12 @@ const StepSummary = ({navigation: {navigate}}) => {
             formText={formTextLabel}
             formTitle={formTitleLabels}
             facilitySchema={facilitySchemaLabels}
+            isPrint={true}
           />,
           <FormTwoTemplate
             formTwoData={formTwoData}
             formTwoLabels={labelsTwo}
+            isPrint={true}
           />,
           <div style={{breakAfter: 'page'}} />,
           ...(Array.isArray(registeredSpecies)
@@ -312,11 +316,13 @@ const StepSummary = ({navigation: {navigate}}) => {
                     formText={formTextLabel}
                     formTitle={formTitleLabels}
                     facilitySchema={facilitySchemaLabelsThree}
+                    isPrint={true}
                   />
                   <FormThreeTemplate
                     speciesData={formatFormThreeDataToDisplay(speciesData)}
                     form={'three'}
                     formThreeSchema={labelsThree}
+                    isPrint={true}
                   />
                   <div style={{breakAfter: 'page'}} />
                 </>
@@ -328,6 +334,7 @@ const StepSummary = ({navigation: {navigate}}) => {
             formText={formTextLabel}
             formTitle={formTitleLabels}
             facilitySchema={facilitySchemaLabels}
+            isPrint={true}
           />,
           <FormFourTemplate
             facilityData={facilityData}
@@ -335,6 +342,7 @@ const StepSummary = ({navigation: {navigate}}) => {
             outcome={outcomeLabels}
             formFourSchema={formFourSchemaLabels}
             formFourQuestions={labelsFour}
+            isPrint={true}
           />,
           <div style={{breakAfter: 'page'}} />,
           <FormOneHeader
@@ -343,6 +351,7 @@ const StepSummary = ({navigation: {navigate}}) => {
             formText={formTextLabel}
             formTitle={formTitleLabels}
             facilitySchema={facilitySchemaLabels}
+            isPrint={true}
           />,
           <InspectionNotesTemplate notesData={notes} />,
         ],

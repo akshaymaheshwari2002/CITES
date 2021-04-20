@@ -5,6 +5,7 @@ const FormOneTemplate = ({
   speciesData = [],
   editable = false,
   formOneLabels = {},
+  isPrint = false,
 }) => {
   const getInputElementConditionally = ({
     name,
@@ -27,7 +28,7 @@ const FormOneTemplate = ({
         <p style={styles.headText}>
           <b>{formOneLabels.speciesText}</b>
         </p>
-        <div style={styles.container}>
+        <div style={isPrint ? styles.containerPrint : styles.container}>
           <div style={styles.table}>
             <div style={styles.row}>
               {Object.keys(formOneLabels)
@@ -123,6 +124,10 @@ const styles = {
   container: {
     width: '100%',
     backgroundColor: 'rgb(239 ,243, 222)',
+  },
+  containerPrint: {
+    width: '100%',
+    backgroundColor: 'white',
   },
   text: {
     textAlign: 'left',
