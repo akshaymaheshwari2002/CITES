@@ -1,217 +1,213 @@
-import React, {useState} from 'react';
-import {View, Text, Image} from 'react-native';
-
-import {ScaledSheet, ms, vs, s} from 'react-native-size-matters';
-import {Images} from '@assets';
+import React, {useCallback, useEffect, useState} from 'react';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {ScaledSheet} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 import {useForm} from 'react-hook-form';
 
+import {Images} from '@assets';
 import {Fonts, RawColors} from '@styles/Themes';
-import {Container, Button} from '@atoms';
+import {Container, Button, Loader} from '@atoms';
 import {Form} from '@organisms';
 import CommonStyles from '@styles/CommonStyles';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import useAxios from 'axios-hooks';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  createFeedbackConfig,
+  getFeedbackConfig,
+  updateFeedbackConfig,
+} from '@services';
+import {setFeedbackId} from '@store/slices/persistedSlice';
+
+const emojis = [
+  {rating: 5, emoji: Images.emojiOne},
+  {rating: 4, emoji: Images.emojiTwo},
+  {rating: 3, emoji: Images.emojiThree},
+  {rating: 2, emoji: Images.emojiFour},
+  {rating: 1, emoji: Images.emojiFive},
+];
 
 const FeedbackTwo = ({navigation: {navigate}}) => {
+  const dispatch = useDispatch();
   const {formatMessage} = useIntl();
-  const formProps = useForm();
-  const {control, errors} = formProps;
-  const [isEmojiSelected, setIsEmojiSelected] = useState(0);
+  const {control, errors, handleSubmit, setValue} = useForm();
+  const feedbackId = useSelector((state) => state.persistedReducer.feedbackId);
+  const [rating, setRating] = useState(0);
+  const [
+    {data: createFeedbackResponse, loading: createFeedbackLoading},
+    executeCreateFeedback,
+  ] = useAxios(createFeedbackConfig(), {manual: true});
+  const [
+    {loading: updateFeedbackLoading},
+    executeUpdateFeedback,
+  ] = useAxios(updateFeedbackConfig(), {manual: true});
+  const [
+    {data: getFeedbackResponse, loading: getFeedbackLoading},
+    executeGetFeedback,
+  ] = useAxios(getFeedbackConfig(), {manual: true});
+
+  const _handleSubmit = useCallback(
+    async ({comment}) => {
+      if (feedbackId) {
+        await executeUpdateFeedback({
+          url: updateFeedbackConfig({feedbackId}).url,
+          data: {comment, noOfStars: rating},
+        });
+      } else {
+        await executeCreateFeedback({data: {comment, noOfStars: rating}});
+      }
+      navigate('HomePage');
+    },
+    [
+      executeCreateFeedback,
+      executeUpdateFeedback,
+      feedbackId,
+      navigate,
+      rating,
+    ],
+  );
+
+  useEffect(() => {
+    if (feedbackId) {
+      executeGetFeedback({url: getFeedbackConfig({feedbackId}).url});
+    }
+  }, [executeGetFeedback, feedbackId]);
+
+  useEffect(() => {
+    if (createFeedbackResponse?.id) {
+      dispatch(setFeedbackId(createFeedbackResponse.id));
+    }
+  }, [createFeedbackResponse, dispatch]);
+
+  useEffect(() => {
+    if (getFeedbackResponse?.id) {
+      setRating(getFeedbackResponse.noOfStars);
+      setValue('comment', getFeedbackResponse.comment);
+    }
+  }, [getFeedbackResponse, setValue]);
 
   return (
-    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
-      <Container.ScrollView
-        contentContainerStyle={CommonStyles.screenContainer}
-        style={CommonStyles.flex1}>
-        <View style={styles.title}>
-          <Text style={styles.titleContent}>
-            {formatMessage({id: 'screen.FeedbackTwo.headerPartOne'})}
-          </Text>
-          <Text style={styles.titleContent}>
-            {formatMessage({id: 'screen.FeedbackTwo.headerPartTwo'})}
-          </Text>
-        </View>
-        <View style={styles.questionContainer}>
+    <>
+      <Container safeAreaViewProps={{edges: ['right', 'left']}}>
+        <Container.ScrollView
+          contentContainerStyle={CommonStyles.screenContainer}
+          style={CommonStyles.flex1}>
+          <View style={styles.title}>
+            <Text style={styles.titleContent}>
+              {formatMessage({id: 'screen.FeedbackTwo.headerPartOne'})}
+            </Text>
+            <Text style={styles.titleContent}>
+              {formatMessage({id: 'screen.FeedbackTwo.headerPartTwo'})}
+            </Text>
+          </View>
           <Text style={styles.question}>
             {formatMessage({id: 'screen.FeedbackTwo.question'})}
           </Text>
-        </View>
-        <View style={styles.iconContainer}>
-          <TouchableOpacity
-            onPress={() => {
-              setIsEmojiSelected(1);
-            }}>
-            <Image
-              source={Images.emojiOne}
-              style={
-                isEmojiSelected === 1 ? styles.emojiSelected : styles.emoji
-              }
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              setIsEmojiSelected(2);
-            }}>
-            <Image
-              source={Images.emojiTwo}
-              style={
-                isEmojiSelected === 2 ? styles.emojiSelected : styles.emoji
-              }
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              setIsEmojiSelected(3);
-            }}>
-            <Image
-              source={Images.emojiThree}
-              style={
-                isEmojiSelected === 3 ? styles.emojiSelected : styles.emoji
-              }
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              setIsEmojiSelected(4);
-            }}>
-            <Image
-              source={Images.emojiFour}
-              style={
-                isEmojiSelected === 4 ? styles.emojiSelected : styles.emoji
-              }
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              setIsEmojiSelected(5);
-            }}>
-            <Image
-              source={Images.emojiFive}
-              style={
-                isEmojiSelected === 5 ? styles.emojiSelected : styles.emoji
-              }
-            />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.form}>
-          <Form
-            control={control}
-            formProps={formProps}
-            errors={errors}
-            formFields={[
-              {
-                defaultValue: '',
-                name: 'FeedbackTwo',
-                rules: {
-                  required: formatMessage({id: 'form.error.fieldRequired'}),
+          <View style={styles.iconContainer}>
+            {emojis.map((item, index) => (
+              <TouchableOpacity
+                key={index}
+                onPress={() => setRating(item.rating)}>
+                <Image
+                  source={item.emoji}
+                  style={
+                    rating === item.rating ? styles.emojiSelected : styles.emoji
+                  }
+                />
+              </TouchableOpacity>
+            ))}
+          </View>
+          <View style={styles.form}>
+            <Form
+              {...{control, errors}}
+              formFields={[
+                {
+                  defaultValue: '',
+                  name: 'comment',
+                  rules: {
+                    required: formatMessage({id: 'form.error.fieldRequired'}),
+                  },
+                  placeholder: formatMessage({
+                    id: 'screen.FeedbackTwo.content',
+                  }),
+                  style: styles.formField,
+                  multiline: true,
                 },
-                placeholder: formatMessage({
-                  id: 'screen.FeedbackTwo.content',
-                }),
-                style: {
-                  color: RawColors.black,
-                  height: s(150),
-                  marginTop: vs(29),
-                  alignSelf: 'center',
-                  borderRadius: ms(20),
-                  borderWidth: 1,
-                  borderColor: RawColors.darkGrey,
-                  textAlignVertical: 'top',
-                  backgroundColor: 'white',
-                  paddingHorizontal: s(20),
-                },
-                multiline: true,
-              },
-            ]}
+              ]}
+            />
+          </View>
+          <Button
+            buttonContent={formatMessage({
+              id: 'button.submit',
+            })}
+            buttonTextStyle={() => {
+              return styles.buttonText;
+            }}
+            buttonStyle={() => {
+              return styles.button;
+            }}
+            onPress={handleSubmit(_handleSubmit)}
           />
-        </View>
-        <Button
-          buttonContent={formatMessage({
-            id: 'button.submit',
-          })}
-          buttonTextStyle={() => {
-            return styles.buttonText;
-          }}
-          buttonStyle={() => {
-            return styles.button;
-          }}
-          onPress={() => navigate('HomePage')}
-        />
-      </Container.ScrollView>
-    </Container>
+        </Container.ScrollView>
+      </Container>
+      <Loader
+        visible={
+          getFeedbackLoading || createFeedbackLoading || updateFeedbackLoading
+        }
+      />
+    </>
   );
 };
 
 const styles = ScaledSheet.create({
   title: {
-    marginTop: '18@s',
-    height: '100@vs',
-    width: '240@s',
+    marginVertical: '18@vs',
   },
   emoji: {
-    marginHorizontal: '7@s',
     tintColor: RawColors.black,
   },
   emojiSelected: {
-    marginHorizontal: '7@s',
     tintColor: RawColors.darkSalmon,
   },
   titleContent: {
-    ...Fonts.HelveticaNeue40B,
-    lineHeight: '49@s',
-    letterSpacing: '0.64@s',
+    ...Fonts.HelveticaNeue28B,
+    lineHeight: '34@ms',
+    letterSpacing: '0.64@ms',
   },
   form: {
-    width: '290@s',
+    flex: 1,
+    width: '90%',
     alignSelf: 'center',
+    marginTop: '28@vs',
   },
-  questionContainer: {
-    marginTop: '16@s',
-    height: '18@vs',
+  formField: {
+    color: RawColors.black,
+    height: '100%',
+    borderRadius: '20@ms',
+    borderWidth: 1,
+    borderColor: RawColors.darkGrey,
+    textAlignVertical: 'top',
+    backgroundColor: 'white',
+    paddingHorizontal: '16@s',
+    paddingVertical: '16@vs',
   },
   question: {
-    lineHeight: 22,
-    letterSpacing: 0.36,
     ...Fonts.Lato15B,
+    lineHeight: '22@ms',
+    letterSpacing: '0.36@ms',
   },
   iconContainer: {
-    marginLeft: '3@s',
-    marginRight: '20@s',
-    marginTop: '21@s',
+    marginTop: '24@vs',
+    justifyContent: 'space-evenly',
     flexDirection: 'row',
   },
-  icon: {
-    height: '54@s',
-    width: '54@s',
-  },
-  contentContainer: {
-    marginTop: '29@s',
-    alignSelf: 'center',
-    height: '245@vs',
-    width: '280@s',
-    borderRadius: '20@s',
-    borderWidth: '1@s',
-    borderColor: RawColors.darkGrey,
-  },
-  content: {
-    color: RawColors.grey,
-    lineHeight: '30@vs',
-    marginHorizontal: '12@s',
-    marginTop: '15@s',
-    ...Fonts.Lato15R,
-  },
   button: {
-    height: '46@vs',
-    width: '290@s',
+    width: '90%',
     alignSelf: 'center',
-    marginVertical: '14@vs',
     backgroundColor: RawColors.sugarCane,
   },
   buttonText: {
     ...Fonts.Lato15R,
     color: RawColors.darkGreyBlue,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });
 

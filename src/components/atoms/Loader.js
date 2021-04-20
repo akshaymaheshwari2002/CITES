@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect} from 'react';
-import {Animated, Easing} from 'react-native';
+import {Animated, Easing, StyleSheet} from 'react-native';
 import {verticalScale, ScaledSheet} from 'react-native-size-matters';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
@@ -56,11 +56,7 @@ const Loader = ({visible = false}) => {
 const styles = ScaledSheet.create({
   loaderView: {
     ...CommonStyles.centerContent,
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
+    ...StyleSheet.absoluteFill,
   },
 });
 
