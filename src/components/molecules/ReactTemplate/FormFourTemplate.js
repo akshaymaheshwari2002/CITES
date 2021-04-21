@@ -255,12 +255,12 @@ const styles = {
   yesNoText: {
     marginLeft: 5,
     marginRight: 5,
-    fontSize: 12,
+    fontSize: 10,
   },
   outcomeText: {
     marginLeft: 5,
     marginRight: 5,
-    fontSize: 12,
+    fontSize: 10,
     marginTop: 0,
     marginBottom: 0,
     paddingTop: 0,
@@ -274,7 +274,7 @@ const styles = {
     textAlign: 'left',
     paddingLeft: 5,
     paddingRight: 5,
-    fontSize: 12,
+    fontSize: 10,
   },
   marginContainer: {marginRight: 16, marginLeft: 16, marginBottom: 16},
   inputText: {

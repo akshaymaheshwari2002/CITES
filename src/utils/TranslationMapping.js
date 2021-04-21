@@ -6,8 +6,9 @@ const formTitle = {
   one: 'form.Header.formTitle1',
   two: 'form.Header.formTitle2',
   three: 'form.Header.formTitle3',
-  notes_1: 'form.Header.formTitle4',
-  notes_2: 'form.Header.formTitle5',
+  four: 'form.Header.formTitle4',
+  notes_1: 'form.Header.formTitle5',
+  notes_2: 'form.Header.formTitle6',
 };
 
 const facilitySchema = {
