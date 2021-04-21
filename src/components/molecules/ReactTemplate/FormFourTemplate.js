@@ -8,6 +8,7 @@ const FormFourTemplate = ({
   formFourSchema = {},
   formFourQuestions = {},
   response = {},
+  isPrint = false,
 }) => {
   const formFourQuestion = [
     {
@@ -65,7 +66,13 @@ const FormFourTemplate = ({
               return (
                 <div
                   key={index}
-                  style={index % 2 === 0 ? styles.evenRow : styles.oddRow}>
+                  style={
+                    index % 2 === 0
+                      ? isPrint
+                        ? styles.evenRowPrint
+                        : styles.evenRow
+                      : styles.oddRow
+                  }>
                   <p style={styles.width70}>{data?.question}</p>
                   <div style={styles.marginTop5}>
                     <input
@@ -87,14 +94,14 @@ const FormFourTemplate = ({
           </div>
         </div>
         <div style={styles.flexBox}>
-          <div style={styles.flex1}>
+          <div style={isPrint ? styles.flex1Print : styles.flex1}>
             <p style={styles.headingText}>
               <b>{formFourSchema?.falicityScore}</b>
               <b> {response?.totalScore}</b>
             </p>
             <p style={styles.inputText}>{formFourSchema?.facilitydetails}</p>
           </div>
-          <div style={styles.flex2}>
+          <div style={isPrint ? styles.flex2Print : styles.flex2}>
             <div style={styles.row1}>
               <p style={styles.headingText1}>
                 <b>{formFourSchema?.inspectionOutcome}</b>
@@ -155,12 +162,26 @@ const styles = {
     border: '2px solid',
     backgroundColor: 'rgb(239 ,243, 222)',
   },
+  flex1Print: {
+    flex: 1,
+    marginRight: 5,
+    borderWidth: 2,
+    border: '2px solid',
+    backgroundColor: 'white',
+  },
   flex2: {
     flex: 1,
     marginLeft: 5,
     borderWidth: 2,
     border: '2px solid',
     backgroundColor: 'rgb(239 ,243, 222)',
+  },
+  flex2Print: {
+    flex: 1,
+    marginLeft: 5,
+    borderWidth: 2,
+    border: '2px solid',
+    backgroundColor: 'white',
   },
   evenRow: {
     display: 'flex',
@@ -172,6 +193,17 @@ const styles = {
     minHeight: 20,
     width: '100%',
     backgroundColor: 'rgba(239 ,243, 222,0.7)',
+  },
+  evenRowPrint: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    flex: 1,
+    borderWidth: 0.5,
+    border: '0.5px solid',
+    minHeight: 20,
+    width: '100%',
+    backgroundColor: 'white',
   },
   oddRow: {
     display: 'flex',
@@ -223,12 +255,12 @@ const styles = {
   yesNoText: {
     marginLeft: 5,
     marginRight: 5,
-    fontSize: 12,
+    fontSize: 10,
   },
   outcomeText: {
     marginLeft: 5,
     marginRight: 5,
-    fontSize: 12,
+    fontSize: 10,
     marginTop: 0,
     marginBottom: 0,
     paddingTop: 0,
@@ -242,7 +274,7 @@ const styles = {
     textAlign: 'left',
     paddingLeft: 5,
     paddingRight: 5,
-    fontSize: 12,
+    fontSize: 10,
   },
   marginContainer: {marginRight: 16, marginLeft: 16, marginBottom: 16},
   inputText: {

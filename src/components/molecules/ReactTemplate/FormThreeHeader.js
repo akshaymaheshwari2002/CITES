@@ -15,6 +15,7 @@ const FormThreeHeader = ({
   formText = {},
   formTitle = {},
   facilitySchema = {},
+  isPrint = false,
 }) => {
   const getInputElementConditionally = ({name, defaultValue, inputSize}) => {
     return editable
@@ -36,7 +37,7 @@ const FormThreeHeader = ({
       </div>
 
       <h3 style={styles.headText}>{formTitle?.[form]}</h3>
-      <div style={styles.mainContainer}>
+      <div style={isPrint ? styles.mainContainerPrint : styles.mainContainer}>
         <div style={styles.flex}>
           <div style={styles.halfContent}>
             <p style={styles.text}>
@@ -112,6 +113,12 @@ const styles = {
     borderWidth: '2px',
     width: '100%',
     backgroundColor: 'rgb(239 ,243, 222)',
+  },
+  mainContainerPrint: {
+    border: '2px solid',
+    borderWidth: '2px',
+    width: '100%',
+    backgroundColor: 'white',
   },
   flex: {display: 'flex', flexDirection: 'row'},
   halfContent: {width: '50%', paddingLeft: 5, paddingRight: 5},

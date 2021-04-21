@@ -8,6 +8,7 @@ const FormThreeTemplate = ({
   speciesIndex = 0,
   editable = false,
   formThreeSchema = {},
+  isPrint = false,
 }) => {
   const getInputElementConditionally = ({
     name,
@@ -34,7 +35,7 @@ const FormThreeTemplate = ({
     <div
       className="App"
       style={{...styles.marginContainer, ...styles.container}}>
-      <div style={styles.border}>
+      <div style={isPrint ? styles.borderPrint : styles.border}>
         <div style={styles.row}>
           <div style={styles.textContainer50}>
             <label style={styles.text1}>
@@ -112,7 +113,7 @@ const FormThreeTemplate = ({
         </p>
       </div>
       <div style={styles.row1}>
-        <div style={styles.border50}>
+        <div style={isPrint ? styles.border50Print : styles.border50}>
           <div style={{...styles.row, ...styles.alignItemsCenter}}>
             <p style={styles.texts}>{formThreeSchema?.doYouBreedThisSpecies}</p>
             <p style={styles.texts}>{Constants.YES}</p>
@@ -221,7 +222,7 @@ const FormThreeTemplate = ({
             </div>
           </div>
         </div>
-        <div style={styles.border50}>
+        <div style={isPrint ? styles.border50Print : styles.border50}>
           <div style={{...styles.row, ...styles.alignItemsCenter}}>
             <p style={styles.texts}>{formThreeSchema?.isRanchSpecies}</p>
             <p style={styles.texts}>{Constants.YES}</p>
@@ -304,7 +305,7 @@ const FormThreeTemplate = ({
           </div>
         </div>
       </div>
-      <div style={styles.border}>
+      <div style={isPrint ? styles.borderPrint : styles.border}>
         <div style={styles.row}>
           <div
             style={{
@@ -485,7 +486,7 @@ const FormThreeTemplate = ({
           </div>
         </div>
       </div>
-      <div style={styles.border}>
+      <div style={isPrint ? styles.borderPrint : styles.border}>
         <div style={styles.row}>
           <div
             style={{
@@ -780,11 +781,30 @@ const styles = {
     paddingRight: 5,
     marginBottom: 5,
   },
+  borderPrint: {
+    border: '1px solid',
+    borderWidth: '1px',
+    backgroundColor: 'white',
+    paddingLeft: 5,
+    paddingRight: 5,
+    marginBottom: 5,
+  },
   border50: {
     border: '1px solid',
     borderWidth: '1px',
     width: '48%',
     backgroundColor: 'rgb(239 ,243, 222)',
+    paddingLeft: 5,
+    paddingRight: 5,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+  },
+  border50Print: {
+    border: '1px solid',
+    borderWidth: '1px',
+    width: '48%',
+    backgroundColor: 'white',
     paddingLeft: 5,
     paddingRight: 5,
     display: 'flex',

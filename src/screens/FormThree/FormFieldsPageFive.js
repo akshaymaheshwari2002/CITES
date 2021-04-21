@@ -95,11 +95,14 @@ export default (fieldProps = {}) => {
         <View style={{flexDirection: 'row', flex: 1, alignItems: 'center'}}>
           <Text style={{...Fonts.Lato15R, margin: s(10)}}>cm</Text>
           <Switch
-            trackColor={{false: '#767577', true: RawColors.darkSalmon}}
+            trackColor={{
+              false: RawColors.darkSalmon,
+              true: RawColors.darkSalmon,
+            }}
             thumbColor={
               fieldProps._cmOrGramOfSizeOrMassAtSexualMaturity
                 ? RawColors.black
-                : '#f4f3f4'
+                : RawColors.black
             }
             ios_backgroundColor="#3e3e3e"
             onValueChange={(value) => {
@@ -129,11 +132,14 @@ export default (fieldProps = {}) => {
         <View style={{flexDirection: 'row', flex: 1, alignItems: 'center'}}>
           <Text style={{...Fonts.Lato15R, margin: s(10)}}>cm</Text>
           <Switch
-            trackColor={{false: '#767577', true: RawColors.darkSalmon}}
+            trackColor={{
+              false: RawColors.darkSalmon,
+              true: RawColors.darkSalmon,
+            }}
             thumbColor={
               fieldProps._cmOrGramOfSizeOrMassAtSaleOrExport
                 ? RawColors.black
-                : '#f4f3f4'
+                : RawColors.black
             }
             ios_backgroundColor="#3e3e3e"
             onValueChange={(value) => {

@@ -172,7 +172,7 @@ const styles = ScaledSheet.create({
   },
   placeholderStyle: {...Fonts.Lato17B, color: 'black'},
   placeholderWrapper: {
-    height: 50,
+    height: '46@vs',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',

@@ -168,14 +168,19 @@ const SideMenu = ({hideModal}) => {
 const styles = ScaledSheet.create({
   wrapper: {
     flex: 1,
+    flexGrow: 1,
+    justifyContent: 'center',
+    marginTop: '97@vs',
+    marginBottom: '80@vs',
   },
   scrollView: {
-    marginBottom: vs(54),
-    marginTop: vs(98) - getStatusBarHeight(),
+    flexGrow: 1,
+    backgroundColor: RawColors.backToolTipColor,
     alignSelf: 'flex-end',
-    backgroundColor: RawColors.sideMenu,
-    borderTopLeftRadius: '14@s',
-    borderBottomLeftRadius: '14@s',
+    borderWidth: 1,
+    borderColor: RawColors.silverFoil,
+    borderTopLeftRadius: '20@vs',
+    borderBottomWidth: 1.5,
   },
   contentWrapper: {
     alignItems: 'center',

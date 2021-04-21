@@ -11,8 +11,6 @@ import {ScaledSheet, ms} from 'react-native-size-matters';
 import {useIsFocused} from '@react-navigation/native';
 import {useIntl} from 'react-intl';
 import {generatePdf} from '@utils/CommonFunctions';
-import Pdf from 'react-native-pdf';
-import {useFocusEffect} from '@react-navigation/native';
 import Share from 'react-native-share';
 import RNPrint from 'react-native-print';
 import {format} from 'date-fns';
@@ -86,10 +84,8 @@ const StepSummary = ({navigation: {navigate}}) => {
   }, [animationValue, isFocused]);
   const starsStyle = {
     position: 'absolute',
-    //justifyContent: 'center',
     height: ms(170),
     width: ms(150),
-    //backgroundColor: 'red',
     transform: [{scaleX: starScaleX}, {scaleY: starScaleY}],
   };
 
@@ -286,10 +282,12 @@ const StepSummary = ({navigation: {navigate}}) => {
             formText={formTextLabel}
             formTitle={formTitleLabels}
             facilitySchema={facilitySchemaLabels}
+            isPrint={true}
           />,
           <FormOneTemplate
             speciesData={registeredSpecies}
             formOneLabels={labelsOne}
+            isPrint={true}
           />,
           <div style={{breakAfter: 'page'}} />,
           <FormOneHeader
@@ -298,10 +296,12 @@ const StepSummary = ({navigation: {navigate}}) => {
             formText={formTextLabel}
             formTitle={formTitleLabels}
             facilitySchema={facilitySchemaLabels}
+            isPrint={true}
           />,
           <FormTwoTemplate
             formTwoData={formTwoData}
             formTwoLabels={labelsTwo}
+            isPrint={true}
           />,
           <div style={{breakAfter: 'page'}} />,
           ...(Array.isArray(registeredSpecies)
@@ -316,11 +316,13 @@ const StepSummary = ({navigation: {navigate}}) => {
                     formText={formTextLabel}
                     formTitle={formTitleLabels}
                     facilitySchema={facilitySchemaLabelsThree}
+                    isPrint={true}
                   />
                   <FormThreeTemplate
                     speciesData={formatFormThreeDataToDisplay(speciesData)}
                     form={'three'}
                     formThreeSchema={labelsThree}
+                    isPrint={true}
                   />
                   <div style={{breakAfter: 'page'}} />
                 </>
@@ -332,6 +334,7 @@ const StepSummary = ({navigation: {navigate}}) => {
             formText={formTextLabel}
             formTitle={formTitleLabels}
             facilitySchema={facilitySchemaLabels}
+            isPrint={true}
           />,
           <FormFourTemplate
             facilityData={facilityData}
@@ -339,6 +342,7 @@ const StepSummary = ({navigation: {navigate}}) => {
             outcome={outcomeLabels}
             formFourSchema={formFourSchemaLabels}
             formFourQuestions={labelsFour}
+            isPrint={true}
           />,
           <div style={{breakAfter: 'page'}} />,
           <FormOneHeader
@@ -347,12 +351,12 @@ const StepSummary = ({navigation: {navigate}}) => {
             formText={formTextLabel}
             formTitle={formTitleLabels}
             facilitySchema={facilitySchemaLabels}
+            isPrint={true}
           />,
           <InspectionNotesTemplate notesData={notes} />,
         ],
       });
       RNPrint.print({filePath: file?.filePath});
-      console.log(file?.filePath);
       setFilePath(file?.filePath);
     })();
   }, [
@@ -503,10 +507,10 @@ const styles = ScaledSheet.create({
   titleTwo: {
     ...Fonts.Lato15R,
     color: RawColors.charcoalGrey60,
-    lineHeight: '18@s',
-    marginTop: '10@s',
+    //lineHeight: '18@s',
+    //marginTop: '10@s',
     marginLeft: '15@s',
-    letterSpacing: '0.09@s',
+    //letterSpacing: '0.09@s',
   },
   image: {
     height: '80@ms',

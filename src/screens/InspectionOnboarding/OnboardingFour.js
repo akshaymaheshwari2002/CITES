@@ -33,7 +33,7 @@ const styles = ScaledSheet.create({
   text: {
     textAlign: 'center',
     ...Fonts.Lato20R,
-    marginTop: '33@vs',
+    marginTop: '26@vs',
   },
   content: {
     ...CommonStyles.flex1,

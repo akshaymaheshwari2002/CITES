@@ -102,7 +102,7 @@ const InspectionOnboarding = ({navigation, route}) => {
           }),
         }),
       );
-    }, 100);
+    }, 0);
   }, [dispatch, formatMessage]);
 
   useEffect(() => {

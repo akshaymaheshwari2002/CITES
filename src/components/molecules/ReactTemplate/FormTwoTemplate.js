@@ -8,6 +8,7 @@ const FormTwoTemplate = ({
   formTwoData = {},
   editable = false,
   formTwoLabels = {},
+  isPrint = false,
 }) => {
   const getInputElementConditionally = ({
     name,
@@ -33,7 +34,7 @@ const FormTwoTemplate = ({
   return (
     <div className="App">
       <div className="App" style={styles.box}>
-        <div style={styles.container}>
+        <div style={isPrint ? styles.containerPrint : styles.container}>
           <div style={styles.table}>
             <div style={styles.paddingContainer}>
               <p style={styles.text}>
@@ -248,6 +249,10 @@ const styles = {
   container: {
     width: '100%',
     backgroundColor: 'rgb(239 ,243, 222)',
+  },
+  containerPrint: {
+    width: '100%',
+    backgroundColor: 'white',
   },
   paddingContainer: {
     padding: 10,
