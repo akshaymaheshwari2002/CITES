@@ -45,7 +45,7 @@ const ExampleDialogueStep3 = ({navigation: {navigate}}) => {
           buttonStyle={() => {
             return styles.button;
           }}
-          onPress={() => navigate('TabNavigator', {screen: 'StepTwo'})}
+          onPress={() => navigate('TabNavigator', {screen: 'StepThree'})}
         />
       </Container.ScrollView>
     </Container>
