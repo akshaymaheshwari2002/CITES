@@ -12,13 +12,15 @@ const OnboardingThree = () => {
   const {formatMessage} = useIntl();
 
   return (
-    <Container.ScrollView contentContainerStyle={styles.content}>
-      <Text style={styles.txt}>
-        {formatMessage({id: 'screen.OnboardingThree.contentOne'})}
-      </Text>
-      <Text style={styles.txt}>
-        {formatMessage({id: 'screen.OnboardingThree.contentTwo'})}
-      </Text>
+    <Container.ScrollView>
+      <View style={styles.content}>
+        <Text style={styles.txt}>
+          {formatMessage({id: 'screen.OnboardingThree.contentOne'})}
+        </Text>
+        <Text style={styles.txt}>
+          {formatMessage({id: 'screen.OnboardingThree.contentTwo'})}
+        </Text>
+      </View>
       <View style={styles.imgContainer}>
         <Image style={styles.img} source={Images.onboardingThree} />
       </View>
@@ -30,21 +32,22 @@ const styles = ScaledSheet.create({
   txt: {
     textAlign: 'center',
     ...Fonts.Lato20R,
-    marginTop: '16@vs',
+    paddingHorizontal: '28@s',
   },
   content: {
     ...CommonStyles.flex1,
     justifyContent: 'space-evenly',
-    paddingHorizontal: '16@s',
-    paddingVertical: '15@vs',
+    paddingTop: '45@vs',
+    paddingBottom: '7@vs',
   },
   img: {
-    resizeMode: 'contain',
-    height: '305@vs',
+    height: '285@vs',
+    alignSelf: 'center',
     width: '317@s',
+    resizeMode: 'contain',
   },
   imgContainer: {
-    marginTop: '10@vs',
+    // marginTop: '10@vs',
   },
 });
 
