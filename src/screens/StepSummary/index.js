@@ -486,7 +486,7 @@ const styles = ScaledSheet.create({
   },
   topContainer: {
     flexDirection: 'row',
-    marginTop: '20@vs',
+    marginTop: '10@vs',
     zIndex: 10,
     backgroundColor: RawColors.white,
   },
@@ -507,10 +507,7 @@ const styles = ScaledSheet.create({
   titleTwo: {
     ...Fonts.Lato15R,
     color: RawColors.charcoalGrey60,
-    //lineHeight: '18@s',
-    //marginTop: '10@s',
     marginLeft: '15@s',
-    //letterSpacing: '0.09@s',
   },
   image: {
     height: '80@ms',
@@ -538,7 +535,6 @@ const styles = ScaledSheet.create({
   content: {
     width: '100%',
     ...Fonts.Lato17R,
-    lineHeight: 22,
     letterSpacing: 0.41,
     marginTop: '10@s',
     color: RawColors.black,

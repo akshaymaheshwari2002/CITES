@@ -166,15 +166,12 @@ const styles = ScaledSheet.create({
   },
   titleOne: {
     ...Fonts.HelveticaNeue30B,
-    lineHeight: '26@s',
     letterSpacing: '0.48@s',
     marginLeft: '15@s',
     marginTop: '25@s',
   },
   nogap: {marginTop: 0},
-  content: {
-    height: '45@vs',
-  },
+  content: {},
   contentText: {
     ...Fonts.Lato15R,
     color: RawColors.charcoalGrey60,

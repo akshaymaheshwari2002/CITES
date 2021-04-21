@@ -12,16 +12,18 @@ const OnboardingFour = () => {
   const {formatMessage} = useIntl();
 
   return (
-    <Container.ScrollView contentContainerStyle={styles.content}>
-      <Text style={styles.text}>
-        {formatMessage({id: 'screen.OnboardingFour.contentOne'})}
-        <Text style={styles.word}>
-          {formatMessage({id: 'screen.OnboardingFour.contentTwo'})}
+    <Container.ScrollView>
+      <View style={styles.content}>
+        <Text style={styles.text}>
+          {formatMessage({id: 'screen.OnboardingFour.contentOne'})}
+          <Text style={styles.word}>
+            {formatMessage({id: 'screen.OnboardingFour.contentTwo'})}
+          </Text>
+          <Text style={styles.text}>
+            {formatMessage({id: 'screen.OnboardingFour.contentThree'})}
+          </Text>
         </Text>
-        <Text style={styles.txt}>
-          {formatMessage({id: 'screen.OnboardingFour.contentThree'})}
-        </Text>
-      </Text>
+      </View>
       <View style={styles.imgContainer}>
         <Image style={styles.img} source={Images.onboardingFour} />
       </View>
@@ -33,24 +35,24 @@ const styles = ScaledSheet.create({
   text: {
     textAlign: 'center',
     ...Fonts.Lato20R,
-    marginTop: '26@vs',
+    paddingHorizontal: '28@s',
   },
   content: {
     ...CommonStyles.flex1,
-    justifyContent: 'center',
-    paddingHorizontal: '20@s',
-    paddingTop: '34@vs',
+    paddingTop: '45@vs',
+    paddingBottom: '7@vs',
   },
   word: {
     fontWeight: 'bold',
   },
   img: {
     resizeMode: 'contain',
-    height: '460@vs',
+    height: '300@vs',
     width: '275@s',
+    alignSelf: 'center',
   },
   imgContainer: {
-    marginTop: '15@vs',
+    marginTop: '10@vs',
     paddingHorizontal: '20@s',
   },
 });

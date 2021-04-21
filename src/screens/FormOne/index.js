@@ -290,7 +290,10 @@ const FormOne = ({navigation}) => {
                   await handleSubmit(_handleSubmit)();
                   navigation.navigate('FormOneSummary');
                 }}
-                buttonStyle={() => ({marginVertical: verticalScale(16)})}
+                buttonStyle={() => ({
+                  marginVertical: verticalScale(16),
+                  zIndex: -10,
+                })}
                 buttonContent={formatMessage({id: 'button.viewFormOneSummary'})}
               />
               <Button
