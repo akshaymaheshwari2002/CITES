@@ -349,8 +349,10 @@ const sourceCodeQuestions = {
         isLink: {isWebSource: false, target: 'Q9MoreInfo'},
       },
     ],
-    options: [Constants.YES, Constants.NO],
-    moreInfo: false,
+    moreInfo: {
+      isWebResource: false,
+      target: 'Q9MoreInfo',
+    },
   },
   22: {
     content: [

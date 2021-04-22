@@ -84,7 +84,7 @@ const BeginInspection = ({navigation, route}) => {
               <View style={styles.numberContainer}>
                 <Text style={[Fonts.Lato18B, {color: RawColors.white}]}>1</Text>
               </View>
-              <View>
+              <View style={styles.textContainer}>
                 <Text style={styles.pointTitle}>
                   {formatMessage({id: 'screen.StepsSummary.contentOne'})}
                 </Text>
@@ -97,7 +97,7 @@ const BeginInspection = ({navigation, route}) => {
               <View style={styles.numberContainer}>
                 <Text style={[Fonts.Lato18B, {color: RawColors.white}]}>2</Text>
               </View>
-              <View>
+              <View style={styles.textContainer}>
                 <Text style={styles.pointTitle}>
                   {formatMessage({id: 'screen.StepsSummary.contentTwo'})}
                 </Text>
@@ -110,7 +110,7 @@ const BeginInspection = ({navigation, route}) => {
               <View style={styles.numberContainer}>
                 <Text style={[Fonts.Lato18B, {color: RawColors.white}]}>3</Text>
               </View>
-              <View>
+              <View style={styles.textContainer}>
                 <Text style={styles.pointTitle}>
                   {formatMessage({id: 'screen.StepsSummary.contentThree'})}
                 </Text>
@@ -120,20 +120,22 @@ const BeginInspection = ({navigation, route}) => {
               </View>
             </View>
           </View>
-          <Button
-            onPress={async () => {
-              await dispatch(setActiveInspection({}));
-              navigation.navigate('StepOne', {
-                screen: 'StepOne',
-                params: {showToolTip: false},
-              });
-            }}
-            buttonContent={formatMessage({
-              id: 'button.beginInspection',
-            })}
-            buttonTextStyle={() => styles.buttonText}
-            buttonStyle={() => styles.button}
-          />
+          <View style={styles.btn}>
+            <Button
+              onPress={async () => {
+                await dispatch(setActiveInspection({}));
+                navigation.navigate('StepOne', {
+                  screen: 'StepOne',
+                  params: {showToolTip: false},
+                });
+              }}
+              buttonContent={formatMessage({
+                id: 'button.beginInspection',
+              })}
+              buttonTextStyle={() => styles.buttonText}
+              buttonStyle={() => styles.button}
+            />
+          </View>
         </ImageBackground>
       </Container.ScrollView>
     </Container>
@@ -165,10 +167,14 @@ const styles = ScaledSheet.create({
   },
   pointRow: {
     flexDirection: 'row',
+    width: '100@s',
     alignItems: 'center',
   },
   pointOne: {marginLeft: '108@s'},
-  pointTwo: {marginLeft: '148@s', paddingVertical: '36@vs'},
+  pointTwo: {
+    paddingVertical: '36@vs',
+    marginLeft: '146@s',
+  },
   pointThree: {marginLeft: '108@s'},
   numberContainer: {
     height: '40@ms',
@@ -178,6 +184,9 @@ const styles = ScaledSheet.create({
     backgroundColor: RawColors.softRed,
     borderRadius: '23@ms',
     marginRight: '16@s',
+  },
+  textContainer: {
+    width: '130@s',
   },
   pointTitle: {
     ...Fonts.HelveticaNeue25B,
@@ -190,11 +199,13 @@ const styles = ScaledSheet.create({
     color: RawColors.darkGrey,
   },
   button: {
-    marginBottom: '24@vs',
     width: '290@s',
-    alignSelf: 'center',
-    //minHeight: '66@vs',
     backgroundColor: RawColors.sugarCane,
+  },
+  btn: {
+    marginBottom: '24@vs',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   buttonText: {
     textTransform: 'uppercase',

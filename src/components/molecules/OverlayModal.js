@@ -7,7 +7,8 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
 } from 'react-native';
-import {ScaledSheet, vs} from 'react-native-size-matters';
+import {useIntl} from 'react-intl';
+import {ScaledSheet} from 'react-native-size-matters';
 
 import {Container} from '@atoms';
 import SideMenu from './SideMenu';
@@ -47,6 +48,7 @@ const OverlayModal = ({
   //   } else {
   //   }
   // }, [modalWidth]);
+  const {formatMessage} = useIntl()
 
   return (
     <Modal
@@ -102,7 +104,9 @@ const OverlayModal = ({
                                     ? styles.modalTextBold
                                     : styles.modalText
                                 }>
-                                {value.text}
+                                {formatMessage({
+                                  id: value.text,
+                                })}
                                 {value.subText && value.subText.length > 0
                                   ? value.subText.map((value_1, index_1) => {
                                       return (
@@ -113,7 +117,9 @@ const OverlayModal = ({
                                               ? {...Fonts.Lato17B}
                                               : null
                                           }>
-                                          {value_1.val}
+                                          {formatMessage({
+                                            id: value_1.val,
+                                          })}
                                         </Text>
                                       );
                                     })
