@@ -7,9 +7,10 @@ import messages_en from '@locale/en.json';
 import messages_vi from '@locale/vi.json';
 import messages_es from '@locale/es.json';
 import messages_id from '@locale/id.json';
-import messages_khmer from '@locale/km.json';
-import messages_lao from '@locale/lo.json';
-import messages_malay from '@locale/ms.json';
+import messages_km from '@locale/km.json';
+import messages_lo from '@locale/lo.json';
+import messages_ms from '@locale/ms.json';
+import messages_th from '@locale/th.json';
 
 const cache = createIntlCache();
 let intl;
@@ -19,9 +20,10 @@ export const getMessages = () => ({
   vi: messages_vi,
   es: messages_es,
   id: messages_id,
-  khmer: messages_khmer,
-  lao: messages_lao,
-  malay: messages_malay,
+  km: messages_km,
+  lo: messages_lo,
+  ms: messages_ms,
+  th: messages_th,
 });
 
 export const getDeviceLocale = () => {
