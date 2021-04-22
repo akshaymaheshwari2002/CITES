@@ -281,11 +281,13 @@ const styles = ScaledSheet.create({
   title: {
     lineHeight: '35@ms',
     textTransform: 'uppercase',
+    width: '170@s',
     ...Fonts.HelveticaNeue30B,
   },
   subHeading: {
     paddingHorizontal: '16@s',
     marginTop: '25@vs',
+    width: '200@s',
   },
   subHeadingText: {
     color: RawColors.charcoalGrey60,
