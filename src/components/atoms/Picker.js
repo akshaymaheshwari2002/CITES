@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useRef} from 'react';
 import {Text, View, Platform, TouchableOpacity, Image} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import PropTypes from 'prop-types';
@@ -26,9 +26,11 @@ const Picker = React.forwardRef(
     const handleChangeItem = useCallback(
       (item) => {
         Array.isArray(item) ? onChange(item) : onChange(item.value);
+        controller?.current?.close();
       },
       [onChange],
     );
+    const controller = useRef(null);
 
     return (
       <>
@@ -45,6 +47,7 @@ const Picker = React.forwardRef(
         <DropDownPicker
           labelStyle={[{color: RawColors.black}, Fonts.Lato15R]}
           items={items}
+          controller={(instance) => (controller.current = instance)}
           searchableError={() => null}
           containerStyle={styles.container}
           style={[styles.picker, style]}
