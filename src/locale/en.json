@@ -145,7 +145,7 @@
   "form.FormFour.q11": "For species listed in Appendix I, do the parental breeding stock and offspring have a unique and permanent identification mark and number?",
   "questionContent.DetermineSourceCode.questionOne": "Is the species listed in the CITES Appendices (I, II or III)?",
   "questionContent.DetermineSourceCode.questionTwo": "Was the specimen acquired before the provisions of the Convention applied to it?",
-  "questionContent.DetermineSourceCode.questionThreePartOne": "Was the animal confiscated or seized?",
+  "questionContent.DetermineSourceCode.questionThreePartOne": "Was the specimen confiscated or seized?",
   "questionContent.DetermineSourceCode.questionThreePartTwo": "Exports subject to compliance with",
   "questionContent.DetermineSourceCode.questionThreePartThree": "Resolution. Conf. 17.8",
   "questionContent.DetermineSourceCode.questionFour": "Is there sufficient information about the specimen to determine its source?",
@@ -369,7 +369,7 @@
   "screen.StepOne.WalkThroughContentFour": " to make notes\nand take photos\nthroughout the\ninspection",
   "screen.StepOne.WalkThroughContentFive": " to quickly access the\nforms and tools required\nwhen conducting an\ninspection",
   "screen.OnboardingOneA.title": "WHAT IS A SOURCE CODE?",
-  "screen.OnboardingOneA.contentOne": "A letter used on CITES permits and certificates to indicate the source of a specimen",
+  "screen.OnboardingOneA.contentOne": "A letter used on CITES permits and certificates to indicate tproduction system for a specimen",
   "screen.OnboardingOneA.contentOnePart": "It is important that the correct source code is used to accurately describe the nature of the trade according to the CITES definitions",
   "screen.OnboardingOneA.contentTwo": "There are currently",
   "screen.OnboardingOneA.contentThree": "10 source codes in use",
@@ -661,5 +661,6 @@
   "form.FormFour.outCome3": "Unsatisfactory",
   "form.FormFour.formSchema1": "FACILITY SCORE :",
   "form.FormFour.formSchema2": "* From summary of points in brackets ",
-  "form.FormFour.formSchema3": "INSPECTION OUTCOME :"
+  "form.FormFour.formSchema3": "INSPECTION OUTCOME :",
+  "formFour.helpText.formFourTwo": "Suitable enclosures or containment facilities should prevent specimens from escaping into the wild; prevent wild specimens entering the facility and enclosures or containment facilities to mix with captive-bred specimens; and provide necessary amenities for species-specific growth and development. Suitable species-specific enclosures or containment facilities may include: wire cages, glass aquaria, ponds (e.g., for turtles and fish), terrariums (e.g., for reptiles), aviaries (e.g., for birds), yards and fenced paddocks (e.g., for mammals). There may also be specific construction materials and minimum height requirements depending on the species. Adequate structures and facilities should be available in every enclosure for healthy growth of the animals, such as food and water bowls or trays, adequate hiding and basking areas, appropriate wet and dry areas for amphibious species, suitable illumination and temperature, etc."
 }

@@ -164,8 +164,7 @@ export default {
   ],
   formFourTwo: [
     {
-      text:
-        'Suitable enclosures or containment facilities should prevent specimens from escaping into the wild; prevent wild specimens entering the facility and enclosures or containment facilities to mix with captive-bred specimens; and provide necessary amenities for species-specific growth and development. Suitable species-specific enclosures or containment facilities may include: wire cages, glass aquaria, ponds (e.g., for turtles and fish), terrariums (e.g., for reptiles), aviaries (e.g., for birds), yards and fenced paddocks (e.g., for mammals). There may also be specific construction materials and minimum height requirements depending on the species. Adequate structures and facilities should be available in every enclosure for healthy growth of the animals, such as food and water bowls or trays, adequate hiding and basking areas, appropriate wet and dry areas for amphibious species, suitable illumination and temperature, etc.',
+      text: 'formFour.helpText.formFourTwo',
       isBold: false,
     },
   ],
