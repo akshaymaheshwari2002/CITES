@@ -823,7 +823,7 @@ const styles = {
     textAlign: 'left',
     border: '0.5px solid',
     borderWidth: 0.5,
-    fontSize: 12,
+    fontSize: 15,
     flex: 1,
     display: 'flex',
     padding: 5,
