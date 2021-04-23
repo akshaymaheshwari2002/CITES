@@ -118,16 +118,31 @@ const formFourQuestions = {
   q11: 'form.FormFour.q11',
 };
 const contentConsent = {
-  title: 'consentForm.content1',
-  point1partOne: 'consentForm.content2',
-  point1partTwo: 'consentForm.content3',
-  point2: 'consentForm.content4',
-  point3: 'consentForm.content5',
-  point4: 'consentForm.content6',
-  point5: 'consentForm.content7',
-  point6: 'consentForm.content8',
-  point7: 'consentForm.content9',
-  point8: 'consentForm.content10',
+  title: 'consentForm.print.title',
+  point1partOne: 'screen.ExampleDialogueConsentFormStep2.contentOne',
+  point1partTwo: 'screen.ExampleDialogueConsentFormStep2.contentTwo',
+  point2: 'screen.ExampleDialogueConsentFormStep2.contentThree',
+  point3: 'screen.ExampleDialogueConsentFormStep2.contentFour',
+  point4: 'screen.ExampleDialogueConsentFormStep2.contentFive',
+  point5: 'screen.ExampleDialogueConsentFormStep2.contentSixOne',
+  point6: 'screen.ExampleDialogueConsentFormStep2.contentEight',
+  point7: 'screen.ExampleDialogueConsentFormStep2.contentNine',
+  point8: 'screen.ExampleDialogueConsentFormStep2.contentTen',
+};
+
+const contentExampleDialogueStepTwo = {
+  title: 'exampledialogue.print.title',
+  point1: 'screen.ExampleDialogueStep2.contentOne',
+  point2: 'screen.ExampleDialogueStep2.contentThree',
+  point3: 'screen.ExampleDialogueStep2.contentFive',
+  point4: 'screen.ExampleDialogueStep2.contentSeven',
+  point5: 'screen.ExampleDialogueStep2.contentEight',
+  point6: 'screen.ExampleDialogueStep2.contentEightOne',
+  point7: 'screen.ExampleDialogueStep2.contentEightTwo',
+  point8: 'screen.ExampleDialogueStep2.contentNine',
+  point9: 'screen.ExampleDialogueStep2.contentFourteen',
+  point10: 'screen.ExampleDialogueStep2.contentEleven',
+  point11: 'screen.ExampleDialogueStep2.contentTwelve',
 };
 
 export {
@@ -143,4 +158,5 @@ export {
   formFourSchema,
   formFourQuestions,
   contentConsent,
+  contentExampleDialogueStepTwo,
 };

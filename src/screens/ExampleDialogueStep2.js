@@ -1,12 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useMemo, useCallback} from 'react';
 import {View, Text} from 'react-native';
 import {ScaledSheet, s, vs} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
+import RNPrint from 'react-native-print';
 
 import {Fonts, RawColors} from '@styles/Themes';
+import {ExampleDialogueStepTwoTemplate, TextInputArray} from '@molecules';
 import {Container, Button, TextInput} from '@atoms';
-import {TextInputArray} from '@molecules';
+import {generatePdf} from '@utils/CommonFunctions';
 import CommonStyles from '@styles/CommonStyles';
+import {contentExampleDialogueStepTwo} from '@utils/TranslationMapping';
 
 const ExampleDialogueStep2 = ({navigation: {navigate}}) => {
   const {formatMessage} = useIntl();
@@ -16,6 +19,36 @@ const ExampleDialogueStep2 = ({navigation: {navigate}}) => {
     collaeaguesOrganisationName,
     setCollaeaguesOrganisationName,
   ] = useState();
+
+  const labels = useMemo(() => {
+    let translatedLabels = {};
+    Object.keys(contentExampleDialogueStepTwo ?? {}).forEach((id, index) => {
+      translatedLabels = {
+        ...translatedLabels,
+        [id]: formatMessage({
+          id: contentExampleDialogueStepTwo[id],
+        }),
+      };
+    });
+    return translatedLabels;
+  }, [formatMessage]);
+
+  const handlePrint = useCallback(() => {
+    (async () => {
+      const file = await generatePdf({
+        templates: [
+          <ExampleDialogueStepTwoTemplate
+            name={name}
+            collaeagueName={collaeaguesName}
+            organisationName={collaeaguesOrganisationName}
+            content={labels}
+          />,
+        ],
+      });
+      RNPrint.print({filePath: file?.filePath});
+    })();
+  }, [collaeaguesName, collaeaguesOrganisationName, labels, name]);
+
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
@@ -120,7 +153,18 @@ const ExampleDialogueStep2 = ({navigation: {navigate}}) => {
             id: 'screen.ExampleDialogueStep2.contentTwelve',
           })}
         </Text>
-
+        <Button
+          buttonContent={formatMessage({
+            id: 'button.print',
+          })}
+          buttonTextStyle={() => {
+            return styles.buttonText;
+          }}
+          buttonStyle={() => {
+            return styles.buttonPrint;
+          }}
+          onPress={handlePrint}
+        />
         <Button
           buttonContent={formatMessage({
             id: 'button.continueWithStep2',
@@ -166,6 +210,12 @@ const styles = ScaledSheet.create({
     marginTop: '20@s',
   },
   button: {
+    height: '46@vs',
+    marginHorizontal: '15@s',
+    marginVertical: '24@vs',
+    backgroundColor: RawColors.sugarCane,
+  },
+  buttonPrint: {
     height: '46@vs',
     marginHorizontal: '15@s',
     marginVertical: '24@vs',
