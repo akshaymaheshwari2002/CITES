@@ -26,7 +26,6 @@ const PopupNotesInput = ({
             placeholder={formatMessage({
               id: 'screen.InspectionNotes.notesText',
             })}
-            style={{width: s(190), marginHorizontal: s(15)}}
           />
           <Button
             buttonStyle={() => styles.buttonStyle}

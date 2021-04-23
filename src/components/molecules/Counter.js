@@ -43,24 +43,28 @@ const Counter = React.forwardRef(
               keyboardType="number-pad"
             />
           </View>
-          <FeatherIcon
-            name="plus"
-            color={RawColors.black}
-            size={moderateScale(16)}
-            onPress={(text) => {
-              handleChange({action: Constants.PLUS});
-            }}
-            style={styles.operator}
-          />
-          <FeatherIcon
-            name="minus"
-            color={RawColors.black}
-            size={moderateScale(16)}
-            onPress={() => {
-              handleChange({action: Constants.MINUS});
-            }}
-            style={styles.operator}
-          />
+          <View style={{marginHorizontal: moderateScale(30)}}>
+            <FeatherIcon
+              name="plus"
+              color={RawColors.black}
+              size={moderateScale(36)}
+              onPress={(text) => {
+                handleChange({action: Constants.PLUS});
+              }}
+              style={styles.operator}
+            />
+          </View>
+          <View style={{marginHorizontal: moderateScale(30)}}>
+            <FeatherIcon
+              name="minus"
+              color={RawColors.black}
+              size={moderateScale(36)}
+              onPress={() => {
+                handleChange({action: Constants.MINUS});
+              }}
+              style={styles.operator}
+            />
+          </View>
         </View>
         {error ? (
           <Text style={[{color: RawColors.error}, Fonts.Lato15R]}>{error}</Text>
