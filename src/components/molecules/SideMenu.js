@@ -175,7 +175,7 @@ const styles = ScaledSheet.create({
   },
   scrollView: {
     flexGrow: 1,
-    backgroundColor: RawColors.backToolTipColor,
+    backgroundColor: RawColors.black,
     alignSelf: 'flex-end',
     borderWidth: 1,
     borderColor: RawColors.silverFoil,
