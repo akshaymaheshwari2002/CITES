@@ -159,7 +159,7 @@ export default () => {
         callingCode: Config.DEFAULT_COUNTRY_CODE,
         cca2: Config.DEFAULT_COUNTRY,
       },
-      placeholder: formatMessage({id: 'form.FormOne.placeholder.phoneNumber'}),
+      placeholder: formatMessage({id: 'form.placeHolder.number'}),
       style: {
         marginVertical: 0,
         marginTop: verticalScale(6),

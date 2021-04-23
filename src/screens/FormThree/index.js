@@ -53,6 +53,19 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
   const _lifeStageHarvested = watch('lifeStageHarvested');
   const _otherLifeStage = watch('otherLifeStage');
   const _numberHarvestedInPreviousYear = watch('numberHarvestedInPreviousYear');
+  const sourceCode = [
+    'A',
+    'F',
+    'R',
+    'I',
+    'O',
+    'W',
+    'C',
+    'D',
+    'U',
+    'X',
+    'NotApplicable',
+  ];
 
   const handleUnitsOfSizeOrMass = ({key, value}) => {
     if (key === 'cmOrGramOfSizeOrMassAtSexualMaturity') {
@@ -80,9 +93,21 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
         return isAdditionalAnimalsAcquiredSinceInitialStock
           ? getFormFieldsPageOne({
               ...fieldProps,
+              _sourceCode: {
+                items: sourceCode.map((value) => ({
+                  label: value,
+                  value: value,
+                })),
+              },
             })
           : getFormFieldsPageOne({
               ...fieldProps,
+              _sourceCode: {
+                items: sourceCode.map((value) => ({
+                  label: value,
+                  value: value,
+                })),
+              },
             }).slice(0, 7);
       case 2:
         const isDoYouBreedThisSpecies =
@@ -118,6 +143,7 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
     registeredSpecies,
     formFieldsPage,
     _additionalAnimalsAcquiredSinceInitialStock,
+    sourceCode,
     _doYouBreedThisSpecies,
     _doYouRanchThisSpecies,
     _lifeStageHarvested,
@@ -477,7 +503,7 @@ const styles = ScaledSheet.create({
     ...Fonts.Lato15R,
   },
   word: {
-    color: RawColors.charcoalGrey60,
+    color: RawColors.black,
     ...Fonts.Lato15B,
   },
   contentTwo: {

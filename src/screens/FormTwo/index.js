@@ -119,7 +119,7 @@ const FormTwo = ({navigation}) => {
         </Text>
         <Text style={styles.contentOne}>
           {formatMessage({id: 'screen.FormTwo.contentOne_1'})}
-          <Text style={(styles.contentOne, {...Fonts.Lato15B})}>
+          <Text style={styles.word}>
             {formatMessage({id: 'screen.FormTwo.contentOne_2'})}
           </Text>
           {formatMessage({id: 'screen.FormTwo.contentOne_3'})}
@@ -170,6 +170,12 @@ const styles = ScaledSheet.create({
     backgroundColor: RawColors.whiteTwo,
     color: RawColors.charcoalGrey60,
     ...Fonts.Lato15R,
+  },
+  word: {
+    marginHorizontal: '16@s',
+    marginBottom: '16@vs',
+    color: RawColors.black,
+    ...Fonts.Lato15B,
   },
   formContainer: {
     paddingHorizontal: '16@s',

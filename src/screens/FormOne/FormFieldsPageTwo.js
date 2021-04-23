@@ -24,7 +24,7 @@ export default (fieldProps = {}) => {
         id: 'form.FormOne.label.totalSpecimen',
       }),
       placeholder: formatMessage({
-        id: 'form.FormOne.label.numberPlaceHolder',
+        id: 'form.placeHolder.number',
       }),
       name: 'numberOfSpecimen',
       rules: {
@@ -39,7 +39,7 @@ export default (fieldProps = {}) => {
     {
       defaultValue: '',
       label: formatMessage({id: 'form.FormOne.label.noOfBreedingAdult'}),
-      placeholder: formatMessage({id: 'form.FormOne.label.numberPlaceHolder'}),
+      placeholder: formatMessage({id: 'form.placeHolder.number'}),
       name: 'numberOfBreedingAdults',
       rules: {
         // required,
@@ -53,7 +53,7 @@ export default (fieldProps = {}) => {
     {
       defaultValue: '',
       label: formatMessage({id: 'form.FormOne.label.specimenExported'}),
-      placeholder: formatMessage({id: 'form.FormOne.label.numberPlaceHolder'}),
+      placeholder: formatMessage({id: 'form.placeHolder.number'}),
       name: 'numberOfSpeciemenExportedSinceLastInspection',
       rules: {
         // required,

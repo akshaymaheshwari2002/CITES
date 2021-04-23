@@ -150,7 +150,7 @@ export default ({
               id: 'form.FormTwo.label.addressOfOtherAnimalsPartOne',
             })}
           </Text>
-          <Text style={{...Fonts.Lato15I, textDecorationLine: 'underline'}}>
+          <Text style={{...Fonts.Lato15I}}>
             {formatMessage({
               id: 'form.FormTwo.label.addressOfOtherAnimalsPartTwo',
             })}

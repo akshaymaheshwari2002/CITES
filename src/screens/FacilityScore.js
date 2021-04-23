@@ -26,29 +26,31 @@ const FacilityScore = ({navigation: {navigate, goBack}, route}) => {
         <Text style={styles.titleCommon}>
           {formatMessage({id: 'screen.FacilityScore.title'})}
         </Text>
-        <Text style={styles.contentOne}>
-          {formatMessage({id: 'screen.FacilityScore.contentOne'})}
-        </Text>
-        <Text style={styles.contentTwo}>
-          {formatMessage({id: 'screen.FacilityScore.contentTwo'})}
-        </Text>
-        <View style={[CommonStyles.shadowEffect, styles.points]}>
-          <Text style={styles.score}>{savedScore}</Text>
+        <View style={{justifyContent: 'space-evenly'}}>
+          <Text style={styles.contentOne}>
+            {formatMessage({id: 'screen.FacilityScore.contentOne'})}
+          </Text>
+          <Text style={styles.contentTwo}>
+            {formatMessage({id: 'screen.FacilityScore.contentTwo'})}
+          </Text>
+          <View style={[CommonStyles.shadowEffect, styles.points]}>
+            <Text style={styles.score}>{savedScore}</Text>
+          </View>
+          <Button
+            buttonContent={formatMessage({
+              id: 'button.continueCaps',
+            })}
+            buttonTextStyle={() => {
+              return styles.buttonText;
+            }}
+            buttonStyle={() => {
+              return styles.button;
+            }}
+            onPress={() =>
+              navigate('FacilityScoreInformation', {scoreObtained: savedScore})
+            }
+          />
         </View>
-        <Button
-          buttonContent={formatMessage({
-            id: 'button.continueCaps',
-          })}
-          buttonTextStyle={() => {
-            return styles.buttonText;
-          }}
-          buttonStyle={() => {
-            return styles.button;
-          }}
-          onPress={() =>
-            navigate('FacilityScoreInformation', {scoreObtained: savedScore})
-          }
-        />
       </Container.ScrollView>
     </Container>
   );
@@ -73,18 +75,14 @@ const styles = ScaledSheet.create({
   },
   contentOne: {
     color: RawColors.black,
-    fontWeight: 'bold',
-    fontSize: 30,
     textAlign: 'center',
-    marginTop: '12%',
-    ...Fonts.HelveticaNeue30B,
+    marginTop: '4%',
+    ...Fonts.HelveticaNeue25B,
   },
   contentTwo: {
     color: RawColors.black,
-    fontWeight: 'bold',
-    fontSize: 30,
     textAlign: 'center',
-    ...Fonts.HelveticaNeue30B,
+    ...Fonts.HelveticaNeue25B,
   },
   points: {
     marginHorizontal: '43@s',
@@ -101,7 +99,7 @@ const styles = ScaledSheet.create({
   score: {
     alignItems: 'center',
     textAlign: 'center',
-    ...Fonts.HelveticaNeue30B,
+    ...Fonts.HelveticaNeue80B,
   },
   button: {
     height: '46@vs',

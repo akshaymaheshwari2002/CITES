@@ -48,21 +48,23 @@ export default (fieldProps = {}) => {
         id: 'form.FormThree.label.sourceCodeInitialStock',
       }),
       name: 'sourceCodeInitialStock',
-      rules: {
-        // required,
-        maxLength: {
-          value: 1,
-          message: formatMessage({
-            id: 'form.error.singleCharacterLimit',
-          }),
-        },
-        pattern: {
-          value: /^(D|I|U|X|W|C|F|O|A|R)$/,
-          message: formatMessage({
-            id: 'form.error.singleCharacterAllowed',
-          }),
-        },
-      },
+      fieldType: Constants.PICKER,
+      ...fieldProps._sourceCode,
+      // rules: {
+      //   required,
+      //   maxLength: {
+      //     value: 1,
+      //     message: formatMessage({
+      //       id: 'form.error.singleCharacterLimit',
+      //     }),
+      //   },
+      //   pattern: {
+      //     value: /^(D|I|U|X|W|C|F|O|A|R)$/,
+      //     message: formatMessage({
+      //       id: 'form.error.singleCharacterAllowed',
+      //     }),
+      //   },
+      //  },
     },
     {
       defaultValue: '',
@@ -80,7 +82,7 @@ export default (fieldProps = {}) => {
         id: 'form.FormThree.label.numberOfMalesInitialStock',
       }),
       placeholder: formatMessage({
-        id: 'form.FormThree.label.numberOfMalesInitialStock',
+        id: 'form.placeHolder.number',
       }),
       name: 'numberOfMalesInitialStock',
       rules: {
@@ -95,7 +97,7 @@ export default (fieldProps = {}) => {
         id: 'form.FormThree.label.numberOfFemalesInitialStock',
       }),
       placeholder: formatMessage({
-        id: 'form.FormThree.label.numberOfFemalesInitialStock',
+        id: 'form.placeHolder.number',
       }),
       name: 'numberOfFemalesInitialStock',
       rules: {
