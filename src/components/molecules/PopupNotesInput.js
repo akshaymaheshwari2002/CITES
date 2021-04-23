@@ -19,7 +19,7 @@ const PopupNotesInput = ({
   return isShowPopupNotesInput ? (
     <View style={styles.containerOne}>
       <View style={styles.containerTwo}>
-        <View style={{height: vs(220)}}>
+        <View style={{height: vs(200)}}>
           <TextInput
             value={notesText}
             onChange={setNotesText}
@@ -78,7 +78,7 @@ const styles = ScaledSheet.create({
     textTransform: 'capitalize',
   },
   buttonStyle: {
-    marginTop: '32@vs',
+    marginTop: '20@vs',
   },
   buttonTextStyle: {
     ...Fonts.Lato15R,
