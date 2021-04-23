@@ -259,6 +259,7 @@
   "screen.FeedbackTwo.question": "Comment évaluez-vous l'application?",
   "screen.FeedbackTwo.content": "Veuillez partager vos idées,\n commentaires et suggestions. \n\n\nQu'aimez-vous dans l'application?",
   "screen.FeedbackOne.headerPartOne": "MERCI",
+  "screen.FeedbackOne.headerPartTwo": "TOI",
   "screen.FeedbackOne.contentOne": "Nous travaillons toujours à améliorer les conseils fournis par CITIES, nous aimerions donc savoir ce qui est utile et qui fonctionne et comment nous pouvons faire mieux.",
   "screen.FeedbackOne.contentTwo": "Cependant, ce n’est pas une façon de nous contacter.",
   "screen.FeedbackOne.contentThree": "Nous ne pouvons pas répondre individuellement aux commentaires ou aux rapports de bogue. Si vous avez une question ou avez besoin d'aide pour résoudre un problème, vous pouvez contacter le Secrétariat CITES.",
@@ -713,14 +714,6 @@
   "helpText.typeOfInspection.four.subText.one": " inspection de suivi",
   "helpText.typeOfInspection.four.subText.two": " est entrepris pour s'assurer qu'une installation s'est conformée à tout problème soulevé lors d'une inspection initiale ou de routine précédente.",
   "form.placeHolder.number": "Veuillez saisir un nombre",
-  "consentForm.content1": "FORMULAIRE DE CONSENTEMENT",
-  "consentForm.content2": "JE, ",
-  "consentForm.content3": " accepte que j'ai compris les informations suivantes et accepte que:",
-  "consentForm.content4": "(1) Moi, en tant que propriétaire, exploitant ou agent responsable des locaux, j'ai été informé de mon droit de ne pas faire inspecter sans mandat d'inspection;",
-  "consentForm.content5": "(2) ont le droit de refuser de consentir à une telle inspection;",
-  "consentForm.content6": "(3) tout élément de nature incriminante susceptible d'être trouvé peut être saisi et utilisé contre moi dans le cadre d'une poursuite pénale;",
-  "consentForm.content7": "(4) ont reçu un avis d'inspection conformément à",
-  "consentForm.content8": "(5) reconnaître que mon consentement a été donné volontairement et sans menaces d'aucune sorte;",
-  "consentForm.content9": "(6) peut retirer mon consentement à tout moment pendant l'inspection; et",
-  "consentForm.content10": "(c) recevra une copie de mon consentement écrit."
+  "consentForm.print.title": "FORMULAIRE DE CONSENTEMENT",
+  "exampledialogue.print.title": "EXEMPLE DE DIALOGUE"
 }

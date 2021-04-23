@@ -259,6 +259,7 @@
   "screen.FeedbackTwo.question": "¿Cómo calificas la aplicación??",
   "screen.FeedbackTwo.content": "Comparta sus ideas, comentarios y sugerencias. ¿Qué te gusta de la aplicación?? ",
   "screen.FeedbackOne.headerPartOne": "GRACIAS",
+  "screen.FeedbackOne.headerPartTwo": "YOU",
   "screen.FeedbackOne.contentOne": "Siempre estamos trabajando para mejorar la orientación proporcionada por CITIES, por lo que nos encantaría saber qué es útil y funciona y cómo podemos hacerlo mejor.",
   "screen.FeedbackOne.contentTwo": "Sin embargo, esta no es una forma de contactarnos.",
   "screen.FeedbackOne.contentThree": "No podemos responder a los comentarios o informes de errores de forma individual. Si tiene alguna pregunta o necesita ayuda para resolver un problema, puede comunicarse con la Secretaría de la CITES.",
@@ -605,9 +606,9 @@
   "form.Header.formTitle1": "INFORMACIÓN DE CONTEXTO",
   "form.Header.formTitle2": "INFORMACIÓN DE INSTALACIONES",
   "form.Header.formTitle3": "INFORMACION DE ESPECIES",
-  "form.Header.formTitle4": "INSPECCIÓN",
-  "form.Header.formTitle5": "NOTAS + FOTOS",
-
+  "form.Header.formTitle4": "PUNTUACIÓN DE INSTALACIONES",
+  "form.Header.formTitle5": "INSPECCIÓN",
+  "form.Header.formTitle6": "NOTAS + FOTOS",
   "form.Header.facilitySchema1": "Nombre de la instalación:",
   "form.Header.facilitySchema2": "Propietario / gerente de la instalación:",
   "form.Header.facilitySchema3": "Dirección de la instalación:",
@@ -712,16 +713,7 @@
   "helpText.typeOfInspection.four.text": "UNA",
   "helpText.typeOfInspection.four.subText.one": " inspección de seguimiento",
   "helpText.typeOfInspection.four.subText.two": " se lleva a cabo para garantizar que una instalación haya cumplido con cualquier problema planteado en una inspección inicial o de rutina previa.",
-  "form.placeHolder.number":"Por favor, introduzca un número",
-  "consentForm.content1":"FORMULARIO DE CONSENTIMIENTO",
-  "consentForm.content2":"I,",
-  "consentForm.content3":" acepto que he entendido la siguiente información y acepto que:",
-  "consentForm.content4":"(1) Yo, como propietario, operador o agente a cargo de las instalaciones, he sido informado de mi derecho a que no se realice una inspección sin una orden de inspección;",
-  "consentForm.content5":"(2) tener derecho a negarse a dar su consentimiento para dicha inspección;",
-  "consentForm.content6":"(3) cualquier cosa de naturaleza incriminatoria que se pueda encontrar puede ser confiscada y utilizada en mi contra en un proceso penal;",
-  "consentForm.content7":"(4) han sido presentados con un aviso de inspección como se establece en",
-  "consentForm.content8":"(5) reconocer que mi consentimiento se ha dado de forma voluntaria y sin amenazas de ningún tipo;",
-  "consentForm.content9":"(6) puedo retirar mi consentimiento en cualquier momento durante la inspección; y",
-  "consentForm.content10":"(c) se le proporcionará una copia de mi consentimiento por escrito."
-
+  "form.placeHolder.number": "Por favor, introduzca un número",
+  "consentForm.print.title": "FORMULARIO DE CONSENTIMIENTO",
+  "exampledialogue.print.title": "EJEMPLO DE DIÁLOGO"
 }
