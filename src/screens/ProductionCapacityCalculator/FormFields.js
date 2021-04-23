@@ -37,8 +37,7 @@ export default ({modeSelected}) => {
         modeSelected === 2
           ? '0'
           : formatMessage({
-              id:
-                'form.ProductionCapacityCalculator.placeholder.countTotalBreedingFemale',
+              id: 'form.placeHolder.number',
             }),
       name: 'countTotalBreedingFemale',
       rules:
@@ -95,7 +94,7 @@ export default ({modeSelected}) => {
         id: 'form.ProductionCapacityCalculator.label.countLitterPerYear',
       }),
       placeholder: formatMessage({
-        id: 'form.ProductionCapacityCalculator.placeholder.countLitterPerYear',
+        id: 'form.placeHolder.number',
       }),
       placeholderTextColor: RawColors.grey,
       name: 'countLitterPerYear',
@@ -119,8 +118,7 @@ export default ({modeSelected}) => {
         id: 'form.ProductionCapacityCalculator.label.countOffspringPerLitter',
       }),
       placeholder: formatMessage({
-        id:
-          'form.ProductionCapacityCalculator.placeholder.countOffspringPerLitter',
+        id: 'form.placeHolder.number',
       }),
       placeholderTextColor: RawColors.grey,
       name: 'countOffspringPerLitter',

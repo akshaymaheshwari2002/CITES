@@ -73,7 +73,7 @@ const StepSummary = ({navigation: {navigate}}) => {
     if (isFocused) {
       const ani = Animated.timing(animationValue, {
         toValue: 1,
-        duration: 1500,
+        duration: 800,
         easing: Easing.inOut(Easing.ease),
         useNativeDriver: true,
       });

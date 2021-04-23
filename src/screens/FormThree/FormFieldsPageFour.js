@@ -24,7 +24,7 @@ export default (fieldProps = {}) => {
         id: 'form.FormThree.label.facilityInformation',
       }),
       placeholder: formatMessage({
-        id: 'form.FormThree.label.noOfAdultsPresentFacilityInfo',
+        id: 'form.placeHolder.number',
       }),
       name: 'noOfAdultsPresentFacilityInfo',
       rules: {
@@ -36,7 +36,7 @@ export default (fieldProps = {}) => {
         },
       },
       keyboardType: 'number-pad',
-      style: {flex: 2},
+      style: {flex: 3},
       labelRightStyle: {paddingHorizontal: ms(15), flex: 3},
       fieldContainerStyle: {marginBottom: 0},
     },
@@ -46,7 +46,7 @@ export default (fieldProps = {}) => {
         id: 'form.FormThree.label.inspectionInformation',
       }),
       placeholder: formatMessage({
-        id: 'form.FormThree.label.noOfAdultsPresentFacilityInfo',
+        id: 'form.placeHolder.number',
       }),
       name: 'noOfAdultsPresentInspectionInfo',
       rules: {
@@ -58,7 +58,7 @@ export default (fieldProps = {}) => {
         },
       },
       keyboardType: 'number-pad',
-      style: {flex: 2},
+      style: {flex: 3},
       labelRightStyle: {paddingHorizontal: ms(15), flex: 3},
     },
     {
@@ -70,7 +70,7 @@ export default (fieldProps = {}) => {
         id: 'form.FormThree.label.facilityInformation',
       }),
       placeholder: formatMessage({
-        id: 'form.FormThree.label.noOfMalesPresentFacilityInfo',
+        id: 'form.placeHolder.number',
       }),
       name: 'noOfMalesPresentFacilityInfo',
       rules: {
@@ -82,7 +82,7 @@ export default (fieldProps = {}) => {
         },
       },
       keyboardType: 'number-pad',
-      style: {flex: 2},
+      style: {flex: 3},
       labelRightStyle: {paddingHorizontal: ms(15), flex: 3},
       fieldContainerStyle: {marginBottom: 0},
     },
@@ -92,7 +92,7 @@ export default (fieldProps = {}) => {
         id: 'form.FormThree.label.inspectionInformation',
       }),
       placeholder: formatMessage({
-        id: 'form.FormThree.label.noOfMalesPresentFacilityInfo',
+        id: 'form.placeHolder.number',
       }),
       name: 'noOfMalesPresentInspectionInfo',
       rules: {
@@ -104,7 +104,7 @@ export default (fieldProps = {}) => {
         },
       },
       keyboardType: 'number-pad',
-      style: {flex: 2},
+      style: {flex: 3},
       labelRightStyle: {paddingHorizontal: ms(15), flex: 3},
     },
     {
@@ -116,7 +116,7 @@ export default (fieldProps = {}) => {
         id: 'form.FormThree.label.facilityInformation',
       }),
       placeholder: formatMessage({
-        id: 'form.FormThree.label.noOfFemalesPresentFacilityInfo',
+        id: 'form.placeHolder.number',
       }),
       name: 'noOfFemalesPresentFacilityInfo',
       rules: {
@@ -128,7 +128,7 @@ export default (fieldProps = {}) => {
         },
       },
       keyboardType: 'number-pad',
-      style: {flex: 2},
+      style: {flex: 3},
       labelRightStyle: {paddingHorizontal: ms(15), flex: 3},
       fieldContainerStyle: {marginBottom: 0},
     },
@@ -138,7 +138,7 @@ export default (fieldProps = {}) => {
         id: 'form.FormThree.label.inspectionInformation',
       }),
       placeholder: formatMessage({
-        id: 'form.FormThree.label.noOfFemalesPresentFacilityInfo',
+        id: 'form.placeHolder.number',
       }),
       name: 'noOfFemalesPresentInspectionInfo',
       rules: {
@@ -150,7 +150,7 @@ export default (fieldProps = {}) => {
         },
       },
       keyboardType: 'number-pad',
-      style: {flex: 2},
+      style: {flex: 3},
       labelRightStyle: {paddingHorizontal: ms(15), flex: 3},
     },
     {
@@ -159,7 +159,7 @@ export default (fieldProps = {}) => {
         id: 'form.FormThree.label.percentageOfFemalesBreedEachYear',
       }),
       placeholder: formatMessage({
-        id: 'form.FormThree.label.percentageOfFemalesBreedEachYear',
+        id: 'form.placeHolder.number',
       }),
       name: 'percentageOfFemalesBreedEachYear',
       rules: {

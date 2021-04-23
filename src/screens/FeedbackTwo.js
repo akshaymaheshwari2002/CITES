@@ -17,6 +17,7 @@ import {
   updateFeedbackConfig,
 } from '@services';
 import {setFeedbackId} from '@store/slices/persistedSlice';
+import FormTwoSummary from './FormTwoSummary';
 
 const emojis = [
   {rating: 5, emoji: Images.emojiOne},
@@ -184,10 +185,11 @@ const styles = ScaledSheet.create({
     height: '100%',
     borderRadius: '20@ms',
     borderWidth: 1,
+    ...Fonts.Lato15R,
     borderColor: RawColors.darkGrey,
     textAlignVertical: 'top',
     backgroundColor: 'white',
-    paddingHorizontal: '16@s',
+    paddingHorizontal: '20@s',
     paddingVertical: '16@vs',
   },
   question: {

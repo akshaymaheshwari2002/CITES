@@ -213,7 +213,7 @@ const styles = ScaledSheet.create({
   },
   contentM: {
     color: RawColors.charcoalGrey60,
-    ...Fonts.Lato13R,
+    ...Fonts.Lato15R,
     textAlign: 'left',
   },
   word: {

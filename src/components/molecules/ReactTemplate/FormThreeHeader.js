@@ -80,20 +80,19 @@ const FormThreeHeader = ({
 };
 
 const styles = {
-  marginContainer: {marginRight: 16, marginLeft: 16, marginBottom: 12},
+  marginContainer: {marginRight: 16, marginLeft: 5, marginBottom: 16},
   topContainer: {
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center',
+    alignContent: 'flex-start',
     paddingLeft: '50',
     paddingBottom: 0,
     marginBottom: 0,
   },
   body: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 25,
-    marginLeft: 12,
+    paddingLeft: 30,
+    paddingRight: 30,
+    marginBottom: 0,
   },
   headText: {
     paddingTop: 0,
@@ -102,12 +101,11 @@ const styles = {
     textAlign: 'left',
   },
   number: {
-    textAlignVertical: 'top',
     paddingBottom: 0,
     marginBottom: 0,
     textAlign: 'center',
   },
-  text: {textAlign: 'left', fontSize: 12},
+  text: {textAlign: 'left'},
   mainContainer: {
     border: '2px solid',
     borderWidth: '2px',
@@ -122,6 +120,12 @@ const styles = {
   },
   flex: {display: 'flex', flexDirection: 'row'},
   halfContent: {width: '50%', paddingLeft: 5, paddingRight: 5},
+  lastText: {
+    textAlign: 'left',
+    paddingLeft: 5,
+    paddingRight: 5,
+  },
+  whiteSpace: {whiteSpace: 'nowrap'},
 };
 
 export default FormThreeHeader;

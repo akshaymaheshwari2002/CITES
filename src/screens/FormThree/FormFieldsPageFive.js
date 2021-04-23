@@ -27,7 +27,7 @@ export default (fieldProps = {}) => {
         id: 'form.FormThree.label.facilityInformation',
       }),
       placeholder: formatMessage({
-        id: 'form.FormThree.label.noOfJuvenilesPresentFacilityInfo',
+        id: 'form.placeHolder.number',
       }),
       name: 'noOfJuvenilesPresentFacilityInfo',
       rules: {
@@ -40,7 +40,7 @@ export default (fieldProps = {}) => {
       },
       keyboardType: 'number-pad',
 
-      style: {flex: 2},
+      style: {flex: 3},
       labelRightStyle: {paddingHorizontal: ms(15), flex: 3},
       fieldContainerStyle: {marginBottom: 0},
     },
@@ -50,7 +50,7 @@ export default (fieldProps = {}) => {
         id: 'form.FormThree.label.inspectionInformation',
       }),
       placeholder: formatMessage({
-        id: 'form.FormThree.label.noOfJuvenilesPresentFacilityInfo',
+        id: 'form.placeHolder.number',
       }),
       name: 'noOfJuvenilesPresentInspectionInfo',
       rules: {
@@ -62,14 +62,14 @@ export default (fieldProps = {}) => {
         },
       },
       keyboardType: 'number-pad',
-      style: {flex: 2},
+      style: {flex: 3},
       labelRightStyle: {paddingHorizontal: ms(15), flex: 3},
     },
     {
       defaultValue: '',
       label: formatMessage({id: 'form.FormThree.label.ageAtSexualMaturity'}),
       placeholder: formatMessage({
-        id: 'form.FormThree.label.ageAtSexualMaturity',
+        id: 'form.placeHolder.number',
       }),
       name: 'ageAtSexualMaturity',
       rules: {
@@ -87,7 +87,7 @@ export default (fieldProps = {}) => {
         id: 'form.FormThree.label.sizeOrMassAtSexualMaturity',
       }),
       placeholder: formatMessage({
-        id: 'form.FormThree.label.sizeOrMassAtSexualMaturity',
+        id: 'form.placeHolder.number',
       }),
       name: 'sizeOrMassAtSexualMaturity',
       //rules: {required},
@@ -104,7 +104,7 @@ export default (fieldProps = {}) => {
                 ? RawColors.black
                 : RawColors.black
             }
-            ios_backgroundColor="#3e3e3e"
+            ios_backgroundColor={RawColors.dimGrey}
             onValueChange={(value) => {
               fieldProps.handleUnitsOfSizeOrMass({
                 key: 'cmOrGramOfSizeOrMassAtSexualMaturity',
@@ -124,7 +124,7 @@ export default (fieldProps = {}) => {
         id: 'form.FormThree.label.sizeOrMassAtSaleOrExport',
       }),
       placeholder: formatMessage({
-        id: 'form.FormThree.label.sizeOrMassAtSaleOrExport',
+        id: 'form.placeHolder.number',
       }),
       name: 'sizeOrMassAtSaleOrExport',
       //rules: {required},
@@ -141,7 +141,7 @@ export default (fieldProps = {}) => {
                 ? RawColors.black
                 : RawColors.black
             }
-            ios_backgroundColor="#3e3e3e"
+            ios_backgroundColor={RawColors.dimGrey}
             onValueChange={(value) => {
               fieldProps.handleUnitsOfSizeOrMass({
                 key: 'cmOrGramOfSizeOrMassAtSaleOrExport',
@@ -161,7 +161,7 @@ export default (fieldProps = {}) => {
         id: 'form.FormThree.label.percentageOfJuvenilesSurviveBeyond2Weeks',
       }),
       placeholder: formatMessage({
-        id: 'form.FormThree.label.percentageOfJuvenilesSurviveBeyond2Weeks',
+        id: 'form.placeHolder.number',
       }),
       name: 'percentageOfJuvenilesSurviveBeyond2Weeks',
       rules: {

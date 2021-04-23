@@ -98,7 +98,7 @@
   "form.FormTwo.placeholder.veterinarianAddress": "Address of the veterinarian",
   "form.FormTwo.label.animalKeptAtOtherLocation": "Are animals kept at any other location(s)?",
   "form.FormTwo.label.addressOfOtherAnimalsPartOne": "If yes, what is the address of the location(s)?",
-  "form.FormTwo.label.addressOfOtherAnimalsPartTwo": "Set a reminder to inspect these location(s)",
+  "form.FormTwo.label.addressOfOtherAnimalsPartTwo": "Set a reminder to inspect these location(s)?",
   "form.FormTwo.placeholder.country": "Country",
   "form.FormThree.label.selectSpeciesForm3": "Select species",
   "form.FormThree.label.dateFirstSpeciesAcquired": "Date species first acquired",
@@ -257,7 +257,7 @@
   "screen.FeedbackTwo.headerPartOne": "GIVE",
   "screen.FeedbackTwo.headerPartTwo": "FEEDBACK",
   "screen.FeedbackTwo.question": "How do you rate the app?",
-  "screen.FeedbackTwo.content": "Please share your ideas, comments, and \nsuggestions. \nWhat do you like about the app? ",
+  "screen.FeedbackTwo.content": "Please share your ideas, comments, and \nsuggestions. \n\n\nWhat do you like about the app? ",
   "screen.FeedbackOne.headerPartOne": "THANK",
   "screen.FeedbackOne.headerPartTwo": "YOU",
   "screen.FeedbackOne.contentOne": "We are always working to improve the guidance provided by CITIES so we would love to hear what is useful and working and how we can do better.",
@@ -606,7 +606,7 @@
   "form.Header.formTitle1": "BACKGROUND INFORMATION",
   "form.Header.formTitle2": "FACILITY INFORMATION",
   "form.Header.formTitle3": "SPECIES INFORMATION",
-  "form.Header.formTitle4": "FINAL DETERMINATION",
+  "form.Header.formTitle4": "FACILITY SCORE",
   "form.Header.formTitle5": "INSPECTION",
   "form.Header.formTitle6": "NOTES + PHOTOS",
   "form.Header.facilitySchema1": "Facility name: ",
@@ -623,7 +623,7 @@
   "form.Header.facilitySchema12": "Type of inspection: ",
   "form.Header.facilitySchema13": "National permit number: ",
   "form.Header.facilitySchema14": "Species: ",
-  "form.FormThree.formSchema1": "Date Species first Acquired?",
+  "form.FormThree.formSchema1": "Date species first acquired?",
   "form.FormThree.formSchema2": "Source and life-stage of initial stock?",
   "form.FormThree.formSchema3": "Number of initial stock and sexes? if known ",
   "form.FormThree.formSchema4": " Males? ",
@@ -712,5 +712,6 @@
   "helpText.typeOfInspection.three.subText.two": " of a facility is undertaken on a regular basis.",
   "helpText.typeOfInspection.four.text": "A",
   "helpText.typeOfInspection.four.subText.one": " follow-up inspection",
-  "helpText.typeOfInspection.four.subText.two": " is undertaken to ensure that a facility has complied with any issues raised on a previous initial or routine inspection."
+  "helpText.typeOfInspection.four.subText.two": " is undertaken to ensure that a facility has complied with any issues raised on a previous initial or routine inspection.",
+  "form.placeHolder.number":"Please enter a number"
 }

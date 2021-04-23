@@ -43,7 +43,7 @@ export default () => {
       defaultValue: '',
       label: formatMessage({id: 'form.FormThree.label.numberOfLittersPerYear'}),
       placeholder: formatMessage({
-        id: 'form.FormThree.label.numberOfLittersPerYear',
+        id: 'form.placeHolder.number',
       }),
       name: 'numberOfLittersPerYear',
       //rules: {required},
@@ -55,7 +55,7 @@ export default () => {
         id: 'form.FormThree.label.numberOfOffspringPerLitter',
       }),
       placeholder: formatMessage({
-        id: 'form.FormThree.label.numberOfOffspringPerLitter',
+        id: 'form.placeHolder.number',
       }),
       name: 'numberOfOffspringPerLitter',
       //rules: {required},
@@ -67,7 +67,7 @@ export default () => {
         id: 'form.FormThree.label.numberProducedInPreviousYear',
       }),
       placeholder: formatMessage({
-        id: 'form.FormThree.label.numberProducedInPreviousYear',
+        id: 'form.placeHolder.number',
       }),
       name: 'numberProducedInPreviousYear',
       //rules: {required},
