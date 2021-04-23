@@ -1,4 +1,4 @@
-import React, {useCallback, useState, useEffect} from 'react';
+import React, {useCallback, useState} from 'react';
 import {
   View,
   Text,
@@ -10,6 +10,7 @@ import {
 import {ScaledSheet, vs, s} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 import {useDispatch, useSelector} from 'react-redux';
+import Torch from 'react-native-torch';
 
 import {Container, Button, ImagePickerModal} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
@@ -22,6 +23,7 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
   const {formatMessage} = useIntl();
   const dispatch = useDispatch();
   const [isImagePicker, setIsImagePicker] = useState(false);
+  const [isTorchOn, setIsTorchOn] = useState(false);
   const [notesText, setNotesText] = useState('');
   const [popUp, setPopUp] = useState(false);
 
@@ -39,6 +41,17 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
     setNotesText('');
     setPopUp(false);
   }, [dispatch, notesText]);
+  const handleTorch = useCallback(() => {
+    if (isTorchOn) {
+      console.log('123');
+      setIsTorchOn(false);
+      Torch.switchState(isTorchOn);
+    } else {
+      console.log('321');
+      setIsTorchOn(true);
+      Torch.switchState(isTorchOn);
+    }
+  }, [isTorchOn]);
 
   const renderItem = useCallback(
     ({item}) => {
@@ -97,7 +110,7 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
           </View>
           <View style={styles.backColor}>
             <View style={styles.row}>
-              <TouchableOpacity style={styles.circle} onPress={() => {}}>
+              <TouchableOpacity style={styles.circle} onPress={handleTorch}>
                 <Image source={Images.flashLightButton} />
               </TouchableOpacity>
               <TouchableOpacity
@@ -194,7 +207,7 @@ const styles = ScaledSheet.create({
   },
   button: {
     height: '46@vs',
-    width: '290@s',
+    width: '29@s',
     alignSelf: 'center',
     marginTop: 'auto',
     backgroundColor: RawColors.eggshell,
@@ -206,7 +219,6 @@ const styles = ScaledSheet.create({
     alignItems: 'center',
   },
   row_parent: {
-    width: '341@s',
     minHeight: '20@vs',
     paddingVertical: '15@vs',
     paddingHorizontal: s(16),

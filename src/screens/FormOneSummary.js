@@ -191,13 +191,13 @@ const FormOneSummary = ({navigation, route}) => {
           </Text>
         </View>
         <View style={styles.subHeading}>
-          <Text style={[Fonts.Lato15R, styles.subHeadingText]}>
+          <Text style={styles.subHeadingText}>
             {formatMessage({id: 'screen.FormOneSummary.subHeading_1'})}
           </Text>
-          <Text style={[Fonts.Lato15R, styles.subHeadingText]}>
+          <Text style={styles.subHeadingText}>
             {formatMessage({id: 'screen.FormOneSummary.subHeading_2'})}
           </Text>
-          <Text style={[Fonts.Lato15R, styles.subHeadingText]}>
+          <Text style={styles.subHeadingText}>
             {formatMessage({id: 'screen.FormOneSummary.subHeading_3'})}
           </Text>
         </View>
@@ -291,6 +291,7 @@ const styles = ScaledSheet.create({
   },
   subHeadingText: {
     color: RawColors.charcoalGrey60,
+    ...Fonts.Lato15R,
   },
   pdf: {
     marginTop: '5@vs',
