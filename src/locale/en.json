@@ -713,5 +713,7 @@
   "helpText.typeOfInspection.four.text": "A",
   "helpText.typeOfInspection.four.subText.one": " follow-up inspection",
   "helpText.typeOfInspection.four.subText.two": " is undertaken to ensure that a facility has complied with any issues raised on a previous initial or routine inspection.",
-  "form.placeHolder.number":"Please enter a number"
+  "form.placeHolder.number": "Please enter a number",
+  "consentForm.print.title": "CONSENT FORM",
+  "exampledialogue.print.title": "EXAMPLE DIALOGUE"
 }

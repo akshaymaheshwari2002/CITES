@@ -4,6 +4,7 @@ import FormOneHeader from './ReactTemplate/FormOneHeader';
 import FormThreeHeader from './ReactTemplate/FormThreeHeader';
 import FormTwoTemplate from './ReactTemplate/FormTwoTemplate';
 import ConsentForm from './ReactTemplate/ConsentForm';
+import ExampleDialogueStepTwoTemplate from './ReactTemplate/ExampleDialogueStepTwoTemplate';
 import StepHeader from './StepHeader';
 import ChecklistCell from './ChecklistCell';
 import TextInputArray from './TextInputArray';
@@ -38,6 +39,7 @@ export {
   DatePicker,
   OverlayModal,
   MobileInput,
+  ExampleDialogueStepTwoTemplate,
   FormThreeTemplate,
   FormFourTemplate,
   InspectionNotesTemplate,
