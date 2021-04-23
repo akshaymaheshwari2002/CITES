@@ -713,5 +713,16 @@
   "helpText.typeOfInspection.four.text": "A",
   "helpText.typeOfInspection.four.subText.one": " follow-up inspection",
   "helpText.typeOfInspection.four.subText.two": " is undertaken to ensure that a facility has complied with any issues raised on a previous initial or routine inspection.",
-  "form.placeHolder.number":"Please enter a number"
+  "form.placeHolder.number":"Please enter a number",
+  "consentForm.content1":"CONSENT FORM",
+  "consentForm.content2":"I,",
+  "consentForm.content3":" agree that I have understood the following information and agree that :",
+  "consentForm.content4":"(1) I, as the owner, operator, or agent in charge of the premises, have been informed of my right not to have an inspection made without an inspection warrant;",
+  "consentForm.content5":"(2) have the right to refuse to consent to such an inspection;",
+  "consentForm.content6":"(3) anything of an incriminating nature which may be found may be seized and used against me in a criminal prosecution;",
+  "consentForm.content7":"(4) have been presented with a notice of inspection as set forth in ",
+  "consentForm.content8":"(5) acknowledge that my consent has been given  voluntarily and without threats of any kind;",
+  "consentForm.content9":"(6) can withdraw my consent at any time during the inspection; and",
+  "consentForm.content10":"(c) will be provided with a copy of my written consent."
+
 }

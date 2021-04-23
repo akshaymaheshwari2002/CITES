@@ -117,6 +117,18 @@ const formFourQuestions = {
   q10: 'form.FormFour.q10',
   q11: 'form.FormFour.q11',
 };
+const contentConsent = {
+  title: 'consentForm.content1',
+  point1partOne: 'consentForm.content2',
+  point1partTwo: 'consentForm.content3',
+  point2: 'consentForm.content4',
+  point3: 'consentForm.content5',
+  point4: 'consentForm.content6',
+  point5: 'consentForm.content7',
+  point6: 'consentForm.content8',
+  point7: 'consentForm.content9',
+  point8: 'consentForm.content10',
+};
 
 export {
   formText,
@@ -130,4 +142,5 @@ export {
   outcome,
   formFourSchema,
   formFourQuestions,
+  contentConsent,
 };
