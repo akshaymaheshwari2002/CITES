@@ -35,7 +35,9 @@ const SourceCodeSelection = ({navigation}) => {
                   <>
                     <View style={styles.bottomMargin10}>
                       <Text style={styles.letter}>
-                        {SourceCodeData[item].code}
+                        {formatMessage({
+                          id: SourceCodeData[item].code,
+                        })}
                       </Text>
                       <Text style={styles.letterDescription}>
                         {formatMessage({

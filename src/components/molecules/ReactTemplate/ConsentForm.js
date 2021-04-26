@@ -11,6 +11,7 @@ const ConsentForm = ({name = '', nationalLegislation = '', content = {}}) => {
               <b>{content.point1partOne}</b>
               &nbsp;
               <b>{name}</b>
+              &nbsp;
               {content.point1partTwo}
             </div>
           </div>
