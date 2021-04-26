@@ -41,7 +41,7 @@ const styles = ScaledSheet.create({
     paddingBottom: '7@vs',
   },
   img: {
-    height: '285@vs',
+    height: '245@vs',
     alignSelf: 'center',
     width: '317@s',
     resizeMode: 'contain',
