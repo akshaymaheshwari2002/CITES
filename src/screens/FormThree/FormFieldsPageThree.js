@@ -3,24 +3,25 @@ import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
 import {getIntl} from '@utils/Intl';
 
+
 const lifeStageDropDownList = [
-  'Adult',
-  'Juvenile',
-  'Egg',
-  'Fledgling',
-  'Chick',
-  'Hatchling',
-  'Owlet',
-  'Fry',
-  'Lavae',
-  'Pupa',
-  'Pup',
-  'Spiderling',
-  'Nymph',
-  'Tadpole',
-  'Froglet',
-  'Chrysalis',
-  'Other',
+  {text: 'lifeStgeDropDownList.option1'},
+  {text: 'lifeStgeDropDownList.option2'},
+  {text: 'lifeStgeDropDownList.option3'},
+  {text: 'lifeStgeDropDownList.option4'},
+  {text: 'lifeStgeDropDownList.option5'},
+  {text: 'lifeStgeDropDownList.option6'},
+  {text: 'lifeStgeDropDownList.option7'},
+  {text: 'lifeStgeDropDownList.option8'},
+  {text: 'lifeStgeDropDownList.option9'},
+  {text: 'lifeStgeDropDownList.option10'},
+  {text: 'lifeStgeDropDownList.option11'},
+  {text: 'lifeStgeDropDownList.option12'},
+  {text: 'lifeStgeDropDownList.option13'},
+  {text: 'lifeStgeDropDownList.option14'},
+  {text: 'lifeStgeDropDownList.option15'},
+  {text: 'lifeStgeDropDownList.option16'},
+  {text: 'lifeStgeDropDownList.option17'},
 ];
 
 export default (fieldProps = {}) => {
@@ -60,8 +61,8 @@ export default (fieldProps = {}) => {
       //rules: {required},
       fieldType: Constants.PICKER,
       items: lifeStageDropDownList.map((value) => ({
-        label: value,
-        value: value,
+        label: formatMessage({id: value.text}),
+        value: formatMessage({id: value.text}),
       })),
       multiple: true,
       ...Platform.select({ios: {fieldContainerStyle: {zIndex: 1}}}),
