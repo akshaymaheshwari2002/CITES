@@ -683,5 +683,8 @@
   "helpText.percentageBreedingFemalePerSeason": "Mean percentage % of females breeding per season The mean percentage (proportion) of females producing a clutch or litter per year. This information can be supplied by the facility, but should be confirmed using reliable external sources. For example, enter 70% enter as 0.7.",
   "helpText.countTotalBreedingFemale": "Number of breeding females The total number of breeding females observed or claimed to be at the facility. Enter as a whole number. For example, 50.",
   "helpText.staffCurrentAtFacility": "Hours of employment The number of staff employed will depend on the species cared for, the size of the captive-breeding and/or ranching operation and the complexity of the organization structure. Generally, the more specimens cared for, the more staff are required. Full-time employment is usually considered between 30-40 hours a week Part-time employment is usually less than 30 hours a week.",
-  "helpText.typeOfInspection": "Types of inspections An initial inspection is the first inspection of a facility.A routine inspection of a facility is undertaken on a regular basis. A follow-up inspection is undertaken to ensure that a facility has complied with any issues raised on a previous initial or routine inspection."
+  "helpText.typeOfInspection": "Types of inspections An initial inspection is the first inspection of a facility.A routine inspection of a facility is undertaken on a regular basis. A follow-up inspection is undertaken to ensure that a facility has complied with any issues raised on a previous initial or routine inspection.",
+  "consentForm.print.title": "CONSENT FORM",
+  "exampledialogue.print.title": "EXAMPLE OF DIALOGUE",
+  "form.placeHolder.number": "Please enter a number"
 }
