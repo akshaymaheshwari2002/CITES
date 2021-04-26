@@ -43,8 +43,11 @@ const styles = ScaledSheet.create({
     ...Fonts.Lato20R,
   },
   img: {
+    marginTop: '10@vs',
     aspectRatio: 1.4,
-    height: '400@vs',
+    height: '305@vs',
+    width: '100%',
+    alignSelf: 'center',
   },
 });
 
