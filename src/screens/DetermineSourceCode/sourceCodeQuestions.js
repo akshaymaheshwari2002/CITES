@@ -1,5 +1,4 @@
 import Config from '@config';
-import Constants from '@utils/Constants';
 
 const sourceCodeQuestions = {
   1: {
@@ -9,7 +8,7 @@ const sourceCodeQuestions = {
         isLink: false,
       },
     ],
-    options: [Constants.YES, Constants.NO],
+    options: ['button.yes', 'button.no'],
     moreInfo: {
       isWebResource: false,
       target: 'Q1MoreInfo',
@@ -22,7 +21,7 @@ const sourceCodeQuestions = {
         isLink: false,
       },
     ],
-    options: [Constants.YES, Constants.NO],
+    options: ['button.yes', 'button.no'],
     moreInfo: {
       isWebResource: true,
       target: Config.URL_Q2_MORE_INFO,
@@ -43,7 +42,7 @@ const sourceCodeQuestions = {
         isLink: {isWebSource: true, target: Config.URL_Q3_MORE_INFO},
       },
     ],
-    options: [Constants.YES, Constants.NO],
+    options: ['button.yes', 'button.no'],
     moreInfo: {
       isWebResource: true,
       target: Config.URL_Q3_MORE_INFO,
@@ -56,7 +55,7 @@ const sourceCodeQuestions = {
         isLink: false,
       },
     ],
-    options: [Constants.YES, Constants.NO],
+    options: ['button.yes', 'button.no'],
     moreInfo: {
       isWebResource: false,
       target: 'Q4MoreInfo',
@@ -69,7 +68,7 @@ const sourceCodeQuestions = {
         isLink: false,
       },
     ],
-    options: [Constants.YES, Constants.NO],
+    options: ['button.yes', 'button.no'],
     moreInfo: {
       isWebResource: true,
       target: Config.URL_Q5_MORE_INFO,
@@ -89,7 +88,7 @@ const sourceCodeQuestions = {
         },
       },
     ],
-    options: [Constants.PLANT, Constants.ANIMAL],
+    options: ['button.plant', 'button.animal'],
     moreInfo: false,
   },
   7: {
@@ -99,7 +98,7 @@ const sourceCodeQuestions = {
         isLink: false,
       },
     ],
-    options: [Constants.YES, Constants.NO],
+    options: ['button.yes', 'button.no'],
     moreInfo: false,
   },
   8: {
@@ -109,7 +108,7 @@ const sourceCodeQuestions = {
         isLink: false,
       },
     ],
-    options: [Constants.YES, Constants.NO],
+    options: ['button.yes', 'button.no'],
     moreInfo: {
       isWebResource: true,
       target: Config.URL_Q8_MORE_INFO,
@@ -126,7 +125,7 @@ const sourceCodeQuestions = {
         isLink: {isWebSource: false, target: 'Q9MoreInfo'},
       },
     ],
-    options: [Constants.YES, Constants.NO],
+    options: ['button.yes', 'button.no'],
     moreInfo: {
       isWebResource: false,
       target: 'Q9MoreInfo',
@@ -143,7 +142,7 @@ const sourceCodeQuestions = {
         isLink: {isWebSource: true, target: Config.URL_Q10_MORE_INFO},
       },
     ],
-    options: [Constants.YES, Constants.NO],
+    options: ['button.yes', 'button.no'],
     moreInfo: {
       isWebResource: true,
       target: Config.URL_Q10_MORE_INFO,
@@ -156,7 +155,7 @@ const sourceCodeQuestions = {
         isLink: false,
       },
     ],
-    options: [Constants.YES, Constants.NO],
+    options: ['button.yes', 'button.no'],
     moreInfo: {
       isWebResource: false,
       target: 'Q1MoreInfo',
@@ -177,7 +176,7 @@ const sourceCodeQuestions = {
         isLink: false,
       },
     ],
-    options: [Constants.YES, Constants.NO],
+    options: ['button.yes', 'button.no'],
     moreInfo: {
       isWebResource: true,
       target: Config.URL_Q12_MORE_INFO,
@@ -214,7 +213,7 @@ const sourceCodeQuestions = {
         isLink: false,
       },
     ],
-    options: [Constants.YES, Constants.NO],
+    options: ['button.yes', 'button.no'],
     moreInfo: {
       isWebResource: true,
       target: Config.URL_Q13_MORE_INFO,
@@ -227,7 +226,7 @@ const sourceCodeQuestions = {
         isLink: false,
       },
     ],
-    options: [Constants.YES, Constants.NO],
+    options: ['button.yes', 'button.no'],
     moreInfo: {
       isWebResource: true,
       target: Config.URL_Q14_MORE_INFO,
@@ -248,7 +247,7 @@ const sourceCodeQuestions = {
         isLink: false,
       },
     ],
-    options: [Constants.YES, Constants.NO],
+    options: ['button.yes', 'button.no'],
     moreInfo: {
       isWebResource: false,
       target: 'Q4MoreInfo',
@@ -269,7 +268,7 @@ const sourceCodeQuestions = {
         isLink: false,
       },
     ],
-    options: [Constants.YES, Constants.NO],
+    options: ['button.yes', 'button.no'],
     moreInfo: {
       isWebResource: true,
       target: Config.URL_Q16_MORE_INFO,
@@ -299,7 +298,7 @@ const sourceCodeQuestions = {
       },
     ],
 
-    options: [Constants.YES, Constants.NO],
+    options: ['button.yes', 'button.no'],
     moreInfo: false,
   },
   18: {
@@ -309,7 +308,7 @@ const sourceCodeQuestions = {
         isLink: false,
       },
     ],
-    options: [Constants.APPENDIXI, Constants.APPENDIXII, Constants.APPENDIXIII],
+    options: ['button.appendixI', 'button.appendixII', 'button.appendixIII'],
     moreInfo: false,
   },
   19: {
@@ -319,7 +318,7 @@ const sourceCodeQuestions = {
         isLink: false,
       },
     ],
-    options: [Constants.YES, Constants.NO],
+    options: ['button.yes', 'button.no'],
     moreInfo: {
       isWebResource: true,
       target: Config.URL_Q19_MORE_INFO,
@@ -332,7 +331,7 @@ const sourceCodeQuestions = {
         isLink: false,
       },
     ],
-    options: [Constants.YES, Constants.NO],
+    options: ['button.yes', 'button.no'],
     moreInfo: {
       isWebResource: true,
       target: Config.URL_Q20_MORE_INFO,
@@ -349,7 +348,7 @@ const sourceCodeQuestions = {
         isLink: {isWebSource: false, target: 'Q9MoreInfo'},
       },
     ],
-    options: [Constants.YES, Constants.NO],
+    options: ['button.yes', 'button.no'],
     moreInfo: {
       isWebResource: false,
       target: 'Q9MoreInfo',
@@ -366,7 +365,7 @@ const sourceCodeQuestions = {
         isLink: {isWebSource: true, target: Config.URL_Q22_MORE_INFO},
       },
     ],
-    options: [Constants.YES, Constants.NO],
+    options: ['button.yes', 'button.no'],
     moreInfo: {
       isWebResource: true,
       target: Config.URL_Q22_MORE_INFO,
@@ -383,7 +382,7 @@ const sourceCodeQuestions = {
         isLink: {isWebSource: true, target: Config.URL_Q23_MORE_INFO},
       },
     ],
-    options: [Constants.YES, Constants.NO],
+    options: ['button.yes', 'button.no'],
     moreInfo: {
       isWebResource: true,
       target: Config.URL_Q23_MORE_INFO,
@@ -396,7 +395,7 @@ const sourceCodeQuestions = {
         isLink: false,
       },
     ],
-    options: [Constants.YES, Constants.NO],
+    options: ['button.yes', 'button.no'],
     moreInfo: false,
   },
   25: {
@@ -406,7 +405,7 @@ const sourceCodeQuestions = {
         isLink: false,
       },
     ],
-    options: [Constants.YES, Constants.NO],
+    options: ['button.yes', 'button.no'],
     moreInfo: false,
   },
   26: {
@@ -416,7 +415,7 @@ const sourceCodeQuestions = {
         isLink: false,
       },
     ],
-    options: [Constants.APPENDIXI, Constants.APPENDIXII, Constants.APPENDIXIII],
+    options: ['button.appendixI', 'button.appendixII', 'button.appendixIII'],
     moreInfo: false,
   },
   27: {
@@ -426,7 +425,7 @@ const sourceCodeQuestions = {
         isLink: false,
       },
     ],
-    options: [Constants.YES, Constants.NO],
+    options: ['button.yes', 'button.no'],
     moreInfo: false,
   },
   28: {
@@ -436,7 +435,7 @@ const sourceCodeQuestions = {
         isLink: false,
       },
     ],
-    options: [Constants.YES, Constants.NO],
+    options: ['button.yes', 'button.no'],
     moreInfo: false,
   },
 };

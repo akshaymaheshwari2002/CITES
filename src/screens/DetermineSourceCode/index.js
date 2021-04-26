@@ -20,7 +20,6 @@ import CommonStyles from '@styles/CommonStyles';
 import {Fonts, RawColors} from '@styles/Themes';
 import sourceCodeQuestions from './sourceCodeQuestions';
 import sourceCodeQuestionRelations from './sourceCodeQuestionRelations';
-import Constants from '@utils/Constants';
 
 const {width: screenWidth} = Dimensions.get('window');
 
@@ -59,12 +58,7 @@ const DetermineSourceCode = ({
         sourceCodeQuestionRelations[
           interactedQuestionStack[interactedQuestionStack.length - 1]
         ][optionChoosen];
-      if (
-        typeof resultAction === 'number' ||
-        resultAction === Constants.APPENDIXI ||
-        resultAction === Constants.APPENDIXII ||
-        resultAction === Constants.APPENDIXIII
-      ) {
+      if (typeof resultAction === 'number') {
         setInteractedQuestionStack([...interactedQuestionStack, resultAction]);
       } else if (resultAction === 'exportShouldNotProceed') {
         navigate('NoExport');
@@ -264,15 +258,7 @@ const DetermineSourceCode = ({
             return (
               <Button
                 key={`${index}`}
-                buttonContent={
-                  value === 'AppendixI'
-                    ? formatMessage({id: value})
-                    : value === 'AppendixII'
-                    ? formatMessage({id: value})
-                    : value === 'AppendixIII'
-                    ? formatMessage({id: value})
-                    : value
-                }
+                buttonContent={formatMessage({id: value})}
                 buttonStyle={() => styles.button}
                 buttonTextStyle={() => Fonts.Lato15R}
                 onPress={() => {
