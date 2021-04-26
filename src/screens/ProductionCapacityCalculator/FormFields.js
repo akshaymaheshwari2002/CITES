@@ -2,10 +2,10 @@ import {s} from 'react-native-size-matters';
 
 import getValidators from '@utils/FormValidators';
 import {getIntl} from '@utils/Intl';
-import {Fonts, RawColors} from '@styles/Themes';
+import {RawColors} from '@styles/Themes';
 import {setHelpText} from '@store/slices/sessionSlice';
 import {store} from '@store';
-import HelpText from '@utils/HelpTexts';
+import {getHelpTexts} from '@utils/CommonFunctions';
 
 const resultFieldStyleProps = {
   fontWeight: 'bold',
@@ -59,7 +59,7 @@ export default ({modeSelected}) => {
       labelStyle: modeSelected === 2 ? resultFieldLabelStyleProps : undefined,
       showHelpIcon: true,
       onHelpIconPress: () => {
-        store.dispatch(setHelpText(HelpText.countTotalBreedingFemale));
+        store.dispatch(setHelpText(getHelpTexts().countTotalBreedingFemale));
       },
       keyboardType: 'number-pad',
     },
@@ -84,7 +84,9 @@ export default ({modeSelected}) => {
       },
       showHelpIcon: true,
       onHelpIconPress: () => {
-        store.dispatch(setHelpText(HelpText.percentageBreedingFemalePerSeason));
+        store.dispatch(
+          setHelpText(getHelpTexts().percentageBreedingFemalePerSeason),
+        );
       },
       keyboardType: 'decimal-pad',
     },
@@ -108,7 +110,7 @@ export default ({modeSelected}) => {
       },
       showHelpIcon: true,
       onHelpIconPress: () => {
-        store.dispatch(setHelpText(HelpText.countLitterPerYear));
+        store.dispatch(setHelpText(getHelpTexts().countLitterPerYear));
       },
       keyboardType: 'number-pad',
     },
@@ -132,7 +134,7 @@ export default ({modeSelected}) => {
       },
       showHelpIcon: true,
       onHelpIconPress: () => {
-        store.dispatch(setHelpText(HelpText.countOffspringPerLitter));
+        store.dispatch(setHelpText(getHelpTexts().countOffspringPerLitter));
       },
       keyboardType: 'number-pad',
     },
@@ -157,7 +159,9 @@ export default ({modeSelected}) => {
       },
       showHelpIcon: true,
       onHelpIconPress: () => {
-        store.dispatch(setHelpText(HelpText.percentageSurvivingInTwoWeek));
+        store.dispatch(
+          setHelpText(getHelpTexts().percentageSurvivingInTwoWeek),
+        );
       },
       keyboardType: 'decimal-pad',
     },
@@ -182,7 +186,9 @@ export default ({modeSelected}) => {
           : {},
       showHelpIcon: true,
       onHelpIconPress: () => {
-        store.dispatch(setHelpText(HelpText.approximateYoungProducedPerYear));
+        store.dispatch(
+          setHelpText(getHelpTexts().approximateYoungProducedPerYear),
+        );
       },
       keyboardType: 'number-pad',
       editable: modeSelected === 2,

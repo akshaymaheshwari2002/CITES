@@ -1,14 +1,15 @@
-import React, {useState, useCallback, useEffect} from 'react';
+import React from 'react';
 import {
   Modal,
-  Text,
   View,
   Image,
   TouchableWithoutFeedback,
   TouchableOpacity,
+  useWindowDimensions,
 } from 'react-native';
-import {useIntl} from 'react-intl';
 import {ScaledSheet} from 'react-native-size-matters';
+import HTML from 'react-native-render-html';
+import {decode} from 'he';
 
 import {Container} from '@atoms';
 import SideMenu from './SideMenu';
@@ -22,33 +23,7 @@ const OverlayModal = ({
   helpText,
   isShowSideMenu,
 }) => {
-  const modalWidth = '55%'; // width to be set dynamically according to the content
-  // const [modalViewHeight, setModalViewHeight] = useState(0);
-  // const [contentContainerHeight, setContentContainerHeight] = useState(0);
-
-  // useEffect(() => {
-  //   setModalWidth('55%'); // reset modal width when help text changes
-  // }, [helpText]);
-
-  // useEffect(() => {
-  //   if (
-  //     modalViewHeight &&
-  //     contentContainerHeight &&
-  //     modalViewHeight < contentContainerHeight
-  //   ) {
-  //     increaseWidth();
-  //   }
-  // }, [modalViewHeight, contentContainerHeight, increaseWidth]);
-
-  // const increaseWidth = useCallback(() => {
-  //   if (modalWidth === '50%') {
-  //     setModalWidth('75%');
-  //   } else if (modalWidth === '75%') {
-  //     setModalWidth('100%');
-  //   } else {
-  //   }
-  // }, [modalWidth]);
-  const {formatMessage} = useIntl()
+  const {width} = useWindowDimensions();
 
   return (
     <Modal
@@ -56,139 +31,72 @@ const OverlayModal = ({
       transparent={true}
       visible={isModalVisible}
       onRequestClose={hideModal}>
-      {isShowSideMenu ? (
-        <SideMenu hideModal={hideModal} />
-      ) : (
-        <TouchableWithoutFeedback onPressOut={hideModal} onPressIn={hideModal}>
+      <TouchableWithoutFeedback onPressOut={hideModal}>
+        {isShowSideMenu ? (
+          <SideMenu hideModal={hideModal} />
+        ) : (
           <View style={styles.overlay}>
-            <TouchableWithoutFeedback onPressIn={hideModal}>
-              <View
-                style={[styles.modalView, {width: modalWidth}]}
-                // onLayout={(ev) => {
-                //   const height = ev.nativeEvent.layout.height;
-                //   if (Math.round(height) !== modalViewHeight) {
-                //     setModalViewHeight(Math.round(height));
-                //   }
-                // }}
-              >
-                <View style={styles.iconsContainer}>
-                  <Image source={Images.information} style={styles.helpIcon} />
-                  <TouchableOpacity onPress={hideModal}>
-                    <Image
-                      source={Images.closeButton}
-                      style={styles.crossIcon}
-                    />
-                  </TouchableOpacity>
-                </View>
-                <Container.ScrollView
-                  style={styles.scrollView}
-                  contentContainerStyle={styles.scrollView}>
-                  <View
-                    onStartShouldSetResponder={() => true}
-                    style={styles.contentContainer}
-                    // onLayout={(ev) => {
-                    //   const height = ev.nativeEvent.layout.height;
-                    //   if (Math.round(height) !== contentContainerHeight) {
-                    //     setContentContainerHeight(Math.round(height));
-                    //   }
-                    // }}
-                  >
-                    {helpText
-                      ? helpText.map((value, index) => {
-                          return (
-                            <TouchableOpacity onPressIn={hideModal}>
-                              <Text
-                                key={`text_key_${index}`}
-                                style={
-                                  value.isBold
-                                    ? styles.modalTextBold
-                                    : styles.modalText
-                                }>
-                                {formatMessage({
-                                  id: value.text,
-                                })}
-                                {value.subText && value.subText.length > 0
-                                  ? value.subText.map((value_1, index_1) => {
-                                      return (
-                                        <Text
-                                          key={`sub_text_key_${index_1}`}
-                                          style={
-                                            value_1.isSubBold
-                                              ? {...Fonts.Lato17B}
-                                              : null
-                                          }>
-                                          {formatMessage({
-                                            id: value_1.val,
-                                          })}
-                                        </Text>
-                                      );
-                                    })
-                                  : null}
-                              </Text>
-                            </TouchableOpacity>
-                          );
-                        })
-                      : null}
-                  </View>
-                </Container.ScrollView>
+            <View style={[styles.modalView, {width: width * 0.55}]}>
+              <View style={styles.iconsContainer}>
+                <Image source={Images.information} style={styles.helpIcon} />
+                <TouchableOpacity onPress={hideModal}>
+                  <Image source={Images.closeButton} style={styles.crossIcon} />
+                </TouchableOpacity>
               </View>
-            </TouchableWithoutFeedback>
+              <Container.ScrollView
+                showsVerticalScrollIndicator={false}
+                style={styles.scrollView}>
+                <HTML
+                  source={{html: helpText ? decode(helpText) : ''}}
+                  contentWidth={width * 0.55}
+                  baseFontStyle={styles.modalText}
+                />
+              </Container.ScrollView>
+            </View>
           </View>
-        </TouchableWithoutFeedback>
-      )}
+        )}
+      </TouchableWithoutFeedback>
     </Modal>
   );
 };
 
 const styles = ScaledSheet.create({
   overlay: {
-    ...CommonStyles.flex1,
-    flexGrow: 1,
-    justifyContent: 'center',
+    ...CommonStyles.flexGrow1,
     marginTop: '97@vs',
     marginBottom: '80@vs',
   },
   modalView: {
-    flexGrow: 1,
+    ...CommonStyles.flexGrow1,
     alignSelf: 'flex-end',
     backgroundColor: RawColors.white,
     borderWidth: 1,
     borderColor: RawColors.silverFoil,
-    borderTopLeftRadius: '20@vs',
-    alignItems: 'center',
+    borderTopLeftRadius: '24@ms',
     borderBottomWidth: 1.5,
   },
   helpIcon: {
-    marginRight: '100@s',
-    alignSelf: 'flex-start',
+    height: '36@ms',
+    width: '36@ms',
   },
   crossIcon: {
-    alignSelf: 'flex-end',
-    marginHorizontal: 0,
-    height: '28@s',
-    width: '28@s',
+    height: '28@ms',
+    width: '28@ms',
   },
   iconsContainer: {
     flexDirection: 'row',
-    marginVertical: '10@vs',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginVertical: '12@vs',
+    paddingHorizontal: '16@s',
   },
   scrollView: {
     alignSelf: 'flex-start',
     width: '100%',
+    paddingHorizontal: '16@s',
   },
-  contentContainer: {
-    flex: 1,
-    paddingVertical: '15@vs',
-    paddingHorizontal: '15@ms',
-  },
-  modalTextBold: {
-    marginBottom: '15@vs',
-    textAlign: 'left',
-    ...Fonts.Lato17B,
-  },
-
   modalText: {
-    marginBottom: '15@vs',
+    marginBottom: '16@vs',
     textAlign: 'left',
     ...Fonts.Lato17R,
   },

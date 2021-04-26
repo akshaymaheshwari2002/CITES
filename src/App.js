@@ -12,6 +12,10 @@ import {createIntl} from '@utils/Intl';
 import {OverlayModal} from '@molecules';
 import {setHelpText, setIsShowSideMenu} from '@store/slices/sessionSlice';
 import {Images} from '@assets';
+import {
+  fetchMasterData,
+  masterDataMessagesSelector,
+} from '@store/slices/persistedSlice';
 
 const App = () => {
   const currentTheme = useSelector((state) => state.persistedReducer.theme);
@@ -21,15 +25,23 @@ const App = () => {
     (state) => state.sessionReducer.isShowSideMenu,
   );
   const appReady = useSelector((state) => state.sessionReducer.appReady);
+  const masterDataMessages = useSelector(masterDataMessagesSelector);
   const theme = useMemo(() => Themes[currentTheme] || Themes.DEFAULT, [
     currentTheme,
   ]);
   const dispatch = useDispatch();
-  const intl = useMemo(() => createIntl(locale), [locale]);
+  const intl = useMemo(() => createIntl(locale, masterDataMessages), [
+    locale,
+    masterDataMessages,
+  ]);
 
   useEffect(() => {
     SplashScreen.hide();
   }, []);
+
+  useEffect(() => {
+    dispatch(fetchMasterData());
+  }, [dispatch]);
 
   return (
     <ThemeProvider theme={theme}>

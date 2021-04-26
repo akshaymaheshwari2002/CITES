@@ -7,7 +7,7 @@ import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
 import {getIntl} from '@utils/Intl';
 import {setHelpText} from '@store/slices/sessionSlice';
-import HelpTexts from '@utils/HelpTexts';
+import {getHelpTexts} from '@utils/CommonFunctions';
 
 let countries;
 
@@ -222,7 +222,7 @@ export default () => {
       ],
       showHelpIcon: true,
       onHelpIconPress: () => {
-        store.dispatch(setHelpText(HelpTexts.typeOfInspection));
+        store.dispatch(setHelpText(getHelpTexts().typeOfInspection));
       },
     },
     {

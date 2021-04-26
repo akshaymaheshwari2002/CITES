@@ -44,12 +44,12 @@ export const getDeviceLocale = () => {
   return locale;
 };
 
-export const createIntl = (_locale) => {
+export const createIntl = (_locale, _messages = {}) => {
   const locale =
     _locale ||
     store.getState().persistedReducer.locale ||
     Config.DEFAULT_LOCALE;
-  const messages = getMessages()[locale];
+  const messages = {...getMessages()[locale], ..._messages};
 
   intl = createReactIntl({locale, messages}, cache);
 
