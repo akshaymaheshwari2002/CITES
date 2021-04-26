@@ -48,7 +48,18 @@ const SourceCode = ({navigation, route}) => {
               {formatMessage({id: 'screen.SourceCode.title'})}
             </Text>
             {!(resultSourceCode === 'NotApplicable') ? (
-              <Text style={styles.letter}>{resultSourceCode}</Text>
+              <Text
+                style={
+                  formatMessage({
+                    id: SourceCodeData[resultSourceCode].code,
+                  }).length !== 1
+                    ? styles.letters
+                    : styles.letter
+                }>
+                {formatMessage({
+                  id: SourceCodeData[resultSourceCode].code,
+                })}
+              </Text>
             ) : (
               <Text style={styles.notApplicableText}>
                 {formatMessage({id: 'screen.SourceCode.NotApplicable.letter'})}
@@ -192,6 +203,12 @@ const styles = ScaledSheet.create({
     textAlign: 'center',
     paddingHorizontal: '20@s',
     ...Fonts.Didot80B,
+    alignSelf: 'center',
+  },
+  letters: {
+    textAlign: 'center',
+    paddingHorizontal: '20@s',
+    ...Fonts.Didot56B,
     alignSelf: 'center',
   },
   letterDescription: {

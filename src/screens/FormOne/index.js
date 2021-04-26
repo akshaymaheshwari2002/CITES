@@ -50,17 +50,17 @@ const FormOne = ({navigation}) => {
   const selectedSpeciesId = watch('_id');
   const country = watch('country');
   const sourceCode = [
-    'A',
-    'F',
-    'R',
-    'I',
-    'O',
-    'W',
-    'C',
-    'D',
-    'U',
-    'X',
-    'NotApplicable',
+    {text: 'sourceCodeLetters.A'},
+    {text: 'sourceCodeLetters.F'},
+    {text: 'sourceCodeLetters.R'},
+    {text: 'sourceCodeLetters.I'},
+    {text: 'sourceCodeLetters.O'},
+    {text: 'sourceCodeLetters.W'},
+    {text: 'sourceCodeLetters.C'},
+    {text: 'sourceCodeLetters.D'},
+    {text: 'sourceCodeLetters.U'},
+    {text: 'sourceCodeLetters.X'},
+    {text: 'sourceCodeLetters.NotApplicable'},
   ];
 
   const formFields = useMemo(
@@ -76,12 +76,12 @@ const FormOne = ({navigation}) => {
             },
             _sourceCode: {
               items: sourceCode.map((value) => ({
-                label: value,
-                value: value,
+                label: formatMessage({id: value.text}),
+                value: formatMessage({id: value.text}),
               })),
             },
           }),
-    [formFieldsPage, registeredSpecies, sourceCode],
+    [formFieldsPage, formatMessage, registeredSpecies, sourceCode],
   );
 
   const setActiveFormDataOnMount = useCallback(
