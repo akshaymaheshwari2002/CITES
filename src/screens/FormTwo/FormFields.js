@@ -8,7 +8,7 @@ import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
 import {getIntl} from '@utils/Intl';
 import {setHelpText} from '@store/slices/sessionSlice';
-import HelpTexts from '@utils/HelpTexts';
+import {getHelpTexts} from '@utils/CommonFunctions';
 import {Fonts} from '@styles/Themes';
 
 let countries;
@@ -40,7 +40,7 @@ export default ({
       fieldType: Constants.COUNTER_PAIR,
       showHelpIcon: true,
       onHelpIconPress: () => {
-        store.dispatch(setHelpText(HelpTexts.staffCurrentAtFacility));
+        store.dispatch(setHelpText(getHelpTexts().staffCurrentAtFacility));
       },
       shouldChange: (value) => {
         if (typeof value === 'number' || typeof value === 'string') {
@@ -70,7 +70,9 @@ export default ({
       ],
       showHelpIcon: true,
       onHelpIconPress: () => {
-        store.dispatch(setHelpText(HelpTexts.professionalVeterinaryServices));
+        store.dispatch(
+          setHelpText(getHelpTexts().professionalVeterinaryServices),
+        );
       },
     },
     {
@@ -131,7 +133,7 @@ export default ({
       ],
       showHelpIcon: true,
       onHelpIconPress: () => {
-        store.dispatch(setHelpText(HelpTexts.animalsOtherLocation));
+        store.dispatch(setHelpText(getHelpTexts().animalsOtherLocation));
       },
     },
     {

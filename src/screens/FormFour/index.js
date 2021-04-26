@@ -6,7 +6,7 @@ import {ScaledSheet, ms} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 import Icon from 'react-native-vector-icons/Feather';
 
-import HelpText from '@utils/HelpTexts';
+import {getHelpTexts} from '@utils/CommonFunctions';
 import {store} from '@store';
 import {Button, Container} from '@atoms';
 import {saveInspection} from '@store/slices/sessionSlice';
@@ -184,7 +184,9 @@ const FormFour = ({navigation: {navigate, goBack, setOptions}}) => {
             onPress={() => {
               store.dispatch(
                 setHelpText(
-                  HelpText[form4Questions[questionNumber].moreInfo.helpTextKey],
+                  getHelpTexts()[
+                    form4Questions[questionNumber].moreInfo.helpTextKey
+                  ],
                 ),
               );
             }}

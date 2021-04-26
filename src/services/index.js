@@ -2,6 +2,12 @@ import Config from '@config';
 
 const BASE_URL = Config.BACKEND_BASE_URL;
 
+export const getMasterDataConfig = () => ({
+  url: `${BASE_URL}/v1/appDatas`,
+  method: 'GET',
+  headers: {'Content-Type': 'application/json'},
+});
+
 export const createFeedbackConfig = () => ({
   url: `${BASE_URL}/v1/feedbacks`,
   method: 'POST',

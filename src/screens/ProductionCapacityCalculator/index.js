@@ -14,7 +14,6 @@ const resultFieldStyleProps = {
   fontWeight: 'bold',
   color: RawColors.black,
   borderWidth: 3,
-  margingTop: vs(200),
   borderColor: RawColors.black,
 };
 const resultFieldLabelStyleProps = {

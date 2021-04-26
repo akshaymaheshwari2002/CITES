@@ -4,6 +4,9 @@ import {renderToStaticMarkup} from 'react-dom/server';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 
 import {getIntl} from './Intl';
+import {store} from '@store';
+import Config from '@config';
+import HelpTexts from '@utils/HelpTexts.json';
 
 export const isJSONParsable = (string) => {
   try {
@@ -165,4 +168,18 @@ export const getInputFieldElementForFormSummary = ({
       }}
     />
   );
+};
+
+export const getHelpTexts = () => {
+  const {locale, masterData} = store.getState().persistedReducer;
+  const masterDataHelpTexts =
+    masterData.find((data) => data.locale === (locale || Config.DEFAULT_LOCALE))
+      ?.helpTexts ?? {};
+  const intl = getIntl(locale);
+  const defaultHelpTexts = Object.keys(HelpTexts).reduce(
+    (acc, key) => ({...acc, [key]: intl.formatMessage({id: HelpTexts[key]})}),
+    {},
+  );
+
+  return {...defaultHelpTexts, ...masterDataHelpTexts};
 };
