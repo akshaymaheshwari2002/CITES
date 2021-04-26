@@ -88,7 +88,7 @@ const Q9MoreInfo = () => {
               </Text>
             </View>
           ))}
-          <Text style={[Fonts.Lato15B, styles.contentOne, styles.itemHeadline]}>
+          <Text style={[Fonts.Lato20B, styles.contentOne, styles.itemHeadline]}>
             {formatMessage({id: 'screen.q9MoreInfo.contentNine'})}
           </Text>
           <Text style={[Fonts.Lato20R, styles.itemHeadline]}>
@@ -114,8 +114,8 @@ const styles = ScaledSheet.create({
     alignItems: 'center',
   },
   title: {
-    marginLeft: '40@s',
-    marginTop: '20@s',
+    marginLeft: '26@s',
+    marginVertical: '25@vs',
   },
   titleContent: {
     ...Fonts.HelveticaNeue30B,

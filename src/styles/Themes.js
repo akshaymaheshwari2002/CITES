@@ -60,6 +60,10 @@ const Fonts = {
     fontFamily: 'Didot',
     fontSize: moderateScale(56),
   },
+  Didot28B: {
+    fontFamily: 'Didot',
+    fontSize: moderateScale(28),
+  },
   Italic13R: {
     fontStyle: 'italic',
     fontSize: moderateScale(13),
