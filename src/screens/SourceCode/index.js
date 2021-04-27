@@ -208,7 +208,7 @@ const styles = ScaledSheet.create({
   letters: {
     textAlign: 'center',
     paddingHorizontal: '20@s',
-    ...Fonts.Didot56B,
+    ...Fonts.Didot28B,
     alignSelf: 'center',
   },
   letterDescription: {
