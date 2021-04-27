@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "603516466875",
+    "project_id": "cites-dev",
+    "storage_bucket": "cites-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603516466875:android:8ecc152e46027991addb9e",
+        "android_client_info": {
+          "package_name": "com.rnboilerplate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "603516466875-j1rm7pc2h05s431f8mkuep91oh91e8di.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmEJJfBlx7fMA6_pHRax0Q3UnOc7NijHM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "603516466875-j1rm7pc2h05s431f8mkuep91oh91e8di.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
