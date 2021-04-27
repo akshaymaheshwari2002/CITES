@@ -37,7 +37,7 @@ const Search = ({navigation}) => {
       ) {
         section = 'STEP TWO';
       }
-      if (route === 'FormFour' || route) {
+      if (route === 'FormFour') {
         section = 'STEP THREE';
       }
       if (element?.toLowerCase()?.includes(searchString.toLowerCase())) {
@@ -45,7 +45,7 @@ const Search = ({navigation}) => {
           key: messagesKeys[index],
           value: element,
           targetRoute: messagesKeys[index].split('.')[1],
-          section: section ? section : route,
+          section: section === '' ? route : section,
         });
       }
     }
