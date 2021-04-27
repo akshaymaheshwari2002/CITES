@@ -259,8 +259,8 @@ const FormOneSummaryEdit = ({navigation}) => {
       />
       <View style={styles.slideBtnContainerStep}>
         <TouchableOpacity style={styles.slideBtn} onPress={handleSubmit}>
-          <View style={styles.row}>
-            <View style={[styles.padding16, styles.marginDimension]}>
+          <View style={[CommonStyles.flexRow, CommonStyles.justifySpaceEvenly]}>
+            <View>
               <Text style={styles.text}>
                 {formatMessage({id: 'general.save'})}
               </Text>
@@ -268,7 +268,7 @@ const FormOneSummaryEdit = ({navigation}) => {
                 {formatMessage({id: 'general.changes'})}
               </Text>
             </View>
-            <View style={styles.justifyContent}>
+            <View style={CommonStyles.centerContent}>
               <Icon name="chevron-right" size={ms(22)} />
             </View>
           </View>
@@ -278,8 +278,8 @@ const FormOneSummaryEdit = ({navigation}) => {
         <TouchableOpacity
           style={[styles.slideBtn, styles.borderStyle]}
           onPress={() => navigation.goBack()}>
-          <View style={styles.row}>
-            <View style={styles.padding16}>
+          <View style={[CommonStyles.flexRow, CommonStyles.justifySpaceEvenly]}>
+            <View>
               <Text style={styles.text}>
                 {formatMessage({id: 'general.discard'})}
               </Text>
@@ -287,8 +287,8 @@ const FormOneSummaryEdit = ({navigation}) => {
                 {formatMessage({id: 'general.changes'})}
               </Text>
             </View>
-            <View style={styles.justifyContent}>
-              <Icon name="x" size={ms(26)} />
+            <View style={CommonStyles.centerContent}>
+              <Icon name="x" size={ms(18)} />
             </View>
           </View>
         </TouchableOpacity>
@@ -306,8 +306,8 @@ const styles = ScaledSheet.create({
   title: {
     lineHeight: '35@ms',
     textTransform: 'uppercase',
-    ...Fonts.HelveticaNeue30B,
-    width: '170@s',
+    ...Fonts.HelveticaNeue28B,
+    width: '190@s',
   },
   subHeading: {
     paddingHorizontal: '16@s',
@@ -321,17 +321,15 @@ const styles = ScaledSheet.create({
     position: 'absolute',
     top: '16@vs',
     right: 0,
-    paddingLeft: '5@s',
   },
   slideBtnContainerEdit: {
     position: 'absolute',
     top: '85@vs',
     right: 0,
-    paddingLeft: '5@s',
   },
   slideBtn: {
     height: '50@vs',
-    width: '160@s',
+    width: '140@s',
     backgroundColor: RawColors.beige,
     justifyContent: 'center',
     borderTopLeftRadius: '8@ms',
@@ -339,27 +337,16 @@ const styles = ScaledSheet.create({
     borderWidth: 1,
     borderColor: 'black',
   },
-  borderStyle: {
-    borderStyle: 'dashed',
-    borderRadius: 1,
-    borderWidth: 1,
-  },
-  row: {
-    flexDirection: 'row',
-  },
   text: {
     ...Fonts.Lato15B,
     alignSelf: 'flex-end',
     textTransform: 'uppercase',
   },
-  padding16: {
-    padding: '16@ms',
-  },
-  justifyContent: {
-    justifyContent: 'center',
-  },
-  marginDimension: {
-    marginLeft: '6@ms',
+  borderStyle: {
+    borderStyle: 'dashed',
+    borderTopLeftRadius: '8@ms',
+    borderBottomLeftRadius: '8@ms',
+    borderWidth: 1,
   },
 });
 
