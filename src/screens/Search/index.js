@@ -23,11 +23,29 @@ const Search = ({navigation}) => {
     let __searchResults = [];
     for (let index = 0; index < messagesKeys.length; index++) {
       const element = intlMessages[messagesKeys[index]];
+      const route = messagesKeys[index].split('.')[1];
+      let section = '';
+      if (route === 'FormOne') {
+        section = 'STEP ONE';
+      }
+      if (
+        route === 'FormTwo' ||
+        route === 'FormThree' ||
+        route === 'FormOneSummary' ||
+        route === 'FormTwoSummary' ||
+        route === 'FormThreeSummary'
+      ) {
+        section = 'STEP TWO';
+      }
+      if (route === 'FormFour') {
+        section = 'STEP THREE';
+      }
       if (element?.toLowerCase()?.includes(searchString.toLowerCase())) {
         __searchResults.push({
           key: messagesKeys[index],
           value: element,
           targetRoute: messagesKeys[index].split('.')[1],
+          section: section === '' ? route : section,
         });
       }
     }
@@ -83,7 +101,7 @@ const Search = ({navigation}) => {
                     <>
                       <View style={styles.resultWrapper}>
                         <Text style={[styles.text, {...Fonts.Lato20B}]}>
-                          {el.targetRoute}
+                          {el.section}
                         </Text>
                         <Text numberOfLines={2} style={styles.text}>
                           {el.value}

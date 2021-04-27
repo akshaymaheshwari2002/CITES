@@ -180,7 +180,7 @@ const styles = ScaledSheet.create({
   titleOne: {
     ...Fonts.HelveticaNeue30B,
     letterSpacing: '0.48@s',
-    marginLeft: '15@s',
+    marginHorizontal: '15@s',
     marginTop: '25@s',
   },
   nogap: {marginTop: 0},
@@ -188,8 +188,8 @@ const styles = ScaledSheet.create({
   contentText: {
     ...Fonts.Lato15R,
     color: RawColors.charcoalGrey60,
-    marginVertical: '15@vs',
-    marginHorizontal: '20@s',
+    marginVertical: '25@vs',
+    marginHorizontal: '15@s',
   },
   backColor: {
     backgroundColor: RawColors.white,
