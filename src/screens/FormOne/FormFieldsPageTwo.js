@@ -70,6 +70,7 @@ export default (fieldProps = {}) => {
       placeholder: formatMessage({id: 'form.FormOne.placeholder.sourceCode'}),
       name: 'sourceCodeOfPreviousExport',
       fieldType: Constants.PICKER,
+      ...Platform.select({ios: {fieldContainerStyle: {zIndex: 1}}}),
       ...fieldProps._sourceCode,
       // rules: {
       //   // required,

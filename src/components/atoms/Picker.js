@@ -36,7 +36,7 @@ const Picker = React.forwardRef(
       <>
         <View style={styles.labelContainer}>
           {label ? (
-            <Text style={[CommonStyles.flex1, Fonts.Lato15R]}>{label}</Text>
+            <Text style={[CommonStyles.flex1, Fonts.Lato15B]}>{label}</Text>
           ) : null}
           {showHelpIcon ? (
             <TouchableOpacity onPress={onHelpIconPress}>
@@ -89,6 +89,8 @@ const styles = ScaledSheet.create({
     backgroundColor: RawColors.lightGrey,
   },
   dropDownStyle: {
+    borderWidth: 1,
+    borderColor: RawColors.dimGrey,
     backgroundColor: RawColors.lightGrey,
   },
   error: {

@@ -49,6 +49,7 @@ export default (fieldProps = {}) => {
       }),
       name: 'sourceCodeInitialStock',
       fieldType: Constants.PICKER,
+      ...Platform.select({ios: {fieldContainerStyle: {zIndex: 1}}}),
       ...fieldProps._sourceCode,
       // rules: {
       //   required,

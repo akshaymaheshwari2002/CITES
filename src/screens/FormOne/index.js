@@ -283,6 +283,9 @@ const FormOne = ({navigation}) => {
                 <Button
                   onPress={handleSubmit(_handleSubmit)}
                   buttonContent={formatMessage({id: 'button.saveAndAdd'})}
+                  buttonStyle={() => ({
+                    zIndex: -10,
+                  })}
                 />
               ) : null}
               <Button

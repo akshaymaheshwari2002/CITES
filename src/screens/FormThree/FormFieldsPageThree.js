@@ -3,7 +3,6 @@ import Constants from '@utils/Constants';
 import getValidators from '@utils/FormValidators';
 import {getIntl} from '@utils/Intl';
 
-
 const lifeStageDropDownList = [
   {text: 'lifeStgeDropDownList.option1'},
   {text: 'lifeStgeDropDownList.option2'},
