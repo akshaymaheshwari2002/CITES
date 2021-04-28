@@ -1,7 +1,8 @@
 import React from 'react';
 import {ImageBackground, Text, View, Image} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
+import {ScaledSheet, s, ms} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
+import {useSelector} from 'react-redux';
 
 import {Container, Button} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
@@ -9,6 +10,8 @@ import {Images} from '@assets';
 
 const InspectionFlow = ({navigation}) => {
   const {formatMessage} = useIntl();
+  const locale = useSelector((state) => state.persistedReducer.locale);
+
   return (
     <Container>
       <ImageBackground
@@ -22,17 +25,28 @@ const InspectionFlow = ({navigation}) => {
               style={styles.eye}
               resizeMode="contain"
             />
-            <View style={({flexDirection: 'column'}, styles.header)}>
-              <Text>
-                {formatMessage({id: 'screen.InspectionFlow.headerPartTwo'})}
-              </Text>
-              <Text>
-                {formatMessage({id: 'screen.InspectionFlow.headerPartThree'})}
-              </Text>
-              <Text>
-                {formatMessage({id: 'screen.InspectionFlow.headerPartFour'})}
-              </Text>
-            </View>
+
+            <Text
+              style={[
+                styles.header,
+                {lineHeight: locale === 'km' ? s(32) : ms(26)},
+              ]}>
+              {formatMessage({id: 'screen.InspectionFlow.headerPartTwo'})}
+            </Text>
+            <Text
+              style={[
+                styles.header,
+                {lineHeight: locale === 'km' ? s(32) : ms(26)},
+              ]}>
+              {formatMessage({id: 'screen.InspectionFlow.headerPartThree'})}
+            </Text>
+            <Text
+              style={[
+                styles.header,
+                {lineHeight: locale === 'km' ? s(32) : ms(26)},
+              ]}>
+              {formatMessage({id: 'screen.InspectionFlow.headerPartFour'})}
+            </Text>
           </View>
 
           <View style={styles.contentContainer}>
@@ -141,11 +155,10 @@ const styles = ScaledSheet.create({
   },
   header: {
     color: RawColors.darkGreyBlue,
-    ...Fonts.HelveticaNeue25B,
+    ...Fonts.HelveticaNeue26B,
     width: '290@s',
     textAlign: 'right',
     paddingLeft: '1@s',
-    lineHeight: '30@s',
     letterSpacing: '0.45@ms',
   },
   contentContainer: {

@@ -23,6 +23,7 @@ const LanguageSelection = ({navigation}) => {
     },
     [dispatch, navigation],
   );
+
   setTimeout(() => {
     dispatch(setAppReady(true));
   }, 1000);

@@ -7,8 +7,8 @@ import {
   Pressable,
 } from 'react-native';
 import {useIntl} from 'react-intl';
-import {ScaledSheet, ms} from 'react-native-size-matters';
-import {useDispatch} from 'react-redux';
+import {ScaledSheet, ms, s} from 'react-native-size-matters';
+import {useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import {RawColors, Fonts} from '@styles/Themes';
@@ -23,6 +23,7 @@ const BeginInspection = ({navigation, route}) => {
   const {formatMessage} = useIntl();
   const windowWidth = useWindowDimensions().height;
   const dispatch = useDispatch();
+  const locale = useSelector((state) => state.persistedReducer.locale);
 
   useEffect(() => {
     navigation.setOptions({
@@ -69,16 +70,26 @@ const BeginInspection = ({navigation, route}) => {
             startXPos={windowWidth}
             elevatedYValue={0}
             startYPos={0}>
-            <Text style={styles.title}>
-              <Text>
-                {formatMessage({id: 'screen.StepsSummary.headerPartOne'})}
-              </Text>
-              <Text>
-                {formatMessage({id: 'screen.StepsSummary.headerPartTwo'})}
-              </Text>
-              <Text>
-                {formatMessage({id: 'screen.StepsSummary.headerPartThree'})}
-              </Text>
+            <Text
+              style={[
+                styles.title,
+                {lineHeight: locale === 'km' ? s(30) : ms(28)},
+              ]}>
+              {formatMessage({id: 'screen.StepsSummary.headerPartOne'})}
+            </Text>
+            <Text
+              style={[
+                styles.title,
+                {lineHeight: locale === 'km' ? s(30) : ms(28)},
+              ]}>
+              {formatMessage({id: 'screen.StepsSummary.headerPartTwo'})}
+            </Text>
+            <Text
+              style={[
+                styles.title,
+                {lineHeight: locale === 'km' ? s(30) : ms(28)},
+              ]}>
+              {formatMessage({id: 'screen.StepsSummary.headerPartThree'})}
             </Text>
           </AnimatedView>
           <View style={styles.pointsContainer}>
@@ -158,7 +169,6 @@ const styles = ScaledSheet.create({
   },
   title: {
     ...Fonts.HelveticaNeue25B,
-    lineHeight: '28@s',
     letterSpacing: '0.48@ms',
     flexDirection: 'row',
   },
@@ -173,12 +183,12 @@ const styles = ScaledSheet.create({
     width: '100@s',
     alignItems: 'center',
   },
-  pointOne: {marginLeft: '108@s'},
+  pointOne: {marginLeft: '130@s'},
   pointTwo: {
     paddingVertical: '36@vs',
     marginLeft: '146@s',
   },
-  pointThree: {marginLeft: '108@s'},
+  pointThree: {marginLeft: '100@s'},
   numberContainer: {
     height: '40@ms',
     width: '40@ms',
@@ -193,12 +203,12 @@ const styles = ScaledSheet.create({
   },
   pointTitle: {
     ...Fonts.HelveticaNeue25B,
-    lineHeight: '25@ms',
+    lineHeight: '30@s',
     color: RawColors.darkGrey,
   },
   pointContent: {
     ...Fonts.Lato14R,
-    lineHeight: '14@ms',
+    lineHeight: '30@s',
     color: RawColors.darkGrey,
   },
   button: {
