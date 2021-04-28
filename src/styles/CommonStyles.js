@@ -51,4 +51,7 @@ export default ScaledSheet.create({
     shadowRadius: 2,
     elevation: 5,
   },
+  justifySpaceEvenly: {
+    justifyContent: 'space-evenly',
+  },
 });

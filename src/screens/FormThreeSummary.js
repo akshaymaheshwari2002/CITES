@@ -1,26 +1,16 @@
-import React, {useState, useMemo, useCallback, useEffect} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  BackHandler,
-  Pressable,
-} from 'react-native';
+import React, {useState, useMemo, useCallback} from 'react';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import Pdf from 'react-native-pdf';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {useFocusEffect, useIsFocused} from '@react-navigation/native';
+import {useFocusEffect} from '@react-navigation/native';
 import {format} from 'date-fns';
 import {shallowEqual, useSelector} from 'react-redux';
 
 import {Container} from '@atoms';
-import {
-  FormThreeTemplate,
-  FormThreeHeader,
-  PopupFormEditMenu,
-} from '@molecules';
+import {FormThreeTemplate, FormThreeHeader} from '@molecules';
 import {Fonts, RawColors} from '@styles/Themes';
 import {generatePdf} from '@utils/CommonFunctions';
 import CommonStyles from '@styles/CommonStyles';
@@ -44,8 +34,6 @@ const formatFormThreeDataToDisplay = (data) => ({
 const FormThreeSummary = ({navigation, route}) => {
   const {formatMessage} = useIntl();
   const [fileUri, setFileUri] = useState(undefined);
-  const [isShowFormEditMenu, setIsShowFormEditMenu] = useState(false);
-  const isCurrentScreenFocused = useIsFocused();
   const registeredSpecies = useSelector(
     (state) => state.sessionReducer.activeInspection.registeredSpecies,
     shallowEqual,
@@ -167,40 +155,6 @@ const FormThreeSummary = ({navigation, route}) => {
     ]),
   );
 
-  // const handleBackPress = useCallback(() => {
-  //   if (isShowFormEditMenu) {
-  //     setIsShowFormEditMenu(false);
-  //   } else {
-  //     navigation.goBack();
-  //   }
-  // }, [isShowFormEditMenu, navigation]);
-
-  // useEffect(() => {
-  //   navigation.setOptions({
-  //     headerLeft: () => (
-  //       <Pressable hitSlop={10} onPress={handleBackPress}>
-  //         <Icon name="chevron-left" size={ms(18)} />
-  //       </Pressable>
-  //     ),
-  //   });
-  // }, [handleBackPress, navigation]);
-
-  // useEffect(() => {
-  //   BackHandler.addEventListener('hardwareBackPress', onbackPress);
-  //   return () => {
-  //     BackHandler.removeEventListener('hardwareBackPress', onbackPress);
-  //   };
-  // }, [onbackPress, isShowFormEditMenu, isCurrentScreenFocused]);
-
-  // const onbackPress = useCallback(() => {
-  //   if (isCurrentScreenFocused && isShowFormEditMenu) {
-  //     setIsShowFormEditMenu(false);
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }, [isCurrentScreenFocused, isShowFormEditMenu]);
-
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
@@ -235,8 +189,8 @@ const FormThreeSummary = ({navigation, route}) => {
           onPress={() => {
             navigation.navigate('StepTwo');
           }}>
-          <View style={styles.row}>
-            <View style={[styles.padding16, styles.marginDimension]}>
+          <View style={[CommonStyles.flexRow, CommonStyles.justifySpaceEvenly]}>
+            <View>
               <Text style={styles.text}>
                 {formatMessage({id: 'screen.FormOneSummary.continueTo'})}
               </Text>
@@ -244,7 +198,7 @@ const FormThreeSummary = ({navigation, route}) => {
                 {formatMessage({id: 'screen.FormOneSummary.stepTwo'})}
               </Text>
             </View>
-            <View style={styles.justifyContent}>
+            <View style={CommonStyles.centerContent}>
               <Icon name="chevron-right" size={ms(22)} />
             </View>
           </View>
@@ -253,14 +207,11 @@ const FormThreeSummary = ({navigation, route}) => {
       <View style={styles.slideBtnContainerEdit}>
         <TouchableOpacity
           style={[styles.slideBtn, styles.borderStyle]}
-          // onPress={() => {
-          //   setIsShowFormEditMenu(true);
-          // }}
           onPress={() => {
             navigation.navigate('FormThreeSummaryEdit');
           }}>
-          <View style={styles.row}>
-            <View style={styles.padding16}>
+          <View style={[CommonStyles.flexRow, CommonStyles.justifySpaceEvenly]}>
+            <View>
               <Text style={styles.text}>
                 {formatMessage({id: 'screen.FormOneSummary.edit'})}
               </Text>
@@ -268,18 +219,12 @@ const FormThreeSummary = ({navigation, route}) => {
                 {formatMessage({id: 'screen.FormOneSummary.information'})}
               </Text>
             </View>
-
-            <View style={styles.justifyContent}>
+            <View style={CommonStyles.centerContent}>
               <FeatherIcon name="plus" size={ms(18)} />
             </View>
           </View>
         </TouchableOpacity>
       </View>
-      {/* <PopupFormEditMenu
-        formNumber={3}
-        isShowFormEditMenu={isShowFormEditMenu}
-        setIsShowFormEditMenu={setIsShowFormEditMenu}
-      /> */}
     </Container>
   );
 };
@@ -288,15 +233,15 @@ const styles = ScaledSheet.create({
   flexGrow: {flexGrow: 1},
   titleView: {
     paddingHorizontal: '16@s',
-    paddingVertical: '16@vs',
+    paddingTop: '16@vs',
     backgroundColor: RawColors.white,
   },
   ScrollViewStyle: {flexGrow: 1, backgroundColor: RawColors.white},
   title: {
     lineHeight: '35@ms',
     textTransform: 'uppercase',
-    ...Fonts.HelveticaNeue30B,
-    width: '170@s',
+    ...Fonts.HelveticaNeue28B,
+    width: '190@s',
   },
   subHeading: {
     paddingHorizontal: '16@s',
@@ -316,17 +261,15 @@ const styles = ScaledSheet.create({
     position: 'absolute',
     top: '16@vs',
     right: 0,
-    paddingLeft: '5@s',
   },
   slideBtnContainerEdit: {
     position: 'absolute',
     top: '85@vs',
     right: 0,
-    paddingLeft: '5@s',
   },
   slideBtn: {
     height: '50@vs',
-    width: '160@s',
+    width: '140@s',
     backgroundColor: RawColors.beige,
     justifyContent: 'center',
     borderTopLeftRadius: '8@ms',
@@ -334,27 +277,16 @@ const styles = ScaledSheet.create({
     borderWidth: 1,
     borderColor: 'black',
   },
-  row: {
-    flexDirection: 'row',
-  },
   text: {
     ...Fonts.Lato15B,
     alignSelf: 'flex-end',
     textTransform: 'uppercase',
   },
-  padding16: {
-    padding: '16@ms',
-  },
-  justifyContent: {
-    justifyContent: 'center',
-  },
   borderStyle: {
     borderStyle: 'dashed',
-    borderRadius: 1,
+    borderTopLeftRadius: '8@ms',
+    borderBottomLeftRadius: '8@ms',
     borderWidth: 1,
-  },
-  marginDimension: {
-    marginLeft: '6@ms',
   },
 });
 
