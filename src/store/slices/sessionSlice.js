@@ -41,18 +41,22 @@ export const saveNotes = createAsyncThunk(
   'saveNotes',
   async (payload, {getState}) => {
     const activeInspectionId = getState().sessionReducer.activeInspection._id;
-    const notes = [...getState().sessionReducer.activeInspection.notes];
+    let notes = [...getState().sessionReducer.activeInspection.notes];
     const photos = [...getState().sessionReducer.activeInspection.photos];
 
     if (payload.notes) {
-      notes.push(payload.notes);
+      if (typeof payload.notes === 'object' && !Array.isArray(payload.notes)) {
+        notes.push(payload.notes);
+      } else if (Array.isArray(payload.notes)) {
+        notes = payload.notes;
+      }
     }
 
     if (payload.photos) {
       photos.push(payload.photos);
     }
 
-    const upsertedData = await upsert(
+    const upsertedData = upsert(
       'Inspection',
       new Inspection({
         _id: activeInspectionId,
