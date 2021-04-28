@@ -2,6 +2,7 @@ import React, {useState, useMemo, useEffect, useCallback} from 'react';
 import {View, Text} from 'react-native';
 import {s, vs, ScaledSheet} from 'react-native-size-matters';
 import {useSelector} from 'react-redux';
+import {useIntl} from 'react-intl';
 
 import {Container, TextInput, Button} from '@atoms';
 import CommonStyles from '@styles/CommonStyles';
@@ -9,6 +10,7 @@ import {getIntl} from '@utils/Intl';
 import {RawColors, Fonts} from '@styles/Themes';
 
 const Search = ({navigation}) => {
+  const {formatMessage} = useIntl();
   const [searchString, setSearchString] = useState('');
   const [searchResultFiltered, setSearchResultFilterd] = useState([]);
   const locale = useSelector((state) => state.persistedReducer.locale);
@@ -25,20 +27,32 @@ const Search = ({navigation}) => {
       const element = intlMessages[messagesKeys[index]];
       const route = messagesKeys[index].split('.')[1];
       let section = '';
-      if (route === 'FormOne') {
-        section = 'STEP ONE';
+      if (
+        route === 'FormOne' ||
+        route === 'ExampleDialogueConsentFormStep2' ||
+        route === 'FacilityRegistered' ||
+        route === 'FacilityInfringement'
+      ) {
+        section = formatMessage({
+          id: 'drawer.stepOne',
+        });
       }
       if (
         route === 'FormTwo' ||
         route === 'FormThree' ||
         route === 'FormOneSummary' ||
         route === 'FormTwoSummary' ||
-        route === 'FormThreeSummary'
+        route === 'FormThreeSummary' ||
+        route === 'ExampleDialogueStep2'
       ) {
-        section = 'STEP TWO';
+        section = formatMessage({
+          id: 'drawer.stepTwo',
+        });
       }
-      if (route === 'FormFour') {
-        section = 'STEP THREE';
+      if (route === 'FormFour' || route === 'ExampleDialogueStep3') {
+        section = formatMessage({
+          id: 'drawer.stepThree',
+        });
       }
       if (element?.toLowerCase()?.includes(searchString.toLowerCase())) {
         __searchResults.push({
@@ -64,7 +78,7 @@ const Search = ({navigation}) => {
     });
 
     setSearchResultFilterd(__searchResults);
-  }, [intlMessages, routeNames, searchString]);
+  }, [formatMessage, intlMessages, routeNames, searchString]);
 
   useEffect(() => {
     if (searchString) {
