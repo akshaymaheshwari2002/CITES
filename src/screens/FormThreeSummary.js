@@ -245,7 +245,7 @@ const styles = ScaledSheet.create({
   },
   subHeading: {
     paddingHorizontal: '16@s',
-    marginTop: '10@vs',
+    marginTop: '3@vs',
     width: '200@s',
   },
   subHeadingText: {
