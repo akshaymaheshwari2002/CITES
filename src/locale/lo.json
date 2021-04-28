@@ -117,6 +117,7 @@
   "form.FormThree.label.lifeStageHarvested": "ຂັ້ນຕອນຂອງການມີຊີວິດທີ່ຖືກເກັບກ່ຽວ",
   "form.FormThree.label.AddLifeStage": "ຕື່ມຂັ້ນຕອນຂອງຊີວິດອື່ນໆ",
   "form.FormThree.label.numberHarvestedInPreviousYear": "ຈຳ ນວນທີ່ເກັບກ່ຽວໃນປີທີ່ຜ່ານມາ",
+  "form.FormThree.placeHolder.numberHarvestedInPreviousYear": "#",
   "form.FormThree.label.noOfAdultsPresentFacilityInfo": "ຈຳ ນວນຜູ້ໃຫຍ່",
   "form.FormThree.label.noOfMalesPresentFacilityInfo": "ຈຳ ນວນຊາຍ",
   "form.FormThree.label.noOfFemalesPresentFacilityInfo": "ຈຳ ນວນຜູ້ຍິງ",

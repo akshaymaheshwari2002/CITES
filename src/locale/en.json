@@ -117,6 +117,7 @@
   "form.FormThree.label.lifeStageHarvested": "Life stage(s) harvested",
   "form.FormThree.label.AddLifeStage": "Add other life stage",
   "form.FormThree.label.numberHarvestedInPreviousYear": "Number harvested in the previous year",
+  "form.FormThree.placeHolder.numberHarvestedInPreviousYear": "#",
   "form.FormThree.label.noOfAdultsPresentFacilityInfo": "Number of adults",
   "form.FormThree.label.noOfMalesPresentFacilityInfo": "Number of males",
   "form.FormThree.label.noOfFemalesPresentFacilityInfo": "Number of females",

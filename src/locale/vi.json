@@ -117,6 +117,7 @@
   "form.FormThree.label.lifeStageHarvested": "(Các) giai đoạn sống sẽ được thu hoạch",
   "form.FormThree.label.AddLifeStage": "Thêm giai đoạn sống khác",
   "form.FormThree.label.numberHarvestedInPreviousYear": "Số lượng thu hoạch trong năm trước",
+  "form.FormThree.placeHolder.numberHarvestedInPreviousYear": "#",
   "form.FormThree.label.noOfAdultsPresentFacilityInfo": "Số cá thể tưởng thành",
   "form.FormThree.label.noOfMalesPresentFacilityInfo": "Số lượng con đực",
   "form.FormThree.label.noOfFemalesPresentFacilityInfo": "Số lượng con cái",

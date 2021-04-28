@@ -117,6 +117,7 @@
   "form.FormThree.label.lifeStageHarvested": "Tahap kehidupan dituai",
   "form.FormThree.label.AddLifeStage": "Tambahkan tahap kehidupan lain",
   "form.FormThree.label.numberHarvestedInPreviousYear": "Bilangan yang dituai pada tahun sebelumnya",
+  "form.FormThree.placeHolder.numberHarvestedInPreviousYear": "#",
   "form.FormThree.label.noOfAdultsPresentFacilityInfo": "Bilangan orang dewasa",
   "form.FormThree.label.noOfMalesPresentFacilityInfo": "Bilangan lelaki",
   "form.FormThree.label.noOfFemalesPresentFacilityInfo": "Bilangan wanita",

@@ -98,6 +98,9 @@ export default (fieldProps = {}) => {
           },
         },
         fieldType: Constants.TEXTINPUT_ARRAY_ALT,
+        placeholder: formatMessage({
+          id: 'form.FormThree.placeHolder.numberHarvestedInPreviousYear',
+        }),
         ...Platform.select({ios: {fieldContainerStyle: {zIndex: -1}}}),
         keyboardType: 'number-pad',
       });

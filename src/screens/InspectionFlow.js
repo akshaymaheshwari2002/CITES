@@ -22,15 +22,17 @@ const InspectionFlow = ({navigation}) => {
               style={styles.eye}
               resizeMode="contain"
             />
-            <Text style={styles.header}>
-              {formatMessage({id: 'screen.InspectionFlow.headerPartTwo'})}
-            </Text>
-            <Text style={styles.header}>
-              {formatMessage({id: 'screen.InspectionFlow.headerPartThree'})}
-            </Text>
-            <Text style={styles.header}>
-              {formatMessage({id: 'screen.InspectionFlow.headerPartFour'})}
-            </Text>
+            <View style={({flexDirection: 'column'}, styles.header)}>
+              <Text>
+                {formatMessage({id: 'screen.InspectionFlow.headerPartTwo'})}
+              </Text>
+              <Text>
+                {formatMessage({id: 'screen.InspectionFlow.headerPartThree'})}
+              </Text>
+              <Text>
+                {formatMessage({id: 'screen.InspectionFlow.headerPartFour'})}
+              </Text>
+            </View>
           </View>
 
           <View style={styles.contentContainer}>
@@ -143,7 +145,7 @@ const styles = ScaledSheet.create({
     width: '290@s',
     textAlign: 'right',
     paddingLeft: '1@s',
-    lineHeight: '26@ms',
+    lineHeight: '29@s',
     letterSpacing: '0.45@ms',
   },
   contentContainer: {

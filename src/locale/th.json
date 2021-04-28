@@ -117,6 +117,7 @@
   "form.FormThree.label.lifeStageHarvested": "ระยะชีวิตที่เก็บเกี่ยว",
   "form.FormThree.label.AddLifeStage": "เพิ่มขั้นตอนชีวิตอื่น ๆ ",
   "form.FormThree.label.numberHarvestedInPreviousYear": "จำนวนที่เก็บเกี่ยวในปีที่แล้ว",
+  "form.FormThree.placeHolder.numberHarvestedInPreviousYear": "#",
   "form.FormThree.label.noOfAdultsPresentFacilityInfo": "จำนวนผู้ใหญ่",
   "form.FormThree.label.noOfMalesPresentFacilityInfo": "จำนวนผู้ชาย",
   "form.FormThree.label.noOfFemalesPresentFacilityInfo": "จำนวนตัวเมีย",

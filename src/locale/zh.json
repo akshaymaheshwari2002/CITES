@@ -117,6 +117,7 @@
   "form.FormThree.label.lifeStageHarvested": "已收获生命阶段",
   "form.FormThree.label.AddLifeStage": "添加其他生命阶段",
   "form.FormThree.label.numberHarvestedInPreviousYear": "上一年收获的数量",
+  "form.FormThree.placeHolder.numberHarvestedInPreviousYear": "#",
   "form.FormThree.label.noOfAdultsPresentFacilityInfo": "成人人数",
   "form.FormThree.label.noOfMalesPresentFacilityInfo": "男性人数",
   "form.FormThree.label.noOfFemalesPresentFacilityInfo": "女性人数",

@@ -117,6 +117,7 @@
   "form.FormThree.label.lifeStageHarvested": "Life stage (s) harvested",
   "form.FormThree.label.AddLifeStage": "Tambahkan tahap kehidupan lain",
   "form.FormThree.label.numberHarvestedInPreviousYear": "Jumlah yang dipanen pada tahun sebelumnya",
+  "form.FormThree.placeHolder.numberHarvestedInPreviousYear": "#",
   "form.FormThree.label.noOfAdultsPresentFacilityInfo": "Jumlah orang dewasa",
   "form.FormThree.label.noOfMalesPresentFacilityInfo": "Jumlah laki-laki",
   "form.FormThree.label.noOfFemalesPresentFacilityInfo": "Jumlah wanita",

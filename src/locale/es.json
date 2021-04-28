@@ -117,6 +117,7 @@
   "form.FormThree.label.lifeStageHarvested": "Etapa (s) de vida recolectada",
   "form.FormThree.label.AddLifeStage": "Agregar otra etapa de la vida",
   "form.FormThree.label.numberHarvestedInPreviousYear": "Número cosechado en el año anterior",
+  "form.FormThree.placeHolder.numberHarvestedInPreviousYear": "#",
   "form.FormThree.label.noOfAdultsPresentFacilityInfo": "Numero de adultos",
   "form.FormThree.label.noOfMalesPresentFacilityInfo": "Numero de machos",
   "form.FormThree.label.noOfFemalesPresentFacilityInfo": "Numero de hembras",

@@ -117,6 +117,7 @@
   "form.FormThree.label.lifeStageHarvested": "ដំណាក់កាលជីវិតបានប្រមូលផល",
   "form.FormThree.label.AddLifeStage": "បន្ថែមដំណាក់កាលជីវិតផ្សេងទៀត",
   "form.FormThree.label.numberHarvestedInPreviousYear": "ចំនួនប្រមូលផលក្នុងឆ្នាំមុន",
+  "form.FormThree.placeHolder.numberHarvestedInPreviousYear": "#",
   "form.FormThree.label.noOfAdultsPresentFacilityInfo": "ចំនួនមនុស្សពេញវ័យ",
   "form.FormThree.label.noOfMalesPresentFacilityInfo": "ចំនួនបុរស",
   "form.FormThree.label.noOfFemalesPresentFacilityInfo": "ចំនួនស្ត្រី",
