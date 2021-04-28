@@ -73,7 +73,7 @@ export default (fieldProps = {}) => {
       ...(fieldProps?._lifeStageHarvested ?? []),
     ];
     const indexOfOther = _lifeStageHarvestedCopy?.findIndex(
-      (value) => value?.toLowerCase() === 'other',
+      (value) => value === formatMessage({id: 'lifeStgeDropDownList.option17'}),
     );
     if (indexOfOther !== -1) {
       formFields.push({
