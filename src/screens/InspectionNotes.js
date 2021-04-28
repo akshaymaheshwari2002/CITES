@@ -7,7 +7,8 @@ import {
   FlatList,
   Alert,
 } from 'react-native';
-import {ScaledSheet, vs, s} from 'react-native-size-matters';
+import Icon from 'react-native-vector-icons/Entypo';
+import {ScaledSheet, ms, s} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 import {useDispatch, useSelector} from 'react-redux';
 import Torch from 'react-native-torch';
@@ -26,6 +27,7 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
   const [isTorchOn, setIsTorchOn] = useState(false);
   const [notesText, setNotesText] = useState('');
   const [popUp, setPopUp] = useState(false);
+  const [isEdit, setisEdit] = useState(true);
 
   const notes = useSelector(
     (state) => state.sessionReducer.activeInspection.notes,
@@ -40,21 +42,52 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
     }
     setNotesText('');
     setPopUp(false);
+    setisEdit(false);
   }, [dispatch, notesText]);
+
   const handleTorch = useCallback(() => {
     if (isTorchOn) {
-      console.log('123');
       setIsTorchOn(false);
       Torch.switchState(isTorchOn);
     } else {
-      console.log('321');
       setIsTorchOn(true);
       Torch.switchState(isTorchOn);
     }
   }, [isTorchOn]);
 
+  const handleEditSave = useCallback(
+    (item, index) => {
+      setisEdit(true);
+      setPopUp(true);
+      setNotesText(item.text);
+      const updatedNotes = [...notes];
+      updatedNotes[index] = {
+        ...updatedNotes[index],
+        text: notesText,
+        timeStamp: Date.now(),
+      };
+      console.log(updatedNotes[index], '127');
+      console.log(updatedNotes, '123');
+      dispatch(saveNotes({notes: updatedNotes}));
+    },
+    [dispatch, notes, notesText],
+  );
+
+  const handleDelete = useCallback(
+    (item) => {
+      const updatedNotes = [];
+      notes?.map((data, index) => {
+        if (notes[index].text !== item?.text) {
+          updatedNotes.push(notes[index]);
+        }
+      });
+      dispatch(saveNotes({notes: updatedNotes}));
+    },
+    [dispatch, notes],
+  );
+
   const renderItem = useCallback(
-    ({item}) => {
+    ({item, index}) => {
       const timeStamp = item?.timeStamp;
       return (
         <View style={styles.row_parent}>
@@ -83,10 +116,30 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
               </>
             }
           />
+          <View style={styles.iconContainer}>
+            <TouchableOpacity style={{marginHorizontal: ms(60)}}>
+              <Icon
+                name="edit"
+                size={ms(25)}
+                iconStyle={styles.ImageStyle}
+                onPress={() => {
+                  handleEditSave(item, index);
+                }}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity style={{marginHorizontal: ms(65)}}>
+              <Icon
+                name="trash"
+                size={ms(25)}
+                iconStyle={styles.ImageStyle}
+                onPress={() => handleDelete(item)}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
       );
     },
-    [formatMessage],
+    [formatMessage, handleDelete, handleEditSave],
   );
 
   return (
@@ -132,6 +185,7 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
                   })}
                   onPress={() => {
                     setPopUp(true);
+                    setisEdit(false);
                   }}
                 />
               }
@@ -148,7 +202,7 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
       {notes ? (
         <PopupNotesInput
           isShowPopupNotesInput={popUp}
-          onPress={handlePress}
+          onPress={isEdit ? handleEditSave : handlePress}
           notesText={notesText}
           setNotesText={setNotesText}
           setPopUp={setPopUp}
@@ -173,6 +227,10 @@ const styles = ScaledSheet.create({
   title: {
     height: '100@s',
     backgroundColor: RawColors.white,
+  },
+  iconContainer: {
+    flexDirection: 'row',
+    marginTop: '10@vs',
   },
   textInputContainer: {
     paddingHorizontal: s(15),
