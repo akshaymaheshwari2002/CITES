@@ -56,18 +56,18 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
   }, [isTorchOn]);
 
   const handleEditSave = useCallback(
-    (item, index) => {
+    (item) => {
       setisEdit(true);
       setPopUp(true);
-      setNotesText(item.text);
       const updatedNotes = [...notes];
-      updatedNotes[index] = {
-        ...updatedNotes[index],
-        text: notesText,
-        timeStamp: Date.now(),
-      };
-      console.log(updatedNotes[index], '127');
-      console.log(updatedNotes, '123');
+      notes?.map((data, index) => {
+        if (notes[index].text === item?.text) {
+          updatedNotes[index] = {
+            text: notesText,
+            timeStamp: Date.now(),
+          };
+        }
+      });
       dispatch(saveNotes({notes: updatedNotes}));
     },
     [dispatch, notes, notesText],
