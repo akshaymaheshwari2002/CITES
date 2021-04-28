@@ -79,7 +79,7 @@ export default (fieldProps = {}) => {
           validatePositiveNumber,
         },
       },
-      keyboardType: 'number-pad',
+      keyboardType: 'decimal-pad',
     },
     {
       defaultValue: '',
