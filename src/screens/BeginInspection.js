@@ -70,13 +70,15 @@ const BeginInspection = ({navigation, route}) => {
             elevatedYValue={0}
             startYPos={0}>
             <Text style={styles.title}>
-              {formatMessage({id: 'screen.StepsSummary.headerPartOne'})}
-            </Text>
-            <Text style={styles.title}>
-              {formatMessage({id: 'screen.StepsSummary.headerPartTwo'})}
-            </Text>
-            <Text style={styles.title}>
-              {formatMessage({id: 'screen.StepsSummary.headerPartThree'})}
+              <Text>
+                {formatMessage({id: 'screen.StepsSummary.headerPartOne'})}
+              </Text>
+              <Text>
+                {formatMessage({id: 'screen.StepsSummary.headerPartTwo'})}
+              </Text>
+              <Text>
+                {formatMessage({id: 'screen.StepsSummary.headerPartThree'})}
+              </Text>
             </Text>
           </AnimatedView>
           <View style={styles.pointsContainer}>
@@ -156,8 +158,9 @@ const styles = ScaledSheet.create({
   },
   title: {
     ...Fonts.HelveticaNeue25B,
-    lineHeight: '25@ms',
+    lineHeight: '28@s',
     letterSpacing: '0.48@ms',
+    flexDirection: 'row',
   },
   pointsContainer: {
     flexGrow: 1,

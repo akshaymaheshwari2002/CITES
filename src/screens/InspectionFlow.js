@@ -141,11 +141,11 @@ const styles = ScaledSheet.create({
   },
   header: {
     color: RawColors.darkGreyBlue,
-    ...Fonts.HelveticaNeue26B,
+    ...Fonts.HelveticaNeue25B,
     width: '290@s',
     textAlign: 'right',
     paddingLeft: '1@s',
-    lineHeight: '29@s',
+    lineHeight: '30@s',
     letterSpacing: '0.45@ms',
   },
   contentContainer: {
