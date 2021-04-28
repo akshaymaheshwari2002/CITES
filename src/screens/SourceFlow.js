@@ -1,7 +1,8 @@
 import React from 'react';
 import {ImageBackground, Text, View, Image} from 'react-native';
-import {vs, ScaledSheet} from 'react-native-size-matters';
+import {s, ms, ScaledSheet} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
+import {useSelector} from 'react-redux';
 
 import {Container, Button} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
@@ -9,6 +10,8 @@ import {Images} from '@assets';
 
 const SourceFlow = ({navigation}) => {
   const {formatMessage} = useIntl();
+  const locale = useSelector((state) => state.persistedReducer.locale);
+
   return (
     <Container>
       <ImageBackground
@@ -22,10 +25,18 @@ const SourceFlow = ({navigation}) => {
               style={styles.eye}
               resizeMode="contain"
             />
-            <Text style={[styles.header, {marginTop: vs(5)}]}>
+            <Text
+              style={[
+                styles.header,
+                {lineHeight: locale === 'km' ? s(32) : ms(26)},
+              ]}>
               {formatMessage({id: 'screen.SourceFlow.headerPartTwo'})}
             </Text>
-            <Text style={styles.header}>
+            <Text
+              style={[
+                styles.header,
+                {lineHeight: locale === 'km' ? s(32) : ms(26)},
+              ]}>
               {formatMessage({id: 'screen.SourceFlow.headerPartThree'})}
             </Text>
           </View>
@@ -107,7 +118,7 @@ const styles = ScaledSheet.create({
   },
   header: {
     color: RawColors.darkGreyBlue,
-    ...Fonts.HelveticaNeue26B,
+    ...Fonts.HelveticaNeue25B,
     textAlign: 'right',
     lineHeight: '26@ms',
     letterSpacing: '0.45@ms',

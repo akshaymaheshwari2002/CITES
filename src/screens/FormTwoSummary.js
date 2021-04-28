@@ -215,7 +215,7 @@ const styles = ScaledSheet.create({
     lineHeight: '35@ms',
     textTransform: 'uppercase',
     width: '190@s',
-    ...Fonts.HelveticaNeue28B,
+    ...Fonts.HelveticaNeue25B,
   },
   subHeading: {
     paddingHorizontal: '16@s',

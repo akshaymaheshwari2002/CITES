@@ -240,7 +240,7 @@ const styles = ScaledSheet.create({
   title: {
     lineHeight: '35@ms',
     textTransform: 'uppercase',
-    ...Fonts.HelveticaNeue28B,
+    ...Fonts.HelveticaNeue25B,
     width: '190@s',
   },
   subHeading: {
