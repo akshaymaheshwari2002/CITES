@@ -192,8 +192,8 @@ const styles = ScaledSheet.create({
     alignSelf: 'flex-start',
   },
   titleContent: {
-    ...Fonts.HelveticaNeue30B,
-    lineHeight: '32@s',
+    ...Fonts.HelveticaNeue25B,
+    //lineHeight: '32@s',
     letterSpacing: '0.64@s',
   },
   word: {

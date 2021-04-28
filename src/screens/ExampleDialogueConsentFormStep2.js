@@ -163,8 +163,8 @@ const styles = ScaledSheet.create({
     marginTop: '0@s',
   },
   titleContent: {
-    ...Fonts.HelveticaNeue30B,
-    lineHeight: '32@s',
+    ...Fonts.HelveticaNeue25B,
+    //lineHeight: '32@s',
     letterSpacing: '0.64@s',
   },
   word: {

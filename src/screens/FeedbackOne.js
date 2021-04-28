@@ -86,8 +86,8 @@ const styles = ScaledSheet.create({
     width: '240@s',
   },
   titleContent: {
-    ...Fonts.HelveticaNeue40B,
-    lineHeight: '49@s',
+    ...Fonts.HelveticaNeue30B,
+    //lineHeight: '49@s',
     letterSpacing: '0.64@s',
   },
   contentContainer: {

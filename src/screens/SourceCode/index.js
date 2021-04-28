@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Text, View} from 'react-native';
 import {useIntl} from 'react-intl';
-import {ScaledSheet, ms, s} from 'react-native-size-matters';
+import {ScaledSheet, ms, vs} from 'react-native-size-matters';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import {useSelector} from 'react-redux';
 
@@ -76,7 +76,12 @@ const SourceCode = ({navigation, route}) => {
         </View>
         {resultSourceCode !== 'NotApplicable' ? (
           <>
-            <Text style={styles.line}>
+            <Text
+              style={
+                resultSourceCode !== 'D'
+                  ? styles.line
+                  : [styles.line, {marginTop: vs(40)}]
+              }>
               {formatMessage({id: 'screen.SourceCode.line'})}
             </Text>
             <View style={styles.gap}>
@@ -229,7 +234,7 @@ const styles = ScaledSheet.create({
   },
   gap: {marginTop: '10@vs'},
   line: {
-    marginTop: '25@s',
+    marginTop: '25@vs',
     ...Fonts.Lato15R,
     textAlign: 'center',
     letterSpacing: 0.4,

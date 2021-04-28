@@ -170,8 +170,8 @@ const styles = ScaledSheet.create({
     tintColor: RawColors.darkSalmon,
   },
   titleContent: {
-    ...Fonts.HelveticaNeue28B,
-    lineHeight: '34@ms',
+    ...Fonts.HelveticaNeue25B,
+    //lineHeight: '34@ms',
     letterSpacing: '0.64@ms',
   },
   form: {

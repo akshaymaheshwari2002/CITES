@@ -99,7 +99,7 @@ const styles = ScaledSheet.create({
     backgroundColor: RawColors.white,
   },
   title: {
-    lineHeight: '35@ms',
+    //lineHeight: '35@ms',
     alignSelf: 'center',
     ...Fonts.HelveticaNeue30B,
   },
