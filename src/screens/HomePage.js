@@ -1,5 +1,5 @@
 import React, {useCallback} from 'react';
-import {Image, ImageBackground, View, Text} from 'react-native';
+import {Image, ImageBackground, View, Text, Dimensions} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 import {useDispatch} from 'react-redux';
@@ -12,6 +12,8 @@ import {setContinueToStepTwo} from '@store/slices/sessionSlice';
 const HomePage = ({navigation}) => {
   const {formatMessage} = useIntl();
   const dispatch = useDispatch();
+  const {height, width} = Dimensions.get('window');
+  const aspectRatio = height / width;
 
   const handlePress = useCallback(() => {
     navigation.navigate('InspectionFlow');
@@ -21,7 +23,7 @@ const HomePage = ({navigation}) => {
     <Container safeAreaViewProps={{edges: ['right', 'bottom', 'left']}}>
       <ImageBackground
         style={styles.container}
-        source={Images.fullBgTwo}
+        source={aspectRatio > 1.6 ? Images.fullBgTwo_2 : Images.fullBgTwo_1}
         imageStyle={styles.resizeModeRepeat}>
         <Container.ScrollView contentContainerStyle={styles.scrollContainer}>
           <Image source={Images.logo} style={styles.logo} />
