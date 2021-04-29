@@ -27,6 +27,18 @@ export const upsert = (objectType, data) => {
   return _data;
 };
 
+export const deleteObject = (objectType, objectId) => {
+  realm.write(() => {
+    let _object;
+    if (objectId) {
+      _object = realm.objectForPrimaryKey(objectType, objectId);
+    } else {
+      _object = realm.objects(objectType);
+    }
+    realm.delete(_object);
+  });
+};
+
 export const get = (objectType, objectId) => {
   let data;
 

@@ -1,14 +1,15 @@
 import React, {useCallback, useState} from 'react';
 import {View, Text, FlatList, TouchableOpacity, Image} from 'react-native';
 import {useIntl} from 'react-intl';
-import {ScaledSheet} from 'react-native-size-matters';
+import {ScaledSheet, ms} from 'react-native-size-matters';
 import {useDispatch} from 'react-redux';
 import {useFocusEffect} from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Entypo';
 
 import {Container, Button} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import {Images} from '@assets/';
-import {get} from '@utils/RealmHelper';
+import {get, deleteObject} from '@utils/RealmHelper';
 import {setActiveInspection} from '@store/slices/sessionSlice';
 import CommonStyles from '@styles/CommonStyles';
 
@@ -28,10 +29,15 @@ const ContinueInspection = ({navigation}) => {
   useFocusEffect(
     useCallback(() => {
       const inspections = get('Inspection');
-
       setActiveInspections(inspections);
     }, []),
   );
+
+  const handleDelete = useCallback((item) => {
+    deleteObject('Inspection', item._id);
+    const inspections = get('Inspection');
+    setActiveInspections(inspections);
+  }, []);
 
   const renderItem = useCallback(
     ({item}) => {
@@ -45,12 +51,20 @@ const ContinueInspection = ({navigation}) => {
             buttonStyle={() => styles.button}
             buttonContent={
               <>
-                <View>
+                <View style={CommonStyles.flexRow}>
                   <Image
                     source={Images.eye}
                     style={styles.icon}
                     resizeMode="contain"
                   />
+                  <View style={styles.iconContainer}>
+                    <Icon
+                      name="trash"
+                      size={ms(25)}
+                      iconStyle={styles.iconTrash}
+                      onPress={() => handleDelete(item)}
+                    />
+                  </View>
                 </View>
                 <View style={[styles.bottomMargin10, styles.infoLine]}>
                   <Text style={[styles.label, Fonts.Lato15B]}>
@@ -84,7 +98,7 @@ const ContinueInspection = ({navigation}) => {
         </View>
       );
     },
-    [formatMessage, handleItemPress],
+    [formatMessage, handleDelete, handleItemPress],
   );
 
   return (
@@ -155,6 +169,14 @@ const styles = ScaledSheet.create({
     height: '35@ms',
     width: '35@ms',
     marginBottom: '16@vs',
+  },
+  iconContainer: {
+    marginLeft: '195@s',
+    marginTop: '7@vs',
+  },
+  iconTrash: {
+    resizeMode: 'stretch',
+    alignItems: 'center',
   },
   infoLine: {
     flexDirection: 'row',
