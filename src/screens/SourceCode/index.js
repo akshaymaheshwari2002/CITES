@@ -13,6 +13,7 @@ import SourceCodeData from './SourceCodeData';
 const SourceCode = ({navigation, route}) => {
   const {formatMessage} = useIntl();
   const resultSourceCode = route.params?.selectedSourceCode;
+  const locale = useSelector((state) => state.persistedReducer.locale);
   const continueToStepTwo = useSelector(
     (state) => state.sessionReducer.continueToStepTwo,
   );
@@ -80,7 +81,10 @@ const SourceCode = ({navigation, route}) => {
               style={
                 resultSourceCode !== 'D'
                   ? styles.line
-                  : [styles.line, {marginTop: vs(40)}]
+                  : [
+                      styles.line,
+                      {marginTop: locale === 'km' ? vs(65) : vs(40)},
+                    ]
               }>
               {formatMessage({id: 'screen.SourceCode.line'})}
             </Text>
