@@ -41,7 +41,6 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
       dispatch(saveNotes({notes: {text, timeStamp}}));
     }
     setNotesText('');
-    setPopUp(false);
     setisEdit(false);
   }, [dispatch, notesText]);
 

@@ -33,7 +33,10 @@ const PopupNotesInput = ({
             buttonContent={formatMessage({
               id: 'general.save',
             })}
-            onPress={onPress}
+            onPress={() => {
+              onPress();
+              setPopUp(false);
+            }}
           />
           <Button
             buttonStyle={() => styles.buttonStyle}
