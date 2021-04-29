@@ -476,7 +476,8 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
                 })}
               />
               <Button
-                onPress={() => {
+                onPress={async () => {
+                  await handleSubmit(_handleSubmit)();
                   navigate('TabNavigator', {screen: 'StepTwo'});
                 }}
                 buttonContent={formatMessage({id: 'button.continueWithStep2'})}
