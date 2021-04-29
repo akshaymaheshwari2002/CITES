@@ -300,7 +300,10 @@ const FormOne = ({navigation}) => {
                 buttonContent={formatMessage({id: 'button.viewFormOneSummary'})}
               />
               <Button
-                onPress={continueToStepOne}
+                onPress={async () => {
+                  await handleSubmit(_handleSubmit)();
+                  continueToStepOne();
+                }}
                 buttonContent={formatMessage({id: 'button.continueToStep1'})}
               />
             </>
