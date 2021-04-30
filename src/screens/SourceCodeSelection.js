@@ -32,21 +32,7 @@ const SourceCodeSelection = ({navigation}) => {
                 onPress={() => {
                   navigation.navigate('SourceCode', {selectedSourceCode: item});
                 }}
-                buttonStyle={() => [
-                  styles.button,
-                  {
-                    height:
-                      ((locale === 'ms' ||
-                        locale === 'es' ||
-                        locale === 'fr' ||
-                        locale === 'en' ||
-                        locale === 'id') &&
-                        item === 'D') ||
-                      (locale === 'id' && item === 'A')
-                        ? vs(185)
-                        : vs(148),
-                  },
-                ]}
+                buttonStyle={() => styles.button}
                 buttonContent={
                   <>
                     <View style={styles.bottomMargin10}>
@@ -101,7 +87,6 @@ const styles = ScaledSheet.create({
     borderRadius: 30,
     borderWidth: 0,
     width: '273@s',
-    height: '148@vs',
     backgroundColor: '#F7FAF0',
     elevation: '5@s',
     ...CommonStyles.shadowEffect,
