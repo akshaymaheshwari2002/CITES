@@ -13,27 +13,27 @@ const MoreInformation = ({navigation: {navigate, goBack}}) => {
   const dummyInspectionData = [
     {
       id: 'dummy1235',
-      contentOne: 'screen.moreInfoButtonOneContentOne',
-      subContentOne: 'screen.moreInfoButtonSubContentTwo',
-      contentTwo: 'screen.moreInfoButtonOneContentTwo',
+      contentOne: 'screen.MoreInformation.ButtonOneContentOne',
+      subContentOne: 'screen.MoreInformation.ButtonSubContentTwo',
+      contentTwo: 'screen.MoreInformation.ButtonOneContentTwo',
     },
     {
       id: 'dummy1234',
-      contentOne: 'screen.moreInfoButtonTwoContentOne',
-      contentTwo: 'screen.moreInfoButtonTwoContentTwo',
+      contentOne: 'screen.MoreInformation.ButtonTwoContentOne',
+      contentTwo: 'screen.MoreInformation.ButtonTwoContentTwo',
       url: Config.URL_MORE_INFO_ONE,
     },
     {
       id: 'dummy1236',
-      contentOne: 'screen.moreInfoButtonThreeContentOne',
-      contentTwo: 'screen.moreInfoButtonThreeContentTwo',
+      contentOne: 'screen.MoreInformation.ButtonThreeContentOne',
+      contentTwo: 'screen.MoreInformation.ButtonThreeContentTwo',
       url: Config.URL_MORE_INFO_TWO,
     },
     {
       id: 'dummy1237',
-      contentOne: 'screen.moreInfoButtonFourContentOne',
-      subContentOne: 'screen.moreInfoButtonFourSubContentTwo',
-      contentTwo: 'screen.moreInfoButtonFourContentTwo',
+      contentOne: 'screen.MoreInformation.ButtonFourContentOne',
+      subContentOne: 'screen.MoreInformation.ButtonFourSubContentTwo',
+      contentTwo: 'screen.MoreInformation.ButtonFourContentTwo',
       url: Config.URL_MORE_INFO_THREE,
     },
   ];
