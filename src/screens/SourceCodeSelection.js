@@ -1,7 +1,8 @@
 import React from 'react';
 import {View, Text, FlatList} from 'react-native';
 import {useIntl} from 'react-intl';
-import {ScaledSheet} from 'react-native-size-matters';
+import {ScaledSheet, vs} from 'react-native-size-matters';
+import {useSelector} from 'react-redux';
 
 import {Container, Button} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
@@ -12,6 +13,7 @@ const SourceData = ['W', 'R', 'F', 'C', 'A', 'D', 'X', 'U', 'I', 'O'];
 
 const SourceCodeSelection = ({navigation}) => {
   const {formatMessage} = useIntl();
+  const locale = useSelector((state) => state.persistedReducer.locale);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
@@ -30,7 +32,21 @@ const SourceCodeSelection = ({navigation}) => {
                 onPress={() => {
                   navigation.navigate('SourceCode', {selectedSourceCode: item});
                 }}
-                buttonStyle={() => styles.button}
+                buttonStyle={() => [
+                  styles.button,
+                  {
+                    height:
+                      ((locale === 'ms' ||
+                        locale === 'es' ||
+                        locale === 'fr' ||
+                        locale === 'en' ||
+                        locale === 'id') &&
+                        item === 'D') ||
+                      (locale === 'id' && item === 'A')
+                        ? vs(185)
+                        : vs(148),
+                  },
+                ]}
                 buttonContent={
                   <>
                     <View style={styles.bottomMargin10}>
