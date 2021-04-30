@@ -1,8 +1,7 @@
 import React from 'react';
 import {View, Text, FlatList} from 'react-native';
 import {useIntl} from 'react-intl';
-import {ScaledSheet, vs} from 'react-native-size-matters';
-import {useSelector} from 'react-redux';
+import {ScaledSheet} from 'react-native-size-matters';
 
 import {Container, Button} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
@@ -13,7 +12,6 @@ const SourceData = ['W', 'R', 'F', 'C', 'A', 'D', 'X', 'U', 'I', 'O'];
 
 const SourceCodeSelection = ({navigation}) => {
   const {formatMessage} = useIntl();
-  const locale = useSelector((state) => state.persistedReducer.locale);
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
