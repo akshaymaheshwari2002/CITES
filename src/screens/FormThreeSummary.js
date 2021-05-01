@@ -208,7 +208,7 @@ const FormThreeSummary = ({navigation, route}) => {
         <TouchableOpacity
           style={[styles.slideBtn, styles.borderStyle]}
           onPress={() => {
-            navigation.navigate('FormThreeSummaryEdit');
+            navigation.replace('FormThreeSummaryEdit');
           }}>
           <View style={[CommonStyles.flexRow, CommonStyles.justifySpaceEvenly]}>
             <View>
