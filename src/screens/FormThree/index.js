@@ -1,6 +1,6 @@
 import React, {useCallback, useMemo, useRef, useState, useEffect} from 'react';
 import {Text, View, BackHandler, Pressable} from 'react-native';
-import {useIsFocused} from '@react-navigation/native';
+import {useFocusEffect} from '@react-navigation/native';
 import {ms, vs, ScaledSheet} from 'react-native-size-matters';
 import {useForm} from 'react-hook-form';
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -36,7 +36,6 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
     shallowEqual,
   );
   const dispatch = useDispatch();
-  const isCurrentScreenFocused = useIsFocused();
   const {formatMessage} = useIntl();
   const {reset, control, errors, watch, handleSubmit, setValue} = useForm({
     shouldFocusError: false,
@@ -328,21 +327,14 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
     );
   }, []);
 
-  useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', onbackPress);
-    return () => {
-      BackHandler.removeEventListener('hardwareBackPress', onbackPress);
-    };
-  }, [onbackPress, formFieldsPage, isCurrentScreenFocused]);
-
   const onbackPress = useCallback(() => {
-    if (isCurrentScreenFocused && formFieldsPage > 1) {
+    if (formFieldsPage > 1) {
       setFormFieldsPage(formFieldsPage - 1);
       return true;
     } else {
       return false;
     }
-  }, [isCurrentScreenFocused, formFieldsPage]);
+  }, [formFieldsPage]);
 
   useEffect(() => {
     if (selectedSpeciesId) {
@@ -421,6 +413,16 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
       ),
     });
   }, [handleBackPress, setOptions]);
+
+  useFocusEffect(
+    useCallback(() => {
+      BackHandler.addEventListener('hardwareBackPress', onbackPress);
+
+      return () => {
+        BackHandler.removeEventListener('hardwareBackPress', onbackPress);
+      };
+    }, [onbackPress]),
+  );
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
