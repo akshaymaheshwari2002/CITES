@@ -1,10 +1,10 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {useIsFocused} from '@react-navigation/native';
+import {useFocusEffect} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
 import {Text, View, BackHandler, Pressable} from 'react-native';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import {getHelpTexts} from '@utils/CommonFunctions';
 import {store} from '@store';
@@ -20,24 +20,9 @@ const FormFour = ({navigation: {navigate, goBack, setOptions}}) => {
   const {formatMessage} = useIntl();
   const [questionNumber, setQuestionNumber] = useState(0);
   const [score, setScore] = useState({});
-  const isCurrentScreenFocused = useIsFocused();
-
-  useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', onBackPress);
-    return () => {
-      BackHandler.removeEventListener('hardwareBackPress', onBackPress);
-    };
-  }, [onBackPress, isCurrentScreenFocused, questionNumber]);
-
-  useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', onBackPress);
-    return () => {
-      BackHandler.removeEventListener('hardwareBackPress', onBackPress);
-    };
-  }, [onBackPress, isCurrentScreenFocused]);
 
   const onBackPress = useCallback(() => {
-    if (isCurrentScreenFocused && questionNumber > 0) {
+    if (questionNumber > 0) {
       setScore((state) => ({
         ...state,
         [form4Questions[questionNumber].name]: null,
@@ -47,7 +32,7 @@ const FormFour = ({navigation: {navigate, goBack, setOptions}}) => {
     } else {
       return false;
     }
-  }, [isCurrentScreenFocused, questionNumber]);
+  }, [questionNumber]);
 
   const updateScore = useCallback(
     (isYes) => {
@@ -113,6 +98,16 @@ const FormFour = ({navigation: {navigate, goBack, setOptions}}) => {
       ),
     });
   }, [goBack, questionNumber, setOptions]);
+
+  useFocusEffect(
+    useCallback(() => {
+      BackHandler.addEventListener('hardwareBackPress', onBackPress);
+
+      return () => {
+        BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+      };
+    }, [onBackPress]),
+  );
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>

@@ -7,7 +7,7 @@ import {
   Dimensions,
   Pressable,
 } from 'react-native';
-import {useIsFocused} from '@react-navigation/native';
+import {useFocusEffect} from '@react-navigation/native';
 import {ScaledSheet, ms, s, vs} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useIntl} from 'react-intl';
@@ -28,7 +28,6 @@ const DetermineSourceCode = ({
   route,
 }) => {
   const [interactedQuestionStack, setInteractedQuestionStack] = useState([1]);
-  const isCurrentScreenFocused = useIsFocused();
   const {formatMessage} = useIntl();
   const dispatch = useDispatch();
   const tooltipProps = useSelector(
@@ -36,21 +35,14 @@ const DetermineSourceCode = ({
     shallowEqual,
   );
 
-  useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', onbackPress);
-    return () => {
-      BackHandler.removeEventListener('hardwareBackPress', onbackPress);
-    };
-  }, [onbackPress, interactedQuestionStack, isCurrentScreenFocused]);
-
   const onbackPress = useCallback(() => {
-    if (!isCurrentScreenFocused || interactedQuestionStack.length === 1) {
+    if (interactedQuestionStack.length === 1) {
       return false;
     } else {
       setInteractedQuestionStack([...interactedQuestionStack.slice(0, -1)]);
       return true;
     }
-  }, [isCurrentScreenFocused, interactedQuestionStack]);
+  }, [interactedQuestionStack]);
 
   const onRespondAction = useCallback(
     ({optionChoosen}) => {
@@ -207,6 +199,16 @@ const DetermineSourceCode = ({
     setOptions,
     tooltipProps,
   ]);
+
+  useFocusEffect(
+    useCallback(() => {
+      BackHandler.addEventListener('hardwareBackPress', onbackPress);
+
+      return () => {
+        BackHandler.removeEventListener('hardwareBackPress', onbackPress);
+      };
+    }, [onbackPress]),
+  );
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>

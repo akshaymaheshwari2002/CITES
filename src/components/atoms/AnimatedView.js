@@ -1,6 +1,6 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useRef, useCallback} from 'react';
 import {Easing, Animated} from 'react-native';
-import {useIsFocused} from '@react-navigation/native';
+import {useFocusEffect} from '@react-navigation/native';
 import PropTypes from 'prop-types';
 
 const AnimatedView = ({
@@ -14,7 +14,6 @@ const AnimatedView = ({
   easingFunction,
   duration,
 }) => {
-  const isFocused = useIsFocused();
   const animationValue = useRef(new Animated.Value(0)).current;
   const xPos = animationValue.interpolate({
     inputRange: [0, 0.8, 1],
@@ -25,8 +24,8 @@ const AnimatedView = ({
     outputRange: [startYPos, elevatedYValue, endYPos],
   });
 
-  useEffect(() => {
-    if (isFocused) {
+  useFocusEffect(
+    useCallback(() => {
       const ani = Animated.timing(animationValue, {
         toValue: 1,
         duration: duration,
@@ -34,10 +33,12 @@ const AnimatedView = ({
         useNativeDriver: true,
       });
       ani.start();
-    } else {
-      animationValue.setValue(0);
-    }
-  }, [animationValue, duration, easingFunction, isFocused]);
+
+      return () => {
+        animationValue.setValue(0);
+      };
+    }, [animationValue, duration, easingFunction]),
+  );
 
   return (
     <Animated.View
@@ -48,6 +49,7 @@ const AnimatedView = ({
     </Animated.View>
   );
 };
+
 AnimatedView.propTypes = {
   startXPos: PropTypes.number.isRequired,
   startYPos: PropTypes.number.isRequired,
