@@ -181,7 +181,6 @@
   "questionContent.DetermineSourceCode.questionSeventeenPartThree": "หรือ",
   "questionContent.DetermineSourceCode.questionSeventeenPartFour": "ได้รับการจัดการในลักษณะที่แสดงให้เห็นว่าสามารถผลิตลูกหลานรุ่นที่สองได้อย่างน่าเชื่อถือใน",
   "questionContent.DetermineSourceCode.questionEighteen": "CITES ภาคผนวก อยู่ในรายการตัวอย่างใด",
-
   "questionContent.DetermineSourceCode.questionNineteen": "ตัวอย่างได้รับการเพาะพันธุ์เพื่อการค้าหรือไม่",
   "questionContent.DetermineSourceCode.questionTwenty": "ตัวอย่างได้รับการเพาะพันธุ์จากการดำเนินการปรับปรุงพันธุ์ที่ขึ้นทะเบียน CITES หรือไม่",
   "questionContent.DetermineSourceCode.questionTwentyOnePartOne": "เป็นตัวอย่างที่เติบโตภายใต้",
@@ -248,7 +247,6 @@
   "screen.stepThree.requirementCheckedForAdditionalInspectiond.bullet_3": "ขาดสต็อกพ่อแม่พันธุ์",
   "button.stepThree.continueToInspectionSummary": "ดำเนินการต่อเพื่อสรุปผลการตรวจสอบ",
   "screen.stepTwo.recordsExaminedForStock": "ตรวจสอบบันทึกสิ่งอำนวยความสะดวกสำหรับสต็อกซึ่งอาจรวมถึงตัวอย่างเช่นการเลี้ยงสัตว์การให้อาหารหรือบันทึกสุขภาพ",
-
   "screen.ProductionCapacityCalculator.titleText": "เครื่องคำนวณกำลังการผลิต",
   "button.noOfSpecies": "จำนวนชิ้นงานที่โรงงานผลิตได้",
   "button.noOfFemales": "จำนวนผู้หญิงที่ต้องมีคุณสมบัติตรงตามรายงานการผลิตประจำปี",
@@ -710,5 +708,4 @@
   "lifeStgeDropDownList.option17": "อื่น ๆ",
   "alertTitle.continueInspection":"การแจ้งเตือน"  ,
   "alertContent.continueInspection": "แน่ใจไหมว่าต้องการลบการตรวจสอบนี้"
-  
 }

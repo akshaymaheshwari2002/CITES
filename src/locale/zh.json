@@ -181,7 +181,6 @@
   "questionContent.DetermineSourceCode.questionSeventeenPartThree": "或",
   "questionContent.DetermineSourceCode.questionSeventeenPartFour": "已被证明能够可靠地生产第二代后代的方式进行管理",
   "questionContent.DetermineSourceCode.questionEighteen": "在哪个CITES附录中列出了标本？",
-
   "questionContent.DetermineSourceCode.questionNineteen": "该标本是否出于商业目的而繁殖？",
   "questionContent.DetermineSourceCode.questionTwenty": "标本是在CITES注册的育种操作中繁殖的吗？",
   "questionContent.DetermineSourceCode.questionTwentyOnePartOne": "标本在下方生长",
@@ -248,7 +247,6 @@
   "screen.stepThree.requirementCheckedForAdditionalInspectiond.bullet_3": "缺少父母育种资源",
   "button.stepThree.continueToInspectionSummary": "继续进行检查总结",
   "screen.stepTwo.recordsExaminedForStock": "检查设施记录中的库存。这可能包括例如饲养,喂养或健康记录。",
-
   "screen.ProductionCapacityCalculator.titleText": "生产能力计算器",
   "button.noOfSpecies": "该设施能够生产的标本数量",
   "button.noOfFemales": "达到年报产量所需的女性人数",
@@ -708,6 +706,7 @@
   "lifeStgeDropDownList.option15": " Froglet",
   "lifeStgeDropDownList.option16": "蝶ry",
   "lifeStgeDropDownList.option17": "警报",
+  "alertTitle.continueInspection":"警報",
   "alertContent.continueInspection": "您确定要删除此检查吗？"
 }
 

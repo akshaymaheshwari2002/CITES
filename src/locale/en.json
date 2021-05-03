@@ -181,7 +181,6 @@
   "questionContent.DetermineSourceCode.questionSeventeenPartThree": "OR",
   "questionContent.DetermineSourceCode.questionSeventeenPartFour": "Is managed in a manner that has been demonstrated to be capable of reliably producing second-generation offspring in a",
   "questionContent.DetermineSourceCode.questionEighteen": "In which CITES Appendix is the specimen listed?",
-
   "questionContent.DetermineSourceCode.questionNineteen": "Has the specimen been bred for commercial purposes?",
   "questionContent.DetermineSourceCode.questionTwenty": "Was the specimen bred at a CITES-registered breeding operation?",
   "questionContent.DetermineSourceCode.questionTwentyOnePartOne": "Was the specimen grown under",
@@ -248,7 +247,6 @@
   "screen.stepThree.requirementCheckedForAdditionalInspectiond.bullet_3": "Lack of parental breeding stock",
   "button.stepThree.continueToInspectionSummary": "CONTINUE TO INSPECTION SUMMARY",
   "screen.stepTwo.recordsExaminedForStock": "Examine facility records for stock. This may include, for example, husbandry, feeding or health records.",
-
   "screen.ProductionCapacityCalculator.titleText": "Production Capacity Calculator",
   "button.noOfSpecies": "Number of specimens capable of being produced by the facility",
   "button.noOfFemales": "Number of females required to meet annual reported production",
@@ -708,6 +706,6 @@
   "consentForm.print.title": "CONSENT FORM",
   "exampledialogue.print.title": "EXAMPLE OF DIALOGUE",
   "form.placeHolder.number": "Please enter a number",
-  "alertTitle.continueInspection":"ALERT",
+  "alertTitle.continueInspection": "ALERT",
   "alertContent.continueInspection": "Are you sure you want to delete this inspection ?"
 }

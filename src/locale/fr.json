@@ -181,7 +181,6 @@
   "questionContent.DetermineSourceCode.questionSeventeenPartThree": "OU",
   "questionContent.DetermineSourceCode.questionSeventeenPartFour": "Est géré d'une manière dont il a été démontré qu'elle est capable de produire de manière fiable une progéniture de deuxième génération dans un",
   "questionContent.DetermineSourceCode.questionEighteen": "Dans quelle Annexe CITES le spécimen est-il inscrit?",
-
   "questionContent.DetermineSourceCode.questionNineteen": "Le spécimen a-t-il été élevé à des fins commerciales?",
   "questionContent.DetermineSourceCode.questionTwenty": "Le spécimen a-t-il été élevé dans un établissement d'élevage enregistré à la CITES?",
   "questionContent.DetermineSourceCode.questionTwentyOnePartOne": "Le spécimen a-t-il été cultivé sous",
@@ -248,7 +247,6 @@
   "screen.stepThree.requirementCheckedForAdditionalInspectiond.bullet_3": "Manque de reproducteurs parentaux",
   "button.stepThree.continueToInspectionSummary": "CONTINUER AU RÉSUMÉ DE L'INSPECTION",
   "screen.stepTwo.recordsExaminedForStock": "Examiner les registres des installations pour le stock. Cela peut inclure, par exemple, les dossiers d'élevage, d'alimentation ou de santé.",
-
   "screen.ProductionCapacityCalculator.titleText": "Calculateur de capacité de production",
   "button.noOfSpecies": "Nombre d'échantillons susceptibles d'être produits par l'installation",
   "button.noOfFemales": "Nombre de femelles nécessaires pour atteindre la production annuelle déclarée",

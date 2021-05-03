@@ -181,7 +181,6 @@
   "questionContent.DetermineSourceCode.questionSeventeenPartThree": "ATAU",
   "questionContent.DetermineSourceCode.questionSeventeenPartFour": "Dikelola dengan cara yang telah terbukti mampu menghasilkan keturunan generasi kedua secara andal dalam",
   "questionContent.DetermineSourceCode.questionEighteen": "Di Apendiks CITES manakah spesimen terdaftar?",
-
   "questionContent.DetermineSourceCode.questionNineteen": "Apakah spesimen dibiakkan untuk tujuan komersial?",
   "questionContent.DetermineSourceCode.questionTwenty": "Apakah spesimen dikembangbiakkan pada operasi pembiakan terdaftar CITES?",
   "questionContent.DetermineSourceCode.questionTwentyOnePartOne": "Apakah spesimen ditanam di bawah",
@@ -248,7 +247,6 @@
   "screen.stepThree.requirementCheckedForAdditionalInspectiond.bullet_3": "Kurangnya stok pengembangbiakan induk",
   "button.stepThree.continueToInspectionSummary": "LANJUTKAN KE RINGKASAN INSPEKSI",
   "screen.stepTwo.recordsExaminedForStock": "Periksa catatan fasilitas untuk stok. Ini mungkin termasuk, misalnya, catatan peternakan, makan atau kesehatan.",
-
   "screen.ProductionCapacityCalculator.titleText": "Kalkulator Kapasitas Produksi",
   "button.noOfSpecies": "Jumlah spesimen yang mampu diproduksi oleh fasilitas",
   "button.noOfFemales": "Jumlah wanita yang dibutuhkan untuk memenuhi produksi tahunan yang dilaporkan",
