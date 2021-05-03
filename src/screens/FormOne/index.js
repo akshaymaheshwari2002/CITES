@@ -60,7 +60,7 @@ const FormOne = ({navigation}) => {
     'D',
     'U',
     'X',
-    'NotApplicable',
+    'Not Applicable',
   ];
 
   const formFields = useMemo(
