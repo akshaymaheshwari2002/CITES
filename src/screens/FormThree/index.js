@@ -54,17 +54,17 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
   const _otherLifeStage = watch('otherLifeStage');
   const _numberHarvestedInPreviousYear = watch('numberHarvestedInPreviousYear');
   const sourceCode = [
-    {text: 'sourceCodeLetters.A'},
-    {text: 'sourceCodeLetters.F'},
-    {text: 'sourceCodeLetters.R'},
-    {text: 'sourceCodeLetters.I'},
-    {text: 'sourceCodeLetters.O'},
-    {text: 'sourceCodeLetters.W'},
-    {text: 'sourceCodeLetters.C'},
-    {text: 'sourceCodeLetters.D'},
-    {text: 'sourceCodeLetters.U'},
-    {text: 'sourceCodeLetters.X'},
-    {text: 'sourceCodeLetters.NotApplicable'},
+    'A',
+    'F',
+    'R',
+    'I',
+    'O',
+    'W',
+    'C',
+    'D',
+    'U',
+    'X',
+    'NotApplicable',
   ];
 
   const handleUnitsOfSizeOrMass = ({key, value}) => {
@@ -95,8 +95,8 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
               ...fieldProps,
               _sourceCode: {
                 items: sourceCode.map((value) => ({
-                  label: formatMessage({id: value.text}),
-                  value: formatMessage({id: value.text}),
+                  label: value,
+                  value: value,
                 })),
               },
             })
