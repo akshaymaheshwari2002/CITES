@@ -1,12 +1,20 @@
 import React, {useMemo, useCallback, useState, useEffect} from 'react';
 import {renderToString} from 'react-dom/server';
 import {WebView as RNWebView} from 'react-native-webview';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  BackHandler,
+  Pressable,
+} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
 import {format} from 'date-fns';
 import {shallowEqual, useSelector, useDispatch} from 'react-redux';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome5';
+import {useFocusEffect} from '@react-navigation/core';
 
 import {Container} from '@atoms';
 import {FormThreeTemplate, FormThreeHeader} from '@molecules';
@@ -249,6 +257,31 @@ const FormThreeSummaryEdit = ({navigation, route}) => {
     );
     navigation.goBack();
   }, [dispatch, navigation, registeredSpeciesModified]);
+
+  const handleBackPress = useCallback(() => {
+    navigation.replace('FormThreeSummary');
+    return true;
+  }, [navigation]);
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
+        <Pressable hitSlop={10} onPress={handleBackPress}>
+          <FontAwesomeIcon name="chevron-left" size={ms(22)} />
+        </Pressable>
+      ),
+    });
+  }, [handleBackPress, navigation]);
+
+  useFocusEffect(
+    useCallback(() => {
+      BackHandler.addEventListener('hardwareBackPress', handleBackPress);
+
+      return () => {
+        BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
+      };
+    }, [handleBackPress]),
+  );
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>

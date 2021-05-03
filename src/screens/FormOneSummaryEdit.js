@@ -1,7 +1,13 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {useSelector, shallowEqual, useDispatch} from 'react-redux';
 import {WebView as RNWebView} from 'react-native-webview';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  BackHandler,
+  Pressable,
+} from 'react-native';
 import {renderToString} from 'react-dom/server';
 import {useIntl} from 'react-intl';
 import {format} from 'date-fns';
@@ -11,6 +17,8 @@ import {
 } from '@store/slices/sessionSlice';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import Icon from 'react-native-vector-icons/Feather';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome5';
+import {useFocusEffect} from '@react-navigation/core';
 
 import {Container} from '@atoms';
 import {FormOneTemplate, FormOneHeader} from '@molecules';
@@ -218,6 +226,11 @@ const FormOneSummaryEdit = ({navigation}) => {
     [facilityDataModified],
   );
 
+  const handleBackPress = useCallback(() => {
+    navigation.replace('FormOneSummary');
+    return true;
+  }, [navigation]);
+
   useEffect(() => {
     if (Object.keys(formData).length) {
       setfacilityDataModified(formatFormDataToDisplay(formData));
@@ -227,6 +240,26 @@ const FormOneSummaryEdit = ({navigation}) => {
   useEffect(() => {
     setRegisteredSpeciesModified(registeredSpecies);
   }, [registeredSpecies]);
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
+        <Pressable hitSlop={10} onPress={handleBackPress}>
+          <FontAwesomeIcon name="chevron-left" size={ms(22)} />
+        </Pressable>
+      ),
+    });
+  }, [handleBackPress, navigation]);
+
+  useFocusEffect(
+    useCallback(() => {
+      BackHandler.addEventListener('hardwareBackPress', handleBackPress);
+
+      return () => {
+        BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
+      };
+    }, [handleBackPress]),
+  );
 
   return (
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>

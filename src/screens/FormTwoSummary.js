@@ -182,7 +182,7 @@ const FormTwoSummary = ({navigation, route}) => {
         <TouchableOpacity
           style={[styles.slideBtn, styles.borderStyle]}
           onPress={() => {
-            navigation.navigate('FormTwoSummaryEdit');
+            navigation.replace('FormTwoSummaryEdit');
           }}>
           <View style={[CommonStyles.flexRow, CommonStyles.justifySpaceEvenly]}>
             <View>

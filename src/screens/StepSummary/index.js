@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useMemo, useCallback, useState} from 'react';
+import React, {useRef, useMemo, useCallback, useState} from 'react';
 import {
   View,
   Text,
@@ -8,7 +8,7 @@ import {
   ImageBackground,
 } from 'react-native';
 import {ScaledSheet, ms} from 'react-native-size-matters';
-import {useIsFocused} from '@react-navigation/native';
+import {useFocusEffect} from '@react-navigation/native';
 import {useIntl} from 'react-intl';
 import {generatePdf} from '@utils/CommonFunctions';
 import Share from 'react-native-share';
@@ -42,10 +42,14 @@ import {
   formFourQuestions,
 } from '@utils/TranslationMapping';
 
+const AnimatedImage = Animated.createAnimatedComponent(ImageBackground);
+const options = {
+  message: 'Share form pdf ',
+  title: 'Share',
+};
+
 const StepSummary = ({navigation: {navigate}}) => {
-  const AnimatedImage = Animated.createAnimatedComponent(ImageBackground);
   const {formatMessage} = useIntl();
-  const isFocused = useIsFocused();
   const [filePath, setFilePath] = useState('');
   const animationValue = useRef(new Animated.Value(0)).current;
   const starScaleX = animationValue.interpolate({
@@ -69,19 +73,6 @@ const StepSummary = ({navigation: {navigate}}) => {
     outputRange: [1, 0.5, 1.1, 1.1],
   });
 
-  useEffect(() => {
-    if (isFocused) {
-      const ani = Animated.timing(animationValue, {
-        toValue: 1,
-        duration: 800,
-        easing: Easing.inOut(Easing.ease),
-        useNativeDriver: true,
-      });
-      ani.start();
-    } else {
-      animationValue.setValue(0);
-    }
-  }, [animationValue, isFocused]);
   const starsStyle = {
     position: 'absolute',
     height: ms(170),
@@ -129,6 +120,7 @@ const StepSummary = ({navigation: {navigate}}) => {
       ? format(Number(data?.whenDidYouBreedThisSpecies), 'yyyy/MM/dd')
       : '',
   });
+
   const facilityData = useMemo(
     () => ({
       ...formData,
@@ -187,6 +179,7 @@ const StepSummary = ({navigation: {navigate}}) => {
     });
     return translatedfacilitySchema;
   }, [formatMessage]);
+
   const facilitySchemaLabelsThree = useMemo(() => {
     let translatedfacilitySchema = {};
     Object.keys(facilitySchemaThree ?? {}).forEach((id, index) => {
@@ -212,6 +205,7 @@ const StepSummary = ({navigation: {navigate}}) => {
     });
     return translatedLabels;
   }, [formatMessage]);
+
   const labelsTwo = useMemo(() => {
     let translatedLabels = {};
     Object.keys(formTwoLabels ?? {}).forEach((id, index) => {
@@ -224,6 +218,7 @@ const StepSummary = ({navigation: {navigate}}) => {
     });
     return translatedLabels;
   }, [formatMessage]);
+
   const labelsThree = useMemo(() => {
     let translatedLabels = {};
     Object.keys(formThreeSchema ?? {}).forEach((id, index) => {
@@ -236,6 +231,7 @@ const StepSummary = ({navigation: {navigate}}) => {
     });
     return translatedLabels;
   }, [formatMessage]);
+
   const labelsFour = useMemo(() => {
     let translatedLabels = {};
     Object.keys(formFourQuestions ?? {}).forEach((id, index) => {
@@ -248,6 +244,7 @@ const StepSummary = ({navigation: {navigate}}) => {
     });
     return translatedLabels;
   }, [formatMessage]);
+
   const outcomeLabels = useMemo(() => {
     let translatedLabels = {};
     Object.keys(outcome ?? {}).forEach((id, index) => {
@@ -260,6 +257,7 @@ const StepSummary = ({navigation: {navigate}}) => {
     });
     return translatedLabels;
   }, [formatMessage]);
+
   const formFourSchemaLabels = useMemo(() => {
     let translatedLabels = {};
     Object.keys(formFourSchema ?? {}).forEach((id, index) => {
@@ -377,11 +375,21 @@ const StepSummary = ({navigation: {navigate}}) => {
     registeredSpecies,
   ]);
 
-  const options = {
-    message: 'Share form pdf ',
-    title: 'Share',
-    url: 'file:' + filePath,
-  };
+  useFocusEffect(
+    useCallback(() => {
+      const ani = Animated.timing(animationValue, {
+        toValue: 1,
+        duration: 800,
+        easing: Easing.inOut(Easing.ease),
+        useNativeDriver: true,
+      });
+      ani.start();
+
+      return () => {
+        animationValue.setValue(0);
+      };
+    }, [animationValue]),
+  );
 
   return (
     <Container.ScrollView safeAreaViewProps={{edges: ['right', 'left']}}>
@@ -447,7 +455,7 @@ const StepSummary = ({navigation: {navigate}}) => {
               buttonStyle={() => {
                 return styles.button;
               }}
-              onPress={() => Share.open(options)}
+              onPress={() => Share.open({...options, url: `file:${filePath}`})}
             />
             <Button
               buttonContent={formatMessage({

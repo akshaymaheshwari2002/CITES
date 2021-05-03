@@ -13,7 +13,6 @@ import {ScaledSheet, vs} from 'react-native-size-matters';
 
 import {RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
-import {getStatusBarHeight} from 'react-native-status-bar-height';
 
 const Container = ({
   isModal,
