@@ -84,8 +84,7 @@
   "form.FormOne.label.followUpInspection": "ການກວດກາຕິດຕາມ",
   "form.FormOne.label.nationalPermitNumber": "ເລກປະ ຈຳ ຕົວໃບອະນຸຍາດແຫ່ງຊາດ, ຖ້າມີ",
   "form.FormOne.placeHolder.nationalPermitNumber": "ເລກປະ ຈຳ ຕົວໃບອະນຸຍາດແຫ່ງຊາດ",
-  "form.FormOne.label.citesInformationCode": "ເອກະສານຊ້ອນທ້າຍ C ຂອງຂ້າພະເຈົ້າສະເພາະສະເພາະ",
-  "form.FormOne.label.citesInformationCodeBottom": "CITES ລົງທະບຽນລະຫັດການປັບປຸງພັນ, ຖ້າມີ",
+  "form.FormOne.label.citesInformationCode": "ເອກະສານຊ້ອນທ້າຍ C ຂອງຂ້າພະເຈົ້າສະເພາະສະເພາະ\nCITES ລົງທະບຽນລະຫັດການປັບປຸງພັນ, ຖ້າມີ",
   "form.FormOne.placeHolder.citesInformationCode": "ຕົວຢ່າງ, A-BR-001",
   "form.FormOne.label.specimenBottom": "ຖ້ານີ້ແມ່ນການກວດກາຄັ້ງ ທຳ ອິດຂອງທ່ານ, ກະລຸນາໃສ່ 0. ",
   "form.FormOne.label.numberPlaceHolder": "ກະລຸນາໃສ່ເບີ",
@@ -708,5 +707,8 @@
   "helpText.percentageBreedingFemalePerSeason": "&lt;p>&lt;strong>ອັດຕາສ່ວນສະເລ່ຍ% ຂອງເພດຍິງໃນຊ່ວງລະດູການ&lt;/strong>&lt;/p>↵&lt;p>ອັດຕາສ່ວນສະເລ່ຍ (ອັດຕາສ່ວນ) ຂອງເພດຍິງທີ່ຜະລິດ ໜີບ ຫລືຂີ້ເຫຍື້ອຕໍ່ປີ. ຂໍ້ມູນນີ້ສາມາດສະ ໜອງ ໃຫ້ໂດຍສະຖານພະຍາບານ, ແຕ່ຄວນຈະໄດ້ຮັບການຢືນຢັນໂດຍໃຊ້ແຫລ່ງພາຍນອກທີ່ ໜ້າ ເຊື່ອຖື.&lt;br>↵&lt;br>↵ຍົກຕົວຢ່າງ, ປ້ອນ 70% ເຂົ້າເປັນ 0.7.&lt;/p>",
   "helpText.countTotalBreedingFemale": "&lt;p>&lt;strong>ຈຳ ນວນ # ຂອງເພດຍິງ&lt;/strong>&lt;/p>↵&lt;p>ຈຳ ນວນສັດລ້ຽງທັງ ໝົດ ທີ່ສັງເກດເຫັນຫຼືອ້າງວ່າຢູ່ໃນສະຖານທີ່ດັ່ງກ່າວ. ໃສ່ເປັນເລກທັງ ໝົດ.&lt;br>↵&lt;br>↵ຍົກຕົວຢ່າງ, 50.&lt;/p>",
   "helpText.staffCurrentAtFacility": "ຊົ່ວໂມງຂອງການຈ້າງງານ ຈຳ ນວນພະນັກງານທີ່ຂື້ນກັບຈະອີງຕາມຊະນິດທີ່ໄດ້ຮັບການດູແລ, ຂະ ໜາດ ຂອງການລ້ຽງແລະ / ຫຼືການລ້ຽງສັດລ້ຽງແລະການສັບຊ້ອນໂຄງສ້າງຂອງອົງກອນ. ໂດຍທົ່ວໄປແລ້ວ, ຕົວຢ່າງການດູແລຫຼາຍ, ຕ້ອງມີພະນັກງານຫຼາຍ. ການຈ້າງງານເຕັມເວລາແມ່ນຖືກພິຈາລະນາເປັນປົກກະຕິໃນລະຫວ່າງ 30-40 ຊົ່ວໂມງຕໍ່ອາທິດ, ການຈ້າງງານບໍ່ເຕັມເວລາມັກຈະ ໜ້ອຍ ກວ່າ 30 ຊົ່ວໂມງຕໍ່ອາທິດ.",
-  "helpText.typeOfInspection": "&lt;p>&lt;strong>ປະເພດການກວດກາ&lt;/strong>&lt;/p>↵&lt;p>ເປັນ &lt;strong>ການກວດກາເບື້ອງຕົ້ນ &lt;/strong>ແມ່ນການກວດກາສະຖານທີ່ ທຳ ອິດ.&lt;/p>↵&lt;p>ກ &nbsp;&lt;strong>ການກວດກາປະ&lt;/strong> &lt;strong>ຈຳ&lt;/strong> &nbsp;ຂອງສະຖານທີ່ປະຕິບັດເປັນປະ ຈຳ.&lt;/p>↵&lt;p>ກ &nbsp;&lt;strong>ການກວດກາຕິດຕາມ&lt;/strong> &nbsp;ຖືກປະຕິບັດເພື່ອຮັບປະກັນວ່າສະຖານທີ່ໃດ ໜຶ່ງ ໄດ້ປະຕິບັດຕາມບັນຫາໃດ ໜຶ່ງ ທີ່ໄດ້ຍົກຂຶ້ນໃນການກວດກາເບື້ອງຕົ້ນຫຼືປົກກະຕິກ່ອນ ໜ້າ ນີ້.&lt;/p>"
+  "helpText.typeOfInspection": "&lt;p>&lt;strong>ປະເພດການກວດກາ&lt;/strong>&lt;/p>↵&lt;p>ເປັນ &lt;strong>ການກວດກາເບື້ອງຕົ້ນ &lt;/strong>ແມ່ນການກວດກາສະຖານທີ່ ທຳ ອິດ.&lt;/p>↵&lt;p>ກ &nbsp;&lt;strong>ການກວດກາປະ&lt;/strong> &lt;strong>ຈຳ&lt;/strong> &nbsp;ຂອງສະຖານທີ່ປະຕິບັດເປັນປະ ຈຳ.&lt;/p>↵&lt;p>ກ &nbsp;&lt;strong>ການກວດກາຕິດຕາມ&lt;/strong> &nbsp;ຖືກປະຕິບັດເພື່ອຮັບປະກັນວ່າສະຖານທີ່ໃດ ໜຶ່ງ ໄດ້ປະຕິບັດຕາມບັນຫາໃດ ໜຶ່ງ ທີ່ໄດ້ຍົກຂຶ້ນໃນການກວດກາເບື້ອງຕົ້ນຫຼືປົກກະຕິກ່ອນ ໜ້າ ນີ້.&lt;/p>",
+  "alertTitle.continueInspection":"ແຈ້ງເຕືອນ",
+  "alertContent.continueInspection": "ທ່ານແນ່ໃຈບໍ່ວ່າທ່ານຕ້ອງການລຶບການກວດການີ້?"
+
 }

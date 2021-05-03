@@ -84,8 +84,7 @@
   "form.FormOne.label.followUpInspection": "Kiểm tra theo dõi",
   "form.FormOne.label.nationalPermitNumber": "Số nhận dạng giấy phép quốc gia, nếu có",
   "form.FormOne.placeHolder.nationalPermitNumber": "Số nhận dạng giấy phép quốc gia",
-  "form.FormOne.label.citesInformationCode": "CITES Appendix I chỉ mẫu vật",
-  "form.FormOne.label.citesInformationCodeBottom": "Vui lòng cung cấp CITES mã chăn nuôi đã đăng ký",
+  "form.FormOne.label.citesInformationCode": "CITES Appendix I chỉ mẫu vật\nVui lòng cung cấp CITES mã chăn nuôi đã đăng ký",
   "form.FormOne.placeHolder.citesInformationCode": "Ví dụ, A-BR-001",
   "form.FormOne.label.specimenBottom": "Nếu đây là lần kiểm tra đầu tiên của bạn, vui lòng nhập 0.",
   "form.FormOne.label.numberPlaceHolder": "Vui lòng nhập một số",
@@ -301,7 +300,7 @@
   "screen.StepsSummary.headerPartTwo": "BƯỚC",
   "screen.StepsSummary.headerPartThree": "KIỂM TRA",
   "screen.StepsSummary.contentOne": "TRƯỚC",
-  "screen.StepsSummary.contentTwo": "KHI KIỂM TRA RA NGOÀI",
+  "screen.StepsSummary.contentTwo": "KHI KIỂM\nTRA RA\nNGOÀI",
   "screen.StepsSummary.contentThree": "SAU KHI",
   "screen.StepsSummary.contentFour": "KIỂM TRA",
   "screen.HomePage.header": "BẠN MUỐN LÀM GÌ?",
@@ -706,5 +705,7 @@
   "lifeStgeDropDownList.option14": "Con nòng nọc",
   "lifeStgeDropDownList.option15": "Ếch con",
   "lifeStgeDropDownList.option16": "Chrysalis",
-  "lifeStgeDropDownList.option17": "Khác"
+  "lifeStgeDropDownList.option17": "Khác",
+  "alertTitle.continueInspection":"BÁO CÁO",
+  "alertContent.continueInspection": "Bạn có chắc chắn muốn xóa kiểm tra này không?"
 }

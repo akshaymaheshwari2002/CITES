@@ -84,8 +84,7 @@
   "form.FormOne.label.followUpInspection": "跟进检查",
   "form.FormOne.label.nationalPermitNumber": "国家许可证标识号,如果适用",
   "form.FormOne.placeHolder.nationalPermitNumber": "国家许可标识号",
-  "form.FormOne.label.citesInformationCode": "仅限CITES附录I标本",
-  "form.FormOne.label.citesInformationCodeBottom": "CITES注册的圈养繁殖代码,如果适用",
+  "form.FormOne.label.citesInformationCode": "仅限CITES附录I标本\nCITES注册的圈养繁殖代码,如果适用",
   "form.FormOne.placeHolder.citesInformationCode": "例如,A-BR-001",
   "form.FormOne.label.specimenBottom": "如果这是您的首次检查,请输入0。",
   "form.FormOne.label.numberPlaceHolder": "请输入数字",
@@ -708,5 +707,7 @@
   "lifeStgeDropDownList.option14": " T",
   "lifeStgeDropDownList.option15": " Froglet",
   "lifeStgeDropDownList.option16": "蝶ry",
-  "lifeStgeDropDownList.option17": "其他"
+  "lifeStgeDropDownList.option17": "警报",
+  "alertContent.continueInspection": "您确定要删除此检查吗？"
 }
+

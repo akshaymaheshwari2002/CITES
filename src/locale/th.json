@@ -84,8 +84,7 @@
   "form.FormOne.label.followUpInspection": "การตรวจสอบติดตามผล",
   "form.FormOne.label.nationalPermitNumber": "หมายเลขประจำตัวใบอนุญาตแห่งชาติถ้ามี",
   "form.FormOne.placeHolder.nationalPermitNumber": "หมายเลขประจำตัวใบอนุญาตแห่งชาติ",
-  "form.FormOne.label.citesInformationCode": "ตัวอย่าง CITES ภาคผนวก I เท่านั้น",
-  "form.FormOne.label.citesInformationCodeBottom": "CITES จดทะเบียนรหัสการเพาะพันธุ์เชลยถ้ามี",
+  "form.FormOne.label.citesInformationCode": "ตัวอย่าง CITES ภาคผนวก I เท่านั้น\nCITES จดทะเบียนรหัสการเพาะพันธุ์เชลยถ้ามี",
   "form.FormOne.placeHolder.citesInformationCode": "ตัวอย่างเช่น A-BR-001",
   "form.FormOne.label.specimenBottom": "หากนี่เป็นการตรวจสอบครั้งแรกของคุณโปรดป้อน 0",
   "form.FormOne.label.numberPlaceHolder": "โปรดป้อนตัวเลข",
@@ -708,5 +707,8 @@
   "lifeStgeDropDownList.option14": "ลูกอ๊อด",
   "lifeStgeDropDownList.option15": "กบ",
   "lifeStgeDropDownList.option16": "ดักแด้",
-  "lifeStgeDropDownList.option17": "อื่น ๆ"
+  "lifeStgeDropDownList.option17": "อื่น ๆ",
+  "alertTitle.continueInspection":"การแจ้งเตือน"  ,
+  "alertContent.continueInspection": "แน่ใจไหมว่าต้องการลบการตรวจสอบนี้"
+  
 }

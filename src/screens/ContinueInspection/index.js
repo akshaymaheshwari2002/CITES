@@ -1,5 +1,12 @@
 import React, {useCallback, useState} from 'react';
-import {View, Text, FlatList, TouchableOpacity, Image} from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  Image,
+  Alert,
+} from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import {useDispatch} from 'react-redux';
@@ -39,6 +46,28 @@ const ContinueInspection = ({navigation}) => {
     setActiveInspections(inspections);
   }, []);
 
+  const alert = useCallback(
+    (item) => {
+      Alert.alert(
+        formatMessage({
+          id: 'alertTitle.continueInspection',
+        }),
+        formatMessage({
+          id: 'alertContent.continueInspection',
+        }),
+        [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          {text: 'OK', onPress: () => handleDelete(item)},
+        ],
+      );
+    },
+    [formatMessage, handleDelete],
+  );
+
   const renderItem = useCallback(
     ({item}) => {
       const facilityName = item.stepOne?.formOne?.facilityName;
@@ -62,7 +91,9 @@ const ContinueInspection = ({navigation}) => {
                       name="trash"
                       size={ms(25)}
                       iconStyle={styles.iconTrash}
-                      onPress={() => handleDelete(item)}
+                      onPress={() => {
+                        alert(item);
+                      }}
                     />
                   </View>
                 </View>
@@ -98,7 +129,7 @@ const ContinueInspection = ({navigation}) => {
         </View>
       );
     },
-    [formatMessage, handleDelete, handleItemPress],
+    [alert, formatMessage, handleItemPress],
   );
 
   return (

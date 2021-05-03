@@ -84,8 +84,7 @@
   "form.FormOne.label.followUpInspection": "Pemeriksaan Susulan",
   "form.FormOne.label.nationalPermitNumber": "Nombor pengenalan permit nasional, jika berkenaan",
   "form.FormOne.placeHolder.nationalPermitNumber": "Nombor pengenalan permit nasional",
-  "form.FormOne.label.citesInformationCode": "CITES Lampiran I spesimen sahaja",
-  "form.FormOne.label.citesInformationCodeBottom": "Kod pembiakan tawanan yang didaftarkan CITES, jika berkenaan",
+  "form.FormOne.label.citesInformationCode": "CITES Lampiran I spesimen sahaja\nKod pembiakan tawanan yang didaftarkan oleh CITES, jika berkenaan",
   "form.FormOne.placeHolder.citesInformationCode": "Contohnya, A-BR-001",
   "form.FormOne.label.specimenBottom": "Sekiranya ini adalah pemeriksaan pertama anda, sila masukkan 0.",
   "form.FormOne.label.numberPlaceHolder": "Sila masukkan nombor",
@@ -708,5 +707,7 @@
   "lifeStgeDropDownList.option14": "Berudu",
   "lifeStgeDropDownList.option15": "Froglet",
   "lifeStgeDropDownList.option16": "Chrysalis",
-  "lifeStgeDropDownList.option17": "Lain-lain"
+  "lifeStgeDropDownList.option17": "Lain-lain",
+  "alertTitle.continueInspection":"AMARAN",
+  "alertContent.continueInspection": "Adakah anda pasti mahu memadamkan pemeriksaan ini?"
 }
