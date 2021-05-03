@@ -392,7 +392,7 @@ const StepSummary = ({navigation: {navigate}}) => {
   );
 
   return (
-    <Container.ScrollView safeAreaViewProps={{edges: ['right', 'left']}}>
+    <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
         contentContainerStyle={styles.container}
         style={CommonStyles.flex1}
@@ -484,7 +484,7 @@ const StepSummary = ({navigation: {navigate}}) => {
           </View>
         </View>
       </Container.ScrollView>
-    </Container.ScrollView>
+    </Container>
   );
 };
 
