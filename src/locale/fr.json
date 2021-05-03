@@ -707,5 +707,7 @@
   "lifeStgeDropDownList.option14": "Têtard",
   "lifeStgeDropDownList.option15": "Grenouille",
   "lifeStgeDropDownList.option16": "Chrysalide",
-  "lifeStgeDropDownList.option17": "Autre"
+  "lifeStgeDropDownList.option17": "Autre",
+  "alertTitle.continueInspection":"ALERTE",
+  "alertContent.continueInspection": "Voulez-vous vraiment supprimer cette inspection?"
 }

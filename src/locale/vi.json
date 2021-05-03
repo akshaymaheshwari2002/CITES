@@ -705,5 +705,7 @@
   "lifeStgeDropDownList.option14": "Con nòng nọc",
   "lifeStgeDropDownList.option15": "Froglet",
   "lifeStgeDropDownList.option16": "Chrysalis",
-  "lifeStgeDropDownList.option17": "Khác"
+  "lifeStgeDropDownList.option17": "Khác",
+  "alertTitle.continueInspection":"BÁO CÁO",
+  "alertContent.continueInspection": "Bạn có chắc chắn muốn xóa kiểm tra này không?"
 }

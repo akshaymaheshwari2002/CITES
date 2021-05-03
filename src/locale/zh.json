@@ -707,5 +707,7 @@
   "lifeStgeDropDownList.option14": " T",
   "lifeStgeDropDownList.option15": " Froglet",
   "lifeStgeDropDownList.option16": "蝶ry",
-  "lifeStgeDropDownList.option17": "其他"
+  "lifeStgeDropDownList.option17": "警报",
+  "alertContent.continueInspection": "您确定要删除此检查吗？"
 }
+
