@@ -63,7 +63,7 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
     'D',
     'U',
     'X',
-    'NotApplicable',
+    'Not Applicable',
   ];
 
   const handleUnitsOfSizeOrMass = ({key, value}) => {
@@ -103,8 +103,8 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
               ...fieldProps,
               _sourceCode: {
                 items: sourceCode.map((value) => ({
-                  label: formatMessage({id: value.text}),
-                  value: formatMessage({id: value.text}),
+                  label: value,
+                  value: value,
                 })),
               },
             }).slice(0, 7);
@@ -149,7 +149,6 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
     _otherLifeStage,
     _cmOrGramOfSizeOrMassAtSaleOrExport,
     _cmOrGramOfSizeOrMassAtSexualMaturity,
-    formatMessage,
   ]);
 
   useEffect(() => {
