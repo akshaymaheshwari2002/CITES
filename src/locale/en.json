@@ -84,7 +84,7 @@
   "form.FormOne.label.followUpInspection": "Follow-up Inspection",
   "form.FormOne.label.nationalPermitNumber": "National permit identification number, if applicable",
   "form.FormOne.placeHolder.nationalPermitNumber": "National permit identification number",
-  "form.FormOne.label.citesInformationCode": " only\nCITES registered captive-breeding code, if applicable",
+  "form.FormOne.label.citesInformationCode": "CITES Appendix I specimens only\nCITES registered captive-breeding code, if applicable",
   "form.FormOne.placeHolder.citesInformationCode": "For example, A-BR-001",
   "form.FormOne.label.specimenBottom": "If this is your first inspection, please enter 0.",
   "form.FormOne.label.numberPlaceHolder": "Please enter a number",
