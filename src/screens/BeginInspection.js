@@ -183,12 +183,12 @@ const styles = ScaledSheet.create({
     width: '100@s',
     alignItems: 'center',
   },
-  pointOne: {marginLeft: '125@s'},
+  pointOne: {marginLeft: '110@s'},
   pointTwo: {
     paddingVertical: '36@vs',
     marginLeft: '146@s',
   },
-  pointThree: {marginLeft: '125@s'},
+  pointThree: {marginLeft: '110@s'},
   numberContainer: {
     height: '40@ms',
     width: '40@ms',
@@ -199,7 +199,7 @@ const styles = ScaledSheet.create({
     marginRight: '16@s',
   },
   textContainer: {
-    width: '130@s',
+    width: '170@s',
   },
   pointTitle: {
     ...Fonts.HelveticaNeue25B,

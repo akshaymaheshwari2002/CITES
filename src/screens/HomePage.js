@@ -60,6 +60,10 @@ const HomePage = ({navigation}) => {
               buttonContent={formatMessage({
                 id: 'button.giveFeedback',
               })}
+              buttonTextStyle={() => [
+                styles.buttonText,
+                {color: RawColors.black},
+              ]}
               buttonStyle={() => styles.emptyButton}
             />
           </View>
@@ -111,10 +115,14 @@ const styles = ScaledSheet.create({
     backgroundColor: RawColors.darkSalmon,
     minHeight: '66@vs',
     borderWidth: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   emptyButton: {
     marginVertical: '16@vs',
     backgroundColor: RawColors.sugarCane,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   buttonText: {
     color: RawColors.white,
