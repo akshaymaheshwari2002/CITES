@@ -708,5 +708,7 @@
   "lifeStgeDropDownList.option17": "Khác",
   "alertTitle.continueInspection":"BÁO CÁO",
   "alertContent.continueInspection": "Bạn có chắc chắn muốn xóa kiểm tra này không?",
-  "screen.LanguageSelection.loaderBottom.content": "Đồng bộ dữ liệu"
+  "screen.LanguageSelection.loaderBottom.content": "Đồng bộ dữ liệu",
+  "screen.LanguaueSelection.alertTitle.network": "Không có Internet!",
+  "screen.LanguaueSelection.alertMessage.network": "Bạn chưa kết nối với mạng, Hãy kiểm tra kỹ kết nối internet của bạn và thử lại."
 }

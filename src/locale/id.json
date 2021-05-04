@@ -708,5 +708,7 @@
   "helpText.typeOfInspection": "&lt;p>&lt;strong>Jenis inspeksi&lt;/strong>&lt;/p>↵&lt;p>SEBUAH &lt;strong>pemeriksaan awal&lt;/strong> adalah pemeriksaan pertama fasilitas.&lt;/p>↵&lt;p>SEBUAH &lt;strong>pemeriksaan rutin&lt;/strong> fasilitas dilakukan secara teratur.&lt;/p>↵&lt;p>SEBUAH &lt;strong>pemeriksaan lanjutan&lt;/strong> dilakukan untuk memastikan bahwa fasilitas telah memenuhi setiap masalah yang diangkat pada pemeriksaan awal atau rutin sebelumnya.&lt;/p>",
   "alertTitle.continueInspection":"WASPADA",
   "alertContent.continueInspection": "Anda yakin ingin menghapus pemeriksaan ini?",
-  "screen.LanguageSelection.loaderBottom.content": "Sinkronkan Data"
+  "screen.LanguageSelection.loaderBottom.content": "Sinkronkan Data",
+  "screen.LanguaueSelection.alertTitle.network": "Tanpa Internet!",
+  "screen.LanguaueSelection.alertMessage.network": "Anda tidak terhubung ke jaringan, Periksa kembali konektivitas internet Anda dan coba lagi."
 }

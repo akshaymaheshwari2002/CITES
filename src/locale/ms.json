@@ -708,5 +708,7 @@
   "lifeStgeDropDownList.option17": "Lain-lain",
   "alertTitle.continueInspection":"AMARAN",
   "alertContent.continueInspection": "Adakah anda pasti mahu memadamkan pemeriksaan ini?",
-  "screen.LanguageSelection.loaderBottom.content": "Segerakkan Data"
+  "screen.LanguageSelection.loaderBottom.content": "Segerakkan Data",
+  "screen.LanguaueSelection.alertTitle.network": "Tanpa Internet!",
+  "screen.LanguaueSelection.alertMessage.network": "Anda tidak tersambung ke rangkaian, Periksa silang kesambungan internet anda dan cuba lagi."
 }
