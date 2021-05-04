@@ -707,5 +707,8 @@
   "lifeStgeDropDownList.option16": "Chrysalide",
   "lifeStgeDropDownList.option17": "Autre",
   "alertTitle.continueInspection":"ALERTE",
-  "alertContent.continueInspection": "Voulez-vous vraiment supprimer cette inspection?"
+  "alertContent.continueInspection": "Voulez-vous vraiment supprimer cette inspection?",
+  "screen.LanguageSelection.loaderBottom.content": "Synchroniser les données",
+  "screen.LanguaueSelection.alertTitle.network": "Pas d'Internet!",
+  "screen.LanguaueSelection.alertMessage.network": "Vous n'êtes pas connecté au réseau, vérifiez votre connectivité Internet et réessayez."
 }

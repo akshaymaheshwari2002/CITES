@@ -1,12 +1,12 @@
 import React, {useCallback, useEffect} from 'react';
-import {Animated, Easing, StyleSheet} from 'react-native';
+import {Animated, Easing, StyleSheet, View} from 'react-native';
 import {verticalScale, ScaledSheet} from 'react-native-size-matters';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
 import {RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
 
-const Loader = ({visible = false}) => {
+const Loader = ({visible = false, customIcon, customText}) => {
   const spinValue = new Animated.Value(0);
   const spin = spinValue.interpolate({
     inputRange: [0, 1],
@@ -35,19 +35,28 @@ const Loader = ({visible = false}) => {
   return (
     <>
       {visible ? (
-        <Animated.View
-          style={[
-            styles.loaderView,
-            {
-              transform: [{rotateZ: spin}],
-            },
-          ]}>
-          <EvilIcons
-            name={'spinner-3'}
-            size={verticalScale(70)}
-            color={RawColors.black}
-          />
-        </Animated.View>
+        <>
+          <Animated.View
+            style={[
+              customIcon ? {} : styles.loaderView,
+              {
+                transform: [{rotateZ: spin}],
+              },
+            ]}>
+            {customIcon ? (
+              customIcon
+            ) : (
+              <EvilIcons
+                name={'spinner-3'}
+                size={verticalScale(70)}
+                color={RawColors.black}
+              />
+            )}
+          </Animated.View>
+          {customText ? (
+            <View style={styles.loaderText}>{customText}</View>
+          ) : null}
+        </>
       ) : null}
     </>
   );
@@ -57,6 +66,9 @@ const styles = ScaledSheet.create({
   loaderView: {
     ...CommonStyles.centerContent,
     ...StyleSheet.absoluteFill,
+  },
+  loaderText: {
+    marginVertical: '5@vs',
   },
 });
 

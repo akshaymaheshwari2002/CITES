@@ -707,5 +707,8 @@
   "lifeStgeDropDownList.option16": "ดักแด้",
   "lifeStgeDropDownList.option17": "อื่น ๆ",
   "alertTitle.continueInspection":"การแจ้งเตือน"  ,
-  "alertContent.continueInspection": "แน่ใจไหมว่าต้องการลบการตรวจสอบนี้"
+  "alertContent.continueInspection": "แน่ใจไหมว่าต้องการลบการตรวจสอบนี้",
+  "screen.LanguageSelection.loaderBottom.content": "ซิงค์ข้อมูล",
+  "screen.LanguaueSelection.alertTitle.network": "ไม่มีอินเทอร์เน็ต!",
+  "screen.LanguaueSelection.alertMessage.network": "คุณไม่ได้เชื่อมต่อกับเครือข่ายตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณแล้วลองอีกครั้ง"
 }
