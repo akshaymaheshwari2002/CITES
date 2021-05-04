@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSelector, createSlice} from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import {getMasterDataConfig} from '@services';
+import {getMasterDatasConfig} from '@services';
 import Config from '@config';
 
 export const INITIAL_PERSISTED_STATE = {
@@ -22,7 +22,7 @@ export const masterDataMessagesSelector = createSelector(
 );
 
 export const fetchMasterData = createAsyncThunk('fetchMasterData', async () => {
-  const {data} = await axios(getMasterDataConfig());
+  const {data} = await axios(getMasterDatasConfig());
 
   return data?.results ?? [];
 });

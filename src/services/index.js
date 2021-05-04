@@ -2,8 +2,8 @@ import Config from '@config';
 
 const BASE_URL = Config.BACKEND_BASE_URL;
 
-export const getMasterDataConfig = () => ({
-  url: `${BASE_URL}/v1/appDatas`,
+export const getMasterDatasConfig = () => ({
+  url: `${BASE_URL}/v1/master-datas`,
   method: 'GET',
   headers: {'Content-Type': 'application/json'},
 });
