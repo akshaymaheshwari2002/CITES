@@ -707,5 +707,6 @@
   "lifeStgeDropDownList.option16": "Chrysalis",
   "lifeStgeDropDownList.option17": "Khác",
   "alertTitle.continueInspection":"BÁO CÁO",
-  "alertContent.continueInspection": "Bạn có chắc chắn muốn xóa kiểm tra này không?"
+  "alertContent.continueInspection": "Bạn có chắc chắn muốn xóa kiểm tra này không?",
+  "screen.LanguageSelection.loaderBottom.content": "Đồng bộ dữ liệu"
 }

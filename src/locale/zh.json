@@ -707,6 +707,7 @@
   "lifeStgeDropDownList.option16": "蝶ry",
   "lifeStgeDropDownList.option17": "警报",
   "alertTitle.continueInspection":"警報",
-  "alertContent.continueInspection": "您确定要删除此检查吗？"
+  "alertContent.continueInspection": "您确定要删除此检查吗？",
+  "screen.LanguageSelection.loaderBottom.content": "同步資料"
 }
 

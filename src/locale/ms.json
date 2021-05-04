@@ -707,5 +707,6 @@
   "lifeStgeDropDownList.option16": "Chrysalis",
   "lifeStgeDropDownList.option17": "Lain-lain",
   "alertTitle.continueInspection":"AMARAN",
-  "alertContent.continueInspection": "Adakah anda pasti mahu memadamkan pemeriksaan ini?"
+  "alertContent.continueInspection": "Adakah anda pasti mahu memadamkan pemeriksaan ini?",
+  "screen.LanguageSelection.loaderBottom.content": "Segerakkan Data"
 }
