@@ -96,7 +96,7 @@
   "form.FormTwo.label.vetNameAndAddress": "Veuillez fournir le nom et l'adresse du vétérinaire",
   "form.FormTwo.placeholder.veterinarianAddress": "Adresse du vétérinaire",
   "form.FormTwo.label.animalKeptAtOtherLocation": "Les animaux sont-ils gardés à d'autres endroits?",
-  "form.FormTwo.label.addressOfOtherAnimalsPartOne": "Si oui, quelle est l'adresse du (des) emplacement (s)??",
+  "form.FormTwo.label.addressOfOtherAnimalsPartOne": "Si oui, quelle est l'adresse du (des) emplacement (s)?",
   "form.FormTwo.label.addressOfOtherAnimalsPartTwo": "Définir un rappel pour inspecter ces emplacements",
   "form.FormTwo.placeholder.country": "Pays",
   "form.FormThree.label.selectSpeciesForm3": "Sélectionnez les espèces",
