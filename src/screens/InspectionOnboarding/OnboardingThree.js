@@ -37,7 +37,7 @@ const styles = ScaledSheet.create({
   content: {
     ...CommonStyles.flex1,
     justifyContent: 'space-evenly',
-    paddingTop: '45@vs',
+    paddingTop: '10@vs',
     paddingBottom: '7@vs',
   },
   img: {

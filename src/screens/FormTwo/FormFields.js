@@ -107,6 +107,7 @@ export default ({
       //rules: isAccessToVeterinaryServices ? {required} : {},
       fieldType: Constants.COUNTRY_PICKER,
       items: countries,
+      fieldContainerStyle: {marginTop: 7},
       style: {
         marginVertical: 0,
         marginTop: verticalScale(6),

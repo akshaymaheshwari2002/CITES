@@ -39,7 +39,7 @@ const styles = ScaledSheet.create({
   },
   content: {
     ...CommonStyles.flex1,
-    paddingTop: '45@vs',
+    paddingTop: '47@vs',
     paddingBottom: '7@vs',
   },
   word: {

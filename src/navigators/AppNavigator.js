@@ -18,6 +18,7 @@ import {
   SourceCodeDeterminationOnboarding,
 } from '@screens';
 import TabNavigator from './TabNavigator';
+import {RawColors} from '@styles/Themes';
 
 const Stack = createStackNavigator();
 
@@ -37,7 +38,9 @@ const screenOptions = {
 
 const AppNavigator = () => {
   return (
-    <NavigationContainer ref={navigationRef}>
+    <NavigationContainer
+      ref={navigationRef}
+      theme={{colors: {background: `${RawColors.white}`}}}>
       <Stack.Navigator
         screenOptions={screenOptions}
         initialRouteName="LanguageSelection">

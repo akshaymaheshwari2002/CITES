@@ -561,7 +561,7 @@
   "screen.StepOne.Alert": "Primero complete el primer paso",
   "screen.StepTwo.Alert": "Primero complete el paso dos ",
   "screen.StepThree.Alert": "Primero complete el paso tres",
-  "screen.languageSelection.contentOne": "Capacidades",
+  "screen.languageSelection.contentOne": "CapaCITES",
   "formEditMenu.formOne.question": "¿Cómo le gustaría editar el formulario uno?",
   "formEditMenu.formTwo.question": "¿Cómo le gustaría editar el formulario dos?",
   "formEditMenu.formThree.question": "¿Cómo le gustaría editar el formulario tres?",
@@ -706,8 +706,9 @@
   "helpText.professionalVeterinaryServices": "&lt;p>&lt;strong>Un veterinario (veterinario)&lt;/strong>&lt;/p>↵&lt;p>también conocido como cirujano veterinario o médico veterinario, es un profesional que practica la medicina veterinaria al tratar enfermedades, trastornos y lesiones en animales no humanos.&lt;/p>",
   "helpText.staffCurrentAtFacility": "Horas de empleo La cantidad de personal empleado dependerá de las especies cuidadas, el tamaño de la operación de cría en cautividad y / o ganadería y la complejidad de la estructura organizativa. Generalmente, cuantas más muestras se cuidan, más personal se requiere. El empleo a tiempo completo generalmente se considera entre 30 y 40 horas a la semana. El empleo a tiempo parcial generalmente es menos de 30 horas a la semana.",
   "helpText.typeOfInspection": "&lt;p>&lt;strong>Tipos de inspecciones&nbsp;&lt;/strong>&lt;/p>↵&lt;p>Una &lt;strong>inspección inicial&lt;/strong> es la primera inspección de una instalación.&nbsp;&lt;/p>↵&lt;p>Se lleva a cabo una &lt;strong>inspección de rutina de &lt;/strong>una instalación de forma regular.&nbsp;&lt;/p>↵&lt;p>Se lleva a cabo&lt;strong> una inspección de seguimiento&lt;/strong> para garantizar que una instalación haya cumplido con cualquier problema planteado en una inspección inicial o de rutina previa.&lt;/p>",
-  "alertTitle.continueInspection":"ALERTA",
+  "alertTitle.continueInspection": "ALERTA",
   "alertContent.continueInspection": "¿Está seguro de que desea eliminar esta inspección?",
-  "screen.LanguageSelection.loaderBottom.content": "Sincronizar datos",  "screen.LanguaueSelection.alertTitle.network": "¡Sin internet!",
+  "screen.LanguageSelection.loaderBottom.content": "Sincronizar datos",
+  "screen.LanguaueSelection.alertTitle.network": "¡Sin internet!",
   "screen.LanguaueSelection.alertMessage.network": "No está conectado a la red, verifique su conectividad a Internet y vuelva a intentarlo."
 }

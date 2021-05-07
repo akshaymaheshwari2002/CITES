@@ -561,7 +561,7 @@
   "screen.StepOne.Alert": "请先完成第一步",
   "screen.StepTwo.Alert": "请先完成第二步",
   "screen.StepThree.Alert": "请先完成第三步",
-  "screen.languageSelection.contentOne": "能力",
+  "screen.languageSelection.contentOne": "CapaCITES",
   "formEditMenu.formOne.question": "您想如何编辑表格一？",
   "formEditMenu.formTwo.question": "您想如何编辑第二个表单？",
   "formEditMenu.formThree.question": "您想如何编辑表单三？",
@@ -685,7 +685,7 @@
   "helpText.percentageSurvivingInTwoWeek": "&lt;p>&lt;strong>两周后的平均存活百分比&lt;/strong>&lt;/p>↵&lt;p>在孵化或出生后两周内存活的卵或活后代的平均数量。输入百分比（后代存活率）。&lt;/p>↵&lt;p>例如，输入80％作为0.8。&lt;/p>",
   "helpText.professionalVeterinaryServices": "&lt;p>&lt;strong>兽医（兽医）&lt;/strong>&lt;/p>↵&lt;p>也被称为兽医或兽医，是通过治疗非人类动物的疾病，失调和伤害来实践兽医的专业人士。&lt;/p>",
   "helpText.staffCurrentAtFacility": "&lt;p>就业时间雇用的员工人数取决于所照顾的物种，圈养和/或牧场经营的规模以及组织结构的复杂性。通常，所照顾的标本越多，就越多。全职工作通常被认为是每周30至40小时，而兼职工作通常少于每周30小时。&lt;/p>",
-  "helpText.typeOfInspection": "&lt;p>&lt;strong>检查类型&lt;/strong>&lt;/p>↵&lt;p>一个 &lt;strong>初步检查&lt;/strong> 是对设施的首次检查。&lt;/p>↵&lt;p>一种&lt;strong> 例行检查&lt;/strong> 定期进行设施检查。&lt;/p>↵&lt;p>一种 &lt;strong>后续检查 &lt;/strong>采取措施以确保设施符合先前的初次检查或例行检查中提出的任何问题&lt;/p>",  
+  "helpText.typeOfInspection": "&lt;p>&lt;strong>检查类型&lt;/strong>&lt;/p>↵&lt;p>一个 &lt;strong>初步检查&lt;/strong> 是对设施的首次检查。&lt;/p>↵&lt;p>一种&lt;strong> 例行检查&lt;/strong> 定期进行设施检查。&lt;/p>↵&lt;p>一种 &lt;strong>后续检查 &lt;/strong>采取措施以确保设施符合先前的初次检查或例行检查中提出的任何问题&lt;/p>",
   "form.placeHolder.number": "请输入一个数字",
   "consentForm.print.title": "同意书",
   "exampledialogue.print.title": "对话示例",
@@ -706,10 +706,9 @@
   "lifeStgeDropDownList.option15": " Froglet",
   "lifeStgeDropDownList.option16": "蝶ry",
   "lifeStgeDropDownList.option17": "警报",
-  "alertTitle.continueInspection":"警報",
+  "alertTitle.continueInspection": "警報",
   "alertContent.continueInspection": "您确定要删除此检查吗？",
   "screen.LanguageSelection.loaderBottom.content": "同步資料",
   "screen.LanguaueSelection.alertTitle.network": "沒有互聯網！",
   "screen.LanguaueSelection.alertMessage.network": "您尚未連接到網絡，請交叉檢查您的互聯網連接，然後重試。"
 }
-
