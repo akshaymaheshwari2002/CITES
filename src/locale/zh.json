@@ -384,9 +384,9 @@
   "screen.SourceCode.headerPartOne": "瀕危野生動植物種國際貿易公約",
   "screen.SourceCode.title": "源代码",
   "screen.SourceCode.line": "CITES附录清单",
-  "screen.SourceCode.NumberOne": "一世",
+  "screen.SourceCode.NumberOne": "I",
   "screen.SourceCode.NumberTwo": "II",
-  "screen.SourceCode.NumberThree": "三級",
+  "screen.SourceCode.NumberThree": "III",
   "screen.SourceCode.I.contentDescription": "被没收或没收的CITES清单标本。此源代码必须与另一个源代码一起使用。",
   "screen.SourceCode.I.letterDescription": "没收或被扣押",
   "screen.SourceCode.A.contentDescription": "根据第Conf.11.11号决议（Rev.CoP17）人工繁殖的植物及其部分和衍生物,其根据第七条第5款的规定出口（为非商业目的而人工繁殖的附录一中所列的物种以及附录二和附录三中所包括的物种标本）。",
@@ -710,6 +710,7 @@
   "alertContent.continueInspection": "您确定要删除此检查吗？",
   "screen.LanguageSelection.loaderBottom.content": "同步資料",
   "screen.LanguaueSelection.alertTitle.network": "沒有互聯網！",
-  "screen.LanguaueSelection.alertMessage.network": "您尚未連接到網絡，請交叉檢查您的互聯網連接，然後重試。"
+  "screen.LanguaueSelection.alertMessage.network": "您尚未連接到網絡，請交叉檢查您的互聯網連接，然後重試。",
+  "screen.HomePage.headerContent":"CapaCITES"
 }
 

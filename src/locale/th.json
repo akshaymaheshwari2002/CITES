@@ -384,9 +384,9 @@
   "screen.SourceCode.headerPartOne": "ไซเตส",
   "screen.SourceCode.title": "รหัสแหล่งที่มา",
   "screen.SourceCode.line": "CITES ภาคผนวก รายชื่อ",
-  "screen.SourceCode.NumberOne": "ผม",
+  "screen.SourceCode.NumberOne": "I",
   "screen.SourceCode.NumberTwo": "II",
-  "screen.SourceCode.NumberThree": "สาม",
+  "screen.SourceCode.NumberThree": "II",
   "screen.SourceCode.I.contentDescription": "ตัวอย่างที่ระบุไว้ใน CITES ซึ่งถูกยึดหรือยึดซอร์สโค้ดนี้ต้องใช้ร่วมกับซอร์สโค้ดอื่น",
   "screen.SourceCode.I.letterDescription": "ถูกยึด หรือ ยึด",
   "screen.SourceCode.A.contentDescription": "พืชที่ขยายพันธุ์เทียมตามมติ Conf. 11.11 (Rev. CoP17) ตลอดจนชิ้นส่วนและอนุพันธ์ดังกล่าวส่งออกภายใต้บทบัญญัติของมาตรา VII วรรค 5 (ตัวอย่างของ สายพันธุ์ที่รวมอยู่ในภาคผนวก I ซึ่งได้รับการขยายพันธุ์โดยเทียมเพื่อวัตถุประสงค์ที่ไม่ใช่เชิงพาณิชย์และตัวอย่างของสายพันธุ์ที่รวมอยู่ในภาคผนวก II และ III) ",
@@ -710,5 +710,6 @@
   "alertContent.continueInspection": "แน่ใจไหมว่าต้องการลบการตรวจสอบนี้",
   "screen.LanguageSelection.loaderBottom.content": "ซิงค์ข้อมูล",
   "screen.LanguaueSelection.alertTitle.network": "ไม่มีอินเทอร์เน็ต!",
-  "screen.LanguaueSelection.alertMessage.network": "คุณไม่ได้เชื่อมต่อกับเครือข่ายตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณแล้วลองอีกครั้ง"
+  "screen.LanguaueSelection.alertMessage.network": "คุณไม่ได้เชื่อมต่อกับเครือข่ายตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณแล้วลองอีกครั้ง",
+  "screen.HomePage.headerContent":"CapaCITES"
 }

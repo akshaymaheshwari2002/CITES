@@ -710,5 +710,6 @@
   "alertContent.continueInspection": "Are you sure you want to delete this inspection ?",
   "screen.LanguageSelection.loaderBottom.content": "Sync Data",
   "screen.LanguaueSelection.alertTitle.network": "No Internet !",
-  "screen.LanguaueSelection.alertMessage.network": "You are not connected to network, Cross check your internet connectivity and try again."
+  "screen.LanguaueSelection.alertMessage.network": "You are not connected to network, Cross check your internet connectivity and try again.",
+  "screen.HomePage.headerContent":"CapaCITES"
 }

@@ -709,5 +709,6 @@
   "alertTitle.continueInspection":"ALERTA",
   "alertContent.continueInspection": "¿Está seguro de que desea eliminar esta inspección?",
   "screen.LanguageSelection.loaderBottom.content": "Sincronizar datos",  "screen.LanguaueSelection.alertTitle.network": "¡Sin internet!",
-  "screen.LanguaueSelection.alertMessage.network": "No está conectado a la red, verifique su conectividad a Internet y vuelva a intentarlo."
+  "screen.LanguaueSelection.alertMessage.network": "No está conectado a la red, verifique su conectividad a Internet y vuelva a intentarlo.",
+  "screen.HomePage.headerContent":"CapaCITES"
 }

@@ -384,7 +384,7 @@
   "screen.SourceCode.headerPartOne": "Công ước CITES",
   "screen.SourceCode.title": "MÃ NGUỒN",
   "screen.SourceCode.line": "DANH SÁCH PHỤ LỤC CITES",
-  "screen.SourceCode.NumberOne": "Tôi",
+  "screen.SourceCode.NumberOne": "I",
   "screen.SourceCode.NumberTwo": "II",
   "screen.SourceCode.NumberThree": "III",
   "screen.SourceCode.I.contentDescription": "Các mẫu vật thuộc danh sách CITES đã bị tịch thu hoặc thu giữ. Mã nguồn này phải được sử dụng kết hợp với mã nguồn khác.",
@@ -710,5 +710,6 @@
   "alertContent.continueInspection": "Bạn có chắc chắn muốn xóa kiểm tra này không?",
   "screen.LanguageSelection.loaderBottom.content": "Đồng bộ dữ liệu",
   "screen.LanguaueSelection.alertTitle.network": "Không có Internet!",
-  "screen.LanguaueSelection.alertMessage.network": "Bạn chưa kết nối với mạng, Hãy kiểm tra kỹ kết nối internet của bạn và thử lại."
+  "screen.LanguaueSelection.alertMessage.network": "Bạn chưa kết nối với mạng, Hãy kiểm tra kỹ kết nối internet của bạn và thử lại.",
+  "screen.HomePage.headerContent":"CapaCITES"
 }

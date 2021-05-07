@@ -710,5 +710,6 @@
   "alertContent.continueInspection": "Voulez-vous vraiment supprimer cette inspection?",
   "screen.LanguageSelection.loaderBottom.content": "Synchroniser les données",
   "screen.LanguaueSelection.alertTitle.network": "Pas d'Internet!",
-  "screen.LanguaueSelection.alertMessage.network": "Vous n'êtes pas connecté au réseau, vérifiez votre connectivité Internet et réessayez."
+  "screen.LanguaueSelection.alertMessage.network": "Vous n'êtes pas connecté au réseau, vérifiez votre connectivité Internet et réessayez.",
+  "screen.HomePage.headerContent":"CapaCITES"
 }
