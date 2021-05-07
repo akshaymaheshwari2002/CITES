@@ -710,5 +710,6 @@
   "alertContent.continueInspection": "តើអ្នកពិតជាចង់លុបចោលការត្រួតពិនិត្យនេះមែនទេ?",
   "screen.LanguageSelection.loaderBottom.content": "ធ្វើសមកាលកម្មទិន្នន័យ",
   "screen.LanguaueSelection.alertTitle.network": "គ្មានអ៊ីនធឺណិតទេ!",
-  "screen.LanguaueSelection.alertMessage.network": "អ្នកមិនបានភ្ជាប់ទៅបណ្តាញទេសូមពិនិត្យមើលការភ្ជាប់អ៊ីនធឺណិតរបស់អ្នកហើយព្យាយាមម្តងទៀត។"
+  "screen.LanguaueSelection.alertMessage.network": "អ្នកមិនបានភ្ជាប់ទៅបណ្តាញទេសូមពិនិត្យមើលការភ្ជាប់អ៊ីនធឺណិតរបស់អ្នកហើយព្យាយាមម្តងទៀត។",
+  "screen.HomePage.headerContent":"CapaCITES"
 }

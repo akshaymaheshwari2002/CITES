@@ -150,7 +150,7 @@
   "questionContent.DetermineSourceCode.questionThreePartThree": "Penyelesaian. Konfigurasi 17.8",
   "questionContent.DetermineSourceCode.questionFour": "Adakah maklumat yang mencukupi mengenai spesimen untuk menentukan sumbernya?",
   "questionContent.DetermineSourceCode.questionFive": "Adakah spesimen diambil dari persekitaran laut dan bukan di bawah bidang kuasa mana-mana Negara?",
-  "questionContent.DetermineSourceCode.questionSixPartOne": "Adakah spesimen tumbuhan",
+  "questionContent.DetermineSourceCode.questionSixPartOne": "Adakah spesimen tanaman",
   "questionContent.DetermineSourceCode.questionSixPartTwo": "atau haiwan?",
   "questionContent.DetermineSourceCode.questionSeven": "Adakah spesimen diambil dari alam liar?",
   "questionContent.DetermineSourceCode.questionEight": "Adakah spesimen diambil dari alam liar sebagai telur atau remaja yang mempunyai kebarangkalian sangat rendah untuk bertahan hingga dewasa?",
@@ -364,7 +364,7 @@
   "screen.StepOne.WalkThroughContentOne": "untuk kembali ke \nhalaman sebelumnya",
   "screen.StepOne.WalkThroughContentTwo": "untuk kembali \nke laman utama",
   "screen.StepOne.WalkThroughContentThree": "untuk mencari \naplikasi",
-  "screen.StepOne.WalkThroughContentFour": "untuk membuat nota \ndan mengambil gambar \nmelalui \ninspeksi",
+  "screen.StepOne.WalkThroughContentFour": "untuk membuat nota \ndan mengambil gambar \nmelalui inspeksi",
   "screen.StepOne.WalkThroughContentFive": "untuk mengakses \nformasi dan alat yang diperlukan\ndengan pantas\nsemasa menjalankan \ninspeksi",
   "screen.OnboardingOneA.title": "APA ITU KOD SUMBER?",
   "screen.OnboardingOneA.contentOne": "Surat yang digunakan pada izin dan sijil CITES untuk menunjukkan sumber spesimen",
@@ -384,7 +384,7 @@
   "screen.SourceCode.headerPartOne": "CITES",
   "screen.SourceCode.title": "KOD SUMBER",
   "screen.SourceCode.line": "DAFTAR LAMPIRAN CITES",
-  "screen.SourceCode.NumberOne": "Saya",
+  "screen.SourceCode.NumberOne": "I",
   "screen.SourceCode.NumberTwo": "II",
   "screen.SourceCode.NumberThree": "III",
   "screen.SourceCode.I.contentDescription": "Spesimen yang disenaraikan CITES yang telah disita atau disita. Kod sumber ini mesti digunakan bersama dengan kod sumber lain.",
@@ -398,7 +398,7 @@
   "screen.SourceCode.O.contentDescription": "Spesimen yang diperoleh sebelum peruntukan Konvensyen diterapkan padanya. \nJika perakuan dikeluarkan oleh Pihak Berkuasa Pengurusan, maka tidak diperlukan izin atau sijil lain di bawah Konvensyen untuk mengizinkan eksport, import , atau eksport semula. ",
   "screen.SourceCode.O.letterDescription": "KONVENSYEN PRE",
   "screen.SourceCode.W.contentDescription": "Spesimen diambil dari alam liar.",
-  "screen.SourceCode.W.letterDescription": "ANAK",
+  "screen.SourceCode.W.letterDescription": "LIAR",
   "screen.SourceCode.R.contentDescription": "Haiwan yang diternak dalam lingkungan yang terkawal, diambil sebagai telur atau anak muda dari alam liar, di mana ia mungkin mempunyai kemungkinan yang sangat rendah untuk bertahan hingga dewasa.",
   "screen.SourceCode.R.letterDescription": "ANIMAL YANG DIANJURKAN",
   "screen.SourceCode.U.contentDescription": "Sumber spesimen tidak diketahui, tetapi ini mesti dibenarkan.",
@@ -710,5 +710,6 @@
   "alertContent.continueInspection": "Adakah anda pasti mahu memadamkan pemeriksaan ini?",
   "screen.LanguageSelection.loaderBottom.content": "Segerakkan Data",
   "screen.LanguaueSelection.alertTitle.network": "Tanpa Internet!",
-  "screen.LanguaueSelection.alertMessage.network": "Anda tidak tersambung ke rangkaian, Periksa silang kesambungan internet anda dan cuba lagi."
+  "screen.LanguaueSelection.alertMessage.network": "Anda tidak tersambung ke rangkaian, Periksa silang kesambungan internet anda dan cuba lagi.",
+  "screen.HomePage.headerContent":"CapaCITES"
 }

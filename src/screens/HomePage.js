@@ -28,7 +28,7 @@ const HomePage = ({navigation}) => {
         <Container.ScrollView contentContainerStyle={styles.scrollContainer}>
           <Image source={Images.logo} style={styles.logo} />
           <Text style={styles.content}>
-            {formatMessage({id: 'screen.languageSelection.contentOne'})}
+            {formatMessage({id: 'screen.HomePage.headerContent'})}
           </Text>
 
           <View style={styles.contentContainer}>

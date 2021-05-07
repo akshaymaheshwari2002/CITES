@@ -255,7 +255,7 @@
   "screen.FeedbackTwo.headerPartOne": "ໃຫ້",
   "screen.FeedbackTwo.headerPartTwo": "FEEDBACK",
   "screen.FeedbackTwo.question": "ທ່ານໃຫ້ຄະແນນແອັບ the ແນວໃດ?",
-  "screen.FeedbackTwo.content": "ກະລຸນາແບ່ງປັນຄວາມຄິດເຫັນ, ຄຳ ເຫັນແລະ \nsuggestions ຂອງທ່ານ. \n \n\nທ່ານມັກຫຍັງກ່ຽວກັບແອັບ??",
+  "screen.FeedbackTwo.content": "ກະລຸນາແບ່ງປັນຄວາມຄິດເຫັນ, ຄຳ ເຫັນແລະ \nsuggestions ຂອງທ່ານ. \n \n\nທ່ານມັກຫຍັງກ່ຽວກັບແອັບ?",
   "screen.FeedbackOne.headerPartOne": "ຂອບໃຈ",
   "screen.FeedbackOne.headerPartTwo": "ທ່ານ",
   "screen.FeedbackOne.contentOne": "ພວກເຮົາ ກຳ ລັງເຮັດວຽກຢູ່ສະ ເໝີ ເພື່ອປັບປຸງການ ນຳ ພາທີ່ສະ ໜອງ ໂດຍ CITIES ເພື່ອພວກເຮົາຈະໄດ້ຍິນສິ່ງທີ່ມີປະໂຫຍດແລະເຮັດວຽກແລະວິທີທີ່ພວກເຮົາສາມາດເຮັດໄດ້ດີກວ່າ.",
@@ -384,7 +384,7 @@
   "screen.SourceCode.headerPartOne": "CITES",
   "screen.SourceCode.title": "ລະຫັດ SOURCE",
   "screen.SourceCode.line": "ລາຍຊື່ການລົງທືນຂອງ CITES",
-  "screen.SourceCode.NumberOne": "ຂ້ອຍ",
+  "screen.SourceCode.NumberOne": "I",
   "screen.SourceCode.NumberTwo": "II",
   "screen.SourceCode.NumberThree": "III",
   "screen.SourceCode.I.contentDescription": "ຕົວຢ່າງທີ່ມີລາຍຊື່ຂອງ CITES ທີ່ຖືກຍຶດຫຼືຖືກຍຶດ. ລະຫັດແຫຼ່ງນີ້ຕ້ອງຖືກ ນຳ ໃຊ້ຮ່ວມກັບລະຫັດແຫຼ່ງອື່ນ.",
@@ -710,5 +710,6 @@
   "alertContent.continueInspection": "ທ່ານແນ່ໃຈບໍ່ວ່າທ່ານຕ້ອງການລຶບການກວດການີ້?",
   "screen.LanguageSelection.loaderBottom.content": "ຂໍ້ມູນການຊິ້ງຂໍ້ມູນ",
   "screen.LanguaueSelection.alertTitle.network": "ຖ້າບໍ່ມີອິນເຕີເນັດ!",
-  "screen.LanguaueSelection.alertMessage.network": "ທ່ານບໍ່ໄດ້ເຊື່ອມຕໍ່ກັບເຄືອຂ່າຍ, Cross ກວດສອບການເຊື່ອມຕໍ່ອິນເຕີເນັດຂອງທ່ານແລະລອງ ໃໝ່ ອີກຄັ້ງ."
+  "screen.LanguaueSelection.alertMessage.network": "ທ່ານບໍ່ໄດ້ເຊື່ອມຕໍ່ກັບເຄືອຂ່າຍ, Cross ກວດສອບການເຊື່ອມຕໍ່ອິນເຕີເນັດຂອງທ່ານແລະລອງ ໃໝ່ ອີກຄັ້ງ.",
+  "screen.HomePage.headerContent":"CapaCITES"
 }
