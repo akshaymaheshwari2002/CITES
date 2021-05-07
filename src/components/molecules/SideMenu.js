@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {
   View,
   useWindowDimensions,
@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {ScaledSheet, vs} from 'react-native-size-matters';
-import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {useIntl} from 'react-intl';
 
 import {Fonts, RawColors} from '@styles/Themes';
@@ -66,7 +65,7 @@ const SideMenu = ({hideModal}) => {
           },
         ]}
         contentContainerStyle={styles.contentWrapper}>
-        <TouchableWithoutFeedback>
+        <TouchableWithoutFeedback onPressOut={hideModal}>
           <View style={styles.height100}>
             <Button
               buttonContent={formatMessage({

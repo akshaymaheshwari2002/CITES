@@ -99,7 +99,7 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
     paddingHorizontal: '16@s',
     alignItems: 'center',
-    height: '100@ms',
+    height: '110@ms',
   },
   titleTextWrapper: {
     flex: 1,
@@ -109,6 +109,7 @@ const styles = ScaledSheet.create({
     color: RawColors.sugarCane,
     textTransform: 'uppercase',
     textAlignVertical: 'center',
+    marginTop: '5@vs',
     ...Fonts.HelveticaNeue30B,
   },
   titleText_2: {
@@ -116,6 +117,7 @@ const styles = ScaledSheet.create({
     textTransform: 'uppercase',
     textAlignVertical: 'center',
     lineHeight: '30@ms',
+    marginBottom: '5@vs',
     ...Fonts.Lato15R,
   },
   roundWrap: {
