@@ -1,5 +1,5 @@
 import React from 'react';
-import {ImageBackground, Text, View, Image} from 'react-native';
+import {ImageBackground, Text, View, Image, Dimensions} from 'react-native';
 import {ScaledSheet, s, ms} from 'react-native-size-matters';
 import {useIntl} from 'react-intl';
 import {useSelector} from 'react-redux';
@@ -10,13 +10,15 @@ import {Images} from '@assets';
 
 const InspectionFlow = ({navigation}) => {
   const {formatMessage} = useIntl();
+  const {height, width} = Dimensions.get('window');
+  const aspectRatio = height / width;
   const locale = useSelector((state) => state.persistedReducer.locale);
 
   return (
     <Container>
       <ImageBackground
         style={styles.container}
-        source={Images.fullBg}
+        source={aspectRatio > 1.6 ? Images.fullBg_2 : Images.fullBg_1}
         imageStyle={styles.resizeModeRepeat}>
         <Container.ScrollView contentContainerStyle={styles.scrollContainer}>
           <View style={styles.headerContainer}>
