@@ -5,26 +5,23 @@ import {
   ImageBackground,
   useWindowDimensions,
   Pressable,
-  Image,
 } from 'react-native';
 import {useIntl} from 'react-intl';
-import {ScaledSheet, ms, s} from 'react-native-size-matters';
-import {useDispatch, useSelector} from 'react-redux';
+import {ScaledSheet, ms} from 'react-native-size-matters';
+import {useDispatch} from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import {CommonActions} from '@react-navigation/native';
 
 import {RawColors, Fonts} from '@styles/Themes';
 import {Container, Button, AnimatedView} from '@atoms';
 import {Images} from '@assets';
 import CommonStyles from '@styles/CommonStyles';
 import {setActiveInspection} from '@store/slices/sessionSlice';
-import {navigate} from '@utils/RootNavigation';
-import {CommonActions} from '@react-navigation/routers';
 
 const BeginInspection = ({navigation, route}) => {
   const {formatMessage} = useIntl();
   const windowWidth = useWindowDimensions().height;
   const dispatch = useDispatch();
-  const locale = useSelector((state) => state.persistedReducer.locale);
 
   useEffect(() => {
     navigation.setOptions({
@@ -58,31 +55,22 @@ const BeginInspection = ({navigation, route}) => {
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
         style={CommonStyles.flex1}
-        horizontal={true}
-        onMomentumScrollEnd={() => {
-          navigate('StepOne');
-        }}
         contentContainerStyle={styles.contentContainer}>
         <ImageBackground
           source={Images.semiCircle}
           style={CommonStyles.flex1}
           imageStyle={styles.backgroundImage}>
-          <AnimatedView
-            startXPos={windowWidth}
-            elevatedYValue={0}
-            startYPos={0}>
-            <Text
-              style={[
-                styles.title,
-                {lineHeight: locale === 'km' ? s(30) : ms(28)},
-              ]}>
+          <AnimatedView startXPos={windowWidth} startYPos={0}>
+            <Text style={styles.title}>
               {formatMessage({id: 'screen.StepsSummary.header'})}
             </Text>
           </AnimatedView>
           <View style={styles.pointsContainer}>
             <View style={[styles.pointRow, styles.pointOne]}>
-              <Image source={Images.beginNo1} style={styles.helpIcon} />
-              <View style={styles.textContainer}>
+              <View style={styles.numberContainer}>
+                <Text style={[Fonts.Lato18B, {color: RawColors.white}]}>1</Text>
+              </View>
+              <View>
                 <Text style={styles.pointTitle}>
                   {formatMessage({id: 'screen.StepsSummary.contentOne'})}
                 </Text>
@@ -92,8 +80,10 @@ const BeginInspection = ({navigation, route}) => {
               </View>
             </View>
             <View style={[styles.pointRow, styles.pointTwo]}>
-              <Image source={Images.beginNo2} style={styles.helpIcon} />
-              <View style={styles.textContainer}>
+              <View style={styles.numberContainer}>
+                <Text style={[Fonts.Lato18B, {color: RawColors.white}]}>2</Text>
+              </View>
+              <View>
                 <Text style={styles.pointTitle}>
                   {formatMessage({id: 'screen.StepsSummary.contentTwo'})}
                 </Text>
@@ -103,8 +93,10 @@ const BeginInspection = ({navigation, route}) => {
               </View>
             </View>
             <View style={[styles.pointRow, styles.pointThree]}>
-              <Image source={Images.beginNo3} style={styles.helpIcon} />
-              <View style={styles.textContainer}>
+              <View style={styles.numberContainer}>
+                <Text style={[Fonts.Lato18B, {color: RawColors.white}]}>3</Text>
+              </View>
+              <View>
                 <Text style={styles.pointTitle}>
                   {formatMessage({id: 'screen.StepsSummary.contentThree'})}
                 </Text>
@@ -114,22 +106,20 @@ const BeginInspection = ({navigation, route}) => {
               </View>
             </View>
           </View>
-          <View style={styles.btn}>
-            <Button
-              onPress={async () => {
-                await dispatch(setActiveInspection({}));
-                navigation.navigate('StepOne', {
-                  screen: 'StepOne',
-                  params: {showToolTip: false},
-                });
-              }}
-              buttonContent={formatMessage({
-                id: 'button.beginInspection',
-              })}
-              buttonTextStyle={() => styles.buttonText}
-              buttonStyle={() => styles.button}
-            />
-          </View>
+          <Button
+            onPress={async () => {
+              await dispatch(setActiveInspection({}));
+              navigation.navigate('StepOne', {
+                screen: 'StepOne',
+                params: {showToolTip: false},
+              });
+            }}
+            buttonContent={formatMessage({
+              id: 'button.beginInspection',
+            })}
+            buttonTextStyle={() => styles.buttonText}
+            buttonStyle={() => styles.button}
+          />
         </ImageBackground>
       </Container.ScrollView>
     </Container>
@@ -151,24 +141,20 @@ const styles = ScaledSheet.create({
   title: {
     ...Fonts.HelveticaNeue25B,
     letterSpacing: '0.48@ms',
-    flexDirection: 'row',
+    lineHeight: '40.7@ms',
   },
   pointsContainer: {
     flexGrow: 1,
     justifyContent: 'space-between',
-    marginTop: '54@vs',
-    marginBottom: '75@ms',
+    paddingTop: '54@vs',
+    paddingBottom: '90.7@ms',
   },
   pointRow: {
     flexDirection: 'row',
-    width: '100@s',
     alignItems: 'center',
   },
   pointOne: {marginLeft: '110@s'},
-  pointTwo: {
-    paddingVertical: '36@vs',
-    marginLeft: '146@s',
-  },
+  pointTwo: {marginLeft: '146@s', paddingVertical: '36@vs'},
   pointThree: {marginLeft: '110@s'},
   numberContainer: {
     height: '40@ms',
@@ -179,29 +165,18 @@ const styles = ScaledSheet.create({
     borderRadius: '23@ms',
     marginRight: '16@s',
   },
-  textContainer: {
-    width: '170@s',
-    marginLeft: '10@s',
-  },
   pointTitle: {
     ...Fonts.HelveticaNeue25B,
-    lineHeight: '30@s',
+    lineHeight: '25@ms',
     color: RawColors.darkGrey,
   },
   pointContent: {
     ...Fonts.Lato14R,
-    lineHeight: '30@s',
+    lineHeight: '14@ms',
     color: RawColors.darkGrey,
   },
   button: {
-    width: '290@s',
-    backgroundColor: RawColors.sugarCane,
-  },
-  btn: {
-    //marginBottom: '24@vs',
-    marginTop: 'auto',
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginBottom: '24@vs',
   },
   buttonText: {
     textTransform: 'uppercase',
