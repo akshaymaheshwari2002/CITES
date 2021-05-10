@@ -1,34 +1,41 @@
 {
   "project_info": {
-    "project_number": "603516466875",
-    "project_id": "cites-dev",
-    "storage_bucket": "cites-dev.appspot.com"
+    "project_number": "939349696686",
+    "project_id": "cites-mobile",
+    "storage_bucket": "cites-mobile.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:603516466875:android:8ecc152e46027991addb9e",
+        "mobilesdk_app_id": "1:939349696686:android:440ff6f7ac93c956928d3f",
         "android_client_info": {
-          "package_name": "com.rnboilerplate"
+          "package_name": "com.epicbio.cites"
         }
       },
       "oauth_client": [
         {
-          "client_id": "603516466875-j1rm7pc2h05s431f8mkuep91oh91e8di.apps.googleusercontent.com",
+          "client_id": "939349696686-ffuhql8tmcudmtihlhvir7ik92huqn5h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBmEJJfBlx7fMA6_pHRax0Q3UnOc7NijHM"
+          "current_key": "AIzaSyC2n4GiSBTQFUpCGuiJgIXPIf_kHd4qz6I"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "603516466875-j1rm7pc2h05s431f8mkuep91oh91e8di.apps.googleusercontent.com",
+              "client_id": "939349696686-ffuhql8tmcudmtihlhvir7ik92huqn5h.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "939349696686-4400opbstqp2m200h7oqnkuq3mt3l908.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.epicbio.cites"
+              }
             }
           ]
         }

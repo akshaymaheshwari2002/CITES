@@ -1,4 +1,4 @@
-package com.rnboilerplate;
+package com.epicbio.cites;
 
 import com.facebook.react.ReactActivity;
 import org.devio.rn.splashscreen.SplashScreen;

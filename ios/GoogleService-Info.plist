@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>603516466875-bv8n3oqpj8s1icr2ar3ofs11l0n1rlmj.apps.googleusercontent.com</string>
+	<string>939349696686-4400opbstqp2m200h7oqnkuq3mt3l908.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.603516466875-bv8n3oqpj8s1icr2ar3ofs11l0n1rlmj</string>
+	<string>com.googleusercontent.apps.939349696686-4400opbstqp2m200h7oqnkuq3mt3l908</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBfv6dCvjpSKLpaKNTbnmaHk2v-vqGkJIw</string>
+	<string>AIzaSyAUKxCLyHpnEVSKBtqYOtXp5P0L54GGQ-4</string>
 	<key>GCM_SENDER_ID</key>
-	<string>603516466875</string>
+	<string>939349696686</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.epicbio.cites</string>
 	<key>PROJECT_ID</key>
-	<string>cites-dev</string>
+	<string>cites-mobile</string>
 	<key>STORAGE_BUCKET</key>
-	<string>cites-dev.appspot.com</string>
+	<string>cites-mobile.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:603516466875:ios:557b9cc483f0988caddb9e</string>
+	<string>1:939349696686:ios:11d456a49b98ac4c928d3f</string>
 </dict>
 </plist>
