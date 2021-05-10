@@ -75,21 +75,7 @@ const BeginInspection = ({navigation, route}) => {
                 styles.title,
                 {lineHeight: locale === 'km' ? s(30) : ms(28)},
               ]}>
-              {formatMessage({id: 'screen.StepsSummary.headerPartOne'})}
-            </Text>
-            <Text
-              style={[
-                styles.title,
-                {lineHeight: locale === 'km' ? s(30) : ms(28)},
-              ]}>
-              {formatMessage({id: 'screen.StepsSummary.headerPartTwo'})}
-            </Text>
-            <Text
-              style={[
-                styles.title,
-                {lineHeight: locale === 'km' ? s(30) : ms(28)},
-              ]}>
-              {formatMessage({id: 'screen.StepsSummary.headerPartThree'})}
+              {formatMessage({id: 'screen.StepsSummary.header'})}
             </Text>
           </AnimatedView>
           <View style={styles.pointsContainer}>
