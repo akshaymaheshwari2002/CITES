@@ -305,7 +305,7 @@
   "screen.StepsSummary.contentFour": "Una inspección",
   "screen.HomePage.header": "QUE TE GUSTARÍA HACER?",
   "button.inspectFacility": "Inspeccionar una instalación",
-  "button.determineSourceCode": "Determinar el código fuente de una muestra",
+  "button.determineSourceCode": "Determinar el código de origin una muestra",
   "button.giveFeedback": "DAR OPINION",
   "screen.InspectionFlow.headerPartTwo": "RANCHING +",
   "screen.InspectionFlow.headerPartThree": "CRÍA EN CAUTIVIDAD",
