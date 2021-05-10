@@ -8,6 +8,7 @@ export const INITIAL_PERSISTED_STATE = {
   locale: null,
   feedbackId: null,
   masterData: [],
+  loadingMasterData: false,
 };
 
 export const masterDataMessagesSelector = createSelector(
@@ -39,8 +40,15 @@ const persistedSlice = createSlice({
     },
   },
   extraReducers: {
+    [fetchMasterData.pending]: (state) => {
+      state.loadingMasterData = true;
+    },
     [fetchMasterData.fulfilled]: (state, action) => {
       state.masterData = action.payload;
+      state.loadingMasterData = false;
+    },
+    [fetchMasterData.rejected]: (state) => {
+      state.loadingMasterData = false;
     },
   },
 });
