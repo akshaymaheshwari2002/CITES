@@ -12,13 +12,14 @@ import {useIntl} from 'react-intl';
 import {ScaledSheet, ms, s} from 'react-native-size-matters';
 import {useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import {CommonActions} from '@react-navigation/native';
 
 import {RawColors, Fonts} from '@styles/Themes';
 import {Container, Button, AnimatedView} from '@atoms';
 import {Images} from '@assets';
 import CommonStyles from '@styles/CommonStyles';
 import {setActiveInspection} from '@store/slices/sessionSlice';
+import {navigate} from '@utils/RootNavigation';
+import {CommonActions} from '@react-navigation/routers';
 
 const BeginInspection = ({navigation, route}) => {
   const {formatMessage} = useIntl();
@@ -60,13 +61,24 @@ const BeginInspection = ({navigation, route}) => {
     <Container safeAreaViewProps={{edges: ['right', 'left']}}>
       <Container.ScrollView
         style={CommonStyles.flex1}
+        horizontal={true}
+        onMomentumScrollEnd={() => {
+          navigate('StepOne');
+        }}
         contentContainerStyle={styles.contentContainer}>
         <ImageBackground
           source={Images.semiCircle}
           style={CommonStyles.flex1}
           imageStyle={styles.backgroundImage}>
-          <AnimatedView startXPos={windowWidth} startYPos={0}>
-            <Text style={styles.title}>
+          <AnimatedView
+            startXPos={windowWidth}
+            elevatedYValue={0}
+            startYPos={0}>
+            <Text
+              style={[
+                styles.title,
+                {lineHeight: locale === 'km' ? s(30) : ms(28)},
+              ]}>
               {formatMessage({id: 'screen.StepsSummary.header'})}
             </Text>
           </AnimatedView>
@@ -117,20 +129,22 @@ const BeginInspection = ({navigation, route}) => {
               </View>
             </View>
           </View>
-          <Button
-            onPress={async () => {
-              await dispatch(setActiveInspection({}));
-              navigation.navigate('StepOne', {
-                screen: 'StepOne',
-                params: {showToolTip: false},
-              });
-            }}
-            buttonContent={formatMessage({
-              id: 'button.beginInspection',
-            })}
-            buttonTextStyle={() => styles.buttonText}
-            buttonStyle={() => styles.button}
-          />
+          <View style={styles.btn}>
+            <Button
+              onPress={async () => {
+                await dispatch(setActiveInspection({}));
+                navigation.navigate('StepOne', {
+                  screen: 'StepOne',
+                  params: {showToolTip: false},
+                });
+              }}
+              buttonContent={formatMessage({
+                id: 'button.beginInspection',
+              })}
+              buttonTextStyle={() => styles.buttonText}
+              buttonStyle={() => styles.button}
+            />
+          </View>
         </ImageBackground>
       </Container.ScrollView>
     </Container>
@@ -152,14 +166,14 @@ const styles = ScaledSheet.create({
   title: {
     ...Fonts.HelveticaNeue25B,
     letterSpacing: '0.48@ms',
-    lineHeight: '40.7@ms',
+    flexDirection: 'row',
   },
   pointsContainer: {
     //backgroundColor: 'pink',
     flexGrow: 1,
     justifyContent: 'space-between',
-    paddingTop: '54@vs',
-    paddingBottom: '90.7@ms',
+    marginTop: '54@vs',
+    marginBottom: '75@ms',
   },
   pointRow: {
     flexDirection: 'row',
@@ -186,18 +200,29 @@ const styles = ScaledSheet.create({
     borderRadius: '23@ms',
     marginRight: '16@s',
   },
+  textContainer: {
+    width: '170@s',
+    marginLeft: '10@s',
+  },
   pointTitle: {
     ...Fonts.HelveticaNeue25B,
-    lineHeight: '25@ms',
+    lineHeight: '30@s',
     color: RawColors.darkGrey,
   },
   pointContent: {
     ...Fonts.Lato14R,
-    lineHeight: '14@ms',
+    lineHeight: '30@s',
     color: RawColors.darkGrey,
   },
   button: {
-    marginBottom: '24@vs',
+    width: '290@s',
+    backgroundColor: RawColors.sugarCane,
+  },
+  btn: {
+    //marginBottom: '24@vs',
+    marginTop: 'auto',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   buttonText: {
     textTransform: 'uppercase',
