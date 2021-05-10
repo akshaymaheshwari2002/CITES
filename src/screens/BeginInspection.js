@@ -6,6 +6,7 @@ import {
   useWindowDimensions,
   Pressable,
   Image,
+  Dimensions,
 } from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms, s} from 'react-native-size-matters';
@@ -25,6 +26,8 @@ const BeginInspection = ({navigation, route}) => {
   const windowWidth = useWindowDimensions().height;
   const dispatch = useDispatch();
   const locale = useSelector((state) => state.persistedReducer.locale);
+  const {height, width} = Dimensions.get('window');
+  const aspectRatio = height / width;
 
   useEffect(() => {
     navigation.setOptions({
@@ -80,7 +83,11 @@ const BeginInspection = ({navigation, route}) => {
             </Text>
           </AnimatedView>
           <View style={styles.pointsContainer}>
-            <View style={[styles.pointRow, styles.pointOne]}>
+            <View
+              style={[
+                styles.pointRow,
+                aspectRatio > 1.6 ? {marginLeft: s(110)} : {marginLeft: s(100)},
+              ]}>
               <Image source={Images.beginNo1} style={styles.helpIcon} />
               <View style={styles.textContainer}>
                 <Text style={styles.pointTitle}>
@@ -91,7 +98,11 @@ const BeginInspection = ({navigation, route}) => {
                 </Text>
               </View>
             </View>
-            <View style={[styles.pointRow, styles.pointTwo]}>
+            <View
+              style={[
+                styles.pointRow,
+                aspectRatio > 1.6 ? {marginLeft: s(146)} : {marginLeft: s(115)},
+              ]}>
               <Image source={Images.beginNo2} style={styles.helpIcon} />
               <View style={styles.textContainer}>
                 <Text style={styles.pointTitle}>
@@ -102,7 +113,11 @@ const BeginInspection = ({navigation, route}) => {
                 </Text>
               </View>
             </View>
-            <View style={[styles.pointRow, styles.pointThree]}>
+            <View
+              style={[
+                styles.pointRow,
+                aspectRatio > 1.6 ? {marginLeft: s(110)} : {marginLeft: s(90)},
+              ]}>
               <Image source={Images.beginNo3} style={styles.helpIcon} />
               <View style={styles.textContainer}>
                 <Text style={styles.pointTitle}>
@@ -154,6 +169,7 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
   },
   pointsContainer: {
+    //backgroundColor: 'pink',
     flexGrow: 1,
     justifyContent: 'space-between',
     marginTop: '54@vs',
@@ -162,14 +178,19 @@ const styles = ScaledSheet.create({
   pointRow: {
     flexDirection: 'row',
     width: '100@s',
+    //backgroundColor:'green',
     alignItems: 'center',
   },
-  pointOne: {marginLeft: '110@s'},
+  pointOne: {
+    backgroundColor: 'pink',
+  },
   pointTwo: {
     paddingVertical: '36@vs',
     marginLeft: '146@s',
   },
-  pointThree: {marginLeft: '110@s'},
+  pointThree: {
+    marginLeft: '110@s',
+  },
   numberContainer: {
     height: '40@ms',
     width: '40@ms',
