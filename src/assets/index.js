@@ -1,6 +1,9 @@
 export const Images = {
   tick: require('./images/Tick.png'),
   closeButton: require('./images/group.png'),
+  beginNo1: require('./images/Group810.png'),
+  beginNo2: require('./images/Group809.png'),
+  beginNo3: require('./images/Group807.png'),
   gallery: require('./images/3342176.png'),
   flashLightButton: require('./images/Flashlightbutton.png'),
   cameraButton: require('./images/Camerabutton.png'),

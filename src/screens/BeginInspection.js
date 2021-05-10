@@ -5,6 +5,7 @@ import {
   ImageBackground,
   useWindowDimensions,
   Pressable,
+  Image,
 } from 'react-native';
 import {useIntl} from 'react-intl';
 import {ScaledSheet, ms, s} from 'react-native-size-matters';
@@ -80,9 +81,7 @@ const BeginInspection = ({navigation, route}) => {
           </AnimatedView>
           <View style={styles.pointsContainer}>
             <View style={[styles.pointRow, styles.pointOne]}>
-              <View style={styles.numberContainer}>
-                <Text style={[Fonts.Lato18B, {color: RawColors.white}]}>1</Text>
-              </View>
+              <Image source={Images.beginNo1} style={styles.helpIcon} />
               <View style={styles.textContainer}>
                 <Text style={styles.pointTitle}>
                   {formatMessage({id: 'screen.StepsSummary.contentOne'})}
@@ -93,9 +92,7 @@ const BeginInspection = ({navigation, route}) => {
               </View>
             </View>
             <View style={[styles.pointRow, styles.pointTwo]}>
-              <View style={styles.numberContainer}>
-                <Text style={[Fonts.Lato18B, {color: RawColors.white}]}>2</Text>
-              </View>
+              <Image source={Images.beginNo2} style={styles.helpIcon} />
               <View style={styles.textContainer}>
                 <Text style={styles.pointTitle}>
                   {formatMessage({id: 'screen.StepsSummary.contentTwo'})}
@@ -106,9 +103,7 @@ const BeginInspection = ({navigation, route}) => {
               </View>
             </View>
             <View style={[styles.pointRow, styles.pointThree]}>
-              <View style={styles.numberContainer}>
-                <Text style={[Fonts.Lato18B, {color: RawColors.white}]}>3</Text>
-              </View>
+              <Image source={Images.beginNo3} style={styles.helpIcon} />
               <View style={styles.textContainer}>
                 <Text style={styles.pointTitle}>
                   {formatMessage({id: 'screen.StepsSummary.contentThree'})}
@@ -186,6 +181,7 @@ const styles = ScaledSheet.create({
   },
   textContainer: {
     width: '170@s',
+    marginLeft: '10@s',
   },
   pointTitle: {
     ...Fonts.HelveticaNeue25B,
