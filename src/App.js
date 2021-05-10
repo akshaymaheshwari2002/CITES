@@ -40,8 +40,10 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(fetchMasterData());
-  }, [dispatch]);
+    if (appReady) {
+      dispatch(fetchMasterData());
+    }
+  }, [appReady, dispatch]);
 
   return (
     <ThemeProvider theme={theme}>

@@ -1,10 +1,9 @@
-import React, {useCallback, useState} from 'react';
-import {Image, View, Text, Alert} from 'react-native';
+import React, {useCallback, useEffect} from 'react';
+import {Image, View, Text} from 'react-native';
 import {ScaledSheet, vs} from 'react-native-size-matters';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {useIntl} from 'react-intl';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useNetInfo} from '@react-native-community/netinfo';
 
 import {Container, LanguageSelectionDropdown, Loader} from '@atoms';
 import {setLocale} from '@store/slices/persistedSlice';
@@ -16,35 +15,25 @@ import LocaleList from './LocaleList';
 const LanguageSelection = ({navigation}) => {
   const dispatch = useDispatch();
   const {formatMessage} = useIntl();
-  const netInfo = useNetInfo();
-  const [isLoaderVisible, setIsLoaderVisible] = useState(false);
+  const loadingMasterData = useSelector(
+    (state) => state.persistedReducer.loadingMasterData,
+  );
+
+  console.log({loadingMasterData});
 
   const handleChange = useCallback(
     (value) => {
-      if (netInfo.isConnected) {
-        setIsLoaderVisible(true);
-        setTimeout(() => {
-          dispatch(setLocale(value));
-          setIsLoaderVisible(false);
-          navigation.navigate('HomePage');
-        }, 3000);
-      } else {
-        Alert.alert(
-          formatMessage({
-            id: 'screen.LanguaueSelection.alertTitle.network',
-          }),
-          formatMessage({
-            id: 'screen.LanguaueSelection.alertMessage.network',
-          }),
-        );
-      }
+      dispatch(setLocale(value));
+      navigation.navigate('HomePage');
     },
-    [dispatch, formatMessage, navigation, netInfo.isConnected],
+    [dispatch, navigation],
   );
 
-  setTimeout(() => {
-    dispatch(setAppReady(true));
-  }, 1000);
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(setAppReady(true));
+    }, 1000);
+  }, [dispatch]);
 
   return (
     <Container>
@@ -65,9 +54,9 @@ const LanguageSelection = ({navigation}) => {
           placeholder={formatMessage({id: 'screen.screen2.selectAnItem'})}
           onChange={handleChange}
         />
-        <View style={styles.container}></View>
+        <View style={styles.container} />
         <Loader
-          visible={isLoaderVisible}
+          visible={loadingMasterData}
           customIcon={<Icon name="sync" size={vs(20)} />}
           customText={
             <Text style={styles.loaderText}>
