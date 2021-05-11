@@ -301,11 +301,6 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
       if (formFieldsPage < 5) {
         setFormFieldsPage((state) => state + 1);
         scrollToTop();
-      } else {
-        formData.current = {};
-        reset(getDefaultValues(getFormFieldsPageOne()));
-        setFormFieldsPage(1);
-        scrollToTop();
       }
     },
     [
@@ -315,7 +310,6 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
       _additionalAnimalsAcquiredSinceInitialStock,
       _doYouBreedThisSpecies,
       _doYouRanchThisSpecies,
-      reset,
     ],
   );
 
@@ -461,6 +455,9 @@ const FormThree = ({navigation: {navigate, goBack, setOptions}}) => {
               {registeredSpecies.length > 1 ? (
                 <Button
                   onPress={handleSubmit(_handleSubmit, () => {
+                    formData.current = {};
+                    reset(getDefaultValues(getFormFieldsPageOne()));
+                    setFormFieldsPage(1);
                     scrollToTop();
                   })}
                   buttonContent={formatMessage({id: 'button.saveAndAdd'})}
