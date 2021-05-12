@@ -1,5 +1,5 @@
 import React, {createRef, useCallback, useRef} from 'react';
-import {Text, View} from 'react-native';
+import {KeyboardAvoidingView, Text, View} from 'react-native';
 import {ms, ScaledSheet} from 'react-native-size-matters';
 import PropTypes from 'prop-types';
 
@@ -26,18 +26,20 @@ const BreedingCodeInput = React.forwardRef(
         if (index !== 1 && index !== 4) {
           fields[index] = (
             <View key={index} style={styles.input}>
-              <TextInput
-                ref={(ref) => {
-                  inputRefs.current[index] = ref;
-                }}
-                key={index}
-                value={value?.[index]}
-                onChangeText={(text) => handleChangeText(text, index)}
-                style={styles.textInput}
-                placeholder={placeholder}
-                maxLength={1}
-                autoCapitalize="characters"
-              />
+              <KeyboardAvoidingView>
+                <TextInput
+                  ref={(ref) => {
+                    inputRefs.current[index] = ref;
+                  }}
+                  key={index}
+                  value={value?.[index]}
+                  onChangeText={(text) => handleChangeText(text, index)}
+                  style={styles.textInput}
+                  placeholder={placeholder}
+                  maxLength={1}
+                  autoCapitalize="characters"
+                />
+              </KeyboardAvoidingView>
             </View>
           );
         } else {

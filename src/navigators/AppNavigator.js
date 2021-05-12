@@ -43,7 +43,9 @@ const AppNavigator = () => {
       theme={{colors: {background: `${RawColors.white}`}}}>
       <Stack.Navigator
         screenOptions={screenOptions}
-        initialRouteName="LanguageSelection">
+        initialRouteName="LanguageSelection"
+        cardStyle={{backgroundColor: RawColors.white}}
+        navigatorStyle={{screenBackgroundColor: RawColors.white}}>
         <Stack.Screen
           name="LanguageSelection"
           options={{headerShown: false}}
