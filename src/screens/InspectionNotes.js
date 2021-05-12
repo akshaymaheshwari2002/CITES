@@ -5,6 +5,8 @@ import {
   TouchableOpacity,
   Image,
   FlatList,
+  Platform,
+  Linking,
   Alert,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
@@ -19,6 +21,7 @@ import CommonStyles from '@styles/CommonStyles';
 import {saveNotes} from '@store/slices/sessionSlice';
 import {Images} from '@assets/';
 import {PopupNotesInput} from '@molecules';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
   const {formatMessage} = useIntl();
@@ -47,6 +50,19 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
     setNotesText('');
     setisEdit(false);
   }, [dispatch, notesText]);
+
+  const openGallery = useCallback(() => {
+    switch (Platform.OS) {
+      case 'ios':
+        Linking.openURL('photos-redirect://');
+        break;
+      case 'android':
+        Linking.openURL('content://media/internal/images/media');
+        break;
+      default:
+        console.log('Could not open gallery app');
+    }
+  }, []);
 
   const handleTorch = useCallback(() => {
     if (isTorchOn) {
@@ -195,7 +211,7 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
               ListFooterComponentStyle={styles.textInputContainer}
             />
             {photos.map((item, index) => (
-              <TouchableOpacity key={index} onPress={() => {}}>
+              <TouchableOpacity key={index} onPress={openGallery()}>
                 <Image source={{uri: item.uri}} style={styles.imageStyle} />
               </TouchableOpacity>
             ))}
@@ -323,8 +339,8 @@ const styles = ScaledSheet.create({
     color: RawColors.backToolTipColor,
   },
   imageStyle: {
-    height: '40@vs',
-    width: '40@s',
+    minHeight: '40@vs',
+    minWidth: '40@s',
   },
 });
 
