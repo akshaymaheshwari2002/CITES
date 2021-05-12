@@ -26,27 +26,26 @@ const BreedingCodeInput = React.forwardRef(
       for (let index = 0; index < 8; ++index) {
         if (index !== 1 && index !== 4) {
           fields[index] = (
-            <View key={index} style={styles.input}>
-              <KeyboardAvoidingView
-                style={{flex: 1}}
-                behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-                keyboardVerticalOffset={Platform.OS === 'ios' ? 40 : 0}>
-                <ScrollView>
-                  <TextInput
-                    ref={(ref) => {
-                      inputRefs.current[index] = ref;
-                    }}
-                    key={index}
-                    value={value?.[index]}
-                    onChangeText={(text) => handleChangeText(text, index)}
-                    style={styles.textInput}
-                    placeholder={placeholder}
-                    maxLength={1}
-                    autoCapitalize="characters"
-                  />
-                </ScrollView>
-              </KeyboardAvoidingView>
-            </View>
+            <KeyboardAvoidingView
+              key={index}
+              style={{flex: 1}}
+              behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+              keyboardVerticalOffset={Platform.OS === 'ios' ? 40 : 0}>
+              <View style={styles.input}>
+                <TextInput
+                  ref={(ref) => {
+                    inputRefs.current[index] = ref;
+                  }}
+                  key={index}
+                  value={value?.[index]}
+                  onChangeText={(text) => handleChangeText(text, index)}
+                  style={styles.textInput}
+                  placeholder={placeholder}
+                  maxLength={1}
+                  autoCapitalize="characters"
+                />
+              </View>
+            </KeyboardAvoidingView>
           );
         } else {
           fields[index] = (
