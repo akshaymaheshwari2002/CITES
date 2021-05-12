@@ -69,7 +69,6 @@ const AppNavigator = () => {
         initialRouteName="StepOne"
         screenOptions={screenOptions}
         cardStyle={{backgroundColor: RawColors.white}}
-        mode="modal"
         navigatorStyle={{screenBackgroundColor: RawColors.white}}>
         <Stack.Screen
           name="StepOne"
