@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import {TextInput} from '@atoms';
 import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const BreedingCodeInput = React.forwardRef(
   ({label, labelBottom, placeholder, error, value, onChange}, _) => {
@@ -30,18 +31,20 @@ const BreedingCodeInput = React.forwardRef(
                 style={{flex: 1}}
                 behavior={Platform.OS === 'ios' ? 'padding' : undefined}
                 keyboardVerticalOffset={Platform.OS === 'ios' ? 40 : 0}>
-                <TextInput
-                  ref={(ref) => {
-                    inputRefs.current[index] = ref;
-                  }}
-                  key={index}
-                  value={value?.[index]}
-                  onChangeText={(text) => handleChangeText(text, index)}
-                  style={styles.textInput}
-                  placeholder={placeholder}
-                  maxLength={1}
-                  autoCapitalize="characters"
-                />
+                <ScrollView>
+                  <TextInput
+                    ref={(ref) => {
+                      inputRefs.current[index] = ref;
+                    }}
+                    key={index}
+                    value={value?.[index]}
+                    onChangeText={(text) => handleChangeText(text, index)}
+                    style={styles.textInput}
+                    placeholder={placeholder}
+                    maxLength={1}
+                    autoCapitalize="characters"
+                  />
+                </ScrollView>
               </KeyboardAvoidingView>
             </View>
           );
