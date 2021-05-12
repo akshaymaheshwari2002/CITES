@@ -44,6 +44,7 @@ import {
   Search,
 } from '@screens';
 import CommonStyles from '@styles/CommonStyles';
+import {RawColors} from '@styles/Themes';
 
 const Stack = createStackNavigator();
 
@@ -64,7 +65,12 @@ const screenOptions = {
 const AppNavigator = () => {
   return (
     <>
-      <Stack.Navigator initialRouteName="StepOne" screenOptions={screenOptions}>
+      <Stack.Navigator
+        initialRouteName="StepOne"
+        screenOptions={screenOptions}
+        cardStyle={{backgroundColor: RawColors.white}}
+        mode="modal"
+        navigatorStyle={{screenBackgroundColor: RawColors.white}}>
         <Stack.Screen
           name="StepOne"
           component={StepOne}

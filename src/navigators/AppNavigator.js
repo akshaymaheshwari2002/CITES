@@ -45,6 +45,7 @@ const AppNavigator = () => {
         screenOptions={screenOptions}
         initialRouteName="LanguageSelection"
         cardStyle={{backgroundColor: RawColors.white}}
+        mode="modal"
         navigatorStyle={{screenBackgroundColor: RawColors.white}}>
         <Stack.Screen
           name="LanguageSelection"
