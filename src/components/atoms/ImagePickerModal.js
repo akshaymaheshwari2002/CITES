@@ -68,13 +68,20 @@ const ImagePickerModal = ({
       } else {
         if (isImageSizeValid(response.fileSize)) {
           onImageSelection(response);
+          const fileName = response.fileName;
+          const fileSize = response.fileSize;
+          const uri = response.uri;
+          const timeStamp = Date.now();
+          const result = dispatch(
+            saveNotes({photos: {fileName, fileSize, uri, timeStamp}}),
+          );
           close();
         } else {
           close();
         }
       }
     });
-  }, [close, isImageSizeValid, onImageSelection]);
+  }, [close, dispatch, isImageSizeValid, onImageSelection]);
 
   const launchCameraApp = useCallback(async () => {
     const permissionGranted = await requestCameraPermission();

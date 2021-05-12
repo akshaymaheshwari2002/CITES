@@ -339,8 +339,8 @@ const styles = ScaledSheet.create({
     color: RawColors.backToolTipColor,
   },
   imageStyle: {
-    minHeight: '40@vs',
-    minWidth: '40@s',
+    height: '40@vs',
+    width: '40@s',
   },
 });
 
