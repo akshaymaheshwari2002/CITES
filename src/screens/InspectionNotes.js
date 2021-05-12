@@ -185,7 +185,15 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.circle}
-                onPress={() => setIsImagePicker(true)}>
+                onPress={() => {
+                  photos
+                    ? setIsImagePicker(true)
+                    : Alert.alert(
+                        formatMessage({
+                          id: 'popup.InspectionNotes.beginInspection',
+                        }),
+                      );
+                }}>
                 <Image source={Images.cameraButton} />
               </TouchableOpacity>
             </View>
