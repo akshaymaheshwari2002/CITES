@@ -1,4 +1,4 @@
-import React, {useCallback, useRef} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Text, View, Platform, TouchableOpacity, Image} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import PropTypes from 'prop-types';
@@ -11,10 +11,10 @@ import CommonStyles from '@styles/CommonStyles';
 const Picker = React.forwardRef(
   (
     {
-      items,
       label,
       error,
       style,
+      value,
       onChange,
       showHelpIcon,
       onHelpIconPress,
@@ -23,14 +23,12 @@ const Picker = React.forwardRef(
     },
     _,
   ) => {
-    const handleChangeItem = useCallback(
-      (item) => {
-        Array.isArray(item) ? onChange(item) : onChange(item.value);
-        controller?.current?.close();
-      },
-      [onChange],
-    );
-    const controller = useRef(null);
+    const [open, setOpen] = useState(false);
+    const [_value, _setValue] = useState(value);
+
+    useEffect(() => {
+      _setValue(value);
+    }, [value]);
 
     return (
       <>
@@ -45,20 +43,19 @@ const Picker = React.forwardRef(
           ) : null}
         </View>
         <DropDownPicker
-          labelStyle={[{color: RawColors.black}, Fonts.Lato15R]}
-          items={items}
-          controller={(instance) => (controller.current = instance)}
-          searchableError={() => null}
-          containerStyle={styles.container}
+          open={open}
+          searchable={false}
+          value={_value}
           style={[styles.picker, style]}
-          placeholder=""
+          containerStyle={styles.container}
+          dropDownContainerStyle={styles.dropDownStyle}
+          listItemContainerStyle={styles.item}
+          labelStyle={[{color: RawColors.black}, Fonts.Lato15R]}
           placeholderStyle={[{color: RawColors.black}, Fonts.Lato15R]}
-          dropDownStyle={styles.dropDownStyle}
-          itemStyle={styles.item}
-          arrowSize={ms(24)}
-          onChangeItem={handleChangeItem}
-          selectedLabelStyle={[{color: RawColors.black}, Fonts.Lato15R]}
-          defaultValue={initialValue}
+          selectedItemLabelStyle={[{color: RawColors.black}, Fonts.Lato15R]}
+          setOpen={setOpen}
+          setValue={_setValue}
+          onChangeValue={onChange}
           {...restProps}
         />
         {error ? <Text style={styles.error}>{error}</Text> : null}
@@ -92,6 +89,7 @@ const styles = ScaledSheet.create({
     borderWidth: 1,
     borderColor: RawColors.dimGrey,
     backgroundColor: RawColors.lightGrey,
+    borderRadius: 0,
   },
   error: {
     ...Fonts.Lato15R,

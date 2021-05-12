@@ -219,7 +219,7 @@ const styles = ScaledSheet.create({
     backgroundColor: RawColors.sugarCane,
   },
   btn: {
-    //marginBottom: '24@vs',
+    marginBottom: '24@vs',
     marginTop: 'auto',
     alignItems: 'center',
     justifyContent: 'center',

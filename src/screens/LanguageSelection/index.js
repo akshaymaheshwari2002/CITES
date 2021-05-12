@@ -19,8 +19,6 @@ const LanguageSelection = ({navigation}) => {
     (state) => state.persistedReducer.loadingMasterData,
   );
 
-  console.log({loadingMasterData});
-
   const handleChange = useCallback(
     (value) => {
       dispatch(setLocale(value));

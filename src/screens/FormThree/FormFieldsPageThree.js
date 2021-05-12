@@ -57,7 +57,7 @@ export default (fieldProps = {}) => {
         id: 'form.FormThree.label.lifeStageHarvested',
       }),
       name: 'lifeStageHarvested',
-      //rules: {required},
+      defaultValue: [],
       fieldType: Constants.PICKER,
       items: lifeStageDropDownList.map((value) => ({
         label: formatMessage({id: value.text}),
