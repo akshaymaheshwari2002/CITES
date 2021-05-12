@@ -17,7 +17,6 @@ import {
   updateFeedbackConfig,
 } from '@services';
 import {setFeedbackId} from '@store/slices/persistedSlice';
-import FormTwoSummary from './FormTwoSummary';
 
 const emojis = [
   {rating: 5, emoji: Images.emojiOne},
@@ -27,7 +26,7 @@ const emojis = [
   {rating: 1, emoji: Images.emojiFive},
 ];
 
-const FeedbackTwo = ({navigation: {navigate}}) => {
+const FeedbackTwo = ({navigation}) => {
   const dispatch = useDispatch();
   const {formatMessage} = useIntl();
   const {control, errors, handleSubmit, setValue} = useForm();
@@ -56,15 +55,8 @@ const FeedbackTwo = ({navigation: {navigate}}) => {
       } else {
         await executeCreateFeedback({data: {comment, noOfStars: rating}});
       }
-      navigate('HomePage');
     },
-    [
-      executeCreateFeedback,
-      executeUpdateFeedback,
-      feedbackId,
-      navigate,
-      rating,
-    ],
+    [executeCreateFeedback, executeUpdateFeedback, feedbackId, rating],
   );
 
   useEffect(() => {
@@ -146,7 +138,10 @@ const FeedbackTwo = ({navigation: {navigate}}) => {
             buttonStyle={() => {
               return styles.button;
             }}
-            onPress={handleSubmit(_handleSubmit)}
+            onPress={async () => {
+              await handleSubmit(_handleSubmit)();
+              navigation.navigate('FeedbackOne');
+            }}
           />
         </Container.ScrollView>
       </Container>

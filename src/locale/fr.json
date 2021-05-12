@@ -709,5 +709,6 @@
   "screen.LanguageSelection.loaderBottom.content": "Synchroniser les données",
   "screen.LanguaueSelection.alertTitle.network": "Pas d'Internet!",
   "screen.LanguaueSelection.alertMessage.network": "Vous n'êtes pas connecté au réseau, vérifiez votre connectivité Internet et réessayez.",
-  "screen.HomePage.headerContent":"CapaCITES"
+  "screen.HomePage.headerContent":"CapaCITES",
+  "button.back": "DOS"
 }

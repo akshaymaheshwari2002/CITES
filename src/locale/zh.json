@@ -709,5 +709,6 @@
   "screen.LanguageSelection.loaderBottom.content": "同步資料",
   "screen.LanguaueSelection.alertTitle.network": "沒有互聯網！",
   "screen.LanguaueSelection.alertMessage.network": "您尚未連接到網絡，請交叉檢查您的互聯網連接，然後重試。",
-  "screen.HomePage.headerContent":"CapaCITES"
+  "screen.HomePage.headerContent":"CapaCITES",
+  "button.back": "背部"
 }

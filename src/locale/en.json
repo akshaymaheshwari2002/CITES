@@ -709,5 +709,6 @@
   "screen.LanguageSelection.loaderBottom.content": "Sync Data",
   "screen.LanguaueSelection.alertTitle.network": "No Internet !",
   "screen.LanguaueSelection.alertMessage.network": "You are not connected to network, Cross check your internet connectivity and try again.",
-  "screen.HomePage.headerContent":"CapaCITES"
+  "screen.HomePage.headerContent":"CapaCITES",
+  "button.back": "BACK"
 }

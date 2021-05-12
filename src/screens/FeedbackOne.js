@@ -47,7 +47,7 @@ const FeedbackOne = ({navigation}) => {
           <Image source={Images.grassHopper} style={styles.grassHopper} />
           <Button
             buttonContent={formatMessage({
-              id: 'button.giveFeedback',
+              id: 'button.back',
             })}
             buttonTextStyle={() => {
               return styles.buttonText;
@@ -55,9 +55,7 @@ const FeedbackOne = ({navigation}) => {
             buttonStyle={() => {
               return styles.button;
             }}
-            onPress={() =>
-              navigation.navigate('TabNavigator', {screen: 'FeedbackTwo'})
-            }
+            onPress={() => navigation.goBack()}
           />
           <Button
             buttonContent={formatMessage({
@@ -70,7 +68,7 @@ const FeedbackOne = ({navigation}) => {
               return [styles.button, styles.gap3];
             }}
             onPress={() =>
-              navigation.navigate('TabNavigator', {screen: 'StepOne'})
+              navigation.navigate('TabNavigator', {screen: 'NoExport'})
             }
           />
         </View>

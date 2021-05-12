@@ -709,5 +709,6 @@
   "screen.LanguageSelection.loaderBottom.content": "Đồng bộ dữ liệu",
   "screen.LanguaueSelection.alertTitle.network": "Không có Internet!",
   "screen.LanguaueSelection.alertMessage.network": "Bạn chưa kết nối với mạng, Hãy kiểm tra kỹ kết nối internet của bạn và thử lại.",
-  "screen.HomePage.headerContent":"CapaCITES"
+  "screen.HomePage.headerContent":"CapaCITES",
+  "button.back": "TRỞ LẠI"
 }

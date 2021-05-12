@@ -709,5 +709,6 @@
   "screen.LanguageSelection.loaderBottom.content": "ຂໍ້ມູນການຊິ້ງຂໍ້ມູນ",
   "screen.LanguaueSelection.alertTitle.network": "ຖ້າບໍ່ມີອິນເຕີເນັດ!",
   "screen.LanguaueSelection.alertMessage.network": "ທ່ານບໍ່ໄດ້ເຊື່ອມຕໍ່ກັບເຄືອຂ່າຍ, Cross ກວດສອບການເຊື່ອມຕໍ່ອິນເຕີເນັດຂອງທ່ານແລະລອງ ໃໝ່ ອີກຄັ້ງ.",
-  "screen.HomePage.headerContent":"CapaCITES"
+  "screen.HomePage.headerContent":"CapaCITES",
+  "button.back": "ກັບຄືນ"
 }
