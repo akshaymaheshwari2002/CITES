@@ -1,6 +1,6 @@
 import React, {createRef, useCallback, useRef} from 'react';
 import {KeyboardAvoidingView, Text, View, Platform} from 'react-native';
-import {ms, ScaledSheet} from 'react-native-size-matters';
+import {ms, vs, ScaledSheet} from 'react-native-size-matters';
 import PropTypes from 'prop-types';
 
 import {TextInput} from '@atoms';
@@ -27,8 +27,9 @@ const BreedingCodeInput = React.forwardRef(
           fields[index] = (
             <View key={index} style={styles.input}>
               <KeyboardAvoidingView
-                style={{flex: 1}}
-                behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+                keyboardVerticalOffset={vs(98)}
+                behavior={Platform.OS === 'ios' ? 'height' : null}
+                style={CommonStyles.flex1}>
                 <TextInput
                   ref={(ref) => {
                     inputRefs.current[index] = ref;
