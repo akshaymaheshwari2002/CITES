@@ -216,7 +216,7 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
                           })}
                         </Text>
                         <View style={styles.imageContainer}>
-                          {photos.map((item, index) => (
+                          {photos?.map((item, index) => (
                             <TouchableOpacity key={index} onPress={openGallery}>
                               <Image
                                 source={{uri: item.uri}}
