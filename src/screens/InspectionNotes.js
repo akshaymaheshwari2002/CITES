@@ -21,7 +21,6 @@ import CommonStyles from '@styles/CommonStyles';
 import {saveNotes} from '@store/slices/sessionSlice';
 import {Images} from '@assets/';
 import {PopupNotesInput} from '@molecules';
-import {ScrollView} from 'react-native-gesture-handler';
 
 const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
   const {formatMessage} = useIntl();
@@ -38,7 +37,6 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
   const photos = useSelector(
     (state) => state.sessionReducer.activeInspection.photos,
   );
-  console.log(photos, '11111');
 
   const handlePress = useCallback(() => {
     const timeStamp = Date.now();
@@ -196,25 +194,35 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
               keyExtractor={(_, index) => index.toString()}
               renderItem={renderItem}
               ListFooterComponent={
-                <Button
-                  buttonStyle={() => styles.buttonStyle}
-                  buttonTextStyle={() => styles.buttonTextStyle}
-                  buttonContent={formatMessage({
-                    id: 'button.addInspectionNotes',
-                  })}
-                  onPress={() => {
-                    setPopUp(true);
-                    setisEdit(false);
-                  }}
-                />
+                <>
+                  <Button
+                    buttonStyle={() => styles.buttonStyle}
+                    buttonTextStyle={() => styles.buttonTextStyle}
+                    buttonContent={formatMessage({
+                      id: 'button.addInspectionNotes',
+                    })}
+                    onPress={() => {
+                      setPopUp(true);
+                      setisEdit(false);
+                    }}
+                  />
+                  <View style={styles.imageContainer}>
+                    {photos.map((item, index) => (
+                      <TouchableOpacity
+                        key={index}
+                        style={styles.imageContainer}
+                        onPress={openGallery}>
+                        <Image
+                          source={{uri: item.uri}}
+                          style={styles.imageStyle}
+                        />
+                      </TouchableOpacity>
+                    ))}
+                  </View>
+                </>
               }
               ListFooterComponentStyle={styles.textInputContainer}
             />
-            {photos.map((item, index) => (
-              <TouchableOpacity key={index} onPress={openGallery()}>
-                <Image source={{uri: item.uri}} style={styles.imageStyle} />
-              </TouchableOpacity>
-            ))}
           </View>
           <ImagePickerModal
             visible={isImagePicker}
@@ -337,6 +345,10 @@ const styles = ScaledSheet.create({
   buttonTextStyle: {
     ...Fonts.Lato15R,
     color: RawColors.backToolTipColor,
+  },
+  imageContainer: {
+    flexDirection: 'row',
+    marginTop: '20@vs',
   },
   imageStyle: {
     height: '40@vs',

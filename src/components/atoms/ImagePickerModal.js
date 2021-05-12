@@ -72,9 +72,7 @@ const ImagePickerModal = ({
           const fileSize = response.fileSize;
           const uri = response.uri;
           const timeStamp = Date.now();
-          const result = dispatch(
-            saveNotes({photos: {fileName, fileSize, uri, timeStamp}}),
-          );
+          dispatch(saveNotes({photos: {fileName, fileSize, uri, timeStamp}}));
           close();
         } else {
           close();
@@ -99,9 +97,7 @@ const ImagePickerModal = ({
             const uri = response.uri;
             const timeStamp = Date.now();
             console.log(response);
-            const result = dispatch(
-              saveNotes({photos: {fileName, fileSize, uri, timeStamp}}),
-            );
+            dispatch(saveNotes({photos: {fileName, fileSize, uri, timeStamp}}));
             close();
           } else {
             close();
