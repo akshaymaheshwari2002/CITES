@@ -710,5 +710,6 @@
   "screen.LanguaueSelection.alertTitle.network": "¡Sin internet!",
   "screen.LanguaueSelection.alertMessage.network": "No está conectado a la red, verifique su conectividad a Internet y vuelva a intentarlo.",
   "screen.HomePage.headerContent": "CapaCITES",
-  "button.back": "ESPALDA"
+  "button.back": "ESPALDA",
+  "screen.InspectionNotes.photosTitle": "FOTOS"
 }

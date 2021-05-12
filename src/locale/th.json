@@ -710,5 +710,6 @@
   "screen.LanguaueSelection.alertTitle.network": "ไม่มีอินเทอร์เน็ต!",
   "screen.LanguaueSelection.alertMessage.network": "คุณไม่ได้เชื่อมต่อกับเครือข่ายตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณแล้วลองอีกครั้ง",
   "screen.HomePage.headerContent":"CapaCITES",
-  "button.back": "กลับ"
+  "button.back": "กลับ",
+  "screen.InspectionNotes.photosTitle": "รูปภาพ"
 }

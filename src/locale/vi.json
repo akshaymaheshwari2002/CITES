@@ -710,5 +710,6 @@
   "screen.LanguaueSelection.alertTitle.network": "Không có Internet!",
   "screen.LanguaueSelection.alertMessage.network": "Bạn chưa kết nối với mạng, Hãy kiểm tra kỹ kết nối internet của bạn và thử lại.",
   "screen.HomePage.headerContent":"CapaCITES",
-  "button.back": "TRỞ LẠI"
+  "button.back": "TRỞ LẠI",
+  "screen.InspectionNotes.photosTitle": "HÌNH ẢNH"
 }

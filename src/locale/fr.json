@@ -710,5 +710,6 @@
   "screen.LanguaueSelection.alertTitle.network": "Pas d'Internet!",
   "screen.LanguaueSelection.alertMessage.network": "Vous n'êtes pas connecté au réseau, vérifiez votre connectivité Internet et réessayez.",
   "screen.HomePage.headerContent":"CapaCITES",
-  "button.back": "DOS"
+  "button.back": "DOS",
+  "screen.InspectionNotes.photosTitle": "PHOTOS"
 }

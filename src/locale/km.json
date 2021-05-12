@@ -710,5 +710,6 @@
   "screen.LanguaueSelection.alertTitle.network": "គ្មានអ៊ីនធឺណិតទេ!",
   "screen.LanguaueSelection.alertMessage.network": "អ្នកមិនបានភ្ជាប់ទៅបណ្តាញទេសូមពិនិត្យមើលការភ្ជាប់អ៊ីនធឺណិតរបស់អ្នកហើយព្យាយាមម្តងទៀត។",
   "screen.HomePage.headerContent":"CapaCITES",
-  "button.back": "ថយក្រោយ"
+  "button.back": "ថយក្រោយ",
+  "screen.InspectionNotes.photosTitle": "រូបភាព"
 }

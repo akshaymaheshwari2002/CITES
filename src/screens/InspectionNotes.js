@@ -206,19 +206,28 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
                       setisEdit(false);
                     }}
                   />
-                  <View style={styles.imageContainer}>
-                    {photos.map((item, index) => (
-                      <TouchableOpacity
-                        key={index}
-                        style={styles.imageContainer}
-                        onPress={openGallery}>
-                        <Image
-                          source={{uri: item.uri}}
-                          style={styles.imageStyle}
-                        />
-                      </TouchableOpacity>
-                    ))}
-                  </View>
+                  <Button
+                    buttonStyle={() => styles.buttonPhotos}
+                    buttonContent={
+                      <>
+                        <Text style={styles.photosTitle}>
+                          {formatMessage({
+                            id: 'screen.InspectionNotes.photosTitle',
+                          })}
+                        </Text>
+                        <View style={styles.imageContainer}>
+                          {photos.map((item, index) => (
+                            <TouchableOpacity key={index} onPress={openGallery}>
+                              <Image
+                                source={{uri: item.uri}}
+                                style={styles.imageStyle}
+                              />
+                            </TouchableOpacity>
+                          ))}
+                        </View>
+                      </>
+                    }
+                  />
                 </>
               }
               ListFooterComponentStyle={styles.textInputContainer}
@@ -348,11 +357,25 @@ const styles = ScaledSheet.create({
   },
   imageContainer: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
+    padding: '8@ms',
+  },
+  buttonPhotos: {
     marginTop: '20@vs',
+    backgroundColor: RawColors.eggshell,
+    minHeight: '200@vs',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    ...CommonStyles.shadowEffectDarker,
   },
   imageStyle: {
     height: '40@vs',
     width: '40@s',
+    marginHorizontal: '2@s',
+    marginVertical: '2@vs',
+  },
+  photosTitle: {
+    ...Fonts.HelveticaNeue18B,
   },
 });
 
