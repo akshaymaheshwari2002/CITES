@@ -32,6 +32,10 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
   const notes = useSelector(
     (state) => state.sessionReducer.activeInspection.notes,
   );
+  const photos = useSelector(
+    (state) => state.sessionReducer.activeInspection.photos,
+  );
+  console.log(photos, '11111');
 
   const handlePress = useCallback(() => {
     const timeStamp = Date.now();
@@ -190,6 +194,11 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
               }
               ListFooterComponentStyle={styles.textInputContainer}
             />
+            {photos.map((item, index) => (
+              <TouchableOpacity key={index} onPress={() => {}}>
+                <Image source={{uri: item.uri}} style={styles.imageStyle} />
+              </TouchableOpacity>
+            ))}
           </View>
           <ImagePickerModal
             visible={isImagePicker}
@@ -312,6 +321,10 @@ const styles = ScaledSheet.create({
   buttonTextStyle: {
     ...Fonts.Lato15R,
     color: RawColors.backToolTipColor,
+  },
+  imageStyle: {
+    height: '40@vs',
+    width: '40@s',
   },
 });
 

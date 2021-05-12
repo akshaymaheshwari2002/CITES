@@ -21,7 +21,7 @@ export const PHOTOS = {
     fileName: 'string',
     fileSize: 'int',
     uri: 'string',
-    timeStamp: 'string',
+    timeStamp: 'int',
   },
 };
 
