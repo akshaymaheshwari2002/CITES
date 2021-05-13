@@ -1,97 +1,161 @@
 import React from 'react';
+import {getInputFieldElementForFormSummary as getInputFieldElement} from '@utils/CommonFunctions';
 
-const FormOneHeader = ({form = 'one'}) => {
-  const formText = 'Form';
-  const formNumber = {
-    one: 1,
-    two: 2,
-    three: 3,
-    four: 4,
-  };
-  const formTitle = {
-    one: 'BACKGROUND INFORMATION',
-    two: 'FACILITY INFORMATION',
-  };
-  const facilityData = {
-    facilityName: 'PD new Bardana Arwana',
-    owner: 'mr. Subhandi Tju',
-    address:
-      '6th Floor, Metropolis Mall, Industrial Area, Hisar, Haryana 125005',
-    capativeBreedingCode: 'A-ID-588',
-    establishmentDate: '03/03/2016',
-    country: 'India',
-    facilityContact: {email: 'abc@gmail.com', phoneNo: '+919555577721'},
-    dateOfInspection: '10/2/2021',
-    seniorOfficerName: 'Mr. Puneet Kumar Rohtela',
-    typeOfInspection: 'Routine',
-  };
-  const facilitySchema = {
-    facilityName: 'Facility name: ',
-    owner: 'Facility Owner/Manager: ',
-    address: 'Facility address: ',
-    capativeBreedingCode:
-      'CITES Register of Capitative-breeding information code: ',
-    establishmentDate: 'Facility Date of Establishment: ',
-    country: 'Country: ',
-    facilityContact: {
-      email: 'Facility Contact Information:email ',
-      phoneNo: 'Telephone ',
-    },
-    dateOfInspection: 'Date of Inspection: ',
-    seniorOfficerName: 'Name of Senior Inspecting Officer: ',
-    typeOfInspection: 'Type of Inspection: ',
+const formNumber = {
+  one: 1,
+  two: 2,
+  three: 3,
+  four: 4,
+};
+
+const FormOneHeader = ({
+  form = 'one',
+  facilityData = {},
+  editable = false,
+  formText = {},
+  formTitle = {},
+  facilitySchema = {},
+  isPrint = false,
+}) => {
+  const getInputElementConditionally = ({name, defaultValue, inputSize}) => {
+    return editable
+      ? getInputFieldElement({
+          name,
+          defaultValue,
+          inputSize,
+        })
+      : facilityData?.[name];
   };
 
   return (
     <div className="App">
       <div className="App" style={styles.marginContainer}>
         <div style={styles.topContainer}>
-          <h1>{formText}</h1>
-          <div style={styles.body}>
-            <h1 style={styles.number}>{formNumber?.[form]}</h1>
-          </div>
+          {form !== 'notes' ? (
+            <>
+              <h1>{formText?.formText}</h1>
+              <div style={styles.body}>
+                <h1 style={styles.number}>{formNumber?.[form]}</h1>
+              </div>
+            </>
+          ) : (
+            <h2>
+              {formTitle?.notes_1}
+              <br />
+              {formTitle?.notes_2}
+            </h2>
+          )}
         </div>
 
-        <h3 style={styles.headText}>{formTitle?.[form]}</h3>
-        <div style={styles.mainContainer}>
+        {form !== 'notes' ? (
+          <h3 style={styles.headText}>{formTitle?.[form]}</h3>
+        ) : null}
+        <div style={isPrint ? styles.mainContainerPrint : styles.mainContainer}>
           <div style={styles.flex}>
             <div style={styles.halfContent}>
               <p style={styles.text}>
                 <b>{facilitySchema?.facilityName}</b>
-                {facilityData?.facilityName}
+                {getInputElementConditionally({
+                  defaultValue: facilityData?.facilityName,
+                  name: 'facilityName',
+                })}
               </p>
               <p style={styles.text}>
-                <b>{facilitySchema?.owner}</b> {facilityData?.owner}
+                <b>{facilitySchema?.owner}</b>
+                {getInputElementConditionally({
+                  name: 'facilityOwner',
+                  defaultValue: facilityData?.facilityOwner,
+                })}
               </p>
               <p style={styles.text}>
-                <b>{facilitySchema?.address}</b> {facilityData?.address}
+                <b>{facilitySchema?.address}</b>
+                {getInputElementConditionally({
+                  name: 'facilityAddressLineOne',
+                  defaultValue: facilityData?.facilityAddressLineOne,
+                  inputSize: 12,
+                })}
+                {facilityData?.facilityAddressLineTwo && !editable
+                  ? ', '
+                  : null}
+                {getInputElementConditionally({
+                  name: 'facilityAddressLineTwo',
+                  defaultValue: facilityData?.facilityAddressLineTwo,
+                  inputSize: 12,
+                })}
               </p>
               <p style={styles.text}>
-                <b>{facilitySchema?.facilityContact?.email}</b>
-                {facilityData?.facilityContact?.email}
-                <b>{facilitySchema?.facilityContact?.phoneNo}</b>
-                {facilityData?.facilityContact?.phoneNo}
+                <b>{facilitySchema?.facilityContact}</b>
+                <br />
+                <b>{facilitySchema?.email}</b>
+                {getInputElementConditionally({
+                  name: 'facilityOwnerEmail',
+                  defaultValue: facilityData?.facilityOwnerEmail,
+                  inputSize: 15,
+                })}
+                <br />
+                <span style={styles.whitespace}>
+                  <b>{facilitySchema?.phoneNo}</b>
+                  {'+'}
+                  {getInputElementConditionally({
+                    name: 'facilityOwnerPhone_callingCode',
+                    defaultValue: facilityData?.facilityOwnerPhone_callingCode,
+                    inputSize: 3,
+                  })}
+                  &nbsp;
+                  {getInputElementConditionally({
+                    name: 'facilityOwnerPhone_contactNumber',
+                    defaultValue:
+                      facilityData?.facilityOwnerPhone_contactNumber,
+                    inputSize: 15,
+                  })}
+                </span>
               </p>
             </div>
             <div style={styles.halfContent}>
               <p style={styles.text}>
-                <b>{facilitySchema?.capativeBreedingCode}</b>
-                {facilityData?.capativeBreedingCode}
+                <b>{facilitySchema?.citesInformationCode}</b>
+                {getInputElementConditionally({
+                  name: 'citesInformationCode',
+                  defaultValue: facilityData?.citesInformationCode,
+                  inputSize: 1,
+                })}
               </p>
               <p style={styles.text}>
                 <b>{facilitySchema?.establishmentDate}</b>
-                {facilityData?.establishmentDate}
+                {facilityData?.facilityEstablishmentDate}
+                {/* {getInputElementConditionally({
+                  name: 'facilityEstablishmentDate',
+                  defaultValue: facilityData?.facilityEstablishmentDate,
+                  inputSize: 8,
+                })} */}
               </p>
               <p style={styles.text}>
-                <b>{facilitySchema?.country}</b> {facilityData?.country}
+                <b>{facilitySchema?.country}</b>
+                {getInputElementConditionally({
+                  name: 'country',
+                  defaultValue: facilityData?.country,
+                })}
               </p>
               <p style={styles.text}>
                 <b>{facilitySchema?.dateOfInspection}</b>
                 {facilityData?.dateOfInspection}
+                {/* {getInputElementConditionally({
+                  name: 'dateOfInspection',
+                  defaultValue: facilityData?.dateOfInspection,
+                  inputSize: 8,
+                })} */}
               </p>
               <p style={styles.text}>
                 <b>{facilitySchema?.typeOfInspection}</b>
                 {facilityData?.typeOfInspection}
+                {/* {getInputElementConditionally({
+                  name: 'typeOfInspection',
+                  defaultValue: facilityData?.typeOfInspection,
+                })} */}
+              </p>
+              <p style={styles.text}>
+                <b>{facilitySchema?.nationalPermitNumber}</b>
+                {facilityData?.nationalPermitNumber}
               </p>
             </div>
           </div>
@@ -112,8 +176,6 @@ const styles = {
     marginBottom: 0,
   },
   body: {
-    backgroundColor: 'rgb(239 ,243, 222)',
-    borderRadius: 50,
     paddingLeft: 30,
     paddingRight: 30,
     marginBottom: 0,
@@ -125,9 +187,9 @@ const styles = {
     textAlign: 'left',
   },
   number: {
-    color: 'red',
     paddingBottom: 0,
     marginBottom: 0,
+    textAlign: 'center',
   },
   text: {textAlign: 'left'},
   mainContainer: {
@@ -136,6 +198,12 @@ const styles = {
     width: '100%',
     backgroundColor: 'rgb(239 ,243, 222)',
   },
+  mainContainerPrint: {
+    border: '2px solid',
+    borderWidth: '2px',
+    width: '100%',
+    backgroundColor: 'white',
+  },
   flex: {display: 'flex', flexDirection: 'row'},
   halfContent: {width: '50%', paddingLeft: 5, paddingRight: 5},
   lastText: {
@@ -143,6 +211,7 @@ const styles = {
     paddingLeft: 5,
     paddingRight: 5,
   },
+  whiteSpace: {whiteSpace: 'nowrap'},
 };
 
 export default FormOneHeader;

@@ -1,26 +1,25 @@
-import React from 'react';
+import React, {useCallback, useRef} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/Feather';
-import {scale} from 'react-native-size-matters';
-import {TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import {ms} from 'react-native-size-matters';
+import {Pressable} from 'react-native';
+import analytics from '@react-native-firebase/analytics';
 
 import {navigationRef} from '@utils/RootNavigation';
 import CommonStyles from '@styles/CommonStyles';
 import {
-  FacilityScore,
-  FacilityScoreLessEight,
-  FacilityScoreGreaterEight,
   LanguageSelection,
-  OnboardingOne,
-  GiveFeedback,
-  OnboardingFour,
-  OnboardingThree,
-  OnboardingTwo,
-  StepsSummary,
-  SubmitFeedback,
-  ProductionCapacityCalculator,
+  InspectionFlow,
+  SourceFlow,
+  HomePage,
+  WebView,
+  DetermineSourceCode,
+  InspectionOnboarding,
+  SourceCodeDeterminationOnboarding,
 } from '@screens';
+import TabNavigator from './TabNavigator';
+import {RawColors} from '@styles/Themes';
 
 const Stack = createStackNavigator();
 
@@ -28,46 +27,88 @@ const screenOptions = {
   title: null,
   headerBackTitle: ' ',
   headerStyle: CommonStyles.navigationHeader,
-  headerLeft: ({onPress, canGoBack, ...navigationProps}) =>
+  headerLeft: ({canGoBack, onPress, ...navigationProps}) =>
     canGoBack ? (
-      <TouchableOpacity onPress={onPress}>
-        <Icon name="chevron-left" size={scale(26)} {...navigationProps} />
-      </TouchableOpacity>
+      <Pressable hitSlop={10} onPress={onPress}>
+        <Icon name="chevron-left" size={ms(22)} {...navigationProps} />
+      </Pressable>
     ) : null,
   headerLeftContainerStyle: CommonStyles.navigationLeftContainer,
   headerRightContainerStyle: CommonStyles.navigationRightContainer,
 };
 
 const AppNavigator = () => {
+  const routeNameRef = useRef();
+
+  const handleReady = useCallback(
+    () => (routeNameRef.current = navigationRef.current.getCurrentRoute().name),
+    [],
+  );
+
+  const handleStateChange = useCallback(async () => {
+    const previousRouteName = routeNameRef.current;
+    const currentRouteName = navigationRef.current.getCurrentRoute().name;
+
+    if (previousRouteName !== currentRouteName) {
+      await analytics().logScreenView({
+        screen_name: currentRouteName,
+        screen_class: currentRouteName,
+      });
+    }
+
+    routeNameRef.current = currentRouteName;
+  }, []);
+
   return (
-    <NavigationContainer ref={navigationRef}>
+    <NavigationContainer
+      ref={navigationRef}
+      onReady={handleReady}
+      onStateChange={handleStateChange}
+      theme={{colors: {background: `${RawColors.white}`}}}>
       <Stack.Navigator
         screenOptions={screenOptions}
-        initialRouteName="LanguageSelection">
+        initialRouteName="LanguageSelection"
+        cardStyle={{backgroundColor: RawColors.white}}
+        navigatorStyle={{screenBackgroundColor: RawColors.white}}>
         <Stack.Screen
           name="LanguageSelection"
           options={{headerShown: false}}
           component={LanguageSelection}
         />
-        <Stack.Screen name="OnboardingOne" component={OnboardingOne} />
-        <Stack.Screen name="OnboardingTwo" component={OnboardingTwo} />
-        <Stack.Screen name="OnboardingThree" component={OnboardingThree} />
-        <Stack.Screen name="OnboardingFour" component={OnboardingFour} />
-        <Stack.Screen name="StepsSummary" component={StepsSummary} />
-        <Stack.Screen name="GiveFeedback" component={GiveFeedback} />
-        <Stack.Screen name="SubmitFeedback" component={SubmitFeedback} />
-        <Stack.Screen name="FacilityScore" component={FacilityScore} />
         <Stack.Screen
-          name="FacilityScoreLessEight"
-          component={FacilityScoreLessEight}
+          name="SourceFlow"
+          options={{headerTransparent: true}}
+          component={SourceFlow}
         />
         <Stack.Screen
-          name="FacilityScoreGreaterEight"
-          component={FacilityScoreGreaterEight}
+          name="TabNavigator"
+          component={TabNavigator}
+          options={{headerShown: false}}
         />
         <Stack.Screen
-          name="ProductionCapacityCalculator"
-          component={ProductionCapacityCalculator}
+          name="InspectionFlow"
+          options={{headerTransparent: true}}
+          component={InspectionFlow}
+        />
+        <Stack.Screen
+          name="DetermineSourceCode"
+          component={DetermineSourceCode}
+        />
+        <Stack.Screen
+          name="HomePage"
+          options={{headerShown: false}}
+          component={HomePage}
+        />
+        <Stack.Screen name="WebView" component={WebView} />
+        <Stack.Screen
+          name="InspectionOnboarding"
+          component={InspectionOnboarding}
+          initialParams={{defaultIndex: 0}}
+        />
+        <Stack.Screen
+          name="SourceCodeDeterminationOnboarding"
+          options={{headerShown: false}}
+          component={SourceCodeDeterminationOnboarding}
         />
       </Stack.Navigator>
     </NavigationContainer>

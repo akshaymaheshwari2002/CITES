@@ -1,0 +1,249 @@
+import React, {useCallback, useState} from 'react';
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  Image,
+  Alert,
+} from 'react-native';
+import {useIntl} from 'react-intl';
+import {ScaledSheet, ms} from 'react-native-size-matters';
+import {useDispatch} from 'react-redux';
+import {useFocusEffect} from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Entypo';
+
+import {Container, Button} from '@atoms';
+import {Fonts, RawColors} from '@styles/Themes';
+import {Images} from '@assets/';
+import {get, deleteObject} from '@utils/RealmHelper';
+import {setActiveInspection} from '@store/slices/sessionSlice';
+import CommonStyles from '@styles/CommonStyles';
+
+const ContinueInspection = ({navigation}) => {
+  const {formatMessage} = useIntl();
+  const dispatch = useDispatch();
+  const [activeInspections, setActiveInspections] = useState([]);
+
+  const handleItemPress = useCallback(
+    (item) => {
+      dispatch(setActiveInspection(item));
+      navigation.navigate('TabNavigator', {screen: 'StepOne'});
+    },
+    [dispatch, navigation],
+  );
+
+  useFocusEffect(
+    useCallback(() => {
+      const inspections = get('Inspection');
+      setActiveInspections(inspections);
+    }, []),
+  );
+
+  const handleDelete = useCallback((item) => {
+    deleteObject('Inspection', item._id);
+    const inspections = get('Inspection');
+    setActiveInspections(inspections);
+  }, []);
+
+  const alert = useCallback(
+    (item) => {
+      Alert.alert(
+        formatMessage({
+          id: 'alertTitle.continueInspection',
+        }),
+        formatMessage({
+          id: 'alertContent.continueInspection',
+        }),
+        [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          {text: 'OK', onPress: () => handleDelete(item)},
+        ],
+      );
+    },
+    [formatMessage, handleDelete],
+  );
+
+  const renderItem = useCallback(
+    ({item}) => {
+      const facilityName = item.stepOne?.formOne?.facilityName;
+      const dateOfInspection = item.stepOne?.formOne?.dateOfInspection;
+
+      return (
+        <View style={styles.row_parent}>
+          <Button
+            onPress={() => handleItemPress(item)}
+            buttonStyle={() => styles.button}
+            buttonContent={
+              <>
+                <View style={CommonStyles.flexRow}>
+                  <Image
+                    source={Images.eye}
+                    style={styles.icon}
+                    resizeMode="contain"
+                  />
+                  <View style={styles.iconContainer}>
+                    <Icon
+                      name="trash"
+                      size={ms(25)}
+                      iconStyle={styles.iconTrash}
+                      onPress={() => {
+                        alert(item);
+                      }}
+                    />
+                  </View>
+                </View>
+                <View style={[styles.bottomMargin10, styles.infoLine]}>
+                  <Text style={[styles.label, Fonts.Lato15B]}>
+                    {formatMessage({
+                      id: 'screen.ContinueInspection.label.facilityName',
+                    })}
+                    {': '}
+                  </Text>
+                  <Text style={[styles.flex, Fonts.Lato15B]}>
+                    {facilityName || 'NA'}
+                  </Text>
+                </View>
+                <View style={styles.infoLine}>
+                  <Text style={styles.label}>
+                    {formatMessage({
+                      id: 'screen.ContinueInspection.label.dateOfInspection',
+                    })}
+                    {': '}
+                  </Text>
+                  <Text style={[styles.flex, Fonts.Lato14R]}>
+                    {dateOfInspection
+                      ? new Date(
+                          parseInt(dateOfInspection, 10),
+                        ).toLocaleDateString()
+                      : 'NA'}
+                  </Text>
+                </View>
+              </>
+            }
+          />
+        </View>
+      );
+    },
+    [alert, formatMessage, handleItemPress],
+  );
+
+  return (
+    <Container>
+      <View style={styles.titleView}>
+        <Text style={styles.title}>
+          {formatMessage({id: 'screen.ContinueInspection.title_1'})}
+        </Text>
+      </View>
+      <FlatList
+        data={activeInspections}
+        style={styles.flex}
+        contentContainerStyle={styles.flexGrow}
+        renderItem={renderItem}
+        ListEmptyComponent={
+          <View style={styles.flexContainer}>
+            <Text style={[styles.emptyListText, Fonts.Lato17R]}>
+              {formatMessage({id: 'screen.ContinueInspection.emptyList'})}
+            </Text>
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity
+                style={styles.goBackButton}
+                onPress={() => navigation.goBack()}>
+                <Text style={[styles.buttonText, Fonts.Lato17R]}>
+                  {formatMessage({id: 'screen.ContinueInspection.goBack'})}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        }
+        ListFooterComponent={<View />}
+        ListFooterComponentStyle={styles.footer}
+        keyExtractor={(item) => item._id.toString()}
+      />
+    </Container>
+  );
+};
+
+const styles = ScaledSheet.create({
+  flexGrow: {flexGrow: 1},
+  titleView: {
+    paddingHorizontal: '14@s',
+    paddingVertical: '16@vs',
+    backgroundColor: RawColors.white,
+  },
+  title: {
+    lineHeight: '30@ms',
+    textTransform: 'uppercase',
+    ...Fonts.HelveticaNeue30B,
+  },
+  row_parent: {
+    width: '100%',
+    minHeight: '120@s',
+    paddingVertical: '15@s',
+    paddingLeft: '12%',
+  },
+  button: {
+    flex: 1,
+    alignItems: 'flex-start',
+    borderRadius: 0,
+    borderWidth: 0,
+    backgroundColor: '#F6F9EF',
+    padding: '16@s',
+    elevation: '5@s',
+    ...CommonStyles.shadowEffectDarker,
+  },
+  icon: {
+    height: '35@ms',
+    width: '35@ms',
+    marginBottom: '16@vs',
+  },
+  iconContainer: {
+    marginLeft: '195@s',
+    marginTop: '7@vs',
+  },
+  iconTrash: {
+    resizeMode: 'stretch',
+    alignItems: 'center',
+  },
+  infoLine: {
+    flexDirection: 'row',
+  },
+  label: {
+    minWidth: '130@ms',
+    color: RawColors.brightRed,
+    ...Fonts.Lato14R,
+  },
+  flex: {flex: 1},
+  footer: {
+    width: '100%',
+    height: '15@s',
+  },
+  bottomMargin10: {
+    marginBottom: '10@vs',
+  },
+  goBackButton: {
+    width: '80%',
+    alignSelf: 'center',
+    backgroundColor: RawColors.eggshell,
+    borderRadius: '8@ms',
+    paddingVertical: '10@vs',
+  },
+  buttonText: {
+    alignSelf: 'center',
+    textTransform: 'uppercase',
+  },
+  buttonContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  flexContainer: {flex: 1, flexGrow: 1},
+  emptyListText: {
+    marginHorizontal: '16@s',
+  },
+});
+
+export default ContinueInspection;

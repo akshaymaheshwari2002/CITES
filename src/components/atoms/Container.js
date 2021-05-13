@@ -1,15 +1,25 @@
 import React from 'react';
-import {StatusBar} from 'react-native';
+import {
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  StatusBar,
+} from 'react-native';
 import PropTypes from 'prop-types';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useHeaderHeight} from '@react-navigation/stack';
 import {useIsFocused} from '@react-navigation/native';
-import {ScaledSheet} from 'react-native-size-matters';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {ScaledSheet, vs} from 'react-native-size-matters';
 
 import {RawColors} from '@styles/Themes';
+import CommonStyles from '@styles/CommonStyles';
 
-const Container = ({isModal, children, statusBarProps, safeAreaViewProps}) => {
+const Container = ({
+  isModal,
+  children,
+  statusBarProps,
+  safeAreaViewProps: {style, ...restProps},
+}) => {
   const isFocused = useIsFocused();
   const headerHeight = useHeaderHeight();
 
@@ -29,22 +39,30 @@ const Container = ({isModal, children, statusBarProps, safeAreaViewProps}) => {
             ? ['right', 'bottom', 'left']
             : ['top', 'right', 'bottom', 'left']
         }
-        style={styles.container}
-        {...safeAreaViewProps}>
+        style={[styles.container, style]}
+        {...restProps}>
         {children}
       </SafeAreaView>
     </>
   );
 };
 
-Container.ScrollView = ({children, contentContainerStyle, ...restProps}) => (
-  <KeyboardAwareScrollView
-    keyboardShouldPersistTaps="handled"
-    enableOnAndroid={true}
-    contentContainerStyle={[styles.container, contentContainerStyle]}
-    {...restProps}>
-    {children}
-  </KeyboardAwareScrollView>
+Container.ScrollView = React.forwardRef(
+  ({children, contentContainerStyle, ...restProps}, ref) => (
+    <KeyboardAvoidingView
+      keyboardVerticalOffset={vs(98)}
+      behavior={Platform.OS === 'ios' ? 'height' : null}
+      style={CommonStyles.flex1}>
+      <ScrollView
+        ref={ref}
+        bounces={false}
+        keyboardShouldPersistTaps="handled"
+        contentContainerStyle={[styles.container, contentContainerStyle]}
+        {...restProps}>
+        {children}
+      </ScrollView>
+    </KeyboardAvoidingView>
+  ),
 );
 
 const styles = ScaledSheet.create({

@@ -1,56 +1,92 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {getInputFieldElementForFormSummary as getInputFieldElement} from '@utils/CommonFunctions';
 
-const FormOneTemplate = () => {
-  const speciesText = 'Species The Facility is registered to produce: ';
-  const formDetails = {
-    dateOfInspection: '10/2/2021',
-    seniorOfficerName: 'Mr. Puneet Kumar Rohtela',
-    typeOfInspection: 'Routine',
+const FormOneTemplate = ({
+  speciesData = [],
+  editable = false,
+  formOneLabels = {},
+  isPrint = false,
+}) => {
+  const getInputElementConditionally = ({
+    name,
+    defaultValue,
+    inputSize,
+    alt = '',
+  }) => {
+    return editable
+      ? getInputFieldElement({
+          name,
+          defaultValue,
+          inputSize,
+        })
+      : alt;
   };
-  const formDetailsSchema = {
-    dateOfInspection: 'Date of Inspection: ',
-    seniorOfficerName: 'Name of Senior Inspecting Officer: ',
-    typeOfInspection: 'Type of Inspection: ',
-  };
-  const speciesData = [
-    {
-      name: 'HomoSapien Sapien',
-      numberAtLastInspection: 30,
-      numberOfAdults: 30,
-      numberOfExported: 20,
-      sourceCode: 'A',
-    },
-  ];
-  const speciesAttributes = [
-    'Species name',
-    'Total number of Specimen at last inspection',
-    'Total number of breeding Adults',
-    'Total number of Speciment exported since last inspection',
-    'Source code, as stated on previous export permits',
-  ];
+
   return (
     <div className="App">
       <div className="App" style={styles.box}>
         <p style={styles.headText}>
-          <b>{speciesText}</b>
+          <b>{formOneLabels.speciesText}</b>
         </p>
-        <div style={styles.container}>
+        <div style={isPrint ? styles.containerPrint : styles.container}>
           <div style={styles.table}>
             <div style={styles.row}>
-              {speciesAttributes?.map((data, index) => (
-                <div key={index} style={styles.cell}>
-                  <b>{data}</b>
-                </div>
-              ))}
+              {Object.keys(formOneLabels)
+                .filter((key) => key !== 'speciesText')
+                .map((key) => {
+                  return (
+                    <div key={key} style={styles.cell}>
+                      <b>{formOneLabels[key]}</b>
+                    </div>
+                  );
+                })}
             </div>
             {speciesData?.map((data, index) => {
               return (
                 <div key={index} style={styles.row}>
-                  <div style={styles.cell}>{data?.name}</div>
-                  <div style={styles.cell}>{data?.numberAtLastInspection}</div>
-                  <div style={styles.cell}>{data?.numberOfAdults}</div>
-                  <div style={styles.cell}>{data?.numberOfExported}</div>
-                  <div style={styles.cell}>{data?.sourceCode}</div>
+                  <div style={styles.cell}>
+                    {getInputElementConditionally({
+                      name: `registeredSpecies.${index}.name`,
+                      defaultValue: data?.name,
+                      inputSize: 15,
+                      alt: data?.name,
+                    })}
+                  </div>
+                  <div style={styles.cell}>
+                    {getInputElementConditionally({
+                      name: `registeredSpecies.${index}.numberOfSpecimen`,
+                      defaultValue: data?.numberOfSpecimen,
+                      inputSize: 15,
+                      alt: data?.numberOfSpecimen ?? '-',
+                    })}
+                  </div>
+                  <div style={styles.cell}>
+                    {getInputElementConditionally({
+                      name: `registeredSpecies.${index}.numberOfBreedingAdults`,
+                      defaultValue: data?.numberOfBreedingAdults,
+                      inputSize: 15,
+                      alt: data?.numberOfBreedingAdults ?? '-',
+                    })}
+                  </div>
+                  <div style={styles.cell}>
+                    {getInputElementConditionally({
+                      name: `registeredSpecies.${index}.numberOfSpeciemenExportedSinceLastInspection`,
+                      defaultValue:
+                        data?.numberOfSpeciemenExportedSinceLastInspection,
+                      inputSize: 15,
+                      alt:
+                        data?.numberOfSpeciemenExportedSinceLastInspection ??
+                        '-',
+                    })}
+                  </div>
+                  <div style={styles.cell}>
+                    {getInputElementConditionally({
+                      name: `registeredSpecies.${index}.sourceCodeOfPreviousExport`,
+                      defaultValue: data?.sourceCodeOfPreviousExport,
+                      inputSize: 15,
+                      alt: data?.sourceCodeOfPreviousExport ?? '-',
+                    })}
+                  </div>
                 </div>
               );
             })}
@@ -61,11 +97,11 @@ const FormOneTemplate = () => {
                   ?.map((data, index) => {
                     return (
                       <div key={index} style={styles.row}>
-                        <div style={styles.cell}></div>
-                        <div style={styles.cell}></div>
-                        <div style={styles.cell}></div>
-                        <div style={styles.cell}></div>
-                        <div style={styles.cell}></div>
+                        <div style={styles.cell} />
+                        <div style={styles.cell} />
+                        <div style={styles.cell} />
+                        <div style={styles.cell} />
+                        <div style={styles.cell} />
                       </div>
                     );
                   })}
@@ -88,6 +124,10 @@ const styles = {
   container: {
     width: '100%',
     backgroundColor: 'rgb(239 ,243, 222)',
+  },
+  containerPrint: {
+    width: '100%',
+    backgroundColor: 'white',
   },
   text: {
     textAlign: 'left',
@@ -113,6 +153,7 @@ const styles = {
     borderWidth: 0.5,
     border: '0.5px solid',
     minHeight: 40,
+    textAlign: 'center',
   },
 };
 

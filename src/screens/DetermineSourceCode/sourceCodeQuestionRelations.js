@@ -1,0 +1,46 @@
+const sourceCodeQuestionRelations = {
+  1: {'button.yes': 2, 'button.no': 'NotApplicable'},
+  2: {'button.yes': 'O', 'button.no': 3},
+  3: {'button.yes': 'I', 'button.no': 4},
+  4: {'button.yes': 5, 'button.no': 'U'},
+  5: {'button.yes': 'X', 'button.no': 6},
+  6: {'button.animal': 7, 'button.plant': 21},
+  7: {'button.yes': 8, 'button.no': 13},
+  8: {'button.yes': 9, 'button.no': 'W'},
+  9: {'button.yes': 10, 'button.no': 'W'},
+  10: {'button.yes': 'R', 'button.no': 11},
+  11: {'button.yes': 'R', 'button.no': 12},
+  12: {
+    'button.yes': 'W',
+    'button.no': 'exportShouldNotProceed',
+  },
+  13: {'button.yes': 15, 'button.no': 14},
+  14: {'button.yes': 'F', 'button.no': 'W'},
+  15: {'button.yes': 16, 'button.no': 'F'},
+  16: {'button.yes': 17, 'button.no': 'F'},
+  17: {'button.yes': 18, 'button.no': 'F'},
+  18: {
+    'button.appendixI': 19,
+    'button.appendixII': 'C',
+    'button.appendixIII': 'C',
+  },
+  19: {'button.yes': 20, 'button.no': 'C'},
+  20: {
+    'button.yes': 'D',
+    'button.no': 'exportShouldNotProceed',
+  },
+  21: {'button.yes': 22, 'button.no': 'W'},
+  22: {'button.yes': 26, 'button.no': 23},
+  23: {'button.yes': 26, 'button.no': 24},
+  24: {'button.yes': 25, 'button.no': 'W'},
+  25: {'button.yes': 'W', 'button.no': 26},
+  26: {
+    'button.appendixI': 27,
+    'button.appendixII': 'A',
+    'button.appendixIII': 'A',
+  },
+  27: {'button.yes': 28, 'button.no': 'A'},
+  28: {'button.yes': 'D', 'button.no': 'A'},
+};
+
+export default sourceCodeQuestionRelations;

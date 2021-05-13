@@ -1,7 +1,8 @@
-import {BSON} from 'realm';
+import {createId} from '@utils/RealmHelper';
 
 export default class FormFour {
   constructor({
+    _id,
     legallyRegisteredToBreedAndKeep,
     unusualActivityObserved,
     containmentFacilityAvailable,
@@ -13,8 +14,9 @@ export default class FormFour {
     difficultToBreed,
     facilityEstablishedLongEnough,
     haveIdentificationMark,
+    totalScore,
   }) {
-    this._id = new BSON.ObjectId();
+    this._id = _id || createId('FormFour');
     this.legallyRegisteredToBreedAndKeep = legallyRegisteredToBreedAndKeep;
     this.unusualActivityObserved = unusualActivityObserved;
     this.containmentFacilityAvailable = containmentFacilityAvailable;
@@ -26,5 +28,6 @@ export default class FormFour {
     this.difficultToBreed = difficultToBreed;
     this.facilityEstablishedLongEnough = facilityEstablishedLongEnough;
     this.haveIdentificationMark = haveIdentificationMark;
+    this.totalScore = totalScore;
   }
 }

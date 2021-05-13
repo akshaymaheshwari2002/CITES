@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.rnboilerplate">
+  package="com.epicbio.cites">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
@@ -18,9 +18,10 @@
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
-        android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+        android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode|screenLayout|smallestScreenSize"
         android:launchMode="singleTask"
-        android:windowSoftInputMode="adjustPan">
+        android:windowSoftInputMode="adjustResize"
+        android:screenOrientation="portrait">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />

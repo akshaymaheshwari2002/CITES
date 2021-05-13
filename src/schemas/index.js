@@ -1,22 +1,36 @@
 export const PHONE = {
   name: 'Phone',
-  primaryKey: '_id',
   properties: {
-    _id: 'objectId',
-    dialCode: 'int',
-    contactNo: 'string',
-    countryId: 'int?',
+    callingCode: 'string?',
+    contactNumber: 'string?',
+    cca2: 'string?',
+  },
+};
+
+export const NOTES = {
+  name: 'Notes',
+  properties: {
+    timeStamp: 'int',
+    text: 'string',
+  },
+};
+
+export const PHOTOS = {
+  name: 'Photos',
+  properties: {
+    fileName: 'string',
+    fileSize: 'int',
+    uri: 'string',
+    timeStamp: 'int',
   },
 };
 
 export const ADDRESS = {
   name: 'Address',
-  primaryKey: '_id',
   properties: {
-    _id: 'objectId',
-    addressLineOne: 'string',
-    addressLineTwo: 'string',
-    addressLineThree: 'string',
+    addressLineOne: 'string?',
+    addressLineTwo: 'string?',
+    addressLineThree: 'string?',
   },
 };
 
@@ -24,12 +38,53 @@ export const SPECIES = {
   name: 'Species',
   primaryKey: '_id',
   properties: {
-    _id: 'objectId',
+    _id: 'int',
     name: 'string',
-    numberOfSpecimen: 'int',
-    numberOfBreedingAdults: 'int',
-    numberOfSpeciemenExportedSinceLastInspection: 'int',
-    sourceCodeOfPreviousExport: 'string',
+    numberOfSpecimen: 'int?',
+    numberOfBreedingAdults: 'int?',
+    numberOfSpeciemenExportedSinceLastInspection: 'int?',
+    sourceCodeOfPreviousExport: 'string?',
+    dateFirstSpeciesAcquired: 'string?',
+    sourceCodeInitialStock: 'string?',
+    lifeStageOfInitialStock: 'string?',
+    numberOfMalesInitialStock: 'int?',
+    numberOfFemalesInitialStock: 'int?',
+    additionalAnimalsAcquiredSinceInitialStock: 'string[]',
+    addressOfAdditionalStock: 'string?',
+    doYouBreedThisSpecies: 'string[]',
+    whenDidYouBreedThisSpecies: 'string?',
+    numberOfLittersPerYear: 'int?',
+    numberOfOffspringPerLitter: 'int?',
+    numberProducedInPreviousYear: 'int?',
+    doYouRanchThisSpecies: 'string[]',
+    lifeStageHarvested: 'string[]',
+    otherLifeStage: 'string?',
+    numberHarvestedInPreviousYear: 'int[]',
+    noOfAdultsPresentFacilityInfo: 'int?',
+    noOfAdultsPresentInspectionInfo: 'int?',
+    noOfMalesPresentFacilityInfo: 'int?',
+    noOfMalesPresentInspectionInfo: 'int?',
+    noOfFemalesPresentFacilityInfo: 'int?',
+    noOfFemalesPresentInspectionInfo: 'int?',
+    percentageOfFemalesBreedEachYear: 'string?',
+    foodFedToAdults: 'string[]',
+    noOfJuvenilesPresentFacilityInfo: 'int?',
+    noOfJuvenilesPresentInspectionInfo: 'int?',
+    ageAtSexualMaturity: 'string?',
+    sizeOrMassAtSexualMaturity: 'string?',
+    cmOrGramOfSizeOrMassAtSexualMaturity: 'bool?',
+    sizeOrMassAtSaleOrExport: 'string?',
+    cmOrGramOfSizeOrMassAtSaleOrExport: 'bool?',
+    percentageOfJuvenilesSurviveBeyond2Weeks: 'string?',
+    foodFedToRearingAndJuveniles: 'string[]',
+  },
+};
+
+export const STAFF_HOURS = {
+  name: 'StaffHours',
+  properties: {
+    fullTimeStaffs: 'int',
+    partTimeStaffs: 'int',
   },
 };
 
@@ -37,16 +92,23 @@ export const FORM_ONE = {
   name: 'FormOne',
   primaryKey: '_id',
   properties: {
-    _id: 'objectId',
+    _id: 'int',
     dateOfInspection: 'string',
-    namesOfInspectionOfficers: 'string[]',
-    facilityAddress: 'Address',
-    facilityOwner: 'string[]',
-    facilityOwnerEmail: 'string',
-    facilityOwnerPhone: 'Phone',
-    facilityEshtablishmentDate: 'date',
+    nameOfInspectionOfficers: 'string[]',
+    facilityName: 'string?',
+    facilityAddressLineOne: 'string?',
+    facilityAddressLineTwo: 'string?',
+    stateProvienceRegion: 'string?',
+    zipCode: 'string?',
+    city: 'string?',
+    country: 'string?',
+    facilityOwner: 'string?',
+    facilityOwnerEmail: 'string?',
+    facilityOwnerPhone: 'Phone?',
+    facilityEstablishmentDate: 'string?',
     typeOfInspection: 'string[]',
-    registeredSpecies: 'Species[]',
+    citesInformationCode: 'string[]',
+    nationalPermitNumber: 'string?',
   },
 };
 
@@ -54,54 +116,14 @@ export const FORM_TWO = {
   name: 'FormTwo',
   primaryKey: '_id',
   properties: {
-    _id: 'objectId',
-    fullTimeStaffs: 'int',
-    partTimeStaffs: 'int',
-    accessToVeterinaryServices: 'bool',
+    _id: 'int',
+    staffHours: 'StaffHours?',
+    accessToVeterinaryServices: 'string[]',
     veterinarianName: 'string?',
-    veterinarianAddress: 'Address?',
-    animalKeptAtOtherLocation: 'bool',
-    addressOfOtherAnimals: 'Address[]', // If animalKeptAtOtherLocation is true
-  },
-};
-
-export const FORM_THREE = {
-  name: 'FormThree',
-  primaryKey: '_id',
-  properties: {
-    _id: 'objectId',
-    species: 'Species',
-    dateFirstSpeciesAcquired: 'date',
-    sourceCode: 'string',
-    lifeStageOfInitialStock: 'string',
-    numberOfMaleStock: 'int',
-    numberOfFemaleStock: 'int',
-    additionalAnimalsAcquiredSinceInitialStock: 'bool',
-    addressOfAdditionalStock: 'Address?',
-    doYouBreedThisSpecies: 'bool',
-    whenDidYouBreedThisSpecies: 'bool?',
-    dateOfBreeding: 'date?',
-    numberOfLittersPerYear: 'int?',
-    numberOfEggsInLitter: 'int?',
-    numberProducedInPreviousYear: 'int?',
-    doYouRanchThisSpecies: 'bool',
-    lifeStageHarvested: 'string?',
-    numberHarvestedInPreviousYear: 'int?',
-    noOfAdultsPresentFacilityInfo: 'int',
-    noOfAdultsPresentInspectionInfo: 'int',
-    noOfMalesPresentFacilityInfo: 'int',
-    noOfMalesPresentInspectionInfo: 'int',
-    noOfFemalesPresentFacilityInfo: 'int',
-    noOfFemalesPresentInspectionInfo: 'int',
-    percentageOfFemalesBreedEachYear: 'int',
-    foodFedToAdults: 'string',
-    noOfJuvenilesPresentFacilityInfo: 'int',
-    noOfJuvenilesPresentInspectionInfo: 'int',
-    ageOfSexualMaturity: 'int',
-    sizeOrMassAtSexualMaturity: 'int',
-    sizeOrMassAtSaleOrExport: 'int',
-    percentageOfJuvenilesSurviveBeyond2Weeks: 'int',
-    foodFedToRearingAndJuveniles: 'string',
+    veterinarianAddress: 'string?',
+    veterinarianCountry: 'string?',
+    animalKeptAtOtherLocation: 'string[]',
+    addressOfOtherAnimals: 'string[]', // If animalKeptAtOtherLocation is true
   },
 };
 
@@ -109,28 +131,27 @@ export const FORM_FOUR = {
   name: 'FormFour',
   primaryKey: '_id',
   properties: {
-    _id: 'objectId',
-    legallyRegisteredToBreedAndKeep: 'bool',
-    unusualActivityObserved: 'bool',
-    containmentFacilityAvailable: 'bool',
-    containmentFacilityAdequate: 'bool',
-    recordsMaintainedForExport: 'bool',
-    foodFacilitiesAvailable: 'bool',
-    facilityProductionMatchesEstimates: 'bool',
-    wildOriginSignsShown: 'bool',
-    difficultToBreed: 'bool',
-    facilityEstablishedLongEnough: 'bool',
-    haveIdentificationMark: 'bool',
+    _id: 'int',
+    legallyRegisteredToBreedAndKeep: 'bool?',
+    unusualActivityObserved: 'bool?',
+    containmentFacilityAvailable: 'bool?',
+    containmentFacilityAdequate: 'bool?',
+    recordsMaintainedForExport: 'bool?',
+    foodFacilitiesAvailable: 'bool?',
+    facilityProductionMatchesEstimates: 'bool?',
+    wildOriginSignsShown: 'bool?',
+    difficultToBreed: 'bool?',
+    facilityEstablishedLongEnough: 'bool?',
+    haveIdentificationMark: 'bool?',
+    totalScore: 'int?',
   },
 };
-
-// NEED TO DISCUSS - OPTIONAL OR NOT, SOURCE DETERMINATION
 
 export const STEP_ONE = {
   name: 'StepOne',
   primaryKey: '_id',
   properties: {
-    _id: 'objectId',
+    _id: 'int',
     researchConducted: 'bool?',
     existingRecordsExamined: 'bool?',
     outstandingInfringementInvestigations: 'bool?',
@@ -138,8 +159,9 @@ export const STEP_ONE = {
     productionCapacityCalculated: 'bool?',
     toolsEnsured: 'bool?',
     twoOfficialsArranged: 'bool?',
-    inspectionConcides: 'bool?',
+    inspectionCoincides: 'bool?',
     facilityOwnerPresent: 'bool?',
+    formOne: 'FormOne?',
   },
 };
 
@@ -147,7 +169,7 @@ export const STEP_TWO = {
   name: 'StepTwo',
   primaryKey: '_id',
   properties: {
-    _id: 'objectId',
+    _id: 'int',
     purposeDisclosedToOwner: 'bool?',
     confirmFormOneContent: 'bool?',
     informationRecorded: 'bool?',
@@ -155,6 +177,7 @@ export const STEP_TWO = {
     formThreeCompleted: 'bool?',
     sourceDetermined: 'bool?',
     recordsExaminedForStock: 'bool?',
+    formTwo: 'FormTwo?',
   },
 };
 
@@ -162,11 +185,12 @@ export const STEP_THREE = {
   name: 'StepThree',
   primaryKey: '_id',
   properties: {
-    _id: 'objectId',
+    _id: 'int',
     inspectionCompleted: 'bool?',
     formFourCompleted: 'bool?',
     productionCapacityCalculated: 'bool?',
     requirementCheckedForAdditionalInspection: 'bool?',
+    formFour: 'FormFour?',
   },
 };
 
@@ -174,11 +198,12 @@ export const INSPECTION = {
   name: 'Inspection',
   primaryKey: '_id',
   properties: {
-    _id: 'objectId',
+    _id: 'int',
     stepOne: 'StepOne?',
     stepTwo: 'StepTwo?',
     stepThree: 'StepThree?',
-    notes: 'string[]',
-    photos: 'string[]',
+    notes: 'Notes[]',
+    photos: 'Photos[]',
+    registeredSpecies: 'Species[]',
   },
 };

@@ -1,6 +1,9 @@
-import {BSON} from 'realm';
+import {createId} from '@utils/RealmHelper';
+import {FormOne} from './';
+
 export default class StepOne {
   constructor({
+    _id,
     researchConducted,
     existingRecordsExamined,
     outstandingInfringementInvestigations,
@@ -8,10 +11,11 @@ export default class StepOne {
     productionCapacityCalculated,
     toolsEnsured,
     twoOfficialsArranged,
-    inspectionConcides,
+    inspectionCoincides,
     facilityOwnerPresent,
+    formOne,
   }) {
-    this._id = new BSON.ObjectId();
+    this._id = _id || createId('StepOne');
     this.researchConducted = researchConducted;
     this.existingRecordsExamined = existingRecordsExamined;
     this.outstandingInfringementInvestigations = outstandingInfringementInvestigations;
@@ -19,7 +23,8 @@ export default class StepOne {
     this.productionCapacityCalculated = productionCapacityCalculated;
     this.toolsEnsured = toolsEnsured;
     this.twoOfficialsArranged = twoOfficialsArranged;
-    this.inspectionConcides = inspectionConcides;
+    this.inspectionCoincides = inspectionCoincides;
     this.facilityOwnerPresent = facilityOwnerPresent;
+    this.formOne = formOne ? new FormOne(formOne) : formOne;
   }
 }

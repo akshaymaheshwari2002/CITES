@@ -1,31 +1,74 @@
 import React, {useCallback, useMemo} from 'react';
-import {View} from 'react-native';
+import {View, Platform} from 'react-native';
 import PropTypes from 'prop-types';
 import {Controller} from 'react-hook-form';
 import {ScaledSheet} from 'react-native-size-matters';
 
-import {TextInput, DatePicker} from '@atoms';
+import {TextInput, Picker} from '@atoms';
+import {
+  TextInputArray,
+  TextInputArrayAlt,
+  DatePicker,
+  Counter,
+  MobileInput,
+  BreedingCodeInput,
+} from '@molecules';
+import {CounterPair} from '@organisms';
+import CountryPicker from '../molecules/CountryPicker';
+import ChoiceList from './ChoiceList';
 import Constants from '@utils/Constants';
 
-const Form = ({control, formFields, errors, formProps}) => {
-  const renderField = useCallback(({fieldType, ...props}) => {
-    let FieldComponent;
+const Form = (formProps) => {
+  const {control, formFields, errors} = useMemo(() => formProps, [formProps]);
 
-    switch (fieldType) {
-      case Constants.DATEPICKER:
-        FieldComponent = DatePicker;
-        break;
-      default:
-        FieldComponent = TextInput;
-        break;
-    }
+  const renderField = useCallback(
+    ({fieldType, fieldContainerStyle, ...props}) => {
+      let FieldComponent;
 
-    return (
-      <View style={styles.fieldContainer}>
-        <FieldComponent {...props} />
-      </View>
-    );
-  }, []);
+      switch (fieldType) {
+        case Constants.DATEPICKER:
+          FieldComponent = DatePicker;
+          break;
+        case Constants.PICKER:
+          FieldComponent = Picker;
+          break;
+        case Constants.TEXTINPUT_ARRAY:
+          FieldComponent = TextInputArray;
+          break;
+        case Constants.TEXTINPUT_ARRAY_ALT:
+          FieldComponent = TextInputArrayAlt;
+          break;
+        case Constants.CHOICELIST:
+          FieldComponent = ChoiceList;
+          break;
+        case Constants.COUNTER:
+          FieldComponent = Counter;
+          break;
+        case Constants.COUNTER_PAIR:
+          FieldComponent = CounterPair;
+          break;
+        case Constants.MOBILE_INPUT:
+          FieldComponent = MobileInput;
+          break;
+        case Constants.BREEDING_CODE_INPUT:
+          FieldComponent = BreedingCodeInput;
+          break;
+        case Constants.COUNTRY_PICKER:
+          FieldComponent = CountryPicker;
+          break;
+        default:
+          FieldComponent = TextInput;
+          break;
+      }
+
+      return (
+        <View style={[styles.fieldContainer, fieldContainerStyle]}>
+          <FieldComponent {...props} />
+        </View>
+      );
+    },
+    [],
+  );
 
   const renderController = useCallback(
     ({name, defaultValue, onFocus, rules, ...fieldProps}) => {
@@ -73,6 +116,7 @@ Form.defaultProps = {
 const styles = ScaledSheet.create({
   fieldContainer: {
     marginBottom: '42@vs',
+    ...Platform.select({ios: {zIndex: -1}}),
   },
 });
 
