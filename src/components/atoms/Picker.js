@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {Text, View, Platform, TouchableOpacity, Image} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import PropTypes from 'prop-types';
@@ -25,6 +25,14 @@ const Picker = React.forwardRef(
   ) => {
     const [open, setOpen] = useState(false);
     const [_value, _setValue] = useState(value);
+
+    const handleChangeValue = useCallback(
+      (newValue) => {
+        onChange(newValue);
+        setOpen(false);
+      },
+      [onChange],
+    );
 
     useEffect(() => {
       _setValue(value);
@@ -55,7 +63,7 @@ const Picker = React.forwardRef(
           selectedItemLabelStyle={[{color: RawColors.black}, Fonts.Lato15R]}
           setOpen={setOpen}
           setValue={_setValue}
-          onChangeValue={onChange}
+          onChangeValue={handleChangeValue}
           {...restProps}
         />
         {error ? <Text style={styles.error}>{error}</Text> : null}

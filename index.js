@@ -14,10 +14,15 @@ import 'react-native-gesture-handler';
 import {AppRegistry} from 'react-native';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
+import {firebase} from '@react-native-firebase/analytics';
 
 import {store, persistor} from '@store';
 import App from './src/App';
 import {name as appName} from './app.json';
+
+if (!__DEV__) {
+  firebase.analytics().setAnalyticsCollectionEnabled(true);
+}
 
 const renderApp = () => (
   <Provider store={store}>
