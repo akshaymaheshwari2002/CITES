@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useCallback, useRef} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {ms} from 'react-native-size-matters';
 import {Pressable} from 'react-native';
+import analytics from '@react-native-firebase/analytics';
 
 import {navigationRef} from '@utils/RootNavigation';
 import CommonStyles from '@styles/CommonStyles';
@@ -37,9 +38,32 @@ const screenOptions = {
 };
 
 const AppNavigator = () => {
+  const routeNameRef = useRef();
+
+  const handleReady = useCallback(
+    () => (routeNameRef.current = navigationRef.current.getCurrentRoute().name),
+    [],
+  );
+
+  const handleStateChange = useCallback(async () => {
+    const previousRouteName = routeNameRef.current;
+    const currentRouteName = navigationRef.current.getCurrentRoute().name;
+
+    if (previousRouteName !== currentRouteName) {
+      await analytics().logScreenView({
+        screen_name: currentRouteName,
+        screen_class: currentRouteName,
+      });
+    }
+
+    routeNameRef.current = currentRouteName;
+  }, []);
+
   return (
     <NavigationContainer
       ref={navigationRef}
+      onReady={handleReady}
+      onStateChange={handleStateChange}
       theme={{colors: {background: `${RawColors.white}`}}}>
       <Stack.Navigator
         screenOptions={screenOptions}
