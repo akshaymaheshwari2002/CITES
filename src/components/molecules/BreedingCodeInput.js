@@ -28,7 +28,7 @@ const BreedingCodeInput = React.forwardRef(
             <View key={index} style={styles.input}>
               <KeyboardAvoidingView
                 keyboardVerticalOffset={vs(98)}
-                behavior={Platform.OS === 'ios' ? 'height' : null}
+                behavior={Platform.OS === 'ios' ? 'padding' : null}
                 style={CommonStyles.flex1}>
                 <TextInput
                   ref={(ref) => {

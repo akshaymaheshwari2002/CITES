@@ -46,15 +46,15 @@ const App = () => {
   }, [appReady, dispatch]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <RawIntlProvider value={intl}>
-        <AnimatedSplash
-          translucent={true}
-          isLoaded={appReady}
-          logoImage={Images.logo}
-          backgroundColor={RawColors.darkSalmon}
-          logoHeight={ms(150)}
-          logoWidth={ms(150)}>
+    <AnimatedSplash
+      translucent={true}
+      isLoaded={appReady}
+      logoImage={Images.logo}
+      backgroundColor={RawColors.darkSalmon}
+      logoHeight={ms(150)}
+      logoWidth={ms(150)}>
+      <ThemeProvider theme={theme}>
+        <RawIntlProvider value={intl}>
           <SafeAreaProvider>
             <OverlayModal
               isModalVisible={helpText || isShowSideMenu ? true : false}
@@ -67,9 +67,9 @@ const App = () => {
             />
             <AppNavigator />
           </SafeAreaProvider>
-        </AnimatedSplash>
-      </RawIntlProvider>
-    </ThemeProvider>
+        </RawIntlProvider>
+      </ThemeProvider>
+    </AnimatedSplash>
   );
 };
 
