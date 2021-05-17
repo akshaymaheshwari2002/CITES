@@ -135,8 +135,8 @@ android {
         applicationId "com.epicbio.cites"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
         resValue "string", "build_config_package", "com.epicbio.cites"
         multiDexEnabled true
     }
