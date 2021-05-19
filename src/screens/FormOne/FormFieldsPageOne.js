@@ -235,7 +235,6 @@ export default () => {
       //rules: {required},
     },
     {
-      defaultValue: ['', '-', '', '', '-', '', '', ''],
       label: formatMessage({id: 'form.FormOne.label.citesInformationCode'}),
       name: 'citesInformationCode',
       fieldType: Constants.BREEDING_CODE_INPUT,

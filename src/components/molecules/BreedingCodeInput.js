@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import React, {useState, useEffect, Fragment} from 'react';
+import {View, Text} from 'react-native';
 import PropTypes from 'prop-types';
-import {ScaledSheet} from 'react-native-size-matters';
+import {ScaledSheet, ms} from 'react-native-size-matters';
 import {
   CodeField,
   Cursor,
@@ -12,17 +12,21 @@ import {
 import CommonStyles from '@styles/CommonStyles';
 import {Fonts, RawColors} from '@styles/Themes';
 
-const BreedingCodeInput = React.forwardRef(({label}, _) => {
+const CELL_COUNT = 6;
+const BreedingCodeInput = React.forwardRef(({label, error, onChange}, _) => {
   const [value, setValue] = useState('');
-  const CELL_COUNT = 8;
   const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
     setValue,
   });
 
+  useEffect(() => {
+    onChange(value);
+  }, [onChange, value]);
+
   return (
-    <SafeAreaView style={styles.root}>
+    <View style={styles.root}>
       {label ? (
         <Text style={[CommonStyles.flex1, Fonts.Lato15B]}>{label}</Text>
       ) : null}
@@ -35,23 +39,30 @@ const BreedingCodeInput = React.forwardRef(({label}, _) => {
         rootStyle={styles.codeFieldRoot}
         textContentType="oneTimeCode"
         renderCell={({index, symbol, isFocused}) => (
-          <>
-            {index !== 1 && index !== 4 ? (
-              <Text
-                key={index}
-                style={[styles.cell, isFocused && styles.focusCell]}
-                onLayout={getCellOnLayoutHandler(index)}>
-                {symbol || (isFocused ? <Cursor /> : null)}
-              </Text>
-            ) : (
-              <Text key={index} style={styles.dash}>
-                -
-              </Text>
-            )}
-          </>
+          <Fragment key={index}>
+            <Text
+              key={`value-${index}`}
+              style={[styles.cell, isFocused && styles.focusCell]}
+              onLayout={getCellOnLayoutHandler(index)}>
+              {symbol || (isFocused ? <Cursor /> : null)}
+            </Text>
+            {index === 0 || index === 2 ? (
+              <View key={`separator-${index}`} style={styles.separator} />
+            ) : null}
+          </Fragment>
         )}
       />
-    </SafeAreaView>
+      {error ? (
+        <Text
+          style={[
+            {color: RawColors.error},
+            Fonts.Lato15R,
+            {marginTop: ms(20)},
+          ]}>
+          {error}
+        </Text>
+      ) : null}
+    </View>
   );
 });
 
@@ -71,18 +82,24 @@ const styles = ScaledSheet.create({
   focusCell: {
     borderColor: RawColors.black,
   },
-  dash: {
-    ...Fonts.HelveticaNeue25B,
-    textAlignVertical: 'center',
+  separator: {
+    height: '2@vs',
+    width: '10@s',
+    backgroundColor: RawColors.black,
+    alignSelf: 'center',
   },
 });
 
 BreedingCodeInput.propTypes = {
   label: PropTypes.string,
+  error: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 BreedingCodeInput.defaultProps = {
   label: '',
+  error: '',
+  onChange: () => {},
 };
 
 export default BreedingCodeInput;

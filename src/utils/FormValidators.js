@@ -9,7 +9,7 @@ import {getIntl} from '@utils/Intl';
 // A - BR - 001;
 
 const regexPhone = /^[1-9]+[0-9]*$/;
-const regexBreedingCode = /^[A-Z]-[A-Z][A-Z]-[0-9][0-9][0-9]$/;
+const regexBreedingCode = /^[A-Z][A-Z][A-Z][0-9][0-9][0-9]$/;
 
 export default () => {
   const {formatMessage} = getIntl();
@@ -61,8 +61,9 @@ export default () => {
           : formatMessage({id: 'form.error.invalidPhone'})
         : true,
     validBreedingCode: (value) => {
-      return value.join('') !== '--'
-        ? regexBreedingCode.test(value.join().replace(/,/g, ''))
+      console.log(value,'78')
+      return value !== ''
+        ? regexBreedingCode.test(value)
           ? true
           : formatMessage({id: 'form.error.invalidBreedingCode'})
         : true;
