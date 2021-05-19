@@ -1,169 +1,88 @@
-import React, {createRef, useCallback, useRef} from 'react';
-import {KeyboardAvoidingView, Text, View, Platform} from 'react-native';
-import {ms, vs, ScaledSheet} from 'react-native-size-matters';
+import React, {useState} from 'react';
+import {SafeAreaView, Text} from 'react-native';
 import PropTypes from 'prop-types';
+import {ScaledSheet} from 'react-native-size-matters';
+import {
+  CodeField,
+  Cursor,
+  useBlurOnFulfill,
+  useClearByFocusCell,
+} from 'react-native-confirmation-code-field';
 
-import {TextInput} from '@atoms';
-import {Fonts, RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
+import {Fonts, RawColors} from '@styles/Themes';
 
-const BreedingCodeInput = React.forwardRef(
-  ({label, labelBottom, placeholder, error, value, onChange}, _) => {
-    const inputRefs = useRef([
-      createRef(),
-      createRef(),
-      createRef(),
-      createRef(),
-      createRef(),
-      createRef(),
-      createRef(),
-      createRef(),
-    ]);
+const BreedingCodeInput = React.forwardRef(({label}, _) => {
+  const [value, setValue] = useState('');
+  const CELL_COUNT = 8;
+  const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
+  const [props, getCellOnLayoutHandler] = useClearByFocusCell({
+    value,
+    setValue,
+  });
 
-    const renderFields = useCallback(() => {
-      let fields = [];
-      for (let index = 0; index < 8; ++index) {
-        if (index !== 1 && index !== 4) {
-          fields[index] = (
-            <View key={index} style={styles.input}>
-              <KeyboardAvoidingView
-                keyboardVerticalOffset={vs(98)}
-                behavior={Platform.OS === 'ios' ? 'padding' : null}
-                style={CommonStyles.flex1}>
-                <TextInput
-                  ref={(ref) => {
-                    inputRefs.current[index] = ref;
-                  }}
-                  key={index}
-                  value={value?.[index]}
-                  onChangeText={(text) => handleChangeText(text, index)}
-                  style={styles.textInput}
-                  placeholder={placeholder}
-                  maxLength={1}
-                  autoCapitalize="characters"
-                />
-              </KeyboardAvoidingView>
-            </View>
-          );
-        } else {
-          fields[index] = (
-            <Text
-              ref={(ref) => {
-                inputRefs.current[index] = ref;
-              }}
-              key={index}
-              style={styles.dash}>
-              -
-            </Text>
-          );
-        }
-      }
-      return fields;
-    }, [handleChangeText, placeholder, value]);
-
-    const handleChangeText = useCallback(
-      (text, index) => {
-        let __valueArray = [...value];
-        if (text.length === 1) {
-          __valueArray[index] = text;
-
-          if (index < 7) {
-            if (index === 0 || index === 3) {
-              inputRefs.current[index + 2].focus();
-            } else {
-              inputRefs.current[index + 1].focus();
-            }
-          }
-          onChange(__valueArray);
-        } else {
-          __valueArray[index] = text;
-          if (index > -1) {
-            if (index === 2 || index === 5) {
-              inputRefs.current[index - 2].focus();
-            } else {
-              if (index > 0) {
-                inputRefs.current[index - 1].focus();
-              }
-            }
-            onChange(__valueArray);
-          }
-        }
-      },
-      [onChange, value],
-    );
-
-    return (
-      <>
-        {label ? (
-          <Text style={[CommonStyles.flex1, Fonts.Lato15B]}>{label}</Text>
-        ) : null}
-        {labelBottom ? (
-          <Text style={[CommonStyles.flex1, Fonts.Lato15R, styles.labelBottom]}>
-            {labelBottom}
-          </Text>
-        ) : null}
-        <View style={styles.container}>{renderFields()}</View>
-        {error ? (
-          <Text
-            style={[
-              {color: RawColors.error},
-              Fonts.Lato15R,
-              {marginTop: ms(20)},
-            ]}>
-            {error}
-          </Text>
-        ) : null}
-      </>
-    );
-  },
-);
+  return (
+    <SafeAreaView style={styles.root}>
+      {label ? (
+        <Text style={[CommonStyles.flex1, Fonts.Lato15B]}>{label}</Text>
+      ) : null}
+      <CodeField
+        ref={ref}
+        {...props}
+        value={value}
+        onChangeText={setValue}
+        cellCount={CELL_COUNT}
+        rootStyle={styles.codeFieldRoot}
+        textContentType="oneTimeCode"
+        renderCell={({index, symbol, isFocused}) => (
+          <>
+            {index !== 1 && index !== 4 ? (
+              <Text
+                key={index}
+                style={[styles.cell, isFocused && styles.focusCell]}
+                onLayout={getCellOnLayoutHandler(index)}>
+                {symbol || (isFocused ? <Cursor /> : null)}
+              </Text>
+            ) : (
+              <Text key={index} style={styles.dash}>
+                -
+              </Text>
+            )}
+          </>
+        )}
+      />
+    </SafeAreaView>
+  );
+});
 
 const styles = ScaledSheet.create({
-  container: {
-    marginTop: '12@vs',
-    marginBottom: '4@vs',
-    height: '46@vs',
-    flexDirection: 'row',
-  },
-  input: {
-    width: '45@ms',
-    marginRight: '6@vs',
-  },
-  textInput: {
-    flex: 1,
-    marginVertical: 0,
-    marginBottom: '8@vs',
-    textAlign: 'center',
-    aspectRatio: 1,
+  root: {flex: 1},
+  codeFieldRoot: {marginTop: '20@vs'},
+  cell: {
+    width: '40@s',
+    height: '40@s',
+    lineHeight: 38,
+    ...Fonts.Lato20R,
+    borderWidth: 2,
+    borderColor: RawColors.dimGrey,
     backgroundColor: RawColors.lightGrey,
+    textAlign: 'center',
   },
-  labelBottom: {
-    paddingRight: '35@ms',
-    marginRight: '35@ms',
+  focusCell: {
+    borderColor: RawColors.black,
   },
   dash: {
     ...Fonts.HelveticaNeue25B,
     textAlignVertical: 'center',
-    marginRight: '7@vs',
-    marginTop: '7@vs',
   },
 });
 
 BreedingCodeInput.propTypes = {
   label: PropTypes.string,
-  labelBottom: PropTypes.string,
-  error: PropTypes.string,
-  incremental: PropTypes.bool,
-  onChange: PropTypes.func,
 };
 
 BreedingCodeInput.defaultProps = {
   label: '',
-  labelBottom: '',
-  error: '',
-  count: 1,
-  incremental: false,
-  onChange: () => {},
 };
 
 export default BreedingCodeInput;

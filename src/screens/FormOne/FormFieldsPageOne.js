@@ -243,10 +243,6 @@ export default () => {
         validate: {
           validBreedingCode,
         },
-        maxLength: {
-          value: 1,
-          message: formatMessage({id: 'form.error.eightCharacters'}),
-        },
       },
     },
   ];
