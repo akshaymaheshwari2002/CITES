@@ -3,7 +3,7 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-
+#import "RNSplashScreen.h"
 #import <Firebase.h>
 
 #ifdef FB_SONARKIT_ENABLED
@@ -59,6 +59,9 @@ static void InitializeFlipper(UIApplication *application) {
           NSLog(@"Family name:  %@", name);
       }
   }
+  
+  [RNSplashScreen show];
+  
   return YES;
 }
 
