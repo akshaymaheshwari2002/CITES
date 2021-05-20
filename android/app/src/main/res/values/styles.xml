@@ -11,4 +11,8 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
+    <style name="SplashScreenTheme" parent="SplashScreen_SplashTheme">
+        <item name="colorPrimaryDark">#cc685a</item>
+    </style>
+
 </resources>
