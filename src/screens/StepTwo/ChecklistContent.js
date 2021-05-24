@@ -18,7 +18,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
         <View>
           <Text style={checkliststyles.textGeneral}>
             {formatMessage({
-              id: 'screen.stepTwo.purposeDisclosedToOwner_1',
+              id: 'screen.StepTwo.purposeDisclosedToOwner_1',
             })}
           </Text>
           <Pressable
@@ -28,7 +28,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
             style={checklistContent.textLink}>
             <Text style={checkliststyles.textLink}>
               {formatMessage({
-                id: 'screen.stepTwo.purposeDisclosedToOwner_2',
+                id: 'screen.StepTwo.purposeDisclosedToOwner_2',
               })}
             </Text>
           </Pressable>
@@ -41,7 +41,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
         <View>
           <Text style={checkliststyles.textGeneral}>
             {formatMessage({
-              id: 'screen.stepTwo.confirmFormOneContent.text',
+              id: 'screen.StepTwo.confirmFormOneContent.text',
             })}
           </Text>
           <Button
@@ -63,7 +63,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
         <View>
           <Text style={checkliststyles.textGeneral}>
             {formatMessage({
-              id: 'screen.stepTwo.informationRecorded.bullet_head',
+              id: 'screen.StepTwo.informationRecorded.bullet_head',
             })}
             :
           </Text>
@@ -71,7 +71,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
             {bullet}
             <Text style={checkliststyles.textGeneral}>
               {formatMessage({
-                id: 'screen.stepTwo.informationRecorded.bullet_1',
+                id: 'screen.StepTwo.informationRecorded.bullet_1',
               })}
             </Text>
           </View>
@@ -79,7 +79,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
             {bullet}
             <Text style={checkliststyles.textGeneral}>
               {formatMessage({
-                id: 'screen.stepTwo.informationRecorded.bullet_2',
+                id: 'screen.StepTwo.informationRecorded.bullet_2',
               })}
             </Text>
           </View>
@@ -87,7 +87,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
             {bullet}
             <Text style={checkliststyles.textGeneral}>
               {formatMessage({
-                id: 'screen.stepTwo.informationRecorded.bullet_3',
+                id: 'screen.StepTwo.informationRecorded.bullet_3',
               })}
             </Text>
           </View>
@@ -95,7 +95,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
             {bullet}
             <Text style={checkliststyles.textGeneral}>
               {formatMessage({
-                id: 'screen.stepTwo.informationRecorded.bullet_4',
+                id: 'screen.StepTwo.informationRecorded.bullet_4',
               })}
             </Text>
           </View>
@@ -108,14 +108,14 @@ const checklistContent = ({checkliststyles, bullet}) => {
         <View style={checkliststyles.formCell}>
           <Text style={checkliststyles.textGeneral}>
             {formatMessage({
-              id: 'screen.stepTwo.formTwoCompleted.complete',
+              id: 'screen.StepTwo.formTwoCompleted.complete',
             })}
             &nbsp;
           </Text>
           <Button
             onPress={() => navigate('FormTwo')}
             buttonContent={formatMessage({
-              id: 'screen.stepTwo.formTwoCompleted.FormTwo',
+              id: 'screen.StepTwo.formTwoCompleted.FormTwo',
             })}
             buttonStyle={(pressed) => checkliststyles.button}
             buttonTextStyle={(pressed) => checkliststyles.buttonTextStyle}
@@ -129,14 +129,14 @@ const checklistContent = ({checkliststyles, bullet}) => {
         <View style={checkliststyles.formCell}>
           <Text style={checkliststyles.textGeneral}>
             {formatMessage({
-              id: 'screen.stepTwo.formThreeCompleted.complete',
+              id: 'screen.StepTwo.formThreeCompleted.complete',
             })}
             &nbsp;
           </Text>
           <Button
             onPress={() => navigate('FormThree')}
             buttonContent={formatMessage({
-              id: 'screen.stepTwo.formThreeCompleted.FormThree',
+              id: 'screen.StepTwo.formThreeCompleted.FormThree',
             })}
             buttonStyle={(pressed) => checkliststyles.button}
             buttonTextStyle={(pressed) => checkliststyles.buttonTextStyle}
@@ -150,7 +150,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
         <View>
           <Text style={checkliststyles.textGeneral}>
             {formatMessage({
-              id: 'screen.stepTwo.sourceDetermined.text',
+              id: 'screen.StepTwo.sourceDetermined.text',
             })}
           </Text>
           <Button
@@ -173,7 +173,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
         <View>
           <Text style={checkliststyles.textGeneral}>
             {formatMessage({
-              id: 'screen.stepTwo.recordsExaminedForStock',
+              id: 'screen.StepTwo.recordsExaminedForStock',
             })}
           </Text>
         </View>

@@ -16,7 +16,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
         <View>
           <Text style={checkliststyles.textGeneral}>
             {formatMessage({
-              id: 'screen.stepThree.inspectionCompleted_1',
+              id: 'screen.StepThree.inspectionCompleted_1',
             })}
           </Text>
           <Pressable
@@ -26,7 +26,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
             style={checklistContent.textLink}>
             <Text style={checkliststyles.textLink}>
               {formatMessage({
-                id: 'screen.stepThree.inspectionCompleted_2',
+                id: 'screen.StepThree.inspectionCompleted_2',
               })}
             </Text>
           </Pressable>
@@ -39,7 +39,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
         <View>
           <Text style={checkliststyles.textGeneral}>
             {formatMessage({
-              id: 'screen.stepThree.formFourCompleted.text',
+              id: 'screen.StepThree.formFourCompleted.text',
             })}
           </Text>
           <Button
@@ -67,7 +67,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
         <View>
           <Text style={checkliststyles.textGeneral}>
             {formatMessage({
-              id: 'screen.stepThree.productionCapacityCalculated.text',
+              id: 'screen.StepThree.productionCapacityCalculated.text',
             })}
           </Text>
           <Button
@@ -93,7 +93,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
           <Text style={[checkliststyles.textGeneral, {marginRight: 10}]}>
             {formatMessage({
               id:
-                'screen.stepThree.requirementCheckedForAdditionalInspectiond.bullet_head',
+                'screen.StepThree.requirementCheckedForAdditionalInspectiond.bullet_head',
             })}
           </Text>
           <View style={checkliststyles.bulletList}>
@@ -101,7 +101,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
             <Text style={checkliststyles.textGeneral}>
               {formatMessage({
                 id:
-                  'screen.stepThree.requirementCheckedForAdditionalInspectiond.bullet_1',
+                  'screen.StepThree.requirementCheckedForAdditionalInspectiond.bullet_1',
               })}
             </Text>
           </View>
@@ -110,7 +110,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
             <Text style={checkliststyles.textGeneral}>
               {formatMessage({
                 id:
-                  'screen.stepThree.requirementCheckedForAdditionalInspectiond.bullet_2',
+                  'screen.StepThree.requirementCheckedForAdditionalInspectiond.bullet_2',
               })}
             </Text>
           </View>
@@ -119,7 +119,7 @@ const checklistContent = ({checkliststyles, bullet}) => {
             <Text style={checkliststyles.textGeneral}>
               {formatMessage({
                 id:
-                  'screen.stepThree.requirementCheckedForAdditionalInspectiond.bullet_3',
+                  'screen.StepThree.requirementCheckedForAdditionalInspectiond.bullet_3',
               })}
             </Text>
           </View>
