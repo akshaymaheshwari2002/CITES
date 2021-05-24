@@ -22,15 +22,14 @@ import {saveNotes} from '@store/slices/sessionSlice';
 import {Images} from '@assets/';
 import {PopupNotesInput} from '@molecules';
 
-const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
+const InspectionNotes = () => {
   const {formatMessage} = useIntl();
   const dispatch = useDispatch();
   const [isImagePicker, setIsImagePicker] = useState(false);
   const [isTorchOn, setIsTorchOn] = useState(false);
   const [notesText, setNotesText] = useState('');
   const [popUp, setPopUp] = useState(false);
-  const [isEdit, setisEdit] = useState(true);
-
+  const [selectedNoteIndex, setSelectedNoteIndex] = useState(-1);
   const notes = useSelector(
     (state) => state.sessionReducer.activeInspection.notes,
   );
@@ -38,16 +37,26 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
     (state) => state.sessionReducer.activeInspection.photos,
   );
 
-  const handlePress = useCallback(() => {
-    const timeStamp = Date.now();
-    const text = notesText;
-    const notesTextLength = notesText.length;
-    if (notesTextLength > 1) {
-      dispatch(saveNotes({notes: {text, timeStamp}}));
+  const handleSave = useCallback(() => {
+    if (selectedNoteIndex >= 0) {
+      const updatedNotes = [...notes];
+      updatedNotes[selectedNoteIndex] = {
+        text: notesText,
+        timeStamp: Date.now(),
+      };
+
+      dispatch(saveNotes({notes: updatedNotes}));
+      setSelectedNoteIndex(-1);
+    } else {
+      const timeStamp = Date.now();
+      const text = notesText;
+      const notesTextLength = notesText.length;
+      if (notesTextLength > 1) {
+        dispatch(saveNotes({notes: {text, timeStamp}}));
+      }
+      setNotesText('');
     }
-    setNotesText('');
-    setisEdit(false);
-  }, [dispatch, notesText]);
+  }, [dispatch, notes, notesText, selectedNoteIndex]);
 
   const openGallery = useCallback(() => {
     switch (Platform.OS) {
@@ -72,32 +81,11 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
     }
   }, [isTorchOn]);
 
-  const handleEditSave = useCallback(
-    (item) => {
-      setisEdit(true);
-      setPopUp(true);
-      const updatedNotes = [...notes];
-      notes?.map((data, index) => {
-        if (notes[index].text === item?.text) {
-          updatedNotes[index] = {
-            text: notesText,
-            timeStamp: Date.now(),
-          };
-        }
-      });
-      dispatch(saveNotes({notes: updatedNotes}));
-    },
-    [dispatch, notes, notesText],
-  );
-
   const handleDelete = useCallback(
-    (item) => {
-      const updatedNotes = [];
-      notes?.map((data, index) => {
-        if (notes[index].text !== item?.text) {
-          updatedNotes.push(notes[index]);
-        }
-      });
+    (index) => {
+      const updatedNotes = [...notes];
+      updatedNotes.splice(index, 1);
+
       dispatch(saveNotes({notes: updatedNotes}));
     },
     [dispatch, notes],
@@ -134,29 +122,25 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
             }
           />
           <View style={styles.iconContainer}>
-            <TouchableOpacity style={{marginHorizontal: ms(60)}}>
-              <Icon
-                name="edit"
-                size={ms(25)}
-                iconStyle={styles.ImageStyle}
-                onPress={() => {
-                  handleEditSave(item, index);
-                }}
-              />
+            <TouchableOpacity
+              style={{marginHorizontal: ms(60)}}
+              onPress={() => {
+                setSelectedNoteIndex(index);
+                setNotesText(item.text);
+                setPopUp(true);
+              }}>
+              <Icon name="edit" size={ms(25)} iconStyle={styles.ImageStyle} />
             </TouchableOpacity>
-            <TouchableOpacity style={{marginHorizontal: ms(65)}}>
-              <Icon
-                name="trash"
-                size={ms(25)}
-                iconStyle={styles.ImageStyle}
-                onPress={() => handleDelete(item)}
-              />
+            <TouchableOpacity
+              style={{marginHorizontal: ms(65)}}
+              onPress={() => handleDelete(index)}>
+              <Icon name="trash" size={ms(25)} iconStyle={styles.ImageStyle} />
             </TouchableOpacity>
           </View>
         </View>
       );
     },
-    [formatMessage, handleDelete, handleEditSave],
+    [formatMessage, handleDelete],
   );
 
   return (
@@ -209,10 +193,7 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
                     buttonContent={formatMessage({
                       id: 'button.addInspectionNotes',
                     })}
-                    onPress={() => {
-                      setPopUp(true);
-                      setisEdit(false);
-                    }}
+                    onPress={() => setPopUp(true)}
                   />
                   <Button
                     buttonStyle={() => styles.buttonPhotos}
@@ -251,7 +232,7 @@ const InspectionNotes = ({navigation: {navigate, goBack, route}}) => {
       {notes ? (
         <PopupNotesInput
           isShowPopupNotesInput={popUp}
-          onPress={isEdit ? handleEditSave : handlePress}
+          onPress={handleSave}
           notesText={notesText}
           setNotesText={setNotesText}
           setPopUp={setPopUp}
@@ -367,6 +348,7 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     padding: '8@ms',
+    justifyContent: 'center',
   },
   buttonPhotos: {
     marginTop: '20@vs',
