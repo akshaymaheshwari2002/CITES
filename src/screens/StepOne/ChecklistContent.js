@@ -20,7 +20,7 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
         <View>
           <Text style={checkliststyles.textGeneral}>
             {formatMessage({
-              id: 'screen.stepOne.researchConducted_1',
+              id: 'screen.StepOne.researchConducted_1',
             })}
           </Text>
           <Pressable
@@ -30,7 +30,7 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
             style={checklistContent.textLink}>
             <Text style={checkliststyles.textLink}>
               {formatMessage({
-                id: 'screen.stepOne.researchConducted_2',
+                id: 'screen.StepOne.researchConducted_2',
               })}
             </Text>
           </Pressable>
@@ -43,7 +43,7 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
         <View>
           <Text style={checkliststyles.textGeneral}>
             {formatMessage({
-              id: 'screen.stepOne.existingRecordsExamined_1',
+              id: 'screen.StepOne.existingRecordsExamined_1',
             })}
           </Text>
           <Pressable
@@ -51,7 +51,7 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
             style={checklistContent.textLink}>
             <Text style={checkliststyles.textLink}>
               {formatMessage({
-                id: 'screen.stepOne.existingRecordsExamined_2',
+                id: 'screen.StepOne.existingRecordsExamined_2',
               })}
             </Text>
           </Pressable>
@@ -64,7 +64,7 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
         <View>
           <Text style={checkliststyles.textGeneral}>
             {formatMessage({
-              id: 'screen.stepOne.outstandingInfringementInvestigations_1',
+              id: 'screen.StepOne.outstandingInfringementInvestigations_1',
             })}
           </Text>
           <Pressable
@@ -72,7 +72,7 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
             style={checklistContent.textLink}>
             <Text style={checkliststyles.textLink}>
               {formatMessage({
-                id: 'screen.stepOne.outstandingInfringementInvestigations_2',
+                id: 'screen.StepOne.outstandingInfringementInvestigations_2',
               })}
             </Text>
           </Pressable>
@@ -85,7 +85,7 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
         <View>
           <Text style={checkliststyles.textGeneral}>
             {formatMessage({
-              id: 'screen.stepOne.formOneCompleted.complete',
+              id: 'screen.StepOne.formOneCompleted.complete',
             })}
             &nbsp;
           </Text>
@@ -94,7 +94,7 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
               navigate(formOneCompleted ? 'FormOneSummary' : 'FormOne')
             }
             buttonContent={formatMessage({
-              id: 'screen.stepOne.formOneCompleted.FormOne',
+              id: 'screen.StepOne.formOneCompleted.FormOne',
             })}
             buttonStyle={(pressed) => checkliststyles.button}
             buttonTextStyle={(pressed) => [
@@ -111,7 +111,7 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
         <View>
           <Text style={checkliststyles.textGeneral}>
             {formatMessage({
-              id: 'screen.stepOne.productionCapacityCalculated.description',
+              id: 'screen.StepOne.productionCapacityCalculated.description',
             })}
           </Text>
           <Button
@@ -136,14 +136,14 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
         <View>
           <Text style={checkliststyles.textGeneral}>
             {formatMessage({
-              id: 'screen.stepOne.toolsEnsured.ensure',
+              id: 'screen.StepOne.toolsEnsured.ensure',
             })}
           </Text>
           <View style={checkliststyles.bulletList}>
             {bullet}
             <Text style={checkliststyles.textGeneral}>
               {formatMessage({
-                id: 'screen.stepOne.toolsEnsured.bullet_1',
+                id: 'screen.StepOne.toolsEnsured.bullet_1',
               })}
             </Text>
           </View>
@@ -151,7 +151,7 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
             {bullet}
             <Text style={checkliststyles.textGeneral}>
               {formatMessage({
-                id: 'screen.stepOne.toolsEnsured.bullet_2',
+                id: 'screen.StepOne.toolsEnsured.bullet_2',
               })}
             </Text>
           </View>
@@ -159,7 +159,7 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
             {bullet}
             <Text style={checkliststyles.textGeneral}>
               {formatMessage({
-                id: 'screen.stepOne.toolsEnsured.bullet_3',
+                id: 'screen.StepOne.toolsEnsured.bullet_3',
               })}
             </Text>
           </View>
@@ -167,7 +167,7 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
             {bullet}
             <Text style={checkliststyles.textGeneral}>
               {formatMessage({
-                id: 'screen.stepOne.toolsEnsured.bullet_4_1',
+                id: 'screen.StepOne.toolsEnsured.bullet_4_1',
               })}
             </Text>
           </View>
@@ -178,7 +178,7 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
               }}>
               <Text style={[checkliststyles.textLink]}>
                 {formatMessage({
-                  id: 'screen.stepOne.toolsEnsured.bullet_4_2',
+                  id: 'screen.StepOne.toolsEnsured.bullet_4_2',
                 })}
               </Text>
             </Pressable>
@@ -192,7 +192,7 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
         <View>
           <Text style={checkliststyles.textGeneral}>
             {formatMessage({
-              id: 'screen.stepOne.twoOfficialsArranged',
+              id: 'screen.StepOne.twoOfficialsArranged',
             })}
           </Text>
         </View>
@@ -204,7 +204,7 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
         <View>
           <Text style={checkliststyles.textGeneral}>
             {formatMessage({
-              id: 'screen.stepOne.inspectionCoincides.arrange',
+              id: 'screen.StepOne.inspectionCoincides.arrange',
             })}
           </Text>
           <View style={checkliststyles.bulletList}>
@@ -212,14 +212,14 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
             <>
               <Text style={[checkliststyles.textGeneral]}>
                 {formatMessage({
-                  id: 'screen.stepOne.inspectionCoincides.bullet_1',
+                  id: 'screen.StepOne.inspectionCoincides.bullet_1',
                 })}
                 <Text style={checkliststyles.textBold}>
                   {formatMessage({
-                    id: 'screen.stepOne.inspectionCoincides.bullet_1_Part1',
+                    id: 'screen.StepOne.inspectionCoincides.bullet_1_Part1',
                   })}
                   {formatMessage({
-                    id: 'screen.stepOne.inspectionCoincides.bullet_1_Part2',
+                    id: 'screen.StepOne.inspectionCoincides.bullet_1_Part2',
                   })}
                 </Text>
               </Text>
@@ -229,11 +229,11 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
             {bullet}
             <Text style={checkliststyles.textGeneral}>
               {formatMessage({
-                id: 'screen.stepOne.inspectionCoincides.bullet_2',
+                id: 'screen.StepOne.inspectionCoincides.bullet_2',
               })}
               <Text style={checkliststyles.textBold}>
                 {formatMessage({
-                  id: 'screen.stepOne.inspectionCoincides.bullet_2_Part1',
+                  id: 'screen.StepOne.inspectionCoincides.bullet_2_Part1',
                 })}
               </Text>
             </Text>
@@ -247,7 +247,7 @@ const checklistContent = ({checkliststyles = {}, bullet = null}) => {
         <View>
           <Text style={checkliststyles.textGeneral}>
             {formatMessage({
-              id: 'screen.stepOne.facilityOwnerPresent',
+              id: 'screen.StepOne.facilityOwnerPresent',
             })}
           </Text>
         </View>
