@@ -105,7 +105,7 @@ const StepOne = ({navigation, route}) => {
         <View>
           <Button
             buttonContent={formatMessage({
-              id: 'screen.stepOne.continueToStepTwo',
+              id: 'screen.StepOne.continueToStepTwo',
             })}
             buttonStyle={() => styles.button}
             buttonTextStyle={() => styles.buttonTextStyle}
