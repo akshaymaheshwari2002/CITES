@@ -14,23 +14,21 @@ import {Fonts, RawColors} from '@styles/Themes';
 
 const CELL_COUNT = 6;
 const BreedingCodeInput = React.forwardRef(
-  ({label, error, onChange, value}, _) => {
-    const [code, setCode] = useState();
+  ({label, error, onChange, value: _value}, _) => {
+    const [value, setValue] = useState('');
     const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
     const [props, getCellOnLayoutHandler] = useClearByFocusCell({
       value,
-      setCode,
+      setValue,
     });
 
     useEffect(() => {
-      onChange(code);
-    }, [code, onChange]);
+      onChange(value);
+    }, [onChange, value]);
 
     useEffect(() => {
-      if (value) {
-        setCode(value);
-      }
-    }, [value]);
+      setValue(_value);
+    }, [_value]);
 
     return (
       <View style={styles.root}>
@@ -40,8 +38,8 @@ const BreedingCodeInput = React.forwardRef(
         <CodeField
           ref={ref}
           {...props}
-          value={code}
-          onChangeText={setCode}
+          value={value}
+          onChangeText={setValue}
           cellCount={CELL_COUNT}
           rootStyle={styles.codeFieldRoot}
           textContentType="oneTimeCode"
