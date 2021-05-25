@@ -88,7 +88,7 @@ const StepTwo = ({navigation}) => {
         })}
         <Button
           buttonContent={formatMessage({
-            id: 'screen.stepTwo.continueToStepThree',
+            id: 'screen.StepTwo.continueToStepThree',
           })}
           buttonStyle={(pressed) => styles.button}
           buttonTextStyle={(pressed) => styles.buttonTextStyle}
