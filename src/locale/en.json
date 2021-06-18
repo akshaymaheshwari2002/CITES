@@ -365,7 +365,7 @@
   "screen.StepOne.WalkThroughContentFour": " to make notes\nand take photos\nthroughout the\ninspection",
   "screen.StepOne.WalkThroughContentFive": " to quickly access the\nforms and tools required\nwhen conducting an\ninspection",
   "screen.OnboardingOneA.title": "WHAT IS A SOURCE CODE?",
-  "screen.OnboardingOneA.contentOne": "A letter used on CITES permits and certificates to indicate tproduction system for a specimen",
+  "screen.OnboardingOneA.contentOne": "A letter used on CITES permits and certificates to indicate the production system for a specimen",
   "screen.OnboardingOneA.contentOnePart": "It is important that the correct source code is used to accurately describe the nature of the trade according to the CITES definitions",
   "screen.OnboardingOneA.contentTwo": "There are currently",
   "screen.OnboardingOneA.contentThree": "10 source codes in use",
@@ -709,7 +709,7 @@
   "screen.LanguageSelection.loaderBottom.content": "Sync Data",
   "screen.LanguaueSelection.alertTitle.network": "No Internet !",
   "screen.LanguaueSelection.alertMessage.network": "You are not connected to network, Cross check your internet connectivity and try again.",
-  "screen.HomePage.headerContent":"CapaCITES",
+  "screen.HomePage.headerContent": "CapaCITES",
   "button.back": "BACK",
   "screen.InspectionNotes.photosTitle": "PHOTOS"
 }

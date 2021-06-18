@@ -305,7 +305,7 @@
   "button.inspectFacility": "Periksa fasilitas",
   "button.determineSourceCode": "Tentukan kode sumber untuk spesimen",
   "button.giveFeedback": "BERIKAN MASUKAN",
-  "screen.InspectionFlow.headerPartTwo": "RANCHING +",
+  "screen.InspectionFlow.headerPartTwo": "PETERNAKAN +",
   "screen.InspectionFlow.headerPartThree": "PENANGKARAN",
   "screen.InspectionFlow.headerPartFour": "PANDUAN INSPEKSI",
   "button.firstInspection": "Ini adalah pemeriksaan pertama saya",
@@ -704,12 +704,12 @@
   "helpText.professionalVeterinaryServices": "&lt;p>&lt;strong>Dokter hewan (dokter hewan)&lt;/strong>&lt;/p>↵&lt;p>juga dikenal sebagai dokter hewan atau dokter hewan, adalah seorang profesional yang mempraktikkan kedokteran hewan dengan mengobati penyakit, gangguan, dan cedera pada hewan bukan manusia.&lt;/p>",
   "helpText.staffCurrentAtFacility": "Jam kerja Jumlah staf yang dipekerjakan akan tergantung pada spesies yang dirawat, ukuran operasi penangkaran dan / atau pembiakan dan kompleksitas struktur organisasi. Umumnya, semakin banyak spesimen yang dirawat, semakin banyak staf yang dibutuhkan. Pekerjaan penuh waktu biasanya dianggap antara 30-40 jam seminggu. Pekerjaan paruh waktu biasanya kurang dari 30 jam seminggu.",
   "helpText.typeOfInspection": "&lt;p>&lt;strong>Jenis inspeksi&lt;/strong>&lt;/p>↵&lt;p>SEBUAH &lt;strong>pemeriksaan awal&lt;/strong> adalah pemeriksaan pertama fasilitas.&lt;/p>↵&lt;p>SEBUAH &lt;strong>pemeriksaan rutin&lt;/strong> fasilitas dilakukan secara teratur.&lt;/p>↵&lt;p>SEBUAH &lt;strong>pemeriksaan lanjutan&lt;/strong> dilakukan untuk memastikan bahwa fasilitas telah memenuhi setiap masalah yang diangkat pada pemeriksaan awal atau rutin sebelumnya.&lt;/p>",
-  "alertTitle.continueInspection":"WASPADA",
+  "alertTitle.continueInspection": "WASPADA",
   "alertContent.continueInspection": "Anda yakin ingin menghapus pemeriksaan ini?",
   "screen.LanguageSelection.loaderBottom.content": "Sinkronkan Data",
   "screen.LanguaueSelection.alertTitle.network": "Tanpa Internet!",
   "screen.LanguaueSelection.alertMessage.network": "Anda tidak terhubung ke jaringan, Periksa kembali konektivitas internet Anda dan coba lagi.",
-  "screen.HomePage.headerContent":"CapaCITES",
+  "screen.HomePage.headerContent": "CapaCITES",
   "button.back": "KEMBALI",
   "screen.InspectionNotes.photosTitle": "FOTO"
 }

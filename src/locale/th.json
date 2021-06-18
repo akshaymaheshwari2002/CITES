@@ -305,7 +305,7 @@
   "button.inspectFacility": "ตรวจสอบสถานที่",
   "button.determineSourceCode": "กำหนดซอร์สโค้ดสำหรับชิ้นงานทดสอบ",
   "button.giveFeedback": "ให้ข้อเสนอแนะ",
-  "screen.InspectionFlow.headerPartTwo": "RANCHING +",
+  "screen.InspectionFlow.headerPartTwo": "ไร่ +",
   "screen.InspectionFlow.headerPartThree": "เชลยพันธุ์",
   "screen.InspectionFlow.headerPartFour": "คู่มือการตรวจสอบ",
   "button.firstInspection": "นี่เป็นการตรวจสอบครั้งแรกของฉัน",
@@ -704,12 +704,12 @@
   "lifeStgeDropDownList.option15": "กบ",
   "lifeStgeDropDownList.option16": "ดักแด้",
   "lifeStgeDropDownList.option17": "อื่น ๆ",
-  "alertTitle.continueInspection":"การแจ้งเตือน"  ,
+  "alertTitle.continueInspection": "การแจ้งเตือน",
   "alertContent.continueInspection": "แน่ใจไหมว่าต้องการลบการตรวจสอบนี้",
   "screen.LanguageSelection.loaderBottom.content": "ซิงค์ข้อมูล",
   "screen.LanguaueSelection.alertTitle.network": "ไม่มีอินเทอร์เน็ต!",
   "screen.LanguaueSelection.alertMessage.network": "คุณไม่ได้เชื่อมต่อกับเครือข่ายตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณแล้วลองอีกครั้ง",
-  "screen.HomePage.headerContent":"CapaCITES",
+  "screen.HomePage.headerContent": "CapaCITES",
   "button.back": "กลับ",
   "screen.InspectionNotes.photosTitle": "รูปภาพ"
 }

@@ -305,7 +305,7 @@
   "button.inspectFacility": "Inspecter une installation",
   "button.determineSourceCode": "Déterminer le code source d'un spécimen",
   "button.giveFeedback": "DONNER DES COMMENTAIRES",
-  "screen.InspectionFlow.headerPartTwo": "RANCHER +",
+  "screen.InspectionFlow.headerPartTwo": "ÉLEVAGE +",
   "screen.InspectionFlow.headerPartThree": "ÉLEVAGE EN CAPTIVITÉ",
   "screen.InspectionFlow.headerPartFour": "GUIDE D'INSPECTION",
   "button.firstInspection": "C'est ma première inspection",
@@ -709,7 +709,7 @@
   "screen.LanguageSelection.loaderBottom.content": "Synchroniser les données",
   "screen.LanguaueSelection.alertTitle.network": "Pas d'Internet!",
   "screen.LanguaueSelection.alertMessage.network": "Vous n'êtes pas connecté au réseau, vérifiez votre connectivité Internet et réessayez.",
-  "screen.HomePage.headerContent":"CapaCITES",
+  "screen.HomePage.headerContent": "CapaCITES",
   "button.back": "DOS",
   "screen.InspectionNotes.photosTitle": "PHOTOS"
 }
