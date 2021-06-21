@@ -16,7 +16,7 @@ export default [
     value: 'lo',
   },
   {
-    label: '官话',
+    label: '简体中文',
     value: 'zh',
   },
   {
