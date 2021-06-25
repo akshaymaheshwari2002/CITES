@@ -336,7 +336,7 @@
   "screen.FacilityRegistered.contentThreePartOne": "Đối với",
   "screen.FacilityRegistered.contentThreePartTwo": " Phụ lục CITES I ",
   "screen.FacilityRegistered.contentThreePartThree": "các loài được nuôi nhốt cho mục đích thương mại, hãy kiểm tra xem cơ sở đó có được đăng ký trên:",
-  "button.citesRegister": "đăng ký CITES cho",
+  "button.citesRegister": "ĐĂNG KÝ CITES CHO",
   "button.AppendixI": "PHỤ LỤC I LOÀI",
   "AppendixI": "PPHỤ LỤC  I",
   "AppendixII": "PPHỤ LỤC II",
@@ -704,12 +704,12 @@
   "lifeStgeDropDownList.option15": "Ếch con",
   "lifeStgeDropDownList.option16": "Chrysalis",
   "lifeStgeDropDownList.option17": "Khác",
-  "alertTitle.continueInspection":"BÁO CÁO",
+  "alertTitle.continueInspection": "BÁO CÁO",
   "alertContent.continueInspection": "Bạn có chắc chắn muốn xóa kiểm tra này không?",
   "screen.LanguageSelection.loaderBottom.content": "Đồng bộ dữ liệu",
   "screen.LanguaueSelection.alertTitle.network": "Không có Internet!",
   "screen.LanguaueSelection.alertMessage.network": "Bạn chưa kết nối với mạng, Hãy kiểm tra kỹ kết nối internet của bạn và thử lại.",
-  "screen.HomePage.headerContent":"CapaCITES",
+  "screen.HomePage.headerContent": "CapaCITES",
   "button.back": "TRỞ LẠI",
   "screen.InspectionNotes.photosTitle": "HÌNH ẢNH"
 }
