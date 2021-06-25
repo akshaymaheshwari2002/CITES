@@ -34,9 +34,14 @@ const FormOneSummary = ({navigation, route}) => {
     (state) => state.sessionReducer.activeInspection.registeredSpecies,
     shallowEqual,
   );
+
   const facilityData = useMemo(
     () => ({
       ...formData,
+      citesInformationCode:
+        formData?.citesInformationCode === 'ABR001'
+          ? ''
+          : formData?.citesInformationCode,
       facilityOwnerPhone_callingCode:
         formData?.facilityOwnerPhone?.callingCode ?? '',
       facilityOwnerPhone_contactNumber:

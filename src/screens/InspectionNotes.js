@@ -288,7 +288,7 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
   },
   circle: {
-    marginHorizontal: '15@s',
+    marginHorizontal: '14@s',
     marginTop: '16@vs',
     alignItems: 'center',
     justifyContent: 'center',

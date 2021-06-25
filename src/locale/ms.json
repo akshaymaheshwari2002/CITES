@@ -84,7 +84,7 @@
   "form.FormOne.label.followUpInspection": "Pemeriksaan Susulan",
   "form.FormOne.label.nationalPermitNumber": "Nombor pengenalan permit nasional, jika berkenaan",
   "form.FormOne.placeHolder.nationalPermitNumber": "Nombor pengenalan permit nasional",
-  "form.FormOne.label.citesInformationCode": "CITES Lampiran I spesimen sahaja\nKod pembiakan tawanan yang didaftarkan oleh CITES, jika berkenaan",
+  "form.FormOne.label.citesInformationCode": "Kod pembiakan tawanan yang didaftarkan oleh CITES, hanya berlaku untuk spesimen CITES Lampiran I yang ditangkap untuk tujuan komersial",
   "form.FormOne.placeHolder.citesInformationCode": "Contohnya, A-BR-001",
   "form.FormOne.label.specimenBottom": "Sekiranya ini adalah pemeriksaan pertama anda, sila masukkan 0.",
   "form.FormOne.label.numberPlaceHolder": "Sila masukkan nombor",
@@ -709,7 +709,7 @@
   "screen.LanguageSelection.loaderBottom.content": "Segerakkan Data",
   "screen.LanguaueSelection.alertTitle.network": "Tanpa Internet!",
   "screen.LanguaueSelection.alertMessage.network": "Anda tidak tersambung ke rangkaian, Periksa silang kesambungan internet anda dan cuba lagi.",
-  "screen.HomePage.headerContent":"CapaCITES",
+  "screen.HomePage.headerContent": "CapaCITES",
   "button.back": "KEMBALI",
   "screen.InspectionNotes.photosTitle": "FOTO"
 }

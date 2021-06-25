@@ -23,6 +23,7 @@ const PopupNotesInput = ({
           <TextInput
             value={notesText}
             onChange={setNotesText}
+            style={styles.notesText}
             placeholder={formatMessage({
               id: 'screen.InspectionNotes.notesText',
             })}
@@ -86,5 +87,8 @@ const styles = ScaledSheet.create({
   buttonTextStyle: {
     ...Fonts.Lato15R,
     textTransform: 'uppercase',
+  },
+  notesText: {
+    height: '77%',
   },
 });
