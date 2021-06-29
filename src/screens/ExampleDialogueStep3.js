@@ -66,7 +66,7 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.64@s',
   },
   content: {
-    //alignSelf: 'center',
+    // alignSelf: 'center',
     ...Fonts.Lato15R,
     letterSpacing: 0.36,
     color: RawColors.black,
