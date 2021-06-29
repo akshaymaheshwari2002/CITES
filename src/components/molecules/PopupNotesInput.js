@@ -89,6 +89,6 @@ const styles = ScaledSheet.create({
     textTransform: 'uppercase',
   },
   notesText: {
-    height: '77%',
+    height: '89%',
   },
 });

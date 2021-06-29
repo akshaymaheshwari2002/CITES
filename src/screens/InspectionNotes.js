@@ -164,7 +164,9 @@ const InspectionNotes = () => {
           </View>
           <View style={styles.backColor}>
             <View style={styles.row}>
-              <TouchableOpacity style={styles.circle} onPress={handleTorch}>
+              <TouchableOpacity
+                style={styles.flashLightCircle}
+                onPress={handleTorch}>
                 <Image source={Images.flashLightButton} />
               </TouchableOpacity>
               <TouchableOpacity
@@ -289,6 +291,12 @@ const styles = ScaledSheet.create({
   },
   circle: {
     marginHorizontal: '14@s',
+    marginTop: '16@vs',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  flashLightCircle: {
+    marginHorizontal: '1@s',
     marginTop: '16@vs',
     alignItems: 'center',
     justifyContent: 'center',

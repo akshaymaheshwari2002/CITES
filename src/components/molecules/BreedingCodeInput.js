@@ -1,5 +1,5 @@
 import React, {useState, useEffect, Fragment} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, TextInput} from 'react-native';
 import PropTypes from 'prop-types';
 import {ScaledSheet, ms} from 'react-native-size-matters';
 import {
@@ -11,8 +11,13 @@ import {
 
 import CommonStyles from '@styles/CommonStyles';
 import {Fonts, RawColors} from '@styles/Themes';
+import {getIntl} from '@utils/Intl';
 
 const CELL_COUNT = 6;
+const {formatMessage} = getIntl();
+const example = formatMessage({
+  id: 'form.FormOne.placeHolder.citesInformationCode',
+});
 const BreedingCodeInput = React.forwardRef(
   ({label, error, onChange, value: _value}, _) => {
     const [value, setValue] = useState('');
@@ -45,12 +50,13 @@ const BreedingCodeInput = React.forwardRef(
           textContentType="oneTimeCode"
           renderCell={({index, symbol, isFocused}) => (
             <Fragment key={index}>
-              <Text
+              <TextInput
+                placeholder={`${example[index]}`}
                 key={`value-${index}`}
                 style={[styles.cell, isFocused && styles.focusCell]}
                 onLayout={getCellOnLayoutHandler(index)}>
                 {symbol || (isFocused ? <Cursor /> : null)}
-              </Text>
+              </TextInput>
               {index === 0 || index === 2 ? (
                 <View key={`separator-${index}`} style={styles.separator} />
               ) : null}
@@ -78,7 +84,7 @@ const styles = ScaledSheet.create({
   cell: {
     width: '40@s',
     height: '40@s',
-    lineHeight: 38,
+    // lineHeight: 38,
     ...Fonts.Lato20R,
     borderWidth: 2,
     borderColor: RawColors.dimGrey,

@@ -38,10 +38,6 @@ const FormOneSummary = ({navigation, route}) => {
   const facilityData = useMemo(
     () => ({
       ...formData,
-      citesInformationCode:
-        formData?.citesInformationCode === 'ABR001'
-          ? ''
-          : formData?.citesInformationCode,
       facilityOwnerPhone_callingCode:
         formData?.facilityOwnerPhone?.callingCode ?? '',
       facilityOwnerPhone_contactNumber:
@@ -259,7 +255,7 @@ const styles = ScaledSheet.create({
   },
   slideBtnContainerEdit: {
     position: 'absolute',
-    top: '85@vs',
+    top: '75@vs',
     right: 0,
   },
   slideBtn: {

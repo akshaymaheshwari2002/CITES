@@ -238,7 +238,6 @@ export default () => {
       label: formatMessage({id: 'form.FormOne.label.citesInformationCode'}),
       name: 'citesInformationCode',
       fieldType: Constants.BREEDING_CODE_INPUT,
-      defaultValue: 'ABR001',
       rules: {
         validate: {
           validBreedingCode,
