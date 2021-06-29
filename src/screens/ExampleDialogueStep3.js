@@ -15,38 +15,40 @@ const ExampleDialogueStep3 = ({navigation: {navigate}}) => {
       <Container.ScrollView
         contentContainerStyle={CommonStyles.screenContainer}
         style={CommonStyles.flex1}>
-        <View style={styles.title}>
-          <Text style={styles.titleContent}>
-            {formatMessage({id: 'screen.ExampleDialogue.headerPartOne'})}
+        <View style={{flex: 1}}>
+          <View style={styles.title}>
+            <Text style={styles.titleContent}>
+              {formatMessage({id: 'screen.ExampleDialogue.headerPartOne'})}
+            </Text>
+            <Text style={styles.titleContent}>
+              {formatMessage({id: 'screen.ExampleDialogue.headerPartTwo'})}
+            </Text>
+          </View>
+          <Text style={styles.content}>
+            {formatMessage({id: 'screen.ExampleDialogueStep3.contentOne'})}
           </Text>
-          <Text style={styles.titleContent}>
-            {formatMessage({id: 'screen.ExampleDialogue.headerPartTwo'})}
+          <Text style={styles.content}>
+            {formatMessage({id: 'screen.ExampleDialogueStep3.contentTwo'})}
           </Text>
+          <Text style={styles.content}>
+            {formatMessage({id: 'screen.ExampleDialogueStep3.contentThree'})}
+          </Text>
+          <Text style={styles.content}>
+            {formatMessage({id: 'screen.ExampleDialogueStep3.contentFour'})}
+          </Text>
+          <Button
+            buttonContent={formatMessage({
+              id: 'button.continueWithStep3',
+            })}
+            buttonTextStyle={() => {
+              return styles.buttonText;
+            }}
+            buttonStyle={() => {
+              return styles.button;
+            }}
+            onPress={() => navigate('TabNavigator', {screen: 'StepThree'})}
+          />
         </View>
-        <Text style={styles.content}>
-          {formatMessage({id: 'screen.ExampleDialogueStep3.contentOne'})}
-        </Text>
-        <Text style={styles.content}>
-          {formatMessage({id: 'screen.ExampleDialogueStep3.contentTwo'})}
-        </Text>
-        <Text style={styles.content}>
-          {formatMessage({id: 'screen.ExampleDialogueStep3.contentThree'})}
-        </Text>
-        <Text style={styles.content}>
-          {formatMessage({id: 'screen.ExampleDialogueStep3.contentFour'})}
-        </Text>
-        <Button
-          buttonContent={formatMessage({
-            id: 'button.continueWithStep3',
-          })}
-          buttonTextStyle={() => {
-            return styles.buttonText;
-          }}
-          buttonStyle={() => {
-            return styles.button;
-          }}
-          onPress={() => navigate('TabNavigator', {screen: 'StepThree'})}
-        />
       </Container.ScrollView>
     </Container>
   );
@@ -64,7 +66,7 @@ const styles = ScaledSheet.create({
     letterSpacing: '0.64@s',
   },
   content: {
-    alignSelf: 'center',
+    //alignSelf: 'center',
     ...Fonts.Lato15R,
     letterSpacing: 0.36,
     color: RawColors.black,

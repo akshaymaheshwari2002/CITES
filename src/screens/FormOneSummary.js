@@ -259,7 +259,7 @@ const styles = ScaledSheet.create({
   },
   slideBtnContainerEdit: {
     position: 'absolute',
-    top: '85@vs',
+    top: '75@vs',
     right: 0,
   },
   slideBtn: {
