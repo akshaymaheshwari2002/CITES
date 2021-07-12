@@ -1,25 +1,13 @@
 import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit';
 import logger from 'redux-logger';
-import {
-  persistStore,
-  persistReducer,
-  createTransform,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from 'redux-persist';
+import {persistStore, persistReducer, createTransform} from 'redux-persist';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import reducer from './rootReducer';
 
 const middleware = [
   ...getDefaultMiddleware({
-    serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
+    serializableCheck: false,
     immutableCheck: false,
   }),
   logger,
