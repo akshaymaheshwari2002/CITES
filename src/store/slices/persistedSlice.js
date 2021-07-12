@@ -7,7 +7,7 @@ import Config from '@config';
 export const INITIAL_PERSISTED_STATE = {
   locale: null,
   feedbackId: null,
-  masterData: [],
+  masterData: {},
   loadingMasterData: false,
 };
 
@@ -16,10 +16,7 @@ export const masterDataMessagesSelector = createSelector(
     (state) => state.persistedReducer.masterData,
     (state) => state.persistedReducer.locale,
   ],
-  (masterDataArray, locale) =>
-    masterDataArray.find(
-      (data) => data.locale === (locale || Config.DEFAULT_LOCALE),
-    )?.translations ?? {},
+  (masterData, locale) => masterData[locale || Config.DEFAULT_LOCALE] ?? {},
 );
 
 export const fetchMasterData = createAsyncThunk('fetchMasterData', async () => {
@@ -44,7 +41,13 @@ const persistedSlice = createSlice({
       state.loadingMasterData = true;
     },
     [fetchMasterData.fulfilled]: (state, action) => {
-      state.masterData = action.payload;
+      state.masterData = action.payload.reduce(
+        (acc, curr) => ({
+          ...acc,
+          [curr.locale]: {...acc[curr.locale], [curr.key]: curr.value},
+        }),
+        {},
+      );
       state.loadingMasterData = false;
     },
     [fetchMasterData.rejected]: (state) => {

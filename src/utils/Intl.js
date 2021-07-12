@@ -1,5 +1,6 @@
 import {createIntl as createReactIntl, createIntlCache} from 'react-intl';
 import {NativeModules, Platform} from 'react-native';
+import {decode} from 'he';
 
 import Config from '@config';
 import {store} from '@store';
@@ -49,7 +50,11 @@ export const createIntl = (_locale, _messages = {}) => {
     _locale ||
     store.getState().persistedReducer.locale ||
     Config.DEFAULT_LOCALE;
-  const messages = {...getMessages()[locale], ..._messages};
+  let messages = {...getMessages()[locale], ..._messages};
+  messages = Object.keys(messages).reduce(
+    (acc, curr) => ({...acc, [curr]: decode(messages[curr])}),
+    {},
+  );
 
   intl = createReactIntl({locale, messages}, cache);
 

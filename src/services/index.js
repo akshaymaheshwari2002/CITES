@@ -3,7 +3,8 @@ import Config from '@config';
 const BASE_URL = Config.BACKEND_BASE_URL;
 
 export const getMasterDatasConfig = () => ({
-  url: `${BASE_URL}/v1/master-datas`,
+  url: `${BASE_URL}/v1/locale-messages`,
+  params: {limit: 100000},
   method: 'GET',
   headers: {'Content-Type': 'application/json'},
 });

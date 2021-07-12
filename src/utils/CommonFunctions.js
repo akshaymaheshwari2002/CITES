@@ -171,15 +171,12 @@ export const getInputFieldElementForFormSummary = ({
 };
 
 export const getHelpTexts = () => {
-  const {locale, masterData} = store.getState().persistedReducer;
-  const masterDataHelpTexts =
-    masterData.find((data) => data.locale === (locale || Config.DEFAULT_LOCALE))
-      ?.helpTexts ?? {};
-  const intl = getIntl(locale);
-  const defaultHelpTexts = Object.keys(HelpTexts).reduce(
+  const {locale} = store.getState().persistedReducer;
+  const intl = getIntl(locale || Config.DEFAULT_LOCALE);
+  const helpTexts = Object.keys(HelpTexts).reduce(
     (acc, key) => ({...acc, [key]: intl.formatMessage({id: HelpTexts[key]})}),
     {},
   );
 
-  return {...defaultHelpTexts, ...masterDataHelpTexts};
+  return helpTexts;
 };

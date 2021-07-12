@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import HTML from 'react-native-render-html';
-import {decode} from 'he';
 
 import {Container} from '@atoms';
 import SideMenu from './SideMenu';
@@ -47,7 +46,7 @@ const OverlayModal = ({
                 showsVerticalScrollIndicator={false}
                 style={styles.scrollView}>
                 <HTML
-                  source={{html: helpText ? decode(helpText) : ''}}
+                  source={{html: helpText || ''}}
                   contentWidth={width * 0.55}
                   baseFontStyle={styles.modalText}
                 />
