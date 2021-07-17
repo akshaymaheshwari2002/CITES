@@ -31,9 +31,7 @@ const FormThreeHeader = ({
     <div className="App" style={styles.marginContainer}>
       <div style={styles.topContainer}>
         <h1>{formText?.formText}</h1>
-        <div style={styles.body}>
-          <h1 style={styles.number}>{formNumber?.[form]}</h1>
-        </div>
+        <h1 style={styles.number}>{formNumber?.[form]}</h1>
       </div>
 
       <h3 style={styles.headText}>{formTitle?.[form]}</h3>
@@ -82,18 +80,13 @@ const FormThreeHeader = ({
 const styles = {
   marginContainer: {marginRight: 16, marginLeft: 5, marginBottom: 16},
   topContainer: {
+    paddingLeft: '50',
     display: 'flex',
     flexDirection: 'row',
-    alignContent: 'flex-start',
-    paddingLeft: '50',
-    paddingBottom: 0,
-    marginBottom: 0,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
-  body: {
-    paddingLeft: 30,
-    paddingRight: 30,
-    marginBottom: 0,
-  },
+
   headText: {
     paddingTop: 0,
     marginTop: 0,
@@ -101,8 +94,7 @@ const styles = {
     textAlign: 'left',
   },
   number: {
-    paddingBottom: 0,
-    marginBottom: 0,
+    marginLeft: 30,
     textAlign: 'center',
   },
   text: {textAlign: 'left'},

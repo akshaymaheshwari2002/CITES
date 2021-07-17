@@ -1,5 +1,6 @@
 import React from 'react';
 import {getInputFieldElementForFormSummary as getInputFieldElement} from '@utils/CommonFunctions';
+import {RawColors} from '@styles/Themes';
 
 const formNumber = {
   one: 1,
@@ -33,8 +34,8 @@ const FormOneHeader = ({
         <div style={styles.topContainer}>
           {form !== 'notes' ? (
             <>
-              <h1>{formText?.formText}</h1>
               <div style={styles.body}>
+                <h1>{formText?.formText}</h1>
                 <h1 style={styles.number}>{formNumber?.[form]}</h1>
               </div>
             </>
@@ -176,9 +177,10 @@ const styles = {
     marginBottom: 0,
   },
   body: {
-    paddingLeft: 30,
-    paddingRight: 30,
-    marginBottom: 0,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
   headText: {
     paddingTop: 0,
@@ -187,8 +189,7 @@ const styles = {
     textAlign: 'left',
   },
   number: {
-    paddingBottom: 0,
-    marginBottom: 0,
+    marginLeft: 30,
     textAlign: 'center',
   },
   text: {textAlign: 'left'},
