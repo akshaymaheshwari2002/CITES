@@ -15,7 +15,7 @@ import {RawColors} from '@styles/Themes';
 import CommonStyles from '@styles/CommonStyles';
 
 const Container = ({
-  isModal,
+  isModal = false,
   children,
   statusBarProps,
   safeAreaViewProps: {style, ...restProps},
